@@ -1,0 +1,32 @@
+### Headers settings
+company: Roobik
+
+### Xcode project settings
+project_name: ExmoMobileClient
+xcodeproj_path: exmo-ios-client.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: exmo-ios-client
+
+# The file path for new modules
+project_file_path: exmo-ios-client/sources
+
+# The Xcode group path to new modules
+project_group_path: exmo-ios-client/sources
+
+### Tests generation settings section
+# The tests target name
+# test_target: exmo-ios-client
+
+# The file path for new tests
+# test_file_path: exmo-ios-client/tests
+
+# The Xcode group path to new tests
+# test_group_path: exmo-ios-client/tests
+
+### Templates
+templates:
+#- {name: local_template_name, local: 'absolute/file/path'}
+#- {name: remote_template_name, git: 'https://github.com/igrekde/remote_template'}
+- {name: swifty_viper}
