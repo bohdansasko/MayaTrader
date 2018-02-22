@@ -5,6 +5,9 @@
 ## app code data
 .idea
 
+## mac os files
+.DS*
+
 ## Build generated
 build/
 DerivedData/
