@@ -7,23 +7,69 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		20001D69203B8D1200B6966F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20001D68203B8D1200B6966F /* AppDelegate.swift */; };
-		20001D6B203B8D1200B6966F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20001D6A203B8D1200B6966F /* ViewController.swift */; };
-		20001D6E203B8D1200B6966F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20001D6C203B8D1200B6966F /* Main.storyboard */; };
+		0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED4B771AF062127B0D3782DF /* LoginConfigurator.swift */; };
+		0F96E308D2D80F19AD5155F8 /* QRScannerInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */; };
 		20001D71203B8D1200B6966F /* exmo_ios_client.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 20001D6F203B8D1200B6966F /* exmo_ios_client.xcdatamodeld */; };
 		20001D73203B8D1200B6966F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20001D72203B8D1200B6966F /* Assets.xcassets */; };
-		20001D76203B8D1200B6966F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20001D74203B8D1200B6966F /* LaunchScreen.storyboard */; };
+		20467D5051D58148706B41DA /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */; };
+		205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */; };
+		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
+		205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC2203CCEBD00A2E28A /* Main.storyboard */; };
+		2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */; };
+		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
+		393BB2EDF910ED63EA0FA976 /* LoginViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */; };
+		3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E435360E49F73ABF4C888C /* LoginPresenter.swift */; };
+		466BE515F58F0A76E05A0A0A /* LoginModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04A56E5D9C15348E901E25 /* LoginModuleInput.swift */; };
+		6F4E2E9D37A8F2FAF95EF6A9 /* QRScannerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */; };
+		73B6DB13C940F5C5A8ADC3FE /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F2CB0625621FE1D77883A /* LoginViewOutput.swift */; };
+		88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */; };
+		920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */; };
+		940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */; };
+		C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */; };
+		C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C8C6BAC16047D8F23A2219 /* QRScannerRouterInput.swift */; };
+		C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */; };
+		D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */; };
+		D928C52A8583F7A7D684EF35 /* LoginInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218EB01FE1B03C6D3D0AE560 /* LoginInteractorInput.swift */; };
+		DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E059834C77B0C6F11D3D3 /* LoginViewController.swift */; };
+		EEBC1EA66242D71226026D0B /* QRScannerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */; };
+		F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5CC4983136487CA151E5 /* LoginInteractor.swift */; };
+		F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */; };
+		FEA9FA32F865C22F7445201B /* LoginInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC7B14E3C96EC51DF9EEB44 /* LoginInteractorOutput.swift */; };
+		FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20001D65203B8D1200B6966F /* exmo-ios-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exmo-ios-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		20001D68203B8D1200B6966F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20001D6A203B8D1200B6966F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		20001D6D203B8D1200B6966F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20001D70203B8D1200B6966F /* exmo_ios_client.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = exmo_ios_client.xcdatamodel; sourceTree = "<group>"; };
 		20001D72203B8D1200B6966F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		20001D75203B8D1200B6966F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		20001D77203B8D1200B6966F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		205A7CC1203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		205A7CC3203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		218EB01FE1B03C6D3D0AE560 /* LoginInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorInput.swift; sourceTree = "<group>"; };
+		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
+		349F2CB0625621FE1D77883A /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
+		39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewInput.swift; sourceTree = "<group>"; };
+		3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewOutput.swift; sourceTree = "<group>"; };
+		3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInitializer.swift; sourceTree = "<group>"; };
+		5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerPresenter.swift; sourceTree = "<group>"; };
+		6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorOutput.swift; sourceTree = "<group>"; };
+		65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInitializer.swift; sourceTree = "<group>"; };
+		6F3E059834C77B0C6F11D3D3 /* LoginViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewInput.swift; sourceTree = "<group>"; };
+		77E435360E49F73ABF4C888C /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerConfigurator.swift; sourceTree = "<group>"; };
+		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
+		B33B5CC4983136487CA151E5 /* LoginInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouterInput.swift; sourceTree = "<group>"; };
+		B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorInput.swift; sourceTree = "<group>"; };
+		B7C8C6BAC16047D8F23A2219 /* QRScannerRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouterInput.swift; sourceTree = "<group>"; };
+		DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		ED4B771AF062127B0D3782DF /* LoginConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
+		F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouter.swift; sourceTree = "<group>"; };
+		FB04A56E5D9C15348E901E25 /* LoginModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
+		FBC7B14E3C96EC51DF9EEB44 /* LoginInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +83,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		05469F8310D9B6760A569123 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */,
+				349F2CB0625621FE1D77883A /* LoginViewOutput.swift */,
+				6F3E059834C77B0C6F11D3D3 /* LoginViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		06E682FD92A41BF8657E2881 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				ED4B771AF062127B0D3782DF /* LoginConfigurator.swift */,
+				3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		07C5E43BE503A2018B5AF942 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B7C8C6BAC16047D8F23A2219 /* QRScannerRouterInput.swift */,
+				F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		20001D5C203B8D1200B6966F = {
 			isa = PBXGroup;
 			children = (
@@ -56,15 +130,122 @@
 		20001D67203B8D1200B6966F /* exmo-ios-client */ = {
 			isa = PBXGroup;
 			children = (
-				20001D68203B8D1200B6966F /* AppDelegate.swift */,
-				20001D6A203B8D1200B6966F /* ViewController.swift */,
-				20001D6C203B8D1200B6966F /* Main.storyboard */,
+				205A7CBD203CCEBD00A2E28A /* sources */,
 				20001D72203B8D1200B6966F /* Assets.xcassets */,
-				20001D74203B8D1200B6966F /* LaunchScreen.storyboard */,
-				20001D77203B8D1200B6966F /* Info.plist */,
 				20001D6F203B8D1200B6966F /* exmo_ios_client.xcdatamodeld */,
+				20001D77203B8D1200B6966F /* Info.plist */,
 			);
 			path = "exmo-ios-client";
+			sourceTree = "<group>";
+		};
+		205A7CBD203CCEBD00A2E28A /* sources */ = {
+			isa = PBXGroup;
+			children = (
+				205A7CBE203CCEBD00A2E28A /* Main */,
+				2F5076038FAE7726FAFBB74C /* Login */,
+				9E01C470C3E1B77012FC4051 /* QRScanner */,
+			);
+			path = sources;
+			sourceTree = "<group>";
+		};
+		205A7CBE203CCEBD00A2E28A /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */,
+				205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */,
+				205A7CC2203CCEBD00A2E28A /* Main.storyboard */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2F5076038FAE7726FAFBB74C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				05469F8310D9B6760A569123 /* View */,
+				F76A472BAE9890092EB14DEF /* Presenter */,
+				805346028F332A0BAD6109CE /* Interactor */,
+				D7912ED5AA0D3C26CDF53A84 /* Router */,
+				06E682FD92A41BF8657E2881 /* Configurator */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		335E3A8C334AD8DC53888D6A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */,
+				5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		5073454438EB686C72360DF9 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */,
+				3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */,
+				DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		805346028F332A0BAD6109CE /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				218EB01FE1B03C6D3D0AE560 /* LoginInteractorInput.swift */,
+				FBC7B14E3C96EC51DF9EEB44 /* LoginInteractorOutput.swift */,
+				B33B5CC4983136487CA151E5 /* LoginInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		9E01C470C3E1B77012FC4051 /* QRScanner */ = {
+			isa = PBXGroup;
+			children = (
+				5073454438EB686C72360DF9 /* View */,
+				335E3A8C334AD8DC53888D6A /* Presenter */,
+				F2AB511EA27F0DBADD48BBE5 /* Interactor */,
+				07C5E43BE503A2018B5AF942 /* Router */,
+				E78E595F779B91946691C178 /* Configurator */,
+			);
+			path = QRScanner;
+			sourceTree = "<group>";
+		};
+		D7912ED5AA0D3C26CDF53A84 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */,
+				3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		E78E595F779B91946691C178 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */,
+				65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		F2AB511EA27F0DBADD48BBE5 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */,
+				6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */,
+				25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		F76A472BAE9890092EB14DEF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FB04A56E5D9C15348E901E25 /* LoginModuleInput.swift */,
+				77E435360E49F73ABF4C888C /* LoginPresenter.swift */,
+			);
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,9 +307,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20001D76203B8D1200B6966F /* LaunchScreen.storyboard in Resources */,
+				205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */,
 				20001D73203B8D1200B6966F /* Assets.xcassets in Resources */,
-				20001D6E203B8D1200B6966F /* Main.storyboard in Resources */,
+				205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,29 +320,52 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20001D6B203B8D1200B6966F /* ViewController.swift in Sources */,
-				20001D69203B8D1200B6966F /* AppDelegate.swift in Sources */,
 				20001D71203B8D1200B6966F /* exmo_ios_client.xcdatamodeld in Sources */,
+				205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */,
+				393BB2EDF910ED63EA0FA976 /* LoginViewInput.swift in Sources */,
+				73B6DB13C940F5C5A8ADC3FE /* LoginViewOutput.swift in Sources */,
+				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
+				466BE515F58F0A76E05A0A0A /* LoginModuleInput.swift in Sources */,
+				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
+				D928C52A8583F7A7D684EF35 /* LoginInteractorInput.swift in Sources */,
+				FEA9FA32F865C22F7445201B /* LoginInteractorOutput.swift in Sources */,
+				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
+				940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */,
+				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
+				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
+				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
+				EEBC1EA66242D71226026D0B /* QRScannerViewInput.swift in Sources */,
+				6F4E2E9D37A8F2FAF95EF6A9 /* QRScannerViewOutput.swift in Sources */,
+				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
+				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
+				FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */,
+				88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */,
+				920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */,
+				C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */,
+				C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */,
+				D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */,
+				34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */,
+				0F96E308D2D80F19AD5155F8 /* QRScannerInitializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		20001D6C203B8D1200B6966F /* Main.storyboard */ = {
+		205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				20001D6D203B8D1200B6966F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		20001D74203B8D1200B6966F /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				20001D75203B8D1200B6966F /* Base */,
+				205A7CC1203CCEBD00A2E28A /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		205A7CC2203CCEBD00A2E28A /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				205A7CC3203CCEBD00A2E28A /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -281,8 +485,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQ8948VJT6;
 				INFOPLIST_FILE = "exmo-ios-client/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Hillarious.exmo-ios-client";
+				PRODUCT_BUNDLE_IDENTIFIER = "Roobik.exmo-ios-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -296,8 +501,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQ8948VJT6;
 				INFOPLIST_FILE = "exmo-ios-client/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Hillarious.exmo-ios-client";
+				PRODUCT_BUNDLE_IDENTIFIER = "Roobik.exmo-ios-client";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
