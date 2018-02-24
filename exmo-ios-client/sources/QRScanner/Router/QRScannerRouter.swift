@@ -7,5 +7,5 @@
 //
 
 class QRScannerRouter: QRScannerRouterInput {
-
+    weak var viewController: QRScannerViewController!
 }

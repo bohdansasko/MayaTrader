@@ -7,5 +7,5 @@
 //
 
 class LoginRouter: LoginRouterInput {
-
+    // do nothing
 }

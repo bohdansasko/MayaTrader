@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,12 +27,12 @@
             </objects>
             <point key="canvasLocation" x="-1121" y="1187"/>
         </scene>
-        <!--Scanner View Controller-->
+        <!--Qr Scanner View Controller-->
         <scene sceneID="a8t-I0-Ygi">
             <objects>
                 <viewController storyboardIdentifier="QRScannerViewController" id="gCE-1u-PNC" customClass="QRScannerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QIZ-eu-Ic6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ec1-Us-nCh"/>
@@ -41,6 +40,11 @@
                     <navigationItem key="navigationItem" id="xli-L9-diI"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="km4-yC-bsF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="pYO-Hh-VGN" customClass="QRScannerModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="qrScannerViewController" destination="gCE-1u-PNC" id="nxi-7y-x7X"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="902" y="-1039"/>
         </scene>
@@ -92,16 +96,16 @@
             </objects>
             <point key="canvasLocation" x="-1121" y="1928"/>
         </scene>
-        <!--Login Manager View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="nWv-LX-FMz">
             <objects>
-                <viewController id="cO4-us-iMn" customClass="LoginManagerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginView" id="cO4-us-iMn" customClass="LoginViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="r0k-Se-wMX">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="9Gk-bQ-oRu">
-                                <rect key="frame" x="72" y="231" width="270" height="225"/>
+                                <rect key="frame" x="72" y="199" width="270" height="225"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imageView:s7u-Dh-TUL:image" translatesAutoresizingMaskIntoConstraints="NO" id="s7u-Dh-TUL">
                                         <rect key="frame" x="0.0" y="0.0" width="270" height="55"/>
@@ -137,7 +141,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="gCE-1u-PNC" kind="presentation" id="zZz-Fn-ZpD"/>
+                                                    <segue destination="gCE-1u-PNC" kind="show" identifier="QRScannerView" id="zZz-Fn-ZpD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -156,8 +160,17 @@
                         <viewLayoutGuide key="safeArea" id="p4a-Rm-Q6c"/>
                     </view>
                     <navigationItem key="navigationItem" id="NQR-IZ-5ZO"/>
+                    <connections>
+                        <outlet property="keyField" destination="hw8-lN-mwh" id="0VJ-Zc-kPZ"/>
+                        <outlet property="secretField" destination="0wF-8k-dyk" id="5Tg-ag-GXF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uI4-Da-U8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="E3l-QH-axv" customClass="LoginModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="loginViewController" destination="cO4-us-iMn" id="u2G-f6-GLf"/>
+                    </connections>
+                </customObject>
             </objects>
             <point key="canvasLocation" x="-75" y="-1039"/>
         </scene>
@@ -188,12 +201,13 @@
         <!--Watchlist-->
         <scene sceneID="79Q-JV-h1Z">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uDX-N9-BNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="5IS-yZ-VBi" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="5IS-yZ-VBi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Watchlist" image="icon_watchlist_normal" id="co5-ae-8qr"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HME-yj-NWn">
+                    <navigationBar key="navigationBar" opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="HME-yj-NWn">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.20483802258968353" green="0.21106846630573273" blue="0.26285573840141296" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rlI-sY-Ebx">
@@ -203,6 +217,7 @@
                         <segue destination="cO4-us-iMn" kind="relationship" relationship="rootViewController" id="kiD-eJ-EiN"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uDX-N9-BNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1121" y="-1039"/>
         </scene>
@@ -1373,4 +1388,5 @@ AQ0sAAENLwABDUEAAQ1EAAENSQAAAAAAAAQBAAAAAAAAAEEAAAAAAAAAAAAAAAAAAQ1LA
 </mutableData>
         </image>
     </resources>
+    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
 </document>

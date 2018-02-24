@@ -11,8 +11,12 @@ class LoginPresenter: LoginModuleInput, LoginViewOutput, LoginInteractorOutput {
     weak var view: LoginViewInput!
     var interactor: LoginInteractorInput!
     var router: LoginRouterInput!
-
+    
     func viewIsReady() {
-
+        // do nothing
+    }
+    
+    func setLoginData(block: QRLoginModel?) {
+         view.setLoginData(configHolder: block)
     }
 }

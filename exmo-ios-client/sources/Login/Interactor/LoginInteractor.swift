@@ -7,7 +7,5 @@
 //
 
 class LoginInteractor: LoginInteractorInput {
-
     weak var output: LoginInteractorOutput!
-
 }

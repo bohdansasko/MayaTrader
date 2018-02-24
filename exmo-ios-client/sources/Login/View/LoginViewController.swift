@@ -9,17 +9,32 @@
 import UIKit
 
 class LoginViewController: UIViewController, LoginViewInput {
-
+    @IBOutlet weak var keyField: UITextField!
+    @IBOutlet weak var secretField: UITextField!
+    
     var output: LoginViewOutput!
-
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let qrViewController = segue.destination as? QRScannerViewController else { return }
+        
+        qrViewController.outputProtocol.setLoginPresenter(presenter: output as! LoginModuleInput)
+    }
 
+    func setLoginData(configHolder: QRLoginModel?) {
+        if let qrInfo = configHolder {
+            keyField.text = qrInfo.key
+            secretField.text = qrInfo.secret
+        }
+    }
 
     // MARK: LoginViewInput
     func setupInitialState() {
+        // do nothing
     }
 }

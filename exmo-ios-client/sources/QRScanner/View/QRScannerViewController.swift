@@ -9,18 +9,21 @@
 import UIKit
 import AVFoundation
 
-class QRScannerViewController: UIViewController, QRScannerViewInput, AVCaptureMetadataOutputObjectsDelegate {
-    var output: QRScannerViewOutput!
+class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, QRScannerViewInput {
+    var outputProtocol: QRScannerViewOutput!
     var videoLayer : AVCaptureVideoPreviewLayer?
 
-    // MARK: Life cycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //output.viewIsReady()
-        openCamera()
+    func setupInitialState() {
+        // do nothing
     }
 
-    private func openCamera() {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        outputProtocol.viewIsReady()
+        prepareCameraToReadQRCode()
+    }
+
+    private func prepareCameraToReadQRCode() {
         let session = AVCaptureSession()
         let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
@@ -44,26 +47,15 @@ class QRScannerViewController: UIViewController, QRScannerViewInput, AVCaptureMe
     }
     
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if metadataObjects.count > 0 {
-            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                if object.type == AVMetadataObject.ObjectType.qr {
-                    tryParseQRData(object.stringValue)
-                }
-            }
-        }
+        outputProtocol.tryFetchKeyAndSecret(metadataObjects: metadataObjects)
     }
-    
-    private func tryParseQRData(_ strData: String?) {
-        if let strValue = strData {
-            let componentsArr = strValue.components(separatedBy: "|")
-            print("key: \(componentsArr[1])")
-            print("secret: \(componentsArr[2])")
-            
-            videoLayer?.session?.stopRunning()
-        }
+
+    func setLoginPresenter(presenter: LoginModuleInput) {
+        outputProtocol.setLoginPresenter(presenter: presenter)
     }
-    
-    func setupInitialState() {
-        // do something
+
+    func dismissView() {
+        videoLayer?.session?.stopRunning()
+        self.navigationController?.popViewController(animated: true)
     }
 }

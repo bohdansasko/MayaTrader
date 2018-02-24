@@ -7,11 +7,6 @@
 //
 
 protocol QRScannerViewInput: class {
-
-    /**
-        @author TQ0oS
-        Setup initial state of the view
-    */
-
     func setupInitialState()
+    func dismissView()
 }

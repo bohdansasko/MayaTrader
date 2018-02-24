@@ -9,27 +9,25 @@
 import UIKit
 
 class QRScannerModuleConfigurator {
+    func configureModuleForViewInput<UIViewController>(qrViewInput: UIViewController) {
+        guard let qrScannerViewController = qrViewInput as? QRScannerViewController else { return }
 
-    func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
-
-        if let viewController = viewInput as? QRScannerViewController {
-            configure(viewController: viewController)
-        }
+        configure(qrScannerViewController: qrScannerViewController)
     }
 
-    private func configure(viewController: QRScannerViewController) {
-
+    private func configure(qrScannerViewController: QRScannerViewController) {
         let router = QRScannerRouter()
-
+        router.viewController = qrScannerViewController
+        
         let presenter = QRScannerPresenter()
-        presenter.view = viewController
+        presenter.view = qrScannerViewController
         presenter.router = router
-
+        
         let interactor = QRScannerInteractor()
         interactor.output = presenter
-
         presenter.interactor = interactor
-        viewController.output = presenter
+        
+        qrScannerViewController.outputProtocol = presenter
     }
 
 }

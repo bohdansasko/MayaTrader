@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LoginRouterInput {
-
+    // do nothing
 }
