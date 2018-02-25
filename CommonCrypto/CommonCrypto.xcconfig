@@ -1,0 +1,2 @@
+MODULEMAP_FILE[sdk=iphoneos*] = CommonCrypto/iphoneos-module.map
+MODULEMAP_FILE[sdk=iphonesimulator*] = CommonCrypto/iphonesimulator-module.map
