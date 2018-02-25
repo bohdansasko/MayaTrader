@@ -9,10 +9,11 @@
 class LoginInteractor: LoginInteractorInput {
     weak var output: LoginInteractorOutput!
     
-    func loadUserInfo(block: QRLoginModel?) {
-        LoginService.sharedInstance.setUserInfo(apiKey: (block?.key)!, secretKey: (block?.secret)!)
+    func loadUserInfo(loginModel: QRLoginModel) {
+        LoginService.sharedInstance.setUserInfo(apiKey: loginModel.key!, secretKey: loginModel.secret!)
         let result = LoginService.sharedInstance.userInfo()
         let dataString = String(data: result!, encoding: .utf8)
+
         print("loaded userInfo: \(dataString!)")
     }
 }

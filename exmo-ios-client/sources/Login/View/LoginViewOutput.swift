@@ -14,4 +14,5 @@ protocol LoginViewOutput {
     */
 
     func viewIsReady()
+    func loadUserInfo(loginModel: QRLoginModel?)
 }

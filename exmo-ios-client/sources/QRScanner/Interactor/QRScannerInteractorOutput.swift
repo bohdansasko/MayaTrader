@@ -9,5 +9,5 @@
 import Foundation
 
 protocol QRScannerInteractorOutput: class {
-    func setLoginData(configBlock: QRLoginModel?)
+    func setLoginData(loginModel: QRLoginModel?)
 }

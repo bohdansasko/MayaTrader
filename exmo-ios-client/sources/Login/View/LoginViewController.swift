@@ -26,10 +26,13 @@ class LoginViewController: UIViewController, LoginViewInput {
         qrViewController.outputProtocol.setLoginPresenter(presenter: output as! LoginModuleInput)
     }
 
-    func setLoginData(configHolder: QRLoginModel?) {
-        if let qrInfo = configHolder {
+    func setLoginData(loginModel: QRLoginModel?) {
+        if let qrInfo = loginModel {
             keyField.text = qrInfo.key
             secretField.text = qrInfo.secret
+
+            // TODO: show activity view and hide it when data loaded +- 2 seconds
+            output.loadUserInfo(loginModel: loginModel)
         }
     }
 

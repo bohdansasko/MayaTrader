@@ -7,14 +7,21 @@
 //
 
 class QRLoginModel {
+    var exmoIdentifier: String?
     var key: String?
     var secret: String?
     
     convenience init(qrParsedStr: String) {
         self.init()
-        
-        let componentsArr = qrParsedStr.components(separatedBy: "|")
-        self.key = componentsArr[1]
-        self.secret = componentsArr[2]
+        parseQRString(qrString: qrParsedStr)
+    }
+
+    private func parseQRString(qrString: String) {
+        let componentsArr = qrString.components(separatedBy: "|")
+        if componentsArr.count > 2 {
+            self.exmoIdentifier = componentsArr[0]
+            self.key = componentsArr[1]
+            self.secret = componentsArr[2]
+        }
     }
 }

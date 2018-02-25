@@ -7,5 +7,5 @@
 //
 
 protocol LoginModuleInput: class {
-    func setLoginData(block: QRLoginModel?)
+    func setLoginData(loginModel: QRLoginModel?)
 }

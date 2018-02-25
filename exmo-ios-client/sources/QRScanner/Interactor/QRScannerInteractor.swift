@@ -22,8 +22,8 @@ class QRScannerInteractor: QRScannerInteractorInput {
     
     private func tryParseQRData(_ strData: String?) {
         if let qrParsedStr = strData {
-            let block = QRLoginModel(qrParsedStr: qrParsedStr)
-            output.setLoginData(configBlock: block)
+            let loginModel = QRLoginModel(qrParsedStr: qrParsedStr)
+            output.setLoginData(loginModel: loginModel)
         }
     }
 }

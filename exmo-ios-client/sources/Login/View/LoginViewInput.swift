@@ -8,5 +8,5 @@
 
 protocol LoginViewInput: class {
     func setupInitialState()
-    func setLoginData(configHolder: QRLoginModel?)
+    func setLoginData(loginModel: QRLoginModel?)
 }

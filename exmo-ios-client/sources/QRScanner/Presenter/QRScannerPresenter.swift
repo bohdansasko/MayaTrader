@@ -22,8 +22,8 @@ class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerIn
         interactor.tryFetchKeyAndSecret(metadataObjects: metadataObjects)
     }
     
-    func setLoginData(configBlock: QRLoginModel?) {
-        loginPresenter.setLoginData(block: configBlock)
+    func setLoginData(loginModel: QRLoginModel?) {
+        loginPresenter.setLoginData(loginModel: loginModel)
         view.dismissView()
     }
     
