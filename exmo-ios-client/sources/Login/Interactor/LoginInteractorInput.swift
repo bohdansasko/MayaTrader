@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LoginInteractorInput {
-    // do nothing
+    func loadUserInfo(block: QRLoginModel?)
 }

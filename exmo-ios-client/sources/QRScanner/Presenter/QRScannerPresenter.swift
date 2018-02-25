@@ -23,8 +23,8 @@ class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerIn
     }
     
     func setLoginData(configBlock: QRLoginModel?) {
-        view.dismissView()
         loginPresenter.setLoginData(block: configBlock)
+        view.dismissView()
     }
     
     func setLoginPresenter(presenter: LoginModuleInput) {

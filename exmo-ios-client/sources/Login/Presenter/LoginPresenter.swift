@@ -17,6 +17,7 @@ class LoginPresenter: LoginModuleInput, LoginViewOutput, LoginInteractorOutput {
     }
     
     func setLoginData(block: QRLoginModel?) {
-         view.setLoginData(configHolder: block)
+        view.setLoginData(configHolder: block)
+        interactor.loadUserInfo(block: block)
     }
 }

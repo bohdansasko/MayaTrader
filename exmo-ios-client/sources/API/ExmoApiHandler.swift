@@ -9,7 +9,7 @@
 import Foundation
 import CommonCrypto
 
-public class ApiHandler {
+public class ExmoApiHandler {
     private enum Config: String {
         case API_URL = "https://api.exmo.com/v1/"
         case API_KEY = "your_key"
@@ -20,6 +20,11 @@ public class ApiHandler {
 
     private var api_key: String!
     private var secret_key: String!
+    
+    func setUserInfo(apiKey: String, secretKey: String) {
+        self.api_key = apiKey
+        self.secret_key = secretKey
+    }
     
     private var nonce: Int {
         get{
@@ -109,6 +114,6 @@ public class ApiHandler {
         for i in 0..<digestLen {
             hashString.appendFormat("%02x", result[i])
         }
-        return "hashString"
+        return hashString as String
     }
 }
