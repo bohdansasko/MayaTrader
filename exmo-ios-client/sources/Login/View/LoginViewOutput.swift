@@ -7,12 +7,7 @@
 //
 
 protocol LoginViewOutput {
-
-    /**
-        @author TQ0oS
-        Notify presenter that view is ready
-    */
-
     func viewIsReady()
     func loadUserInfo(loginModel: QRLoginModel?)
+    func prepareToOpenQRView(qrViewController: QRScannerViewController)
 }

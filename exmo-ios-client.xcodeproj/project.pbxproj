@@ -36,9 +36,10 @@
 		20CAFF002042EE4F00C7DEA5 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* LoginService.swift */; };
 		2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */; };
 		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
+		36712E1CBE20D69B04B3000E /* LoginModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */; };
 		393BB2EDF910ED63EA0FA976 /* LoginViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */; };
 		3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E435360E49F73ABF4C888C /* LoginPresenter.swift */; };
-		466BE515F58F0A76E05A0A0A /* LoginModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04A56E5D9C15348E901E25 /* LoginModuleInput.swift */; };
+		466BE515F58F0A76E05A0A0A /* LoginModuleOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04A56E5D9C15348E901E25 /* LoginModuleOutput.swift */; };
 		6F4E2E9D37A8F2FAF95EF6A9 /* QRScannerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */; };
 		73B6DB13C940F5C5A8ADC3FE /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F2CB0625621FE1D77883A /* LoginViewOutput.swift */; };
 		88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */; };
@@ -100,6 +101,7 @@
 		218EB01FE1B03C6D3D0AE560 /* LoginInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorInput.swift; sourceTree = "<group>"; };
 		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
 		349F2CB0625621FE1D77883A /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
+		3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
 		39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewInput.swift; sourceTree = "<group>"; };
 		3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewOutput.swift; sourceTree = "<group>"; };
@@ -119,7 +121,7 @@
 		DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		ED4B771AF062127B0D3782DF /* LoginConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouter.swift; sourceTree = "<group>"; };
-		FB04A56E5D9C15348E901E25 /* LoginModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
+		FB04A56E5D9C15348E901E25 /* LoginModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleOutput.swift; sourceTree = "<group>"; };
 		FBC7B14E3C96EC51DF9EEB44 /* LoginInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorOutput.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -334,8 +336,9 @@
 		F76A472BAE9890092EB14DEF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				FB04A56E5D9C15348E901E25 /* LoginModuleInput.swift */,
+				FB04A56E5D9C15348E901E25 /* LoginModuleOutput.swift */,
 				77E435360E49F73ABF4C888C /* LoginPresenter.swift */,
+				3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -441,7 +444,7 @@
 				393BB2EDF910ED63EA0FA976 /* LoginViewInput.swift in Sources */,
 				73B6DB13C940F5C5A8ADC3FE /* LoginViewOutput.swift in Sources */,
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
-				466BE515F58F0A76E05A0A0A /* LoginModuleInput.swift in Sources */,
+				466BE515F58F0A76E05A0A0A /* LoginModuleOutput.swift in Sources */,
 				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
 				D928C52A8583F7A7D684EF35 /* LoginInteractorInput.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorOutput.swift in Sources */,
@@ -467,6 +470,7 @@
 				D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */,
 				34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */,
 				0F96E308D2D80F19AD5155F8 /* QRScannerInitializer.swift in Sources */,
+				36712E1CBE20D69B04B3000E /* LoginModuleInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

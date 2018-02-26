@@ -7,5 +7,5 @@
 //
 
 protocol QRScannerModuleInput: class {
-    // do nothing
+    func setLoginPresenter(presenter: LoginModuleOutput)
 }

@@ -12,7 +12,7 @@ class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerIn
     var interactor: QRScannerInteractorInput!
     var router: QRScannerRouterInput!
     
-    var loginPresenter: LoginModuleInput!
+    var loginPresenter: LoginModuleOutput!
     
     func viewIsReady() {
         // do nothing
@@ -26,8 +26,8 @@ class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerIn
         loginPresenter.setLoginData(loginModel: loginModel)
         view.dismissView()
     }
-    
-    func setLoginPresenter(presenter: LoginModuleInput) {
+
+    func setLoginPresenter(presenter: LoginModuleOutput) {
         loginPresenter = presenter
     }
 }

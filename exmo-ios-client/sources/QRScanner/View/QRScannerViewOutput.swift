@@ -10,5 +10,4 @@ import AVFoundation
 protocol QRScannerViewOutput {
     func viewIsReady()
     func tryFetchKeyAndSecret(metadataObjects: [AVMetadataObject])
-    func setLoginPresenter(presenter: LoginModuleInput)
 }

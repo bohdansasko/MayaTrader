@@ -22,8 +22,7 @@ class LoginViewController: UIViewController, LoginViewInput {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let qrViewController = segue.destination as? QRScannerViewController else { return }
-        
-        qrViewController.outputProtocol.setLoginPresenter(presenter: output as! LoginModuleInput)
+        output.prepareToOpenQRView(qrViewController: qrViewController)
     }
 
     func setLoginData(loginModel: QRLoginModel?) {
@@ -31,7 +30,6 @@ class LoginViewController: UIViewController, LoginViewInput {
             keyField.text = qrInfo.key
             secretField.text = qrInfo.secret
 
-            // TODO: show activity view and hide it when data loaded +- 2 seconds
             output.loadUserInfo(loginModel: loginModel)
         }
     }

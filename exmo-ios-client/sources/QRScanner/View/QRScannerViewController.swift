@@ -50,10 +50,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         outputProtocol.tryFetchKeyAndSecret(metadataObjects: metadataObjects)
     }
 
-    func setLoginPresenter(presenter: LoginModuleInput) {
-        outputProtocol.setLoginPresenter(presenter: presenter)
-    }
-
     func dismissView() {
         videoLayer?.session?.stopRunning()
         self.navigationController?.popViewController(animated: true)

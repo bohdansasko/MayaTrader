@@ -6,7 +6,7 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-class LoginPresenter: LoginModuleInput, LoginViewOutput, LoginInteractorOutput {
+class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, LoginInteractorOutput {
 
     weak var view: LoginViewInput!
     var interactor: LoginInteractorInput!
@@ -22,5 +22,11 @@ class LoginPresenter: LoginModuleInput, LoginViewOutput, LoginInteractorOutput {
 
     func loadUserInfo(loginModel: QRLoginModel?) {
         interactor.loadUserInfo(loginModel: loginModel!)
+    }
+
+    func prepareToOpenQRView(qrViewController: QRScannerViewController) {
+        if let qrPresenter = qrViewController.outputProtocol as? QRScannerModuleInput {
+            qrPresenter.setLoginPresenter(presenter: self)
+        }
     }
 }
