@@ -8,6 +8,6 @@
 
 import Foundation
 
-class LoginService {
+class APIService {
     static let sharedInstance = ExmoApiHandler()
 }
