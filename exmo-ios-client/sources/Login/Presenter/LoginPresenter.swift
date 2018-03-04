@@ -6,6 +6,8 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
+import UIKit
+
 class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, LoginInteractorOutput {
 
     weak var view: LoginViewInput!
@@ -28,5 +30,10 @@ class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, Logi
         if let qrPresenter = qrViewController.outputProtocol as? QRScannerModuleInput {
             qrPresenter.setLoginPresenter(presenter: self)
         }
+    }
+    
+    func showTabMoreWithLoginData() {
+        view.hideLoader()
+        router.showTabMoreWithLoginData(view: view as! UIViewController)
     }
 }

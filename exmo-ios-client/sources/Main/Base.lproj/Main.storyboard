@@ -114,7 +114,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1383" y="1906"/>
+            <point key="canvasLocation" x="1598" y="1906"/>
         </scene>
         <!--Watchlist-->
         <scene sceneID="XjQ-vH-9d2">
@@ -492,6 +492,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Fu-Ij-f4f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-701" y="449"/>
+        </scene>
+        <!--FAQ-->
+        <scene sceneID="0jA-vW-XPU">
+            <objects>
+                <viewController storyboardIdentifier="faqView" title="FAQ" id="zBj-J7-Bte" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yEV-gd-WRO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="oye-8V-wzi"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2b5-oL-WR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="709" y="4720"/>
         </scene>
     </scenes>
     <resources>

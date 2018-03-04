@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol LoginRouterInput {
-    // do nothing
+    func showTabMoreWithLoginData(view: UIViewController)
 }

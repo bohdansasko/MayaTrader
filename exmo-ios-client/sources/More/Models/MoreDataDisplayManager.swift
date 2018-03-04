@@ -13,7 +13,8 @@ class MoreDataDisplayManager {
         MenuItem(name: "Login", segueIndentifier: "loginView"),
         MenuItem(name: "Order history", segueIndentifier: "orderHistoryView"),
         MenuItem(name: "News", segueIndentifier: "newsView"),
-        MenuItem(name: "Chat", segueIndentifier: "chatView")
+        MenuItem(name: "Chat", segueIndentifier: "chatView"),
+        MenuItem(name: "FAQ", segueIndentifier: "faqView")
     ]
     
     func getCountMenuItems() -> Int {

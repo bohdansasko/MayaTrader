@@ -9,4 +9,6 @@
 protocol LoginViewInput: class {
     func setupInitialState()
     func setLoginData(loginModel: QRLoginModel?)
+    func showLoader()
+    func hideLoader()
 }

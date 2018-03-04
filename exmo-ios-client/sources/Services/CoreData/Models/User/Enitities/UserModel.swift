@@ -8,6 +8,19 @@
 
 import Foundation
 
-class UserModel {
-    // do nothing
+struct UserInfo: Codable {
+    let uid: Int64
+    let balances: [String:String]
+    
+//    func encodeBalancesToString() -> String {
+//        let jsonEncode = JSONEncoder().encode(self)
+//    }
+    
+
+    
+}
+
+struct UserModel {
+    var qrModel: QRLoginModel?
+    var userInfo: UserInfo?
 }

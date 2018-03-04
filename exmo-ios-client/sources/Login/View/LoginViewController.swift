@@ -30,10 +30,21 @@ class LoginViewController: UIViewController, LoginViewInput {
             keyField.text = qrInfo.key
             secretField.text = qrInfo.secret
 
+            // show activity indicator
+            // disable all buttons and transitions
             output.loadUserInfo(loginModel: loginModel)
         }
     }
-
+    
+    func showLoader() {
+        print("showLoader()")
+    }
+    
+    func hideLoader() {
+        print("hideLoader()")
+    }
+    
+    
     // MARK: LoginViewInput
     func setupInitialState() {
         // do nothing
