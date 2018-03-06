@@ -9,23 +9,17 @@
 import Foundation
 import CoreData
 
-struct UserEntity {
-    static let fieldUID = "uid"
-    static let fieldKey = "key"
-    static let fieldSecret = "secret"
-    static let fieldBalances = "balances"
-}
-
 class UserCoreDataEngine {
     static var sharedInstance = UserCoreDataEngine()
-    
-    var moc = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
+    static var wallet = WalletCoreDataEngine.sharedInstance
+
+    private var moc = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
     
     init() {
         moc = CoreDataManager.sharedInstance.persistentContainer.viewContext
     }
     
-    func isUserExists() -> Bool {
+    func isUserExists(uid: Int) -> Bool {
         guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
             return false
         }
@@ -46,8 +40,7 @@ class UserCoreDataEngine {
         }
     }
     
-    func loginUser() -> Bool {
-        let uid = 1255830; // need load from user settings
+    func loginUser(uid: Int) -> Bool {
         guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
             return false
         }
@@ -71,11 +64,13 @@ class UserCoreDataEngine {
         guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
             return false
         }
-        
+
+        DataService.appSettings.set(userModel.userInfo?.uid, forKey: AppSettingsKeys.LastLoginedUserUID)
+
         let userEntity = User(entity: userEntityDescription, insertInto: moc)
         
         userEntity.setValue(userModel.userInfo?.uid, forKey: UserEntity.fieldUID)
-        // userEntity.setValue(userModel.userInfo?.getBalancesAsStr(), forKey: UserEntity.fieldBalance)
+//         userEntity.setValue(userModel.userInfo?.getBalancesAsStr(), forKey: UserEntity.fieldBalance)
         userEntity.setValue(userModel.qrModel?.key, forKey: UserEntity.fieldKey)
         userEntity.setValue(userModel.qrModel?.secret, forKey: UserEntity.fieldSecret)
 
@@ -90,8 +85,22 @@ class UserCoreDataEngine {
         }
     }
 
-    func deleteUser(userModel: UserModel) {
-        // do nothing
+    func deleteUser(uid: Int) {
+        guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
+            return
+        }
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K==%d", "uid", uid)
+        fetchRequest.entity = userEntityDescription
+
+        let deleteRequest = NSBatchDeleteRequest.init(fetchRequest: fetchRequest)
+
+        do {
+            try moc.execute(deleteRequest)
+            try moc.save()
+        } catch let error as NSError {
+            NSLog("Unresolved error: \(error), \(error.userInfo)")
+        }
     }
     
     func getUserInfo() -> UserModel {

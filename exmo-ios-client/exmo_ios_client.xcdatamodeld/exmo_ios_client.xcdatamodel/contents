@@ -1,18 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1212" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FavouriteCurrencyPair" representedClassName="FavouriteCurrencyPair" syncable="YES">
+        <attribute name="pairName" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="favouriteCurrencyPairs" inverseEntity="User" syncable="YES"/>
+    </entity>
+    <entity name="TransactionHistory" representedClassName="TransactionHistory" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="orderId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="pair" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="tradeId" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wallet" inverseName="transactionHistory" inverseEntity="Wallet" syncable="YES"/>
+    </entity>
     <entity name="User" representedClassName="User" syncable="YES">
         <attribute name="balances" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secret" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uid" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="favouriteCurrencyPairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FavouriteCurrencyPair" inverseName="user" inverseEntity="FavouriteCurrencyPair" syncable="YES"/>
+        <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wallet" inverseName="user" inverseEntity="Wallet" syncable="YES"/>
+    </entity>
+    <entity name="Wallet" representedClassName="Wallet" syncable="YES">
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WalletCurrency" inverseName="wallet" inverseEntity="WalletCurrency" syncable="YES"/>
+        <relationship name="transactionHistory" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TransactionHistory" inverseName="wallet" inverseEntity="TransactionHistory" syncable="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="wallet" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="WalletCurrency" representedClassName="WalletCurrency" syncable="YES">
         <attribute name="balance" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="currency" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="inOrders" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Wallet" inverseName="currencies" inverseEntity="Wallet" syncable="YES"/>
     </entity>
     <elements>
-        <element name="User" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="WalletCurrency" positionX="-63" positionY="0" width="128" height="90"/>
+        <element name="FavouriteCurrencyPair" positionX="-146" positionY="-279" width="128" height="73"/>
+        <element name="TransactionHistory" positionX="133" positionY="-25" width="128" height="178"/>
+        <element name="User" positionX="-344" positionY="-115" width="128" height="133"/>
+        <element name="Wallet" positionX="-92" positionY="-99" width="128" height="88"/>
+        <element name="WalletCurrency" positionX="133" positionY="-216" width="128" height="103"/>
     </elements>
 </model>

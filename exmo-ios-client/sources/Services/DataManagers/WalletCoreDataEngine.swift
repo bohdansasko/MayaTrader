@@ -6,8 +6,6 @@
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
-
 class WalletCoreDataEngine {
     static var sharedInstance = WalletCoreDataEngine()
     private var walletData = WalletDataProvider()

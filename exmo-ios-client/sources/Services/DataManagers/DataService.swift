@@ -9,6 +9,6 @@
 import Foundation
 
 class DataService {
-    static var userDataManager = UserCoreDataEngine.sharedInstance
-    static var walletDataManager = WalletCoreDataEngine.sharedInstance
+    static var appSettings = UserDefaults.standard
+    static var cache = UserCoreDataEngine.sharedInstance
 }

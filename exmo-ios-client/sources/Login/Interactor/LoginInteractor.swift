@@ -23,7 +23,7 @@ class LoginInteractor: LoginInteractorInput {
         userModel.qrModel = loginModel
         userModel.userInfo = decodedUserInfo
         
-        if (DataService.userDataManager.saveUserData(userModel: userModel)) {
+        if (DataService.cache.saveUserData(userModel: userModel)) {
             output.showTabMoreWithLoginData()
         }
     }
