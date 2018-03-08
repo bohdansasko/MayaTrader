@@ -7,7 +7,10 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
-protocol MoreInteractorInput {
-    // do nothing
+@objc protocol MoreInteractorInput {
+    func viewIsReady(tableView: UITableView!)
+    func onDidSelectMenuItem(segueIdentifier: String)
+    func updateDisplayInfo()
 }

@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 protocol MoreInteractorOutput: class {
-    // do nothing
+    func viewIsReady(tableView: UITableView!)
+    func onDidSelectMenuItem(segueIdentifier: String)
 }

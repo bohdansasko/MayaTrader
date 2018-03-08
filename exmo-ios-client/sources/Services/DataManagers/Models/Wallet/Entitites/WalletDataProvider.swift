@@ -7,22 +7,68 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class WalletDataProvider {
-    private var currencies: [WalletCurrencyModel] = [
-        WalletCurrencyModel(balance: 0.00187, currency: "BTC", countInOrders: 2),
-        WalletCurrencyModel(balance: 0.482, currency: "ETH", countInOrders: 3),
-        WalletCurrencyModel(balance: 0.0, currency: "USD", countInOrders: 0),
-        WalletCurrencyModel(balance: 0.0, currency: "EUR", countInOrders: 0),
-        WalletCurrencyModel(balance: 0.0, currency: "UAH", countInOrders: 0)
-    ]
+struct WalletModel : Mappable {
+    var balances: [WalletCurrencyModel]!
     
+    private var rawBalances: [String: String] {
+        didSet { tryUpdateData() }
+    }
+
+    private var rawReserved: [String: String] {
+        didSet { tryUpdateData() }
+    }
     
-    func getCurrencies() -> [WalletCurrencyModel] {
-        return currencies;
+    init?(map: Map) {
+        self.init()
+        if map.JSON["balances"] == nil {
+            return nil
+        }
+    }
+    
+    init() {
+        self.rawBalances = [:]
+        self.rawReserved = [:]
+        self.balances = []
+    }
+
+    func isDataExists() -> Bool {
+        return !balances.isEmpty
+    }
+
+    mutating func mapping(map: Map) {
+        rawBalances <- map["balances"]
+        rawReserved <- map["reserved"]
+    }
+    
+    private mutating func tryUpdateData() {
+        let shouldBreakFromMethod = rawBalances.isEmpty || rawReserved.isEmpty;
+        if shouldBreakFromMethod {
+             return
+        }
+        
+        self.balances.removeAll()
+        for (key, value) in rawBalances {
+            let dValue = Double(value)!
+            let countInOrders = Int(rawReserved[key]!)!
+            balances.append(WalletCurrencyModel(balance: dValue, currency: key, countInOrders: countInOrders))
+        }
+        rawBalances.removeAll()
+        rawReserved.removeAll()
+    }
+    
+    private func getTestData() -> [WalletCurrencyModel] {
+        return [
+            WalletCurrencyModel(balance: 0, currency: "UAH", countInOrders: 0)
+        ]
+    }
+    
+    func getCountCurrencies() -> Int {
+        return balances.count;
     }
     
     func getCurrencyByIndex(index: Int) -> WalletCurrencyModel {
-        return currencies[index]
+        return index > -1 && index < balances.count ? balances[index] : WalletCurrencyModel()
     }
 }

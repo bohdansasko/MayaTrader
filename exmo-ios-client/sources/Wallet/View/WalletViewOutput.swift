@@ -5,13 +5,9 @@
 //  Created by TQ0oS on 28/02/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import Foundation
+import UIKit.UITableView
 
 protocol WalletViewOutput {
-
-    /**
-        @author TQ0oS
-        Notify presenter that view is ready
-    */
-
-    func viewIsReady()
+    func viewIsReady(tableView: UITableView!)
 }

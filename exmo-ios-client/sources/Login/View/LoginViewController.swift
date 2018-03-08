@@ -8,21 +8,44 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, LoginViewInput {
+class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate {
     @IBOutlet weak var keyField: UITextField!
     @IBOutlet weak var secretField: UITextField!
     
     var output: LoginViewOutput!
+
+    // MARK: LoginViewInput
+    func setupInitialState() {
+        // do nothing
+    }
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+        
+        keyField.delegate = self
+        secretField.delegate = self
+        
+        keyField.keyboardType = .asciiCapable
+        secretField.keyboardType = .asciiCapable
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let qrViewController = segue.destination as? QRScannerViewController else { return }
         output.prepareToOpenQRView(qrViewController: qrViewController)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        hideKeyboard()
+        return true
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
 
     func setLoginData(loginModel: QRLoginModel?) {
@@ -43,10 +66,9 @@ class LoginViewController: UIViewController, LoginViewInput {
     func hideLoader() {
         print("hideLoader()")
     }
-    
-    
-    // MARK: LoginViewInput
-    func setupInitialState() {
-        // do nothing
+
+    @IBAction func pressedLoginButton(_ sender: Any) {
+        let qrModel = QRLoginModel(exmoIdentifier: "Exmo", key: keyField.text!, secret: secretField.text!)
+        output.loadUserInfo(loginModel: qrModel)
     }
 }

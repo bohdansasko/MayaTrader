@@ -9,40 +9,23 @@
 import UIKit
 
 class WalletViewController: UIViewController, WalletViewInput {
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var currencySettingsBtn: UIBarButtonItem!
 
     var output: WalletViewOutput!
-    var walletDataProvider: WalletDataProvider!
-    
-    @IBOutlet weak var tableView: UITableView!
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
-        
-        tableView.delegate = self
-        tableView.dataSource = self
-        walletDataProvider = WalletCoreDataEngine.sharedInstance.getWallet()
+        output.viewIsReady(tableView: tableView)
     }
-
 
     // MARK: WalletViewInput
     func setupInitialState() {
-        // do nothing
-    }
-}
-
-extension WalletViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return walletDataProvider.getCurrencies().count
+        currencySettingsBtn.isEnabled = false
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currency = walletDataProvider.getCurrencyByIndex(index: indexPath.row)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "WalletTableViewCell", for: indexPath) as! WalletTableViewCell
-        cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: currency.countInOrders)
-
-        return cell
+    func setTouchEnabled(isTouchEnabled: Bool) {
+        currencySettingsBtn.isEnabled = isTouchEnabled
     }
 }

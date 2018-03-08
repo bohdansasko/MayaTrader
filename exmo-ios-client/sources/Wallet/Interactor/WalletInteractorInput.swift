@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit.UITableView
 
-protocol WalletInteractorInput {
-
+@objc protocol WalletInteractorInput {
+    func viewIsReady(tableView: UITableView!)
+    func updateDisplayInfo()
 }

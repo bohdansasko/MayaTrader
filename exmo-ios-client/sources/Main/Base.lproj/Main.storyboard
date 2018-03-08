@@ -32,7 +32,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MenuItemTableViewCell" textLabel="1sV-NH-fR8" style="IBUITableViewCellStyleDefault" id="owq-hb-8Jb" customClass="MenuItemTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreMenuItem" textLabel="1sV-NH-fR8" style="IBUITableViewCellStyleDefault" id="owq-hb-8Jb" customClass="MenuItemTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="owq-hb-8Jb" id="75Z-Ol-cW2">
@@ -281,6 +281,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qHW-iz-QyR"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="currencySettingsBtn" destination="qHW-iz-QyR" id="j4y-EO-eke"/>
                         <outlet property="tableView" destination="EtY-gI-dpf" id="hQL-nQ-BNf"/>
                     </connections>
                 </viewController>
@@ -345,6 +346,9 @@
                                                 <state key="normal" title="Login">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="pressedLoginButton:" destination="cO4-us-iMn" eventType="touchUpInside" id="5hs-lx-TOo"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSx-bu-S9J">
                                                 <rect key="frame" x="0.0" y="120" width="270" height="30"/>

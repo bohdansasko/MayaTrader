@@ -65,14 +65,14 @@ class UserCoreDataEngine {
             return false
         }
 
-        DataService.appSettings.set(userModel.userInfo?.uid, forKey: AppSettingsKeys.LastLoginedUserUID)
+        DataService.appSettings.set(userModel.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
 
         let userEntity = User(entity: userEntityDescription, insertInto: moc)
         
-        userEntity.setValue(userModel.userInfo?.uid, forKey: UserEntity.fieldUID)
-//         userEntity.setValue(userModel.userInfo?.getBalancesAsStr(), forKey: UserEntity.fieldBalance)
-        userEntity.setValue(userModel.qrModel?.key, forKey: UserEntity.fieldKey)
-        userEntity.setValue(userModel.qrModel?.secret, forKey: UserEntity.fieldSecret)
+        userEntity.setValue(userModel.getUID(), forKey: UserEntity.uid.rawValue)
+        //userEntity.setValue(userModel.userInfo?.getBalancesAsStr(), forKey: UserEntity.fieldBalance)
+        userEntity.setValue(userModel.qrModel?.key, forKey: UserEntity.key.rawValue)
+        userEntity.setValue(userModel.qrModel?.secret, forKey: UserEntity.secret.rawValue)
 
         do {
             try moc.save()
@@ -85,6 +85,12 @@ class UserCoreDataEngine {
         }
     }
 
+    func deleteLastLoggedUser() {
+        let uid = DataService.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        deleteUser(uid: uid)
+        DataService.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+    }
+    
     func deleteUser(uid: Int) {
         guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
             return
@@ -94,18 +100,12 @@ class UserCoreDataEngine {
         fetchRequest.entity = userEntityDescription
 
         let deleteRequest = NSBatchDeleteRequest.init(fetchRequest: fetchRequest)
-
         do {
             try moc.execute(deleteRequest)
             try moc.save()
         } catch let error as NSError {
             NSLog("Unresolved error: \(error), \(error.userInfo)")
         }
-    }
-    
-    func getUserInfo() -> UserModel {
-        // do nothing
-        return UserModel()
     }
 
 }

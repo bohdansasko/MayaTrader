@@ -8,9 +8,4 @@
 
 class WalletCoreDataEngine {
     static var sharedInstance = WalletCoreDataEngine()
-    private var walletData = WalletDataProvider()
-    
-    func getWallet() -> WalletDataProvider {
-        return walletData
-    }
 }

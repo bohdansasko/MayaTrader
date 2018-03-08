@@ -12,8 +12,8 @@ class WalletCurrencyModel {
     var balance: Double
     var currency: String
     var countInOrders: Int
-    
-    init(balance: Double, currency: String, countInOrders: Int) {
+
+    init(balance: Double = 0.0, currency: String = "", countInOrders: Int = 0) {
         self.balance = balance
         self.currency = currency
         self.countInOrders = countInOrders

@@ -7,20 +7,44 @@
 //
 
 import Foundation
+import ObjectMapper
 
-struct UserInfo: Codable {
-    let uid: Int64
-    let balances: [String:String]
+class UserModel: Mappable {
+    private var uid: Int! = 0 {
+        didSet {
+            isExmoUIDSeted = true
+        }
+    }
+    private var isExmoUIDSeted = false
     
-//    func encodeBalancesToString() -> String {
-//        let jsonEncode = JSONEncoder().encode(self)
-//    }
-    
-
-    
-}
-
-struct UserModel {
     var qrModel: QRLoginModel?
-    var userInfo: UserInfo?
+    var walletInfo: WalletModel!
+    
+    init() {
+        walletInfo = WalletModel()
+    }
+    
+    required init?(map: Map) {
+        walletInfo = WalletModel()
+    }
+    
+    func mapping(map: Map) {
+        uid <- map["uid"]
+    }
+    
+    func updateUserID() {
+        let uidForCheck = DataService.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        if DataService.cache.isUserExists(uid: uidForCheck) {
+            uid = uidForCheck
+            isExmoUIDSeted = true
+        }
+    }
+    
+    func getUID() -> Int {
+        return uid
+    }
+    
+    func getIsExmoUIDSeted() -> Bool {
+        return isExmoUIDSeted
+    }
 }

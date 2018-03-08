@@ -7,11 +7,5 @@
 //
 
 protocol WalletViewInput: class {
-
-    /**
-        @author TQ0oS
-        Setup initial state of the view
-    */
-
-    func setupInitialState()
+    func setTouchEnabled(isTouchEnabled: Bool)
 }

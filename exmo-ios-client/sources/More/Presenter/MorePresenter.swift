@@ -17,7 +17,13 @@ class MorePresenter: MoreModuleInput, MoreViewOutput, MoreInteractorOutput {
         // do nothing
     }
     
-    func onDidSelectMenuItem(viewController: UIViewController, segueIdentifier: String) {
-        router.onDidSelectMenuItem(viewController: viewController, segueIdentifier: segueIdentifier)
+    func onDidSelectMenuItem(segueIdentifier: String) {
+        if let uiViewController = view as? UIViewController {
+            router.onDidSelectMenuItem(viewController: uiViewController, segueIdentifier: segueIdentifier)
+        }
+    }
+
+    func viewIsReady(tableView: UITableView!) {
+        interactor.viewIsReady(tableView: tableView)
     }
 }

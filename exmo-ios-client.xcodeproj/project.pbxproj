@@ -38,6 +38,7 @@
 		205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */; };
 		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
 		205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC2203CCEBD00A2E28A /* Main.storyboard */; };
+		207EAE0A204FE47400FDA3B7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EAE09204FE47400FDA3B7 /* Session.swift */; };
 		2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491620492B87007CA79C /* WalletCurrencyModel.swift */; };
 		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		20844928204930AA007CA79C /* WalletCurrency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20844926204930AA007CA79C /* WalletCurrency+CoreDataClass.swift */; };
@@ -49,7 +50,6 @@
 		20CAFF002042EE4F00C7DEA5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* APIService.swift */; };
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
-		20D7F02720461A780056F547 /* MoreDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02620461A780056F547 /* MoreDataDisplayManager.swift */; };
 		23027C32759874645F1BFC61 /* MoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MoreRouter.swift */; };
 		2C0D8C2083A0CF7F71803DFF /* WalletRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A5F19B014B96291ECB0A9 /* WalletRouter.swift */; };
 		2CCE0A760898715BD2600A3B /* WalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD10044E6852271EF22E838 /* WalletConfigurator.swift */; };
@@ -58,8 +58,11 @@
 		320E190D1B73245BC78149C3 /* WalletInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52403B4446193279E96607F /* WalletInteractorInput.swift */; };
 		33FA275589ADB6723CEB02A2 /* WalletInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorOutput.swift */; };
 		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
+		36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */; };
+		3671270AD41B65A3E7C2B26D /* WalletDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */; };
 		36712C9A3C90496E33B01C2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671257CD4262EA9B280ABE0 /* Constants.swift */; };
 		36712E1CBE20D69B04B3000E /* LoginModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */; };
+		36712E4C4C5245EF136945B7 /* MoreDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */; };
 		393BB2EDF910ED63EA0FA976 /* LoginViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */; };
 		3C40522FD523C9ABB1477573 /* WalletRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ECA500CFCF983CB3537DF /* WalletRouterInput.swift */; };
 		3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E435360E49F73ABF4C888C /* LoginPresenter.swift */; };
@@ -140,6 +143,7 @@
 		205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		205A7CC1203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		205A7CC3203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		207EAE09204FE47400FDA3B7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		2084491620492B87007CA79C /* WalletCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrencyModel.swift; sourceTree = "<group>"; };
 		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		20844926204930AA007CA79C /* WalletCurrency+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "WalletCurrency+CoreDataClass.swift"; path = "exmo-ios-client/sources/Services/DataManagers/Models/Wallet/ManagedEntities/WalletCurrency+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
@@ -155,7 +159,6 @@
 		20CAFEFF2042EE4F00C7DEA5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
-		20D7F02620461A780056F547 /* MoreDataDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDataDisplayManager.swift; sourceTree = "<group>"; };
 		218EB01FE1B03C6D3D0AE560 /* LoginInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorInput.swift; sourceTree = "<group>"; };
 		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
 		278A5F19B014B96291ECB0A9 /* WalletRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletRouter.swift; sourceTree = "<group>"; };
@@ -163,6 +166,9 @@
 		349F2CB0625621FE1D77883A /* LoginViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewOutput.swift; sourceTree = "<group>"; };
 		3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
 		3671257CD4262EA9B280ABE0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreDataDisplayManager.swift; sourceTree = "<group>"; };
+		367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreDisplayModel.swift; sourceTree = "<group>"; };
+		36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDisplayManager.swift; sourceTree = "<group>"; };
 		39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewInput.swift; sourceTree = "<group>"; };
 		3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewOutput.swift; sourceTree = "<group>"; };
@@ -368,6 +374,8 @@
 				202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */,
 				205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */,
 				205A7CC2203CCEBD00A2E28A /* Main.storyboard */,
+				207EAE09204FE47400FDA3B7 /* Session.swift */,
+				3671257CD4262EA9B280ABE0 /* Constants.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -459,7 +467,6 @@
 			children = (
 				20CAFED32042AE6400C7DEA5 /* API */,
 				2003B5652048C42400BD205F /* DataManagers */,
-				3671257CD4262EA9B280ABE0 /* Constants.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -468,7 +475,7 @@
 			isa = PBXGroup;
 			children = (
 				20D7F02120460A9B0056F547 /* MenuItem.swift */,
-				20D7F02620461A780056F547 /* MoreDataDisplayManager.swift */,
+				367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -542,6 +549,7 @@
 				C9FD8E53273F656F5A94F776 /* MoreViewInput.swift */,
 				72AFD63623E5A23D5AAC4E67 /* MoreViewOutput.swift */,
 				A671F1210F4E0D1A42D79382 /* MoreViewController.swift */,
+				367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -610,6 +618,7 @@
 				A816E459274AAB21E9E7191C /* WalletViewInput.swift */,
 				CF3D865C40710AC9E5D921ED /* WalletViewOutput.swift */,
 				EA55C7F5EFA6C64E7A02459F /* WalletViewController.swift */,
+				36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -828,7 +837,6 @@
 				D928C52A8583F7A7D684EF35 /* LoginInteractorInput.swift in Sources */,
 				2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorOutput.swift in Sources */,
-				20D7F02720461A780056F547 /* MoreDataDisplayManager.swift in Sources */,
 				20CAFF002042EE4F00C7DEA5 /* APIService.swift in Sources */,
 				20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */,
 				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
@@ -858,6 +866,7 @@
 				C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */,
 				C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */,
 				D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */,
+				207EAE0A204FE47400FDA3B7 /* Session.swift in Sources */,
 				34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */,
 				0F96E308D2D80F19AD5155F8 /* QRScannerInitializer.swift in Sources */,
 				36712E1CBE20D69B04B3000E /* LoginModuleInput.swift in Sources */,
@@ -889,6 +898,9 @@
 				2CCE0A760898715BD2600A3B /* WalletConfigurator.swift in Sources */,
 				F6F2F9970B445D6E7ACC036E /* WalletInitializer.swift in Sources */,
 				36712C9A3C90496E33B01C2A /* Constants.swift in Sources */,
+				3671270AD41B65A3E7C2B26D /* WalletDisplayManager.swift in Sources */,
+				36712E4C4C5245EF136945B7 /* MoreDataDisplayManager.swift in Sources */,
+				36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
