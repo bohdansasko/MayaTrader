@@ -43,13 +43,15 @@ class LoginInteractor: LoginInteractorInput {
             return
         }
         
-        let userModel = UserModel(JSONString: jsonString!)
-        userModel?.qrModel = loginModel
-        userModel?.walletInfo = WalletModel(JSONString: jsonString!)
+        let user = User(JSONString: jsonString!)
+        user?.walletInfo = WalletModel(JSONString: jsonString!)
 
-        if userModel != nil {
-            if DataService.cache.saveUserData(userModel: userModel!) {
-                Session.sharedInstance.user = userModel!
+        if user != nil {
+            let isUserDataSaved = CacheManager.sharedInstance.userCoreManager.saveUserData(User: user!)
+            let isWalletDataSaved = CacheManager.sharedInstance.walletCoreManager.saveWalletData(User: user!)
+
+            if isUserDataSaved && isWalletDataSaved {
+                Session.sharedInstance.user = user!
 
                 NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
                 output.showTabMoreWithLoginData()

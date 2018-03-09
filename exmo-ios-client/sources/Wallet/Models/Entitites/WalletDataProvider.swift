@@ -10,7 +10,7 @@ import Foundation
 import ObjectMapper
 
 struct WalletModel : Mappable {
-    var balances: [WalletCurrencyModel]!
+    private var balances: [WalletCurrencyModel]!
     
     private var rawBalances: [String: String] {
         didSet { tryUpdateData() }
@@ -51,7 +51,7 @@ struct WalletModel : Mappable {
         self.balances.removeAll()
         for (key, value) in rawBalances {
             let dValue = Double(value)!
-            let countInOrders = Int(rawReserved[key]!)!
+            let countInOrders = Int32(rawReserved[key]!)!
             balances.append(WalletCurrencyModel(balance: dValue, currency: key, countInOrders: countInOrders))
         }
         rawBalances.removeAll()
@@ -67,7 +67,11 @@ struct WalletModel : Mappable {
     func getCountCurrencies() -> Int {
         return balances.count;
     }
-    
+
+    func getCurrencies() -> [WalletCurrencyModel] {
+        return balances;
+    }
+
     func getCurrencyByIndex(index: Int) -> WalletCurrencyModel {
         return index > -1 && index < balances.count ? balances[index] : WalletCurrencyModel()
     }

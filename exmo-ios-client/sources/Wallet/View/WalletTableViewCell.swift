@@ -25,7 +25,7 @@ class WalletTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func setContent(balance: Double, currency: String, countInOrders: Int) {
+    func setContent(balance: Double, currency: String, countInOrders: Int32) {
         balanceLabel.text = String(balance)
         currencyLabel.text = currency
         countInOrdersLabel.text = String(countInOrders)

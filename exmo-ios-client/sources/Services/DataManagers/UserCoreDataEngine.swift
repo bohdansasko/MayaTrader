@@ -11,12 +11,38 @@ import CoreData
 
 class UserCoreDataEngine {
     static var sharedInstance = UserCoreDataEngine()
-    static var wallet = WalletCoreDataEngine.sharedInstance
 
     private var moc = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
     
     init() {
         moc = CoreDataManager.sharedInstance.persistentContainer.viewContext
+    }
+
+    func loadUserData(uid: Int) -> UserEntity? {
+        guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
+            return nil
+        }
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "%K==%d", "uid", uid)
+        fetchRequest.entity = userEntityDescription
+
+        var user: UserEntity? = nil
+        do {
+            let result = try moc.fetch(fetchRequest)
+            if result.count > 0 {
+                let u = result.first as? UserEntity
+                user = u
+            }
+            return user
+        } catch let error as NSError {
+            NSLog("Unresolved error: \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    func loadQRData() -> QRLoginModel {
+        let qrData = QRLoginModel()
+        return qrData
     }
     
     func isUserExists(uid: Int) -> Bool {
@@ -60,19 +86,42 @@ class UserCoreDataEngine {
         }
     }
     
-    func saveUserData(userModel: UserModel) -> Bool {
+    func saveUserData(User: User) -> Bool {
         guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
             return false
         }
 
-        DataService.appSettings.set(userModel.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        CacheManager.sharedInstance.appSettings.set(User.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
 
-        let userEntity = User(entity: userEntityDescription, insertInto: moc)
-        
-        userEntity.setValue(userModel.getUID(), forKey: UserEntity.uid.rawValue)
-        //userEntity.setValue(userModel.userInfo?.getBalancesAsStr(), forKey: UserEntity.fieldBalance)
-        userEntity.setValue(userModel.qrModel?.key, forKey: UserEntity.key.rawValue)
-        userEntity.setValue(userModel.qrModel?.secret, forKey: UserEntity.secret.rawValue)
+        let userEntity = UserEntity(entity: userEntityDescription, insertInto: moc)
+//        userEntity.setValue(User.getUID(), forKey: UserEntity.uid.rawValue)
+//        userEntity.setValue(User.qrModel?.exmoIdentifier, forKey: UserEntity.exmoIdentifier.rawValue)
+//        userEntity.setValue(User.qrModel?.key, forKey: UserEntity.key.rawValue)
+//        userEntity.setValue(User.qrModel?.secret, forKey: UserEntity.secret.rawValue)
+
+        guard let walletEntityDescription = NSEntityDescription.entity(forEntityName: "Wallet", in: moc) else {
+            return false
+        }
+
+        let walletEntity = WalletEntity(entity: walletEntityDescription, insertInto: moc)
+
+        var currencies = NSSet()
+        for currency in User.walletInfo.getCurrencies() {
+            let c = WalletCurrencyEntity(context: moc)
+            c.balance = currency.balance
+            c.inOrders = currency.countInOrders
+            c.currency = currency.currency
+            c.isFavourite = currency.isFavourite
+            c.wallet = walletEntity
+
+            currencies.adding(c)
+        }
+        walletEntity.addToCurrencies(currencies)
+
+        userEntity.wallet = walletEntity
+        walletEntity.user = userEntity
+
+
 
         do {
             try moc.save()
@@ -86,9 +135,9 @@ class UserCoreDataEngine {
     }
 
     func deleteLastLoggedUser() {
-        let uid = DataService.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
         deleteUser(uid: uid)
-        DataService.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        CacheManager.sharedInstance.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
     }
     
     func deleteUser(uid: Int) {

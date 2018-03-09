@@ -10,12 +10,13 @@ enum AppSettingsKeys: String {
     case LastLoginedUID
 }
 
-enum UserEntity: String {
-    case uid
-    case key
-    case secret
-    case balances
-}
+//enum UserEntity: String {
+//    case exmoIdentifier
+//    case uid
+//    case key
+//    case secret
+//    case balances
+//}
 
 extension Notification.Name {
     static let UserLoggedIn = Notification.Name("UserLoggedIn")

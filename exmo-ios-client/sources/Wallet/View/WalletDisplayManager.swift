@@ -43,7 +43,7 @@ extension WalletDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         let currency = self.walletDataProvider.getCurrencyByIndex(index: indexPath.row)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.WalletTableViewCell.rawValue, for: indexPath) as! WalletTableViewCell
-        cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: currency.countInOrders)
+        cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: -1/*currency.countInOrders as! Int*/)
 
         return cell
     }

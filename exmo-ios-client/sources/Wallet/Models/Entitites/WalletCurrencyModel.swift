@@ -11,9 +11,10 @@ import Foundation
 class WalletCurrencyModel {
     var balance: Double
     var currency: String
-    var countInOrders: Int
+    var countInOrders: Int32
+    var isFavourite = true
 
-    init(balance: Double = 0.0, currency: String = "", countInOrders: Int = 0) {
+    init(balance: Double = 0.0, currency: String = "", countInOrders: Int32 = 0) {
         self.balance = balance
         self.currency = currency
         self.countInOrders = countInOrders

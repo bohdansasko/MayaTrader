@@ -10,15 +10,15 @@ import Foundation
 
 class Session {
     static var sharedInstance = Session()
-    var user: UserModel! // use local info or exmo info
+    var user: User! // use local info or exmo info
     
     init() {
-        user = UserModel()
+        user = CacheManager.sharedInstance.getUser()
     }
 
     func logout() {
-        user = UserModel()
-        DataService.cache.deleteLastLoggedUser()
+        user = User()
+        CacheManager.sharedInstance.userCoreManager.deleteLastLoggedUser()
         NotificationCenter.default.post(name: .UserLogout, object: nil)
     }
 
