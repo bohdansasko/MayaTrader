@@ -66,6 +66,7 @@
 		36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */; };
 		3671205D06A10EADE42FAF7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F8856A6004AC2CC405B /* User.swift */; };
 		3671270AD41B65A3E7C2B26D /* WalletDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */; };
+		36712819605402E3BB398CBA /* ErrorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ErrorModels.swift */; };
 		36712C9A3C90496E33B01C2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671257CD4262EA9B280ABE0 /* Constants.swift */; };
 		36712E1CBE20D69B04B3000E /* LoginModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */; };
 		36712E4C4C5245EF136945B7 /* MoreDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */; };
@@ -179,6 +180,7 @@
 		3671257CD4262EA9B280ABE0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreDataDisplayManager.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreDisplayModel.swift; sourceTree = "<group>"; };
+		36712DDE57C5587FC6B6609F /* ErrorModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModels.swift; sourceTree = "<group>"; };
 		36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDisplayManager.swift; sourceTree = "<group>"; };
 		36712F8856A6004AC2CC405B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewInput.swift; sourceTree = "<group>"; };
@@ -484,6 +486,7 @@
 			children = (
 				20CAFED32042AE6400C7DEA5 /* API */,
 				2003B5652048C42400BD205F /* DataManagers */,
+				36712DDE57C5587FC6B6609F /* ErrorModels.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -925,6 +928,7 @@
 				36712E4C4C5245EF136945B7 /* MoreDataDisplayManager.swift in Sources */,
 				36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */,
 				3671205D06A10EADE42FAF7C /* User.swift in Sources */,
+				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

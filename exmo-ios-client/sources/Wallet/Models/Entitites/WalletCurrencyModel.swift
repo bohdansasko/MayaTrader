@@ -14,6 +14,13 @@ class WalletCurrencyModel {
     var countInOrders: Int32
     var isFavourite = true
 
+    init(currencyEntity: WalletCurrencyEntity?) {
+        self.balance = currencyEntity?.balance ?? 0.0
+        self.currency = currencyEntity?.currency ?? ""
+        self.countInOrders = currencyEntity?.inOrders ?? 0
+        self.isFavourite = currencyEntity?.isFavourite ?? false
+    }
+
     init(balance: Double = 0.0, currency: String = "", countInOrders: Int32 = 0) {
         self.balance = balance
         self.currency = currency

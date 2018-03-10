@@ -22,7 +22,7 @@ class WalletCoreDataEngine {
         return wallet
     }
 
-    func saveWalletData(User: User) -> Bool {
+    func saveWalletData(user: User) -> Bool {
         return true
     }
 }

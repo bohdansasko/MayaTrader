@@ -8,10 +8,34 @@
 
 import Foundation
 import ObjectMapper
+import CoreData
+
+class WalletTransactionHistory {
+    var amount: Double
+    var date: Date?
+    var orderId: Int64
+    var pair: String
+    var price: Double
+    var quantity: Double
+    var tradeId: Int32
+    var type: String
+
+    init(transaction: WalletTransactionHistoryEntity) {
+        self.amount = transaction.amount
+        self.date = transaction.date as Date?
+        self.orderId = transaction.orderId
+        self.pair = transaction.pair!
+        self.price = transaction.price
+        self.quantity = transaction.quantity
+        self.tradeId = transaction.tradeId
+        self.type = transaction.type!
+    }
+}
 
 struct WalletModel : Mappable {
     private var balances: [WalletCurrencyModel]!
-    
+    private var transactionHistory: [WalletTransactionHistory]!
+
     private var rawBalances: [String: String] {
         didSet { tryUpdateData() }
     }
@@ -31,6 +55,25 @@ struct WalletModel : Mappable {
         self.rawBalances = [:]
         self.rawReserved = [:]
         self.balances = []
+    }
+
+    init(walletEntity: WalletEntity) {
+        self.init()
+        if let container = walletEntity.currencies {
+            for currency in container {
+                if let entity = currency as? WalletCurrencyEntity {
+                    balances.append(WalletCurrencyModel(currencyEntity: entity))
+                }
+            }
+        }
+
+        if let container = walletEntity.transactionHistory {
+            for transaction in container {
+                if let entity = transaction as? WalletTransactionHistoryEntity {
+                    transactionHistory.append(WalletTransactionHistory(transaction: entity))
+                }
+            }
+        }
     }
 
     func isDataExists() -> Bool {
@@ -56,6 +99,23 @@ struct WalletModel : Mappable {
         }
         rawBalances.removeAll()
         rawReserved.removeAll()
+    }
+
+    func getWalletEntity(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) -> WalletEntity {
+        let walletEntity = WalletEntity(entity: entity, insertInto: context)
+        let currencies = NSSet()
+        for currency in balances {
+            let c = WalletCurrencyEntity(context: context!)
+            c.balance = currency.balance
+            c.inOrders = currency.countInOrders
+            c.currency = currency.currency
+            c.isFavourite = currency.isFavourite
+            c.wallet = walletEntity
+
+            currencies.adding(c)
+        }
+        walletEntity.addToCurrencies(currencies)
+        return walletEntity
     }
     
     private func getTestData() -> [WalletCurrencyModel] {

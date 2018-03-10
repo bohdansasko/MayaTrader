@@ -10,6 +10,7 @@ import Foundation
 
 class CacheManager {
     static var sharedInstance = CacheManager()
+    
     var appSettings = UserDefaults.standard
     var userCoreManager = UserCoreDataEngine.sharedInstance
     var walletCoreManager = WalletCoreDataEngine.sharedInstance

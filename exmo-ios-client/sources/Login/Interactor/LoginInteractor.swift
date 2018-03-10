@@ -8,22 +8,6 @@
 import Foundation
 import ObjectMapper
 
-class RequestError: Mappable {
-    var result = false
-    var error: String?
-    
-    required init?(map: Map) {
-        if map.JSON["error"] == nil {
-            return nil
-        }
-    }
-    
-    func mapping(map: Map) {
-        result <- map["result"]
-        error <- map["error"]
-    }
-}
-
 class LoginInteractor: LoginInteractorInput {
     weak var output: LoginInteractorOutput!
     
@@ -45,12 +29,11 @@ class LoginInteractor: LoginInteractorInput {
         
         let user = User(JSONString: jsonString!)
         user?.walletInfo = WalletModel(JSONString: jsonString!)
+        user?.qrModel = loginModel
 
         if user != nil {
-            let isUserDataSaved = CacheManager.sharedInstance.userCoreManager.saveUserData(User: user!)
-            let isWalletDataSaved = CacheManager.sharedInstance.walletCoreManager.saveWalletData(User: user!)
-
-            if isUserDataSaved && isWalletDataSaved {
+            let isUserDataSaved = CacheManager.sharedInstance.userCoreManager.saveUserData(user: user!)
+            if isUserDataSaved {
                 Session.sharedInstance.user = user!
 
                 NotificationCenter.default.post(name: .UserLoggedIn, object: nil)

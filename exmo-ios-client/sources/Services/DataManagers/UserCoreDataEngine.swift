@@ -86,42 +86,21 @@ class UserCoreDataEngine {
         }
     }
     
-    func saveUserData(User: User) -> Bool {
-        guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "User", in: moc) else {
+    func saveUserData(user: User) -> Bool {
+        guard let userEntityDescription = NSEntityDescription.entity(forEntityName: "UserEntity", in: moc) else {
+            return false
+        }
+        guard let walletEntityDescription = NSEntityDescription.entity(forEntityName: "WalletEntity", in: moc) else {
             return false
         }
 
-        CacheManager.sharedInstance.appSettings.set(User.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        CacheManager.sharedInstance.appSettings.set(user.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
 
-        let userEntity = UserEntity(entity: userEntityDescription, insertInto: moc)
-//        userEntity.setValue(User.getUID(), forKey: UserEntity.uid.rawValue)
-//        userEntity.setValue(User.qrModel?.exmoIdentifier, forKey: UserEntity.exmoIdentifier.rawValue)
-//        userEntity.setValue(User.qrModel?.key, forKey: UserEntity.key.rawValue)
-//        userEntity.setValue(User.qrModel?.secret, forKey: UserEntity.secret.rawValue)
-
-        guard let walletEntityDescription = NSEntityDescription.entity(forEntityName: "Wallet", in: moc) else {
-            return false
-        }
-
-        let walletEntity = WalletEntity(entity: walletEntityDescription, insertInto: moc)
-
-        var currencies = NSSet()
-        for currency in User.walletInfo.getCurrencies() {
-            let c = WalletCurrencyEntity(context: moc)
-            c.balance = currency.balance
-            c.inOrders = currency.countInOrders
-            c.currency = currency.currency
-            c.isFavourite = currency.isFavourite
-            c.wallet = walletEntity
-
-            currencies.adding(c)
-        }
-        walletEntity.addToCurrencies(currencies)
+        let userEntity = user.getUserEntity(entity: userEntityDescription, insertInto: moc)
+        let walletEntity = user.walletInfo.getWalletEntity(entity: walletEntityDescription, insertInto: moc)
 
         userEntity.wallet = walletEntity
         walletEntity.user = userEntity
-
-
 
         do {
             try moc.save()

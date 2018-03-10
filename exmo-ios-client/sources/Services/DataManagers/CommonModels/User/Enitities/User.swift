@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import CoreData
 
 class User: Mappable {
     private var uid: Int! = 0 {
@@ -22,6 +23,12 @@ class User: Mappable {
 
     init() {
         walletInfo = WalletModel()
+    }
+
+    init(userEntity: UserEntity) {
+        self.uid = Int(userEntity.uid)
+        walletInfo = WalletModel(walletEntity: userEntity.wallet!)
+        self.qrModel = QRLoginModel(userEntity: userEntity)
     }
 
     required init?(map: Map) {
@@ -46,5 +53,14 @@ class User: Mappable {
 
     func getIsExmoUIDSeted() -> Bool {
         return isExmoUIDSeted
+    }
+
+    func getUserEntity(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) -> UserEntity {
+        let userEntity = UserEntity(entity: entity, insertInto: context)
+        userEntity.setValue(self.getUID(), forKey: UserEntityKeys.uid.rawValue)
+        userEntity.setValue(self.qrModel?.exmoIdentifier, forKey: UserEntityKeys.exmoIdentifier.rawValue)
+        userEntity.setValue(self.qrModel?.key, forKey: UserEntityKeys.key.rawValue)
+        userEntity.setValue(self.qrModel?.secret, forKey: UserEntityKeys.secret.rawValue)
+        return userEntity
     }
 }

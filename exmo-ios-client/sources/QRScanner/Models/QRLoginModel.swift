@@ -10,7 +10,14 @@ class QRLoginModel {
     var exmoIdentifier: String! = ""
     var key: String! = ""
     var secret: String! = ""
-    
+
+    convenience init(userEntity: UserEntity) {
+        self.init()
+        self.exmoIdentifier = userEntity.exmoIdentifier
+        self.key = userEntity.key
+        self.secret = userEntity.secret
+    }
+
     convenience init(qrParsedStr: String) {
         self.init()
         parseQRString(qrString: qrParsedStr)
