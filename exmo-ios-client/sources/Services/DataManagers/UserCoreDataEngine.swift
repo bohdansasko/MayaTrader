@@ -20,9 +20,8 @@ class UserCoreDataEngine {
 
     func createNewLocalUser() -> User? {
         print("createNewLocalUser")
-        
         let user = User()
-        user.uid = -1
+        user.uid = IDefaultValues.UserUID.rawValue
         user.walletInfo = WalletModel()
         
         let result = saveUserData(user: user)

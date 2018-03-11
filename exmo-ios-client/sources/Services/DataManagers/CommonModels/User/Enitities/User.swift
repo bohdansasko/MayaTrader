@@ -28,7 +28,9 @@ class User: Mappable {
 
     init(userEntity: UserEntity) {
         self.walletInfo = WalletModel(walletEntity: userEntity.wallet!)
-        self.qrModel = QRLoginModel(userEntity: userEntity)
+        if userEntity.exmoIdentifier != nil {
+            self.qrModel = QRLoginModel(userEntity: userEntity)
+        }
         self.uid = Int(userEntity.uid)
     }
 

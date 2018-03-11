@@ -16,7 +16,11 @@ class WalletInteractor: WalletInteractorInput {
     init() {
         displayManager = WalletDisplayManager()
     }
-
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     func viewIsReady(tableView: UITableView!) {
         displayManager.setTableView(tableView: tableView)
 

@@ -10,7 +10,6 @@ class MoreDisplayModel {
 
     init() {
         menuItems = []
-        self.update()
     }
 
     func update() {

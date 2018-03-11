@@ -16,6 +16,10 @@ class MoreInteractor: MoreInteractorInput {
         displayManager = MoreDataDisplayManager()
         displayManager.interactor = self
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     func viewIsReady(tableView: UITableView!) {
         displayManager.setTableView(tableView: tableView)

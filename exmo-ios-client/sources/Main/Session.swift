@@ -28,9 +28,10 @@ class Session {
     }
     
     func logout() {
-        user = User()
-        CacheManager.sharedInstance.userCoreManager.deleteLastLoggedUser()
+        CacheManager.sharedInstance.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        user = CacheManager.sharedInstance.getUser()
         NotificationCenter.default.post(name: .UserLogout, object: nil)
+        NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
     }
 
     func isExmoAccountExists() -> Bool {
