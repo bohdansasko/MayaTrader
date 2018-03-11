@@ -46,4 +46,5 @@ enum MoreMenuSegueIdentifier: String {
 enum TableCellIdentifiers: String {
     case MoreMenuItem
     case WalletTableViewCell
+    case AlertTableViewCell
 }
