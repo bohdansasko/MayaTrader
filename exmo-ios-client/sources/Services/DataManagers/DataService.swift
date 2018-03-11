@@ -16,6 +16,12 @@ class CacheManager {
     var walletCoreManager = WalletCoreDataEngine.sharedInstance
     
     func getUser() -> User {
-        return User()
+        let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let userEntity = CacheManager.sharedInstance.userCoreManager.loadUserData(uid: uid)
+        var user = User()
+        if userEntity != nil {
+            user = User(userEntity: userEntity!)
+        }
+        return user
     }
 }

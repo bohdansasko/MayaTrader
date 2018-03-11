@@ -13,9 +13,20 @@ class Session {
     var user: User! // use local info or exmo info
     
     init() {
-        user = CacheManager.sharedInstance.getUser()
+        login()
     }
 
+    func login() {
+        let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let localUserExists = CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uid)
+        if localUserExists {
+            user = CacheManager.sharedInstance.getUser()
+        } else {
+            user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
+        }
+        NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
+    }
+    
     func logout() {
         user = User()
         CacheManager.sharedInstance.userCoreManager.deleteLastLoggedUser()
@@ -23,6 +34,6 @@ class Session {
     }
 
     func isExmoAccountExists() -> Bool {
-        return user.getIsExmoUIDSeted()
+        return user.getIsLoginedAsExmoUser()
     }
 }

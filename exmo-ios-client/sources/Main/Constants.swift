@@ -10,6 +10,11 @@ enum AppSettingsKeys: String {
     case LastLoginedUID
 }
 
+enum EntityNameKeys: String {
+    case UserEntity
+    case WalletEntity
+}
+
 enum UserEntityKeys: String {
     case exmoIdentifier
     case uid

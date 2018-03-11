@@ -18,11 +18,12 @@ class WalletViewController: UIViewController, WalletViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady(tableView: tableView)
+        setupInitialState()
     }
 
     // MARK: WalletViewInput
     func setupInitialState() {
-        currencySettingsBtn.isEnabled = false
+        setTouchEnabled(isTouchEnabled: false)
     }
     
     func setTouchEnabled(isTouchEnabled: Bool) {

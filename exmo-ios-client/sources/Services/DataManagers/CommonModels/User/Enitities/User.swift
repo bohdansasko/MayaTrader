@@ -11,28 +11,29 @@ import ObjectMapper
 import CoreData
 
 class User: Mappable {
-    private var uid: Int! = 0 {
-        didSet {
-            isExmoUIDSeted = true
+    private var _uid: Int = 0
+    var uid: Int! {
+        set {
+            _uid = newValue
         }
+        get { return _uid }
     }
-    private var isExmoUIDSeted = false
 
-    var qrModel: QRLoginModel?
-    var walletInfo: WalletModel!
+    var qrModel: QRLoginModel? = nil
+    var walletInfo: WalletModel? = nil
 
     init() {
-        walletInfo = WalletModel()
+        // do nothing
     }
 
     init(userEntity: UserEntity) {
-        self.uid = Int(userEntity.uid)
-        walletInfo = WalletModel(walletEntity: userEntity.wallet!)
+        self.walletInfo = WalletModel(walletEntity: userEntity.wallet!)
         self.qrModel = QRLoginModel(userEntity: userEntity)
+        self.uid = Int(userEntity.uid)
     }
 
     required init?(map: Map) {
-        walletInfo = WalletModel()
+        // do nothing
     }
 
     func mapping(map: Map) {
@@ -43,7 +44,6 @@ class User: Mappable {
         let uidForCheck = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
         if CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uidForCheck) {
             uid = uidForCheck
-            isExmoUIDSeted = true
         }
     }
 
@@ -51,8 +51,8 @@ class User: Mappable {
         return uid
     }
 
-    func getIsExmoUIDSeted() -> Bool {
-        return isExmoUIDSeted
+    func getIsLoginedAsExmoUser() -> Bool {
+        return self.qrModel?.isValidate() ?? false
     }
 
     func getUserEntity(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) -> UserEntity {
