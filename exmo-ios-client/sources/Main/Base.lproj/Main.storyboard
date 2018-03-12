@@ -39,7 +39,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreMenuItem" textLabel="1sV-NH-fR8" style="IBUITableViewCellStyleDefault" id="owq-hb-8Jb" customClass="MenuItemTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreMenuItem" textLabel="1sV-NH-fR8" style="IBUITableViewCellStyleDefault" id="owq-hb-8Jb" customClass="MenuItemTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="owq-hb-8Jb" id="75Z-Ol-cW2">
@@ -85,7 +85,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-294.20289855072468" y="1905.9782608695655"/>
+            <point key="canvasLocation" x="-724" y="1906"/>
         </scene>
         <!--Order History-->
         <scene sceneID="KYF-Q7-r5Q">
@@ -100,7 +100,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N4a-mh-2C9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="2599"/>
+            <point key="canvasLocation" x="545" y="2636"/>
         </scene>
         <!--Qr Scanner View Controller-->
         <scene sceneID="a8t-I0-Ygi">
@@ -208,7 +208,7 @@
                                     <constraint firstAttribute="width" constant="320" id="Zf1-e9-rk4"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletTableViewCell" rowHeight="50" id="KFx-Um-gmi" customClass="WalletTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletTableViewCell" rowHeight="50" id="KFx-Um-gmi" customClass="WalletTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KFx-Um-gmi" id="TpK-Wa-Mnd">
@@ -390,7 +390,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="95" height="26.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="26.5" id="P4x-ht-Oa4"/>
-                                                        <constraint firstAttribute="width" constant="95" id="cTN-CS-rpd"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="cTN-CS-rpd"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                                     <color key="textColor" red="0.30588235294117649" green="0.30588235294117649" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -400,7 +400,7 @@
                                                     <rect key="frame" x="15" y="28.5" width="100" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="24" id="apn-1k-E8p"/>
-                                                        <constraint firstAttribute="width" constant="100" id="lKh-go-Tkc"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="lKh-go-Tkc"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                                     <color key="textColor" red="0.30588235294117649" green="0.30588235294117649" blue="0.30588235294117649" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -410,7 +410,7 @@
                                                     <rect key="frame" x="131" y="-4" width="112" height="61"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="61" id="Che-SW-VKj"/>
-                                                        <constraint firstAttribute="width" constant="112" id="Js1-bL-o7Z"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="112" id="Js1-bL-o7Z"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
                                                     <color key="textColor" red="0.027450980392156862" green="0.011764705882352941" blue="0.011764705882352941" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -616,7 +616,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="709" y="1906"/>
+            <point key="canvasLocation" x="545" y="1906"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="xt0-5Q-kOK">
@@ -666,7 +666,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Air-dT-ZV6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1123.1884057971015" y="1905.9782608695655"/>
+            <point key="canvasLocation" x="-1948" y="1906"/>
         </scene>
         <!--Chat-->
         <scene sceneID="HHu-91-Gjo">
@@ -681,7 +681,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17c-t5-v2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="4026"/>
+            <point key="canvasLocation" x="545" y="4030"/>
         </scene>
         <!--News-->
         <scene sceneID="YEA-HC-yAS">
@@ -696,7 +696,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1E-d6-OjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="3307"/>
+            <point key="canvasLocation" x="546" y="3320"/>
         </scene>
         <!--Wallet-->
         <scene sceneID="Dag-YJ-pk8">
@@ -737,7 +737,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2b5-oL-WR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="709" y="4720"/>
+            <point key="canvasLocation" x="545" y="4723"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="EkD-CZ-i98">

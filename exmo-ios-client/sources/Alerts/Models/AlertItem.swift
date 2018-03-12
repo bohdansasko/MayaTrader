@@ -9,6 +9,7 @@
 import Foundation
 
 enum AlertStatus: String {
+    case None
     case Active
     case Inactive
     case Pause

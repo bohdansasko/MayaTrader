@@ -11,6 +11,7 @@ import UIKit
 class AlertDataDisplayManager: NSObject {
     private var dataProvider: AlertsDisplayModel!
     private var tableView: UITableView!
+    private var actions: [UITableViewRowAction]?
     
     var interactor: AlertsInteractorInput!
     
@@ -51,5 +52,66 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // alert become in edit state in new view
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction.init(style: .normal, title: "Edit", handler: { action, indexPath in
+            print("called edit action")
+        })
+        editAction.backgroundColor = UIColor.green
+
+        let pauseTitle = getPauseActiontTitle(status: self.dataProvider.getStatus(forItem: indexPath.row))
+        let pauseAction = UITableViewRowAction.init(style: .normal, title: pauseTitle, handler: { [unowned self] action, indexPath in
+            let status = self.getPauseActionStatus(status: self.dataProvider.getStatus(forItem: indexPath.row))
+            self.dataProvider.setState(forItem: indexPath.row, status: status)
+            print("called pause action")
+        })
+        pauseAction.backgroundColor = UIColor.gray
+
+
+        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { [unowned self] action, indexPath in
+            self.dataProvider.removeItem(atRow: indexPath.row)
+            self.tableView.reloadData()
+            print("called delete action")
+        })
+        
+        deleteAction.backgroundColor = UIColor.red
+        actions = [deleteAction, pauseAction, editAction]
+        return actions
+    }
+    
+    private func getPauseActiontTitle(status: AlertStatus) -> String {
+        var title = ""
+        
+        switch status {
+        case .Active:
+            title = "Pause"
+        case .Inactive:
+            title = "Resume"
+        default:
+            // do nothing
+            break;
+        }
+        
+        return title
+    }
+    
+    private func getPauseActionStatus(status: AlertStatus) -> AlertStatus {
+        var newStatus = status
+        switch status {
+        case .Active:
+            newStatus = AlertStatus.Inactive
+        case .Inactive:
+            newStatus = AlertStatus.Active
+        default:
+            // do nothing
+            break;
+        }
+        
+        return newStatus
     }
 }

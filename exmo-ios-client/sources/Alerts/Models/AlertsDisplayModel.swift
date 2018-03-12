@@ -25,6 +25,18 @@ class AlertsDisplayModel {
         ]
     }
     
+    func removeItem(atRow row: Int) {
+        alertsItems.remove(at: row)
+    }
+    
+    func setState(forItem row: Int, status: AlertStatus) {
+        alertsItems[row].status = status
+    }
+    
+    func getStatus(forItem row: Int) -> AlertStatus {
+        return alertsItems[row].status
+    }
+    
     func getCountMenuItems() -> Int {
         return alertsItems.count
     }
