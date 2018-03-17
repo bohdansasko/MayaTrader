@@ -17,8 +17,8 @@ class LoginInteractor: LoginInteractorInput {
             return
         }
         APIService.sharedInstance.setUserInfo(apiKey: loginModel.key!, secretKey: loginModel.secret!)
-        let result = APIService.sharedInstance.userInfo()
-
+        let result = APIService.sharedInstance.loadUserInfo()
+        
         let jsonString = String(data: result!, encoding: .utf8)
         print("loaded userInfo: \(jsonString!)")
         
@@ -35,7 +35,7 @@ class LoginInteractor: LoginInteractorInput {
             let isUserDataSaved = CacheManager.sharedInstance.userCoreManager.saveUserData(user: user!)
             if isUserDataSaved {
                 Session.sharedInstance.user = user!
-
+                
                 NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
                 output.showTabMoreWithLoginData()
             }

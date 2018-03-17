@@ -23,9 +23,10 @@ class AlertTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        // selected - should be false for next reason:
+        //  - after user selected row and returned to menu then row still selected,
+        //    but in our case we need unselected row
+        super.setSelected(false, animated: animated)
     }
 
     func setData(data: AlertItem) {

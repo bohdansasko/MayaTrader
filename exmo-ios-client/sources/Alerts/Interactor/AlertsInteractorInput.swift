@@ -11,4 +11,5 @@ import UIKit.UITableView
 
 protocol AlertsInteractorInput {
     func viewIsReady(tableView: UITableView!)
+    func showEditView(data: AlertItem)
 }

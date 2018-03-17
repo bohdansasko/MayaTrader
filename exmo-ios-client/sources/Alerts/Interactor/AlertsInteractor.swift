@@ -21,5 +21,9 @@ class AlertsInteractor: AlertsInteractorInput {
     func viewIsReady(tableView: UITableView!) {
         displayManager.setTableView(tableView: tableView)
     }
+    
+    func showEditView(data: AlertItem) {
+        output.showEditView(data: data) 
+    }
 
 }

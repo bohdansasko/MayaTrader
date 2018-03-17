@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 protocol AlertsRouterInput {
-
+    func showEditView(view: UIViewController, data: AlertItem) 
 }

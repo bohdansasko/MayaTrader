@@ -9,5 +9,5 @@
 import Foundation
 
 protocol AlertsInteractorOutput: class {
-
+    func showEditView(data: AlertItem)
 }

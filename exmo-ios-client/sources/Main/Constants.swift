@@ -48,3 +48,7 @@ enum TableCellIdentifiers: String {
     case WalletTableViewCell
     case AlertTableViewCell
 }
+
+enum AlertsIdentifiers: String {
+    case EditAlert
+}

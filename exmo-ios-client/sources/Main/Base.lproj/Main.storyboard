@@ -522,7 +522,11 @@
                         <viewLayoutGuide key="safeArea" id="Knh-S2-l7w"/>
                     </view>
                     <navigationItem key="navigationItem" title="Alerts" id="ojE-nX-dRW">
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="ief-sm-7j6"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="ief-sm-7j6">
+                            <connections>
+                                <segue destination="Fth-46-kSx" kind="show" identifier="EditAlert" id="tSQ-FY-bDH"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="j6t-aY-aiu" id="vpt-f0-ClE"/>
@@ -536,6 +540,57 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="546" y="1199"/>
+        </scene>
+        <!--Add/Edit-->
+        <scene sceneID="Vfv-oc-MaY">
+            <objects>
+                <viewController title="Add/Edit" id="Fth-46-kSx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X7a-xx-dXV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kLn-my-6DA">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="bIi-ls-T6h">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bIi-ls-T6h" id="a2S-mS-Zo1">
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Currancy pair" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LIK-sl-71z">
+                                                    <rect key="frame" x="0.0" y="13.5" width="342" height="17"/>
+                                                    <nil key="textColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="LIK-sl-71z" secondAttribute="trailing" id="7lN-aQ-Ss1"/>
+                                                <constraint firstItem="LIK-sl-71z" firstAttribute="leading" secondItem="a2S-mS-Zo1" secondAttribute="leading" id="ID7-yv-oa0"/>
+                                                <constraint firstItem="LIK-sl-71z" firstAttribute="centerY" secondItem="a2S-mS-Zo1" secondAttribute="centerY" id="POU-pY-57O"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kLn-my-6DA" firstAttribute="top" secondItem="UTG-oc-Rhl" secondAttribute="top" id="87S-ag-2fH"/>
+                            <constraint firstItem="UTG-oc-Rhl" firstAttribute="trailing" secondItem="kLn-my-6DA" secondAttribute="trailing" id="MtD-AQ-d37"/>
+                            <constraint firstItem="UTG-oc-Rhl" firstAttribute="bottom" secondItem="kLn-my-6DA" secondAttribute="bottom" id="Zr9-t4-teb"/>
+                            <constraint firstItem="kLn-my-6DA" firstAttribute="leading" secondItem="UTG-oc-Rhl" secondAttribute="leading" id="pZz-Tu-lGd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UTG-oc-Rhl"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cN3-WN-kpD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="KHs-6Q-4AQ"/>
+            </objects>
+            <point key="canvasLocation" x="1509.5999999999999" y="1198.6506746626687"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="nWv-LX-FMz">

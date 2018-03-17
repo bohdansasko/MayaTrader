@@ -17,4 +17,9 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
     func viewIsReady(tableView: UITableView!) {
         interactor.viewIsReady(tableView: tableView)
     }
+    
+    func showEditView(data: AlertItem) {
+        let view = self.view as! UIViewController
+        router.showEditView(view: view, data: data)
+    }
 }

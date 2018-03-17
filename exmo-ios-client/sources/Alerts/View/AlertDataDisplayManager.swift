@@ -51,15 +51,12 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // alert become in edit state in new view
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        
+        self.interactor.showEditView(data: dataProvider.getCellItem(byRow: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction.init(style: .normal, title: "Edit", handler: { action, indexPath in
+        let editAction = UITableViewRowAction.init(style: .normal, title: "Edit", handler: { [unowned self] action, indexPath in
+            self.interactor.showEditView(data: self.dataProvider.getCellItem(byRow: indexPath.row))
             print("called edit action")
         })
         editAction.backgroundColor = UIColor.green

@@ -45,12 +45,13 @@ public class ExmoApiHandler {
         self.secret_key = Config.API_SECRET.rawValue
     }
     
-    public func userInfo()-> Data? {
+    public func loadUserInfo()-> Data? {
         print("start user_info")
         let post: [String: Any] = [:]
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_info")
     }
     
+
     public func canceledOrders(limit: Int, offset: Int)-> Data? {
         print("start user_cancelled_orders")
         var post: [String: Any] = [:]
