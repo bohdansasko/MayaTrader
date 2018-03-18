@@ -7,7 +7,9 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 protocol WalletRouterInput {
-
+    func openWalletSettings(viewController: UIViewController, data: SegueBlock?)
+    func sendDataToWalletSettings(segue: UIStoryboardSegue, sender: Any?)
 }

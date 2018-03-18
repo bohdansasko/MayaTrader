@@ -8,12 +8,16 @@
 
 import UIKit
 
-protocol ConfigurationBlock: class {
+protocol SegueBlock: class {
     // do nothing
 }
 
 extension UIViewController {
-    func openModule(segueIdentifier: String, block: ConfigurationBlock?) {
+    func openModule(segueIdentifier: String, block: SegueBlock?) {
         self.performSegue(withIdentifier: segueIdentifier, sender: block)
+    }
+    
+    func close() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

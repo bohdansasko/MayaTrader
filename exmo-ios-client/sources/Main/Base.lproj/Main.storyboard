@@ -351,11 +351,16 @@
                         <viewLayoutGuide key="safeArea" id="ugq-xr-M0z"/>
                     </view>
                     <navigationItem key="navigationItem" title="Wallet" id="ous-ET-MUH">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qHW-iz-QyR"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="qHW-iz-QyR">
+                            <connections>
+                                <action selector="openCurrenciesManager:" destination="jrY-ER-IPH" id="eWL-IT-0gY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="currencySettingsBtn" destination="qHW-iz-QyR" id="j4y-EO-eke"/>
                         <outlet property="tableView" destination="EtY-gI-dpf" id="hQL-nQ-BNf"/>
+                        <segue destination="arp-R8-1oY" kind="show" identifier="ManageCurrencies" id="dZ4-Gz-dGs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ohZ-QV-K3O" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -366,6 +371,83 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="547.5" y="447.5"/>
+        </scene>
+        <!--Walletsettings View Controller-->
+        <scene sceneID="HjL-aH-4zH">
+            <objects>
+                <viewController title="Currencies" id="arp-R8-1oY" customClass="WalletSettingsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1QX-hd-OoG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RJd-1i-N7q">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletSettingsCell" id="sic-vD-ZhZ" customClass="WalletSettingsTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sic-vD-ZhZ" id="jzo-br-tFB">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="HaJ-bw-Vwm">
+                                                    <rect key="frame" x="312" y="6" width="51" height="31"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="31" id="Dry-ao-C5V"/>
+                                                        <constraint firstAttribute="width" constant="49" id="Y8n-d5-T9V"/>
+                                                    </constraints>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8v-sg-tGA" userLabel="currency">
+                                                    <rect key="frame" x="15" y="11" width="132" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="ECN-Ia-8uC"/>
+                                                        <constraint firstAttribute="width" constant="132" id="enR-4o-uCw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="HaJ-bw-Vwm" secondAttribute="trailing" constant="14" id="2DD-Ay-WEG"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="A8v-sg-tGA" secondAttribute="bottom" constant="1" id="JYI-X1-kr8"/>
+                                                <constraint firstItem="HaJ-bw-Vwm" firstAttribute="centerY" secondItem="jzo-br-tFB" secondAttribute="centerY" id="K7Q-qH-Pnl"/>
+                                                <constraint firstItem="A8v-sg-tGA" firstAttribute="leading" secondItem="jzo-br-tFB" secondAttribute="leadingMargin" id="NkQ-M2-tma"/>
+                                                <constraint firstItem="A8v-sg-tGA" firstAttribute="top" secondItem="jzo-br-tFB" secondAttribute="topMargin" id="WnY-1O-Xes"/>
+                                                <constraint firstItem="HaJ-bw-Vwm" firstAttribute="centerY" secondItem="jzo-br-tFB" secondAttribute="centerY" id="irI-oG-OOU"/>
+                                                <constraint firstItem="HaJ-bw-Vwm" firstAttribute="leading" secondItem="A8v-sg-tGA" secondAttribute="trailing" constant="165" id="kyW-tP-baF"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="currencyLabel" destination="A8v-sg-tGA" id="XUS-9J-Awt"/>
+                                            <outlet property="isFavouriteSwitcher" destination="HaJ-bw-Vwm" id="Cbt-Ak-3ig"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="RJd-1i-N7q" firstAttribute="leading" secondItem="Tfp-wU-9pw" secondAttribute="leading" id="Ihd-4T-HVt"/>
+                            <constraint firstItem="RJd-1i-N7q" firstAttribute="top" secondItem="Tfp-wU-9pw" secondAttribute="top" id="gWu-WY-gew"/>
+                            <constraint firstItem="Tfp-wU-9pw" firstAttribute="bottom" secondItem="RJd-1i-N7q" secondAttribute="bottom" id="pps-Pc-mTa"/>
+                            <constraint firstItem="Tfp-wU-9pw" firstAttribute="trailing" secondItem="RJd-1i-N7q" secondAttribute="trailing" id="ypa-bM-dQp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tfp-wU-9pw"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="RJd-1i-N7q" id="mY5-fL-RU8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jey-VR-pcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="6fg-lO-jk0" customClass="WalletSettingsModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="walletsettingsViewController" destination="arp-R8-1oY" id="DHP-AJ-Gs1"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1509.5999999999999" y="447.52623688155927"/>
         </scene>
         <!--Alerts View Controller-->
         <scene sceneID="vMF-bN-aPD">

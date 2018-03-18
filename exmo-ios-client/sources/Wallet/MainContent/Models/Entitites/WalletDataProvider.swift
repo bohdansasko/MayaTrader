@@ -33,7 +33,8 @@ class WalletTransactionHistory {
 }
 
 struct WalletModel : Mappable {
-    private var balances: [WalletCurrencyModel]!
+    private var allBalances: [WalletCurrencyModel]!
+    private var favouriteBalances: [WalletCurrencyModel]!
     private var transactionHistory: [WalletTransactionHistory]!
 
     private var rawBalances: [String: String] {
@@ -54,7 +55,8 @@ struct WalletModel : Mappable {
     init() {
         self.rawBalances = [:]
         self.rawReserved = [:]
-        self.balances = []
+        self.allBalances = []
+        self.favouriteBalances = []
     }
 
     init(walletEntity: WalletEntity) {
@@ -62,11 +64,12 @@ struct WalletModel : Mappable {
         if let container = walletEntity.currencies {
             for currency in container {
                 if let entity = currency as? WalletCurrencyEntity {
-                    balances.append(WalletCurrencyModel(currencyEntity: entity))
+                    self.allBalances.append(WalletCurrencyModel(currencyEntity: entity))
                 }
             }
         }
-
+        filterCurrenciesByFavourites()
+        
         if let container = walletEntity.transactionHistory {
             for transaction in container {
                 if let entity = transaction as? WalletTransactionHistoryEntity {
@@ -77,7 +80,7 @@ struct WalletModel : Mappable {
     }
 
     func isDataExists() -> Bool {
-        return !balances.isEmpty
+        return allBalances.isEmpty == false
     }
 
     mutating func mapping(map: Map) {
@@ -91,20 +94,24 @@ struct WalletModel : Mappable {
              return
         }
         
-        self.balances.removeAll()
+        self.allBalances.removeAll()
+        var id = 0
         for (key, value) in rawBalances {
             let dValue = Double(value)!
             let countInOrders = Int32(rawReserved[key]!)!
-            balances.append(WalletCurrencyModel(balance: dValue, currency: key, countInOrders: countInOrders))
+            self.allBalances.append(WalletCurrencyModel(id: id, balance: dValue, currency: key, countInOrders: countInOrders))
+            id += 1
         }
         rawBalances.removeAll()
         rawReserved.removeAll()
+        
+        filterCurrenciesByFavourites()
     }
 
     func getWalletEntity(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) -> WalletEntity {
         let walletEntity = WalletEntity(entity: entity, insertInto: context)
         let currencies = NSSet()
-        for currency in balances {
+        for currency in self.allBalances {
             let c = WalletCurrencyEntity(context: context!)
             c.balance = currency.balance
             c.inOrders = currency.countInOrders
@@ -120,19 +127,42 @@ struct WalletModel : Mappable {
     
     private func getTestData() -> [WalletCurrencyModel] {
         return [
-            WalletCurrencyModel(balance: 0, currency: "UAH", countInOrders: 0)
+            WalletCurrencyModel(id: 0, balance: 0, currency: "UAH", countInOrders: 0)
         ]
     }
     
-    func getCountCurrencies() -> Int {
-        return balances.count;
+    func getCountFavouriteCurrencies() -> Int {
+        return self.favouriteBalances.count;
     }
 
-    func getCurrencies() -> [WalletCurrencyModel] {
-        return balances;
+    func getCountAllExistsCurrencies() -> Int {
+        return self.allBalances.count;
+    }
+    
+    func getFavouriteCurrencies() -> [WalletCurrencyModel] {
+        return self.favouriteBalances;
     }
 
-    func getCurrencyByIndex(index: Int) -> WalletCurrencyModel {
-        return index > -1 && index < balances.count ? balances[index] : WalletCurrencyModel()
+    func getAllExistsCurrencies() -> [WalletCurrencyModel] {
+        return self.allBalances;
+    }
+
+    func getFromFavouriteContainerCurrencyByIndex(index: Int) -> WalletCurrencyModel {
+        return index > -1 && index < self.favouriteBalances.count ? self.favouriteBalances[index] : WalletCurrencyModel()
+    }
+
+    func getFromGeneralContainerCurrencyByIndex(index: Int) -> WalletCurrencyModel {
+        return index > -1 && index < self.allBalances.count ? self.allBalances[index] : WalletCurrencyModel()
+    }
+
+    func setIsFavourite(id: Int, isFavourite: Bool) {
+        if id > -1 && id < self.allBalances.count {
+            self.allBalances[id].isFavourite = isFavourite
+            print("balances[\(id)] has favourite state: \(isFavourite)")
+        }
+    }
+    
+    mutating func filterCurrenciesByFavourites() {
+        self.favouriteBalances = self.allBalances.filter({ return $0.isFavourite })
     }
 }

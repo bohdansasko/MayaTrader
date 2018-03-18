@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 
 class WalletInteractor: WalletInteractorInput {
-
     weak var output: WalletInteractorOutput!
     var displayManager: WalletDisplayManager!
     
@@ -24,12 +23,21 @@ class WalletInteractor: WalletInteractorInput {
     func viewIsReady(tableView: UITableView!) {
         displayManager.setTableView(tableView: tableView)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
     }
 
     func updateDisplayInfo() {
-        displayManager.updateInfo()
+        displayManager.reloadData()
         output.setTouchEnabled(isTouchEnabled: displayManager.isDataExists())
+    }
+    
+    func getWalletModelAsSegueBlock() -> SegueBlock? {
+        return displayManager.getWalletModelAsSegueBlock()
+    }
+    
+    func handleViewWillAppear() {
+        displayManager.reloadData()
     }
 }

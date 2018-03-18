@@ -20,4 +20,17 @@ class WalletPresenter: WalletModuleInput, WalletViewOutput, WalletInteractorOutp
     func setTouchEnabled(isTouchEnabled: Bool) {
         view.setTouchEnabled(isTouchEnabled: isTouchEnabled)
     }
+    
+    func openWalletSettings() {
+        let walletInteractor = interactor as! WalletInteractor
+        router.openWalletSettings(viewController: view as! UIViewController, data: walletInteractor.getWalletModelAsSegueBlock())
+    }
+
+    func sendDataToWalletSettings(segue: UIStoryboardSegue, sender: Any?) {
+        router.sendDataToWalletSettings(segue: segue, sender: sender)
+    }
+    
+    func handleViewWillAppear() {
+        interactor.handleViewWillAppear()
+    }
 }

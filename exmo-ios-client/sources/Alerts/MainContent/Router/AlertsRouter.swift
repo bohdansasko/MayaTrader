@@ -9,6 +9,6 @@ import UIKit.UIViewController
 
 class AlertsRouter: AlertsRouterInput {
     func showEditView(view: UIViewController, data: AlertItem)  {
-        view.openModule(segueIdentifier: AlertsIdentifiers.EditAlert.rawValue, block: nil)
+        view.openModule(segueIdentifier: AlertsSegueIdentifiers.EditAlert.rawValue, block: nil)
     }
 }
