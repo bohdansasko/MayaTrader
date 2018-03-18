@@ -28,6 +28,7 @@ class WalletViewController: UIViewController, WalletViewInput {
     @IBAction func openCurrenciesManager(_ sender: Any) {
         output.openWalletSettings()
     }
+
     // MARK: WalletViewInput
     func setupInitialState() {
         setTouchEnabled(isTouchEnabled: false)

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WalletSettingsInteractorOutput: class {
-
+    // do nothing
 }

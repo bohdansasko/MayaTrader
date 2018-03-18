@@ -7,7 +7,5 @@
 //
 
 class WalletSettingsRouter: WalletSettingsRouterInput {
-//    func showEditView(view: UIViewController, data: AlertItem)  {
-//        view.openModule(segueIdentifier: AlertsSegueIdentifiers.EditAlert.rawValue, block: nil)
-//    }
+    // do nothing
 }
