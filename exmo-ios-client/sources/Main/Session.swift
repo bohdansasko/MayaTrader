@@ -37,4 +37,8 @@ class Session {
     func isExmoAccountExists() -> Bool {
         return user.getIsLoginedAsExmoUser()
     }
+    
+    func getOrders() -> OrdersModel {
+        return OrdersModel()
+    }
 }

@@ -48,6 +48,8 @@ enum TableCellIdentifiers: String {
     case WalletTableViewCell
     case WalletSettingsCell
     case AlertTableViewCell
+    case OrdersBuyTableViewCell
+    case OrdersSellTableViewCell
 }
 
 enum WalletSegueIdentifiers: String {
@@ -56,4 +58,10 @@ enum WalletSegueIdentifiers: String {
 
 enum AlertsSegueIdentifiers: String {
     case EditAlert
+}
+
+enum OrderType {
+    case None
+    case Buy
+    case Sell
 }
