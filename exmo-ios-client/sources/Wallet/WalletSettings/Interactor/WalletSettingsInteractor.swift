@@ -9,21 +9,8 @@ import UIKit.UIViewController
 
 class WalletSettingsInteractor: WalletSettingsInteractorInput {
     weak var output: WalletSettingsInteractorOutput!
-    private var displayManager: WalletSettingsDisplayManager!
     
-    init() {
+    func viewIsReady() {
         // do nothing
-    }
-    
-    deinit {
-        // do nothing
-    }
-    
-    func viewIsReady(tableView: UITableView) {
-        self.displayManager.setTableView(tableView: tableView)
-    }
-
-    func configure(walletModel: WalletModel) {
-        self.displayManager = WalletSettingsDisplayManager(walletDataProvider: walletModel)
     }
 }

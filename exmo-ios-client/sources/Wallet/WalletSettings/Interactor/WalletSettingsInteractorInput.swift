@@ -6,10 +6,6 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-import Foundation
-import UIKit.UITableView
-
 protocol WalletSettingsInteractorInput {
-    func viewIsReady(tableView: UITableView)
-    func configure(walletModel: WalletModel)
+    func viewIsReady()
 }

@@ -6,19 +6,17 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-import UIKit.UIViewController
-
 class WalletSettingsPresenter: WalletSettingsModuleInput, WalletSettingsViewOutput, WalletSettingsInteractorOutput {
 
     weak var view: WalletSettingsViewInput!
     var interactor: WalletSettingsInteractorInput!
     var router: WalletSettingsRouterInput!
 
-    func viewIsReady(tableView: UITableView) {
-        interactor.viewIsReady(tableView: tableView)
+    func viewIsReady() {
+        interactor.viewIsReady()
     }
     
     func configure(walletModel: WalletModel) {
-        interactor.configure(walletModel: walletModel)
+        view.configure(walletModel: walletModel)
     }
 }

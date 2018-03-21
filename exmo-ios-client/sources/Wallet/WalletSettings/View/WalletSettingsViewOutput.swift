@@ -15,5 +15,5 @@ protocol WalletSettingsViewOutput {
         Notify presenter that view is ready
     */
     
-    func viewIsReady(tableView: UITableView)
+    func viewIsReady()
 }

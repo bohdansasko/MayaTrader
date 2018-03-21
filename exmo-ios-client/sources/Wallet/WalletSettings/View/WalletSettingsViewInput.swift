@@ -14,4 +14,5 @@ protocol WalletSettingsViewInput: class {
     */
 
     func setupInitialState()
+    func configure(walletModel: WalletModel)
 }

@@ -12,15 +12,22 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     var output: WalletSettingsViewOutput!
 
     @IBOutlet weak var tableView: UITableView!
+    private var displayManager: WalletSettingsDisplayManager!
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady(tableView: tableView)
+        output.viewIsReady()
     }
     
     // MARK: WalletSettingsViewInput
     func setupInitialState() {
         // do nothing
     }
+    
+    func configure(walletModel: WalletModel) {
+        self.displayManager = WalletSettingsDisplayManager(walletDataProvider: walletModel)
+        self.displayManager.setTableView(tableView: tableView)
+    }
+
 }
