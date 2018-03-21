@@ -13,25 +13,31 @@ class WalletViewController: UIViewController, WalletViewInput {
     @IBOutlet weak var currencySettingsBtn: UIBarButtonItem!
 
     var output: WalletViewOutput!
-    
+    var displayManager: WalletDisplayManager!
+
     // MARK: Life cycle
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady(tableView: tableView)
+        output.viewIsReady()
         setupInitialState()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        output.handleViewWillAppear()
-    }
-
-    @IBAction func openCurrenciesManager(_ sender: Any) {
-        output.openWalletSettings()
+        displayManager.reloadData()
     }
 
     // MARK: WalletViewInput
     func setupInitialState() {
         setTouchEnabled(isTouchEnabled: false)
+        
+        displayManager = WalletDisplayManager()
+        displayManager.setTableView(tableView: tableView)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
     }
     
     func setTouchEnabled(isTouchEnabled: Bool) {
@@ -42,5 +48,20 @@ class WalletViewController: UIViewController, WalletViewInput {
         if segue.identifier == WalletSegueIdentifiers.ManageCurrencies.rawValue {
             output.sendDataToWalletSettings(segue: segue, sender: sender)
         }
+    }
+    
+    @objc func updateDisplayInfo() {
+        displayManager.reloadData()
+        setTouchEnabled(isTouchEnabled: displayManager.isDataExists())
+    }
+    
+    func getWalletModelAsSegueBlock() -> SegueBlock? {
+        return displayManager.getWalletModelAsSegueBlock()
+    }
+    
+    
+    // MARK: IBActions
+    @IBAction func openCurrenciesManager(_ sender: Any) {
+        output.openWalletSettings(segueBlock: displayManager.getWalletModelAsSegueBlock())
     }
 }

@@ -7,5 +7,5 @@
 //
 
 protocol WalletModuleInput: class {
-
+    // do nothing
 }

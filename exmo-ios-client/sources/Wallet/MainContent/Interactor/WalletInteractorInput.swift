@@ -10,7 +10,5 @@ import Foundation
 import UIKit.UITableView
 
 @objc protocol WalletInteractorInput {
-    func viewIsReady(tableView: UITableView!)
-    func updateDisplayInfo()
-    func handleViewWillAppear()
+    func viewIsReady()
 }

@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WalletInteractorOutput: class {
-    func setTouchEnabled(isTouchEnabled: Bool)
+    // do nothing
 }

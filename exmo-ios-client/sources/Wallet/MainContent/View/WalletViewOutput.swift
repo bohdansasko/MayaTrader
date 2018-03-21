@@ -9,8 +9,7 @@ import Foundation
 import UIKit.UITableView
 
 protocol WalletViewOutput {
-    func viewIsReady(tableView: UITableView!)
-    func openWalletSettings()
+    func viewIsReady()
+    func openWalletSettings(segueBlock: SegueBlock?)
     func sendDataToWalletSettings(segue: UIStoryboardSegue, sender: Any?)
-    func handleViewWillAppear()
 }
