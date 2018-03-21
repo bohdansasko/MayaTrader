@@ -12,16 +12,30 @@ class MoreViewController: UIViewController, MoreViewInput {
     @IBOutlet weak var tableView: UITableView!
     
     var output: MoreViewOutput!
-
+    var displayManager: MoreDataDisplayManager!
+    
     // MARK: Life cycle
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady(tableView: tableView)
+        output.viewIsReady()
+        
+        setupInitialState()
     }
 
 
     // MARK: MoreViewInput
     func setupInitialState() {
-        // do nothing
+        displayManager.setTableView(tableView: tableView)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+    }
+    
+    @objc func updateDisplayInfo() {
+        displayManager.updateInfo()
     }
 }

@@ -10,7 +10,5 @@ import Foundation
 import UIKit.UIViewController
 
 @objc protocol MoreInteractorInput {
-    func viewIsReady(tableView: UITableView!)
-    func onDidSelectMenuItem(segueIdentifier: String)
-    func updateDisplayInfo()
+    func viewIsReady()
 }

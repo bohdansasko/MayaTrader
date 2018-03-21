@@ -8,5 +8,6 @@
 import UIKit.UITableView
 
 protocol MoreViewOutput {
-    func viewIsReady(tableView: UITableView!)
+    func viewIsReady()
+    func onDidSelectMenuItem(segueIdentifier: String)
 }

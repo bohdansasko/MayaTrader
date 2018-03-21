@@ -13,7 +13,7 @@ class MoreDataDisplayManager: NSObject {
     private var dataProvider: MoreDisplayModel!
     private var tableView: UITableView!
     
-    var interactor: MoreInteractorInput!
+    var viewOutput: MoreViewOutput!
 
     override init() {
         super.init()
@@ -29,7 +29,7 @@ class MoreDataDisplayManager: NSObject {
         self.updateInfo()
     }
 
-    func updateInfo() {
+    @objc func updateInfo() {
         dataProvider.update()
         self.tableView.reloadData()
     }
@@ -62,7 +62,7 @@ extension MoreDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         let row = indexPath.row
         if dataProvider.isSegueItem(byRow: row) {
             let segueIdentifier = dataProvider.getMenuItemSegueIdentifier(byRow: row)
-            interactor.onDidSelectMenuItem(segueIdentifier: segueIdentifier)
+            viewOutput.onDidSelectMenuItem(segueIdentifier: segueIdentifier)
         } else {
             dataProvider.doAction(itemIndex: row)
         }

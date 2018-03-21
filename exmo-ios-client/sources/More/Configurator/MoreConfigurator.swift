@@ -29,6 +29,9 @@ class MoreModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        viewController.displayManager = MoreDataDisplayManager()
+        viewController.displayManager.viewOutput = viewController.output
     }
 
 }
