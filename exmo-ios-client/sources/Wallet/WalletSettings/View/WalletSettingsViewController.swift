@@ -18,6 +18,8 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+        
+        setupInitialState()
     }
     
     // MARK: WalletSettingsViewInput

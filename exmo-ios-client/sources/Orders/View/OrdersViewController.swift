@@ -18,14 +18,14 @@ class OrdersViewController: UIViewController, OrdersViewInput {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        output.viewIsReady()
         
-        displayManager = OrdersDisplayManager()
-        displayManager.setTableView(tableView: tableView)
+        setupInitialState()
     }
 
-
+    
     // MARK: OrdersViewInput
     func setupInitialState() {
-        // do nothing
+        displayManager.setTableView(tableView: tableView)
     }
 }

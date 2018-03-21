@@ -12,10 +12,6 @@ class WalletSegueBlock: SegueBlock {
     init(dataModel: WalletModel?) {
         self.walletDataProvider = dataModel
     }
-    
-    deinit {
-        // do nothing
-    }
 }
 
 class WalletDisplayManager: NSObject {

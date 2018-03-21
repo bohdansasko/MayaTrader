@@ -30,6 +30,8 @@ class WalletModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        viewController.displayManager = WalletDisplayManager()
     }
 
 }

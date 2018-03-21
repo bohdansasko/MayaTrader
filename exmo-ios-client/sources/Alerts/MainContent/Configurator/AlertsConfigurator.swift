@@ -30,6 +30,10 @@ class AlertsModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        viewController.displayManager = AlertDataDisplayManager()
+        viewController.displayManager.viewOutput = viewController.output
+
     }
 
 }

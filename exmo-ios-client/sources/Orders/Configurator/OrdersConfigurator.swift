@@ -30,6 +30,8 @@ class OrdersModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        viewController.displayManager = OrdersDisplayManager()
     }
 
 }

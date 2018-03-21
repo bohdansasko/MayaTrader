@@ -20,14 +20,13 @@ class AlertsViewController: UIViewController, AlertsViewInput {
         super.viewDidLoad()
         output.viewIsReady()
         
-        displayManager = AlertDataDisplayManager()
-        displayManager.viewOutput = output
-        displayManager.setTableView(tableView: tableView)
+        setupInitialState()
     }
 
 
     // MARK: AlertsViewInput
     func setupInitialState() {
         // do nothing
+        displayManager.setTableView(tableView: tableView)
     }
 }
