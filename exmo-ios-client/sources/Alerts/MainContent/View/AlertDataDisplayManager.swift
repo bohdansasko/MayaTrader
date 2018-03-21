@@ -13,7 +13,7 @@ class AlertDataDisplayManager: NSObject {
     private var tableView: UITableView!
     private var actions: [UITableViewRowAction]?
     
-    var interactor: AlertsInteractorInput!
+    var viewOutput: AlertsViewOutput!
     
     override init() {
         super.init()
@@ -51,12 +51,12 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.interactor.showEditView(data: dataProvider.getCellItem(byRow: indexPath.row))
+        self.viewOutput.showEditView(data: dataProvider.getCellItem(byRow: indexPath.row))
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let editAction = UITableViewRowAction.init(style: .normal, title: "Edit", handler: { [unowned self] action, indexPath in
-            self.interactor.showEditView(data: self.dataProvider.getCellItem(byRow: indexPath.row))
+            self.viewOutput.showEditView(data: self.dataProvider.getCellItem(byRow: indexPath.row))
             print("called edit action")
         })
         editAction.backgroundColor = UIColor.green

@@ -6,14 +6,7 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-import UIKit.UITableView
-
 protocol AlertsViewOutput {
-
-    /**
-        @author TQ0oS
-        Notify presenter that view is ready
-    */
-
-    func viewIsReady(tableView: UITableView!)
+    func viewIsReady()
+    func showEditView(data: AlertItem)
 }

@@ -13,15 +13,21 @@ class AlertsViewController: UIViewController, AlertsViewInput {
     @IBOutlet weak var tableView: UITableView!
     
     var output: AlertsViewOutput!
+    var displayManager: AlertDataDisplayManager!
 
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady(tableView: tableView)
+        output.viewIsReady()
+        
+        displayManager = AlertDataDisplayManager()
+        displayManager.viewOutput = output
+        displayManager.setTableView(tableView: tableView)
     }
 
 
     // MARK: AlertsViewInput
     func setupInitialState() {
+        // do nothing
     }
 }

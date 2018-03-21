@@ -10,20 +10,9 @@ import UIKit.UITableView
 
 class AlertsInteractor: AlertsInteractorInput {
 
-    var displayManager: AlertDataDisplayManager
     weak var output: AlertsInteractorOutput!
 
-    init() {
-        displayManager = AlertDataDisplayManager()
-        displayManager.interactor = self
+    func viewIsReady() {
+        // do nothing
     }
-
-    func viewIsReady(tableView: UITableView!) {
-        displayManager.setTableView(tableView: tableView)
-    }
-    
-    func showEditView(data: AlertItem) {
-        output.showEditView(data: data) 
-    }
-
 }
