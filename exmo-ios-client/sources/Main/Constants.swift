@@ -60,6 +60,10 @@ enum AlertsSegueIdentifiers: String {
     case EditAlert
 }
 
+enum OrdersSegueIdentifiers: String {
+    case CreateOrder
+}
+
 enum OrderType {
     case None
     case Buy
