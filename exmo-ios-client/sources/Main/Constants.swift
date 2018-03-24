@@ -37,7 +37,6 @@ extension Notification.Name {
 }
 
 enum MoreMenuSegueIdentifier: String {
-    case orderHistoryView
     case newsView
     case chatView
     case faqView

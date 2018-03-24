@@ -34,6 +34,7 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
         guard let vc = self.viewControllerForSegmentIndex(index: self.segmentController.selectedSegmentIndex) else {
             return
         }
+        
         self.addChildViewController(vc)
         self.transition(
             from: self.currentViewController!, to: vc,

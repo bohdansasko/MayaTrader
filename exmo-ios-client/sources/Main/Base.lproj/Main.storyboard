@@ -39,7 +39,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreMenuItem" textLabel="1sV-NH-fR8" style="IBUITableViewCellStyleDefault" id="owq-hb-8Jb" customClass="MenuItemTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="MoreMenuItem" textLabel="1sV-NH-fR8" style="IBUITableViewCellStyleDefault" id="owq-hb-8Jb" customClass="MenuItemTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="owq-hb-8Jb" id="75Z-Ol-cW2">
@@ -86,21 +86,6 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="-724" y="1906"/>
-        </scene>
-        <!--Order History-->
-        <scene sceneID="KYF-Q7-r5Q">
-            <objects>
-                <viewController storyboardIdentifier="orderHistoryView" title="Order History" id="h8h-S7-a4V" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="53x-vw-OhQ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <viewLayoutGuide key="safeArea" id="6ph-TK-8Jp"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N4a-mh-2C9" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="545" y="2636"/>
         </scene>
         <!--Qr Scanner View Controller-->
         <scene sceneID="a8t-I0-Ygi">
@@ -287,7 +272,7 @@
                                     <constraint firstAttribute="width" constant="320" id="Zf1-e9-rk4"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletTableViewCell" rowHeight="50" id="KFx-Um-gmi" customClass="WalletTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletTableViewCell" rowHeight="50" id="KFx-Um-gmi" customClass="WalletTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KFx-Um-gmi" id="TpK-Wa-Mnd">
@@ -463,7 +448,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreateOrder" rowHeight="435" id="nz0-wV-BCi" customClass="CreateOrderTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="CreateOrder" rowHeight="435" id="nz0-wV-BCi" customClass="CreateOrderTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="435"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nz0-wV-BCi" id="gL8-WC-fxi">
@@ -660,7 +645,7 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletSettingsCell" id="sic-vD-ZhZ" customClass="WalletSettingsTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="WalletSettingsCell" id="sic-vD-ZhZ" customClass="WalletSettingsTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sic-vD-ZhZ" id="jzo-br-tFB">
@@ -737,7 +722,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertTableViewCell" rowHeight="54" id="KLd-f5-CBy" customClass="AlertTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlertTableViewCell" rowHeight="54" id="KLd-f5-CBy" customClass="AlertTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KLd-f5-CBy" id="jMz-yd-0uX">
@@ -911,7 +896,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="bIi-ls-T6h">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="bIi-ls-T6h">
                                         <rect key="frame" x="0.0" y="28" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bIi-ls-T6h" id="a2S-mS-Zo1">
@@ -1094,7 +1079,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17c-t5-v2U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="4030"/>
+            <point key="canvasLocation" x="542" y="3376"/>
         </scene>
         <!--News-->
         <scene sceneID="YEA-HC-yAS">
@@ -1109,7 +1094,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y1E-d6-OjN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="546" y="3320"/>
+            <point key="canvasLocation" x="544" y="2665"/>
         </scene>
         <!--Wallet-->
         <scene sceneID="Dag-YJ-pk8">
@@ -1150,7 +1135,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2b5-oL-WR3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="545" y="4723"/>
+            <point key="canvasLocation" x="542" y="4069"/>
         </scene>
         <!--Alerts-->
         <scene sceneID="EkD-CZ-i98">
@@ -1368,6 +1353,7 @@
                             <constraint firstAttribute="bottom" secondItem="cpH-h3-Iqw" secondAttribute="bottom" id="ef1-Fb-4gc"/>
                             <constraint firstItem="cpH-h3-Iqw" firstAttribute="top" secondItem="TPA-7G-Ydi" secondAttribute="top" id="y4R-OF-hFm"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="e0N-8S-odx"/>
                     </view>
                     <connections>
                         <outlet property="tableView" destination="cpH-h3-Iqw" id="pIV-gi-mMe"/>

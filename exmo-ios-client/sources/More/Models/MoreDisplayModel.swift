@@ -14,7 +14,6 @@ class MoreDisplayModel {
 
     func update() {
         menuItems = [
-            MenuItem(name: "Order history", segueIdentifier: MoreMenuSegueIdentifier.orderHistoryView.rawValue),
             MenuItem(name: "News", segueIdentifier: MoreMenuSegueIdentifier.newsView.rawValue),
             MenuItem(name: "Chat", segueIdentifier: MoreMenuSegueIdentifier.chatView.rawValue),
             MenuItem(name: "FAQ", segueIdentifier: MoreMenuSegueIdentifier.faqView.rawValue)
