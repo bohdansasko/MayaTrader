@@ -64,7 +64,7 @@ enum OrdersSegueIdentifiers: String {
     case CreateOrder
 }
 
-enum OrderType {
+enum ActiveOrderType {
     case None
     case Buy
     case Sell

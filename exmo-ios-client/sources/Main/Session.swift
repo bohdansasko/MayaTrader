@@ -38,7 +38,7 @@ class Session {
         return user.getIsLoginedAsExmoUser()
     }
     
-    func getOrders() -> OrdersModel {
-        return OrdersModel()
+    func getOrders() -> ActiveOrdersModel {
+        return ActiveOrdersModel()
     }
 }
