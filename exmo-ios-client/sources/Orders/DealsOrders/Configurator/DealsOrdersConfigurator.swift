@@ -1,5 +1,5 @@
 //
-//  HistoryOrdersHistoryOrdersConfigurator.swift
+//  DealsOrdersConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class HistoryOrdersModuleConfigurator {
+class DealsOrdersModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? HistoryOrdersViewController {
+        if let viewController = viewInput as? DealsOrdersViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: HistoryOrdersViewController) {
+    private func configure(viewController: DealsOrdersViewController) {
 
-        let router = HistoryOrdersRouter()
+        let router = DealsOrdersRouter()
 
-        let presenter = HistoryOrdersPresenter()
+        let presenter = DealsOrdersPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = HistoryOrdersInteractor()
+        let interactor = DealsOrdersInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor

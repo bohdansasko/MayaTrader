@@ -1,5 +1,5 @@
 //
-//  HistoryOrdersHistoryOrdersInitializer.swift
+//  DealsOrdersInitializer.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class HistoryOrdersModuleInitializer: NSObject {
+class DealsOrdersModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var historyordersViewController: HistoryOrdersViewController!
+    @IBOutlet weak var historyordersViewController: DealsOrdersViewController!
 
     override func awakeFromNib() {
 
-        let configurator = HistoryOrdersModuleConfigurator()
+        let configurator = DealsOrdersModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: historyordersViewController)
     }
 

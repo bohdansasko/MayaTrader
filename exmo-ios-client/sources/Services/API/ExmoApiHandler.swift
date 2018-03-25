@@ -59,7 +59,15 @@ public class ExmoApiHandler {
         post["offset"] = offset
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_cancelled_orders")
     }
-    
+
+    public func getUserTrades(limit: Int, offset: Int)-> Data? {
+        print("start user_trades")
+        var post: [String: Any] = [:]
+        post["limit"] = limit
+        post["offset"] = offset
+        return self.getResponseFromServerForPost(postDictionary: post, method: "user_trades")
+    }
+
     private func getResponseFromServerForPost(postDictionary: [String: Any], method: String) -> Data? {
         var post: String = ""
         var index: Int = 0
@@ -116,5 +124,31 @@ public class ExmoApiHandler {
             hashString.appendFormat("%02x", result[i])
         }
         return hashString as String
+    }
+    
+    func getAllCurrenciesOnExmo() -> [String] {
+        return [
+            "USD","EUR","RUB","PLN","UAH","BTC","LTC","DOGE","DASH","ETH","WAVES","ZEC","USDT","XMR","XRP","KICK","ETC","BCH"
+        ]
+    }
+    
+    func getAllPairsOnExmo() -> [String] {
+        let currencies = getAllCurrenciesOnExmo()
+        var allCombOfCurrencies = [String]()
+        
+        for currencyPart1 in currencies {
+            for currencyPart2 in currencies {
+                if currencyPart1 != currencyPart2 {
+                    allCombOfCurrencies.append(currencyPart1 + "_" + currencyPart2)
+                }
+            }
+        }
+        
+        return allCombOfCurrencies
+    }
+    
+    func getAllPairsOnExmoAsStr(separator: String = ",") -> String {
+        let s = getAllPairsOnExmo().joined(separator: separator)
+        return s
     }
 }

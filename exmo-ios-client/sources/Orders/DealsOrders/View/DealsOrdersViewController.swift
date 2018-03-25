@@ -1,5 +1,5 @@
 //
-//  HistoryOrdersHistoryOrdersViewController.swift
+//  DealsOrdersViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class HistoryOrdersViewController: UIViewController, HistoryOrdersViewInput {
+class DealsOrdersViewController: UIViewController, DealsOrdersViewInput {
 
-    var output: HistoryOrdersViewOutput!
+    var output: DealsOrdersViewOutput!
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -19,7 +19,7 @@ class HistoryOrdersViewController: UIViewController, HistoryOrdersViewInput {
     }
 
 
-    // MARK: HistoryOrdersViewInput
+    // MARK: DealsOrdersViewInput
     func setupInitialState() {
     }
 }
