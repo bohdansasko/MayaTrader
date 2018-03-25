@@ -60,7 +60,7 @@ struct OrderModel {
         return String(amount)
     }
     
-    func getOperation() -> String {
+    func getOrderTypeAsStr() -> String {
         switch orderType {
         case .Buy: return "Buy"
         case .Sell: return "Sell"

@@ -58,7 +58,7 @@
 		20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */; };
 		20600A2E2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */; };
 		207E24FF2061B85B00030023 /* OrdersDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */; };
-		207E25012061BD3B00030023 /* OpenOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OpenOrderTableViewCell.swift */; };
+		207E25012061BD3B00030023 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderTableViewCell.swift */; };
 		207E25042061C3FD00030023 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25032061C3FD00030023 /* OrderModel.swift */; };
 		207E25062061C41000030023 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25052061C41000030023 /* OrdersModel.swift */; };
 		207EAE0A204FE47400FDA3B7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EAE09204FE47400FDA3B7 /* Session.swift */; };
@@ -270,7 +270,7 @@
 		20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersDisplayManager.swift; sourceTree = "<group>"; };
-		207E25002061BD3B00030023 /* OpenOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenOrderTableViewCell.swift; sourceTree = "<group>"; };
+		207E25002061BD3B00030023 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
 		207E25032061C3FD00030023 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		207E25052061C41000030023 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		207EAE09204FE47400FDA3B7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -673,7 +673,7 @@
 			isa = PBXGroup;
 			children = (
 				207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */,
-				207E25002061BD3B00030023 /* OpenOrderTableViewCell.swift */,
+				207E25002061BD3B00030023 /* OrderTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1560,7 +1560,7 @@
 				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
 				940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */,
 				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
-				207E25012061BD3B00030023 /* OpenOrderTableViewCell.swift in Sources */,
+				207E25012061BD3B00030023 /* OrderTableViewCell.swift in Sources */,
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
 				2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,

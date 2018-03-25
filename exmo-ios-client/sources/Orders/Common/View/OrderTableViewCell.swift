@@ -33,7 +33,19 @@ class OrderTableViewCell: UITableViewCell {
         self.priceValueLabel.text = orderData.getPrice()
         self.quantityValueLabel.text = orderData.getQuantity()
         self.amountValueLabel.text = orderData.getAmount()
-        self.operationValueLabel.text = orderData.getOperation()
+        self.operationValueLabel.text = orderData.getOrderTypeAsStr()
+        self.operationValueLabel.textColor = getOrderTypeLabelTextColor(orderType: orderData.getOrderType())
+    }
+    
+    private func getOrderTypeLabelTextColor(orderType: OrderType) -> UIColor {
+        switch orderType {
+        case .Buy:
+            return UIColor(red: 66/255, green: 126/255, blue: 243/255, alpha: 1.0)
+        case .Sell:
+            return UIColor(red: 235/255, green: 65/255, blue: 77/255, alpha: 1.0)
+        default:
+            return UIColor.black
+        }
     }
 }
 
