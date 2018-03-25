@@ -15,7 +15,7 @@ class CreateOrderPresenter: CreateOrderModuleInput, CreateOrderViewOutput, Creat
 
     }
     
-    func createOrder(orderModel: ActiveOrderModel) {
+    func createOrder(orderModel: OrderModel) {
         interactor.createOrder(orderModel: orderModel)
     }
 }

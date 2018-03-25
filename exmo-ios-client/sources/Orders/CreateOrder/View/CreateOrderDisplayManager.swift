@@ -32,7 +32,7 @@ class CreateOrderDisplayManager: NSObject {
     
     func createOrderPressed() {
         if self.cell != nil {
-            guard let model = self.cell?.getActiveOrderModel() else { return }
+            guard let model = self.cell?.getOrderModel() else { return }
             self.output.createOrder(orderModel: model)
         }
     }

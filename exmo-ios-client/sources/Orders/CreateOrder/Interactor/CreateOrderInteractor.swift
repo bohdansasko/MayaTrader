@@ -10,7 +10,7 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
 
     weak var output: CreateOrderInteractorOutput!
 
-    func createOrder(orderModel: ActiveOrderModel) {
+    func createOrder(orderModel: OrderModel) {
         print("func createOrder called")
     }
 }

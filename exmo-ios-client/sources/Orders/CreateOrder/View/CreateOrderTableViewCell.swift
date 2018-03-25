@@ -51,7 +51,7 @@ class CreateOrderTableViewCell: UITableViewCell {
         self.orderByLabel.text = "Market"
     }
     
-    private func configureOrderTypeObject(orderType: ActiveOrderType) {
+    private func configureOrderTypeObject(orderType: OrderType) {
         switch orderType {
         case .Buy:
             self.orderBySwitch.isOn = true
@@ -68,8 +68,8 @@ class CreateOrderTableViewCell: UITableViewCell {
         onCreateOrderCallback()
     }
     
-    func getActiveOrderModel() -> ActiveOrderModel {
-        return ActiveOrderModel(orderType: .Buy, currencyPair: "", createdDate: Date(), price: 0.0, quantity: 0.0, amount: 0.0)
+    func getOrderModel() -> OrderModel {
+        return OrderModel(orderType: .Buy, currencyPair: "", createdDate: Date(), price: 0.0, quantity: 0.0, amount: 0.0)
     }
     
     func setOnCreateOrderCallback(closure: @escaping () -> Void) {

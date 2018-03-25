@@ -60,7 +60,7 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
     
     func viewControllerForSegmentIndex(index: Int) -> UIViewController? {
         switch index {
-        case 0: return self.storyboard?.instantiateViewController(withIdentifier: "ActiveOrdersViewController")
+        case 0: return self.storyboard?.instantiateViewController(withIdentifier: "OpenedOrdersViewController")
         case 1: return self.storyboard?.instantiateViewController(withIdentifier: "CanceledOrdersViewController")
         case 2: return self.storyboard?.instantiateViewController(withIdentifier: "DealsOrdersViewController")
         default:

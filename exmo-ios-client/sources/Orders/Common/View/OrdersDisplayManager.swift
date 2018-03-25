@@ -9,13 +9,16 @@
 import Foundation
 import UIKit
 
-class ActiveOrdersDisplayManager: NSObject {
-    var ordersDataProvider: ActiveOrdersModel!
+class OrdersDisplayManager: NSObject {
+    var ordersDataProvider: OrdersModel!
     var tableView: UITableView!
+    var shouldUseActions: Bool
     
-    override init() {
+    init(data: OrdersModel, shouldUseActions: Bool) {
+        self.ordersDataProvider = data
+        self.shouldUseActions = shouldUseActions
+
         super.init()
-        self.ordersDataProvider = Session.sharedInstance.getOrders()
     }
     
     func setTableView(tableView: UITableView!) {
@@ -33,37 +36,30 @@ class ActiveOrdersDisplayManager: NSObject {
     func isDataExists() -> Bool {
         return ordersDataProvider.isDataExists()
     }
-    
-    func getOrderTypeIdAsStrBy(orderType: ActiveOrderType) -> String {
-        switch orderType {
-        case .Buy:
-            return TableCellIdentifiers.OrdersBuyTableViewCell.rawValue
-        case .Sell:
-            return TableCellIdentifiers.OrdersSellTableViewCell.rawValue
-        case .None:
-            return "None"
-        }
-    }
 }
 
 
-extension ActiveOrdersDisplayManager: UITableViewDelegate, UITableViewDataSource  {
+extension OrdersDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.ordersDataProvider.getCountOrders()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let orderData = self.ordersDataProvider.getOrderBy(index: indexPath.row)
-        let cellId = getOrderTypeIdAsStrBy(orderType: orderData.getActiveOrderType())
+        let cellId = TableCellIdentifiers.OrderTableViewCell.rawValue
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ActiveOrderTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderTableViewCell
         cell.setContent(orderData: orderData)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { [weak self] action, indexPath in
+        if !self.shouldUseActions {
+            return []
+        }
+        
+        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { action, indexPath in
             print("called delete action")
         })
         deleteAction.backgroundColor = UIColor.red

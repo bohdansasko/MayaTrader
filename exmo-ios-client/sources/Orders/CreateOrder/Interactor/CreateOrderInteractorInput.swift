@@ -9,5 +9,5 @@
 import Foundation
 
 protocol CreateOrderInteractorInput {
-    func createOrder(orderModel: ActiveOrderModel)
+    func createOrder(orderModel: OrderModel)
 }

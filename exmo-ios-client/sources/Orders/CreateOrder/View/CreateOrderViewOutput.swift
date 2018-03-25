@@ -14,5 +14,5 @@ protocol CreateOrderViewOutput {
     */
 
     func viewIsReady()
-    func createOrder(orderModel: ActiveOrderModel)
+    func createOrder(orderModel: OrderModel)
 }

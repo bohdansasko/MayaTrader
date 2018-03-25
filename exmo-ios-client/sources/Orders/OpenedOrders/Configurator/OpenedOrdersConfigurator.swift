@@ -8,30 +8,30 @@
 
 import UIKit
 
-class ActiveOrdersModuleConfigurator {
+class OpenedOrdersModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? ActiveOrdersViewController {
+        if let viewController = viewInput as? OpenedOrdersViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: ActiveOrdersViewController) {
+    private func configure(viewController: OpenedOrdersViewController) {
 
-        let router = ActiveOrdersRouter()
+        let router = OpenedOrdersRouter()
 
-        let presenter = ActiveOrdersPresenter()
+        let presenter = OpenedOrdersPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = ActiveOrdersInteractor()
+        let interactor = OpenedOrdersInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor
         viewController.output = presenter
         
-        viewController.displayManager = ActiveOrdersDisplayManager()
+        viewController.displayManager = OrdersDisplayManager(data: Session.sharedInstance.getOpenedOrders(), shouldUseActions: true)
     }
 
 }

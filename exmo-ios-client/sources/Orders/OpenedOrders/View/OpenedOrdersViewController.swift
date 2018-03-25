@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ActiveOrdersViewController: UIViewController, ActiveOrdersViewInput {
+class OpenedOrdersViewController: UIViewController, OpenedOrdersViewInput {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var output: ActiveOrdersViewOutput!
-    var displayManager: ActiveOrdersDisplayManager!
+    var output: OpenedOrdersViewOutput!
+    var displayManager: OrdersDisplayManager!
     
     // MARK: Life cycle
     override func viewDidLoad() {

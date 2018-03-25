@@ -8,8 +8,8 @@
 
 import UIKit.UITableView
 
-class ActiveOrdersInteractor: ActiveOrdersInteractorInput {
+class OpenedOrdersInteractor: OpenedOrdersInteractorInput {
 
-    weak var output: ActiveOrdersInteractorOutput!
+    weak var output: OpenedOrdersInteractorOutput!
     
 }

@@ -8,14 +8,14 @@
 
 import UIKit
 
-class ActiveOrdersModuleInitializer: NSObject {
+class OpenedOrdersModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var ordersViewController: ActiveOrdersViewController!
+    @IBOutlet weak var ordersViewController: OpenedOrdersViewController!
 
     override func awakeFromNib() {
 
-        let configurator = ActiveOrdersModuleConfigurator()
+        let configurator = OpenedOrdersModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: ordersViewController)
     }
 

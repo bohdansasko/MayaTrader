@@ -1,5 +1,5 @@
 //
-//  ActiveOrderModel.swift
+//  OrderModel.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/21/18.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct ActiveOrderModel {
-    private var orderType: ActiveOrderType
+struct OrderModel {
+    private var orderType: OrderType
     private var currencyPair: String
     private var createdDate: Date
     private var price: Double
@@ -25,7 +25,7 @@ struct ActiveOrderModel {
         amount = 0.0
     }
 
-    init(orderType: ActiveOrderType, currencyPair: String, createdDate: Date, price: Double, quantity: Double, amount: Double) {
+    init(orderType: OrderType, currencyPair: String, createdDate: Date, price: Double, quantity: Double, amount: Double) {
         self.orderType = orderType
         self.currencyPair = currencyPair
         self.createdDate = createdDate
@@ -34,7 +34,7 @@ struct ActiveOrderModel {
         self.amount = amount
     }
     
-    func getActiveOrderType() -> ActiveOrderType {
+    func getOrderType() -> OrderType {
         return orderType
     }
     
@@ -45,7 +45,6 @@ struct ActiveOrderModel {
     func getDateCreatedAsStr() -> String {
         let df = DateFormatter()
         df.dateFormat = ""
-        //createdDate.
         return "28.01.2018 06:47"
     }
     

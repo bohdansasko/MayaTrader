@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ActiveOrderTableViewCell: UITableViewCell {
+class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var currencyPairLabel: UILabel!
     @IBOutlet weak var orderCreateDateLabel: UILabel!
     @IBOutlet weak var priceValueLabel: UILabel!
@@ -27,13 +27,13 @@ class ActiveOrderTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    func setContent(orderData: ActiveOrderModel) {
-//        self.currencyPairLabel.text = orderData.getCurrencyPair()
-//        self.orderCreateDateLabel.text = orderData.getDateCreatedAsStr()
-//        self.priceValueLabel.text = orderData.getPrice()
-//        self.quantityValueLabel.text = orderData.getQuantity()
-//        self.amountValueLabel.text = orderData.getAmount()
-//        self.operationValueLabel.text = orderData.getOperation()
+    func setContent(orderData: OrderModel) {
+        self.currencyPairLabel.text = orderData.getCurrencyPair()
+        self.orderCreateDateLabel.text = orderData.getDateCreatedAsStr()
+        self.priceValueLabel.text = orderData.getPrice()
+        self.quantityValueLabel.text = orderData.getQuantity()
+        self.amountValueLabel.text = orderData.getAmount()
+        self.operationValueLabel.text = orderData.getOperation()
     }
 }
 
