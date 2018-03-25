@@ -61,4 +61,13 @@ extension ActiveOrdersDisplayManager: UITableViewDelegate, UITableViewDataSource
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { [weak self] action, indexPath in
+            print("called delete action")
+        })
+        deleteAction.backgroundColor = UIColor.red
+        
+        return [deleteAction]
+    }
 }
