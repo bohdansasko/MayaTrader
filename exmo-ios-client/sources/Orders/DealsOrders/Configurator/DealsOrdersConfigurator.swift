@@ -30,6 +30,8 @@ class DealsOrdersModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        viewController.displayManager = OrdersDisplayManager(data: Session.sharedInstance.getDealsOrders(), shouldUseActions: false)
     }
 
 }

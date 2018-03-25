@@ -10,16 +10,22 @@ import UIKit
 
 class DealsOrdersViewController: UIViewController, DealsOrdersViewInput {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     var output: DealsOrdersViewOutput!
-
+    var displayManager: OrdersDisplayManager!
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
+        
+        setupInitialState()
     }
-
-
-    // MARK: DealsOrdersViewInput
+    
+    
+    // MARK: OrdersViewInput
     func setupInitialState() {
+        displayManager.setTableView(tableView: self.tableView)
     }
 }
