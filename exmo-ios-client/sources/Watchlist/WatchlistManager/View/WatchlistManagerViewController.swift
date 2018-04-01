@@ -61,6 +61,6 @@ class WatchlistManagerViewController: UIViewController, WatchlistManagerViewInpu
     func viewControllerForSegmentIndex(isOn: Bool) -> UIViewController {
         return isOn
             ? (self.storyboard?.instantiateViewController(withIdentifier: "WatchlistFlatViewController"))!
-            : (self.storyboard?.instantiateViewController(withIdentifier: "WatchlistFlatViewController"))!
+            : (self.storyboard?.instantiateViewController(withIdentifier: "WatchlistCardsMenuViewController"))!
     }
 }

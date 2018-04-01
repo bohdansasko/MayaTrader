@@ -6,8 +6,6 @@
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
-import UIKit
-
 import Foundation
 import UIKit
 
@@ -46,10 +44,10 @@ extension WatchlistFlatDisplayManager: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let orderData = self.dataProvider.getOrderBy(index: indexPath.row)
-        let cellId = TableCellIdentifiers.WatchlistTableViewCell.rawValue
+        let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WatchlistFlatTableViewCell
-         cell.setContent(data: orderData)
+        cell.setContent(data: orderData)
         
         return cell
     }
