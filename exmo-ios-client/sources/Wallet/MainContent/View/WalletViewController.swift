@@ -27,7 +27,23 @@ class WalletViewController: UIViewController, WalletViewInput {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        updateNavigationBar(shouldHideNavigationBar: true)
         displayManager.reloadData()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        updateNavigationBar(shouldHideNavigationBar: false)
+
+    }
+
+    func updateNavigationBar(shouldHideNavigationBar: Bool) {
+        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
+
+        self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
+        self.navigationController?.navigationBar.shadowImage = dummyImage
+        self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
     }
 
     // MARK: WalletViewInput
@@ -39,7 +55,7 @@ class WalletViewController: UIViewController, WalletViewInput {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
     }
-    
+
     func setTouchEnabled(isTouchEnabled: Bool) {
         currencySettingsBtn.isEnabled = isTouchEnabled
     }
