@@ -27,13 +27,10 @@ class WalletDisplayManager: NSObject {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        self.walletDataProvider = Session.sharedInstance.user.walletInfo
-        
-        self.reloadData()
     }
 
     func reloadData() {
+        self.walletDataProvider = Session.sharedInstance.user.walletInfo
         walletDataProvider.filterCurrenciesByFavourites()
         self.tableView.reloadData()
     }
@@ -55,9 +52,12 @@ extension WalletDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currency = self.walletDataProvider.getFromFavouriteContainerCurrencyByIndex(index: indexPath.row)
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.WalletTableViewCell.rawValue, for: indexPath) as! WalletTableViewCell
-        cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: -1/*currency.countInOrders as! Int*/)
+        let cellId = (indexPath.row + 1) % 2 == 0 ? TableCellIdentifiers.WalletTableViewCellDark.rawValue : TableCellIdentifiers.WalletTableViewCell.rawValue
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletTableViewCell
+        cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: 0/*currency.countInOrders as! Int*/)
 
         return cell
     }
+    
+    
 }

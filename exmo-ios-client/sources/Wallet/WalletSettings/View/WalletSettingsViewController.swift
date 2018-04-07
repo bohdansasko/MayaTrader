@@ -24,12 +24,15 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     
     // MARK: WalletSettingsViewInput
     func setupInitialState() {
-        // do nothing
+        self.displayManager.setTableView(tableView: tableView)
     }
     
     func configure(walletModel: WalletModel) {
         self.displayManager = WalletSettingsDisplayManager(walletDataProvider: walletModel)
-        self.displayManager.setTableView(tableView: tableView)
+    }
+    
+    @IBAction func closeView() {
+        output.handleCloseView()
     }
 
 }

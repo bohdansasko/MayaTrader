@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 protocol WalletSettingsRouterInput {
-
+    func closeView(uiViewController: UIViewController)
 }

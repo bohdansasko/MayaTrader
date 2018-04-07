@@ -48,12 +48,11 @@ class WalletViewController: UIViewController, WalletViewInput {
 
     // MARK: WalletViewInput
     func setupInitialState() {
-        setTouchEnabled(isTouchEnabled: false)
-        
         displayManager.setTableView(tableView: tableView)
+        updateDisplayInfo();
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
     }
 
     func setTouchEnabled(isTouchEnabled: Bool) {

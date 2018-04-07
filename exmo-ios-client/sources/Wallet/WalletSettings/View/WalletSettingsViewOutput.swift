@@ -16,4 +16,5 @@ protocol WalletSettingsViewOutput {
     */
     
     func viewIsReady()
+    func handleCloseView()
 }

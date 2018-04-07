@@ -20,4 +20,8 @@ extension UIViewController {
     func close() {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    func popViewController() {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

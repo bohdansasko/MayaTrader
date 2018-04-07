@@ -5,6 +5,7 @@
 //  Created by TQ0oS on 17/03/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import UIKit.UIViewController
 
 class WalletSettingsPresenter: WalletSettingsModuleInput, WalletSettingsViewOutput, WalletSettingsInteractorOutput {
 
@@ -18,5 +19,9 @@ class WalletSettingsPresenter: WalletSettingsModuleInput, WalletSettingsViewOutp
     
     func configure(walletModel: WalletModel) {
         view.configure(walletModel: walletModel)
+    }
+    
+    func handleCloseView() {
+        router.closeView(uiViewController: view as! UIViewController)
     }
 }
