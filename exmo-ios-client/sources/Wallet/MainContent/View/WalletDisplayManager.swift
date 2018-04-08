@@ -16,13 +16,20 @@ class WalletSegueBlock: SegueBlock {
 
 class WalletDisplayManager: NSObject {
     var walletDataProvider: WalletModel!
-    var tableView: UITableView!
-
+    private weak var tableView: UITableView!
+    private weak var balanceView: BalanceView!
+    
     override init() {
         super.init()
         self.walletDataProvider = Session.sharedInstance.user.walletInfo
     }
 
+    func setBalanceView(balanceView: BalanceView!) {
+        self.balanceView = balanceView
+        self.balanceView.btcValueLabel.text = String(walletDataProvider.getAmountMoneyInBTC())
+        self.balanceView.usdValueLabel.text = String(walletDataProvider.getAmountMoneyInUSD())
+    }
+    
     func setTableView(tableView: UITableView!) {
         self.tableView = tableView
         self.tableView.delegate = self
@@ -46,12 +53,11 @@ class WalletDisplayManager: NSObject {
 
 extension WalletDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.walletDataProvider.getCountFavouriteCurrencies()
+        return self.walletDataProvider.getCountUsedCurrencies()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currency = self.walletDataProvider.getFromFavouriteContainerCurrencyByIndex(index: indexPath.row)
-
+        let currency = self.walletDataProvider.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: 1)
         let cellId = (indexPath.row + 1) % 2 == 0 ? TableCellIdentifiers.WalletTableViewCellDark.rawValue : TableCellIdentifiers.WalletTableViewCell.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletTableViewCell
         cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: 0/*currency.countInOrders as! Int*/)

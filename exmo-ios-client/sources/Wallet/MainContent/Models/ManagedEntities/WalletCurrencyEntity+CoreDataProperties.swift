@@ -20,6 +20,7 @@ extension WalletCurrencyEntity {
     @NSManaged public var balance: Double
     @NSManaged public var currency: String?
     @NSManaged public var inOrders: Int32
+    @NSManaged public var indexInTableView: Int32
     @NSManaged public var isFavourite: Bool
     @NSManaged public var wallet: WalletEntity?
 

@@ -11,7 +11,7 @@ import UIKit
 
 class OrdersDisplayManager: NSObject {
     var ordersDataProvider: OrdersModel!
-    var tableView: UITableView!
+    weak var tableView: UITableView!
     var shouldUseActions: Bool
     
     init(data: OrdersModel, shouldUseActions: Bool) {

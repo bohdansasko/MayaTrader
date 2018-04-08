@@ -43,6 +43,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Exo2-Medium.ttf</string>
+		<string>Exo2-Bold.ttf</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>

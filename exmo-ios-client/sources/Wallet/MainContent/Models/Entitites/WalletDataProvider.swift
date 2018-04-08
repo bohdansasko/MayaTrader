@@ -34,7 +34,8 @@ class WalletTransactionHistory {
 
 struct WalletModel : Mappable {
     private var allBalances: [WalletCurrencyModel]!
-    private var favouriteBalances: [WalletCurrencyModel]!
+    private var usedBalances: [WalletCurrencyModel]!
+    private var unusedBalances: [WalletCurrencyModel]!
     private var transactionHistory: [WalletTransactionHistory]!
 
     private var rawBalances: [String: String] {
@@ -56,7 +57,8 @@ struct WalletModel : Mappable {
         self.rawBalances = [:]
         self.rawReserved = [:]
         self.allBalances = []
-        self.favouriteBalances = []
+        self.usedBalances = []
+        self.unusedBalances = []
     }
 
     init(walletEntity: WalletEntity) {
@@ -99,7 +101,7 @@ struct WalletModel : Mappable {
         for (key, value) in rawBalances {
             let dValue = Double(value)!
             let countInOrders = Int32(rawReserved[key]!)!
-            self.allBalances.append(WalletCurrencyModel(id: id, balance: dValue, currency: key, countInOrders: countInOrders))
+            self.allBalances.append(WalletCurrencyModel(orderId: id, balance: dValue, currency: key, countInOrders: countInOrders))
             id += 1
         }
         rawBalances.removeAll()
@@ -118,6 +120,7 @@ struct WalletModel : Mappable {
             c.currency = currency.currency
             c.isFavourite = currency.isFavourite
             c.wallet = walletEntity
+            c.indexInTableView = Int32(currency.orderId)
 
             currencies.adding(c)
         }
@@ -127,42 +130,97 @@ struct WalletModel : Mappable {
     
     private func getTestData() -> [WalletCurrencyModel] {
         return [
-            WalletCurrencyModel(id: 0, balance: 0, currency: "UAH", countInOrders: 0)
+            WalletCurrencyModel(orderId: 0, balance: 0, currency: "UAH", countInOrders: 0)
         ]
     }
     
-    func getCountFavouriteCurrencies() -> Int {
-        return self.favouriteBalances.count;
+    func getCurrenciesByFilter(filterClosure: (WalletCurrencyModel) -> Bool) -> [WalletCurrencyModel] {
+        return allBalances.filter(filterClosure)
+    }
+    
+    func getCountUsedCurrencies() -> Int {
+        return self.usedBalances.count;
     }
 
+    func getCountUnusedCurrencies() -> Int {
+        return self.unusedBalances.count;
+    }
+
+    func getCountSections() -> Int {
+        return unusedBalances.count > 0 ? 2 : 1
+    }
+    
     func getCountAllExistsCurrencies() -> Int {
         return self.allBalances.count;
     }
     
     func getFavouriteCurrencies() -> [WalletCurrencyModel] {
-        return self.favouriteBalances;
+        return self.usedBalances;
     }
 
     func getAllExistsCurrencies() -> [WalletCurrencyModel] {
         return self.allBalances;
     }
 
-    func getFromFavouriteContainerCurrencyByIndex(index: Int) -> WalletCurrencyModel {
-        return index > -1 && index < self.favouriteBalances.count ? self.favouriteBalances[index] : WalletCurrencyModel()
+    private func getUsedCurrencyByIndex(index: Int) -> WalletCurrencyModel {
+        return index > -1 && index < self.usedBalances.count ? self.usedBalances[index] : WalletCurrencyModel()
     }
 
-    func getFromGeneralContainerCurrencyByIndex(index: Int) -> WalletCurrencyModel {
+    private func getUnusedCurrencyByIndex(index: Int) -> WalletCurrencyModel {
+        return index > -1 && index < self.unusedBalances.count ? self.unusedBalances[index] : WalletCurrencyModel()
+    }
+
+    private func getGeneralCurrencyByIndex(index: Int) -> WalletCurrencyModel {
         return index > -1 && index < self.allBalances.count ? self.allBalances[index] : WalletCurrencyModel()
     }
+    
+    func getCurrencyByIndexPath(indexPath: IndexPath, numberOfSections: Int) -> WalletCurrencyModel {
+        if (numberOfSections > 0) {
+            switch indexPath.section {
+            case 0:  return getUsedCurrencyByIndex(index: indexPath.row)
+            case 1:  return getUnusedCurrencyByIndex(index: indexPath.row)
+            default: return WalletCurrencyModel()
+            }
+        } else {
+            return getGeneralCurrencyByIndex(index: indexPath.row)
+        }
+    }
 
-    func setIsFavourite(id: Int, isFavourite: Bool) {
+    mutating func setIsFavourite(id: Int, isFavourite: Bool) {
         if id > -1 && id < self.allBalances.count {
             self.allBalances[id].isFavourite = isFavourite
+            filterCurrenciesByFavourites()
             print("balances[\(id)] has favourite state: \(isFavourite)")
         }
     }
     
     mutating func filterCurrenciesByFavourites() {
-        self.favouriteBalances = self.allBalances.filter({ return $0.isFavourite })
+        self.usedBalances   = self.allBalances.filter({ return $0.isFavourite })
+        self.usedBalances.sort(by: { $0.orderId < $1.orderId })
+        self.unusedBalances = self.allBalances.filter({ return !($0.isFavourite) })
+    }
+    
+    
+    mutating func swapUsedCurrencies(from sourceRow: Int, to destinationRow: Int) {
+        swap(&self.usedBalances[sourceRow].orderId, &self.usedBalances[destinationRow].orderId)
+        self.usedBalances.swapAt(sourceRow, destinationRow)
+    }
+    
+    func getAmountMoneyInBTC() -> Double {
+        var sum = 0.0
+        for currency in allBalances {
+            sum += currency.balance
+        }
+        
+        return sum
+    }
+    
+    func getAmountMoneyInUSD() -> Double {
+        var sum = 0.0
+        for currency in allBalances {
+            sum += currency.balance
+        }
+        
+        return sum
     }
 }

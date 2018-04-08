@@ -104,6 +104,7 @@
 		20CCBDB5206396560099D144 /* CreateOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */; };
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
+		20E80094207A283B00E1AC6C /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* BalanceView.swift */; };
 		2104E57B074069122F3AD013 /* CanceledOrdersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181DE4FDE7D88D7AA6EF618C /* CanceledOrdersInteractor.swift */; };
 		23027C32759874645F1BFC61 /* MoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MoreRouter.swift */; };
 		287A2F7CA89391C5E64E1BCC /* WatchlistCardsMenuInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239EE7939E22A440069D934 /* WatchlistCardsMenuInteractorInput.swift */; };
@@ -384,6 +385,7 @@
 		20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderTableViewCell.swift; sourceTree = "<group>"; };
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
+		20E80093207A283B00E1AC6C /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
 		218EB01FE1B03C6D3D0AE560 /* LoginInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInteractorInput.swift; sourceTree = "<group>"; };
 		21BB62089BA8D5D64E222050 /* OrdersManagerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerPresenter.swift; sourceTree = "<group>"; };
 		2396C0944CBFA1D15C7741EC /* OpenedOrdersViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OpenedOrdersViewOutput.swift; sourceTree = "<group>"; };
@@ -1643,6 +1645,7 @@
 				CF3D865C40710AC9E5D921ED /* WalletViewOutput.swift */,
 				EA55C7F5EFA6C64E7A02459F /* WalletViewController.swift */,
 				36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */,
+				20E80093207A283B00E1AC6C /* BalanceView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2119,6 +2122,7 @@
 				D3D3E9A655068DE2A292A710 /* WatchlistFlatRouterInput.swift in Sources */,
 				38EE1EAC28418235C7E36C29 /* WatchlistFlatRouter.swift in Sources */,
 				3763AA0D3991836F23B1FE56 /* WatchlistFlatConfigurator.swift in Sources */,
+				20E80094207A283B00E1AC6C /* BalanceView.swift in Sources */,
 				EFD3AF15C7B5604F80DB6B9B /* WatchlistFlatInitializer.swift in Sources */,
 				7CF8CEA4E40E36A58BF5D630 /* WatchlistManagerViewInput.swift in Sources */,
 				B2691E2E2D6A9AC75CACAE40 /* WatchlistManagerViewOutput.swift in Sources */,

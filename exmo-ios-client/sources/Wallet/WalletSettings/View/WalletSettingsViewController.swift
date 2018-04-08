@@ -12,6 +12,8 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     var output: WalletSettingsViewOutput!
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     private var displayManager: WalletSettingsDisplayManager!
     
     // MARK: Life cycle
@@ -24,6 +26,7 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     
     // MARK: WalletSettingsViewInput
     func setupInitialState() {
+        self.displayManager.setSearchBar(searchBar: searchBar)
         self.displayManager.setTableView(tableView: tableView)
     }
     

@@ -11,7 +11,8 @@ import UIKit
 class WalletViewController: UIViewController, WalletViewInput {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currencySettingsBtn: UIBarButtonItem!
-
+    @IBOutlet weak var balanceView: BalanceView!
+    
     var output: WalletViewOutput!
     var displayManager: WalletDisplayManager!
 
@@ -35,7 +36,6 @@ class WalletViewController: UIViewController, WalletViewInput {
         super.viewWillDisappear(animated)
 
         updateNavigationBar(shouldHideNavigationBar: false)
-
     }
 
     func updateNavigationBar(shouldHideNavigationBar: Bool) {
@@ -48,6 +48,7 @@ class WalletViewController: UIViewController, WalletViewInput {
 
     // MARK: WalletViewInput
     func setupInitialState() {
+        self.displayManager.setBalanceView(balanceView: self.balanceView)
         displayManager.setTableView(tableView: tableView)
         updateDisplayInfo();
         
