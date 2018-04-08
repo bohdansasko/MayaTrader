@@ -26,8 +26,6 @@ class WalletDisplayManager: NSObject {
 
     func setBalanceView(balanceView: BalanceView!) {
         self.balanceView = balanceView
-        self.balanceView.btcValueLabel.text = String(walletDataProvider.getAmountMoneyInBTC())
-        self.balanceView.usdValueLabel.text = String(walletDataProvider.getAmountMoneyInUSD())
     }
     
     func setTableView(tableView: UITableView!) {
@@ -38,7 +36,9 @@ class WalletDisplayManager: NSObject {
 
     func reloadData() {
         self.walletDataProvider = Session.sharedInstance.user.walletInfo
-        walletDataProvider.filterCurrenciesByFavourites()
+        self.walletDataProvider.filterCurrenciesByFavourites()
+        self.balanceView.btcValueLabel.text = String(walletDataProvider.getAmountMoneyInBTC())
+        self.balanceView.usdValueLabel.text = String(walletDataProvider.getAmountMoneyInUSD())
         self.tableView.reloadData()
     }
 

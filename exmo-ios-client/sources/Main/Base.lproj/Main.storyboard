@@ -1141,41 +1141,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPf-CB-ATD">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWalletSearch" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-lZ-jBL">
-                                        <rect key="frame" x="33" y="53" width="25" height="25"/>
-                                    </imageView>
-                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search currency" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sP-74-MlN">
-                                        <rect key="frame" x="47" y="37" width="218" height="56"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <scopeButtonTitles>
-                                            <string>Title</string>
-                                            <string>Title</string>
-                                        </scopeButtonTitles>
-                                    </searchBar>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ew6-b7-ua1">
-                                        <rect key="frame" x="265" y="50" width="25" height="25"/>
-                                        <state key="normal" image="icWalletClose"/>
-                                        <connections>
-                                            <action selector="closeView" destination="arp-R8-1oY" eventType="touchUpInside" id="1fq-mi-uQq"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="exmoMidnight"/>
-                                <constraints>
-                                    <constraint firstItem="rdV-lZ-jBL" firstAttribute="top" secondItem="TPf-CB-ATD" secondAttribute="top" constant="53" id="2jl-zg-THY"/>
-                                    <constraint firstAttribute="bottom" secondItem="rdV-lZ-jBL" secondAttribute="bottom" constant="17" id="7dF-oZ-MVa"/>
-                                    <constraint firstAttribute="height" constant="95" id="BsP-Lf-S5t"/>
-                                    <constraint firstItem="6sP-74-MlN" firstAttribute="top" secondItem="TPf-CB-ATD" secondAttribute="top" constant="37" id="O3S-YT-A3J"/>
-                                    <constraint firstItem="ew6-b7-ua1" firstAttribute="top" secondItem="TPf-CB-ATD" secondAttribute="top" constant="50" id="hKB-6i-1Te"/>
-                                    <constraint firstItem="rdV-lZ-jBL" firstAttribute="leading" secondItem="TPf-CB-ATD" secondAttribute="leading" constant="33" id="jjQ-2v-NC0"/>
-                                    <constraint firstItem="ew6-b7-ua1" firstAttribute="leading" secondItem="6sP-74-MlN" secondAttribute="trailing" id="nwc-dx-rXy"/>
-                                    <constraint firstItem="6sP-74-MlN" firstAttribute="leading" secondItem="TPf-CB-ATD" secondAttribute="leading" constant="47" id="wBH-0Q-D4C"/>
-                                    <constraint firstAttribute="trailing" secondItem="ew6-b7-ua1" secondAttribute="trailing" constant="30" id="x6A-VM-u3i"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" sectionIndexMinimumDisplayRowCount="1" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RJd-1i-N7q">
                                 <rect key="frame" x="30" y="95" width="260" height="473"/>
                                 <color key="backgroundColor" name="exmoMidnight"/>
@@ -1225,6 +1190,52 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TPf-CB-ATD">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWalletSearch" translatesAutoresizingMaskIntoConstraints="NO" id="rdV-lZ-jBL">
+                                        <rect key="frame" x="33" y="53" width="25" height="25"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ew6-b7-ua1">
+                                        <rect key="frame" x="250" y="50" width="37" height="30"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="closeView" destination="arp-R8-1oY" eventType="touchUpInside" id="1fq-mi-uQq"/>
+                                        </connections>
+                                    </button>
+                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search currency" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6sP-74-MlN">
+                                        <rect key="frame" x="65" y="37" width="185" height="56"/>
+                                        <offsetWrapper key="searchTextPositionAdjustment" horizontal="-35" vertical="0.0"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                        <scopeButtonTitles>
+                                            <string>Title</string>
+                                            <string>Title</string>
+                                        </scopeButtonTitles>
+                                    </searchBar>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LMG-fQ-wB0" userLabel="viewSeparator">
+                                        <rect key="frame" x="30" y="94" width="260" height="1"/>
+                                        <color key="backgroundColor" name="exmoDark"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="bSf-Is-Uqo"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="exmoMidnight"/>
+                                <constraints>
+                                    <constraint firstItem="rdV-lZ-jBL" firstAttribute="top" secondItem="TPf-CB-ATD" secondAttribute="top" constant="53" id="2jl-zg-THY"/>
+                                    <constraint firstAttribute="bottom" secondItem="rdV-lZ-jBL" secondAttribute="bottom" constant="17" id="7dF-oZ-MVa"/>
+                                    <constraint firstAttribute="height" constant="95" id="BsP-Lf-S5t"/>
+                                    <constraint firstItem="6sP-74-MlN" firstAttribute="top" secondItem="TPf-CB-ATD" secondAttribute="top" constant="37" id="O3S-YT-A3J"/>
+                                    <constraint firstItem="LMG-fQ-wB0" firstAttribute="leading" secondItem="TPf-CB-ATD" secondAttribute="leading" constant="30" id="P9U-8C-ZTa"/>
+                                    <constraint firstItem="ew6-b7-ua1" firstAttribute="top" secondItem="TPf-CB-ATD" secondAttribute="top" constant="50" id="hKB-6i-1Te"/>
+                                    <constraint firstAttribute="bottom" secondItem="LMG-fQ-wB0" secondAttribute="bottom" id="jGg-Ub-4AW"/>
+                                    <constraint firstItem="rdV-lZ-jBL" firstAttribute="leading" secondItem="TPf-CB-ATD" secondAttribute="leading" constant="33" id="jjQ-2v-NC0"/>
+                                    <constraint firstItem="ew6-b7-ua1" firstAttribute="leading" secondItem="6sP-74-MlN" secondAttribute="trailing" id="nwc-dx-rXy"/>
+                                    <constraint firstAttribute="trailing" secondItem="LMG-fQ-wB0" secondAttribute="trailing" constant="30" id="pMs-n7-9ln"/>
+                                    <constraint firstItem="6sP-74-MlN" firstAttribute="leading" secondItem="TPf-CB-ATD" secondAttribute="leading" constant="65" id="wBH-0Q-D4C"/>
+                                    <constraint firstAttribute="trailing" secondItem="ew6-b7-ua1" secondAttribute="trailing" constant="33" id="x6A-VM-u3i"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="exmoMidnight"/>
                         <constraints>
@@ -2131,7 +2142,6 @@
         <image name="icTabbarWatchlist" width="32" height="32"/>
         <image name="icTabbarWatchlistSelected" width="32" height="32"/>
         <image name="icWalletAssign" width="25" height="25"/>
-        <image name="icWalletClose" width="25" height="25"/>
         <image name="icWalletDivider" width="41" height="70"/>
         <image name="icWalletGlow" width="375" height="290"/>
         <image name="icWalletOptions" width="25" height="25"/>
