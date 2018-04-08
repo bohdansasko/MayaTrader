@@ -67,7 +67,7 @@ extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return isSearching
-            ? "SEARCH RESULTS"
+            ? self.filteredBalances.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
             : self.walletDataProvider.getCountSections() == 1
                 ? ""
                 : section == 0 ? "SELECTED" : "UNUSED"
