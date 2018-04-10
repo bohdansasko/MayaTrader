@@ -37,7 +37,7 @@ class LoginInteractor: LoginInteractorInput {
                 Session.sharedInstance.user = user!
                 
                 NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
-                output.showTabMoreWithLoginData()
+                output.emitCloseView()
             }
         }
     }

@@ -13,25 +13,48 @@ class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate
     @IBOutlet weak var secretField: UITextField!
     
     var output: LoginViewOutput!
-
-    // MARK: LoginViewInput
-    func setupInitialState() {
-        // do nothing
-    }
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
         
+        setupInitialState()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.tabBarController?.tabBar.isHidden = false
+    }
+    
+    // MARK: LoginViewInput
+    func setupInitialState() {
+        setupInputFields()
+    }
+    
+    func setupInputFields() {
         keyField.delegate = self
         secretField.delegate = self
         
         keyField.keyboardType = .asciiCapable
         secretField.keyboardType = .asciiCapable
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
+        let inputFieldPlaceHolderAttributes = [
+            NSAttributedStringKey.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3),
+            NSAttributedStringKey.font: UIFont(name: "Exo2-Regular", size: 14)
+        ]
+        keyField.attributedPlaceholder = NSAttributedString(string: "Enter your API-secret", attributes: inputFieldPlaceHolderAttributes)
+        secretField.attributedPlaceholder = NSAttributedString(string: "Enter your API-key", attributes: inputFieldPlaceHolderAttributes)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -70,5 +93,9 @@ class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate
     @IBAction func pressedLoginButton(_ sender: Any) {
         let qrModel = QRLoginModel(exmoIdentifier: "Exmo", key: keyField.text!, secret: secretField.text!)
         output.loadUserInfo(loginModel: qrModel)
+    }
+    
+    @IBAction func handlePressedCloseBtn(_ sender: Any) {
+        output.handlePressedCloseBtn()
     }
 }

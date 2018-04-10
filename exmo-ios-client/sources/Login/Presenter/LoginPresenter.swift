@@ -32,8 +32,12 @@ class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, Logi
         }
     }
     
-    func showTabMoreWithLoginData() {
-        view.hideLoader()
-        router.showTabMoreWithLoginData(view: view as! UIViewController)
+    func emitCloseView() {
+        handlePressedCloseBtn()
     }
+
+    func handlePressedCloseBtn() {
+        router.handleCloseBtn(viewController: view as? UIViewController)
+    }
+
 }

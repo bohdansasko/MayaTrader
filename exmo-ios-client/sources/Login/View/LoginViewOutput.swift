@@ -10,4 +10,5 @@ protocol LoginViewOutput {
     func viewIsReady()
     func loadUserInfo(loginModel: QRLoginModel?)
     func prepareToOpenQRView(qrViewController: QRScannerViewController)
+    func handlePressedCloseBtn()
 }

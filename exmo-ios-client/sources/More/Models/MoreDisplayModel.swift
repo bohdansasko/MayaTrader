@@ -20,11 +20,11 @@ class MoreDisplayModel {
         ]
 
         if Session.sharedInstance.isExmoAccountExists() {
-            menuItems.append(MenuItem(name: "Logout", action: { 
+            menuItems.append(MenuItem(name: MoreMenuSegueIdentifier.logout.rawValue, action: {
                 Session.sharedInstance.logout()
             }))
         } else {
-            menuItems.insert(MenuItem(name: "Login", segueIdentifier: "loginView"), at: 0)
+            menuItems.insert(MenuItem(name: "Login", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)
         }
     }
 

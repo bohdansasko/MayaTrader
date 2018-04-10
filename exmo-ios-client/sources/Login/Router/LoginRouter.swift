@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginRouter: LoginRouterInput {
-    func showTabMoreWithLoginData(view: UIViewController) {
-        view.navigationController?.popViewController(animated: true)
+    func handleCloseBtn(viewController: UIViewController!) {
+        viewController.popViewController()
     }
 }

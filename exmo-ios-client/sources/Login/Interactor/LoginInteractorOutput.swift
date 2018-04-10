@@ -9,5 +9,5 @@
 import Foundation
 
 protocol LoginInteractorOutput: class {
-    func showTabMoreWithLoginData()
+    func emitCloseView()
 }

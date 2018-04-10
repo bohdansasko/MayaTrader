@@ -23,9 +23,9 @@ class MainTabBarController: UITabBarController {
     private func addSelectedTabIndicator() {
         selectedTabIndicatorImage = UIImageView(image: #imageLiteral(resourceName: "icTabbarSelected"))
         selectedTabIndicatorImage.translatesAutoresizingMaskIntoConstraints = true
-        selectedTabIndicatorImage.center = CGPoint(x: 0, y: view.bounds.maxY - 10)
+        selectedTabIndicatorImage.center = CGPoint(x: 0, y: self.tabBar.bounds.maxY - 10)
         selectedTabIndicatorImage.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
-        self.view.addSubview(selectedTabIndicatorImage)
+        self.tabBar.addSubview(selectedTabIndicatorImage)
     }
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
@@ -35,7 +35,7 @@ class MainTabBarController: UITabBarController {
     
     private func updateIndicatorPosition(index: Int) {
         let count = 5
-        let width = CGFloat(self.view.frame.width) / CGFloat(count)
+        let width = CGFloat(self.tabBar.frame.width) / CGFloat(count)
         let posX = width * CGFloat(index) + CGFloat(width/2)
         selectedTabIndicatorImage.center.x = CGFloat(posX)
     }
@@ -51,6 +51,6 @@ class MainTabBarController: UITabBarController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        // do nothing
     }
 }

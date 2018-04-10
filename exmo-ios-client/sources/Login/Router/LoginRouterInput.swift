@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol LoginRouterInput {
-    func showTabMoreWithLoginData(view: UIViewController)
+    func handleCloseBtn(viewController: UIViewController!)
 }
