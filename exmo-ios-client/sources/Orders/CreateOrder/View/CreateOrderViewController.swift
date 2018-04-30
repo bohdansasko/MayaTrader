@@ -13,8 +13,6 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     var output: CreateOrderViewOutput!
     var dataDisplayManager: CreateOrderDisplayManager!
     
-    @IBOutlet weak var tableView: UITableView!
-    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +24,6 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
 
     // MARK: CreateOrderViewInput
     func setupInitialState() {
-        dataDisplayManager.setTableView(tableView: tableView)
+        // do nothing
     }
 }

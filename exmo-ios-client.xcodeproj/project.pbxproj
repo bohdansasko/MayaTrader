@@ -81,6 +81,7 @@
 		20600A2A20532949004D7F45 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2820532949004D7F45 /* UserEntity+CoreDataProperties.swift */; };
 		20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */; };
 		20600A2E2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */; };
+		206730E32094D427008B500D /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206730E22094D427008B500D /* Extension+UITextField.swift */; };
 		206BD9522074297400ADC91C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206BD9512074297400ADC91C /* MainTabBarController.swift */; };
 		207E24FF2061B85B00030023 /* OrdersDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */; };
 		207E25012061BD3B00030023 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderTableViewCell.swift */; };
@@ -358,6 +359,7 @@
 		20600A2820532949004D7F45 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		206730E22094D427008B500D /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
 		206BD9512074297400ADC91C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersDisplayManager.swift; sourceTree = "<group>"; };
 		207E25002061BD3B00030023 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -837,6 +839,7 @@
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				206730E12094D36E008B500D /* UIExtensions */,
 				2084492B2049311F007CA79C /* CoreData */,
 				205A7CBE203CCEBD00A2E28A /* Main */,
 				20CAFEFE2042ED8500C7DEA5 /* Services */,
@@ -881,6 +884,14 @@
 				207E25002061BD3B00030023 /* OrderTableViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		206730E12094D36E008B500D /* UIExtensions */ = {
+			isa = PBXGroup;
+			children = (
+				206730E22094D427008B500D /* Extension+UITextField.swift */,
+			);
+			path = UIExtensions;
 			sourceTree = "<group>";
 		};
 		207E25022061C3EF00030023 /* Models */ = {
@@ -2025,6 +2036,7 @@
 				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
 				8F0AEFDE9AEF6C58DC4F078D /* AlertsViewInput.swift in Sources */,
 				A8CEF450ACABF632538ED4CA /* AlertsViewOutput.swift in Sources */,
+				206730E32094D427008B500D /* Extension+UITextField.swift in Sources */,
 				EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */,
 				038EE6FEA6EA37D5F343A6F3 /* AlertsModuleInput.swift in Sources */,
 				C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */,
