@@ -990,6 +990,9 @@
                                                                         <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="mpJ-mb-mUa"/>
+                                                                </connections>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-Rc-jOq" userLabel="grayLine">
                                                                 <rect key="frame" x="0.0" y="62" width="280" height="1"/>
@@ -1022,6 +1025,9 @@
                                                                         <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="HOS-EB-rSv"/>
+                                                                </connections>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-Fw-7m6" userLabel="grayLine">
                                                                 <rect key="frame" x="0.0" y="62" width="280" height="1"/>
@@ -1054,6 +1060,9 @@
                                                                         <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="SBT-nB-mLW"/>
+                                                                </connections>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVi-YN-HWb" userLabel="grayLine">
                                                                 <rect key="frame" x="0.0" y="62" width="280" height="1"/>
@@ -1086,6 +1095,9 @@
                                                                         <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                 </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="uHf-P4-UJK"/>
+                                                                </connections>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SU3-3b-pp9" userLabel="grayLine">
                                                                 <rect key="frame" x="0.0" y="62" width="280" height="1"/>
@@ -1113,6 +1125,9 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
                                                                 <textInputTraits key="textInputTraits"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="WGF-Es-xvl"/>
+                                                                </connections>
                                                             </textField>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkg-Hs-eiO" userLabel="grayLine">
                                                                 <rect key="frame" x="0.0" y="62" width="280" height="1"/>

@@ -15,21 +15,21 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     
     var uiMarketTypePickerView = UIPickerView()
     var marketTypes = ["Market", "Cryptocurrency Exchange"]
-    
+
+    var darkeningView: UIView?
+    var shouldBeginEditing = true
+
     // IBOutles
     @IBOutlet weak var textFieldSelectedMarketType: UITextField!
-    
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
-        
+
         setupInitialState()
         
         createPickerView()
-        uiMarketTypePickerView.dataSource = self
-        uiMarketTypePickerView.delegate = self
     }
 
     // MARK: CreateOrderViewInput
@@ -39,7 +39,9 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     
     func createPickerView() {
         uiMarketTypePickerView.backgroundColor = UIColor.black
-        
+        uiMarketTypePickerView.dataSource = self
+        uiMarketTypePickerView.delegate = self
+
         let toolbar = UIToolbar()
         toolbar.isTranslucent = false
         toolbar.barTintColor = UIColor.black
@@ -86,6 +88,7 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     func getSelectedRowInPickerView() -> Int {
         return uiMarketTypePickerView.selectedRow(inComponent: 0)
     }
+    
     @objc func pickerViewButtonUpPressed(sender: Any) {
         let selectedRow = getSelectedRowInPickerView()
         if selectedRow > 0 {
@@ -103,6 +106,17 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     
     @objc func pickerViewButtonDonePressed(sender: Any) {
         self.view.endEditing(true)
+        self.shouldBeginEditing = true
+        self.darkeningView?.removeFromSuperview()
+        self.darkeningView = nil
+    }
+    
+    func addDarkeningView() {
+        if darkeningView == nil {
+            self.darkeningView = UIView(frame: CGRect(x: self.view.frame.origin.x, y: self.view.frame.origin.y + 20, width: self.view.frame.width, height: self.view.frame.height))
+            self.darkeningView?.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            self.view.addSubview(self.darkeningView!)
+        }
     }
 }
 
@@ -121,17 +135,35 @@ extension CreateOrderViewController: UIPickerViewDelegate {
         return marketTypes[row]
     }
 
+    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+        return 28
+    }
+    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let labelOrderBy = UILabel(frame: CGRect(x: 0, y: 0, width: 320, height: 28))
         labelOrderBy.text = marketTypes[row]
         labelOrderBy.textAlignment = .center
         labelOrderBy.textColor = UIColor.white
         labelOrderBy.font = UIFont(name: "Exo2-Regular", size: 23)
-        
+
         return labelOrderBy
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         textFieldSelectedMarketType.text = self.marketTypes[row]
+    }
+}
+
+//
+// MARK: handle keyboard events
+//
+extension CreateOrderViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == self.textFieldSelectedMarketType {
+            self.shouldBeginEditing = false
+            addDarkeningView()
+            return true
+        }
+        return self.shouldBeginEditing
     }
 }
