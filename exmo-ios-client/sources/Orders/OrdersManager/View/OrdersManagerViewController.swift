@@ -12,7 +12,9 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
     
     var output: OrdersManagerViewOutput!
     var currentViewController: UIViewController?
+    var pickerViewManager: DeleteOrdersPickerViewManager!
     
+    // @IBOutlets
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var viewContainer: UIView!
     
@@ -23,7 +25,6 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
         output.viewIsReady()
         
         guard let vc = self.viewControllerForSegmentIndex(index: self.segmentController.selectedSegmentIndex) else { return }
-        
         self.addChildViewController(vc)
         vc.view.frame = viewContainer.bounds
         viewContainer.addSubview(vc.view)
@@ -66,5 +67,10 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
         default:
             return nil
         }
+    }
+    
+    
+    @IBAction func handleTouchDeleteButton(_ sender: Any) {
+        pickerViewManager.showPickerView()
     }
 }

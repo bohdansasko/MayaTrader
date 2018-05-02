@@ -91,6 +91,7 @@
 		2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491620492B87007CA79C /* WalletCurrencyModel.swift */; };
 		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084492C20493193007CA79C /* WalletDataProvider.swift */; };
+		20A3117520997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A3117420997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift */; };
 		20BEDC53205579FA00973F2F /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */; };
 		20BEDC5520557BB200973F2F /* AlertDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */; };
 		20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */; };
@@ -369,6 +370,7 @@
 		2084491620492B87007CA79C /* WalletCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrencyModel.swift; sourceTree = "<group>"; };
 		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		2084492C20493193007CA79C /* WalletDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDataProvider.swift; sourceTree = "<group>"; };
+		20A3117420997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeleteOrdersPickerViewManager.swift; path = "exmo-ios-client/sources/Orders/OrdersManager/DeleteOrdersPickerViewManager.swift"; sourceTree = SOURCE_ROOT; };
 		20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataDisplayManager.swift; sourceTree = "<group>"; };
 		20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsDisplayModel.swift; sourceTree = "<group>"; };
@@ -1377,6 +1379,7 @@
 		82D689F868D2EC74100A45FD /* OrdersManager */ = {
 			isa = PBXGroup;
 			children = (
+				20A3117420997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift */,
 				F2135BA70A24ABCA42A0EB87 /* View */,
 				C1B8D71DAEFAD579C1CB7B00 /* Presenter */,
 				C03FED18B8A796C334009CF3 /* Interactor */,
@@ -2073,6 +2076,7 @@
 				DD7267F5F693773F52B20D5C /* OpenedOrdersRouterInput.swift in Sources */,
 				AC3EFC1D6E8182F1A945C4DA /* OpenedOrdersRouter.swift in Sources */,
 				4C5D2D896F00CD3CA1EEE8A1 /* OpenedOrdersConfigurator.swift in Sources */,
+				20A3117520997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift in Sources */,
 				CFB71DAF533720859100C822 /* OpenedOrdersInitializer.swift in Sources */,
 				499549063C49EEA247935BBF /* CreateOrderViewInput.swift in Sources */,
 				4C87D5FF03270990B287DA3F /* CreateOrderViewOutput.swift in Sources */,

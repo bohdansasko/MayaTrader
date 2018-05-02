@@ -30,6 +30,10 @@ class OrdersManagerModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        let pickerViewManager = DeleteOrdersPickerViewManager()
+        pickerViewManager.viewController = viewController
+        viewController.pickerViewManager = pickerViewManager
     }
 
 }
