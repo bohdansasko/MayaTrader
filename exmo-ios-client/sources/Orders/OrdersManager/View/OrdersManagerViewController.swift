@@ -18,7 +18,7 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
     
     var output: OrdersManagerViewOutput!
     var currentViewController: UIViewController?
-    var pickerViewManager: DeleteOrdersPickerViewManager!
+    var pickerViewManager: DarkeningPickerViewManager!
     var displayManager: OrdersDisplayManager!
     
     // @IBOutlets
@@ -32,12 +32,12 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
         
         output.viewIsReady()
         setupInitialState()
-        displayManager.showDataBySegment(displayOrderType: .Opened)
     }
     
     // MARK: OrdersManagerViewInput
     func setupInitialState() {
         displayManager.setTableView(tableView: self.tableView)
+        displayManager.showDataBySegment(displayOrderType: .Opened)
     }
     
     @IBAction func segmentChanged(_ sender: Any) {
@@ -45,6 +45,6 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
     }
     
     @IBAction func handleTouchDeleteButton(_ sender: Any) {
-        pickerViewManager.showPickerView()
+        pickerViewManager.showPickerViewWithDarkening()
     }
 }

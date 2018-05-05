@@ -67,6 +67,7 @@
 		205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */; };
 		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
 		205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC2203CCEBD00A2E28A /* Main.storyboard */; };
+		205AA983209DE3BD00148649 /* DarkeningPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205AA982209DE3BD00148649 /* DarkeningPickerViewController.swift */; };
 		205C71AC0D95BD83EA398C27 /* AlertsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD978E0D15EED1BA175A53 /* AlertsRouter.swift */; };
 		20600A1F20532831004D7F45 /* WalletEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A1B20532831004D7F45 /* WalletEntity+CoreDataClass.swift */; };
 		20600A2020532831004D7F45 /* WalletEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A1C20532831004D7F45 /* WalletEntity+CoreDataProperties.swift */; };
@@ -88,7 +89,6 @@
 		2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491620492B87007CA79C /* WalletCurrencyModel.swift */; };
 		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084492C20493193007CA79C /* WalletDataProvider.swift */; };
-		20A3117520997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A3117420997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift */; };
 		20BEDC53205579FA00973F2F /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */; };
 		20BEDC5520557BB200973F2F /* AlertDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */; };
 		20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */; };
@@ -305,6 +305,7 @@
 		205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		205A7CC1203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		205A7CC3203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		205AA982209DE3BD00148649 /* DarkeningPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkeningPickerViewController.swift; sourceTree = "<group>"; };
 		20600A1B20532831004D7F45 /* WalletEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		20600A1C20532831004D7F45 /* WalletEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		20600A1D20532831004D7F45 /* WalletCurrencyEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WalletCurrencyEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -325,7 +326,6 @@
 		2084491620492B87007CA79C /* WalletCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrencyModel.swift; sourceTree = "<group>"; };
 		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		2084492C20493193007CA79C /* WalletDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDataProvider.swift; sourceTree = "<group>"; };
-		20A3117420997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeleteOrdersPickerViewManager.swift; path = "exmo-ios-client/sources/Orders/OrdersManager/DeleteOrdersPickerViewManager.swift"; sourceTree = SOURCE_ROOT; };
 		20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataDisplayManager.swift; sourceTree = "<group>"; };
 		20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsDisplayModel.swift; sourceTree = "<group>"; };
@@ -877,6 +877,7 @@
 		20B418C6209D019A00B1C636 /* CustomUIControls */ = {
 			isa = PBXGroup;
 			children = (
+				205AA982209DE3BD00148649 /* DarkeningPickerViewController.swift */,
 			);
 			path = CustomUIControls;
 			sourceTree = "<group>";
@@ -1202,7 +1203,6 @@
 		82D689F868D2EC74100A45FD /* OrdersManager */ = {
 			isa = PBXGroup;
 			children = (
-				20A3117420997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift */,
 				F2135BA70A24ABCA42A0EB87 /* View */,
 				C1B8D71DAEFAD579C1CB7B00 /* Presenter */,
 				C03FED18B8A796C334009CF3 /* Interactor */,
@@ -1816,12 +1816,12 @@
 				62592E5D896769F5F2739F44 /* WalletSettingsPresenter.swift in Sources */,
 				80E848E1BE684F99B073DE37 /* WalletSettingsInteractorInput.swift in Sources */,
 				3C137E9B40C2BD707086FEF6 /* WalletSettingsInteractorOutput.swift in Sources */,
+				205AA983209DE3BD00148649 /* DarkeningPickerViewController.swift in Sources */,
 				01734E1F7D82963B9E334BA8 /* WalletSettingsInteractor.swift in Sources */,
 				8F61BBEA01E98C5F4DF6F7E2 /* WalletSettingsRouterInput.swift in Sources */,
 				D1D3CCDC25886E62AE5D26BB /* WalletSettingsRouter.swift in Sources */,
 				B0F73F18849BE389D8168863 /* WalletSettingsConfigurator.swift in Sources */,
 				EBC38D6BBBA093BFC55BCA2A /* WalletSettingsInitializer.swift in Sources */,
-				20A3117520997AA5007A2E5D /* DeleteOrdersPickerViewManager.swift in Sources */,
 				499549063C49EEA247935BBF /* CreateOrderViewInput.swift in Sources */,
 				4C87D5FF03270990B287DA3F /* CreateOrderViewOutput.swift in Sources */,
 				CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */,

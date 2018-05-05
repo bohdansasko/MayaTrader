@@ -16,6 +16,15 @@ class MainTabBarController: UITabBarController {
         
         super.viewDidLoad()
         
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        viewControllers = [
+            storyboard.instantiateViewController(withIdentifier: "WatchlistNavigationController"),
+            storyboard.instantiateViewController(withIdentifier: "OrdersNavigationController"),
+            storyboard.instantiateViewController(withIdentifier: "WalletNavigationController"),
+            storyboard.instantiateViewController(withIdentifier: "AlertsNavigationController"),
+            storyboard.instantiateViewController(withIdentifier: "MoreNavigationController")
+        ]
         addSelectedTabIndicator()
         updateIndicatorPosition(index: 0)
     }

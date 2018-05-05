@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0Vn-ln-aXb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -953,7 +953,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0mD-W2-EXg" userLabel="Stack View Input">
-                                                <rect key="frame" x="20" y="95" width="280" height="375"/>
+                                                <rect key="frame" x="20" y="95" width="280" height="379"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzh-d5-9Fh" userLabel="Stack View Amount">
                                                         <rect key="frame" x="0.0" y="0.0" width="280" height="63"/>
@@ -1096,7 +1096,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dok-kQ-mfe" userLabel="Stack View OrderBy">
-                                                        <rect key="frame" x="0.0" y="312" width="280" height="63"/>
+                                                        <rect key="frame" x="0.0" y="312" width="280" height="67"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmv-F8-eJ7" userLabel="labelOrderBy">
                                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="17"/>
@@ -1104,20 +1104,16 @@
                                                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Market" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ChY-Fq-dfb">
-                                                                <rect key="frame" x="0.0" y="27" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="Uns-JV-Pq5"/>
-                                                                </constraints>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Y3-2Z-SNp">
+                                                                <rect key="frame" x="0.0" y="27" width="280" height="29"/>
                                                                 <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <state key="normal" title="Market"/>
                                                                 <connections>
-                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="WGF-Es-xvl"/>
+                                                                    <action selector="handleTouchFromOrderByButton:" destination="Eqk-tN-eGJ" eventType="touchUpInside" id="Ibo-VS-0vN"/>
                                                                 </connections>
-                                                            </textField>
+                                                            </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkg-Hs-eiO" userLabel="grayLine">
-                                                                <rect key="frame" x="0.0" y="62" width="280" height="1"/>
+                                                                <rect key="frame" x="0.0" y="66" width="280" height="1"/>
                                                                 <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="1" id="Umg-sy-mGQ"/>
@@ -1214,9 +1210,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nt0-PV-I7X"/>
                     </view>
-                    <connections>
-                        <outlet property="textFieldSelectedMarketType" destination="ChY-Fq-dfb" id="sBK-X7-x4P"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EKR-rU-zms" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="U1v-s3-FRv" customClass="CreateOrderModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
@@ -1754,7 +1747,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="xt0-5Q-kOK">
             <objects>
-                <tabBarController id="0Vn-ln-aXb" customClass="MainTabBarController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainTabBarController" id="0Vn-ln-aXb" customClass="MainTabBarController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="oUB-FR-bMJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -1777,7 +1770,7 @@
         <!--Navigation Controller-->
         <scene sceneID="TEb-CD-3cf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Iz5-RQ-YJw" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MoreNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Iz5-RQ-YJw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="icTabbarMenu" selectedImage="icTabbarMenuSelected" id="CEs-6f-Zpz">
                         <color key="badgeColor" red="0.41176470588235292" green="0.9137254901960784" blue="0.60392156862745094" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
@@ -1833,7 +1826,7 @@
         <!--Navigation Controller-->
         <scene sceneID="Dag-YJ-pk8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jmn-2A-xSy" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WalletNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="jmn-2A-xSy" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icTabbarWallet" selectedImage="icTabbarWalletSelected" id="xbk-C3-Rkw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.80000000000000004" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="jCP-js-29K">
@@ -1874,7 +1867,7 @@
         <!--Navigation Controller-->
         <scene sceneID="EkD-CZ-i98">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Lcd-Aw-CSz" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="AlertsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Lcd-Aw-CSz" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icTabbarAlerts" selectedImage="icTabbarAlertsSelected" id="gZ4-Ie-lcF"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.80000000000000004" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Tsw-Yq-eom">
@@ -1897,7 +1890,7 @@
         <!--Navigation Controller-->
         <scene sceneID="v17-mz-0gN">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Oyp-M9-6Sf" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="OrdersNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Oyp-M9-6Sf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icTabbarOrders" selectedImage="icTabbarOrdersSelected" id="qXU-zm-AQ3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="KoG-8Q-YVW">
@@ -2211,10 +2204,25 @@
             </objects>
             <point key="canvasLocation" x="2068" y="-1035"/>
         </scene>
+        <!--Darkening Picker View Controller-->
+        <scene sceneID="Lf8-Qj-JFF">
+            <objects>
+                <viewController storyboardIdentifier="DarkeningPickerViewController" id="eoJ-ld-zJN" customClass="DarkeningPickerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TLn-1m-HVC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="vMf-tb-M30"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Pp-rT-cUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3401.25" y="-1035.2112676056338"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="Hal-j4-r0O">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DXc-P5-vLo" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="WatchlistNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="DXc-P5-vLo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icTabbarWatchlist" selectedImage="icTabbarWatchlistSelected" id="D7Q-En-px1"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="VXX-0T-2es">

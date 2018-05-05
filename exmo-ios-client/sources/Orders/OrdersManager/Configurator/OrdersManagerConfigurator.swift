@@ -30,12 +30,9 @@ class OrdersManagerModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
-        
-        let pickerViewManager = DeleteOrdersPickerViewManager()
-        pickerViewManager.viewController = viewController
-        viewController.pickerViewManager = pickerViewManager
-        
+
         viewController.displayManager = OrdersDisplayManager()
+        viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, headerString: "Delete orders", dataSource: ["Delete All", "Delete All on buy", "Delete All on sell"])
     }
 
 }
