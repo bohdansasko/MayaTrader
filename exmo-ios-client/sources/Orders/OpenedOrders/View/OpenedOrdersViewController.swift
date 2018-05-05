@@ -10,10 +10,7 @@ import UIKit
 
 class OpenedOrdersViewController: UIViewController, OpenedOrdersViewInput {
     
-    @IBOutlet weak var tableView: UITableView!
-    
     var output: OpenedOrdersViewOutput!
-    var displayManager: OrdersDisplayManager!
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -26,6 +23,6 @@ class OpenedOrdersViewController: UIViewController, OpenedOrdersViewInput {
     
     // MARK: OrdersViewInput
     func setupInitialState() {
-        displayManager.setTableView(tableView: tableView)
+        // do nothing
     }
 }

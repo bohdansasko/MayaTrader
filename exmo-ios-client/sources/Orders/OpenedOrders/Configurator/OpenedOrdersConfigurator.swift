@@ -30,8 +30,6 @@ class OpenedOrdersModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
-        
-        viewController.displayManager = OrdersDisplayManager(data: Session.sharedInstance.getOpenedOrders(), shouldUseActions: true)
     }
 
 }

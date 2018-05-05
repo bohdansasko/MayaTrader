@@ -12,21 +12,12 @@ import UIKit
 class OrdersDisplayManager: NSObject {
     var ordersDataProvider: OrdersModel!
     weak var tableView: UITableView!
-    var shouldUseActions: Bool
-    
-    init(data: OrdersModel, shouldUseActions: Bool) {
-        self.ordersDataProvider = data
-        self.shouldUseActions = shouldUseActions
-
-        super.init()
-    }
+    var shouldUseActions: Bool = false
     
     func setTableView(tableView: UITableView!) {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
-        self.reloadData()
     }
     
     func reloadData() {
@@ -36,8 +27,21 @@ class OrdersDisplayManager: NSObject {
     func isDataExists() -> Bool {
         return ordersDataProvider.isDataExists()
     }
-}
 
+    func showDataBySegment(displayOrderType: DisplayOrderType) {
+        self.ordersDataProvider = self.getDataBySegmentIndex(displayOrderType: displayOrderType)
+        self.shouldUseActions = displayOrderType == .Opened
+        reloadData()
+    }
+
+    private func getDataBySegmentIndex(displayOrderType: DisplayOrderType) -> OrdersModel {
+        switch displayOrderType {
+            case .Opened: return Session.sharedInstance.getOpenedOrders()
+            case .Canceled: return Session.sharedInstance.getCanceledOrders()
+            default: return Session.sharedInstance.getDealsOrders()
+        }
+    }
+}
 
 extension OrdersDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -53,17 +57,18 @@ extension OrdersDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         
         return cell
     }
-    
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if !self.shouldUseActions {
-            return []
-        }
-        
-        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { action, indexPath in
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+     
+        let whitespace = "         " // add the padding
+        let deleteAction = UIContextualAction(style: .destructive, title: whitespace, handler: { action, view, completionHandler  in
             print("called delete action")
+            completionHandler(true)
         })
-        deleteAction.backgroundColor = UIColor.red
-        
-        return [deleteAction]
+        deleteAction.image = UIImage(named: "icNavbarTrash")
+        deleteAction.backgroundColor = UIColor(red: 255/255.0, green: 105/255.0, blue: 96/255.0, alpha: 1.0)
+
+        let configurator = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configurator
     }
 }

@@ -8,67 +8,41 @@
 
 import UIKit
 
+enum DisplayOrderType: Int {
+    case Opened = 0
+    case Canceled
+    case Deals
+}
+
 class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
     
     var output: OrdersManagerViewOutput!
     var currentViewController: UIViewController?
     var pickerViewManager: DeleteOrdersPickerViewManager!
+    var displayManager: OrdersDisplayManager!
     
     // @IBOutlets
     @IBOutlet weak var segmentController: UISegmentedControl!
     @IBOutlet weak var viewContainer: UIView!
-    
+    @IBOutlet weak var tableView: UITableView!
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         output.viewIsReady()
-        
-        guard let vc = self.viewControllerForSegmentIndex(index: self.segmentController.selectedSegmentIndex) else { return }
-        self.addChildViewController(vc)
-        vc.view.frame = viewContainer.bounds
-        viewContainer.addSubview(vc.view)
-        currentViewController = vc
-    }
-
-    @IBAction func segmentChanged(_ sender: Any) {
-        guard let vc = self.viewControllerForSegmentIndex(index: self.segmentController.selectedSegmentIndex) else {
-            return
-        }
-        
-        self.addChildViewController(vc)
-        self.transition(
-            from: self.currentViewController!, to: vc,
-            duration: 0.5, options: .showHideTransitionViews,
-            animations: {
-                self.currentViewController?.view.isHidden = true
-                vc.view.frame = self.viewContainer.bounds
-                self.viewContainer.addSubview(vc.view)
-            },
-            completion: { _ in
-                vc.didMove(toParentViewController: self)
-                self.currentViewController?.removeFromParentViewController()
-                self.currentViewController = vc
-            }
-        )
-        
+        setupInitialState()
+        displayManager.showDataBySegment(displayOrderType: .Opened)
     }
     
     // MARK: OrdersManagerViewInput
     func setupInitialState() {
-        // do nothing
+        displayManager.setTableView(tableView: self.tableView)
     }
     
-    func viewControllerForSegmentIndex(index: Int) -> UIViewController? {
-        switch index {
-        case 0: return self.storyboard?.instantiateViewController(withIdentifier: "OpenedOrdersViewController")
-        case 1: return self.storyboard?.instantiateViewController(withIdentifier: "CanceledOrdersViewController")
-        case 2: return self.storyboard?.instantiateViewController(withIdentifier: "DealsOrdersViewController")
-        default:
-            return nil
-        }
+    @IBAction func segmentChanged(_ sender: Any) {
+        displayManager.showDataBySegment(displayOrderType: DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
     }
-    
     
     @IBAction func handleTouchDeleteButton(_ sender: Any) {
         pickerViewManager.showPickerView()

@@ -41,7 +41,7 @@ class Session {
     func getOpenedOrders() -> OrdersModel {
         let orders = [
             OrderModel(orderType: .Buy, currencyPair: "BTC/USD", createdDate: Date(), price: 14234, quantity: 2, amount: 0.5123),
-            OrderModel(orderType: .Buy, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
+            OrderModel(orderType: .Sell, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
         ]
         return OrdersModel(orders: orders)
     }

@@ -34,6 +34,8 @@ class OrdersManagerModuleConfigurator {
         let pickerViewManager = DeleteOrdersPickerViewManager()
         pickerViewManager.viewController = viewController
         viewController.pickerViewManager = pickerViewManager
+        
+        viewController.displayManager = OrdersDisplayManager()
     }
 
 }
