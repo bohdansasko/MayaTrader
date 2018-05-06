@@ -54,31 +54,30 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         self.viewOutput.showEditView(data: dataProvider.getCellItem(byRow: indexPath.row))
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction.init(style: .normal, title: "Edit", handler: { [unowned self] action, indexPath in
-            self.viewOutput.showEditView(data: self.dataProvider.getCellItem(byRow: indexPath.row))
-            print("called edit action")
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let stateAction = UIContextualAction(style: .normal, title: "", handler: {
+            _, _, _ in
+            
         })
-        editAction.backgroundColor = UIColor.green
-
-        let pauseTitle = getPauseActiontTitle(status: self.dataProvider.getStatus(forItem: indexPath.row))
-        let pauseAction = UITableViewRowAction.init(style: .normal, title: pauseTitle, handler: { [unowned self] action, indexPath in
-            let status = self.getPauseActionStatus(status: self.dataProvider.getStatus(forItem: indexPath.row))
-            self.dataProvider.setState(forItem: indexPath.row, status: status)
-            print("called pause action")
-        })
-        pauseAction.backgroundColor = UIColor.gray
-
-
-        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { [unowned self] action, indexPath in
-            self.dataProvider.removeItem(atRow: indexPath.row)
-            self.tableView.reloadData()
-            print("called delete action")
-        })
+        stateAction.backgroundColor = UIColor(named: "exmoSteel")
+        stateAction.image = #imageLiteral(resourceName: "icPause")
         
-        deleteAction.backgroundColor = UIColor.red
-        actions = [deleteAction, pauseAction, editAction]
-        return actions
+        let editAction = UIContextualAction(style: .normal, title: "", handler: {
+            _, _, _ in
+            
+        })
+        editAction.backgroundColor = UIColor(red: 115.0/255, green: 116.0/255, blue: 133.0/255, alpha: 1.0)
+        editAction.image = #imageLiteral(resourceName: "icEdit")
+        
+        let removeAction = UIContextualAction(style: .normal, title: "", handler: {
+            _, _, _ in
+            
+        })
+        removeAction.backgroundColor = UIColor(named: "exmoOrangePink")
+        removeAction.image = #imageLiteral(resourceName: "icNavbarTrash")
+        
+        let config = UISwipeActionsConfiguration(actions: [removeAction, editAction, stateAction])
+        return config
     }
     
     private func getPauseActiontTitle(status: AlertStatus) -> String {
