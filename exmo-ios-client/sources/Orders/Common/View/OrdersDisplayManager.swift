@@ -58,6 +58,7 @@ extension OrdersDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         return cell
     }
 
+    @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
      
         let whitespace = "         " // add the padding

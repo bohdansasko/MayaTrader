@@ -35,7 +35,11 @@ class AlertTableViewCell: UITableViewCell {
         self.bottomBound.text = data.topBoundary != nil ? String(data.bottomBoundary!) : "-"
         
         self.status.text = data.status.rawValue
-        self.status.backgroundColor = data.status == AlertStatus.Active ? UIColor(named: "exmoGreenBlue") : UIColor(named: "exmoSteel")
+        if #available(iOS 11.0, *) {
+            self.status.backgroundColor = data.status == AlertStatus.Active ? UIColor(named: "exmoGreenBlue") : UIColor(named: "exmoSteel")
+        } else {
+            self.status.backgroundColor = data.status == AlertStatus.Active ? UIColor.init(named: "exmoGreenBlue")! : UIColor.init(named: "exmoSteel")!
+        }
         self.status.layer.cornerRadius = 5.0
         self.status.layer.masksToBounds = true
         

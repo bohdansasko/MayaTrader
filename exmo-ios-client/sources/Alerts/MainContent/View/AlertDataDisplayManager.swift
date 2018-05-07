@@ -40,13 +40,27 @@ class AlertDataDisplayManager: NSObject {
 }
 
 extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataProvider.getCountMenuItems()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: self.tableView.frame)
+        view.backgroundColor = UIColor.black
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.AlertTableViewCell.rawValue, for: indexPath) as! AlertTableViewCell
-        cell.setData(data: self.dataProvider.getCellItem(byRow: indexPath.row))
+        cell.setData(data: self.dataProvider.getCellItem(byRow: indexPath.section))
         return cell
     }
     
@@ -54,6 +68,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         self.viewOutput.showEditView(data: dataProvider.getCellItem(byRow: indexPath.row))
     }
     
+    @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
             _, _, _ in
