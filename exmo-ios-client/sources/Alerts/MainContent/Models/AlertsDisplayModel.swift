@@ -20,7 +20,7 @@ class AlertsDisplayModel {
         alertsItems = [
             AlertItem(currencyPairName: "BTC/USD", currencyPairPriceAtCreateMoment: 14765, note: nil, topBoundary: 15250, bottomBoundary: 13250, status: .Active, dateCreated: Date()),
             AlertItem(currencyPairName: "BTC/EUR", currencyPairPriceAtCreateMoment: 11765, note: "Can got much money", topBoundary: 14489, bottomBoundary: 9229, status: .Active, dateCreated: Date()),
-            AlertItem(currencyPairName: "ETH/USD", currencyPairPriceAtCreateMoment: 1165, note: "Good shans for make money", topBoundary: 1490, bottomBoundary: 1100, status: .Active, dateCreated: Date()),
+            AlertItem(currencyPairName: "ETH/USD", currencyPairPriceAtCreateMoment: 1165, note: "Good shans for make money", topBoundary: 1490, bottomBoundary: 1100, status: .Pause, dateCreated: Date()),
 
         ]
     }

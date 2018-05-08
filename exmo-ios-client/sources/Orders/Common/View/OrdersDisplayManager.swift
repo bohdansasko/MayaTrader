@@ -43,24 +43,44 @@ class OrdersDisplayManager: NSObject {
     }
 }
 
-extension OrdersDisplayManager: UITableViewDelegate, UITableViewDataSource  {
+extension OrdersDisplayManager: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.ordersDataProvider.getCountOrders()
     }
-    
+}
+
+extension OrdersDisplayManager: UITableViewDelegate  {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 10 : 30
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 85
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: self.tableView.frame)
+        view.backgroundColor = UIColor.black
+        return view
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let orderData = self.ordersDataProvider.getOrderBy(index: indexPath.row)
+        let orderData = self.ordersDataProvider.getOrderBy(index: indexPath.section)
         let cellId = TableCellIdentifiers.OrderTableViewCell.rawValue
-        
+
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderTableViewCell
         cell.setContent(orderData: orderData)
-        
+
         return cell
     }
 
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-     
+
         let whitespace = "         " // add the padding
         let deleteAction = UIContextualAction(style: .destructive, title: whitespace, handler: { action, view, completionHandler  in
             print("called delete action")

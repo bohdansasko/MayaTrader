@@ -45,7 +45,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
+        return section == 0 ? 10 : 30
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -74,8 +74,10 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
             _, _, _ in
             
         })
-        stateAction.backgroundColor = UIColor(named: "exmoSteel")
-        stateAction.image = #imageLiteral(resourceName: "icPause")
+        stateAction.backgroundColor = dataProvider.getStatus(forItem: indexPath.section) == .Active
+            ? UIColor(named: "exmoSteel")
+            : UIColor(named: "exmoGreenBlue")
+        stateAction.image = dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
         
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             _, _, _ in
@@ -84,7 +86,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         editAction.backgroundColor = UIColor(red: 115.0/255, green: 116.0/255, blue: 133.0/255, alpha: 1.0)
         editAction.image = #imageLiteral(resourceName: "icEdit")
         
-        let removeAction = UIContextualAction(style: .normal, title: "", handler: {
+        let removeAction = UIContextualAction(style: .destructive, title: "", handler: {
             _, _, _ in
             
         })
