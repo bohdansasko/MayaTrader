@@ -16,9 +16,13 @@ class OrderTableViewCell: UITableViewCell {
     @IBOutlet weak var amountValueLabel: UILabel!
     @IBOutlet weak var operationValueLabel: UILabel!
     
+    // constraints
+    @IBOutlet weak var timeLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timeLabelHeightConstraint: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,6 +42,15 @@ class OrderTableViewCell: UITableViewCell {
         self.operationValueLabel.backgroundColor = getOrderTypeLabelTextColor(orderType: orderData.getOrderType())
         self.operationValueLabel.layer.masksToBounds = true
         self.operationValueLabel.layer.cornerRadius = 5
+
+        // update constraints
+        if AppDelegate.shared.getIPhoneModel() == .Five {
+            self.timeLabelWidthConstraint.constant = 70
+            self.timeLabelHeightConstraint.constant = 40
+        } else {
+            self.timeLabelWidthConstraint.constant = 100
+            self.timeLabelHeightConstraint.constant = 20
+        }
     }
     
     private func getOrderTypeLabelTextColor(orderType: OrderType) -> UIColor {
