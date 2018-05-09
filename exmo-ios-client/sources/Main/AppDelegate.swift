@@ -48,12 +48,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+enum IPhoneModel: Int {
+    case None = 0
+    case Five
+    case SixOrSevenEight
+    case SixSevenEightPlus
+    case X
+}
+
 extension AppDelegate {
-    func isIphoneX() -> Bool {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return UIScreen.main.nativeBounds.height == 2436
+    func isIPhone(model: IPhoneModel) -> Bool {
+        return getIPhoneModel() == model
+    }
+    
+    func getIPhoneModel() -> IPhoneModel {
+        if UIDevice.current.userInterfaceIdiom != .phone {
+            return .None
         }
-        return false
+
+        switch (UIScreen.main.nativeBounds.height) {
+        case 1136: return .Five
+        case 1334: return .SixOrSevenEight
+        case 2208: return .SixSevenEightPlus
+        case 2436: return .X
+          default: return .None
+        }
     }
     
     static var shared: AppDelegate {
