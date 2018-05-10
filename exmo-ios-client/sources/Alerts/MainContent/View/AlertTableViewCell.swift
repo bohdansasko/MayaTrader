@@ -16,6 +16,11 @@ class AlertTableViewCell: UITableViewCell {
     @IBOutlet weak var status: UILabel!
     @IBOutlet weak var date: UILabel!
     
+    // constraints
+    @IBOutlet weak var timeLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var timeLabelHeightConstraint: NSLayoutConstraint!
+    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -46,6 +51,15 @@ class AlertTableViewCell: UITableViewCell {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
         self.date.text = dateFormatter.string(from: data.dateCreated)
+        
+        // update constraints
+        if AppDelegate.shared.getIPhoneModel() == .Five {
+            self.timeLabelWidthConstraint.constant = 70
+            self.timeLabelHeightConstraint.constant = 40
+        } else {
+            self.timeLabelWidthConstraint.constant = 100
+            self.timeLabelHeightConstraint.constant = 20
+        }
     }
 
 }

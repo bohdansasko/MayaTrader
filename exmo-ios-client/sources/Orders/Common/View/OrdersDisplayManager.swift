@@ -61,6 +61,10 @@ extension OrdersDisplayManager: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 85
     }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.backgroundColor = UIColor.clear
+    }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: self.tableView.frame)

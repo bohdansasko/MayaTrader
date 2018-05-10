@@ -14,7 +14,7 @@ enum DisplayOrderType: Int {
     case Deals
 }
 
-class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
+class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput {
     
     var output: OrdersManagerViewOutput!
     var currentViewController: UIViewController?
@@ -32,6 +32,17 @@ class OrdersManagerViewController: UIViewController, OrdersManagerViewInput {
         
         output.viewIsReady()
         setupInitialState()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateNavigationBar(shouldHideNavigationBar: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        updateNavigationBar(shouldHideNavigationBar: false)
     }
     
     // MARK: OrdersManagerViewInput

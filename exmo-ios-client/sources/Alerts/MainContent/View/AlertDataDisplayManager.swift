@@ -58,6 +58,10 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         return 1
     }
     
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        view.backgroundColor = UIColor.clear
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.AlertTableViewCell.rawValue, for: indexPath) as! AlertTableViewCell
         cell.setData(data: self.dataProvider.getCellItem(byRow: indexPath.section))

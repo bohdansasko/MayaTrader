@@ -8,7 +8,17 @@
 
 import UIKit
 
-class AlertsViewController: UIViewController, AlertsViewInput {
+class ExmoUIViewController : UIViewController {
+    func updateNavigationBar(shouldHideNavigationBar: Bool) {
+        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
+        
+        self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
+        self.navigationController?.navigationBar.shadowImage = dummyImage
+        self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
+    }
+}
+
+class AlertsViewController: ExmoUIViewController, AlertsViewInput {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -22,7 +32,19 @@ class AlertsViewController: UIViewController, AlertsViewInput {
         
         setupInitialState()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        updateNavigationBar(shouldHideNavigationBar: true)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        updateNavigationBar(shouldHideNavigationBar: false)
+    }
+    
 
     // MARK: AlertsViewInput
     func setupInitialState() {
