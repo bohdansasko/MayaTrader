@@ -20,7 +20,7 @@ class User: Mappable {
     }
 
     var qrModel: QRLoginModel? = nil
-    var walletInfo: WalletModel? = nil
+    var walletInfo: WalletModel? = WalletModel()
 
     init() {
         // do nothing

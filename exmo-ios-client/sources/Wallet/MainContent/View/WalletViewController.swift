@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletViewController: UIViewController, WalletViewInput {
+class WalletViewController: ExmoUIViewController, WalletViewInput {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var currencySettingsBtn: UIBarButtonItem!
     @IBOutlet weak var balanceView: BalanceView!
@@ -32,18 +32,9 @@ class WalletViewController: UIViewController, WalletViewInput {
         displayManager.reloadData()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         updateNavigationBar(shouldHideNavigationBar: false)
-    }
-
-    func updateNavigationBar(shouldHideNavigationBar: Bool) {
-        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
-
-        self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
-        self.navigationController?.navigationBar.shadowImage = dummyImage
-        self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
     }
 
     // MARK: WalletViewInput

@@ -56,8 +56,8 @@ struct WalletModel : Mappable {
     init() {
         self.rawBalances = [:]
         self.rawReserved = [:]
-        self.allBalances = []
-        self.usedBalances = []
+        self.allBalances = getTestData()
+        self.usedBalances = getTestData()
         self.unusedBalances = []
     }
 
@@ -130,7 +130,9 @@ struct WalletModel : Mappable {
     
     private func getTestData() -> [WalletCurrencyModel] {
         return [
-            WalletCurrencyModel(orderId: 0, balance: 0, currency: "UAH", countInOrders: 0)
+            WalletCurrencyModel(orderId: 0, balance: 0, currency: "UAH", countInOrders: 0),
+            WalletCurrencyModel(orderId: 1, balance: 0.8961234, currency: "BTC", countInOrders: 10),
+            WalletCurrencyModel(orderId: 2, balance: 2000.123, currency: "LTC", countInOrders: 5)
         ]
     }
     
