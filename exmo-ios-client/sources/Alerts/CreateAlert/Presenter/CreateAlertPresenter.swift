@@ -17,7 +17,19 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
         // do nothing
     }
     
+    func handleTouchAddAlertBtn(alertModel: AlertItem) {
+        // TODO: send request to server on create alert
+    }
+    
     func handleTouchOnCancelBtn() {
         router.close(uiViewController: view as! UIViewController)
+    }
+
+    func handleTouchOnCurrencyPairView() {
+        router.openCurrencyPairsSearchView(uiViewController: view as! UIViewController)
+    }
+
+    func handleTouchOnSoundView() {
+        router.openSoundsSearchView(uiViewController: view as! UIViewController)
     }
 }

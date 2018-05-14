@@ -71,9 +71,9 @@ class UITouchableViewWithIndicator: NibView {
     private func handleButtonState(_ buttonState: ButtonState) {
         switch buttonState {
         case .Normal:
-            backgroundButton.backgroundColor = UIColor.white.withAlphaComponent(0.1)
-        case .Highlighted:
             backgroundButton.backgroundColor = UIColor.clear
+        case .Highlighted:
+            backgroundButton.backgroundColor = UIColor.white.withAlphaComponent(0.1)
         default:
             // do nothing
             break
@@ -90,6 +90,7 @@ class UITouchableViewWithIndicator: NibView {
 
     @objc func onTouchInside(_ sender: Any) {
         print("onTouchInside")
+        self.callbackOnTouch?()
         handleButtonState(.Normal)
     }
     
