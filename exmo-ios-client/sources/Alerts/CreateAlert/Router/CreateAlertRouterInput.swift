@@ -6,8 +6,8 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol CreateAlertRouterInput {
-
+    func close(uiViewController: UIViewController!)
 }

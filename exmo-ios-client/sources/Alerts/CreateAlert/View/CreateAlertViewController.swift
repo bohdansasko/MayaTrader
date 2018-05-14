@@ -23,4 +23,16 @@ class CreateAlertViewController: UIViewController, CreateAlertViewInput {
     func setupInitialState() {
         // do nothing
     }
+    
+    //
+    // @MARK: 
+    //
+    @IBAction func handleTouchOnCancelBtn(_ sender: Any) {
+        output.handleTouchOnCancelBtn()
+    }
+    
+    @IBAction func handleTouchAddAlertBtn(_ sender: Any) {
+        // do nothing
+    }
+    
 }

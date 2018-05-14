@@ -6,6 +6,10 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-class CreateAlertRouter: CreateAlertRouterInput {
+import UIKit
 
+class CreateAlertRouter: CreateAlertRouterInput {
+    func close(uiViewController: UIViewController!) {
+        uiViewController.close()
+    }
 }

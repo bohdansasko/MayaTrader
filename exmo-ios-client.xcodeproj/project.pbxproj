@@ -795,7 +795,6 @@
 				66C69DB3D5F2206C45571645 /* Alerts */,
 				476496FDF8E745AC892D4DBC /* Orders */,
 				202F48EF206A136D0080423E /* Watchlist */,
-				37B74EDC1A931709BEED1181 /* CreateAlert */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -1003,7 +1002,6 @@
 				3E9D7A0A71D729063B169362 /* CreateAlertInteractorOutput.swift */,
 				3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -1026,7 +1024,6 @@
 				EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */,
 				19E526FB14C5295A017890D5 /* CreateAlertInitializer.swift */,
 			);
-			name = Configurator;
 			path = Configurator;
 			sourceTree = "<group>";
 		};
@@ -1058,7 +1055,6 @@
 				40C4BA797069940DD7E962FF /* CreateAlertViewOutput.swift */,
 				D7083115E233EBE369D8B337 /* CreateAlertViewController.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1086,7 +1082,6 @@
 				A185E9A94E795A4CEBE4F2BC /* CreateAlertRouterInput.swift */,
 				D1DE49357B4D20F8EA6EC5EF /* CreateAlertRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -1108,7 +1103,6 @@
 				354310C3F136A9D58C197345 /* Router */,
 				2E83068A503737289A27CEFC /* Configurator */,
 			);
-			name = CreateAlert;
 			path = CreateAlert;
 			sourceTree = "<group>";
 		};
@@ -1225,6 +1219,7 @@
 		66C69DB3D5F2206C45571645 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
+				37B74EDC1A931709BEED1181 /* CreateAlert */,
 				201D8076205DC5B400692DEF /* MainContent */,
 			);
 			path = Alerts;
@@ -1410,7 +1405,6 @@
 				2C01AAB58E3E81D14C69060A /* CreateAlertModuleInput.swift */,
 				ADD09F9110D86C9AA252D600 /* CreateAlertPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};

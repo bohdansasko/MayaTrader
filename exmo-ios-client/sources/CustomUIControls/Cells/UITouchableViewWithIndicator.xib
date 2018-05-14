@@ -16,6 +16,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UITouchableViewWithIndicator" customModule="exmo_ios_client" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundButton" destination="k1c-1c-gmW" id="8ND-ZK-7jF"/>
+                <outlet property="contentLabel" destination="92t-zb-vhw" id="QGk-AR-Yvg"/>
+                <outlet property="headerLabel" destination="m1B-I4-8cr" id="eN4-zX-j0A"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

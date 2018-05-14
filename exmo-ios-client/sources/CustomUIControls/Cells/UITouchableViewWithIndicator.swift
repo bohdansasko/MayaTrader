@@ -18,9 +18,30 @@ class UITouchableViewWithIndicator: NibView {
     //
     // @MARK: outlets
     //
-    @IBOutlet weak var backgroundButton: UIButton!
+    @IBOutlet private weak var backgroundButton: UIButton!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var contentLabel: UILabel!
     
     var callbackOnTouch: VoidClosure? = nil
+    
+    //
+    // @MARK: getters and setters
+    //
+    @IBInspectable var headerText: String {
+        get { return self.headerLabel.text! }
+    
+        set {
+            self.headerLabel.text = newValue
+        }
+    }
+    
+    @IBInspectable var contentText: String {
+        get { return self.contentLabel.text! }
+        
+        set {
+            self.contentLabel.text = newValue
+        }
+    }
     
     //
     // @MARK: inherited methods

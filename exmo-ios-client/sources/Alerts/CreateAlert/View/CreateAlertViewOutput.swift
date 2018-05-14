@@ -14,4 +14,5 @@ protocol CreateAlertViewOutput {
     */
 
     func viewIsReady()
+    func handleTouchOnCancelBtn()
 }

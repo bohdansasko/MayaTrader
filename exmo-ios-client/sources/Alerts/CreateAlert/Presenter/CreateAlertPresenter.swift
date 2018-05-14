@@ -5,6 +5,7 @@
 //  Created by TQ0oS on 14/05/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import UIKit
 
 class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, CreateAlertInteractorOutput {
 
@@ -13,6 +14,10 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     var router: CreateAlertRouterInput!
 
     func viewIsReady() {
-
+        // do nothing
+    }
+    
+    func handleTouchOnCancelBtn() {
+        router.close(uiViewController: view as! UIViewController)
     }
 }
