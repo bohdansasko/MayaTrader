@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 
-class OrdersDisplayManager: NSObject {
+class OrdersDisplayManager: NSObject {    
+    // MARK: outlets
     var ordersDataProvider: OrdersModel!
     weak var tableView: UITableView!
     var shouldUseActions: Bool = false
     
+    // MARK: public methods
     func setTableView(tableView: UITableView!) {
         self.tableView = tableView
         self.tableView.delegate = self
@@ -28,13 +30,14 @@ class OrdersDisplayManager: NSObject {
         return ordersDataProvider.isDataExists()
     }
 
-    func showDataBySegment(displayOrderType: DisplayOrderType) {
+    func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
         self.ordersDataProvider = self.getDataBySegmentIndex(displayOrderType: displayOrderType)
         self.shouldUseActions = displayOrderType == .Opened
         reloadData()
     }
 
-    private func getDataBySegmentIndex(displayOrderType: DisplayOrderType) -> OrdersModel {
+    // MARK: private methods
+    private func getDataBySegmentIndex(displayOrderType: OrdersModel.DisplayOrderType) -> OrdersModel {
         switch displayOrderType {
             case .Opened: return Session.sharedInstance.getOpenedOrders()
             case .Canceled: return Session.sharedInstance.getCanceledOrders()

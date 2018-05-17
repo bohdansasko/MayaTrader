@@ -8,14 +8,8 @@
 
 import UIKit
 
-enum DisplayOrderType: Int {
-    case Opened = 0
-    case Canceled
-    case Deals
-}
-
 class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput {
-    
+    // MARK: Outlets
     var output: OrdersManagerViewOutput!
     var currentViewController: UIViewController?
     var pickerViewManager: DarkeningPickerViewManager!
@@ -34,25 +28,16 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
         setupInitialState()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        updateNavigationBar(shouldHideNavigationBar: true)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-        updateNavigationBar(shouldHideNavigationBar: false)
-    }
-    
-    // MARK: OrdersManagerViewInput
+
+    // MARK: public methods
     func setupInitialState() {
         displayManager.setTableView(tableView: self.tableView)
         displayManager.showDataBySegment(displayOrderType: .Opened)
     }
     
+    // MARK: IBActions
     @IBAction func segmentChanged(_ sender: Any) {
-        displayManager.showDataBySegment(displayOrderType: DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
+        displayManager.showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
     }
     
     @IBAction func handleTouchDeleteButton(_ sender: Any) {

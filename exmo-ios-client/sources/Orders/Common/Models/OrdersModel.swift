@@ -9,6 +9,13 @@
 import Foundation
 
 class OrdersModel {
+    // MARK: user types
+    enum DisplayOrderType: Int {
+        case Opened = 0
+        case Canceled
+        case Deals
+    }
+    
     private var orders: [OrderModel] = []
     
     init(orders: [OrderModel]) {

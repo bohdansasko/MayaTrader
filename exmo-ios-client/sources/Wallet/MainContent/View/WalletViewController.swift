@@ -28,13 +28,8 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        updateNavigationBar(shouldHideNavigationBar: true)
+        super.viewWillAppear(animated)
         displayManager.reloadData()
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        updateNavigationBar(shouldHideNavigationBar: false)
     }
 
     // MARK: WalletViewInput

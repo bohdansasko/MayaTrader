@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoreViewController: UIViewController, MoreViewInput {
+class MoreViewController: ExmoUIViewController, MoreViewInput {
     @IBOutlet weak var tableView: UITableView!
     
     var output: MoreViewOutput!
