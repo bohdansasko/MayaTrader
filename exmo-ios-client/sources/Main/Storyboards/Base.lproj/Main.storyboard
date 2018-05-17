@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Exo2-Bold.ttf">
+            <string>Exo2-Bold</string>
+        </array>
+        <array key="Exo2-Regular.ttf">
+            <string>Exo2-Regular</string>
+        </array>
+        <array key="Exo2-SemiBold.ttf">
+            <string>Exo2-SemiBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Createorder View Controller-->
+        <scene sceneID="bky-zc-uqh">
+            <objects>
+                <viewController title="Create" id="Eqk-tN-eGJ" customClass="CreateOrderViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PIO-jj-b67">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIX-sd-2fl">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUD-c6-xfb">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="0mD-W2-EXg" userLabel="Stack View Input">
+                                                <rect key="frame" x="20" y="95" width="280" height="379"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Zzh-d5-9Fh" userLabel="Stack View Amount">
+                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="63"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z8c-Zj-0JH" userLabel="labelAmount">
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="17"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 BTC" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kkz-Jr-kKd" userLabel="textFieldAmount">
+                                                                <rect key="frame" x="0.0" y="27" width="280" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="E3N-xr-VUy"/>
+                                                                </constraints>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="mpJ-mb-mUa"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WRv-Rc-jOq" userLabel="grayLine">
+                                                                <rect key="frame" x="0.0" y="62" width="280" height="1"/>
+                                                                <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.2627450980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="v7Y-U7-lUJ"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="6oI-2i-py7" userLabel="Stack View Price">
+                                                        <rect key="frame" x="0.0" y="78" width="280" height="63"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQr-yy-VjM" userLabel="labelAmount">
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="17"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 USD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IJr-ul-vHu" userLabel="textFieldPrice">
+                                                                <rect key="frame" x="0.0" y="27" width="280" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="awc-DB-GdH"/>
+                                                                </constraints>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="HOS-EB-rSv"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gb1-Fw-7m6" userLabel="grayLine">
+                                                                <rect key="frame" x="0.0" y="62" width="280" height="1"/>
+                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="7dm-Xi-SFd"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yX5-qg-oYd" userLabel="Stack View Total">
+                                                        <rect key="frame" x="0.0" y="156" width="280" height="63"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fX4-1j-I2l" userLabel="labelTotal">
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="17"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 USD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7ya-u5-Jps" userLabel="textFieldTotal">
+                                                                <rect key="frame" x="0.0" y="27" width="280" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="vol-sX-ARD"/>
+                                                                </constraints>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="SBT-nB-mLW"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVi-YN-HWb" userLabel="grayLine">
+                                                                <rect key="frame" x="0.0" y="62" width="280" height="1"/>
+                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="EOF-LC-wdB"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="c22-xp-jCk" userLabel="Stack View Commision">
+                                                        <rect key="frame" x="0.0" y="234" width="280" height="63"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Commision" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyR-KZ-7Sl" userLabel="labelCommision">
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="17"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 BTC" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="X89-YP-1mH" userLabel="textFieldCommision">
+                                                                <rect key="frame" x="0.0" y="27" width="280" height="25"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="25" id="88U-KH-XW6"/>
+                                                                </constraints>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="Eqk-tN-eGJ" id="uHf-P4-UJK"/>
+                                                                </connections>
+                                                            </textField>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SU3-3b-pp9" userLabel="grayLine">
+                                                                <rect key="frame" x="0.0" y="62" width="280" height="1"/>
+                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="ZBP-Ml-u4c"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dok-kQ-mfe" userLabel="Stack View OrderBy">
+                                                        <rect key="frame" x="0.0" y="312" width="280" height="67"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order by" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmv-F8-eJ7" userLabel="labelOrderBy">
+                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="17"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Y3-2Z-SNp">
+                                                                <rect key="frame" x="0.0" y="27" width="280" height="29"/>
+                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                                                                <state key="normal" title="Market"/>
+                                                                <connections>
+                                                                    <action selector="handleTouchFromOrderByButton:" destination="Eqk-tN-eGJ" eventType="touchUpInside" id="Ibo-VS-0vN"/>
+                                                                </connections>
+                                                            </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zkg-Hs-eiO" userLabel="grayLine">
+                                                                <rect key="frame" x="0.0" y="66" width="280" height="1"/>
+                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="1" id="Umg-sy-mGQ"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="u3H-bi-OpS">
+                                                <rect key="frame" x="20" y="503" width="280" height="45"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4me-Zj-uLB">
+                                                        <rect key="frame" x="0.0" y="0.0" width="135" height="45"/>
+                                                        <fontDescription key="fontDescription" name="Exo2-Bold" family="Exo 2" pointSize="14"/>
+                                                        <state key="normal" title="Sell" backgroundImage="icButtonGray"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ux9-hA-4Jz">
+                                                        <rect key="frame" x="145" y="0.0" width="135" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="w9T-x7-T0s"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Exo2-Bold" family="Exo 2" pointSize="14"/>
+                                                        <state key="normal" title="Buy" backgroundImage="icButtonBlue"/>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="0mD-W2-EXg" secondAttribute="trailing" constant="20" id="9hk-fD-JFF"/>
+                                            <constraint firstAttribute="bottom" secondItem="u3H-bi-OpS" secondAttribute="bottom" constant="20" id="F7a-2U-5iR"/>
+                                            <constraint firstItem="0mD-W2-EXg" firstAttribute="leading" secondItem="oUD-c6-xfb" secondAttribute="leading" constant="20" id="GCz-Sr-fmH"/>
+                                            <constraint firstAttribute="trailing" secondItem="u3H-bi-OpS" secondAttribute="trailing" constant="20" id="Jrj-MY-0b5"/>
+                                            <constraint firstItem="0mD-W2-EXg" firstAttribute="top" secondItem="oUD-c6-xfb" secondAttribute="top" constant="95" id="Mvq-SZ-2hy"/>
+                                            <constraint firstItem="u3H-bi-OpS" firstAttribute="leading" secondItem="oUD-c6-xfb" secondAttribute="leading" constant="20" id="vnz-r5-fiD"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="oUD-c6-xfb" firstAttribute="top" secondItem="SIX-sd-2fl" secondAttribute="top" id="NK3-zE-ufM"/>
+                                    <constraint firstAttribute="bottom" secondItem="oUD-c6-xfb" secondAttribute="bottom" id="bSi-cm-hQz"/>
+                                    <constraint firstAttribute="trailing" secondItem="oUD-c6-xfb" secondAttribute="trailing" id="r9k-KQ-gTy"/>
+                                    <constraint firstItem="oUD-c6-xfb" firstAttribute="leading" secondItem="SIX-sd-2fl" secondAttribute="leading" id="xCr-9F-1Ao"/>
+                                </constraints>
+                            </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xhr-Ax-Iqa" userLabel="top bar view">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-j2-QRT">
+                                        <rect key="frame" x="100" y="40" width="120" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="cvx-kS-Czo"/>
+                                            <constraint firstAttribute="width" constant="120" id="h1Y-B8-Y2E"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsk-rb-AVY">
+                                        <rect key="frame" x="220" y="40" width="80" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="CH1-dE-vuz"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="JF0-dn-i0B"/>
+                                            <constraint firstAttribute="width" constant="80" id="lc8-AO-V4z"/>
+                                            <constraint firstAttribute="height" constant="25" id="ybZ-qW-Zv3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" red="1" green="0.41176470590000003" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="65" id="Dro-bG-EC9"/>
+                                    <constraint firstAttribute="bottom" secondItem="rsk-rb-AVY" secondAttribute="bottom" id="J7U-kU-bPZ"/>
+                                    <constraint firstItem="v3r-j2-QRT" firstAttribute="centerX" secondItem="xhr-Ax-Iqa" secondAttribute="centerX" id="svk-Uq-mH6"/>
+                                    <constraint firstAttribute="trailing" secondItem="rsk-rb-AVY" secondAttribute="trailing" constant="20" id="uRk-iF-vgx"/>
+                                    <constraint firstAttribute="bottom" secondItem="v3r-j2-QRT" secondAttribute="bottom" id="zM1-yt-n6S"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="xhr-Ax-Iqa" firstAttribute="leading" secondItem="Nt0-PV-I7X" secondAttribute="leading" id="0nO-wi-Nh2"/>
+                            <constraint firstItem="xhr-Ax-Iqa" firstAttribute="top" secondItem="PIO-jj-b67" secondAttribute="top" id="D1O-8k-Rxk"/>
+                            <constraint firstItem="SIX-sd-2fl" firstAttribute="top" secondItem="PIO-jj-b67" secondAttribute="top" id="DGn-QJ-uLf"/>
+                            <constraint firstItem="SIX-sd-2fl" firstAttribute="leading" secondItem="Nt0-PV-I7X" secondAttribute="leading" id="LpI-H5-hOd"/>
+                            <constraint firstItem="xhr-Ax-Iqa" firstAttribute="trailing" secondItem="Nt0-PV-I7X" secondAttribute="trailing" id="XGm-dv-nmc"/>
+                            <constraint firstItem="oUD-c6-xfb" firstAttribute="width" secondItem="PIO-jj-b67" secondAttribute="width" id="lcd-mw-n6f"/>
+                            <constraint firstItem="Nt0-PV-I7X" firstAttribute="bottom" secondItem="SIX-sd-2fl" secondAttribute="bottom" id="mHL-aO-B1y"/>
+                            <constraint firstItem="oUD-c6-xfb" firstAttribute="height" secondItem="PIO-jj-b67" secondAttribute="height" id="mzB-cM-CwB"/>
+                            <constraint firstItem="Nt0-PV-I7X" firstAttribute="trailing" secondItem="SIX-sd-2fl" secondAttribute="trailing" id="u5g-Ry-R5K"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Nt0-PV-I7X"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EKR-rU-zms" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="U1v-s3-FRv" customClass="CreateOrderModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="createorderViewController" destination="Eqk-tN-eGJ" id="RYr-yQ-f9O"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="544" y="127"/>
+        </scene>
+        <!--Main Tab Bar Controller-->
+        <scene sceneID="xt0-5Q-kOK">
+            <objects>
+                <tabBarController storyboardIdentifier="MainTabBarController" id="0Vn-ln-aXb" customClass="MainTabBarController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="oUB-FR-bMJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.011764705882352941" green="0.0039215686274509803" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                    </tabBar>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p3l-RC-6QY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-829" y="125"/>
+        </scene>
+        <!--Darkening Picker View Controller-->
+        <scene sceneID="Lf8-Qj-JFF">
+            <objects>
+                <viewController storyboardIdentifier="DarkeningPickerViewController" id="eoJ-ld-zJN" customClass="DarkeningPickerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TLn-1m-HVC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="vMf-tb-M30"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Pp-rT-cUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1228" y="125"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icButtonBlue" width="120" height="45"/>
+        <image name="icButtonGray" width="120" height="45"/>
+    </resources>
+    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+</document>

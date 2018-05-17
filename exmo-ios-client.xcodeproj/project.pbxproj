@@ -92,6 +92,11 @@
 		2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491620492B87007CA79C /* WalletCurrencyModel.swift */; };
 		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084492C20493193007CA79C /* WalletDataProvider.swift */; };
+		20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88420AE225300EC2A4D /* Wallet.storyboard */; };
+		20A5B88720AE232E00EC2A4D /* Orders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88620AE232E00EC2A4D /* Orders.storyboard */; };
+		20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88820AE239100EC2A4D /* Alerts.storyboard */; };
+		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
+		20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */; };
 		20BEDC53205579FA00973F2F /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */; };
 		20BEDC5520557BB200973F2F /* AlertDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */; };
 		20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */; };
@@ -343,6 +348,11 @@
 		2084491620492B87007CA79C /* WalletCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrencyModel.swift; sourceTree = "<group>"; };
 		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		2084492C20493193007CA79C /* WalletDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDataProvider.swift; sourceTree = "<group>"; };
+		20A5B88420AE225300EC2A4D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
+		20A5B88620AE232E00EC2A4D /* Orders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Orders.storyboard; sourceTree = "<group>"; };
+		20A5B88820AE239100EC2A4D /* Alerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
+		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
+		20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreOptions.storyboard; sourceTree = "<group>"; };
 		20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataDisplayManager.swift; sourceTree = "<group>"; };
 		20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsDisplayModel.swift; sourceTree = "<group>"; };
@@ -802,13 +812,8 @@
 		205A7CBE203CCEBD00A2E28A /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */,
-				202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */,
-				205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */,
-				205A7CC2203CCEBD00A2E28A /* Main.storyboard */,
-				207EAE09204FE47400FDA3B7 /* Session.swift */,
-				3671257CD4262EA9B280ABE0 /* Constants.swift */,
-				206BD9512074297400ADC91C /* MainTabBarController.swift */,
+				20A5B88E20AE246600EC2A4D /* Storyboards */,
+				20A5B88F20AE247B00EC2A4D /* Sources */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -905,6 +910,32 @@
 				2003B5572048BEC100BD205F /* CoreDataManager.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		20A5B88E20AE246600EC2A4D /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */,
+				205A7CC2203CCEBD00A2E28A /* Main.storyboard */,
+				20A5B88420AE225300EC2A4D /* Wallet.storyboard */,
+				20A5B88620AE232E00EC2A4D /* Orders.storyboard */,
+				20A5B88820AE239100EC2A4D /* Alerts.storyboard */,
+				20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */,
+				20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		20A5B88F20AE247B00EC2A4D /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */,
+				202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */,
+				207EAE09204FE47400FDA3B7 /* Session.swift */,
+				3671257CD4262EA9B280ABE0 /* Constants.swift */,
+				206BD9512074297400ADC91C /* MainTabBarController.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 		20B418C6209D019A00B1C636 /* CustomUIControls */ = {
@@ -1707,6 +1738,8 @@
 				2013E58C2071464700EFACB7 /* Exo2-MediumItalic.ttf in Resources */,
 				2013E58E2071464700EFACB7 /* Exo2-SemiBold.ttf in Resources */,
 				2013E5862071464700EFACB7 /* Exo2-ExtraLight.ttf in Resources */,
+				20A5B88720AE232E00EC2A4D /* Orders.storyboard in Resources */,
+				20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */,
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
 				2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */,
 				2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */,
@@ -1716,6 +1749,9 @@
 				2013E5892071464700EFACB7 /* Exo2-Light.ttf in Resources */,
 				2013E58A2071464700EFACB7 /* Exo2-LightItalic.ttf in Resources */,
 				2013E5882071464700EFACB7 /* Exo2-Italic.ttf in Resources */,
+				20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */,
+				20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */,
+				20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */,
 				2013E5842071464700EFACB7 /* Exo2-ExtraBold.ttf in Resources */,
 				2013E5902071464700EFACB7 /* Exo2-Thin.ttf in Resources */,
 				205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */,
