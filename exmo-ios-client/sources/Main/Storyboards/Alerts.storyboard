@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -19,49 +19,40 @@
         <array key="Exo2-Regular.ttf">
             <string>Exo2-Regular</string>
         </array>
-        <array key="Exo2-SemiBold.ttf">
-            <string>Exo2-SemiBold</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Alerts View Controller-->
         <scene sceneID="Zvf-rV-1zd">
             <objects>
-                <customObject id="mgl-OM-O3a" customClass="AlertsModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
-                    <connections>
-                        <outlet property="alertsViewController" destination="qep-3j-w7T" id="mbo-gU-Url"/>
-                    </connections>
-                </customObject>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ky5-rb-c3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="qep-3j-w7T" customClass="AlertsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yVX-vz-3im">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWalletGlow" translatesAutoresizingMaskIntoConstraints="NO" id="JBG-V1-rnX">
-                                <rect key="frame" x="80" y="10" width="215" height="52.5"/>
+                                <rect key="frame" x="80" y="10" width="160" height="52.5"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52.5" id="HFh-fq-VDN"/>
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" canCancelContentTouches="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="85" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="30" translatesAutoresizingMaskIntoConstraints="NO" id="Vbc-cr-ZSf">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" red="0.1180000007" green="0.10999999940000001" blue="0.1650000066" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AlertTableViewCell" rowHeight="85" id="gbO-j6-l9C" userLabel="AlertTableViewCell" customClass="AlertTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="85"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gbO-j6-l9C" id="6FH-6K-bgY">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gbO-j6-l9C" id="6FH-6K-bgY">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2jk-RE-3gp">
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jk-RE-3gp">
                                                     <rect key="frame" x="25" y="0.0" width="280" height="85"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="BUY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fD7-oQ-wRH" userLabel="operationValueLabel">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BUY" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fD7-oQ-wRH" userLabel="operationValueLabel">
                                                             <rect key="frame" x="0.0" y="40" width="55" height="25"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="25" id="60n-Ga-bC7"/>
@@ -71,10 +62,10 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="O7b-Xg-pbS">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="O7b-Xg-pbS">
                                                             <rect key="frame" x="90" y="0.0" width="215" height="85"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icLine" translatesAutoresizingMaskIntoConstraints="NO" id="Ryp-mj-PKK">
+                                                                <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icLine" translatesAutoresizingMaskIntoConstraints="NO" id="Ryp-mj-PKK">
                                                                     <rect key="frame" x="0.0" y="0.0" width="10" height="85"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="10" id="Jb0-Fb-pFC"/>
@@ -82,16 +73,16 @@
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="80" id="nYM-9b-RqS"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-jf-uoe">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-jf-uoe">
                                                                     <rect key="frame" x="30" y="0.0" width="185" height="85"/>
                                                                     <subviews>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9xm-bu-gUt">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="9xm-bu-gUt">
                                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="85"/>
                                                                             <subviews>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3hY-v7-Dvo">
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3hY-v7-Dvo">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="45"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="currency:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntl-yF-1Lx" userLabel="currencyTypeLabel">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currency:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ntl-yF-1Lx" userLabel="currencyTypeLabel">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="80" id="evE-lD-mP5"/>
@@ -101,7 +92,7 @@
                                                                                             <color key="textColor" name="exmoSteel"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="ZEC/USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppx-rw-fXe" userLabel="currencyPairLabel">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ZEC/USD" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ppx-rw-fXe" userLabel="currencyPairLabel">
                                                                                             <rect key="frame" x="0.0" y="20" width="80" height="25"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="80" id="2GJ-3P-xrw"/>
@@ -112,10 +103,10 @@
                                                                                         </label>
                                                                                     </subviews>
                                                                                 </stackView>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="el5-vW-VUd">
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="el5-vW-VUd">
                                                                                     <rect key="frame" x="0.0" y="55" width="80" height="30"/>
                                                                                     <subviews>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="bet:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPc-yb-3fT" userLabel="amountNameLabel">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="bet:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPc-yb-3fT" userLabel="amountNameLabel">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="80" height="15"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="80" id="JIz-Tx-1hd"/>
@@ -125,7 +116,7 @@
                                                                                             <color key="textColor" name="exmoSteel"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="207.743263" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKN-2J-MVW" userLabel="betValueLabel">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="207.743263" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKN-2J-MVW" userLabel="betValueLabel">
                                                                                             <rect key="frame" x="0.0" y="15" width="80" height="15"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="15" id="9pF-DX-Rzb"/>
@@ -139,20 +130,20 @@
                                                                                 </stackView>
                                                                             </subviews>
                                                                         </stackView>
-                                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="meR-Dk-38m">
+                                                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="meR-Dk-38m">
                                                                             <rect key="frame" x="105" y="0.0" width="80" height="85"/>
                                                                             <subviews>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-H9-NJV">
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xh8-H9-NJV">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="80" height="35"/>
                                                                                     <subviews>
-                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icCurveArrowUp" translatesAutoresizingMaskIntoConstraints="NO" id="dMl-sx-9PT">
+                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCurveArrowUp" translatesAutoresizingMaskIntoConstraints="NO" id="dMl-sx-9PT">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="1J4-zk-6Wy"/>
                                                                                                 <constraint firstAttribute="width" constant="20" id="8Jk-xK-Qph"/>
                                                                                             </constraints>
                                                                                         </imageView>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="13250" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8I-En-bgu" userLabel="topValueLabel">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13250" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p8I-En-bgu" userLabel="topValueLabel">
                                                                                             <rect key="frame" x="0.0" y="20" width="80" height="15"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="80" id="ax2-Cx-keQ"/>
@@ -163,17 +154,17 @@
                                                                                         </label>
                                                                                     </subviews>
                                                                                 </stackView>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="trF-KS-SYV">
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="trF-KS-SYV">
                                                                                     <rect key="frame" x="0.0" y="50" width="80" height="35"/>
                                                                                     <subviews>
-                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="icCurveArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="Afd-4g-etN">
+                                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCurveArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="Afd-4g-etN">
                                                                                             <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="0hw-nX-Kz5"/>
                                                                                                 <constraint firstAttribute="width" constant="20" id="5j2-zE-tis"/>
                                                                                             </constraints>
                                                                                         </imageView>
-                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="11250" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49k-r3-Oje" userLabel="bottomValueLabel">
+                                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11250" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="49k-r3-Oje" userLabel="bottomValueLabel">
                                                                                             <rect key="frame" x="0.0" y="20" width="60" height="15"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="15" id="1KJ-DH-9zl"/>
@@ -191,7 +182,7 @@
                                                                 </stackView>
                                                             </subviews>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="28.01.2018 06:47" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M04-RT-05h" userLabel="time">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="28.01.2018 06:47" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M04-RT-05h" userLabel="time">
                                                             <rect key="frame" x="0.0" y="0.0" width="70" height="35"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="35" id="U05-fO-l4j"/>
@@ -252,7 +243,7 @@
                     <navigationItem key="navigationItem" title="Alerts" id="oZR-lc-mv7">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="wzC-Nb-cgy">
                             <connections>
-                                <segue destination="kOJ-jk-4et" kind="presentation" id="64r-ff-tcP"/>
+                                <segue destination="529-D4-5x1" kind="presentation" id="AhS-Nj-hC7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -260,21 +251,27 @@
                         <outlet property="tableView" destination="Vbc-cr-ZSf" id="HVL-hr-N00"/>
                     </connections>
                 </viewController>
+                <customObject id="mgl-OM-O3a" customClass="AlertsModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="alertsViewController" destination="qep-3j-w7T" id="mbo-gU-Url"/>
+                    </connections>
+                </customObject>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ky5-rb-c3R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="105" y="1199"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZHu-N0-OpS">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ujV-QA-PqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="AlertsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="ZLH-Kh-0oo" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icTabbarAlerts" selectedImage="icTabbarAlertsSelected" id="Mv2-x7-rPe"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" alpha="0.80000001192092896" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="5en-xT-WDU">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="exmoDark"/>
                         <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
                         <textAttributes key="largeTitleTextAttributes">
@@ -286,301 +283,68 @@
                         <segue destination="qep-3j-w7T" kind="relationship" relationship="rootViewController" id="ddk-GK-npX"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ujV-QA-PqC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-724" y="1199"/>
         </scene>
         <!--Createalert View Controller-->
-        <scene sceneID="zhP-di-zdO">
+        <scene sceneID="aGR-e4-cuk">
             <objects>
-                <customObject id="qXk-33-sbr" customClass="CreateAlertModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                <tableViewController id="yQh-U2-wyJ" customClass="CreateAlertViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="static" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="900-5x-ajQ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="586"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection id="PE7-vn-i1i">
+                                <cells/>
+                            </tableViewSection>
+                        </sections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Alert" id="fl8-M9-jRY">
+                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="pTS-ay-NjM">
+                            <color key="tintColor" name="exmoOrangePink"/>
+                            <connections>
+                                <action selector="handleTouchOnCancelBtn:" destination="yQh-U2-wyJ" id="ZDG-wF-Nlb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <size key="freeformSize" width="320" height="650"/>
                     <connections>
-                        <outlet property="createalertViewController" destination="kOJ-jk-4et" id="OaL-xd-afR"/>
+                        <outlet property="cancelButton" destination="pTS-ay-NjM" id="BYs-rZ-8fc"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mgz-hK-ybU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="kv2-eF-fGF" customClass="CreateAlertModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="createalertViewController" destination="yQh-U2-wyJ" id="2Vh-W6-7PT"/>
                     </connections>
                 </customObject>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="OVj-Jd-TLH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController title="Create" id="kOJ-jk-4et" customClass="CreateAlertViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="vKr-6q-OOZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="716"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4us-bv-6sq">
-                                <rect key="frame" x="0.0" y="65" width="320" height="651"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Psb-i6-WDo" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="651"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="651" id="IN6-2V-01F"/>
-                                        </constraints>
-                                    </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="Wvj-mj-flM">
-                                        <rect key="frame" x="20" y="30" width="280" height="602"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="n1J-x8-pSj">
-                                                <rect key="frame" x="0.0" y="0.0" width="280" height="527"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mz3-PR-4hS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="280" height="76"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rdP-ly-cXk" customClass="UITouchableViewWithIndicator" customModule="exmo_ios_client" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="76"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Currency pair"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="BTC/USD"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="9tt-5W-1UH">
-                                                        <rect key="frame" x="0.0" y="91" width="280" height="75"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Market price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vB8-mz-dk6" userLabel="labelAmount">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="Oa1-2P-Vo3"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 USD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m1a-d2-fZ2" userLabel="textFieldAmount">
-                                                                <rect key="frame" x="0.0" y="37" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="Rdd-KO-nWj"/>
-                                                                    <constraint firstAttribute="height" constant="25" id="jqj-0g-PIx"/>
-                                                                </constraints>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </textField>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WKn-cd-ZkO" userLabel="grayLine">
-                                                                <rect key="frame" x="0.0" y="74" width="280" height="1"/>
-                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="5ux-Ty-adl"/>
-                                                                    <constraint firstAttribute="height" constant="1" id="BLI-D0-RKV"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="mcL-Tc-7TT">
-                                                        <rect key="frame" x="0.0" y="181" width="280" height="75"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Upper bound" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Z6-dj-6RQ" userLabel="labelAmount">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="6ev-Ze-VIc"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 USD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J4a-HZ-v0j" userLabel="textFieldAmount">
-                                                                <rect key="frame" x="0.0" y="37" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="ihR-M4-May"/>
-                                                                    <constraint firstAttribute="height" constant="25" id="xia-OI-F6j"/>
-                                                                </constraints>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </textField>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-Ew-PNz" userLabel="grayLine">
-                                                                <rect key="frame" x="0.0" y="74" width="280" height="1"/>
-                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="WLG-Xg-RgV"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="iBF-bz-wg1"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="SED-7l-i4i">
-                                                        <rect key="frame" x="0.0" y="271" width="280" height="75"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Bottom bound" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swh-iD-SZa" userLabel="labelAmount">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="GTo-tc-2hT"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 USD" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rQZ-SZ-8CZ" userLabel="textFieldAmount">
-                                                                <rect key="frame" x="0.0" y="37" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="IM1-Pf-se1"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="qmU-NA-chy"/>
-                                                                </constraints>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </textField>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5SF-FB-038" userLabel="grayLine">
-                                                                <rect key="frame" x="0.0" y="74" width="280" height="1"/>
-                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="1" id="5CB-cM-YEz"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="rTx-oj-kJD"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="73q-Fg-hwE">
-                                                        <rect key="frame" x="0.0" y="361" width="280" height="75"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Commision" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kyZ-dk-ZFT" userLabel="labelAmount">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="25" id="N4m-Yx-qBr"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0 BTC" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fw1-qU-40V" userLabel="textFieldAmount">
-                                                                <rect key="frame" x="0.0" y="37" width="280" height="25"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="I5X-VK-rHv"/>
-                                                                    <constraint firstAttribute="height" constant="25" id="S9N-kS-ybb"/>
-                                                                </constraints>
-                                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
-                                                                <textInputTraits key="textInputTraits"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                                        <color key="value" red="1" green="1" blue="1" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </textField>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMr-B9-RRw" userLabel="grayLine">
-                                                                <rect key="frame" x="0.0" y="74" width="280" height="1"/>
-                                                                <color key="backgroundColor" red="0.20784313730000001" green="0.20000000000000001" blue="0.26274509800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="PEJ-Jd-ohx"/>
-                                                                    <constraint firstAttribute="height" constant="1" id="jTT-K8-77a"/>
-                                                                </constraints>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="oNE-Jp-Q6q">
-                                                        <rect key="frame" x="0.0" y="451" width="280" height="76"/>
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZwY-Da-yD5" customClass="UITouchableViewWithIndicator" customModule="exmo_ios_client" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="280" height="76"/>
-                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="headerText" value="Sound"/>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="contentText" value="Melody1"/>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D5H-Cb-RRh">
-                                                <rect key="frame" x="0.0" y="557" width="280" height="45"/>
-                                                <fontDescription key="fontDescription" name="Exo2-Bold" family="Exo 2" pointSize="14"/>
-                                                <state key="normal" title="Add" backgroundImage="icWidthButtonBlue"/>
-                                                <connections>
-                                                    <action selector="handleTouchAddAlertBtn:" destination="kOJ-jk-4et" eventType="touchUpInside" id="GuK-o3-C30"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Wvj-mj-flM" secondAttribute="trailing" constant="20" id="7Tu-St-qvw"/>
-                                    <constraint firstAttribute="trailing" secondItem="Psb-i6-WDo" secondAttribute="trailing" id="Eob-Kr-pV5"/>
-                                    <constraint firstItem="Psb-i6-WDo" firstAttribute="width" secondItem="4us-bv-6sq" secondAttribute="width" id="by2-Bn-3Zo"/>
-                                    <constraint firstItem="Psb-i6-WDo" firstAttribute="top" secondItem="4us-bv-6sq" secondAttribute="top" id="eHJ-jT-drJ"/>
-                                    <constraint firstItem="Wvj-mj-flM" firstAttribute="top" secondItem="4us-bv-6sq" secondAttribute="top" constant="30" id="gKW-OX-cJ0"/>
-                                    <constraint firstItem="Psb-i6-WDo" firstAttribute="leading" secondItem="4us-bv-6sq" secondAttribute="leading" id="nqg-0h-sWt"/>
-                                    <constraint firstAttribute="bottom" secondItem="Psb-i6-WDo" secondAttribute="bottom" id="rEE-tl-LyC"/>
-                                    <constraint firstItem="Wvj-mj-flM" firstAttribute="leading" secondItem="4us-bv-6sq" secondAttribute="leading" constant="20" id="rep-uD-kwd"/>
-                                </constraints>
-                            </scrollView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3wr-t9-pB4" userLabel="top bar view">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alert" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uKV-ZJ-lst">
-                                        <rect key="frame" x="100" y="40" width="120" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="K2F-ra-soW"/>
-                                            <constraint firstAttribute="width" constant="120" id="LWO-To-8AV"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9tu-wj-JhR">
-                                        <rect key="frame" x="220" y="40" width="80" height="25"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="Edp-R1-LcG"/>
-                                            <constraint firstAttribute="height" constant="25" id="aOn-ZB-Q8g"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="je7-Ye-JTS"/>
-                                            <constraint firstAttribute="width" constant="80" id="jwX-V8-orM"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" red="1" green="0.41176470590000003" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="handleTouchOnCancelBtn:" destination="kOJ-jk-4et" eventType="touchUpInside" id="6Pr-pn-MJE"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="uKV-ZJ-lst" secondAttribute="bottom" id="ZUf-Sp-iby"/>
-                                    <constraint firstAttribute="trailing" secondItem="9tu-wj-JhR" secondAttribute="trailing" constant="20" id="baT-Lr-31x"/>
-                                    <constraint firstAttribute="bottom" secondItem="9tu-wj-JhR" secondAttribute="bottom" id="bsc-LK-VcZ"/>
-                                    <constraint firstAttribute="height" constant="65" id="hil-6s-EDm"/>
-                                    <constraint firstItem="uKV-ZJ-lst" firstAttribute="centerX" secondItem="3wr-t9-pB4" secondAttribute="centerX" id="r7P-3m-3yg"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="3wr-t9-pB4" firstAttribute="top" secondItem="vKr-6q-OOZ" secondAttribute="top" id="BRr-6K-IgQ"/>
-                            <constraint firstItem="4us-bv-6sq" firstAttribute="leading" secondItem="XQv-hf-Onn" secondAttribute="leading" id="HP5-Ot-bZk"/>
-                            <constraint firstItem="4us-bv-6sq" firstAttribute="bottom" secondItem="XQv-hf-Onn" secondAttribute="bottom" id="MBg-Y0-bGj"/>
-                            <constraint firstItem="3wr-t9-pB4" firstAttribute="trailing" secondItem="XQv-hf-Onn" secondAttribute="trailing" id="RjB-2R-Hh8"/>
-                            <constraint firstItem="4us-bv-6sq" firstAttribute="top" secondItem="3wr-t9-pB4" secondAttribute="bottom" id="W7N-4n-95v"/>
-                            <constraint firstItem="4us-bv-6sq" firstAttribute="width" secondItem="vKr-6q-OOZ" secondAttribute="width" id="WKy-Ia-V9n"/>
-                            <constraint firstItem="4us-bv-6sq" firstAttribute="trailing" secondItem="XQv-hf-Onn" secondAttribute="trailing" id="o5D-br-TvS"/>
-                            <constraint firstItem="3wr-t9-pB4" firstAttribute="leading" secondItem="XQv-hf-Onn" secondAttribute="leading" id="zLT-hm-bAE"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="XQv-hf-Onn"/>
-                    </view>
-                    <size key="freeformSize" width="320" height="716"/>
-                    <connections>
-                        <outlet property="bottomBoundTextField" destination="rQZ-SZ-8CZ" id="HlQ-hG-AHi"/>
-                        <outlet property="commisionTextField" destination="fw1-qU-40V" id="S79-EV-zAh"/>
-                        <outlet property="currencyPairViewController" destination="rdP-ly-cXk" id="9Xp-Vn-Mye"/>
-                        <outlet property="marketPriceTextField" destination="m1a-d2-fZ2" id="DxZ-R7-Vj7"/>
-                        <outlet property="soundViewController" destination="ZwY-Da-yD5" id="U3t-w9-kl3"/>
-                        <outlet property="upperBoundTextField" destination="J4a-HZ-v0j" id="myG-sh-D5M"/>
-                    </connections>
-                </viewController>
             </objects>
-            <point key="canvasLocation" x="1052" y="1277"/>
+            <point key="canvasLocation" x="1836" y="1199"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NTh-Tc-EGh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="529-D4-5x1" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="UBI-h5-nRO">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="yQh-U2-wyJ" kind="relationship" relationship="rootViewController" id="nb4-cw-haj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dfW-hX-8hQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="958" y="1199"/>
         </scene>
     </scenes>
     <resources>
@@ -590,9 +354,11 @@
         <image name="icTabbarAlerts" width="32" height="32"/>
         <image name="icTabbarAlertsSelected" width="32" height="32"/>
         <image name="icWalletGlow" width="375" height="290"/>
-        <image name="icWidthButtonBlue" width="315" height="45"/>
         <namedColor name="exmoDark">
             <color red="0.1180000007" green="0.10999999940000001" blue="0.1650000066" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="exmoOrangePink">
+            <color red="1" green="0.41200000047683716" blue="0.37599998712539673" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="exmoSteel">
             <color red="0.4900000095" green="0.50199997429999998" blue="0.56900000569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

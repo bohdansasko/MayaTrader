@@ -8,19 +8,15 @@
 
 import UIKit
 
-class CreateAlertViewController: UIViewController, CreateAlertViewInput {
-
-    var output: CreateAlertViewOutput!
+class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
 
     //
     // @MARK: outlets
     //
-    @IBOutlet weak var currencyPairViewController: UITouchableViewWithIndicator!
-    @IBOutlet weak var marketPriceTextField: UITextField!
-    @IBOutlet weak var upperBoundTextField: UITextField!
-    @IBOutlet weak var bottomBoundTextField: UITextField!
-    @IBOutlet weak var commisionTextField: UITextField!
-    @IBOutlet weak var soundViewController: UITouchableViewWithIndicator!
+    var output: CreateAlertViewOutput!
+    var displayManager: CreateAlertDisplayManager!
+    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -33,12 +29,27 @@ class CreateAlertViewController: UIViewController, CreateAlertViewInput {
 
     // MARK: CreateAlertViewInput
     func setupInitialState() {
-        currencyPairViewController.setCallbackOnTouch(callback: {
-            self.output.handleTouchOnCurrencyPairView()
-        })
-        soundViewController.setCallbackOnTouch(callback: {
-            self.output.handleTouchOnSoundView()
-        })
+        displayManager.setTableView(tableView: tableView)
+        
+        cancelButton.setTitleTextAttributes([
+                NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
+                NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+            ],
+            for: .normal
+        )
+        cancelButton.setTitleTextAttributes([
+            NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
+            NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+            ],
+            for: .highlighted
+        )
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
     
     //
@@ -46,20 +57,6 @@ class CreateAlertViewController: UIViewController, CreateAlertViewInput {
     //
     @IBAction func handleTouchOnCancelBtn(_ sender: Any) {
         output.handleTouchOnCancelBtn()
-    }
-    
-    @IBAction func handleTouchAddAlertBtn(_ sender: Any) {
-        let currencyPairName = currencyPairViewController.contentText
-        let currencyPairPriceAtCreateMoment = Double(marketPriceTextField.text!)
-        let topBoundary = Double(upperBoundTextField.text!)
-        let bottomBoundary = Double(bottomBoundTextField.text!)
-        
-        let alertModel = AlertItem(
-                currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
-                note: "", topBoundary: topBoundary, bottomBoundary: bottomBoundary,
-                status: .Active, dateCreated: Date()
-        )
-        output.handleTouchAddAlertBtn(alertModel: alertModel)
     }
     
 }

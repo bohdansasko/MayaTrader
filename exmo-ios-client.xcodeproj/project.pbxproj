@@ -21,6 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		0048F4A46E6F4213C41F0154 /* SearchViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAE4F1C93385788B1D0E31B5 /* SearchViewOutput.swift */; };
 		01236729B7F200EE9462975B /* AlertsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */; };
 		01734E1F7D82963B9E334BA8 /* WalletSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158DF690BEAC86B7282D00 /* WalletSettingsInteractor.swift */; };
 		038EE6FEA6EA37D5F343A6F3 /* AlertsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25B2AFC0C72670C6BE2684D /* AlertsModuleInput.swift */; };
@@ -42,6 +43,14 @@
 		2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5572048BEC100BD205F /* CoreDataManager.swift */; };
 		2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5662048C43300BD205F /* UserCoreDataEngine.swift */; };
 		2003B5692048C78600BD205F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5682048C78600BD205F /* DataService.swift */; };
+		2010154420B02B6B00324F22 /* AlertTableViewCellWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */; };
+		2010154520B02B6B00324F22 /* AlertTableViewCellWithArrow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010154320B02B6B00324F22 /* AlertTableViewCellWithArrow.xib */; };
+		2010154820B02B7800324F22 /* AddAlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154620B02B7800324F22 /* AddAlertTableViewCell.swift */; };
+		2010154920B02B7800324F22 /* AddAlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010154720B02B7800324F22 /* AddAlertTableViewCell.xib */; };
+		2010154D20B04FD600324F22 /* AlertTableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154B20B04FD600324F22 /* AlertTableViewCellButton.swift */; };
+		2010154E20B04FD600324F22 /* AlertTableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010154C20B04FD600324F22 /* AlertTableViewCellButton.xib */; };
+		2010155020B0510A00324F22 /* CreateAlertDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154F20B0510A00324F22 /* CreateAlertDisplayManager.swift */; };
+		2010155220B05F1100324F22 /* AlertTableViewCellWithTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010155120B05F1100324F22 /* AlertTableViewCellWithTextData.swift */; };
 		2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56E2071464600EFACB7 /* Exo2-Black.ttf */; };
 		2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */; };
 		2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E5702071464600EFACB7 /* Exo2-Bold.ttf */; };
@@ -120,6 +129,7 @@
 		20E80094207A283B00E1AC6C /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* BalanceView.swift */; };
 		20F08D0620A8E20100B782FF /* UITouchableViewWithIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F08D0520A8E20100B782FF /* UITouchableViewWithIndicator.xib */; };
 		20F08D0820A8E21300B782FF /* UITouchableViewWithIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F08D0720A8E21300B782FF /* UITouchableViewWithIndicator.swift */; };
+		22D049A785068CAA10D7CC63 /* SearchInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C9091FB24BA06B2B83A876 /* SearchInteractorInput.swift */; };
 		23027C32759874645F1BFC61 /* MoreRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MoreRouter.swift */; };
 		287A2F7CA89391C5E64E1BCC /* WatchlistCardsMenuInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E239EE7939E22A440069D934 /* WatchlistCardsMenuInteractorInput.swift */; };
 		293B26A5FBF178455E2D81BD /* WatchlistCardsMenuRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F7AFE63746C9E6E6273C53C /* WatchlistCardsMenuRouterInput.swift */; };
@@ -129,8 +139,10 @@
 		2CCE0A760898715BD2600A3B /* WalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD10044E6852271EF22E838 /* WalletConfigurator.swift */; };
 		2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */; };
 		2DCAAC583A7618B6F7024C58 /* MoreInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507EC9D731B380187FF88E /* MoreInteractor.swift */; };
+		2E09A36C54C466D130882D01 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7306C38688DA5FAA2953328F /* SearchViewController.swift */; };
 		2E1E935AFD91F79C6A3B6D33 /* WatchlistCardsMenuViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF2765444D877C4F7FEA45C /* WatchlistCardsMenuViewOutput.swift */; };
 		2E2904E690113123EAF56A17 /* CreateOrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9011E1AEFC03C0EA27CADA4 /* CreateOrderPresenter.swift */; };
+		3030105DB487D3942070273E /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D88C2780A9B9F8785A262E0 /* SearchConfigurator.swift */; };
 		30A7FE00D5A5EACF0F070575 /* WatchlistFlatPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B359AD4B6F9C5AC844B4A887 /* WatchlistFlatPresenter.swift */; };
 		3144B55C081BD7493330F7A7 /* WatchlistFlatModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC89F0A7123BC0FBC297810A /* WatchlistFlatModuleInput.swift */; };
 		320E190D1B73245BC78149C3 /* WalletInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C52403B4446193279E96607F /* WalletInteractorInput.swift */; };
@@ -167,6 +179,7 @@
 		4C8399DB000EE08F2E8E87E6 /* CreateAlertRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A185E9A94E795A4CEBE4F2BC /* CreateAlertRouterInput.swift */; };
 		4C87D5FF03270990B287DA3F /* CreateOrderViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F8AD7A7FC80BFC1659F6CD /* CreateOrderViewOutput.swift */; };
 		4F89858FE7FD02C365D529B5 /* AlertsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E9EA666249FCA5A274BB9 /* AlertsRouterInput.swift */; };
+		503B0701E251862A6399C6B7 /* SearchModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ACAEE629195FE3196397D3 /* SearchModuleInput.swift */; };
 		50B079E206282DC07329BBA4 /* WatchlistManagerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002B1F663F33010C87A61B28 /* WatchlistManagerModuleInput.swift */; };
 		62592E5D896769F5F2739F44 /* WalletSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FFD1AD98656557A1D6B5C2B /* WalletSettingsPresenter.swift */; };
 		6476491CD5C14319332F295E /* WalletSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2FC324AD38DA30872BE9C3 /* WalletSettingsViewController.swift */; };
@@ -182,6 +195,7 @@
 		71F1CAF456A68AAE7886A679 /* CreateOrderModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E461BDC390A6DC76CC68B /* CreateOrderModuleInput.swift */; };
 		73B6DB13C940F5C5A8ADC3FE /* LoginViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F2CB0625621FE1D77883A /* LoginViewOutput.swift */; };
 		7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90377AE09AA280BEDD4B6C /* CreateOrderInitializer.swift */; };
+		7BAAE513A8FE1CE1B5027B79 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569622CF0E3169C2B1E7C80A /* SearchPresenter.swift */; };
 		7C80BE19C44E3D1F07DE5B2D /* MorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103F2FB79C245ED357C3995D /* MorePresenter.swift */; };
 		7CF8CEA4E40E36A58BF5D630 /* WatchlistManagerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876C748AB60964580AC21EA2 /* WatchlistManagerViewInput.swift */; };
 		7EC9484FD743CFD4022B349F /* MoreConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B1E01604B2B5A8C4A860F6 /* MoreConfigurator.swift */; };
@@ -189,6 +203,7 @@
 		80E848E1BE684F99B073DE37 /* WalletSettingsInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ED9F29FCCCC235ADE6F61E /* WalletSettingsInteractorInput.swift */; };
 		811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E8254A5B3DEC5E5D94D4DB /* CreateOrderRouterInput.swift */; };
 		820D8F305E45D621689112C1 /* OrdersManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB62089BA8D5D64E222050 /* OrdersManagerPresenter.swift */; };
+		843D9AD4EA351804FCEEB81C /* SearchInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBACE933ED7A76B88D0D5943 /* SearchInitializer.swift */; };
 		88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */; };
 		8B2D71C4450F33B9D9AAA0B9 /* CreateAlertInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437A7929205B0B131B0F3EC /* CreateAlertInteractorInput.swift */; };
 		8E09D1469BC714D8CEE79956 /* CreateAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */; };
@@ -200,9 +215,12 @@
 		920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */; };
 		92437E8E2F40D002B32DD853 /* MoreViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFD63623E5A23D5AAC4E67 /* MoreViewOutput.swift */; };
 		940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */; };
+		956FB64F28C19CED8EF6B8FB /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4BD4FBD07C3AB28D3626B /* SearchRouter.swift */; };
+		97BADE0EFC30C328B5C4F97E /* SearchViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D8CCF6A7D38EC449EA944D /* SearchViewInput.swift */; };
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
 		9B83E5D76255DC1CF427CA5E /* WalletModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E8FFEFE9CB50EA36DAAAD /* WalletModuleInput.swift */; };
 		9BFE8D54C0C155EE1340889F /* Pods_exmo_ios_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CC61B17F960DAE93B2F1FD /* Pods_exmo_ios_client.framework */; };
+		9CA0E06ACB9545096546FD20 /* SearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FD58C9071D7943F653E72B /* SearchInteractor.swift */; };
 		A4126130EC56F9BBA0F117E1 /* WatchlistFlatInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17A3B060AAD574E7A1A8AEE /* WatchlistFlatInteractorOutput.swift */; };
 		A6421BE76AB236312D8A7FB3 /* WalletInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75B7DD1E6FC187CA792B51 /* WalletInteractor.swift */; };
 		A6D73ECBEC438E72CAAC9063 /* WatchlistCardsMenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DD0E6A15D4EC18DF2DF82B /* WatchlistCardsMenuRouter.swift */; };
@@ -220,6 +238,7 @@
 		B8E5DEA2A37D23F04B8EE462 /* WatchlistManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF1C7E205637403B8BDD8FE9 /* WatchlistManagerPresenter.swift */; };
 		BC73413875E7DA458E9010FA /* MoreInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D8F089146D6698EAB70643 /* MoreInitializer.swift */; };
 		C1C3186D7CCBCC472432FB00 /* WatchlistFlatInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012605837522297444E8A818 /* WatchlistFlatInteractor.swift */; };
+		C2D3C9C697CD3C2C264B8BA8 /* SearchInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C457C8F2AA8D4386E196F24 /* SearchInteractorOutput.swift */; };
 		C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */; };
 		C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */; };
 		C4EB1B12B5E7B5837BFC5C16 /* AlertsInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47E070653804BF1B34694BD /* AlertsInteractorOutput.swift */; };
@@ -247,6 +266,7 @@
 		EFD3AF15C7B5604F80DB6B9B /* WatchlistFlatInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B19FA387F9270FA63ABA11 /* WatchlistFlatInitializer.swift */; };
 		EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287C505BB92AB6197863E9E /* AlertsViewController.swift */; };
 		F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5CC4983136487CA151E5 /* LoginInteractor.swift */; };
+		F3948648713AF03642466F2B /* SearchRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42E4C2330BA83A448FD9598F /* SearchRouterInput.swift */; };
 		F403E921F12C165CC3DA3F52 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F609337FB595DB76DBBE6C /* WalletPresenter.swift */; };
 		F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */; };
 		F5BB78F915E45A31A1040BAF /* AlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC112492B08159F273061757 /* AlertsInteractor.swift */; };
@@ -294,6 +314,7 @@
 		103F2FB79C245ED357C3995D /* MorePresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MorePresenter.swift; sourceTree = "<group>"; };
 		15CC61B17F960DAE93B2F1FD /* Pods_exmo_ios_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exmo_ios_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E526FB14C5295A017890D5 /* CreateAlertInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInitializer.swift; sourceTree = "<group>"; };
+		1C457C8F2AA8D4386E196F24 /* SearchInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchInteractorOutput.swift; sourceTree = "<group>"; };
 		1CBCD760F14D8E43B2F0F2E8 /* AlertsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsViewOutput.swift; sourceTree = "<group>"; };
 		1D90377AE09AA280BEDD4B6C /* CreateOrderInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInitializer.swift; sourceTree = "<group>"; };
 		20001D65203B8D1200B6966F /* exmo-ios-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exmo-ios-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -304,6 +325,14 @@
 		2003B5572048BEC100BD205F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2003B5662048C43300BD205F /* UserCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoreDataEngine.swift; sourceTree = "<group>"; };
 		2003B5682048C78600BD205F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellWithArrow.swift; sourceTree = "<group>"; };
+		2010154320B02B6B00324F22 /* AlertTableViewCellWithArrow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCellWithArrow.xib; sourceTree = "<group>"; };
+		2010154620B02B7800324F22 /* AddAlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertTableViewCell.swift; sourceTree = "<group>"; };
+		2010154720B02B7800324F22 /* AddAlertTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAlertTableViewCell.xib; sourceTree = "<group>"; };
+		2010154B20B04FD600324F22 /* AlertTableViewCellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellButton.swift; sourceTree = "<group>"; };
+		2010154C20B04FD600324F22 /* AlertTableViewCellButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCellButton.xib; sourceTree = "<group>"; };
+		2010154F20B0510A00324F22 /* CreateAlertDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertDisplayManager.swift; sourceTree = "<group>"; };
+		2010155120B05F1100324F22 /* AlertTableViewCellWithTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellWithTextData.swift; sourceTree = "<group>"; };
 		2013E56E2071464600EFACB7 /* Exo2-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Black.ttf"; sourceTree = "<group>"; };
 		2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-BlackItalic.ttf"; sourceTree = "<group>"; };
 		2013E5702071464600EFACB7 /* Exo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Bold.ttf"; sourceTree = "<group>"; };
@@ -407,6 +436,7 @@
 		36712DDE57C5587FC6B6609F /* ErrorModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModels.swift; sourceTree = "<group>"; };
 		36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDisplayManager.swift; sourceTree = "<group>"; };
 		36712F8856A6004AC2CC405B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		36D8CCF6A7D38EC449EA944D /* SearchViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchViewInput.swift; sourceTree = "<group>"; };
 		39CAFB784CC500FAEB45F93C /* LoginViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewInput.swift; sourceTree = "<group>"; };
 		3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewOutput.swift; sourceTree = "<group>"; };
@@ -416,6 +446,7 @@
 		3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInitializer.swift; sourceTree = "<group>"; };
 		40C4BA797069940DD7E962FF /* CreateAlertViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertViewOutput.swift; sourceTree = "<group>"; };
 		41BB629143D5FE810246B175 /* WatchlistManagerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistManagerRouter.swift; sourceTree = "<group>"; };
+		42E4C2330BA83A448FD9598F /* SearchRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchRouterInput.swift; sourceTree = "<group>"; };
 		451C3BC63709B451766F4376 /* OrdersManagerRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerRouterInput.swift; sourceTree = "<group>"; };
 		46735FD81E0F099E4BAF59FC /* AlertsInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsInitializer.swift; sourceTree = "<group>"; };
 		47961902D919297FE6270467 /* Pods-exmo-ios-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release.xcconfig"; sourceTree = "<group>"; };
@@ -423,8 +454,10 @@
 		4A0E55E738203B2414EF4A96 /* WatchlistFlatConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistFlatConfigurator.swift; sourceTree = "<group>"; };
 		4ADD978E0D15EED1BA175A53 /* AlertsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsRouter.swift; sourceTree = "<group>"; };
 		4AF2765444D877C4F7FEA45C /* WatchlistCardsMenuViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuViewOutput.swift; sourceTree = "<group>"; };
+		4D88C2780A9B9F8785A262E0 /* SearchConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		521CE011DCA467B8C1A663B3 /* OrdersManagerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerModuleInput.swift; sourceTree = "<group>"; };
 		5287C505BB92AB6197863E9E /* AlertsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
+		569622CF0E3169C2B1E7C80A /* SearchPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		5A9E8FFEFE9CB50EA36DAAAD /* WalletModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletModuleInput.swift; sourceTree = "<group>"; };
 		5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerPresenter.swift; sourceTree = "<group>"; };
 		5F5FA5559DE0F78E9D1164DD /* WalletSettingsViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletSettingsViewOutput.swift; sourceTree = "<group>"; };
@@ -442,6 +475,7 @@
 		71507EC9D731B380187FF88E /* MoreInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreInteractor.swift; sourceTree = "<group>"; };
 		71D8F089146D6698EAB70643 /* MoreInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreInitializer.swift; sourceTree = "<group>"; };
 		72AFD63623E5A23D5AAC4E67 /* MoreViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreViewOutput.swift; sourceTree = "<group>"; };
+		7306C38688DA5FAA2953328F /* SearchViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewInput.swift; sourceTree = "<group>"; };
 		77E435360E49F73ABF4C888C /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsConfigurator.swift; sourceTree = "<group>"; };
@@ -452,6 +486,7 @@
 		810E78A3091C97B1DBE4FA20 /* OrdersManagerViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerViewInput.swift; sourceTree = "<group>"; };
 		83F609337FB595DB76DBBE6C /* WalletPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
 		849E461BDC390A6DC76CC68B /* CreateOrderModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderModuleInput.swift; sourceTree = "<group>"; };
+		85C9091FB24BA06B2B83A876 /* SearchInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchInteractorInput.swift; sourceTree = "<group>"; };
 		876C748AB60964580AC21EA2 /* WatchlistManagerViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistManagerViewInput.swift; sourceTree = "<group>"; };
 		8F7AFE63746C9E6E6273C53C /* WatchlistCardsMenuRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuRouterInput.swift; sourceTree = "<group>"; };
 		91B19FA387F9270FA63ABA11 /* WatchlistFlatInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistFlatInitializer.swift; sourceTree = "<group>"; };
@@ -473,6 +508,7 @@
 		B359AD4B6F9C5AC844B4A887 /* WatchlistFlatPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistFlatPresenter.swift; sourceTree = "<group>"; };
 		B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouterInput.swift; sourceTree = "<group>"; };
 		B3D35167E18996F164F478C8 /* OrdersManagerInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerInteractorInput.swift; sourceTree = "<group>"; };
+		B3FD58C9071D7943F653E72B /* SearchInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
 		B47E070653804BF1B34694BD /* AlertsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsInteractorOutput.swift; sourceTree = "<group>"; };
 		B4B1E01604B2B5A8C4A860F6 /* MoreConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreConfigurator.swift; sourceTree = "<group>"; };
 		B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorInput.swift; sourceTree = "<group>"; };
@@ -490,6 +526,7 @@
 		C52403B4446193279E96607F /* WalletInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletInteractorInput.swift; sourceTree = "<group>"; };
 		C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
 		C9FD8E53273F656F5A94F776 /* MoreViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreViewInput.swift; sourceTree = "<group>"; };
+		CBACE933ED7A76B88D0D5943 /* SearchInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchInitializer.swift; sourceTree = "<group>"; };
 		CF3D865C40710AC9E5D921ED /* WalletViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletViewOutput.swift; sourceTree = "<group>"; };
 		D0DBDCD76FD9AC84E1C00E12 /* OrdersManagerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerRouter.swift; sourceTree = "<group>"; };
 		D1DE49357B4D20F8EA6EC5EF /* CreateAlertRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertRouter.swift; sourceTree = "<group>"; };
@@ -501,6 +538,7 @@
 		DAA187AD955A09698CDE3831 /* MoreRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreRouterInput.swift; sourceTree = "<group>"; };
 		DAA4ABA7F2C0B91E2E9CB5D0 /* WatchlistManagerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistManagerViewController.swift; sourceTree = "<group>"; };
 		DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
+		E0B4BD4FBD07C3AB28D3626B /* SearchRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		E0C0EF8250B7C9CE68995A3B /* WalletSettingsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletSettingsRouterInput.swift; sourceTree = "<group>"; };
 		E17A3B060AAD574E7A1A8AEE /* WatchlistFlatInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistFlatInteractorOutput.swift; sourceTree = "<group>"; };
 		E239EE7939E22A440069D934 /* WatchlistCardsMenuInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuInteractorInput.swift; sourceTree = "<group>"; };
@@ -509,6 +547,7 @@
 		E521CE0B942957FE683D3026 /* WatchlistCardsMenuInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuInteractor.swift; sourceTree = "<group>"; };
 		E9011E1AEFC03C0EA27CADA4 /* CreateOrderPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderPresenter.swift; sourceTree = "<group>"; };
 		EA55C7F5EFA6C64E7A02459F /* WalletViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletViewController.swift; sourceTree = "<group>"; };
+		EAE4F1C93385788B1D0E31B5 /* SearchViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchViewOutput.swift; sourceTree = "<group>"; };
 		ED4B771AF062127B0D3782DF /* LoginConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
 		EDCE9DFAA6784CC440AE1E78 /* WatchlistCardsMenuViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuViewInput.swift; sourceTree = "<group>"; };
 		EF1C7E205637403B8BDD8FE9 /* WatchlistManagerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistManagerPresenter.swift; sourceTree = "<group>"; };
@@ -516,6 +555,7 @@
 		F1FAAAB1ED29D6B9C96AE0D5 /* CreateOrderConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderConfigurator.swift; sourceTree = "<group>"; };
 		F33B398CFD9313A25C84DA0D /* WatchlistCardsMenuViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuViewController.swift; sourceTree = "<group>"; };
 		F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouter.swift; sourceTree = "<group>"; };
+		F6ACAEE629195FE3196397D3 /* SearchModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchModuleInput.swift; sourceTree = "<group>"; };
 		F83E9EA666249FCA5A274BB9 /* AlertsRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsRouterInput.swift; sourceTree = "<group>"; };
 		F9E50717978559A95E510A1E /* WatchlistCardsMenuInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCardsMenuInteractorOutput.swift; sourceTree = "<group>"; };
 		FB04A56E5D9C15348E901E25 /* LoginModuleOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginModuleOutput.swift; sourceTree = "<group>"; };
@@ -636,6 +676,16 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		1C11BFCB9FD0DD7722A614B3 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				42E4C2330BA83A448FD9598F /* SearchRouterInput.swift */,
+				E0B4BD4FBD07C3AB28D3626B /* SearchRouter.swift */,
+			);
+			name = Router;
+			path = Router;
+			sourceTree = "<group>";
+		};
 		20001D5C203B8D1200B6966F = {
 			isa = PBXGroup;
 			children = (
@@ -693,6 +743,20 @@
 				2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */,
 			);
 			path = DataManagers;
+			sourceTree = "<group>";
+		};
+		2010154A20B04FBB00324F22 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */,
+				2010154320B02B6B00324F22 /* AlertTableViewCellWithArrow.xib */,
+				2010154620B02B7800324F22 /* AddAlertTableViewCell.swift */,
+				2010154720B02B7800324F22 /* AddAlertTableViewCell.xib */,
+				2010154B20B04FD600324F22 /* AlertTableViewCellButton.swift */,
+				2010154C20B04FD600324F22 /* AlertTableViewCellButton.xib */,
+				2010155120B05F1100324F22 /* AlertTableViewCellWithTextData.swift */,
+			);
+			path = Alerts;
 			sourceTree = "<group>";
 		};
 		2013E56C2071464600EFACB7 /* fonts */ = {
@@ -813,6 +877,7 @@
 				66C69DB3D5F2206C45571645 /* Alerts */,
 				476496FDF8E745AC892D4DBC /* Orders */,
 				202F48EF206A136D0080423E /* Watchlist */,
+				36DC98A132E016FDBCEA75CA /* Search */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -974,6 +1039,7 @@
 				20F08D0720A8E21300B782FF /* UITouchableViewWithIndicator.swift */,
 				203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */,
 				203B8A8820AF4285004EF229 /* MoreOptionsMenuCell.xib */,
+				2010154A20B04FBB00324F22 /* Alerts */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -1097,6 +1163,7 @@
 				6070BC376D8AC4F1A5006B4B /* CreateAlertViewInput.swift */,
 				40C4BA797069940DD7E962FF /* CreateAlertViewOutput.swift */,
 				D7083115E233EBE369D8B337 /* CreateAlertViewController.swift */,
+				2010154F20B0510A00324F22 /* CreateAlertDisplayManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1128,6 +1195,19 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		36DC98A132E016FDBCEA75CA /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				9E0CDF066C790E9928EA711E /* View */,
+				941B47F0CECE21017B43CB82 /* Presenter */,
+				40377942628834CEB71F7323 /* Interactor */,
+				1C11BFCB9FD0DD7722A614B3 /* Router */,
+				7924A8FE0F245411074CF988 /* Configurator */,
+			);
+			name = Search;
+			path = Search;
+			sourceTree = "<group>";
+		};
 		3725B2EAD114F1CD68D0287C /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1156,6 +1236,17 @@
 				2F9183D80A3F12D220EE57C8 /* CreateOrderInteractorOutput.swift */,
 				D31F2D68B9E62669EBBEF567 /* CreateOrderInteractor.swift */,
 			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		40377942628834CEB71F7323 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				85C9091FB24BA06B2B83A876 /* SearchInteractorInput.swift */,
+				1C457C8F2AA8D4386E196F24 /* SearchInteractorOutput.swift */,
+				B3FD58C9071D7943F653E72B /* SearchInteractor.swift */,
+			);
+			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -1298,6 +1389,16 @@
 			path = WatchlistManager;
 			sourceTree = "<group>";
 		};
+		7924A8FE0F245411074CF988 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				4D88C2780A9B9F8785A262E0 /* SearchConfigurator.swift */,
+				CBACE933ED7A76B88D0D5943 /* SearchInitializer.swift */,
+			);
+			name = Configurator;
+			path = Configurator;
+			sourceTree = "<group>";
+		};
 		79BA9F3BE379A12B471CA3ED /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1410,6 +1511,16 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		941B47F0CECE21017B43CB82 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				F6ACAEE629195FE3196397D3 /* SearchModuleInput.swift */,
+				569622CF0E3169C2B1E7C80A /* SearchPresenter.swift */,
+			);
+			name = Presenter;
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		9E01C470C3E1B77012FC4051 /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -1421,6 +1532,17 @@
 				E78E595F779B91946691C178 /* Configurator */,
 			);
 			path = QRScanner;
+			sourceTree = "<group>";
+		};
+		9E0CDF066C790E9928EA711E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				36D8CCF6A7D38EC449EA944D /* SearchViewInput.swift */,
+				EAE4F1C93385788B1D0E31B5 /* SearchViewOutput.swift */,
+				7306C38688DA5FAA2953328F /* SearchViewController.swift */,
+			);
+			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		9ED6150AE1CD4595EBAB48B7 /* Interactor */ = {
@@ -1750,6 +1872,7 @@
 				2013E58C2071464700EFACB7 /* Exo2-MediumItalic.ttf in Resources */,
 				2013E58E2071464700EFACB7 /* Exo2-SemiBold.ttf in Resources */,
 				2013E5862071464700EFACB7 /* Exo2-ExtraLight.ttf in Resources */,
+				2010154520B02B6B00324F22 /* AlertTableViewCellWithArrow.xib in Resources */,
 				20A5B88720AE232E00EC2A4D /* Orders.storyboard in Resources */,
 				203B8A8A20AF4285004EF229 /* MoreOptionsMenuCell.xib in Resources */,
 				20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */,
@@ -1770,6 +1893,8 @@
 				205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */,
 				2013E58F2071464700EFACB7 /* Exo2-SemiBoldItalic.ttf in Resources */,
 				2013E58B2071464700EFACB7 /* Exo2-Medium.ttf in Resources */,
+				2010154E20B04FD600324F22 /* AlertTableViewCellButton.xib in Resources */,
+				2010154920B02B7800324F22 /* AddAlertTableViewCell.xib in Resources */,
 				2013E5852071464700EFACB7 /* Exo2-ExtraBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1876,6 +2001,7 @@
 				20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */,
 				201D8079205DC62800692DEF /* WalletSettingsTableViewCell.swift in Sources */,
 				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
+				2010155220B05F1100324F22 /* AlertTableViewCellWithTextData.swift in Sources */,
 				20E30AD720A96715003D9BAF /* NibView.swift in Sources */,
 				940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */,
 				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
@@ -1900,6 +2026,7 @@
 				202CF16820414FE7008185EB /* ViperModuleTransitionHandler.swift in Sources */,
 				2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */,
 				88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */,
+				2010154D20B04FD600324F22 /* AlertTableViewCellButton.swift in Sources */,
 				2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */,
 				920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */,
 				C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */,
@@ -1986,6 +2113,7 @@
 				B36B68AA9FFEFD57A6937766 /* CreateOrderInteractorInput.swift in Sources */,
 				E87B994DD134A13D1DCD716A /* CreateOrderInteractorOutput.swift in Sources */,
 				3E6304CF146BD0C1098DBB72 /* CreateOrderInteractor.swift in Sources */,
+				2010154420B02B6B00324F22 /* AlertTableViewCellWithArrow.swift in Sources */,
 				811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */,
 				C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */,
 				D973E58060E2D991B0A64100 /* CreateOrderConfigurator.swift in Sources */,
@@ -2022,6 +2150,7 @@
 				7CF8CEA4E40E36A58BF5D630 /* WatchlistManagerViewInput.swift in Sources */,
 				B2691E2E2D6A9AC75CACAE40 /* WatchlistManagerViewOutput.swift in Sources */,
 				E0D5FF8577269CE7EA30E57A /* WatchlistManagerViewController.swift in Sources */,
+				2010155020B0510A00324F22 /* CreateAlertDisplayManager.swift in Sources */,
 				50B079E206282DC07329BBA4 /* WatchlistManagerModuleInput.swift in Sources */,
 				B8E5DEA2A37D23F04B8EE462 /* WatchlistManagerPresenter.swift in Sources */,
 				20A5B89120AE283F00EC2A4D /* ExmoUIViewController.swift in Sources */,
@@ -2040,6 +2169,7 @@
 				287A2F7CA89391C5E64E1BCC /* WatchlistCardsMenuInteractorInput.swift in Sources */,
 				6A33FC677E3879375D171BC9 /* WatchlistCardsMenuInteractorOutput.swift in Sources */,
 				2A03A7A70AAB872B28FF277D /* WatchlistCardsMenuInteractor.swift in Sources */,
+				2010154820B02B7800324F22 /* AddAlertTableViewCell.swift in Sources */,
 				293B26A5FBF178455E2D81BD /* WatchlistCardsMenuRouterInput.swift in Sources */,
 				A6D73ECBEC438E72CAAC9063 /* WatchlistCardsMenuRouter.swift in Sources */,
 				DECC7ED9EE9C8CB15B6DDDF0 /* WatchlistCardsMenuConfigurator.swift in Sources */,
@@ -2057,6 +2187,18 @@
 				D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */,
 				9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */,
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
+				97BADE0EFC30C328B5C4F97E /* SearchViewInput.swift in Sources */,
+				0048F4A46E6F4213C41F0154 /* SearchViewOutput.swift in Sources */,
+				2E09A36C54C466D130882D01 /* SearchViewController.swift in Sources */,
+				503B0701E251862A6399C6B7 /* SearchModuleInput.swift in Sources */,
+				7BAAE513A8FE1CE1B5027B79 /* SearchPresenter.swift in Sources */,
+				22D049A785068CAA10D7CC63 /* SearchInteractorInput.swift in Sources */,
+				C2D3C9C697CD3C2C264B8BA8 /* SearchInteractorOutput.swift in Sources */,
+				9CA0E06ACB9545096546FD20 /* SearchInteractor.swift in Sources */,
+				F3948648713AF03642466F2B /* SearchRouterInput.swift in Sources */,
+				956FB64F28C19CED8EF6B8FB /* SearchRouter.swift in Sources */,
+				3030105DB487D3942070273E /* SearchConfigurator.swift in Sources */,
+				843D9AD4EA351804FCEEB81C /* SearchInitializer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

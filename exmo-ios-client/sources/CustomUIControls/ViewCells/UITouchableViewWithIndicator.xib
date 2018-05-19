@@ -16,8 +16,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UITouchableViewWithIndicator" customModule="exmo_ios_client" customModuleProvider="target">
             <connections>
                 <outlet property="backgroundButton" destination="k1c-1c-gmW" id="8ND-ZK-7jF"/>
-                <outlet property="contentLabel" destination="92t-zb-vhw" id="QGk-AR-Yvg"/>
                 <outlet property="headerLabel" destination="m1B-I4-8cr" id="eN4-zX-j0A"/>
+                <outlet property="leftLabel" destination="92t-zb-vhw" id="Fc1-Ek-zMc"/>
+                <outlet property="rightLabel" destination="DV4-VI-5ab" id="6EA-hC-rtO"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -39,10 +40,10 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="92t-zb-vhw">
-                    <rect key="frame" x="0.0" y="35" width="250" height="25"/>
+                    <rect key="frame" x="0.0" y="35" width="145" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="2P3-3k-9eu"/>
-                        <constraint firstAttribute="width" constant="250" id="sKU-c8-b7D"/>
+                        <constraint firstAttribute="width" constant="145" id="sKU-c8-b7D"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -62,12 +63,22 @@
                         <constraint firstAttribute="height" constant="1" id="zhD-kE-vou"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DV4-VI-5ab">
+                    <rect key="frame" x="176" y="35" width="78" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="78" id="v99-13-X4G"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="92t-zb-vhw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="014-NC-OVs"/>
                 <constraint firstItem="92t-zb-vhw" firstAttribute="top" secondItem="m1B-I4-8cr" secondAttribute="bottom" constant="10" id="0jH-d3-ioE"/>
                 <constraint firstAttribute="bottom" secondItem="z1L-aT-CRZ" secondAttribute="bottom" id="ENg-D6-aLk"/>
+                <constraint firstItem="DV4-VI-5ab" firstAttribute="top" secondItem="m1B-I4-8cr" secondAttribute="bottom" constant="10" id="Ewv-Cl-4tx"/>
                 <constraint firstAttribute="bottom" secondItem="k1c-1c-gmW" secondAttribute="bottom" constant="16" id="Fne-BV-GoQ"/>
                 <constraint firstItem="z1L-aT-CRZ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="LUh-rR-exB"/>
                 <constraint firstItem="8Uw-xf-Tm4" firstAttribute="top" secondItem="m1B-I4-8cr" secondAttribute="bottom" constant="10" id="OYI-5p-AFJ"/>
@@ -78,8 +89,10 @@
                 <constraint firstAttribute="trailing" secondItem="8Uw-xf-Tm4" secondAttribute="trailing" id="Zpf-C2-okp"/>
                 <constraint firstAttribute="trailing" secondItem="z1L-aT-CRZ" secondAttribute="trailing" id="ehw-x8-Ky1"/>
                 <constraint firstItem="k1c-1c-gmW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gSs-Sz-Vnp"/>
+                <constraint firstItem="8Uw-xf-Tm4" firstAttribute="leading" secondItem="DV4-VI-5ab" secondAttribute="trailing" id="jfb-Rh-06I"/>
                 <constraint firstAttribute="trailing" secondItem="k1c-1c-gmW" secondAttribute="trailing" id="pfu-ph-seO"/>
                 <constraint firstItem="m1B-I4-8cr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="q4A-JY-jJP"/>
+                <constraint firstItem="z1L-aT-CRZ" firstAttribute="top" secondItem="DV4-VI-5ab" secondAttribute="bottom" constant="16" id="tgO-i4-NzS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="25" y="264"/>

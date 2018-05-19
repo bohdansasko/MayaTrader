@@ -14,7 +14,8 @@ class UITouchableViewWithIndicator: UITouchableNibView {
     // @MARK: outlets
     //
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var contentLabel: UILabel!
+    @IBOutlet private weak var leftLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
     
     //
     // @MARK: getters and setters
@@ -27,11 +28,19 @@ class UITouchableViewWithIndicator: UITouchableNibView {
         }
     }
     
-    @IBInspectable var contentText: String {
-        get { return self.contentLabel.text! }
+    @IBInspectable var leftText: String {
+        get { return self.leftLabel.text! }
         
         set {
-            self.contentLabel.text = newValue
+            self.leftLabel.text = newValue
+        }
+    }
+    
+    @IBInspectable var rightText: String {
+        get { return self.rightLabel.text! }
+        
+        set {
+            self.rightLabel.text = newValue
         }
     }
 }
