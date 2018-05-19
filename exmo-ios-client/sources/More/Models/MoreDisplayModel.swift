@@ -14,17 +14,18 @@ class MoreDisplayModel {
 
     func update() {
         menuItems = [
-            MenuItem(name: "News", segueIdentifier: MoreMenuSegueIdentifier.newsView.rawValue),
-            MenuItem(name: "Chat", segueIdentifier: MoreMenuSegueIdentifier.chatView.rawValue),
-            MenuItem(name: "FAQ", segueIdentifier: MoreMenuSegueIdentifier.faqView.rawValue)
+            MenuItem(name: "News", iconNamed: "icMenuNews", segueIdentifier: MoreMenuSegueIdentifier.newsView.rawValue),
+            MenuItem(name: "Chat", iconNamed: "icMenuChat", segueIdentifier: MoreMenuSegueIdentifier.chatView.rawValue),
+            // MenuItem(name: "FAQ", iconNamed: "icMenuFAQ", segueIdentifier: MoreMenuSegueIdentifier.faqView.rawValue)
+            MenuItem(name: "App version", iconNamed: "icMenuAppversion", segueIdentifier: "")
         ]
 
         if Session.sharedInstance.isExmoAccountExists() {
-            menuItems.append(MenuItem(name: MoreMenuSegueIdentifier.logout.rawValue, action: {
+            menuItems.append(MenuItem(name: MoreMenuSegueIdentifier.logout.rawValue, iconNamed: "icMenuLogout", action: {
                 Session.sharedInstance.logout()
             }))
         } else {
-            menuItems.insert(MenuItem(name: "Login", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)
+            menuItems.insert(MenuItem(name: "Login",  iconNamed: "icMenuLogin", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)
         }
     }
 
@@ -42,6 +43,10 @@ class MoreDisplayModel {
 
     func getMenuItemSegueIdentifier(byRow: Int) -> String {
         return menuItems[byRow].segueIdentifier
+    }
+    
+    func getMenuItem(byRow: Int) -> MenuItem {
+        return menuItems[byRow]
     }
 
     func doAction(itemIndex: Int) {

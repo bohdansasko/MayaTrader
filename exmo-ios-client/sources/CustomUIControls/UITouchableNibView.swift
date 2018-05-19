@@ -1,47 +1,23 @@
 //
-//  UITouchableViewWithIndicator.swift
+//  UITouchableNibView.swift
 //  exmo-ios-client
 //
-//  Created by Bogdan Sasko on 5/14/18.
+//  Created by Bogdan Sasko on 5/18/18.
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
 import UIKit
 
 @IBDesignable
-class UITouchableViewWithIndicator: NibView {
-    private enum ButtonState {
+class UITouchableNibView: NibView {
+    enum ButtonState {
         case Normal
         case Highlighted
     }
     
-    //
-    // @MARK: outlets
-    //
     @IBOutlet private weak var backgroundButton: UIButton!
-    @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var contentLabel: UILabel!
     
     var callbackOnTouch: VoidClosure? = nil
-    
-    //
-    // @MARK: getters and setters
-    //
-    @IBInspectable var headerText: String {
-        get { return self.headerLabel.text! }
-    
-        set {
-            self.headerLabel.text = newValue
-        }
-    }
-    
-    @IBInspectable var contentText: String {
-        get { return self.contentLabel.text! }
-        
-        set {
-            self.contentLabel.text = newValue
-        }
-    }
     
     //
     // @MARK: inherited methods
@@ -49,19 +25,19 @@ class UITouchableViewWithIndicator: NibView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupUI()
+        setupBackgroundButtonCallbacks()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        setupUI()
+        setupBackgroundButtonCallbacks()
     }
     
     //
     // MARK: private methods
     //
-    fileprivate func setupUI() {
+    func setupBackgroundButtonCallbacks() {
         backgroundButton.addTarget(self, action: #selector(self.onTouchDown), for: .touchDown)
         backgroundButton.addTarget(self, action: #selector(self.onTouchInside), for: .touchUpInside)
         backgroundButton.addTarget(self, action: #selector(self.onTouchOutSide), for: .touchUpOutside)
@@ -87,7 +63,7 @@ class UITouchableViewWithIndicator: NibView {
         print("onTouchDown")
         handleButtonState(.Highlighted)
     }
-
+    
     @objc func onTouchInside(_ sender: Any) {
         print("onTouchInside")
         self.callbackOnTouch?()

@@ -10,11 +10,17 @@ import Foundation
 import UIKit
 
 class MoreDataDisplayManager: NSObject {
+    //
+    // @MARK: outlets
+    //
     private var dataProvider: MoreDisplayModel!
     private var tableView: UITableView!
-    
+
     var viewOutput: MoreViewOutput!
 
+    //
+    // @MARK: public methods
+    //
     override init() {
         super.init()
         dataProvider = MoreDisplayModel()
@@ -22,18 +28,17 @@ class MoreDataDisplayManager: NSObject {
     
     func setTableView(tableView: UITableView!) {
         self.tableView = tableView
-
+        
+        let cellNib = UINib(nibName: "MoreOptionsMenuCell", bundle: nil)
+        self.tableView.register(cellNib, forCellReuseIdentifier: TableCellIdentifiers.MoreMenuItem.rawValue)
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
+        
+        
         self.updateInfo()
     }
-
-    @objc func updateInfo() {
-        dataProvider.update()
-        self.tableView.reloadData()
-    }
-
+    
     func getCountMenuItems() -> Int {
         return dataProvider.getCountMenuItems()
     }
@@ -45,16 +50,30 @@ class MoreDataDisplayManager: NSObject {
     func getMenuItemSegueIdentifier(byRow: Int) -> String {
         return dataProvider.getMenuItemSegueIdentifier(byRow: byRow)
     }
+    
+    //
+    // @MARK: selectors
+    //
+    @objc func updateInfo() {
+        dataProvider.update()
+        self.tableView.reloadData()
+    }
 }
 
-extension MoreDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
+extension MoreDataDisplayManager: UITableViewDataSource  {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataProvider.getCountMenuItems()
     }
+    
+}
 
+
+extension MoreDataDisplayManager: UITableViewDelegate  {
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let menuItem = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.MoreMenuItem.rawValue, for: indexPath) as! MenuItemTableViewCell
-        menuItem.setTitleLabel(text: self.dataProvider.getMenuItemName(byRow: indexPath.row))
+        let menuItem = self.tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.MoreMenuItem.rawValue, for: indexPath) as! MoreOptionsMenuCell
+        menuItem.setContentData(itemData: self.dataProvider.getMenuItem(byRow: indexPath.row))
         return menuItem
     }
 
@@ -67,4 +86,5 @@ extension MoreDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
             dataProvider.doAction(itemIndex: row)
         }
     }
+    
 }

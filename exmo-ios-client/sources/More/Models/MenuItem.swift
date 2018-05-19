@@ -9,17 +9,19 @@
 import Foundation
 
 class MenuItem {
-    var name: String
+    var name: String // TODO: update name on title
+    var iconNamed: String
     var segueIdentifier: String
     var action: VoidClosure? = nil
     
-    init(name: String, segueIdentifier: String) {
+    init(name: String, iconNamed: String, segueIdentifier: String) {
         self.name = name
+        self.iconNamed = iconNamed
         self.segueIdentifier = segueIdentifier
     }
 
-    convenience init(name: String, action: VoidClosure?) {
-        self.init(name: name, segueIdentifier: "")
+    convenience init(name: String, iconNamed: String, action: VoidClosure?) {
+        self.init(name: name, iconNamed: iconNamed, segueIdentifier: "")
         self.action = action
     }
 
