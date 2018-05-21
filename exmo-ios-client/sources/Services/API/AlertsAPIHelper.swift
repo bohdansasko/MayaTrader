@@ -65,7 +65,7 @@ class AlertsAPIHelper {
             "bottom_bound" : bottom_bound,
             "currency" : currency,
             "description" : description,
-            ]
+        ]
         
         if status != .None {
             jsonData["status"] = JSON(status.rawValue)
