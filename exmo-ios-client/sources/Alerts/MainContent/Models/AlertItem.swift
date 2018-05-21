@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum AlertStatus: String {
+enum AlertStatus: Int {
     case None
     case Active
     case Inactive
@@ -23,14 +23,15 @@ class AlertItem {
     var bottomBoundary: Double? = 0.0
     var status = AlertStatus.Inactive
     var dateCreated: Date! = Date()
+    var id: String = ""
     
-    init(currencyPairName: String!, currencyPairPriceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus, dateCreated: Date) {
+    init(currencyPairName: String!, currencyPairPriceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .None) {
         self.currencyPairName = currencyPairName
         self.currencyPairPriceAtCreateMoment = currencyPairPriceAtCreateMoment
         self.note = note
         self.topBoundary = topBoundary
         self.bottomBoundary = bottomBoundary
         self.status = status
-        self.dateCreated = dateCreated
+        self.dateCreated = Date()
     }
 }

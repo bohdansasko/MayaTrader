@@ -121,7 +121,7 @@ class CreateAlertDisplayManager: NSObject {
         let alertModel = AlertItem(
             currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
             note: "here will be note", topBoundary: topBoundary, bottomBoundary: bottomBoundary,
-            status: .Active, dateCreated: Date()
+            status: .Active
         )
         output.handleTouchAddAlertBtn(alertModel: alertModel)
     }

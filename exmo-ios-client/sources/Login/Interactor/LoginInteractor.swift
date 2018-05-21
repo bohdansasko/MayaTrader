@@ -16,8 +16,8 @@ class LoginInteractor: LoginInteractorInput {
             print("qr data doent's validate")
             return
         }
-        APIService.sharedInstance.setUserInfo(apiKey: loginModel.key!, secretKey: loginModel.secret!)
-        let result = APIService.sharedInstance.loadUserInfo()
+        APIService.exmo.setUserInfo(apiKey: loginModel.key!, secretKey: loginModel.secret!)
+        let result = APIService.exmo.loadUserInfo()
         
         let jsonString = String(data: result!, encoding: .utf8)
         print("loaded userInfo: \(jsonString!)")

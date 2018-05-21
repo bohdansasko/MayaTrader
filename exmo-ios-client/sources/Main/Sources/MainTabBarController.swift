@@ -25,6 +25,10 @@ class MainTabBarController: UITabBarController {
         ]
         addSelectedTabIndicator()
         updateIndicatorPosition(index: 0)
+        
+        // Test code
+//        APIService.socketManager.connect()
+//        APIService.socketManager.createAlert(alertItem: AlertItem(currencyPairName: "BTC_USD", currencyPairPriceAtCreateMoment: 8549.989, note: "Something happens", topBoundary: 9700, bottomBoundary: 8000))
     }
     
     private func addSelectedTabIndicator() {

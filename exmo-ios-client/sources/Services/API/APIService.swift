@@ -9,5 +9,6 @@
 import Foundation
 
 class APIService {
-    static let sharedInstance = ExmoApiHandler()
+    static let exmo = ExmoApiHandler()
+    static let socketManager = SocketApiHandler()
 }

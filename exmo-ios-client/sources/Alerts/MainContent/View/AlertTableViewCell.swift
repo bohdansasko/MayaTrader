@@ -39,7 +39,8 @@ class AlertTableViewCell: UITableViewCell {
         self.topBound.text = data.topBoundary != nil ? String(data.topBoundary!) : "-"
         self.bottomBound.text = data.topBoundary != nil ? String(data.bottomBoundary!) : "-"
         
-        self.status.text = data.status.rawValue
+        self.status.text = getTextStatusValue(status: data.status)
+        
         if #available(iOS 11.0, *) {
             self.status.backgroundColor = data.status == AlertStatus.Active ? UIColor(named: "exmoGreenBlue") : UIColor(named: "exmoSteel")
         } else {
@@ -62,4 +63,16 @@ class AlertTableViewCell: UITableViewCell {
         }
     }
 
+    private func getTextStatusValue(status: AlertStatus) -> String {
+        switch status {
+        case .Active:
+            return "Active"
+        case .Inactive:
+            return "Inactive"
+        case .Pause:
+            return "Idle"
+        default:
+            return ""
+        }
+    }
 }
