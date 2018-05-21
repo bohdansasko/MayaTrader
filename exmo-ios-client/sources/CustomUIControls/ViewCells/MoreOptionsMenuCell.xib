@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Exo2-Medium.ttf">
+            <string>Exo2-Medium</string>
+        </array>
         <array key="Exo2-SemiBold.ttf">
             <string>Exo2-SemiBold</string>
         </array>
@@ -24,8 +27,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMenuLogin" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-aQ-OZH">
+                        <rect key="frame" x="30" y="20" width="25" height="24"/>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZT9-rl-gJa">
-                        <rect key="frame" x="75" y="24" width="164" height="17"/>
+                        <rect key="frame" x="75" y="24.5" width="164" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="164" id="kge-Rb-rNn"/>
                             <constraint firstAttribute="height" constant="17" id="p1H-ax-jQh"/>
@@ -34,13 +40,20 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMenuLogin" translatesAutoresizingMaskIntoConstraints="NO" id="ItU-aQ-OZH">
-                        <rect key="frame" x="30" y="20" width="25" height="25"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInputFieldArrow" translatesAutoresizingMaskIntoConstraints="NO" id="TAP-9u-1kv" userLabel="rightIcon">
+                        <rect key="frame" x="264" y="20.5" width="26" height="24"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icInputFieldArrow" translatesAutoresizingMaskIntoConstraints="NO" id="TAP-9u-1kv">
-                        <rect key="frame" x="264" y="20" width="26" height="25"/>
-                    </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhW-JV-KJh">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itS-Mh-jAN">
+                        <rect key="frame" x="230" y="20" width="60" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="4Iw-EG-JVy"/>
+                            <constraint firstAttribute="height" constant="25" id="jVx-kZ-1R0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhW-JV-KJh" userLabel="bottomLine">
                         <rect key="frame" x="30" y="63.5" width="260" height="1"/>
                         <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -58,15 +71,19 @@
                     <constraint firstAttribute="bottom" secondItem="TAP-9u-1kv" secondAttribute="bottom" constant="20" id="HIG-47-Emc"/>
                     <constraint firstItem="TAP-9u-1kv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Pmd-WI-rkH"/>
                     <constraint firstItem="ItU-aQ-OZH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="UR5-ch-xQE"/>
+                    <constraint firstAttribute="trailing" secondItem="itS-Mh-jAN" secondAttribute="trailing" constant="30" id="dEX-gh-fCN"/>
                     <constraint firstAttribute="trailing" secondItem="TAP-9u-1kv" secondAttribute="trailing" constant="30" id="f6f-39-Ocl"/>
                     <constraint firstAttribute="bottom" secondItem="ItU-aQ-OZH" secondAttribute="bottom" constant="20" id="iZy-7m-dfC"/>
                     <constraint firstItem="ItU-aQ-OZH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="waj-ZE-nbE"/>
+                    <constraint firstItem="itS-Mh-jAN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="xyj-Kp-Bnh"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="leftIcon" destination="ItU-aQ-OZH" id="hpZ-0I-73q"/>
+                <outlet property="leftIcon" destination="ItU-aQ-OZH" id="ghB-UA-Sr0"/>
+                <outlet property="rightIcon" destination="TAP-9u-1kv" id="qak-6E-2f4"/>
+                <outlet property="rightLabel" destination="itS-Mh-jAN" id="jYX-3M-jEE"/>
                 <outlet property="titleLabel" destination="ZT9-rl-gJa" id="kn4-s1-T6d"/>
             </connections>
             <point key="canvasLocation" x="25" y="56.5"/>

@@ -14,18 +14,18 @@ class MoreDisplayModel {
 
     func update() {
         menuItems = [
-            MenuItem(name: "News", iconNamed: "icMenuNews", segueIdentifier: MoreMenuSegueIdentifier.newsView.rawValue),
-            MenuItem(name: "Chat", iconNamed: "icMenuChat", segueIdentifier: MoreMenuSegueIdentifier.chatView.rawValue),
-            // MenuItem(name: "FAQ", iconNamed: "icMenuFAQ", segueIdentifier: MoreMenuSegueIdentifier.faqView.rawValue)
-            MenuItem(name: "App version", iconNamed: "icMenuAppversion", segueIdentifier: "")
+            MenuItem(title: "News", iconNamed: "icMenuNews", segueIdentifier: MoreMenuSegueIdentifier.newsView.rawValue),
+            MenuItem(title: "Chat", iconNamed: "icMenuChat", segueIdentifier: MoreMenuSegueIdentifier.chatView.rawValue),
+            // MenuItem(title: "FAQ", iconNamed: "icMenuFAQ", segueIdentifier: MoreMenuSegueIdentifier.faqView.rawValue)
+            MenuItem(title: "App version", iconNamed: "icMenuAppversion", segueIdentifier: "", rightViewOptions: MenuItem.RightViewOptions.Text, rightText: "v.1.0")
         ]
 
         if Session.sharedInstance.isExmoAccountExists() {
-            menuItems.append(MenuItem(name: MoreMenuSegueIdentifier.logout.rawValue, iconNamed: "icMenuLogout", action: {
+            menuItems.append(MenuItem(title: MoreMenuSegueIdentifier.logout.rawValue, iconNamed: "icMenuLogout", rightViewOptions: MenuItem.RightViewOptions.Icon, action: {
                 Session.sharedInstance.logout()
             }))
         } else {
-            menuItems.insert(MenuItem(name: "Login",  iconNamed: "icMenuLogin", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)
+            menuItems.insert(MenuItem(title: "Login",  iconNamed: "icMenuLogin", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)
         }
     }
 
@@ -37,8 +37,8 @@ class MoreDisplayModel {
         return menuItems.count
     }
 
-    func getMenuItemName(byRow: Int) -> String {
-        return menuItems[byRow].name
+    func getMenuItemTitle(byRow: Int) -> String {
+        return menuItems[byRow].title
     }
 
     func getMenuItemSegueIdentifier(byRow: Int) -> String {

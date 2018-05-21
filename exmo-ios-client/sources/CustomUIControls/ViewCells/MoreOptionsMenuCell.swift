@@ -10,7 +10,9 @@ import UIKit
 
 class MoreOptionsMenuCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var rightLabel: UILabel!
     @IBOutlet weak var leftIcon: UIImageView!
+    @IBOutlet weak var rightIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,7 +26,26 @@ class MoreOptionsMenuCell: UITableViewCell {
     }
     
     func setContentData(itemData: MenuItem) {
-        self.titleLabel?.text = itemData.name
+        self.titleLabel?.text = itemData.title
         self.leftIcon.image = UIImage(named: itemData.iconNamed)
+        updateRightSide(itemData: itemData)
+    }
+    
+    func updateRightSide(itemData: MenuItem) {
+        switch itemData.rightViewOptions {
+        case MenuItem.RightViewOptions.Empty:
+            self.rightLabel.removeFromSuperview()
+            self.rightIcon.removeFromSuperview()
+            break
+        case MenuItem.RightViewOptions.Icon:
+            self.rightLabel.removeFromSuperview()
+            break
+        case MenuItem.RightViewOptions.Text:
+            self.rightLabel.text? = itemData.rightText!
+            self.rightIcon.removeFromSuperview()
+            break
+        default:
+            break
+        }
     }
 }

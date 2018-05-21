@@ -9,19 +9,30 @@
 import Foundation
 
 class MenuItem {
-    var name: String // TODO: update name on title
+    enum RightViewOptions {
+        case None
+        case Empty
+        case Icon
+        case Text
+    }
+    
+    var title: String
     var iconNamed: String
     var segueIdentifier: String
     var action: VoidClosure? = nil
+    var rightViewOptions = RightViewOptions.None
+    var rightText: String? = nil
     
-    init(name: String, iconNamed: String, segueIdentifier: String) {
-        self.name = name
+    init(title: String, iconNamed: String, segueIdentifier: String, rightViewOptions: RightViewOptions = MenuItem.RightViewOptions.Icon, rightText: String? = nil) {
+        self.title = title
         self.iconNamed = iconNamed
         self.segueIdentifier = segueIdentifier
+        self.rightText = rightText
+        self.rightViewOptions = rightViewOptions
     }
 
-    convenience init(name: String, iconNamed: String, action: VoidClosure?) {
-        self.init(name: name, iconNamed: iconNamed, segueIdentifier: "")
+    convenience init(title: String, iconNamed: String, rightViewOptions: RightViewOptions, action: VoidClosure?) {
+        self.init(title: title, iconNamed: iconNamed,  segueIdentifier: "", rightViewOptions: rightViewOptions)
         self.action = action
     }
 

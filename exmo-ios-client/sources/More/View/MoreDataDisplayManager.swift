@@ -44,7 +44,7 @@ class MoreDataDisplayManager: NSObject {
     }
     
     func getMenuItemName(byRow: Int) -> String {
-        return dataProvider.getMenuItemName(byRow: byRow)
+        return dataProvider.getMenuItemTitle(byRow: byRow)
     }
 
     func getMenuItemSegueIdentifier(byRow: Int) -> String {
