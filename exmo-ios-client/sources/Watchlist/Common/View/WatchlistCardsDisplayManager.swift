@@ -31,7 +31,7 @@ extension WatchlistCardsDisplayManager: UICollectionViewDelegate, UICollectionVi
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let orderData = self.dataProvider.getOrderBy(index: indexPath.row)
+        let orderData = self.dataProvider.getCurrencyPairBy(index: indexPath.row)
         let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
         
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! WatchlistCardCollectionViewCell

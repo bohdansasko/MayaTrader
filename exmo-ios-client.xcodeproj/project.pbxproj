@@ -126,6 +126,7 @@
 		20CCBDB5206396560099D144 /* CreateOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */; };
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
+		20DBA23B20B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */; };
 		20E30AD520A966B0003D9BAF /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* Extension+UIView.swift */; };
 		20E30AD720A96715003D9BAF /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD620A96715003D9BAF /* NibView.swift */; };
 		20E80094207A283B00E1AC6C /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* BalanceView.swift */; };
@@ -412,6 +413,7 @@
 		20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderTableViewCell.swift; sourceTree = "<group>"; };
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
+		20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistFlatTableViewCell.xib; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		20E30AD620A96715003D9BAF /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		20E80093207A283B00E1AC6C /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
@@ -1041,9 +1043,9 @@
 			children = (
 				20F08D0520A8E20100B782FF /* UITouchableViewWithIndicator.xib */,
 				20F08D0720A8E21300B782FF /* UITouchableViewWithIndicator.swift */,
-				203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */,
-				203B8A8820AF4285004EF229 /* MoreOptionsMenuCell.xib */,
+				20DBA23720B3FE59007BA0AF /* Menu */,
 				2010154A20B04FBB00324F22 /* Alerts */,
+				20DBA23D20B3FEB4007BA0AF /* Watchlist */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -1095,6 +1097,24 @@
 				367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		20DBA23720B3FE59007BA0AF /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */,
+				203B8A8820AF4285004EF229 /* MoreOptionsMenuCell.xib */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		20DBA23D20B3FEB4007BA0AF /* Watchlist */ = {
+			isa = PBXGroup;
+			children = (
+				20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */,
+				202F48F5206A157D0080423E /* WatchlistFlatTableViewCell.swift */,
+			);
+			path = Watchlist;
 			sourceTree = "<group>";
 		};
 		2613C8285C5455096A6F3487 /* View */ = {
@@ -1268,7 +1288,6 @@
 				C44DA97A73DDCC81FDAD9D66 /* WatchlistFlatViewInput.swift */,
 				0291F7E4F4E75B2F4D0BD6F7 /* WatchlistFlatViewOutput.swift */,
 				3C203B4F8E4D611E45F7CCCA /* WatchlistFlatViewController.swift */,
-				202F48F5206A157D0080423E /* WatchlistFlatTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1877,6 +1896,7 @@
 				203B8A8A20AF4285004EF229 /* MoreOptionsMenuCell.xib in Resources */,
 				20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */,
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
+				20DBA23B20B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib in Resources */,
 				2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */,
 				2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */,
 				20F08D0620A8E20100B782FF /* UITouchableViewWithIndicator.xib in Resources */,

@@ -52,9 +52,9 @@ class WatchlistCurrencyPairsModel {
     
     init() {
         data = [
-            WatchlistCurrencyPairModel(fullName: "Etherium", shortName: "ETH", price: 230.04, priceIndicator: 0.79),
-            WatchlistCurrencyPairModel(fullName: "Bitcoin", shortName: "BTC", price: 4970.34, priceIndicator: -2.48),
-            WatchlistCurrencyPairModel(fullName: "Ripple", shortName: "XRP", price: 0.18105, priceIndicator: 1.19)
+            WatchlistCurrencyPairModel(fullName: "ETC/USD", shortName: "269387 USD", price: 230.04, priceIndicator: 0.79),
+            WatchlistCurrencyPairModel(fullName: "BTC/USD", shortName: "8589420 USD", price: 4970.34, priceIndicator: -2.48),
+            WatchlistCurrencyPairModel(fullName: "XRP/USD", shortName: "1060706 USD", price: 0.18105, priceIndicator: 1.19)
         ]
     }
     
@@ -62,7 +62,7 @@ class WatchlistCurrencyPairsModel {
         return data.count
     }
 
-    func getOrderBy(index: Int) -> WatchlistCurrencyPairModel {
+    func getCurrencyPairBy(index: Int) -> WatchlistCurrencyPairModel {
         return index > -1 && index < data.count ? data[index] : WatchlistCurrencyPairModel.mock()
     }
 

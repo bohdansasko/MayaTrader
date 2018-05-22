@@ -24,6 +24,9 @@ class WatchlistFlatDisplayManager: NSObject {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        let nib = UINib(nibName: "WatchlistFlatTableViewCell", bundle: nil)
+        self.tableView.register(nib, forCellReuseIdentifier: TableCellIdentifiers.WatchlistMenuViewCell.rawValue)
+        
         self.reloadData()
     }
     
@@ -37,13 +40,15 @@ class WatchlistFlatDisplayManager: NSObject {
 }
 
 
-extension WatchlistFlatDisplayManager: UITableViewDelegate, UITableViewDataSource  {
+extension WatchlistFlatDisplayManager: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataProvider.getCountOrders()
     }
-    
+}
+
+extension WatchlistFlatDisplayManager: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let orderData = self.dataProvider.getOrderBy(index: indexPath.row)
+        let orderData = self.dataProvider.getCurrencyPairBy(index: indexPath.row)
         let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WatchlistFlatTableViewCell
@@ -59,5 +64,9 @@ extension WatchlistFlatDisplayManager: UITableViewDelegate, UITableViewDataSourc
         deleteAction.backgroundColor = UIColor.red
         
         return [deleteAction]
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 65
     }
 }
