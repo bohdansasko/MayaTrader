@@ -71,11 +71,20 @@
                             <constraint firstAttribute="height" constant="1" id="uez-Qm-CZk"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_btc" translatesAutoresizingMaskIntoConstraints="NO" id="kwb-iS-Wpm">
+                        <rect key="frame" x="15" y="15" width="32" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="Rm6-3V-qmp"/>
+                            <constraint firstAttribute="height" constant="32" id="hZ6-be-oUb"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4Xi-t8-1OM" secondAttribute="trailing" constant="20" id="1l6-6p-G4h"/>
                     <constraint firstItem="gfB-dY-9Nw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="65" id="4hv-nq-RVp"/>
                     <constraint firstItem="4Xi-t8-1OM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Cfu-LC-d2B"/>
+                    <constraint firstItem="kwb-iS-Wpm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="DJp-r2-x1X"/>
+                    <constraint firstItem="kwb-iS-Wpm" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Fs0-bJ-IwI"/>
                     <constraint firstAttribute="bottom" secondItem="4Xi-t8-1OM" secondAttribute="bottom" id="HXG-Bv-z4S"/>
                     <constraint firstAttribute="trailing" secondItem="yD2-37-Fns" secondAttribute="trailing" constant="20" id="IAN-fg-W23"/>
                     <constraint firstItem="bN0-fZ-SX6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Jvf-wZ-hys"/>
@@ -89,12 +98,16 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="currencyPairFullNameLabel" destination="bN0-fZ-SX6" id="7Ju-6r-7EF"/>
+                <outlet property="currencyIcon" destination="kwb-iS-Wpm" id="FKa-Mf-HU3"/>
                 <outlet property="currencyPairIndicatorLabel" destination="Y3K-iq-MFi" id="jEF-Hy-0ht"/>
+                <outlet property="currencyPairNameLabel" destination="bN0-fZ-SX6" id="K47-gr-XmA"/>
                 <outlet property="currencyPairPriceLabel" destination="yD2-37-Fns" id="4dL-r0-10k"/>
-                <outlet property="currencyPairShortNameLabel" destination="gfB-dY-9Nw" id="ZXC-sD-enf"/>
+                <outlet property="currencyPairVolumeLabel" destination="gfB-dY-9Nw" id="83Z-1U-06X"/>
             </connections>
             <point key="canvasLocation" x="26" y="62.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_btc" width="48" height="48"/>
+    </resources>
 </document>

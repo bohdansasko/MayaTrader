@@ -7,31 +7,35 @@
 //
 
 import Foundation
+import UIKit.UIImage
 
 class WatchlistCurrencyPairModel {
-    private var fullName: String
-    private var shortName: String
+    private var pairName: String
+    private var currencyVolumeStr: String
     private var price: Double
     private var priceIndicator: Double
     
-    init(fullName: String, shortName: String, price: Double, priceIndicator: Double) {
-        self.fullName = fullName
-        self.shortName = shortName
+    init(pairName: String, currencyVolumeStr: String, price: Double, priceIndicator: Double) {
+        self.pairName = pairName
+        self.currencyVolumeStr = currencyVolumeStr
         self.price = price
         self.priceIndicator = priceIndicator
     }
     
-    func getFullName() -> String {
-        return fullName
+    func getPairName() -> String {
+        return self.pairName
     }
-    func getShortName() -> String {
-        return shortName
+    
+    func getVolumeStr() -> String {
+        return self.currencyVolumeStr
     }
+    
     func getPriceAsStr() -> String {
         return "$ " + String(price)
     }
+    
     func getPriceIndicatorAsStr() -> String {
-        return getSign() + String(priceIndicator) + "%"
+        return getSign() + String(abs(priceIndicator)) + "%"
     }
     
     private func getSign() -> String {
@@ -43,7 +47,17 @@ class WatchlistCurrencyPairModel {
     }
     
     static func mock() -> WatchlistCurrencyPairModel {
-        return WatchlistCurrencyPairModel(fullName: "Test/Test", shortName: "T", price: 0.0, priceIndicator: 0.0)
+        return WatchlistCurrencyPairModel(pairName: "Test/Test", currencyVolumeStr: "T", price: 0.0, priceIndicator: 0.0)
+    }
+    
+    func getPriceIndicator() -> Double {
+        return self.priceIndicator
+    }
+    
+    func getIconImage() -> UIImage {
+        let suffix = pairName.components(separatedBy: "/")[0].lowercased()
+        let iconName = "icon_" + suffix
+        return UIImage(named: iconName)!
     }
 }
 
@@ -52,9 +66,10 @@ class WatchlistCurrencyPairsModel {
     
     init() {
         data = [
-            WatchlistCurrencyPairModel(fullName: "ETC/USD", shortName: "269387 USD", price: 230.04, priceIndicator: 0.79),
-            WatchlistCurrencyPairModel(fullName: "BTC/USD", shortName: "8589420 USD", price: 4970.34, priceIndicator: -2.48),
-            WatchlistCurrencyPairModel(fullName: "XRP/USD", shortName: "1060706 USD", price: 0.18105, priceIndicator: 1.19)
+            WatchlistCurrencyPairModel(pairName: "ETH/USD", currencyVolumeStr: "$ 269387", price: 230.04, priceIndicator: 0.79),
+            WatchlistCurrencyPairModel(pairName: "BTC/USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
+            WatchlistCurrencyPairModel(pairName: "BTC/USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
+            WatchlistCurrencyPairModel(pairName: "ETH/USD", currencyVolumeStr: "$ 1060706", price: 0.18105, priceIndicator: 1.19)
         ]
     }
     

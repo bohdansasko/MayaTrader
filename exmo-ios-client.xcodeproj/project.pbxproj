@@ -127,6 +127,8 @@
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
 		20DBA23B20B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */; };
+		20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */; };
+		20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */; };
 		20E30AD520A966B0003D9BAF /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* Extension+UIView.swift */; };
 		20E30AD720A96715003D9BAF /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD620A96715003D9BAF /* NibView.swift */; };
 		20E80094207A283B00E1AC6C /* BalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* BalanceView.swift */; };
@@ -414,6 +416,8 @@
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistFlatTableViewCell.xib; sourceTree = "<group>"; };
+		20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
+		20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
 		20E30AD620A96715003D9BAF /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		20E80093207A283B00E1AC6C /* BalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalanceView.swift; sourceTree = "<group>"; };
@@ -1111,10 +1115,29 @@
 		20DBA23D20B3FEB4007BA0AF /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
+				20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */,
+				20DBA24120B434C3007BA0AF /* Card */,
+				20DBA24020B43480007BA0AF /* Flat */,
+			);
+			path = Watchlist;
+			sourceTree = "<group>";
+		};
+		20DBA24020B43480007BA0AF /* Flat */ = {
+			isa = PBXGroup;
+			children = (
 				20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */,
 				202F48F5206A157D0080423E /* WatchlistFlatTableViewCell.swift */,
 			);
-			path = Watchlist;
+			path = Flat;
+			sourceTree = "<group>";
+		};
+		20DBA24120B434C3007BA0AF /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */,
+				20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */,
+			);
+			path = Card;
 			sourceTree = "<group>";
 		};
 		2613C8285C5455096A6F3487 /* View */ = {
@@ -1627,7 +1650,6 @@
 				EDCE9DFAA6784CC440AE1E78 /* WatchlistCardsMenuViewInput.swift */,
 				4AF2765444D877C4F7FEA45C /* WatchlistCardsMenuViewOutput.swift */,
 				F33B398CFD9313A25C84DA0D /* WatchlistCardsMenuViewController.swift */,
-				20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1909,6 +1931,7 @@
 				20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */,
 				20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */,
 				2013E5842071464700EFACB7 /* Exo2-ExtraBold.ttf in Resources */,
+				20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */,
 				2013E5902071464700EFACB7 /* Exo2-Thin.ttf in Resources */,
 				205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */,
 				2013E58F2071464700EFACB7 /* Exo2-SemiBoldItalic.ttf in Resources */,
@@ -2095,6 +2118,7 @@
 				36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */,
 				3671205D06A10EADE42FAF7C /* User.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
+				20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */,
 				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
 				8F0AEFDE9AEF6C58DC4F078D /* AlertsViewInput.swift in Sources */,
 				A8CEF450ACABF632538ED4CA /* AlertsViewOutput.swift in Sources */,

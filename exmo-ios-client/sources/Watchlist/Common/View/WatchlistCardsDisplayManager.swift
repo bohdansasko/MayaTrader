@@ -22,14 +22,19 @@ class WatchlistCardsDisplayManager: NSObject {
         self.collectionView = collectionView
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
+        
+        let cellNib = UINib(nibName: "WatchlistCardCollectionViewCell", bundle: nil)
+        self.collectionView.register(cellNib, forCellWithReuseIdentifier: TableCellIdentifiers.WatchlistMenuViewCell.rawValue)
     }
 }
 
-extension WatchlistCardsDisplayManager: UICollectionViewDelegate, UICollectionViewDataSource {
+extension WatchlistCardsDisplayManager: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.dataProvider.getCountOrders()
     }
-    
+}
+
+extension WatchlistCardsDisplayManager: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let orderData = self.dataProvider.getCurrencyPairBy(index: indexPath.row)
         let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
@@ -39,6 +44,4 @@ extension WatchlistCardsDisplayManager: UICollectionViewDelegate, UICollectionVi
         
         return cell
     }
-    
-    
 }

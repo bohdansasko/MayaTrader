@@ -8,12 +8,13 @@
 
 import UIKit
 
-class WatchlistFlatTableViewCell: UITableViewCell {
+class WatchlistFlatTableViewCell: UITableViewCell, WatchlistTableViewCell {
 
-    @IBOutlet weak var currencyPairFullNameLabel: UILabel!
-    @IBOutlet weak var currencyPairShortNameLabel: UILabel!
+    @IBOutlet weak var currencyPairNameLabel: UILabel!
     @IBOutlet weak var currencyPairPriceLabel: UILabel!
     @IBOutlet weak var currencyPairIndicatorLabel: UILabel!
+    @IBOutlet weak var currencyPairVolumeLabel: UILabel!
+    @IBOutlet weak var currencyIcon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,10 +28,12 @@ class WatchlistFlatTableViewCell: UITableViewCell {
     }
     
     func setContent(data: WatchlistCurrencyPairModel) {
-        self.currencyPairFullNameLabel.text = data.getFullName()
-        self.currencyPairShortNameLabel.text = data.getShortName()
+        self.currencyPairNameLabel.text = data.getPairName()
+        self.currencyPairVolumeLabel.text = data.getVolumeStr()
         self.currencyPairPriceLabel.text = data.getPriceAsStr()
         self.currencyPairIndicatorLabel.text = data.getPriceIndicatorAsStr()
+        self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getPriceIndicator())
+        self.currencyIcon.image = data.getIconImage()
     }
 
 }
