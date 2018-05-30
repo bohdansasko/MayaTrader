@@ -22,18 +22,18 @@ class WatchlistManagerViewController: UIViewController, WatchlistManagerViewInpu
         super.viewDidLoad()
         output.viewIsReady()
         
+        setupInitialState()
+    }
+
+
+    // MARK: WatchlistManagerViewInput
+    func setupInitialState() {
         let vc = self.viewControllerForSegmentIndex(isOn: self.menuSwitchController.isOn)
         
         self.addChildViewController(vc)
         vc.view.frame = viewContainer.bounds
         viewContainer.addSubview(vc.view)
         currentViewController = vc
-    }
-
-
-    // MARK: WatchlistManagerViewInput
-    func setupInitialState() {
-        // do nothing
     }
     
     
