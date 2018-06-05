@@ -58,7 +58,7 @@ class AlertTableViewCell: UITableViewCell {
             self.timeLabelWidthConstraint.constant = 70
             self.timeLabelHeightConstraint.constant = 40
         } else {
-            self.timeLabelWidthConstraint.constant = 100
+            self.timeLabelWidthConstraint.constant = 106
             self.timeLabelHeightConstraint.constant = 20
         }
     }
