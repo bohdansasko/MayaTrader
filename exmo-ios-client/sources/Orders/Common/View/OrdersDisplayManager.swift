@@ -27,7 +27,7 @@ class OrdersDisplayManager: NSObject {
     }
     
     func isDataExists() -> Bool {
-        return ordersDataProvider.isDataExists()
+        return self.ordersDataProvider.isDataExists()
     }
 
     func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
@@ -88,10 +88,11 @@ extension OrdersDisplayManager: UITableViewDelegate  {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 
-        let whitespace = "         " // add the padding
-        let deleteAction = UIContextualAction(style: .destructive, title: whitespace, handler: { action, view, completionHandler  in
-            print("called delete action")
-            completionHandler(true)
+        let deleteAction = UIContextualAction(style: .normal, title: "", handler: { action, view, completionHandler  in
+            print("called delete action for row = ", indexPath.section)
+            self.ordersDataProvider.cancelOpenedOrder(byIndex: indexPath.section)
+            self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: UITableViewRowAnimation.top)
+            completionHandler(false)
         })
         deleteAction.image = UIImage(named: "icNavbarTrash")
         deleteAction.backgroundColor = UIColor(red: 255/255.0, green: 105/255.0, blue: 96/255.0, alpha: 1.0)

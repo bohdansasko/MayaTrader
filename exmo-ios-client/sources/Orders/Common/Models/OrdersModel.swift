@@ -34,4 +34,8 @@ class OrdersModel {
     func isDataExists() -> Bool {
         return orders.isEmpty == false
     }
+    
+    func cancelOpenedOrder(byIndex index: Int) {
+        self.orders.remove(at: index)
+    }
 }
