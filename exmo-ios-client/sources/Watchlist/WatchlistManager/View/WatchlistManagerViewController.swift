@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WatchlistManagerViewController: UIViewController, WatchlistManagerViewInput {
+class WatchlistManagerViewController: ExmoUIViewController, WatchlistManagerViewInput {
 
     var output: WatchlistManagerViewOutput!
     private var currentViewController: UIViewController!
