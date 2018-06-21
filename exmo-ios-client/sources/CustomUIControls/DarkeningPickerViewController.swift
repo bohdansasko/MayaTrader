@@ -65,8 +65,13 @@ class DarkeningPickerViewController: UIViewController {
         setupPickerView()
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.74)
-        let selectRow = dataSource.count % 2 == 0 ? dataSource.count/2 : Int(dataSource.count/2)
-        self.pickerView.selectRow(0, inComponent: 0, animated: false)
+        var selectRow = 0;
+        if !dataSource.isEmpty {
+            selectRow = dataSource.count % 2 == 1
+                    ? dataSource.count/2
+                    : dataSource.count/2 - 1
+        }
+        self.pickerView.selectRow(selectRow, inComponent: 0, animated: false)
         self.textField.becomeFirstResponder()
     }
 
