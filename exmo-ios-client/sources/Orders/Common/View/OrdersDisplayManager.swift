@@ -87,7 +87,11 @@ extension OrdersDisplayManager: UITableViewDelegate  {
 
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
+        if !self.shouldUseActions {
+            let configurator = UISwipeActionsConfiguration(actions: [])
+            return configurator
+        }
+        
         let deleteAction = UIContextualAction(style: .normal, title: "", handler: { action, view, completionHandler  in
             print("called delete action for row = ", indexPath.section)
             self.ordersDataProvider.cancelOpenedOrder(byIndex: indexPath.section)
