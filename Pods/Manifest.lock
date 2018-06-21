@@ -1,18 +1,23 @@
 PODS:
+  - Charts (3.1.1):
+    - Charts/Core (= 3.1.1)
+  - Charts/Core (3.1.1)
   - ObjectMapper (3.1.0)
   - SwiftWebSocket (2.7.0)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
+  - Charts
   - ObjectMapper (~> 3.1)
   - SwiftWebSocket
   - SwiftyJSON
 
 SPEC CHECKSUMS:
+  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
   ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 9433d11c4fc5d98a2c65c8845b14c8e98f273ee4
+PODFILE CHECKSUM: 87f3bec5e35ce841456f084eed830584a3c4f327
 
 COCOAPODS: 1.4.0
