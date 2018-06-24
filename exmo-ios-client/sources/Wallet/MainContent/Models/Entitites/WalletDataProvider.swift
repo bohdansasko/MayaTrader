@@ -204,8 +204,10 @@ struct WalletModel : Mappable {
     
     
     mutating func swapUsedCurrencies(from sourceRow: Int, to destinationRow: Int) {
-        swap(&self.usedBalances[sourceRow].orderId, &self.usedBalances[destinationRow].orderId)
-        self.usedBalances.swapAt(sourceRow, destinationRow)
+        if (sourceRow != destinationRow) {
+            swap(&self.usedBalances[sourceRow].orderId, &self.usedBalances[destinationRow].orderId)
+            self.usedBalances.swapAt(sourceRow, destinationRow)
+        }
     }
     
     func getAmountMoneyInBTC() -> Double {
