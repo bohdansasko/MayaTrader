@@ -13,6 +13,7 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var layoutConstraintHeaderHeight: NSLayoutConstraint!
     
     private var displayManager: WalletSettingsDisplayManager!
     
@@ -26,6 +27,10 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     
     // MARK: WalletSettingsViewInput
     func setupInitialState() {
+        if AppDelegate.shared.isIPhone(model: .X) {
+            self.layoutConstraintHeaderHeight.constant = 95
+        }
+        
         self.displayManager.setSearchBar(searchBar: searchBar)
         self.displayManager.setTableView(tableView: tableView)
     }

@@ -15,4 +15,5 @@ protocol CreateOrderViewOutput {
 
     func viewIsReady()
     func createOrder(orderModel: OrderModel)
+    func handleTouchOnCancelButton()
 }

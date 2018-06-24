@@ -16,7 +16,10 @@ class MoreOptionsMenuCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
+        self.selectedBackgroundView = bgColorView
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

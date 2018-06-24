@@ -569,6 +569,9 @@
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" red="1" green="0.41176470590000003" blue="0.37647058820000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="handleTouchOnCancelButton:" destination="1WQ-rN-zBJ" eventType="touchUpInside" id="hat-H6-xj7"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add order" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7iq-sC-Pbg">
                                         <rect key="frame" x="100" y="40" width="120" height="25"/>

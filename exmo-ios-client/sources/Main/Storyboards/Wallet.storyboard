@@ -303,67 +303,84 @@
                                 </prototypes>
                                 <sections/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zf-pb-8rZ" userLabel="headerViewWithSeachBar">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4go-L6-Z72" userLabel="headerViewWithSeachBar">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWalletSearch" translatesAutoresizingMaskIntoConstraints="NO" id="QYE-77-ZAl">
-                                        <rect key="frame" x="33" y="33" width="25" height="25"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he4-Of-aUq">
-                                        <rect key="frame" x="264" y="27" width="41" height="33"/>
-                                        <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="17"/>
-                                        <state key="normal" title="Done"/>
-                                        <connections>
-                                            <action selector="closeView" destination="hnM-bo-MPl" eventType="touchUpInside" id="vtK-af-Gqb"/>
-                                        </connections>
-                                    </button>
-                                    <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search currency" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rks-g2-PTv">
-                                        <rect key="frame" x="65" y="18" width="199" height="56"/>
-                                        <offsetWrapper key="searchTextPositionAdjustment" horizontal="-35" vertical="0.0"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
-                                        <scopeButtonTitles>
-                                            <string>Title</string>
-                                            <string>Title</string>
-                                        </scopeButtonTitles>
-                                    </searchBar>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5J-8e-LgZ" userLabel="viewSeparator">
-                                        <rect key="frame" x="30" y="74" width="260" height="1"/>
-                                        <color key="backgroundColor" name="exmoDark"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Zf-pb-8rZ" userLabel="subHeaderViewWithSeachBar">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWalletSearch" translatesAutoresizingMaskIntoConstraints="NO" id="QYE-77-ZAl">
+                                                <rect key="frame" x="33" y="33" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="7Vz-wu-sau"/>
+                                                    <constraint firstAttribute="height" constant="25" id="zEs-of-7NB"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="he4-Of-aUq">
+                                                <rect key="frame" x="264" y="27" width="41" height="33"/>
+                                                <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="17"/>
+                                                <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="closeView" destination="hnM-bo-MPl" eventType="touchUpInside" id="vtK-af-Gqb"/>
+                                                </connections>
+                                            </button>
+                                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search currency" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rks-g2-PTv">
+                                                <rect key="frame" x="65" y="18" width="199" height="56"/>
+                                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="-35" vertical="0.0"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <scopeButtonTitles>
+                                                    <string>Title</string>
+                                                    <string>Title</string>
+                                                </scopeButtonTitles>
+                                            </searchBar>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E5J-8e-LgZ" userLabel="viewSeparator">
+                                                <rect key="frame" x="30" y="74" width="260" height="1"/>
+                                                <color key="backgroundColor" name="exmoDark"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="4z8-Jl-UJT"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="G0p-K3-22o"/>
+                                            <constraint firstItem="E5J-8e-LgZ" firstAttribute="top" secondItem="QYE-77-ZAl" secondAttribute="bottom" constant="16" id="0F7-re-NpJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="E5J-8e-LgZ" secondAttribute="trailing" constant="30" id="Gbf-HX-k0c"/>
+                                            <constraint firstAttribute="bottom" secondItem="E5J-8e-LgZ" secondAttribute="bottom" id="Hue-a9-lCG"/>
+                                            <constraint firstItem="he4-Of-aUq" firstAttribute="leading" secondItem="Rks-g2-PTv" secondAttribute="trailing" id="OQW-Sb-P1x"/>
+                                            <constraint firstItem="E5J-8e-LgZ" firstAttribute="leading" secondItem="6Zf-pb-8rZ" secondAttribute="leading" constant="30" id="THD-mh-UF6"/>
+                                            <constraint firstItem="Rks-g2-PTv" firstAttribute="leading" secondItem="QYE-77-ZAl" secondAttribute="trailing" constant="7" id="VnO-Oc-IO5"/>
+                                            <constraint firstItem="QYE-77-ZAl" firstAttribute="leading" secondItem="6Zf-pb-8rZ" secondAttribute="leading" constant="33" id="WYP-Bk-dBB"/>
+                                            <constraint firstItem="E5J-8e-LgZ" firstAttribute="top" secondItem="Rks-g2-PTv" secondAttribute="bottom" id="acq-D0-V1E"/>
+                                            <constraint firstItem="E5J-8e-LgZ" firstAttribute="top" secondItem="he4-Of-aUq" secondAttribute="bottom" constant="14" id="jlo-Na-8hU"/>
+                                            <constraint firstAttribute="trailing" secondItem="he4-Of-aUq" secondAttribute="trailing" constant="15" id="zVt-DS-mKB"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" name="exmoMidnight"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="E5J-8e-LgZ" secondAttribute="trailing" constant="30" id="8un-lZ-joS"/>
-                                    <constraint firstAttribute="height" constant="75" id="Cle-7a-LaZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="E5J-8e-LgZ" secondAttribute="bottom" id="Eom-2r-WKA"/>
-                                    <constraint firstItem="E5J-8e-LgZ" firstAttribute="top" secondItem="Rks-g2-PTv" secondAttribute="bottom" id="Kfd-7E-vya"/>
-                                    <constraint firstItem="he4-Of-aUq" firstAttribute="leading" secondItem="Rks-g2-PTv" secondAttribute="trailing" id="VOs-t0-hWD"/>
-                                    <constraint firstAttribute="trailing" secondItem="he4-Of-aUq" secondAttribute="trailing" constant="15" id="YEZ-if-gq6"/>
-                                    <constraint firstAttribute="bottom" secondItem="QYE-77-ZAl" secondAttribute="bottom" constant="17" id="i7n-Al-P7v"/>
-                                    <constraint firstItem="E5J-8e-LgZ" firstAttribute="top" secondItem="he4-Of-aUq" secondAttribute="bottom" constant="14" id="ncy-Ns-1XI"/>
-                                    <constraint firstItem="E5J-8e-LgZ" firstAttribute="leading" secondItem="6Zf-pb-8rZ" secondAttribute="leading" constant="30" id="pvu-Tn-02V"/>
-                                    <constraint firstItem="QYE-77-ZAl" firstAttribute="leading" secondItem="6Zf-pb-8rZ" secondAttribute="leading" constant="33" id="t8h-Dg-lZM"/>
-                                    <constraint firstItem="Rks-g2-PTv" firstAttribute="leading" secondItem="6Zf-pb-8rZ" secondAttribute="leading" constant="65" id="uUY-FH-esr"/>
+                                    <constraint firstAttribute="trailing" secondItem="6Zf-pb-8rZ" secondAttribute="trailing" id="J0z-Uj-pCM"/>
+                                    <constraint firstAttribute="height" constant="75" id="fgO-El-Kkj"/>
+                                    <constraint firstItem="6Zf-pb-8rZ" firstAttribute="top" secondItem="4go-L6-Z72" secondAttribute="top" id="hQ4-3o-dsg"/>
+                                    <constraint firstAttribute="bottom" secondItem="6Zf-pb-8rZ" secondAttribute="bottom" id="inl-Qh-Yug"/>
+                                    <constraint firstItem="6Zf-pb-8rZ" firstAttribute="leading" secondItem="4go-L6-Z72" secondAttribute="leading" id="whg-6R-Zqi"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" name="exmoMidnight"/>
                         <constraints>
                             <constraint firstItem="r3o-7X-b2k" firstAttribute="bottom" secondItem="lkC-p9-0Gs" secondAttribute="bottom" id="RyV-Da-E79"/>
-                            <constraint firstItem="6Zf-pb-8rZ" firstAttribute="trailing" secondItem="r3o-7X-b2k" secondAttribute="trailing" id="a2P-cH-nyu"/>
-                            <constraint firstItem="6Zf-pb-8rZ" firstAttribute="leading" secondItem="r3o-7X-b2k" secondAttribute="leading" id="ipA-I0-ser"/>
+                            <constraint firstItem="lkC-p9-0Gs" firstAttribute="top" secondItem="4go-L6-Z72" secondAttribute="bottom" constant="5" id="Z78-55-fqv"/>
+                            <constraint firstItem="r3o-7X-b2k" firstAttribute="trailing" secondItem="4go-L6-Z72" secondAttribute="trailing" id="c5T-cg-u5K"/>
+                            <constraint firstItem="4go-L6-Z72" firstAttribute="top" secondItem="2Uc-wD-FJy" secondAttribute="top" id="dlJ-GM-CbC"/>
+                            <constraint firstItem="4go-L6-Z72" firstAttribute="leading" secondItem="r3o-7X-b2k" secondAttribute="leading" id="ht7-JW-YgD"/>
                             <constraint firstItem="r3o-7X-b2k" firstAttribute="trailing" secondItem="lkC-p9-0Gs" secondAttribute="trailing" constant="30" id="mqa-EO-chf"/>
-                            <constraint firstItem="6Zf-pb-8rZ" firstAttribute="top" secondItem="2Uc-wD-FJy" secondAttribute="top" id="nld-WA-GcN"/>
-                            <constraint firstItem="lkC-p9-0Gs" firstAttribute="top" secondItem="6Zf-pb-8rZ" secondAttribute="bottom" constant="5" id="o2q-Qq-zPm"/>
                             <constraint firstItem="lkC-p9-0Gs" firstAttribute="leading" secondItem="r3o-7X-b2k" secondAttribute="leading" constant="30" id="oWH-o2-jUw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r3o-7X-b2k"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="layoutConstraintHeaderHeight" destination="fgO-El-Kkj" id="BWA-vW-cba"/>
                         <outlet property="searchBar" destination="Rks-g2-PTv" id="rPZ-do-Pu4"/>
                         <outlet property="tableView" destination="lkC-p9-0Gs" id="a0b-T6-qYM"/>
                     </connections>

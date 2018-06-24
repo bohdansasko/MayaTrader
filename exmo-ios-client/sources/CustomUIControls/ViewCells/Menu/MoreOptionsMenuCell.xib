@@ -53,21 +53,11 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PhW-JV-KJh" userLabel="bottomLine">
-                        <rect key="frame" x="30" y="63.5" width="260" height="1"/>
-                        <color key="backgroundColor" red="0.20784313725490194" green="0.20000000000000001" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="A3B-3c-bnZ"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="PhW-JV-KJh" secondAttribute="trailing" constant="30" id="2jA-NJ-KZa"/>
                     <constraint firstItem="ZT9-rl-gJa" firstAttribute="leading" secondItem="ItU-aQ-OZH" secondAttribute="trailing" constant="20" id="7Zx-vS-R9n"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ZT9-rl-gJa" secondAttribute="bottom" constant="13" id="7i9-4a-8G1"/>
-                    <constraint firstAttribute="bottom" secondItem="PhW-JV-KJh" secondAttribute="bottom" id="8mU-Fs-IbZ"/>
                     <constraint firstItem="ZT9-rl-gJa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="13" id="D98-oX-A7Z"/>
-                    <constraint firstItem="PhW-JV-KJh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="EmZ-NA-3RU"/>
                     <constraint firstAttribute="bottom" secondItem="TAP-9u-1kv" secondAttribute="bottom" constant="20" id="HIG-47-Emc"/>
                     <constraint firstItem="TAP-9u-1kv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="Pmd-WI-rkH"/>
                     <constraint firstItem="ItU-aQ-OZH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="UR5-ch-xQE"/>

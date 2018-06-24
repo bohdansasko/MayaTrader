@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 protocol CreateOrderRouterInput {
-
+    func closeView(view: UIViewController)
 }

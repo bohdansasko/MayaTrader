@@ -36,5 +36,9 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     @IBAction func handleTouchFromOrderByButton(_ sender: Any) {
         self.pickerViewManager.showPickerViewWithDarkening()
     }
+    
+    @IBAction func handleTouchOnCancelButton(_ sender: Any) {
+        self.output.handleTouchOnCancelButton()
+    }
 }
 

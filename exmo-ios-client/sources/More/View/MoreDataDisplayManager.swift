@@ -62,8 +62,12 @@ class MoreDataDisplayManager: NSObject {
 
 extension MoreDataDisplayManager: UITableViewDataSource  {
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataProvider.getCountMenuItems()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
 }
@@ -73,18 +77,36 @@ extension MoreDataDisplayManager: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuItem = self.tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.MoreMenuItem.rawValue, for: indexPath) as! MoreOptionsMenuCell
-        menuItem.setContentData(itemData: self.dataProvider.getMenuItem(byRow: indexPath.row))
+        menuItem.setContentData(itemData: self.dataProvider.getMenuItem(byRow: indexPath.section))
         return menuItem
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
+        let row = indexPath.section
         if dataProvider.isSegueItem(byRow: row) {
             let segueIdentifier = dataProvider.getMenuItemSegueIdentifier(byRow: row)
             viewOutput.onDidSelectMenuItem(segueIdentifier: segueIdentifier)
         } else {
             dataProvider.doAction(itemIndex: row)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 30, y: 0, width: tableView.frame.size.width, height: 2))
+        footerView.backgroundColor = UIColor.clear
+        
+        let separatorLineWidth = footerView.frame.size.width - 60
+        
+        let separatorLine = UIView(frame: CGRect(x: 30, y: 0, width: separatorLineWidth, height: 2.0))
+        separatorLine.backgroundColor = UIColor(red: 53/255.0, green: 51/255.0, blue: 67/255.0, alpha: 1.0)
+        footerView.addSubview(separatorLine)
+        separatorLine.bottomAnchor.constraint(equalTo: footerView.layoutMarginsGuide.bottomAnchor)
+        
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 2.0
     }
     
 }
