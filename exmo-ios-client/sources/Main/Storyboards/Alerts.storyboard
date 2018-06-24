@@ -348,9 +348,6 @@
         <namedColor name="exmoSteel">
             <color red="0.4900000095" green="0.50199997429999998" blue="0.56900000569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="exmoSteel">
-            <color red="0.4900000095" green="0.50199997429999998" blue="0.56900000569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>

@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Exo2-Bold.ttf">
+            <string>Exo2-Bold</string>
+        </array>
         <array key="Exo2-Regular.ttf">
             <string>Exo2-Regular</string>
         </array>
@@ -35,7 +38,7 @@
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="XOu-H3-kry"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                        <fontDescription key="fontDescription" name="Exo2-Bold" family="Exo 2" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
