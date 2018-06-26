@@ -43,7 +43,7 @@ class WatchlistManagerViewController: ExmoUIViewController, WatchlistManagerView
         self.addChildViewController(vc)
         self.transition(
             from: self.currentViewController!, to: vc,
-            duration: 0.5, options: .showHideTransitionViews,
+            duration: 0.0, options: .showHideTransitionViews,
             animations: {
                 self.currentViewController?.view.isHidden = true
                 vc.view.frame = self.viewContainer.bounds
