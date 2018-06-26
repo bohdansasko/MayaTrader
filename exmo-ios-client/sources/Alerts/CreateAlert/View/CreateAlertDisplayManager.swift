@@ -52,6 +52,18 @@ class CreateAlertItem {
 //
 // @MARK: DisplayManager
 //
+
+fileprivate enum CellName: String {
+    case AddAlertTableViewCell
+    case AlertTableViewCellWithArrow
+    case AlertTableViewCellButton
+}
+
+fileprivate enum FieldType: Int {
+    case CurrencyPair = 0
+    case AlertSound = 4
+}
+
 class CreateAlertDisplayManager: NSObject {
     private var dataProvider: [CreateAlertItem] = []
     private var tableView: UITableView!
@@ -142,17 +154,16 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch self.dataProvider[indexPath.section].fieldType {
         case .ActiveInput, .InactiveInput:
-            let cell = Bundle.main.loadNibNamed("AddAlertTableViewCell", owner: self, options: nil)?.first  as! AddAlertTableViewCell
+            let cell = Bundle.main.loadNibNamed(CellName.AddAlertTableViewCell.rawValue, owner: self, options: nil)?.first  as! AddAlertTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
             cell.selectionStyle = .none
             return cell
         case .Disclosure:
-            let cell = Bundle.main.loadNibNamed("AlertTableViewCellWithArrow", owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
+            let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
             cell.setContentData(data: self.dataProvider[indexPath.section])
-            cell.selectionStyle = .none
             return cell
         case .Button:
-            let cell = Bundle.main.loadNibNamed("AlertTableViewCellButton", owner: self, options: nil)?.first as! AlertTableViewCellButton
+            let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellButton.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellButton
             cell.selectionStyle = .none
             cell.setCallbackOnTouch(callback: {
                 self.handleTouchAddAlertBtn()
@@ -176,8 +187,18 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             let view = UIView(frame: tableView.frame)
             view.backgroundColor = UIColor.clear
             return view
+        } else {
+            let footerView = UIView(frame: CGRect(x: 20, y: 0, width: tableView.frame.size.width, height: 2))
+            footerView.backgroundColor = UIColor.clear
+            
+            let separatorLineWidth = footerView.frame.size.width - 40
+            
+            let separatorLine = UIView(frame: CGRect(x: 20, y: 0, width: separatorLineWidth, height: 1.0))
+            separatorLine.backgroundColor = UIColor(red: 53/255.0, green: 51/255.0, blue: 67/255.0, alpha: 1.0)
+            footerView.addSubview(separatorLine)
+            separatorLine.bottomAnchor.constraint(equalTo: footerView.layoutMarginsGuide.bottomAnchor)
+            return footerView
         }
-        return nil
     }
 }
 
@@ -194,14 +215,16 @@ extension CreateAlertDisplayManager: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return dataProvider[section].fieldType == .Button ? 30 : 0
+        return dataProvider[section].fieldType == .Button ? 30 : 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
-            case 0: handleTouchSelectCurrencyPair()
+            case FieldType.CurrencyPair.rawValue:
+                handleTouchSelectCurrencyPair()
                 break
-            case 4: handleTouchSelectSound()
+            case FieldType.AlertSound.rawValue:
+                handleTouchSelectSound()
                 break
             default:
                 // do nothing

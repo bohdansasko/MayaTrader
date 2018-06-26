@@ -12,8 +12,6 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     var output: CreateOrderViewOutput!
     var dataDisplayManager: CreateOrderDisplayManager!
     var pickerViewManager: DarkeningPickerViewManager!
-
-    var shouldBeginEditing = true
     
     // IBOutles
     @IBOutlet weak var textFieldSelectedMarketType: UITextField!
@@ -25,7 +23,12 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
 
         setupInitialState()
         
-        // createPickerView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
     }
 
     // MARK: CreateOrderViewInput
