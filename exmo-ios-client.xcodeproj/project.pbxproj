@@ -82,6 +82,8 @@
 		203CC18220BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CC18020BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift */; };
 		203CC18620BD6BE100F49260 /* WatchlistCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CC18420BD6BE100F49260 /* WatchlistCurrencyTableViewCell.swift */; };
 		203CC18720BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203CC18520BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib */; };
+		20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */; };
+		20463D8B20E6A16300086B51 /* OrderByTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */; };
 		20467D5051D58148706B41DA /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */; };
 		205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */; };
 		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
@@ -399,6 +401,8 @@
 		203CC18020BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyHeaderView.swift; sourceTree = "<group>"; };
 		203CC18420BD6BE100F49260 /* WatchlistCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		203CC18520BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderByTableViewCell.swift; sourceTree = "<group>"; };
+		20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderByTableViewCell.xib; sourceTree = "<group>"; };
 		205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		205A7CC1203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		205A7CC3203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -929,6 +933,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		20463D8720E6A13C00086B51 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */,
+				20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -1114,6 +1127,7 @@
 		20BFCC3020AA1C9300C68D06 /* ViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				20463D8720E6A13C00086B51 /* Orders */,
 				20F08D0520A8E20100B782FF /* UITouchableViewWithIndicator.xib */,
 				20F08D0720A8E21300B782FF /* UITouchableViewWithIndicator.swift */,
 				20DBA23720B3FE59007BA0AF /* Menu */,
@@ -2129,6 +2143,7 @@
 				2010154E20B04FD600324F22 /* AlertTableViewCellButton.xib in Resources */,
 				2010154920B02B7800324F22 /* AddAlertTableViewCell.xib in Resources */,
 				2013E5852071464700EFACB7 /* Exo2-ExtraBoldItalic.ttf in Resources */,
+				20463D8B20E6A16300086B51 /* OrderByTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2359,6 +2374,7 @@
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersManagerViewInput.swift in Sources */,
 				8075AB2C2709B6B208E3B25E /* OrdersManagerViewOutput.swift in Sources */,
+				20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */,
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersManagerViewController.swift in Sources */,
 				3241679EBA193DF44DAB5E19 /* OrdersManagerModuleInput.swift in Sources */,
 				820D8F305E45D621689112C1 /* OrdersManagerPresenter.swift in Sources */,

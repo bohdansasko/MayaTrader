@@ -19,6 +19,8 @@ class CreateAlertItem {
         case InactiveInput
         case Disclosure
         case Button
+        case TwoButtons
+        case OrderBy
     }
     
     var fieldType: FieldType = .None
@@ -53,10 +55,11 @@ class CreateAlertItem {
 // @MARK: DisplayManager
 //
 
-fileprivate enum CellName: String {
+enum CellName: String {
     case AddAlertTableViewCell
     case AlertTableViewCellWithArrow
     case AlertTableViewCellButton
+    case OrderByTableViewCell
 }
 
 fileprivate enum FieldType: Int {

@@ -15,6 +15,8 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     
     // IBOutles
     @IBOutlet weak var textFieldSelectedMarketType: UITextField!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -22,7 +24,15 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
         output.viewIsReady()
 
         setupInitialState()
+    }
+
+    // MARK: CreateOrderViewInput
+    func setupInitialState() {
+        self.dataDisplayManager.setTableView(tableView: self.tableView)
         
+        configureCancelButton()
+        
+        // for hide keyboard on touch background
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
     }
@@ -30,10 +40,20 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }
-
-    // MARK: CreateOrderViewInput
-    func setupInitialState() {
-        // do nothing
+    
+    fileprivate func configureCancelButton() {
+        self.cancelButton.setTitleTextAttributes([
+            NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
+            NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+            ],
+            for: .normal
+        )
+        self.cancelButton.setTitleTextAttributes([
+            NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
+            NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+            ],
+            for: .highlighted
+        )
     }
     
     @IBAction func handleTouchFromOrderByButton(_ sender: Any) {
