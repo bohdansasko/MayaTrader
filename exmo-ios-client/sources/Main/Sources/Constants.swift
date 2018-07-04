@@ -5,6 +5,7 @@
 import Foundation
 
 typealias VoidClosure = () -> Void
+typealias IntInVoidOutClosure = (Int) -> Void
 
 enum AppSettingsKeys: String {
     case LastLoginedUID

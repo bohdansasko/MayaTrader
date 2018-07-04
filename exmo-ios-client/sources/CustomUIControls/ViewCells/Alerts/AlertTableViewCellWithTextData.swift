@@ -13,9 +13,7 @@ class AlertTableViewCellWithTextData: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
-        self.selectedBackgroundView = bgColorView
+        setupSelectionView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,4 +26,9 @@ class AlertTableViewCellWithTextData: UITableViewCell {
         return ""
     }
 
+    private func setupSelectionView() {
+        let bgColorView = UIView()
+        bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
+        self.selectedBackgroundView = bgColorView
+    }
 }

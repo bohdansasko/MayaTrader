@@ -36,7 +36,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PGC-gh-tC0">
-                        <rect key="frame" x="20" y="35" width="260" height="25"/>
+                        <rect key="frame" x="20" y="35" width="160" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="X5V-WN-YTs"/>
                         </constraints>
@@ -51,17 +51,29 @@
                             <constraint firstAttribute="width" constant="26" id="pL0-AC-tdi"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8u-uv-KAL" userLabel="Right Label">
+                        <rect key="frame" x="247.5" y="35" width="21.5" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="PcR-gc-lIE"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="7Hh-Vx-p41" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8ZA-Fg-VOD"/>
+                    <constraint firstItem="t8u-uv-KAL" firstAttribute="centerY" secondItem="PGC-gh-tC0" secondAttribute="centerY" id="Aja-xi-qMv"/>
                     <constraint firstItem="PGC-gh-tC0" firstAttribute="top" secondItem="7Hh-Vx-p41" secondAttribute="bottom" constant="10" id="KCb-gy-HY4"/>
                     <constraint firstAttribute="trailing" secondItem="RFH-ap-Bcb" secondAttribute="trailing" constant="20" id="ORe-BT-AaB"/>
+                    <constraint firstItem="RFH-ap-Bcb" firstAttribute="leading" secondItem="t8u-uv-KAL" secondAttribute="trailing" constant="5" id="W4a-WD-yJl"/>
                     <constraint firstItem="7Hh-Vx-p41" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="cDf-JE-jzb"/>
                     <constraint firstItem="PGC-gh-tC0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ktX-tT-KiO"/>
                     <constraint firstItem="RFH-ap-Bcb" firstAttribute="top" secondItem="7Hh-Vx-p41" secondAttribute="bottom" constant="10" id="v9w-R5-4v2"/>
-                    <constraint firstAttribute="trailing" secondItem="PGC-gh-tC0" secondAttribute="trailing" constant="40" id="xaR-Sa-6lR"/>
+                    <constraint firstAttribute="trailing" secondItem="PGC-gh-tC0" secondAttribute="trailing" constant="140" id="xaR-Sa-6lR"/>
                     <constraint firstAttribute="trailing" secondItem="7Hh-Vx-p41" secondAttribute="trailing" constant="20" id="ymQ-CX-yxD"/>
+                    <constraint firstItem="t8u-uv-KAL" firstAttribute="leading" relation="lessThanOrEqual" secondItem="PGC-gh-tC0" secondAttribute="trailing" constant="67.5" id="zlB-4j-J7h"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -69,6 +81,7 @@
             <connections>
                 <outlet property="headerLabel" destination="7Hh-Vx-p41" id="9HX-hK-kwS"/>
                 <outlet property="leftLabel" destination="PGC-gh-tC0" id="CGM-3k-npp"/>
+                <outlet property="rightLabel" destination="t8u-uv-KAL" id="PeP-EJ-rY5"/>
             </connections>
         </tableViewCell>
     </objects>

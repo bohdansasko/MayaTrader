@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -300,7 +301,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="544" y="127"/>
+            <point key="canvasLocation" x="-831" y="1591"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="xt0-5Q-kOK">
@@ -331,12 +332,165 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Pp-rT-cUM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1228" y="125"/>
+            <point key="canvasLocation" x="92" y="125"/>
+        </scene>
+        <!--Searchcurrencypair View Controller-->
+        <scene sceneID="MuO-yz-xmt">
+            <objects>
+                <viewController storyboardIdentifier="SearchCurrencyPairViewController" title="Currencies" modalPresentationStyle="overFullScreen" id="tTM-Dq-2dT" customClass="SearchCurrencyPairViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eKV-f3-Xs7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" sectionIndexMinimumDisplayRowCount="1" allowsSelectionDuringEditing="YES" rowHeight="65" estimatedRowHeight="-1" sectionHeaderHeight="50" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fY9-XF-Sz2">
+                                <rect key="frame" x="0.0" y="80" width="320" height="488"/>
+                                <color key="backgroundColor" name="exmoMidnight"/>
+                                <color key="tintColor" name="exmoMidnight"/>
+                                <color key="separatorColor" red="0.089525051414966583" green="0.082541503012180328" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyPairCell" id="3MP-rp-hcO" customClass="SearchCurrencyPairTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="320" height="65"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3MP-rp-hcO" id="SwH-1e-grB">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9sa-vY-TsA">
+                                                    <rect key="frame" x="30" y="24" width="260" height="17"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/UAH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5y-DJ-Kqr">
+                                                            <rect key="frame" x="0.0" y="0.0" width="130" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25500 UAH" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-K6-eqw">
+                                                            <rect key="frame" x="130" y="0.0" width="130" height="17"/>
+                                                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="14"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="9sa-vY-TsA" secondAttribute="trailing" constant="30" id="BkB-4f-fCx"/>
+                                                <constraint firstItem="9sa-vY-TsA" firstAttribute="centerY" secondItem="SwH-1e-grB" secondAttribute="centerY" id="DaL-e6-kuc"/>
+                                                <constraint firstItem="9sa-vY-TsA" firstAttribute="leading" secondItem="SwH-1e-grB" secondAttribute="leading" constant="30" id="Igh-eP-tq3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="Z5y-DJ-Kqr" id="4gB-43-oP4"/>
+                                            <outlet property="priceLabel" destination="bsL-K6-eqw" id="lVu-HM-Snb"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CZp-W8-UUz" userLabel="headerViewWithSeachBar">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vHr-fK-Vzm" userLabel="subHeaderViewWithSeachBar">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icWalletSearch" translatesAutoresizingMaskIntoConstraints="NO" id="jl2-b1-Wbg">
+                                                <rect key="frame" x="33" y="33" width="25" height="25"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="Pdr-iN-icq"/>
+                                                    <constraint firstAttribute="height" constant="25" id="eV8-Wf-gPS"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Hj-SG-Axc">
+                                                <rect key="frame" x="249" y="27" width="41" height="33"/>
+                                                <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="17"/>
+                                                <state key="normal" title="Done"/>
+                                                <connections>
+                                                    <action selector="closeView" destination="tTM-Dq-2dT" eventType="touchUpInside" id="Xbk-Od-OMC"/>
+                                                </connections>
+                                            </button>
+                                            <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search currency" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vid-PQ-hY8">
+                                                <rect key="frame" x="65" y="18" width="184" height="56"/>
+                                                <offsetWrapper key="searchTextPositionAdjustment" horizontal="-35" vertical="0.0"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="alphabet" keyboardAppearance="alert" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                <scopeButtonTitles>
+                                                    <string>Title</string>
+                                                    <string>Title</string>
+                                                </scopeButtonTitles>
+                                            </searchBar>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxO-DF-DMQ" userLabel="viewSeparator">
+                                                <rect key="frame" x="30" y="74" width="260" height="1"/>
+                                                <color key="backgroundColor" name="exmoDark"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="1" id="70U-5l-oZo"/>
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstItem="sxO-DF-DMQ" firstAttribute="top" secondItem="jl2-b1-Wbg" secondAttribute="bottom" constant="16" id="Dol-CD-fcI"/>
+                                            <constraint firstItem="jl2-b1-Wbg" firstAttribute="leading" secondItem="vHr-fK-Vzm" secondAttribute="leading" constant="33" id="M3V-s6-ad4"/>
+                                            <constraint firstItem="Vid-PQ-hY8" firstAttribute="leading" secondItem="jl2-b1-Wbg" secondAttribute="trailing" constant="7" id="Pmn-lg-eNy"/>
+                                            <constraint firstItem="sxO-DF-DMQ" firstAttribute="leading" secondItem="vHr-fK-Vzm" secondAttribute="leading" constant="30" id="RUK-Nh-tsg"/>
+                                            <constraint firstItem="sxO-DF-DMQ" firstAttribute="top" secondItem="Vid-PQ-hY8" secondAttribute="bottom" id="RnS-UH-8lN"/>
+                                            <constraint firstItem="9Hj-SG-Axc" firstAttribute="leading" secondItem="Vid-PQ-hY8" secondAttribute="trailing" id="bSh-Po-eWc"/>
+                                            <constraint firstAttribute="trailing" secondItem="9Hj-SG-Axc" secondAttribute="trailing" constant="30" id="jXK-pk-JU9"/>
+                                            <constraint firstAttribute="bottom" secondItem="sxO-DF-DMQ" secondAttribute="bottom" id="lTI-y3-lhj"/>
+                                            <constraint firstAttribute="trailing" secondItem="sxO-DF-DMQ" secondAttribute="trailing" constant="30" id="z0O-Hq-LQm"/>
+                                            <constraint firstItem="sxO-DF-DMQ" firstAttribute="top" secondItem="9Hj-SG-Axc" secondAttribute="bottom" constant="14" id="zjI-T4-mRS"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="vHr-fK-Vzm" firstAttribute="top" secondItem="CZp-W8-UUz" secondAttribute="top" id="1yF-cA-6kI"/>
+                                    <constraint firstAttribute="trailing" secondItem="vHr-fK-Vzm" secondAttribute="trailing" id="Ee7-tB-Pzu"/>
+                                    <constraint firstItem="vHr-fK-Vzm" firstAttribute="leading" secondItem="CZp-W8-UUz" secondAttribute="leading" id="h1a-b5-oSi"/>
+                                    <constraint firstAttribute="height" constant="75" id="hCg-i7-8Sd"/>
+                                    <constraint firstAttribute="bottom" secondItem="vHr-fK-Vzm" secondAttribute="bottom" id="iSH-09-Tpn"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="exmoMidnight"/>
+                        <constraints>
+                            <constraint firstItem="3iW-zx-4Nr" firstAttribute="trailing" secondItem="fY9-XF-Sz2" secondAttribute="trailing" id="1mQ-29-2bU"/>
+                            <constraint firstItem="fY9-XF-Sz2" firstAttribute="leading" secondItem="3iW-zx-4Nr" secondAttribute="leading" id="E6W-Fh-aOE"/>
+                            <constraint firstItem="3iW-zx-4Nr" firstAttribute="bottom" secondItem="fY9-XF-Sz2" secondAttribute="bottom" id="Hbb-lO-rde"/>
+                            <constraint firstItem="3iW-zx-4Nr" firstAttribute="trailing" secondItem="CZp-W8-UUz" secondAttribute="trailing" id="cgP-wO-DIy"/>
+                            <constraint firstItem="fY9-XF-Sz2" firstAttribute="top" secondItem="CZp-W8-UUz" secondAttribute="bottom" constant="5" id="eFj-78-r98"/>
+                            <constraint firstItem="CZp-W8-UUz" firstAttribute="top" secondItem="eKV-f3-Xs7" secondAttribute="top" id="txj-zk-ZNx"/>
+                            <constraint firstItem="CZp-W8-UUz" firstAttribute="leading" secondItem="3iW-zx-4Nr" secondAttribute="leading" id="wxj-NT-7oO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3iW-zx-4Nr"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="layoutConstraintHeaderHeight" destination="hCg-i7-8Sd" id="5oX-yS-otS"/>
+                        <outlet property="searchBar" destination="Vid-PQ-hY8" id="Cd4-yn-ZdB"/>
+                        <outlet property="tableView" destination="fY9-XF-Sz2" id="DaE-QV-WXf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IpC-oK-9ge" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="qbE-Jc-jvX" customClass="SearchCurrencyPairModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="searchcurrencypairViewController" destination="tTM-Dq-2dT" id="ckm-a1-cer"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="811.875" y="124.64788732394366"/>
         </scene>
     </scenes>
     <resources>
         <image name="icButtonBlue" width="120" height="45"/>
         <image name="icButtonGray" width="120" height="45"/>
+        <image name="icWalletSearch" width="25" height="25"/>
+        <namedColor name="exmoDark">
+            <color red="0.11800000071525574" green="0.10999999940395355" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="exmoMidnight">
+            <color red="0.0120000001" green="0.0040000001900000002" blue="0.039000000799999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
 </document>
