@@ -14,4 +14,5 @@ protocol CreateOrderViewInput: class {
     */
 
     func setupInitialState()
+    func updateSelectedCurrency(name: String, price: Double)
 }

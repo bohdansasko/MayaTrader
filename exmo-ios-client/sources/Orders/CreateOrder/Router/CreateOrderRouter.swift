@@ -11,4 +11,10 @@ class CreateOrderRouter: CreateOrderRouterInput {
     func closeView(view: UIViewController) {
         view.close()
     }
+    func openCurrencySearchView(view: UIViewController, callbackOnSelectCurrency: IntInVoidOutClosure?) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchCurrencyPairViewController") as! SearchCurrencyPairViewController
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.output.subscribeOnSelectCurrency(callback: callbackOnSelectCurrency)
+        view.present(vc, animated: true, completion: nil)
+    }
 }

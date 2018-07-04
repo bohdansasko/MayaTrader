@@ -63,5 +63,9 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     @IBAction func handleTouchOnCancelButton(_ sender: Any) {
         self.output.handleTouchOnCancelButton()
     }
+    
+    func updateSelectedCurrency(name: String, price: Double) {
+        self.dataDisplayManager.updateSelectedCurrency(name: name, price: price)
+    }
 }
 

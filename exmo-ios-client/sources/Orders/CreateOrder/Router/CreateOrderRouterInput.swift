@@ -11,4 +11,5 @@ import UIKit.UIViewController
 
 protocol CreateOrderRouterInput {
     func closeView(view: UIViewController)
+    func openCurrencySearchView(view: UIViewController, callbackOnSelectCurrency: IntInVoidOutClosure?)
 }

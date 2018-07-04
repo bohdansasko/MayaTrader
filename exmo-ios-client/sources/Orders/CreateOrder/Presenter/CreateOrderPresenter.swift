@@ -24,4 +24,17 @@ class CreateOrderPresenter: CreateOrderModuleInput, CreateOrderViewOutput, Creat
     func handleTouchOnCancelButton() {
         router.closeView(view: view as! UIViewController)
     }
+    
+    func openCurrencySearchView() {
+        
+        router.openCurrencySearchView(view: view as! UIViewController, callbackOnSelectCurrency: {
+            (currencyId) in
+            print("was selected currency with id = \(currencyId)")
+            self.interactor.handleSelectedCurrency(currencyId: currencyId)
+        })
+    }
+    
+    func updateSelectedCurrency(name: String, price: Double) {
+        self.view.updateSelectedCurrency(name: name, price: price)
+    }
 }

@@ -15,6 +15,7 @@ class CreateOrderDisplayManager: NSObject {
     var cell: CreateOrderTableViewCell? = nil
     
     private var dataProvider: [CreateAlertItem] = []
+    private var currencyRow: AlertTableViewCellWithArrow? = nil
     
     override init() {
         super.init()
@@ -58,8 +59,8 @@ class CreateOrderDisplayManager: NSObject {
     
     private func getFieldsForRender() -> [CreateAlertItem] {
         return [
-            CreateAlertItem(fieldType: .Disclosure, headerText: "Amount", leftText: "BTC/USD", rightText: "12800.876"),
-            CreateAlertItem(fieldType: .ActiveInput, headerText: "Price", leftText: "0 USD"),
+            CreateAlertItem(fieldType: .Disclosure, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876 $"),
+            CreateAlertItem(fieldType: .ActiveInput, headerText: "Amount", leftText: "USD"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Total", leftText: "0 USD"),
             CreateAlertItem(fieldType: .InactiveInput, headerText: "Commision", leftText: "0 USD"),
             CreateAlertItem(fieldType: .OrderBy),
@@ -75,6 +76,10 @@ class CreateOrderDisplayManager: NSObject {
     
     @objc func handleEventKeyboardWillHide(notification: Notification) {
         self.tableView.contentOffset.y = 0
+    }
+    
+    func updateSelectedCurrency(name: String, price: Double) {
+        self.currencyRow?.updateData(name: name, price: price)
     }
 }
 
@@ -95,10 +100,12 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             let cell = Bundle.main.loadNibNamed(CellName.AddAlertTableViewCell.rawValue, owner: self, options: nil)?.first  as! AddAlertTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
             cell.selectionStyle = .none
+            cell.inputField.isEnabled = self.dataProvider[indexPath.section].fieldType == .ActiveInput
             return cell
         case .Disclosure:
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
             cell.setContentData(data: self.dataProvider[indexPath.section])
+            self.currencyRow = cell
             return cell
         case .OrderBy:
             let cell = Bundle.main.loadNibNamed(CellName.OrderByTableViewCell.rawValue, owner: self, options: nil)?.first as! OrderByTableViewCell
@@ -107,7 +114,7 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellButton.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellButton
             cell.selectionStyle = .none
             cell.setCallbackOnTouch(callback: {
-                // self.handleTouchAddAlertBtn()
+                print("create order")
             })
             return cell
         default:
@@ -129,7 +136,7 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
         let footerView = UIView(frame: CGRect(x: 20, y: 0, width: tableView.frame.size.width, height: 2))
         footerView.backgroundColor = UIColor.clear
         
-        if section < 4 {
+        if self.dataProvider[section].fieldType != .OrderBy {
             let separatorLineWidth = footerView.frame.size.width - 40
 
             let separatorLine = UIView(frame: CGRect(x: 20, y: 0, width: separatorLineWidth, height: 1.0))
@@ -142,7 +149,7 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch dataProvider[indexPath.section].fieldType {
+        switch self.dataProvider[indexPath.section].fieldType {
         case .Button: return 45
         case .OrderBy: return 126
         default: return 70
@@ -158,16 +165,8 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        switch indexPath.section {
-//        case FieldType.CurrencyPair.rawValue:
-//            handleTouchSelectCurrencyPair()
-//            break
-//        case FieldType.AlertSound.rawValue:
-//            handleTouchSelectSound()
-//            break
-//        default:
-//            // do nothing
-//            break
-//        }
+        if indexPath.section == FieldType.CurrencyPair.rawValue {
+            self.output.openCurrencySearchView()
+        }
     }
 }
