@@ -9,14 +9,19 @@
 import UIKit
 
 class SearchCurrencyPairViewController: UIViewController, SearchCurrencyPairViewInput {
-
+    enum SearchType {
+        case None
+        case Currencies
+        case Sounds
+    }
+    
     var output: SearchCurrencyPairViewOutput!
-
+    var displayManager: SearchCurrencyPairDisplayManager!
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var layoutConstraintHeaderHeight: NSLayoutConstraint!
     
-    private var displayManager: SearchCurrencyPairDisplayManager!
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -32,21 +37,18 @@ class SearchCurrencyPairViewController: UIViewController, SearchCurrencyPairView
             self.layoutConstraintHeaderHeight.constant = 95
         }
         
-        self.displayManager = SearchCurrencyPairDisplayManager(dataProvider: [
-            SearchCurrencyPairModel(id: 1, name: "BTC/USD", price: 7809.976),
-            SearchCurrencyPairModel(id: 2, name: "BTC/EUR", price: 6009.65),
-            SearchCurrencyPairModel(id: 3, name: "BTC/UAH", price: 51090.0),
-            SearchCurrencyPairModel(id: 4, name: "EUR/USD", price: 109.976),
-            SearchCurrencyPairModel(id: 5, name: "UAH/USD", price: 709.976),
-            SearchCurrencyPairModel(id: 6, name: "UAH/BTC", price: 809.976),
-            SearchCurrencyPairModel(id: 7, name: "EUR/BTC", price: 9871.976)
-        ])
-        self.displayManager.output = output
         self.displayManager.setSearchBar(searchBar: searchBar)
-        self.displayManager.setTableView(tableView: tableView)
+        self.displayManager.setTableView(tableView: self.tableView)
     }
     
     @IBAction func closeView() {
         self.output.handleCloseView()
+    }
+    
+    //
+    //@ this method called before viewDidLoad
+    //
+    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel]) {
+        self.displayManager.setData(dataProvider: data, searchType: searchType)
     }
 }

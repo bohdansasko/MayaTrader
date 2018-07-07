@@ -25,9 +25,15 @@ class SearchCurrencyPairTableViewCell: AlertTableViewCellWithTextData {
     }
     
     func setContent(currencyPairModel: SearchCurrencyPairModel) {
-        self.nameLabel.text = currencyPairModel.name
-        self.priceLabel.text = "$" + currencyPairModel.getPairPriceAsStr() 
         self.id = currencyPairModel.id
+        self.nameLabel.text = currencyPairModel.name
+        self.priceLabel.text = currencyPairModel.getPairPriceAsStr()
+    }
+    
+    func setContent(currencyPairModel: SearchModel) {
+        self.id = currencyPairModel.id
+        self.nameLabel.text = currencyPairModel.name
+        self.priceLabel.isHidden = true
     }
 
 }

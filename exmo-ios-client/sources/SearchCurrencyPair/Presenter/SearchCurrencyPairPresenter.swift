@@ -34,4 +34,8 @@ class SearchCurrencyPairPresenter: SearchCurrencyPairModuleInput, SearchCurrency
         self.callbackOnSelectCurrency?(currencyPairId)
         self.handleCloseView()
     }
+    
+    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel]) {
+        self.view.setSearchData(searchType, data)
+    }
 }

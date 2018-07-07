@@ -16,5 +16,5 @@ protocol CreateOrderViewOutput {
     func viewIsReady()
     func createOrder(orderModel: OrderModel)
     func handleTouchOnCancelButton()
-    func openCurrencySearchView()
+    func openCurrencySearchView(data: [SearchModel])
 }

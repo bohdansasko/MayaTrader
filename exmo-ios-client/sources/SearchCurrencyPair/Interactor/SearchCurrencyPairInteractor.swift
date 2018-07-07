@@ -7,7 +7,5 @@
 //
 
 class SearchCurrencyPairInteractor: SearchCurrencyPairInteractorInput {
-
     weak var output: SearchCurrencyPairInteractorOutput!
-
 }

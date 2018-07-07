@@ -17,4 +17,5 @@ protocol SearchCurrencyPairViewOutput {
     func handleCloseView()
     func subscribeOnSelectCurrency(callback: IntInVoidOutClosure?)
     func handleTouchOnCurrency(currencyPairId: Int)
+    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel])
 }

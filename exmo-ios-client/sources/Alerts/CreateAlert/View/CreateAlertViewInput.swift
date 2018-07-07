@@ -14,4 +14,6 @@ protocol CreateAlertViewInput: class {
     */
 
     func setupInitialState()
+    func updateSelectedCurrency(name: String, price: Double)
+    func updateSelectedSoundInUI(soundName: String)
 }

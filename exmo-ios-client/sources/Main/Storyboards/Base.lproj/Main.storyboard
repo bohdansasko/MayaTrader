@@ -365,7 +365,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25500 UAH" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-K6-eqw">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsL-K6-eqw">
                                                             <rect key="frame" x="130" y="0.0" width="130" height="17"/>
                                                             <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="14"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

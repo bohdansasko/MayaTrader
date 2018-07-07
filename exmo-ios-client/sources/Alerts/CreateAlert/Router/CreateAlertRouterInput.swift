@@ -10,6 +10,6 @@ import UIKit
 
 protocol CreateAlertRouterInput {
     func close(uiViewController: UIViewController!)
-    func openCurrencyPairsSearchView(uiViewController: UIViewController!)
-    func openSoundsSearchView(uiViewController: UIViewController!)
+    func openCurrencyPairsSearchView(data: [SearchModel], uiViewController: UIViewController!, callbackOnSelectCurrency: IntInVoidOutClosure?)
+    func openSoundsSearchView(data: [SearchModel], uiViewController: UIViewController!, callbackOnSelectSound: IntInVoidOutClosure?)
 }

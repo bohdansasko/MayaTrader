@@ -48,6 +48,14 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
         self.view.addGestureRecognizer(tap)
     }
     
+    func updateSelectedCurrency(name: String, price: Double) {
+        self.displayManager.updateSelectedCurrency(name: name, price: price)
+    }
+    
+    func updateSelectedSoundInUI(soundName: String) {
+        self.displayManager.updateSoundElement(soundName: soundName)
+    }
+    
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }

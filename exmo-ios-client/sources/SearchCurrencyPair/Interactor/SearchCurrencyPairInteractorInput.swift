@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SearchCurrencyPairInteractorInput {
-
+    // do nothing
 }

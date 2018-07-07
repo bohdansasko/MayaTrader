@@ -27,8 +27,10 @@ class AlertTableViewCellWithArrow: AlertTableViewCellWithTextData {
         super.setSelected(false, animated: animated)
     }
     
-    func updateData(name: String, price: Double) {
-        self.leftLabel.text = name
-        self.rightLabel.text = String(price)
+    func updateData(leftText: String, rightText: String?) {
+        self.leftLabel.text = leftText
+        if rightText != nil {
+            self.rightLabel.text = rightText!
+        }
     }
 }

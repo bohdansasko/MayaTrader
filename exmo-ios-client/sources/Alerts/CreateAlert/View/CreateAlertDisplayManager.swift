@@ -17,7 +17,8 @@ class CreateAlertItem {
         case None
         case ActiveInput
         case InactiveInput
-        case Disclosure
+        case CurrencyPair
+        case Sound
         case Button
         case TwoButtons
         case OrderBy
@@ -62,7 +63,7 @@ enum CellName: String {
     case OrderByTableViewCell
 }
 
-fileprivate enum FieldType: Int {
+enum FieldType: Int {
     case CurrencyPair = 0
     case AlertSound = 4
 }
@@ -70,6 +71,9 @@ fileprivate enum FieldType: Int {
 class CreateAlertDisplayManager: NSObject {
     private var dataProvider: [CreateAlertItem] = []
     private var tableView: UITableView!
+    private var currencyRow: AlertTableViewCellWithArrow? = nil
+    private var soundRow: AlertTableViewCellWithArrow? = nil
+    
     var output: CreateAlertViewOutput!
     
     override init() {
@@ -86,21 +90,21 @@ class CreateAlertDisplayManager: NSObject {
     
     private func getFieldsForRender() -> [CreateAlertItem] {
         return [
-            CreateAlertItem(fieldType: .Disclosure, headerText: "Currency type", leftText: "BTC/USD", rightText: "12800.876"),
+            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Upper bound", leftText: "0 USD"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Bottom bound", leftText: "0 USD"),
             CreateAlertItem(fieldType: .InactiveInput, headerText: "Commision", leftText: "0 USD"),
-            CreateAlertItem(fieldType: .Disclosure, headerText: "Sound", leftText: "Melody1"),
+            CreateAlertItem(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
             CreateAlertItem(fieldType: .Button)
         ]
     }
     
     private func handleTouchSelectCurrencyPair() {
-        output.showSearchViewController(searchType: .Currency)
+        output.showSearchViewController(searchType: .Currencies)
     }
     
     private func handleTouchSelectSound() {
-        output.showSearchViewController(searchType: .Sound)
+        output.showSearchViewController(searchType: .Sounds)
     }
     
     private func handleTouchAddAlertBtn() {
@@ -140,6 +144,14 @@ class CreateAlertDisplayManager: NSObject {
         )
         output.handleTouchAddAlertBtn(alertModel: alertModel)
     }
+    
+    func updateSelectedCurrency(name: String, price: Double) {
+        self.currencyRow?.updateData(leftText: name, rightText: String(price))
+    }
+    
+    func updateSoundElement(soundName: String) {
+        self.soundRow?.updateData(leftText: soundName, rightText: nil)
+    }
 }
 
 //
@@ -155,15 +167,22 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch self.dataProvider[indexPath.section].fieldType {
+        let fieldType = self.dataProvider[indexPath.section].fieldType
+        switch fieldType {
         case .ActiveInput, .InactiveInput:
             let cell = Bundle.main.loadNibNamed(CellName.AddAlertTableViewCell.rawValue, owner: self, options: nil)?.first  as! AddAlertTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
             cell.selectionStyle = .none
+            cell.inputField.isEnabled = self.dataProvider[indexPath.section].fieldType == .ActiveInput
             return cell
-        case .Disclosure:
+        case .CurrencyPair, .Sound:
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
             cell.setContentData(data: self.dataProvider[indexPath.section])
+            if fieldType == .CurrencyPair {
+                self.currencyRow = cell
+            } else {
+                self.soundRow = cell
+            }
             return cell
         case .Button:
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellButton.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellButton

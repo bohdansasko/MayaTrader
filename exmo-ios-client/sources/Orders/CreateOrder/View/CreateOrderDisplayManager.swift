@@ -59,7 +59,7 @@ class CreateOrderDisplayManager: NSObject {
     
     private func getFieldsForRender() -> [CreateAlertItem] {
         return [
-            CreateAlertItem(fieldType: .Disclosure, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876 $"),
+            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876 $"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Amount", leftText: "USD"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Total", leftText: "0 USD"),
             CreateAlertItem(fieldType: .InactiveInput, headerText: "Commision", leftText: "0 USD"),
@@ -79,7 +79,7 @@ class CreateOrderDisplayManager: NSObject {
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
-        self.currencyRow?.updateData(name: name, price: price)
+        self.currencyRow?.updateData(leftText: name, rightText: String(price))
     }
 }
 
@@ -102,7 +102,7 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             cell.selectionStyle = .none
             cell.inputField.isEnabled = self.dataProvider[indexPath.section].fieldType == .ActiveInput
             return cell
-        case .Disclosure:
+        case .CurrencyPair:
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
             cell.setContentData(data: self.dataProvider[indexPath.section])
             self.currencyRow = cell
@@ -166,7 +166,7 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == FieldType.CurrencyPair.rawValue {
-            self.output.openCurrencySearchView()
+            self.output.openCurrencySearchView(data: Session.sharedInstance.getSearchCurrenciesContainer())
         }
     }
 }

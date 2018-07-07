@@ -30,6 +30,9 @@ class SearchCurrencyPairModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
+        
+        viewController.displayManager = SearchCurrencyPairDisplayManager()
+        viewController.displayManager.output = viewController.output
     }
 
 }

@@ -10,15 +10,30 @@ import Foundation
 
 import UIKit.UITableView
 
-class SearchCurrencyPairModel {
+class SearchModel {
     var id: Int
     var name: String
+    
+    init(id: Int, name: String) {
+        self.id = id
+        self.name = name
+    }
+    
+    func getId() -> Int {
+        return self.id
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+}
+
+class SearchCurrencyPairModel : SearchModel {
     var price: Double
     
     init(id: Int, name: String, price: Double) {
-        self.id = id
-        self.name = name
         self.price = price
+        super.init(id: id, name: name)
     }
     
     func getPairPriceAsStr() -> String {
@@ -27,8 +42,10 @@ class SearchCurrencyPairModel {
 }
 
 class SearchCurrencyPairDisplayManager: NSObject {
-    private var dataProvider: [SearchCurrencyPairModel]!
-    private var filteredBalances: [SearchCurrencyPairModel]!
+    private var searchType : SearchCurrencyPairViewController.SearchType = .None
+    
+    private var dataProvider: [SearchModel]!
+    private var filteredBalances: [SearchModel]!
     
     var output: SearchCurrencyPairViewOutput!
     
@@ -37,10 +54,8 @@ class SearchCurrencyPairDisplayManager: NSObject {
     
     var isSearching = false
     
-    init(dataProvider: [SearchCurrencyPairModel]!) {
+    override init() {
         super.init()
-        self.dataProvider = dataProvider
-        
         self.filteredBalances = []
     }
     
@@ -53,6 +68,11 @@ class SearchCurrencyPairDisplayManager: NSObject {
         guard let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
         glassIconView.image = nil
         textFieldInsideSearchBar.font = UIFont(name: "Exo2-Regular", size: 14)
+    }
+    
+    func setData(dataProvider: [SearchModel], searchType: SearchCurrencyPairViewController.SearchType) {
+        self.dataProvider = dataProvider
+        self.searchType = searchType
     }
     
     func setTableView(tableView: UITableView!) {
@@ -69,13 +89,20 @@ class SearchCurrencyPairDisplayManager: NSObject {
     }
     
     private func handleTouchOnCurrency(currencyIndex: Int) {
-        print("selected currency row is \(currencyIndex + 1)")
+        print("selected row is \(currencyIndex + 1)")
         
-        let currencyPairId = self.isSearching
-            ? self.filteredBalances[currencyIndex].id
-            : dataProvider[currencyIndex].id
-        
-        self.output.handleTouchOnCurrency(currencyPairId: currencyPairId)
+        switch self.searchType {
+        case .Currencies:
+            let currencyPairId = self.isSearching
+                ? self.filteredBalances[currencyIndex].getId()
+                : self.dataProvider[currencyIndex].getId()
+            
+            self.output.handleTouchOnCurrency(currencyPairId: currencyPairId)
+        case .Sounds: // do nothing
+            break
+        default:      // do nothing
+            break
+        }
     }
 }
 
@@ -111,12 +138,17 @@ extension SearchCurrencyPairDisplayManager: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currency = isSearching
+        let currency = (isSearching
             ? self.filteredBalances[indexPath.section]
-            : self.dataProvider[indexPath.section]
+            : self.dataProvider[indexPath.section])
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyPairCell", for: indexPath) as! SearchCurrencyPairTableViewCell
-        cell.setContent(currencyPairModel: currency)
+        
+        if self.searchType == .Currencies {
+            cell.setContent(currencyPairModel: currency as! SearchCurrencyPairModel)
+        } else {
+            cell.setContent(currencyPairModel: currency)
+        }
         
         return cell
     }

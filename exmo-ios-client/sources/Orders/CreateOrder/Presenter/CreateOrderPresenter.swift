@@ -25,9 +25,8 @@ class CreateOrderPresenter: CreateOrderModuleInput, CreateOrderViewOutput, Creat
         router.closeView(view: view as! UIViewController)
     }
     
-    func openCurrencySearchView() {
-        
-        router.openCurrencySearchView(view: view as! UIViewController, callbackOnSelectCurrency: {
+    func openCurrencySearchView(data: [SearchModel]) {
+        router.openCurrencySearchView(data: data, view: view as! UIViewController, callbackOnSelectCurrency: {
             (currencyId) in
             print("was selected currency with id = \(currencyId)")
             self.interactor.handleSelectedCurrency(currencyId: currencyId)

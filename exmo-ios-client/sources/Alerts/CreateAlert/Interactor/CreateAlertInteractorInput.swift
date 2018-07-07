@@ -9,5 +9,8 @@
 import Foundation
 
 protocol CreateAlertInteractorInput {
-
+    func handleSelectedCurrency(currencyId: Int)
+    func handleSelectedSound(soundId: Int)
+    func showCurrenciesSearchView()
+    func showSoundsSearchView()
 }

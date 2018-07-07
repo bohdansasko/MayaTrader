@@ -14,4 +14,5 @@ protocol SearchCurrencyPairViewInput: class {
     */
 
     func setupInitialState()
+    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel])
 }

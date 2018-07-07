@@ -14,6 +14,7 @@ class Session {
     var openedOrders: OrdersModel!
     var canceledOrders: OrdersModel!
     var dealsOrders: OrdersModel!
+    var searchCurrenciesContainer: [SearchCurrencyPairModel]!
     
     func initHardcode() {
         // opened orders
@@ -36,6 +37,16 @@ class Session {
             OrderModel(orderType: .Sell, currencyPair: "ETH/USD", createdDate: Date(), price: 986, quantity: 152.83, amount: 0.155)
         ]
         self.dealsOrders = OrdersModel(orders: dealsOrders)
+        
+        self.searchCurrenciesContainer = [
+            SearchCurrencyPairModel(id: 1, name: "BTC/USD", price: 7809.976),
+            SearchCurrencyPairModel(id: 2, name: "BTC/EUR", price: 6009.65),
+            SearchCurrencyPairModel(id: 3, name: "BTC/UAH", price: 51090.0),
+            SearchCurrencyPairModel(id: 4, name: "EUR/USD", price: 109.976),
+            SearchCurrencyPairModel(id: 5, name: "UAH/USD", price: 709.976),
+            SearchCurrencyPairModel(id: 6, name: "UAH/BTC", price: 809.976),
+            SearchCurrencyPairModel(id: 7, name: "EUR/BTC", price: 9871.976)
+        ]
     }
     
     init() {
@@ -43,6 +54,9 @@ class Session {
         login()
     }
 
+    //
+    // @perform operations
+    //
     func login() {
         let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
         let localUserExists = CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uid)
@@ -61,6 +75,13 @@ class Session {
         NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
     }
 
+    func cancelOpenedOrder(byIndex index: Int) {
+        self.openedOrders.cancelOpenedOrder(byIndex: index)
+    }
+
+    //
+    // @ getters
+    //
     func isExmoAccountExists() -> Bool {
         return user.getIsLoginedAsExmoUser()
     }
@@ -77,7 +98,7 @@ class Session {
         return self.dealsOrders
     }
     
-    func cancelOpenedOrder(byIndex index: Int) {
-        self.openedOrders.cancelOpenedOrder(byIndex: index)
+    func getSearchCurrenciesContainer() -> [SearchCurrencyPairModel] {
+        return self.searchCurrenciesContainer
     }
 }

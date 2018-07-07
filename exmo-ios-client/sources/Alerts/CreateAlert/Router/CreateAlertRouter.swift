@@ -13,11 +13,19 @@ class CreateAlertRouter: CreateAlertRouterInput {
         uiViewController.close()
     }
 
-    func openCurrencyPairsSearchView(uiViewController: UIViewController!) {
-        // do nothing
+    func openCurrencyPairsSearchView(data: [SearchModel], uiViewController: UIViewController!, callbackOnSelectCurrency: IntInVoidOutClosure?) {
+        showSearchController(.Currencies, data, uiViewController, callbackOnSelectCurrency)
     }
 
-    func openSoundsSearchView(uiViewController: UIViewController!) {
-        // do nothing
+    func openSoundsSearchView(data: [SearchModel], uiViewController: UIViewController!, callbackOnSelectSound: IntInVoidOutClosure?) {
+        showSearchController(.Sounds, data, uiViewController, callbackOnSelectSound)
+    }
+    
+    private func showSearchController(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel], _ uiViewController: UIViewController!, _ callbackOnSelectCurrency: IntInVoidOutClosure?) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchCurrencyPairViewController") as! SearchCurrencyPairViewController
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.output.setSearchData(searchType, data)
+        vc.output.subscribeOnSelectCurrency(callback: callbackOnSelectCurrency)
+        uiViewController.present(vc, animated: true, completion: nil)
     }
 }

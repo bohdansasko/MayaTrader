@@ -9,5 +9,9 @@
 import Foundation
 
 protocol CreateAlertInteractorOutput: class {
-
+    func updateSelectedCurrency(name: String, price: Double)
+    func updateSelectedSoundInUI(soundName: String)
+    
+    func showCurrenciesSearchView(data: [SearchCurrencyPairModel])
+    func showSoundsSearchView(data: [SearchModel])
 }
