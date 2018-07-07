@@ -334,10 +334,10 @@
             </objects>
             <point key="canvasLocation" x="92" y="125"/>
         </scene>
-        <!--Searchcurrencypair View Controller-->
+        <!--Search Currency Pair View Controller-->
         <scene sceneID="MuO-yz-xmt">
             <objects>
-                <viewController storyboardIdentifier="SearchCurrencyPairViewController" title="Currencies" modalPresentationStyle="overFullScreen" id="tTM-Dq-2dT" customClass="SearchCurrencyPairViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SearchViewController" title="Currencies" modalPresentationStyle="overFullScreen" id="tTM-Dq-2dT" customClass="SearchViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eKV-f3-Xs7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -349,7 +349,7 @@
                                 <color key="separatorColor" red="0.089525051414966583" green="0.082541503012180328" blue="0.12549019607843137" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="separatorInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyPairCell" id="3MP-rp-hcO" customClass="SearchCurrencyPairTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CurrencyPairCell" id="3MP-rp-hcO" customClass="SearchTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="320" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3MP-rp-hcO" id="SwH-1e-grB">
@@ -357,7 +357,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9sa-vY-TsA">
-                                                    <rect key="frame" x="30" y="24" width="260" height="17"/>
+                                                    <rect key="frame" x="30" y="24.5" width="260" height="17"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/UAH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5y-DJ-Kqr">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="17"/>
@@ -472,9 +472,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IpC-oK-9ge" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="qbE-Jc-jvX" customClass="SearchCurrencyPairModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                <customObject id="qbE-Jc-jvX" customClass="SearchModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
                     <connections>
-                        <outlet property="searchcurrencypairViewController" destination="tTM-Dq-2dT" id="ckm-a1-cer"/>
+                        <outlet property="searchCurrencyPairViewController" destination="tTM-Dq-2dT" id="7J5-6E-8vQ"/>
                     </connections>
                 </customObject>
             </objects>

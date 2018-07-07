@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairSearchCurrencyPairInteractorOutput.swift
+//  SearchInteractorInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol SearchCurrencyPairInteractorOutput: class {
-
+protocol SearchInteractorInput {
+    // do nothing
 }

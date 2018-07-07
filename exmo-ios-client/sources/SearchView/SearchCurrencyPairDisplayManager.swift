@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairDisplayManager.swift
+//  SearchDisplayManager.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 7/1/18.
@@ -41,13 +41,13 @@ class SearchCurrencyPairModel : SearchModel {
     }
 }
 
-class SearchCurrencyPairDisplayManager: NSObject {
-    private var searchType : SearchCurrencyPairViewController.SearchType = .None
+class SearchDisplayManager: NSObject {
+    private var searchType : SearchViewController.SearchType = .None
     
     private var dataProvider: [SearchModel]!
     private var filteredBalances: [SearchModel]!
     
-    var output: SearchCurrencyPairViewOutput!
+    var output: SearchViewOutput!
     
     var tableView: UITableView!
     var searchBar: UISearchBar!
@@ -70,7 +70,7 @@ class SearchCurrencyPairDisplayManager: NSObject {
         textFieldInsideSearchBar.font = UIFont(name: "Exo2-Regular", size: 14)
     }
     
-    func setData(dataProvider: [SearchModel], searchType: SearchCurrencyPairViewController.SearchType) {
+    func setData(dataProvider: [SearchModel], searchType: SearchViewController.SearchType) {
         self.dataProvider = dataProvider
         self.searchType = searchType
     }
@@ -109,7 +109,7 @@ class SearchCurrencyPairDisplayManager: NSObject {
 //
 // @MARK: DataSource
 //
-extension SearchCurrencyPairDisplayManager: UITableViewDataSource  {
+extension SearchDisplayManager: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return isSearching
             ? self.filteredBalances.count
@@ -124,7 +124,7 @@ extension SearchCurrencyPairDisplayManager: UITableViewDataSource  {
 //
 // @MARK: Delegate
 //
-extension SearchCurrencyPairDisplayManager: UITableViewDelegate {
+extension SearchDisplayManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         handleTouchOnCurrency(currencyIndex: indexPath.section)
     }
@@ -142,7 +142,7 @@ extension SearchCurrencyPairDisplayManager: UITableViewDelegate {
             ? self.filteredBalances[indexPath.section]
             : self.dataProvider[indexPath.section])
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyPairCell", for: indexPath) as! SearchCurrencyPairTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyPairCell", for: indexPath) as! SearchTableViewCell
         
         if self.searchType == .Currencies {
             cell.setContent(currencyPairModel: currency as! SearchCurrencyPairModel)
@@ -167,7 +167,7 @@ extension SearchCurrencyPairDisplayManager: UITableViewDelegate {
     }
 }
 
-extension SearchCurrencyPairDisplayManager: UISearchBarDelegate {
+extension SearchDisplayManager: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.isSearching = !searchText.isEmpty
         

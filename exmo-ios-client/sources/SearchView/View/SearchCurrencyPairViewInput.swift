@@ -1,12 +1,12 @@
 //
-//  SearchCurrencyPairSearchCurrencyPairViewInput.swift
+//  SearchViewInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-protocol SearchCurrencyPairViewInput: class {
+protocol SearchViewInput: class {
 
     /**
         @author TQ0oS
@@ -14,5 +14,5 @@ protocol SearchCurrencyPairViewInput: class {
     */
 
     func setupInitialState()
-    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel])
+    func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel])
 }

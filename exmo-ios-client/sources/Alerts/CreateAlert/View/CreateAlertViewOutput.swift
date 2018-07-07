@@ -16,5 +16,5 @@ protocol CreateAlertViewOutput {
     func viewIsReady()
     func handleTouchOnCancelBtn()
     func handleTouchAddAlertBtn(alertModel: AlertItem)
-    func showSearchViewController(searchType: SearchCurrencyPairViewController.SearchType)
+    func showSearchViewController(searchType: SearchViewController.SearchType)
 }

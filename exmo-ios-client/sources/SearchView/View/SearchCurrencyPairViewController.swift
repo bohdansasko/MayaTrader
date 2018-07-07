@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairSearchCurrencyPairViewController.swift
+//  SearchViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class SearchCurrencyPairViewController: UIViewController, SearchCurrencyPairViewInput {
+class SearchViewController: UIViewController, SearchViewInput {
     enum SearchType {
         case None
         case Currencies
         case Sounds
     }
     
-    var output: SearchCurrencyPairViewOutput!
-    var displayManager: SearchCurrencyPairDisplayManager!
+    var output: SearchViewOutput!
+    var displayManager: SearchDisplayManager!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -31,7 +31,7 @@ class SearchCurrencyPairViewController: UIViewController, SearchCurrencyPairView
     }
 
 
-    // MARK: SearchCurrencyPairViewInput
+    // MARK: SearchViewInput
     func setupInitialState() {
         if AppDelegate.shared.isIPhone(model: .X) {
             self.layoutConstraintHeaderHeight.constant = 95
@@ -48,7 +48,7 @@ class SearchCurrencyPairViewController: UIViewController, SearchCurrencyPairView
     //
     //@ this method called before viewDidLoad
     //
-    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel]) {
+    func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel]) {
         self.displayManager.setData(dataProvider: data, searchType: searchType)
     }
 }

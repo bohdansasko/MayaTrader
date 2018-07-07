@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairSearchCurrencyPairPresenter.swift
+//  SearchPresenter.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -7,10 +7,10 @@
 //
 import UIKit.UIViewController
 
-class SearchCurrencyPairPresenter: SearchCurrencyPairModuleInput, SearchCurrencyPairViewOutput, SearchCurrencyPairInteractorOutput {
-    weak var view: SearchCurrencyPairViewInput!
-    var interactor: SearchCurrencyPairInteractorInput!
-    var router: SearchCurrencyPairRouterInput!
+class SearchPresenter: SearchModuleInput, SearchViewOutput, SearchInteractorOutput {
+    weak var view: SearchViewInput!
+    var interactor: SearchInteractorInput!
+    var router: SearchRouterInput!
     
     private var callbackOnSelectCurrency: IntInVoidOutClosure? = nil
     
@@ -35,7 +35,7 @@ class SearchCurrencyPairPresenter: SearchCurrencyPairModuleInput, SearchCurrency
         self.handleCloseView()
     }
     
-    func setSearchData(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel]) {
+    func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel]) {
         self.view.setSearchData(searchType, data)
     }
 }

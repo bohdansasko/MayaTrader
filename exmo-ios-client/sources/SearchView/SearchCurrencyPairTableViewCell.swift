@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairTableViewCell.swift
+//  SearchTableViewCell.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 7/1/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchCurrencyPairTableViewCell: AlertTableViewCellWithTextData {
+class SearchTableViewCell: AlertTableViewCellWithTextData {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     

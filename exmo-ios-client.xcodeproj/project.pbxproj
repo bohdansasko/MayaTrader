@@ -961,7 +961,7 @@
 				66C69DB3D5F2206C45571645 /* Alerts */,
 				476496FDF8E745AC892D4DBC /* Orders */,
 				202F48EF206A136D0080423E /* Watchlist */,
-				8CA0F04B11898DFC3CDAEE08 /* SearchCurrencyPair */,
+				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -1672,7 +1672,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		8CA0F04B11898DFC3CDAEE08 /* SearchCurrencyPair */ = {
+		8CA0F04B11898DFC3CDAEE08 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
 				4E72F2AF56E048E471332222 /* View */,
@@ -1683,7 +1683,7 @@
 				20780A2120E95A6800D9BD36 /* SearchCurrencyPairDisplayManager.swift */,
 				20780A2320E9642E00D9BD36 /* SearchCurrencyPairTableViewCell.swift */,
 			);
-			path = SearchCurrencyPair;
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 		903D320193DC40E85BB19D7D /* Router */ = {

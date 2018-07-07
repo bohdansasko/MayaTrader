@@ -21,8 +21,8 @@ class CreateAlertRouter: CreateAlertRouterInput {
         showSearchController(.Sounds, data, uiViewController, callbackOnSelectSound)
     }
     
-    private func showSearchController(_ searchType: SearchCurrencyPairViewController.SearchType, _ data: [SearchModel], _ uiViewController: UIViewController!, _ callbackOnSelectCurrency: IntInVoidOutClosure?) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchCurrencyPairViewController") as! SearchCurrencyPairViewController
+    private func showSearchController(_ searchType: SearchViewController.SearchType, _ data: [SearchModel], _ uiViewController: UIViewController!, _ callbackOnSelectCurrency: IntInVoidOutClosure?) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
         vc.modalPresentationStyle = .overCurrentContext
         vc.output.setSearchData(searchType, data)
         vc.output.subscribeOnSelectCurrency(callback: callbackOnSelectCurrency)

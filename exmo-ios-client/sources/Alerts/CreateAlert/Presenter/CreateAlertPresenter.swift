@@ -25,7 +25,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
         router.close(uiViewController: view as! UIViewController)
     }
     
-    func showSearchViewController(searchType: SearchCurrencyPairViewController.SearchType) {
+    func showSearchViewController(searchType: SearchViewController.SearchType) {
         switch searchType {
         case .Currencies:
             self.interactor.showCurrenciesSearchView()
@@ -38,7 +38,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
         }
     }
     
-    func showSearchViewController(searchType: SearchCurrencyPairViewController.SearchType, data: [SearchModel]) {
+    func showSearchViewController(searchType: SearchViewController.SearchType, data: [SearchModel]) {
         switch searchType {
         case .Currencies:
             router.openCurrencyPairsSearchView(data: data, uiViewController: view as! UIViewController, callbackOnSelectCurrency: {

@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairSearchCurrencyPairConfigurator.swift
+//  SearchConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -8,30 +8,30 @@
 
 import UIKit
 
-class SearchCurrencyPairModuleConfigurator {
+class SearchModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? SearchCurrencyPairViewController {
+        if let viewController = viewInput as? SearchViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: SearchCurrencyPairViewController) {
+    private func configure(viewController: SearchViewController) {
 
-        let router = SearchCurrencyPairRouter()
+        let router = SearchRouter()
 
-        let presenter = SearchCurrencyPairPresenter()
+        let presenter = SearchPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = SearchCurrencyPairInteractor()
+        let interactor = SearchInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor
         viewController.output = presenter
         
-        viewController.displayManager = SearchCurrencyPairDisplayManager()
+        viewController.displayManager = SearchDisplayManager()
         viewController.displayManager.output = viewController.output
     }
 

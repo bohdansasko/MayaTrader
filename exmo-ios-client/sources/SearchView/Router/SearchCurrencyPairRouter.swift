@@ -1,5 +1,5 @@
 //
-//  SearchCurrencyPairSearchCurrencyPairRouter.swift
+//  SearchRouter.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -7,7 +7,7 @@
 //
 import UIKit.UIViewController
 
-class SearchCurrencyPairRouter: SearchCurrencyPairRouterInput {
+class SearchRouter: SearchRouterInput {
     func closeView(uiViewController: UIViewController) {
         uiViewController.close()
     }
