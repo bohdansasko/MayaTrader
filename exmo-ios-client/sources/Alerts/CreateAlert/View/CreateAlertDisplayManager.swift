@@ -22,6 +22,7 @@ class CreateAlertItem {
         case Button
         case TwoButtons
         case OrderBy
+        case NotificationType
     }
     
     var fieldType: FieldType = .None
@@ -61,6 +62,7 @@ enum CellName: String {
     case AlertTableViewCellWithArrow
     case AlertTableViewCellButton
     case OrderByTableViewCell
+    case SwitcherTableViewCell
 }
 
 enum FieldType: Int {
@@ -93,8 +95,8 @@ class CreateAlertDisplayManager: NSObject {
             CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Upper bound", leftText: "0 USD"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Bottom bound", leftText: "0 USD"),
-            CreateAlertItem(fieldType: .InactiveInput, headerText: "Commision", leftText: "0 USD"),
-            CreateAlertItem(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
+            // CreateAlertItem(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
+            CreateAlertItem(fieldType: .NotificationType, headerText: "Notification settings", leftText: "Is persistent alert"),
             CreateAlertItem(fieldType: .Button)
         ]
     }
@@ -169,11 +171,10 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let fieldType = self.dataProvider[indexPath.section].fieldType
         switch fieldType {
-        case .ActiveInput, .InactiveInput:
+        case .ActiveInput:
             let cell = Bundle.main.loadNibNamed(CellName.AddAlertTableViewCell.rawValue, owner: self, options: nil)?.first  as! AddAlertTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
             cell.selectionStyle = .none
-            cell.inputField.isEnabled = self.dataProvider[indexPath.section].fieldType == .ActiveInput
             return cell
         case .CurrencyPair, .Sound:
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
@@ -183,6 +184,10 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             } else {
                 self.soundRow = cell
             }
+            return cell
+        case .NotificationType:
+            let cell = Bundle.main.loadNibNamed(CellName.SwitcherTableViewCell.rawValue, owner: self, options: nil)?.first as! SwitcherTableViewCell
+            cell.setContentData(data: self.dataProvider[indexPath.section])
             return cell
         case .Button:
             let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellButton.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellButton

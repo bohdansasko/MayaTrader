@@ -121,6 +121,8 @@
 		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
 		20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */; };
 		20A5B89120AE283F00EC2A4D /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5B89020AE283F00EC2A4D /* ExmoUIViewController.swift */; };
+		20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */; };
+		20B42B3320F47C5000C1F56C /* SwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */; };
 		20BEDC53205579FA00973F2F /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */; };
 		20BEDC5520557BB200973F2F /* AlertDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */; };
 		20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */; };
@@ -442,6 +444,8 @@
 		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
 		20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreOptions.storyboard; sourceTree = "<group>"; };
 		20A5B89020AE283F00EC2A4D /* ExmoUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
+		20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherTableViewCell.swift; sourceTree = "<group>"; };
+		20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitcherTableViewCell.xib; sourceTree = "<group>"; };
 		20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
 		20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataDisplayManager.swift; sourceTree = "<group>"; };
 		20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsDisplayModel.swift; sourceTree = "<group>"; };
@@ -1137,6 +1141,8 @@
 				20DBA23720B3FE59007BA0AF /* Menu */,
 				2010154A20B04FBB00324F22 /* Alerts */,
 				20DBA23D20B3FEB4007BA0AF /* Watchlist */,
+				20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */,
+				20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -2148,6 +2154,7 @@
 				2013E58B2071464700EFACB7 /* Exo2-Medium.ttf in Resources */,
 				2010154E20B04FD600324F22 /* AlertTableViewCellButton.xib in Resources */,
 				2010154920B02B7800324F22 /* AddAlertTableViewCell.xib in Resources */,
+				20B42B3320F47C5000C1F56C /* SwitcherTableViewCell.xib in Resources */,
 				2013E5852071464700EFACB7 /* Exo2-ExtraBoldItalic.ttf in Resources */,
 				20463D8B20E6A16300086B51 /* OrderByTableViewCell.xib in Resources */,
 			);
@@ -2329,6 +2336,7 @@
 				3671270AD41B65A3E7C2B26D /* WalletDisplayManager.swift in Sources */,
 				203CC18220BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift in Sources */,
 				36712E4C4C5245EF136945B7 /* MoreDataDisplayManager.swift in Sources */,
+				20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */,
 				36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */,
 				3671205D06A10EADE42FAF7C /* User.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,

@@ -22,8 +22,8 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
         self.inputField.delegate = self
     }
     
-    override func getTextData() -> String {
-        return self.inputField.text!
+    override func getDoubleValue() -> Double {
+        return Double(self.inputField.text!)!
     }
     
     //

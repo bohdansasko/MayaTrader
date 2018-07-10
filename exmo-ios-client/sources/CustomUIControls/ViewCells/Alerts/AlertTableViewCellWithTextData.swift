@@ -9,7 +9,6 @@
 import UIKit
 
 class AlertTableViewCellWithTextData: UITableViewCell {
-
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -21,14 +20,22 @@ class AlertTableViewCellWithTextData: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    func getTextData() -> String {
-        return ""
-    }
 
     private func setupSelectionView() {
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
         self.selectedBackgroundView = bgColorView
+    }
+    
+    func getTextData() -> String {
+        return ""
+    }
+    
+    func getDoubleValue() -> Double {
+        return 0.0
+    }
+    
+    func getBoolValue() -> Bool {
+        return true
     }
 }
