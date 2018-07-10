@@ -136,7 +136,9 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
         let footerView = UIView(frame: CGRect(x: 20, y: 0, width: tableView.frame.size.width, height: 2))
         footerView.backgroundColor = UIColor.clear
         
-        if self.dataProvider[section].fieldType != .OrderBy {
+        let fieldType = self.dataProvider[section].fieldType
+        let shouldAddSeparator = fieldType != .OrderBy && fieldType != .Button
+        if shouldAddSeparator {
             let separatorLineWidth = footerView.frame.size.width - 40
 
             let separatorLine = UIView(frame: CGRect(x: 20, y: 0, width: separatorLineWidth, height: 1.0))
@@ -157,11 +159,11 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return dataProvider[section].fieldType == .Button ? 30 : 15
+        return self.dataProvider[section].fieldType == .Button ? 30 : 15
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return dataProvider[section].fieldType == .Button ? 30 : 1
+        return self.dataProvider[section].fieldType == .Button ? 30 : 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

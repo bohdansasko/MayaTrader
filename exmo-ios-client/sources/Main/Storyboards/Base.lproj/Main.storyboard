@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -246,21 +246,21 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3r-j2-QRT">
-                                        <rect key="frame" x="100" y="40" width="120" height="25"/>
+                                        <rect key="frame" x="128.5" y="40" width="63" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="cvx-kS-Czo"/>
-                                            <constraint firstAttribute="width" constant="120" id="h1Y-B8-Y2E"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="120" id="h1Y-B8-Y2E"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsk-rb-AVY">
-                                        <rect key="frame" x="220" y="40" width="80" height="25"/>
+                                        <rect key="frame" x="238" y="40" width="62" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="CH1-dE-vuz"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="JF0-dn-i0B"/>
-                                            <constraint firstAttribute="width" constant="80" id="lc8-AO-V4z"/>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="lc8-AO-V4z"/>
                                             <constraint firstAttribute="height" constant="25" id="ybZ-qW-Zv3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
@@ -271,6 +271,7 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstItem="rsk-rb-AVY" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xhr-Ax-Iqa" secondAttribute="leading" constant="20" symbolic="YES" id="5HF-xZ-TFl"/>
                                     <constraint firstAttribute="height" constant="65" id="Dro-bG-EC9"/>
                                     <constraint firstAttribute="bottom" secondItem="rsk-rb-AVY" secondAttribute="bottom" id="J7U-kU-bPZ"/>
                                     <constraint firstItem="v3r-j2-QRT" firstAttribute="centerX" secondItem="xhr-Ax-Iqa" secondAttribute="centerX" id="svk-Uq-mH6"/>
@@ -357,7 +358,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="9sa-vY-TsA">
-                                                    <rect key="frame" x="30" y="24.5" width="260" height="17"/>
+                                                    <rect key="frame" x="30" y="25" width="260" height="17"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/UAH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5y-DJ-Kqr">
                                                             <rect key="frame" x="0.0" y="0.0" width="130" height="17"/>
