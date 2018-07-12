@@ -13,4 +13,5 @@ protocol CreateAlertInteractorInput {
     func handleSelectedSound(soundId: Int)
     func showCurrenciesSearchView()
     func showSoundsSearchView()
+    func tryCreateAlert(alertModel: AlertItem)
 }

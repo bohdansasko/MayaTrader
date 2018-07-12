@@ -44,7 +44,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZPI-Ia-dcK">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZPI-Ia-dcK">
                         <rect key="frame" x="251" y="30" width="51" height="31"/>
                     </switch>
                 </subviews>
@@ -63,6 +63,7 @@
             <connections>
                 <outlet property="headerLabel" destination="npK-MJ-yxD" id="Uo3-cL-czs"/>
                 <outlet property="leftLabel" destination="7q7-Lq-ASV" id="GBA-I7-dVu"/>
+                <outlet property="uiSwitch" destination="ZPI-Ia-dcK" id="JU9-Vn-aJ5"/>
             </connections>
         </tableViewCell>
     </objects>

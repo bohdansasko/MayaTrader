@@ -23,6 +23,7 @@ class CreateAlertItem {
         case TwoButtons
         case OrderBy
         case NotificationType
+        case Note
     }
     
     var fieldType: FieldType = .None
@@ -75,6 +76,8 @@ class CreateAlertDisplayManager: NSObject {
     private var tableView: UITableView!
     private var currencyRow: AlertTableViewCellWithArrow? = nil
     private var soundRow: AlertTableViewCellWithArrow? = nil
+    private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
+    
     
     var output: CreateAlertViewOutput!
     
@@ -87,16 +90,31 @@ class CreateAlertDisplayManager: NSObject {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        registerTableCells()
         self.tableView.reloadData()
+    }
+    
+    private func registerTableCells() {
+        let classes = [
+            CellName.AddAlertTableViewCell.rawValue,
+            CellName.AlertTableViewCellWithArrow.rawValue,
+            CellName.AlertTableViewCellButton.rawValue,
+            CellName.OrderByTableViewCell.rawValue,
+            CellName.SwitcherTableViewCell.rawValue
+        ]
+        for className in classes {
+            self.tableView.register(UINib(nibName: className, bundle: nil), forCellReuseIdentifier: className)
+        }
     }
     
     private func getFieldsForRender() -> [CreateAlertItem] {
         return [
-            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876"),
+            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "Select currency pair...", rightText: ""),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Upper bound", leftText: "0 USD"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Bottom bound", leftText: "0 USD"),
             // CreateAlertItem(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
             CreateAlertItem(fieldType: .NotificationType, headerText: "Notification settings", leftText: "Is persistent alert"),
+            CreateAlertItem(fieldType: .Note, headerText: "Note", leftText: "Write remember note..."),
             CreateAlertItem(fieldType: .Button)
         ]
     }
@@ -109,7 +127,23 @@ class CreateAlertDisplayManager: NSObject {
         output.showSearchViewController(searchType: .Sounds)
     }
     
+    private func isAllRequiredFieldsFilled() -> Bool {
+        var statesContainer: [Bool] = []
+        for sectionIndex in 0 ..< 3 {
+            guard let cell = self.tableCells[IndexPath(row: 0, section: sectionIndex)] else {
+                return false
+            }
+            statesContainer.append(cell.getTextData().isEmpty)
+        }
+
+        return !statesContainer[0] && (!statesContainer[1] || !statesContainer[2])
+    }
+    
     private func handleTouchAddAlertBtn() {
+        if !isAllRequiredFieldsFilled() {
+            print("WARNING: required fields don't filled")
+            return
+        }
         //
         // show loading view while exec callback
         //
@@ -119,20 +153,22 @@ class CreateAlertDisplayManager: NSObject {
         var currencyPairPriceAtCreateMoment = 0.0
         var topBoundary = 0.0
         var bottomBoundary = 0.0
+        var isPersistentNotification = false
+        var noteText = ""
         
-        for sectionIndex in 0 ..< tableView.numberOfSections-1 {
-            let cell = tableView.cellForRow(at: IndexPath(row: 0, section: sectionIndex)) as! AlertTableViewCellWithTextData
-            switch sectionIndex {
-            case 0:
-                currencyPairName = cell.getTextData()
+        for (indexPath, cell) in self.tableCells {
+            switch indexPath.section + 1 {
             case 1:
-                currencyPairPriceAtCreateMoment = Double(cell.getTextData())!
+                currencyPairName = cell.getTextData()
+                currencyPairPriceAtCreateMoment = cell.getDoubleValue()
             case 2:
-                topBoundary = Double(cell.getTextData())!
+                topBoundary = cell.getDoubleValue()
             case 3:
-                bottomBoundary = Double(cell.getTextData())!
+                bottomBoundary = cell.getDoubleValue()
             case 4:
-                print("handle melody")
+                isPersistentNotification = cell.getBoolValue()
+            case 5:
+                noteText = cell.getTextData()
                 break
             default:
                 break
@@ -140,9 +176,9 @@ class CreateAlertDisplayManager: NSObject {
         }
         
         let alertModel = AlertItem(
-            currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
-            note: "here will be note", topBoundary: topBoundary, bottomBoundary: bottomBoundary,
-            status: .Active
+            id: 100, currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
+            note: noteText, topBoundary: topBoundary, bottomBoundary: bottomBoundary,
+            status: .Active, isPersistentNotification: isPersistentNotification
         )
         output.handleTouchAddAlertBtn(alertModel: alertModel)
     }
@@ -169,32 +205,47 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.tableCells[indexPath] != nil {
+            return self.tableCells[indexPath]!
+        }
+        
         let fieldType = self.dataProvider[indexPath.section].fieldType
         switch fieldType {
         case .ActiveInput:
-            let cell = Bundle.main.loadNibNamed(CellName.AddAlertTableViewCell.rawValue, owner: self, options: nil)?.first  as! AddAlertTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue) as! AddAlertTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
             cell.selectionStyle = .none
+            self.tableCells[indexPath] = cell
             return cell
         case .CurrencyPair, .Sound:
-            let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellWithArrow.rawValue) as! AlertTableViewCellWithArrow
             cell.setContentData(data: self.dataProvider[indexPath.section])
             if fieldType == .CurrencyPair {
                 self.currencyRow = cell
             } else {
                 self.soundRow = cell
             }
+            self.tableCells[indexPath] = cell
             return cell
         case .NotificationType:
-            let cell = Bundle.main.loadNibNamed(CellName.SwitcherTableViewCell.rawValue, owner: self, options: nil)?.first as! SwitcherTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.SwitcherTableViewCell.rawValue) as! SwitcherTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
+            self.tableCells[indexPath] = cell
+            return cell
+        case .Note:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue)  as! AddAlertTableViewCell
+            cell.setContentData(data: self.dataProvider[indexPath.section])
+            cell.selectionStyle = .none
+            cell.inputField.keyboardType = .default
+            self.tableCells[indexPath] = cell
             return cell
         case .Button:
-            let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellButton.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellButton
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellButton.rawValue) as! AlertTableViewCellButton
             cell.selectionStyle = .none
             cell.setCallbackOnTouch(callback: {
                 self.handleTouchAddAlertBtn()
             })
+            self.tableCells[indexPath] = cell
             return cell
         default:
             // do nothing
@@ -234,24 +285,24 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
 //
 extension CreateAlertDisplayManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return dataProvider[indexPath.section].fieldType == .Button ? 45 : 70
+        return self.dataProvider[indexPath.section].fieldType == .Button ? 45 : 70
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return dataProvider[section].fieldType == .Button ? 30 : 15
+        return self.dataProvider[section].fieldType == .Button ? 30 : 15
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return dataProvider[section].fieldType == .Button ? 30 : 1
+        return self.dataProvider[section].fieldType == .Button ? 30 : 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.section {
             case FieldType.CurrencyPair.rawValue:
-                handleTouchSelectCurrencyPair()
+                self.handleTouchSelectCurrencyPair()
                 break
             case FieldType.AlertSound.rawValue:
-                handleTouchSelectSound()
+                self.handleTouchSelectSound()
                 break
             default:
                 // do nothing

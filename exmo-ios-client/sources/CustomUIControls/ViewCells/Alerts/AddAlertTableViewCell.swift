@@ -23,7 +23,18 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     }
     
     override func getDoubleValue() -> Double {
-        return Double(self.inputField.text!)!
+        guard let text = self.inputField.text else {
+            return 0.0
+        }
+        
+        return text.isEmpty ? 0.0 : Double(text)!
+    }
+    
+    override func getTextData() -> String {
+        guard let text = self.inputField.text else {
+            return ""
+        }
+        return text
     }
     
     //

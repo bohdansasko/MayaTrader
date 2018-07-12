@@ -59,4 +59,9 @@ class CreateAlertInteractor: CreateAlertInteractorInput {
     func showSoundsSearchView() {
         self.output.showSoundsSearchView(data: self.getSoundsContainer())
     }
+    
+    func tryCreateAlert(alertModel: AlertItem) {
+        // TODO: send request to server on create alert
+        print("handleTouchAddAlertBtn: " + alertModel.getDataAsText())
+    }
 }

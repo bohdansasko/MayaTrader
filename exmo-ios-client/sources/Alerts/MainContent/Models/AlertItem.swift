@@ -16,16 +16,18 @@ enum AlertStatus: Int {
 }
 
 class AlertItem {
+    var id: Int = 0
     var currencyPairName: String! = ""
     var currencyPairPriceAtCreateMoment: Double! = 0.0
-    var note: String? = nil
     var topBoundary: Double? = 0.0
     var bottomBoundary: Double? = 0.0
     var status = AlertStatus.Inactive
     var dateCreated: Date! = Date()
-    var id: String = ""
+    var note: String? = nil
+    var isPersistentNotification: Bool
     
-    init(currencyPairName: String!, currencyPairPriceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .None) {
+    init(id: Int, currencyPairName: String!, currencyPairPriceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .None, isPersistentNotification: Bool) {
+        self.id = id
         self.currencyPairName = currencyPairName
         self.currencyPairPriceAtCreateMoment = currencyPairPriceAtCreateMoment
         self.note = note
@@ -33,5 +35,18 @@ class AlertItem {
         self.bottomBoundary = bottomBoundary
         self.status = status
         self.dateCreated = Date()
+        self.isPersistentNotification = isPersistentNotification
+    }
+    
+    func getDataAsText() -> String {
+        return    "id: \(id)\n"
+                + "currencyPairName: \(currencyPairName!)\n"
+                + "currencyPairPriceAtCreateMoment: \(currencyPairPriceAtCreateMoment!)\n"
+                + "topBoundary: \(topBoundary!)\n"
+                + "bottomBoundary: \(bottomBoundary!)\n"
+                + "status: \(status)\n"
+                + "dateCreated: \(dateCreated)\n"
+                + "isPersistentNotification: \(isPersistentNotification)\n"
+                + "note: \(note ?? "empty")\n"
     }
 }

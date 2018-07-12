@@ -20,7 +20,15 @@ class AlertTableViewCellWithArrow: AlertTableViewCellWithTextData {
     }
     
     override func getTextData() -> String {
-        return self.leftLabel.text!
+        return self.rightLabel.text!
+    }
+    
+    override func getDoubleValue() -> Double {
+        guard let text = self.rightLabel.text else {
+            return 0.0
+        }
+        
+        return text.isEmpty ? 0.0 : Double(text)!
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

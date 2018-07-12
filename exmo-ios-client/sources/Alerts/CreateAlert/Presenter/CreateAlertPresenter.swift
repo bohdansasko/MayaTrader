@@ -17,8 +17,8 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     }
     
     func handleTouchAddAlertBtn(alertModel: AlertItem) {
-        // TODO: send request to server on create alert
-        print("handleTouchAddAlertBtn")
+        self.interactor.tryCreateAlert(alertModel: alertModel)
+        self.handleTouchOnCancelBtn()
     }
     
     func handleTouchOnCancelBtn() {
