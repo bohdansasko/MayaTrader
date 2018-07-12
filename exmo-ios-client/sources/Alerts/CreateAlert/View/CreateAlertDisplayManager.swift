@@ -99,7 +99,6 @@ class CreateAlertDisplayManager: NSObject {
             CellName.AddAlertTableViewCell.rawValue,
             CellName.AlertTableViewCellWithArrow.rawValue,
             CellName.AlertTableViewCellButton.rawValue,
-            CellName.OrderByTableViewCell.rawValue,
             CellName.SwitcherTableViewCell.rawValue
         ]
         for className in classes {
