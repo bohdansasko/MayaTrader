@@ -8,14 +8,12 @@
 
 import UIKit
 
-class CreateOrderViewController: UIViewController, CreateOrderViewInput {
+class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
     var output: CreateOrderViewOutput!
     var dataDisplayManager: CreateOrderDisplayManager!
     var pickerViewManager: DarkeningPickerViewManager!
     
     // IBOutles
-    @IBOutlet weak var textFieldSelectedMarketType: UITextField!
-    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     // MARK: Life cycle

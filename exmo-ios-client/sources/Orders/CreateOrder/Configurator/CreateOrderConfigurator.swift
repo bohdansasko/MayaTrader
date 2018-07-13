@@ -10,7 +10,7 @@ import UIKit
 
 class CreateOrderModuleConfigurator {
 
-    func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
+    func configureModuleForViewInput<UITableViewController>(viewInput: UITableViewController) {
 
         if let viewController = viewInput as? CreateOrderViewController {
             configure(viewController: viewController)

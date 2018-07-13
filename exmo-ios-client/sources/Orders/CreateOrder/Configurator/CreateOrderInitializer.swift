@@ -11,12 +11,12 @@ import UIKit
 class CreateOrderModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var createorderViewController: CreateOrderViewController!
+    @IBOutlet weak var createOrderViewController: CreateOrderViewController!
 
     override func awakeFromNib() {
 
         let configurator = CreateOrderModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: createorderViewController)
+        configurator.configureModuleForViewInput(viewInput: createOrderViewController)
     }
 
 }

@@ -16,22 +16,11 @@ class CreateOrderDisplayManager: NSObject {
     
     private var dataProvider: [CreateAlertItem] = []
     private var currencyRow: AlertTableViewCellWithArrow? = nil
-    
+    private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
+
     override init() {
         super.init()
         self.dataProvider = getFieldsForRender()
-        subscribeOnKeyboardNotifications()
-    }
-    
-    func subscribeOnKeyboardNotifications() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.handleEventKeyboardWillShow),
-                                               name: Notification.Name.UIKeyboardWillShow,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(self.handleEventKeyboardWillHide),
-                                               name: Notification.Name.UIKeyboardWillHide,
-                                               object: nil)
     }
     
     deinit {
@@ -42,10 +31,25 @@ class CreateOrderDisplayManager: NSObject {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
+
+        registerTableCells()
+
         self.reloadData()
     }
-    
+
+    private func registerTableCells() {
+        let classes = [
+            CellName.AddAlertTableViewCell.rawValue,
+            CellName.AlertTableViewCellWithArrow.rawValue,
+            CellName.AlertTableViewCellButton.rawValue,
+            CellName.OrderByTableViewCell.rawValue
+        ]
+
+        for className in classes {
+            self.tableView.register(UINib(nibName: className, bundle: nil), forCellReuseIdentifier: className)
+        }
+    }
+
     func reloadData() {
         self.tableView.reloadData()
     }
@@ -59,7 +63,7 @@ class CreateOrderDisplayManager: NSObject {
     
     private func getFieldsForRender() -> [CreateAlertItem] {
         return [
-            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "BTC/USD", rightText: "12800.876 $"),
+            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "Select currency pair...", rightText: ""),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Amount", leftText: "USD"),
             CreateAlertItem(fieldType: .ActiveInput, headerText: "Total", leftText: "0 USD"),
             CreateAlertItem(fieldType: .InactiveInput, headerText: "Commision", leftText: "0 USD"),
@@ -68,18 +72,20 @@ class CreateOrderDisplayManager: NSObject {
         ]
     }
     
-    @objc func handleEventKeyboardWillShow(notification: Notification) {
-        if let keyboardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
-            self.tableView.contentOffset.y = keyboardSize.height
-        }
-    }
-    
-    @objc func handleEventKeyboardWillHide(notification: Notification) {
-        self.tableView.contentOffset.y = 0
-    }
-    
     func updateSelectedCurrency(name: String, price: Double) {
         self.currencyRow?.updateData(leftText: name, rightText: String(price))
+    }
+
+    private func isAllRequiredFieldsFilled() -> Bool {
+        for sectionIndex in 0 ..< 2 {
+            guard let cell = self.tableCells[IndexPath(row: 0, section: sectionIndex)] else {
+                return false
+            }
+            if cell.getTextData().isEmpty {
+                return false
+            }
+        }
+        return true
     }
 }
 
@@ -94,33 +100,42 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if self.tableCells[indexPath] != nil {
+            return self.tableCells[indexPath]!
+        }
+
         switch self.dataProvider[indexPath.section].fieldType {
         case .ActiveInput,
              .InactiveInput:
-            let cell = Bundle.main.loadNibNamed(CellName.AddAlertTableViewCell.rawValue, owner: self, options: nil)?.first  as! AddAlertTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue)  as! AddAlertTableViewCell
             cell.setContentData(data: self.dataProvider[indexPath.section])
             cell.selectionStyle = .none
             cell.inputField.isEnabled = self.dataProvider[indexPath.section].fieldType == .ActiveInput
+            self.tableCells[indexPath] = cell
             return cell
         case .CurrencyPair:
-            let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellWithArrow.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellWithArrow
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellWithArrow.rawValue) as! AlertTableViewCellWithArrow
             cell.setContentData(data: self.dataProvider[indexPath.section])
             self.currencyRow = cell
+            self.tableCells[indexPath] = cell
             return cell
         case .OrderBy:
-            let cell = Bundle.main.loadNibNamed(CellName.OrderByTableViewCell.rawValue, owner: self, options: nil)?.first as! OrderByTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.OrderByTableViewCell.rawValue) as! OrderByTableViewCell
+            self.tableCells[indexPath] = cell
             return cell
         case .Button:
-            let cell = Bundle.main.loadNibNamed(CellName.AlertTableViewCellButton.rawValue, owner: self, options: nil)?.first as! AlertTableViewCellButton
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellButton.rawValue) as! AlertTableViewCellButton
             cell.selectionStyle = .none
             cell.setCallbackOnTouch(callback: {
                 print("create order")
             })
+            self.tableCells[indexPath] = cell
             return cell
         default:
             // do nothing
             break
         }
+
         return UITableViewCell()
     }
     
