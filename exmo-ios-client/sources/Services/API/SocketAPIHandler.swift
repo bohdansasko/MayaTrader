@@ -11,15 +11,52 @@ import SwiftWebSocket
 import SwiftyJSON
 
 class SocketApiHandler {
-    enum ConnectionConfig: String {
+    //
+    // @MARK: enums
+    //
+    private enum ResponseCode {
+        static let Succeed = 200
+        static let Error = 0
+    }
+    
+    private enum MessageType: Int {
+        case Topic = 0
+        case AccountTopic = 4
+    }
+    
+    private enum AlertsActionMessageType: Int {
+        case Create = 0
+        case Update = 1
+        case Delete = 2
+        case History = 3
+    }
+    
+    private enum ConnectionConfig: String {
         case ServerURL = "ws://localhost:3000/"
     }
     
-    private var socket: WebSocket!
+    enum ServerMessages: Int {
+        case LoginSucceed = 4
+        case History = 3
+        case CreateAlert = 0
+    }
     
+    //
+    // @MARK: variables
+    //
+    private var socket: WebSocket!
+    private var sessionKey: String?
+    
+    //
+    // @MARK: common methods
+    //
     init() {
         self.socket = WebSocket(ConnectionConfig.ServerURL.rawValue)
         self.setSocketEvents()
+    }
+    
+    deinit {
+        self.disconnect()
     }
     
     //
@@ -41,12 +78,17 @@ class SocketApiHandler {
         self.socket.close()
     }
     
+    func loadAllRequiredSessionInfo() {
+        self.loadAlerts()
+    }
+    
     //
     // @MARK: common private methods
     //
     private func setSocketEvents() {
         self.socket.event.open = {
             print("socket connected")
+            self.signIn()
         }
         
         self.socket.event.close = { code, reason, clean in
@@ -66,50 +108,147 @@ class SocketApiHandler {
                 return
             }
             print("socket message: \(message)")
+            
+            let json = JSON(parseJSON: message)
+            
+            let responseCode = json["response_code"].int
+            if responseCode == ResponseCode.Error {
+                print("responseCode == ResponseCode.Error")
+                return
+            }
+            self.parseJSON(json: json)
+        }
+    }
+    
+    private func parseJSON(json: JSON) {
+        if json["topic"] != JSON.null && json["topic"].int == ServerMessages.LoginSucceed.rawValue {
+            self.sessionKey = json["session_key"].string
+            self.loadAllRequiredSessionInfo()
+            
+            print("socket message[connection_id]: \(self.sessionKey!)")
+            print("login succeed")
+        } else if json["type"] != JSON.null {
+            let messageCode = json["type"].int
+            
+            switch messageCode {
+            case ServerMessages.History.rawValue:
+                updateAlerts(json: json)
+            case ServerMessages.CreateAlert.rawValue:
+                self.appendAlert(json: json)
+            default:
+                break
+            }
+            
+        }
+    }
+    
+    private func updateAlerts(json: JSON) {
+        guard let jsonAlertsContainer = json["data"]["data"].array else {
+            print("can't parse json data")
+            return
+        }
+        
+        var alerts: [AlertItem] = []
+        for jsonAlertItem in jsonAlertsContainer {
+            let alert = AlertItem(JSONString: jsonAlertItem.rawString()!)
+            if let alertObj = alert {
+                alerts.append(alertObj)
+                print(alertObj.getDataAsText())
+            }
+        }
 
+        Session.sharedInstance.updateAlerts(alerts: alerts)
+    }
+    
+    private func appendAlert(json: JSON) {
+        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
+            print("can't parse json data")
+            return
+        }
+        
+        alertServerMap["status"] = 1
+        let alert = AlertItem(JSON: alertServerMap)
+        if let alertObj = alert {
+            Session.sharedInstance.appendAlert(alertItem: alertObj)
         }
     }
     
     private func sendMessage(message: JSON) {
-        if message.rawString() != nil {
-            print("socket send message: " + message.rawString()!)
-            socket.send(text: message.rawString()!)
+        guard let msg = message.rawString() else {
+            return
+        }
+        
+        if !msg.isEmpty {
+            print("socket send message: " + msg)
+            socket.send(text: msg)
         }
     }
     //
     // @MARK: Common JSON code
     //
-    private func getJSONMessage(topic: AlertsAPIHelper.AlertMessageSettings, type: AlertsAPIHelper.AlertMessageType, data: JSON) -> JSON {
-        return [
-            "commandType" : 0,
+    private func getJSONMessage(type: MessageType, actionTypeRawValue: Int, data: JSON = JSON()) -> JSON {
+        var json: JSON = [
+            "request_id" : "test_request",
             "uuid" : "Denys123",
-            "topic": topic.rawValue,
-            "type" : type.rawValue,
+            "topic": type.rawValue,
+            "type" : actionTypeRawValue,
             "data" : data
         ]
+        
+        if self.sessionKey != nil {
+            json["session_key"] = JSON(self.sessionKey!)
+        }
+        
+        return json
+    }
+    
+    //
+    // @MARK: login
+    //
+    func signIn() {
+        let jsonMsg = AccountApiRequestBuilder.buildLoginRequest(login: "denys", password: "denys", exchangeDomain: .Roobik)
+        let msg = getJSONMessage(type: .AccountTopic,
+                                 actionTypeRawValue: AccountApiRequestBuilder.ProcedureType.SignIn.rawValue,
+                                 data: jsonMsg)
+        sendMessage(message: msg)
+    }
+
+    func signUp() {
+        let jsonMsg = AccountApiRequestBuilder.buildSignUpRequest(email: "test@mail.com", firstName: "den1", lastName: "ys", login: "bodka", password: "bodka", exchangeDomain: .Roobik)
+        let msg = getJSONMessage(type: .Topic,
+                                 actionTypeRawValue: AccountApiRequestBuilder.ProcedureType.SignIn.rawValue,
+                                 data: jsonMsg)
+        sendMessage(message: msg)
     }
     
     //
     // @MARK: Alerts
     //
     func createAlert(alertItem: AlertItem) {
-        let alertJSONData = AlertsAPIHelper.prepareJSONForCreateAlert(alertItem: alertItem)
-        let msg = getJSONMessage(topic: .Topic, type: .Create, data: alertJSONData)
+        alertItem.updateFieldsForServer()
+        let alertJSONData = AlertsApiRequestBuilder.prepareJSONForCreateAlert(alertItem: alertItem)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Create.rawValue, data: alertJSONData)
         
         sendMessage(message: msg)
     }
     
     func updateAlert(alertItem: AlertItem) {
-        let alertJSONData = AlertsAPIHelper.prepareJSONForUpdateAlert(alertItem: alertItem)
-        let msg = getJSONMessage(topic: .Topic, type: .Update, data: alertJSONData)
+        let alertJSONData = AlertsApiRequestBuilder.prepareJSONForUpdateAlert(alertItem: alertItem)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Update.rawValue, data: alertJSONData)
         
         sendMessage(message: msg)
     }
     
-    func deleteAlert(alertItem: AlertItem) {
-        let alertJSONData = AlertsAPIHelper.prepareJSONForDeleteAlert(alertItem: alertItem)
-        let msg = getJSONMessage(topic: .Topic, type: .Update, data: alertJSONData)
+    func deleteAlert(alertId: String) {
+        let alertJSONData = AlertsApiRequestBuilder.prepareJSONForDeleteAlert(alertId: alertId)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Delete.rawValue, data: alertJSONData)
         
+        sendMessage(message: msg)
+    }
+    
+    private func loadAlerts() {
+        print("load alerts")
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.History.rawValue)
         sendMessage(message: msg)
     }
 }

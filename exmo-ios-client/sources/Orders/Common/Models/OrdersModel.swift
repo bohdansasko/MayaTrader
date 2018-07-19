@@ -16,15 +16,18 @@ class OrdersModel {
         case Deals
     }
     
-    private var orders: [OrderModel] = []
+    private var orders: [OrderModel]
+    
+    init() {
+        self.orders = []
+    }
     
     init(orders: [OrderModel]) {
         self.orders = orders
     }
-
     
     func getCountOrders() -> Int {
-        return orders.count
+        return self.orders.count
     }
     
     func getOrderBy(index: Int) -> OrderModel {
@@ -37,5 +40,9 @@ class OrdersModel {
     
     func cancelOpenedOrder(byIndex index: Int) {
         self.orders.remove(at: index)
+    }
+    
+    func getOrders() -> [OrderModel] {
+        return self.orders
     }
 }

@@ -175,7 +175,7 @@ class CreateAlertDisplayManager: NSObject {
         }
         
         let alertModel = AlertItem(
-            id: 100, currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
+            id: "", currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
             note: noteText, topBoundary: topBoundary, bottomBoundary: bottomBoundary,
             status: .Active, isPersistentNotification: isPersistentNotification
         )

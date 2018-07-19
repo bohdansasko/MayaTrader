@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -88,7 +88,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPM-2k-DBt">
-                                <rect key="frame" x="94" y="569" width="179" height="50"/>
+                                <rect key="frame" x="94" y="537" width="179" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="260" id="JkH-Gh-S12"/>
                                     <constraint firstAttribute="height" constant="50" id="QZX-5t-qia"/>
@@ -101,7 +101,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="40" translatesAutoresizingMaskIntoConstraints="NO" id="V4y-bJ-j1F">
-                                <rect key="frame" x="30" y="310" width="315" height="229"/>
+                                <rect key="frame" x="30" y="278" width="315" height="229"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="860-Bt-23d">
                                         <rect key="frame" x="0.0" y="0.0" width="315" height="144"/>
@@ -169,9 +169,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="BBI-fF-Ggc" kind="show" identifier="QRScannerView" id="MTp-oL-9a5">
-                                                        <nil key="action"/>
-                                                    </segue>
+                                                    <segue destination="BBI-fF-Ggc" kind="show" identifier="QRScannerView" id="MTp-oL-9a5"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNB-ap-EUB">
@@ -196,7 +194,7 @@
                                 </constraints>
                             </stackView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icAuthLogo" translatesAutoresizingMaskIntoConstraints="NO" id="bZp-ve-LdI">
-                                <rect key="frame" x="10" y="229" width="355" height="35"/>
+                                <rect key="frame" x="10" y="197" width="355" height="35"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hce-9n-n8j" userLabel="closeButton">
                                 <rect key="frame" x="326" y="32" width="25" height="25"/>
@@ -212,7 +210,7 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="bqV-U5-uWS" firstAttribute="trailing" secondItem="NPM-2k-DBt" secondAttribute="trailing" constant="102" id="1fC-tO-276"/>
-                            <constraint firstItem="bqV-U5-uWS" firstAttribute="bottom" secondItem="NPM-2k-DBt" secondAttribute="bottom" constant="48" id="36p-92-0WI"/>
+                            <constraint firstItem="bqV-U5-uWS" firstAttribute="bottom" secondItem="NPM-2k-DBt" secondAttribute="bottom" constant="80" id="36p-92-0WI"/>
                             <constraint firstItem="bqV-U5-uWS" firstAttribute="trailing" secondItem="leu-C8-NEp" secondAttribute="trailing" id="50p-SW-IPM"/>
                             <constraint firstItem="leu-C8-NEp" firstAttribute="leading" secondItem="bqV-U5-uWS" secondAttribute="leading" id="7SV-iM-1Vz"/>
                             <constraint firstItem="bZp-ve-LdI" firstAttribute="leading" secondItem="bqV-U5-uWS" secondAttribute="leading" constant="10" id="Aio-iX-Hub"/>

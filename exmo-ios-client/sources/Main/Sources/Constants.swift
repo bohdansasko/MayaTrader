@@ -32,14 +32,9 @@ enum UserEntityKeys: String {
     case balances
 }
 
-extension Notification.Name {
-    static let UserLoggedIn = Notification.Name("UserLoggedIn")
-    static let UserLogout = Notification.Name("UserLogout")
-}
-
 enum MoreMenuSegueIdentifier: String {
     case loginView
-    case logout
+    case Logout
     case newsView
     case chatView
     case faqView

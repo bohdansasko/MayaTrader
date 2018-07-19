@@ -8,6 +8,34 @@
 
 import UIKit
 
+// Color palette
+
+extension UIColor {
+    @nonobjc class var steel: UIColor {
+        return UIColor(red: 131.0 / 255.0, green: 132.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var dodgerBlue: UIColor {
+        return UIColor(red: 74.0 / 255.0, green: 132.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var white: UIColor {
+        return UIColor(white: 1.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var dark: UIColor {
+        return UIColor(red: 30.0 / 255.0, green: 28.0 / 255.0, blue: 42.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var orangePink: UIColor {
+        return UIColor(red: 1.0, green: 105.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var greenBlue: UIColor {
+        return UIColor(red: 0.0, green: 189.0 / 255.0, blue: 154.0 / 255.0, alpha: 1.0)
+    }
+}
+
 class AlertDataDisplayManager: NSObject {
     private var dataProvider: AlertsDisplayModel!
     private var tableView: UITableView!
@@ -17,7 +45,7 @@ class AlertDataDisplayManager: NSObject {
     
     override init() {
         super.init()
-        dataProvider = AlertsDisplayModel()
+        self.dataProvider = AlertsDisplayModel()
     }
     
     func setTableView(tableView: UITableView!) {
@@ -30,12 +58,78 @@ class AlertDataDisplayManager: NSObject {
     }
     
     func updateInfo() {
-        dataProvider.update()
+        self.dataProvider.setAlerts(alerts: Session.sharedInstance.getAlerts())
         self.tableView.reloadData()
+        self.checkOnRequirePlaceHolder()
     }
     
     func getCountMenuItems() -> Int {
-        return dataProvider.getCountMenuItems()
+        return self.dataProvider.getCountMenuItems()
+    }
+    
+    func appendAlert(alertItem: AlertItem) {
+        self.dataProvider.appendAlert(alertItem: alertItem)
+        self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
+    }
+    
+    func handleRemoveAction(elementIndex: Int) {
+        guard let alertModel = self.dataProvider.getCellItem(byRow: elementIndex) else {
+            print("handleRemoveAction: item doesn't exists")
+            return
+        }
+        
+        APIService.socketManager.deleteAlert(alertId: alertModel.id)
+        self.dataProvider.removeItem(atRow: elementIndex)
+        self.tableView.deleteSections(IndexSet(integer: elementIndex), with: .automatic)
+        
+        self.checkOnRequirePlaceHolder()
+    }
+    
+    func handleStateAction(elementIndex: Int) {
+        self.dataProvider.reverseStatus(index: elementIndex)
+        guard let alertModel = self.dataProvider.getCellItem(byRow: elementIndex) else {
+            print("handleStateAction: item doesn't exists")
+            return
+        }
+        APIService.socketManager.updateAlert(alertItem: alertModel)
+    }
+    
+    private func checkOnRequirePlaceHolder() {
+        if (self.dataProvider.isEmpty()) {
+            // show placeholder
+            print("need show placeholder")
+        }
+    }
+    
+    private func getPauseActiontTitle(status: AlertStatus) -> String {
+        var title = ""
+        
+        switch status {
+        case .Active:
+            title = "Pause"
+        case .Inactive:
+            title = "Resume"
+        default:
+            // do nothing
+            break
+        }
+        
+        return title
+    }
+    
+    private func getPauseActionStatus(status: AlertStatus) -> AlertStatus {
+        var newStatus = status
+        switch status {
+        case .Active:
+            newStatus = AlertStatus.Inactive
+        case .Inactive:
+            newStatus = AlertStatus.Active
+        default:
+            // do nothing
+            break;
+        }
+        
+        return newStatus
     }
 }
 
@@ -63,72 +157,56 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let alertModel = self.dataProvider.getCellItem(byRow: indexPath.section) else {
+            print("cellForRowAt: item doesn't exists")
+            return UITableViewCell()
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.AlertTableViewCell.rawValue, for: indexPath) as! AlertTableViewCell
-        cell.setData(data: self.dataProvider.getCellItem(byRow: indexPath.section))
+        cell.setData(data: alertModel)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.viewOutput.showEditView(data: dataProvider.getCellItem(byRow: indexPath.row))
+        guard let alertModel = self.dataProvider.getCellItem(byRow: indexPath.row) else {
+            print("didSelectRowAt: item doesn't exists")
+            return
+        }
+        self.viewOutput.showEditView(data: alertModel)
     }
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
-            _, _, _ in
-            
+            action, _, completionHandler in
+            print("alert: state action clicked")
+            self.handleStateAction(elementIndex: indexPath.section)
+            action.image = self.dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
+            completionHandler(true)
         })
-        stateAction.backgroundColor = dataProvider.getStatus(forItem: indexPath.section) == .Active
-            ? UIColor(named: "exmoSteel")
-            : UIColor(named: "exmoGreenBlue")
-        stateAction.image = dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
+        stateAction.backgroundColor = self.dataProvider.getStatus(forItem: indexPath.section) == .Active
+            ? UIColor.steel
+            : UIColor.greenBlue
+        stateAction.image = self.dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
         
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
-            _, _, _ in
-            
+            _, _, completionHandler in
+            print("alert: edit action clicked")
+            completionHandler(true)
         })
         editAction.backgroundColor = UIColor(red: 115.0/255, green: 116.0/255, blue: 133.0/255, alpha: 1.0)
         editAction.image = #imageLiteral(resourceName: "icEdit")
         
         let removeAction = UIContextualAction(style: .destructive, title: "", handler: {
-            _, _, _ in
-            
+            _, _, completionHandler in
+            print("alert: remove action clicked: row \(indexPath.section)")
+            self.handleRemoveAction(elementIndex: indexPath.section)
+            completionHandler(true)
         })
-        removeAction.backgroundColor = UIColor(named: "exmoOrangePink")
+        removeAction.backgroundColor = UIColor.orangePink
         removeAction.image = #imageLiteral(resourceName: "icNavbarTrash")
         
         let config = UISwipeActionsConfiguration(actions: [removeAction, editAction, stateAction])
         return config
-    }
-    
-    private func getPauseActiontTitle(status: AlertStatus) -> String {
-        var title = ""
-        
-        switch status {
-        case .Active:
-            title = "Pause"
-        case .Inactive:
-            title = "Resume"
-        default:
-            // do nothing
-            break;
-        }
-        
-        return title
-    }
-    
-    private func getPauseActionStatus(status: AlertStatus) -> AlertStatus {
-        var newStatus = status
-        switch status {
-        case .Active:
-            newStatus = AlertStatus.Inactive
-        case .Inactive:
-            newStatus = AlertStatus.Active
-        default:
-            // do nothing
-            break;
-        }
-        
-        return newStatus
     }
 }

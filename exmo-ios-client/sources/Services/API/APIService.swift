@@ -11,4 +11,8 @@ import Foundation
 class APIService {
     static let exmo = ExmoApiHandler()
     static let socketManager = SocketApiHandler()
+    
+    private init() {
+        // do nothing
+    }
 }

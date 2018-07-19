@@ -15,8 +15,13 @@ class OrdersDisplayManager: NSObject {
     weak var tableView: UITableView!
     var shouldUseActions: Bool = false
     
+    var openedOrders: OrdersModel?
+    var canceledOrders: OrdersModel?
+    var dealsOrders: OrdersModel?
+    
     // MARK: public methods
     func setTableView(tableView: UITableView!) {
+        self.ordersDataProvider = OrdersModel()
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -31,18 +36,27 @@ class OrdersDisplayManager: NSObject {
     }
 
     func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
-        self.ordersDataProvider = self.getDataBySegmentIndex(displayOrderType: displayOrderType)
+        guard let data = self.getDataBySegmentIndex(displayOrderType: displayOrderType) else {
+            return
+        }
+        self.ordersDataProvider = data
         self.shouldUseActions = displayOrderType == .Opened
         reloadData()
     }
 
     // MARK: private methods
-    private func getDataBySegmentIndex(displayOrderType: OrdersModel.DisplayOrderType) -> OrdersModel {
+    private func getDataBySegmentIndex(displayOrderType: OrdersModel.DisplayOrderType) -> OrdersModel? {
         switch displayOrderType {
-            case .Opened: return Session.sharedInstance.getOpenedOrders()
-            case .Canceled: return Session.sharedInstance.getCanceledOrders()
-            default: return Session.sharedInstance.getDealsOrders()
+            case .Opened: return self.openedOrders
+            case .Canceled: return self.canceledOrders
+            default: return self.dealsOrders
         }
+    }
+    
+    func setOrdersData(openedOrders: OrdersModel, canceledOrders: OrdersModel) {
+        self.openedOrders = openedOrders
+        self.canceledOrders = canceledOrders
+        self.dealsOrders = OrdersModel(orders: openedOrders.getOrders() + canceledOrders.getOrders())
     }
 }
 

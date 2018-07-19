@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 enum AlertStatus: Int {
     case None
@@ -15,8 +16,8 @@ enum AlertStatus: Int {
     case Pause
 }
 
-class AlertItem {
-    var id: Int = 0
+class AlertItem: Mappable {
+    var id: String = ""
     var currencyPairName: String! = ""
     var currencyPairPriceAtCreateMoment: Double! = 0.0
     var topBoundary: Double? = 0.0
@@ -24,9 +25,10 @@ class AlertItem {
     var status = AlertStatus.Inactive
     var dateCreated: Date! = Date()
     var note: String? = nil
-    var isPersistentNotification: Bool
+    var isPersistentNotification: Bool = false
+    var isApproved: Bool = false
     
-    init(id: Int, currencyPairName: String!, currencyPairPriceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .None, isPersistentNotification: Bool) {
+    init(id: String, currencyPairName: String!, currencyPairPriceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .None, isPersistentNotification: Bool) {
         self.id = id
         self.currencyPairName = currencyPairName
         self.currencyPairPriceAtCreateMoment = currencyPairPriceAtCreateMoment
@@ -36,6 +38,23 @@ class AlertItem {
         self.status = status
         self.dateCreated = Date()
         self.isPersistentNotification = isPersistentNotification
+    }
+    
+    required init?(map: Map) {
+        // do nothing
+    }
+    
+    func mapping(map: Map) {
+        self.id               <- map["server_alert_id"]
+        self.currencyPairName <- map["currency"]
+        self.currencyPairPriceAtCreateMoment <- map["bottom_bound"] // TODO-Alerts: update this hardcode
+        self.topBoundary      <- map["upper_bound"]
+        self.bottomBoundary   <- map["bottom_bound"]
+        self.status           <- map["status"]
+        self.dateCreated      <- (map["timestamp"], DateTransform())
+        self.note             <- map["description"]
+        self.isPersistentNotification <- map["approved"]            // TODO-Alerts: add on server side
+        self.isApproved       <- map["approved"]
     }
     
     func getDataAsText() -> String {
@@ -48,5 +67,9 @@ class AlertItem {
                 + "dateCreated: \(dateCreated)\n"
                 + "isPersistentNotification: \(isPersistentNotification)\n"
                 + "note: \(note ?? "empty")\n"
+    }
+    
+    func updateFieldsForServer() {
+        self.currencyPairName = self.currencyPairName.replacingOccurrences(of: "/", with: "_")
     }
 }

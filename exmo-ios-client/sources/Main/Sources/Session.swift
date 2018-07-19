@@ -11,17 +11,20 @@ import Foundation
 class Session {
     static var sharedInstance = Session()
     var user: User! // use local info or exmo info
+    
     var openedOrders: OrdersModel!
     var canceledOrders: OrdersModel!
     var dealsOrders: OrdersModel!
     var searchCurrenciesContainer: [SearchCurrencyPairModel]!
+    
+    var alerts: [AlertItem] = []
     
     func initHardcode() {
         // opened orders
         self.openedOrders = OrdersModel(orders: [
             OrderModel(orderType: .Buy, currencyPair: "BTC/USD", createdDate: Date(), price: 14234, quantity: 2, amount: 0.5123),
             OrderModel(orderType: .Sell, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
-            ])
+        ])
         
         // canceled orders
         let listOfCanceledOrders = [
@@ -50,8 +53,8 @@ class Session {
     }
     
     init() {
-        initHardcode()
-        login()
+        self.initHardcode()
+        self.login()
     }
 
     //
@@ -71,6 +74,7 @@ class Session {
     func logout() {
         CacheManager.sharedInstance.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
         user = CacheManager.sharedInstance.getUser()
+        
         NotificationCenter.default.post(name: .UserLogout, object: nil)
         NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
     }
@@ -101,4 +105,22 @@ class Session {
     func getSearchCurrenciesContainer() -> [SearchCurrencyPairModel] {
         return self.searchCurrenciesContainer
     }
+    
+    //
+    // MARK: orders
+    //
+    func appendAlert(alertItem: AlertItem) {
+        NotificationCenter.default.post(name: .AppendAlert, object: nil, userInfo: ["alertData": alertItem])
+        self.alerts.append(alertItem)
+    }
+    
+    func updateAlerts(alerts: [AlertItem]) {
+        self.alerts += alerts
+        print("call updateAlerts(...)")
+    }
+    
+    func getAlerts() -> [AlertItem] {
+        return self.alerts
+    }
+    
 }

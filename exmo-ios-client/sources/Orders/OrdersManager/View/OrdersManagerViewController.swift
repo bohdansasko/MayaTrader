@@ -26,8 +26,8 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
         
         output.viewIsReady()
         setupInitialState()
+        subscribeOnEvents()
     }
-    
 
     // MARK: public methods
     func setupInitialState() {
@@ -47,5 +47,15 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     
     @IBAction func handleTouchDeleteButton(_ sender: Any) {
         pickerViewManager.showPickerViewWithDarkening()
+    }
+    
+    // MARK: private methods
+    private func subscribeOnEvents() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+    }
+    
+    @objc private func updateDisplayInfo() {
+        self.displayManager.reloadData()
     }
 }

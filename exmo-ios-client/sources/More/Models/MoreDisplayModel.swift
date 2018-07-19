@@ -21,7 +21,7 @@ class MoreDisplayModel {
         ]
 
         if Session.sharedInstance.isExmoAccountExists() {
-            menuItems.append(MenuItem(title: MoreMenuSegueIdentifier.logout.rawValue, iconNamed: "icMenuLogout", rightViewOptions: MenuItem.RightViewOptions.Icon, action: {
+            menuItems.append(MenuItem(title: "Logout", iconNamed: "icMenuLogout", rightViewOptions: MenuItem.RightViewOptions.Icon, action: {
                 Session.sharedInstance.logout()
             }))
         } else {

@@ -20,7 +20,7 @@ class AlertTableViewCellWithArrow: AlertTableViewCellWithTextData {
     }
     
     override func getTextData() -> String {
-        return self.rightLabel.text!
+        return self.leftLabel.text!
     }
     
     override func getDoubleValue() -> Double {

@@ -9,7 +9,7 @@
 import UIKit
 
 class AlertsViewController: ExmoUIViewController, AlertsViewInput {
-
+    
     @IBOutlet weak var tableView: UITableView!
     
     var output: AlertsViewOutput!
@@ -21,11 +21,24 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
         output.viewIsReady()
         
         setupInitialState()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onAppendAlert), name: .AppendAlert, object: nil)
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func onAppendAlert(notification: NSNotification) {
+        guard let alertItem = notification.userInfo?["alertData"] as? AlertItem else {
+            print("Can't convert to AlertItem")
+            return
+        }
+        self.displayManager.appendAlert(alertItem: alertItem)
+    }
 
     // MARK: AlertsViewInput
     func setupInitialState() {
-        displayManager.setTableView(tableView: tableView)
+        self.displayManager.setTableView(tableView: self.tableView)
     }
 }

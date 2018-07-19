@@ -37,14 +37,16 @@ class MoreOptionsMenuCell: UITableViewCell {
     func updateRightSide(itemData: MenuItem) {
         switch itemData.rightViewOptions {
         case MenuItem.RightViewOptions.Empty:
-            self.rightLabel.removeFromSuperview()
+            self.rightLabel?.removeFromSuperview()
             self.rightIcon.removeFromSuperview()
             break
         case MenuItem.RightViewOptions.Icon:
-            self.rightLabel.removeFromSuperview()
+            self.rightLabel?.removeFromSuperview()
             break
         case MenuItem.RightViewOptions.Text:
-            self.rightLabel.text? = itemData.rightText!
+            if self.rightLabel != nil {
+                self.rightLabel.text = itemData.rightText!
+            }
             self.rightIcon.removeFromSuperview()
             break
         default:

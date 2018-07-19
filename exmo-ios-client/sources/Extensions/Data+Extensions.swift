@@ -17,3 +17,9 @@ extension Data {
         }
     }
 }
+
+extension Notification.Name {
+    static let UserLoggedIn = Notification.Name("UserLoggedIn")
+    static let UserLogout = Notification.Name("UserLogout")
+    static let AppendAlert = Notification.Name("AppendAlert")
+}

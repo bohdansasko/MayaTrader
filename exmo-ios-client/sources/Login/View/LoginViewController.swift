@@ -53,8 +53,8 @@ class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate
             NSAttributedStringKey.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3),
             NSAttributedStringKey.font: UIFont(name: "Exo2-Regular", size: 14)
         ]
-        keyField.attributedPlaceholder = NSAttributedString(string: "Enter your API-secret", attributes: inputFieldPlaceHolderAttributes)
-        secretField.attributedPlaceholder = NSAttributedString(string: "Enter your API-key", attributes: inputFieldPlaceHolderAttributes)
+        self.keyField.attributedPlaceholder = NSAttributedString(string: "Enter your API-secret", attributes: inputFieldPlaceHolderAttributes)
+        self.secretField.attributedPlaceholder = NSAttributedString(string: "Enter your API-key", attributes: inputFieldPlaceHolderAttributes)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -91,7 +91,7 @@ class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate
     }
 
     @IBAction func pressedLoginButton(_ sender: Any) {
-        let qrModel = QRLoginModel(exmoIdentifier: "Exmo", key: keyField.text!, secret: secretField.text!)
+        let qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: "K-6cb40a588299195fd7b51d37798d14fdda2a62c8", secret: "S-85cf265b82cae660ff5cdea7363087947f75ecc0")
         output.loadUserInfo(loginModel: qrModel)
     }
     

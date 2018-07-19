@@ -9,16 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class AlertsAPIHelper {
-    enum AlertMessageSettings: Int {
-        case Topic = 0
-    }
-    
-    enum AlertMessageType: Int {
-        case Create = 0
-        case Update = 1
-        case Delete = 2
-    }
+class AlertsApiRequestBuilder {
     //
     // @MARK: public methods
     //
@@ -47,12 +38,10 @@ class AlertsAPIHelper {
         return alertJSONData
     }
     
-    static func prepareJSONForDeleteAlert(alertItem: AlertItem) -> JSON {
-        let alertJSONData: JSON = [
-            "server_alert_id" : alertItem.id
+    static func prepareJSONForDeleteAlert(alertId: String) -> JSON {        
+        return [
+            "server_alert_id" : alertId
         ]
-        
-        return alertJSONData
     }
     
     //

@@ -9,39 +9,60 @@
 import Foundation
 
 class AlertsDisplayModel {
-    private var alertsItems: [AlertItem]
+    private var alertsItems: [AlertItem] = []
     
-    init() {
-        alertsItems = []
-        update()
-    }
-    
-    func update() {
-        alertsItems = [
-            AlertItem(id: 1, currencyPairName: "BTC/USD", currencyPairPriceAtCreateMoment: 14765, note: nil, topBoundary: 15250, bottomBoundary: 13250, status: .Active, isPersistentNotification: true),
-            AlertItem(id: 2, currencyPairName: "BTC/EUR", currencyPairPriceAtCreateMoment: 11765, note: "Can got much money", topBoundary: 14489, bottomBoundary: 9229, status: .Active, isPersistentNotification: false),
-            AlertItem(id: 3, currencyPairName: "ETH/USD", currencyPairPriceAtCreateMoment: 1165, note: "Good chance for make money", topBoundary: 1490, bottomBoundary: 1100, status: .Pause, isPersistentNotification: true),
-
-        ]
+    func setAlerts(alerts: [AlertItem]) {
+        self.alertsItems = alerts
     }
     
     func removeItem(atRow row: Int) {
-        alertsItems.remove(at: row)
+        if self.isValidIndex(index: row) {
+            self.alertsItems.remove(at: row)
+        }
     }
     
     func setState(forItem row: Int, status: AlertStatus) {
-        alertsItems[row].status = status
+        if self.isValidIndex(index: row) {
+            self.alertsItems[row].status = status
+        }
     }
     
     func getStatus(forItem row: Int) -> AlertStatus {
-        return alertsItems[row].status
+        return self.isValidIndex(index: row)
+                    ? self.alertsItems[row].status
+                    : .None
     }
     
     func getCountMenuItems() -> Int {
-        return alertsItems.count
+        return self.alertsItems.count
     }
 
-    func getCellItem(byRow row: Int) -> AlertItem {
-        return alertsItems[row]
+    func getCellItem(byRow row: Int) -> AlertItem? {
+        return self.isValidIndex(index: row) ? self.alertsItems[row] : nil
+    }
+    
+    func appendAlert(alertItem: AlertItem) {
+        self.alertsItems.insert(alertItem, at: 0)
+    }
+    
+    func reverseStatus(index: Int) {
+        if self.isValidIndex(index: index) {
+            switch self.alertsItems[index].status {
+            case .Active:
+                self.alertsItems[index].status = .Pause
+            case .Pause:
+                self.alertsItems[index].status = .Active
+            default:
+                break
+            }
+        }
+    }
+    
+    func isEmpty() -> Bool {
+        return self.alertsItems.isEmpty
+    }
+    
+    private func isValidIndex(index: Int) -> Bool {
+        return index > -1 && index < self.alertsItems.count
     }
 }
