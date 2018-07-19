@@ -37,7 +37,10 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         self.displayManager.setBalanceView(balanceView: self.balanceView)
         displayManager.setTableView(tableView: tableView)
         updateDisplayInfo();
-        
+        subscribeOnEvents()
+    }
+    
+    private func subscribeOnEvents() {
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
     }
