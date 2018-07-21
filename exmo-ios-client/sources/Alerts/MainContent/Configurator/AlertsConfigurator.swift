@@ -33,6 +33,7 @@ class AlertsModuleConfigurator {
         
         viewController.displayManager = AlertDataDisplayManager()
         viewController.displayManager.viewOutput = viewController.output
+        viewController.displayManager.view = viewController
 
     }
 

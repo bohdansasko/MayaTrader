@@ -82,6 +82,8 @@
 		203CC18220BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CC18020BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift */; };
 		203CC18620BD6BE100F49260 /* WatchlistCurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203CC18420BD6BE100F49260 /* WatchlistCurrencyTableViewCell.swift */; };
 		203CC18720BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203CC18520BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib */; };
+		2045B5CB21035D39000F9D4C /* PlaceholderNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */; };
+		2045B5CD21035D4B000F9D4C /* PlaceholderNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2045B5CC21035D4B000F9D4C /* PlaceholderNoDataView.xib */; };
 		20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */; };
 		20463D8B20E6A16300086B51 /* OrderByTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */; };
 		20467D5051D58148706B41DA /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */; };
@@ -410,6 +412,8 @@
 		203CC18020BD5E9D00F49260 /* WatchlistCurrencyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyHeaderView.swift; sourceTree = "<group>"; };
 		203CC18420BD6BE100F49260 /* WatchlistCurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		203CC18520BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCurrencyTableViewCell.xib; sourceTree = "<group>"; };
+		2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderNoDataView.swift; sourceTree = "<group>"; };
+		2045B5CC21035D4B000F9D4C /* PlaceholderNoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderNoDataView.xib; sourceTree = "<group>"; };
 		20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderByTableViewCell.swift; sourceTree = "<group>"; };
 		20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderByTableViewCell.xib; sourceTree = "<group>"; };
 		205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -1127,6 +1131,8 @@
 				203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */,
 				20BFCC3020AA1C9300C68D06 /* ViewCells */,
 				367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */,
+				2045B5CC21035D4B000F9D4C /* PlaceholderNoDataView.xib */,
+				2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */,
 			);
 			path = CustomUIControls;
 			sourceTree = "<group>";
@@ -2154,6 +2160,7 @@
 				20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */,
 				20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */,
 				20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */,
+				2045B5CD21035D4B000F9D4C /* PlaceholderNoDataView.xib in Resources */,
 				203CC18720BD6BE100F49260 /* WatchlistCurrencyTableViewCell.xib in Resources */,
 				2013E5842071464700EFACB7 /* Exo2-ExtraBold.ttf in Resources */,
 				20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */,
@@ -2292,6 +2299,7 @@
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
 				2003B5562048B8DE00BD205F /* WalletTableViewCell.swift in Sources */,
+				2045B5CB21035D39000F9D4C /* PlaceholderNoDataView.swift in Sources */,
 				20CAFED72042AF0D00C7DEA5 /* Extensions+Data.swift in Sources */,
 				2003B5692048C78600BD205F /* DataService.swift in Sources */,
 				FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */,

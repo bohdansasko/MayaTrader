@@ -81,6 +81,7 @@ class Session {
 
     func cancelOpenedOrder(byIndex index: Int) {
         self.openedOrders.cancelOpenedOrder(byIndex: index)
+        // TODO Orders: send message to server
     }
 
     //

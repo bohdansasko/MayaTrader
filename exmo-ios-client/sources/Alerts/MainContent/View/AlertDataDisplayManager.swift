@@ -13,8 +13,10 @@ class AlertDataDisplayManager: NSObject {
     private var tableView: UITableView!
     private var actions: [UITableViewRowAction]?
     private var cells: [AlertTableViewCell] = []
+
     
     var viewOutput: AlertsViewOutput!
+    var view: AlertsViewInput!
     
     override init() {
         super.init()
@@ -76,8 +78,9 @@ class AlertDataDisplayManager: NSObject {
     
     private func checkOnRequirePlaceHolder() {
         if (self.dataProvider.isEmpty()) {
-            // show placeholder
-            print("need show placeholder")
+            self.view.showPlaceholderNoData()
+        } else {
+            self.view.removePlaceholderNoData()
         }
     }
     
@@ -163,6 +166,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
             print("alert: state action clicked")
             self.handleStateAction(elementIndex: indexPath.section)
             action.image = self.dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
+            
             completionHandler(true)
         })
         stateAction.backgroundColor = self.dataProvider.getStatus(forItem: indexPath.section) == .Active
@@ -173,6 +177,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             _, _, completionHandler in
             print("alert: edit action clicked")
+            
             completionHandler(true)
         })
         editAction.backgroundColor = UIColor(red: 115.0/255, green: 116.0/255, blue: 133.0/255, alpha: 1.0)
@@ -182,6 +187,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
             _, _, completionHandler in
             print("alert: remove action clicked: row \(indexPath.section)")
             self.handleRemoveAction(elementIndex: indexPath.section)
+            
             completionHandler(true)
         })
         removeAction.backgroundColor = UIColor.orangePink

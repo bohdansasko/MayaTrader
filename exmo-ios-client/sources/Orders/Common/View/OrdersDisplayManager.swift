@@ -11,20 +11,24 @@ import UIKit
 
 class OrdersDisplayManager: NSObject {    
     // MARK: outlets
-    var ordersDataProvider: OrdersModel!
+    var dataProvider: OrdersModel!
     weak var tableView: UITableView!
+    weak var view: OrdersManagerViewInput!
+    
     var shouldUseActions: Bool = false
     
     var openedOrders: OrdersModel?
     var canceledOrders: OrdersModel?
     var dealsOrders: OrdersModel?
+
     
     // MARK: public methods
     func setTableView(tableView: UITableView!) {
-        self.ordersDataProvider = OrdersModel()
+        self.dataProvider = OrdersModel()
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.checkOnRequirePlaceHolder()
     }
     
     func reloadData() {
@@ -32,16 +36,17 @@ class OrdersDisplayManager: NSObject {
     }
     
     func isDataExists() -> Bool {
-        return self.ordersDataProvider.isDataExists()
+        return self.dataProvider.isDataExists()
     }
 
     func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
         guard let data = self.getDataBySegmentIndex(displayOrderType: displayOrderType) else {
             return
         }
-        self.ordersDataProvider = data
+        self.dataProvider = data
+        self.checkOnRequirePlaceHolder()
         self.shouldUseActions = displayOrderType == .Opened
-        reloadData()
+        self.reloadData()
     }
 
     // MARK: private methods
@@ -58,6 +63,14 @@ class OrdersDisplayManager: NSObject {
         self.canceledOrders = canceledOrders
         self.dealsOrders = OrdersModel(orders: openedOrders.getOrders() + canceledOrders.getOrders())
     }
+    
+    private func checkOnRequirePlaceHolder() {
+        if (self.dataProvider.isDataExists()) {
+            self.view.removePlaceholderNoData()
+        } else {
+            self.view.showPlaceholderNoData()
+        }
+    }
 }
 
 extension OrdersDisplayManager: UITableViewDataSource  {
@@ -66,7 +79,7 @@ extension OrdersDisplayManager: UITableViewDataSource  {
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.ordersDataProvider.getCountOrders()
+        return self.dataProvider.getCountOrders()
     }
 }
 
@@ -90,7 +103,7 @@ extension OrdersDisplayManager: UITableViewDelegate  {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let orderData = self.ordersDataProvider.getOrderBy(index: indexPath.section)
+        let orderData = self.dataProvider.getOrderBy(index: indexPath.section)
         let cellId = TableCellIdentifiers.OrderTableViewCell.rawValue
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderTableViewCell
@@ -108,8 +121,10 @@ extension OrdersDisplayManager: UITableViewDelegate  {
         
         let deleteAction = UIContextualAction(style: .normal, title: "", handler: { action, view, completionHandler  in
             print("called delete action for row = ", indexPath.section)
-            self.ordersDataProvider.cancelOpenedOrder(byIndex: indexPath.section)
+            self.dataProvider.cancelOpenedOrder(byIndex: indexPath.section)
             self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: UITableViewRowAnimation.top)
+            Session.sharedInstance.cancelOpenedOrder(byIndex: indexPath.section)
+            self.checkOnRequirePlaceHolder()
             completionHandler(false)
         })
         deleteAction.image = UIImage(named: "icNavbarTrash")

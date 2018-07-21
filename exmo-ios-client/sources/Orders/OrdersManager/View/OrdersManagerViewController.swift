@@ -14,6 +14,7 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     var currentViewController: UIViewController?
     var pickerViewManager: DarkeningPickerViewManager!
     var displayManager: OrdersDisplayManager!
+    private var placeholderNoData: PlaceholderNoDataView? = nil
     
     // @IBOutlets
     @IBOutlet weak var segmentController: UISegmentedControl!
@@ -24,9 +25,9 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()
-        setupInitialState()
-        subscribeOnEvents()
+        self.output.viewIsReady()
+        self.setupInitialState()
+        self.subscribeOnEvents()
     }
     
     deinit {
@@ -41,17 +42,40 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
             for: .normal
         )
         
-        displayManager.setTableView(tableView: self.tableView)
-        displayManager.showDataBySegment(displayOrderType: .Opened)
+        self.displayManager.setTableView(tableView: self.tableView)
+        self.displayManager.showDataBySegment(displayOrderType: .Opened)
+    }
+    
+    // MARK: OrdersManagerViewInput
+    func showPlaceholderNoData() {
+        if placeholderNoData != nil {
+            print("placeholder no data already exists")
+            return
+        }
+        print("show placeholder no data")
+        
+        self.placeholderNoData = PlaceholderNoDataView(frame: self.view.bounds)
+        self.placeholderNoData?.setDescriptionType(descriptionType: .Orders)
+        self.placeholderNoData?.frame = self.view.bounds
+        self.view.addSubview(self.placeholderNoData!)
+        
+        self.placeholderNoData?.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY + 140)
+    }
+    
+    func removePlaceholderNoData() {
+        if self.placeholderNoData != nil {
+            self.placeholderNoData?.removeFromSuperview()
+            self.placeholderNoData = nil
+        }
     }
     
     // MARK: IBActions
     @IBAction func segmentChanged(_ sender: Any) {
-        displayManager.showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
+        self.displayManager.showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
     }
     
     @IBAction func handleTouchDeleteButton(_ sender: Any) {
-        pickerViewManager.showPickerViewWithDarkening()
+        self.pickerViewManager.showPickerViewWithDarkening()
     }
     
     // MARK: private methods

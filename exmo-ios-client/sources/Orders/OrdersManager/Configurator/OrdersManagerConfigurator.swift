@@ -33,6 +33,7 @@ class OrdersManagerModuleConfigurator {
 
         viewController.displayManager = OrdersDisplayManager()
         viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, headerString: "Delete orders", dataSource: ["Delete All", "Delete All on buy", "Delete All on sell"])
+        viewController.displayManager.view = viewController
     }
 
 }

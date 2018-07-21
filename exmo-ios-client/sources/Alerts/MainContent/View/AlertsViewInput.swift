@@ -14,4 +14,7 @@ protocol AlertsViewInput: class {
     */
 
     func setupInitialState()
+    
+    func showPlaceholderNoData()
+    func removePlaceholderNoData()
 }

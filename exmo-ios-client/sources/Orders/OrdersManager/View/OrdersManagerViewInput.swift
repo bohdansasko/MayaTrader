@@ -14,4 +14,6 @@ protocol OrdersManagerViewInput: class {
     */
 
     func setupInitialState()
+    func showPlaceholderNoData()
+    func removePlaceholderNoData()
 }

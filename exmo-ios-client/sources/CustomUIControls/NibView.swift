@@ -13,6 +13,7 @@ class NibView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        
         // Setup view from .xib file
         xibSetup()
     }
@@ -28,7 +29,7 @@ class NibView: UIView {
 extension NibView {
     func xibSetup() {
         backgroundColor = UIColor.clear
-        contentView = loadNib()
+        contentView = loadNib() as! UIView
         // use bounds not frame or it'll be offset
         contentView.frame = bounds
         // Adding custom subview on top of our view
