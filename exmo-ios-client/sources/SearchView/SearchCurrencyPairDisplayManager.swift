@@ -67,7 +67,7 @@ class SearchDisplayManager: NSObject {
         guard let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField else { return }
         guard let glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
         glassIconView.image = nil
-        textFieldInsideSearchBar.font = UIFont(name: "Exo2-Regular", size: 14)
+        textFieldInsideSearchBar.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
     }
     
     func setData(dataProvider: [SearchModel], searchType: SearchViewController.SearchType) {

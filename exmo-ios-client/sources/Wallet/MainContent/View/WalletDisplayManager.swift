@@ -61,7 +61,7 @@ extension WalletDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         let cellId =  TableCellIdentifiers.WalletTableViewCell.rawValue
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletTableViewCell
         cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: 0/*currency.countInOrders as! Int*/)
-        cell.backgroundColor = (indexPath.row + 1) % 2 == 0 ? UIColor(named: "exmoDark") : UIColor.black
+        cell.backgroundColor = (indexPath.row + 1) % 2 == 0 ? UIColor.dark : UIColor.black
         
         return cell
     }

@@ -41,14 +41,14 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
     
     fileprivate func configureCancelButton() {
         self.cancelButton.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
-            NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+                NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+                NSAttributedStringKey.foregroundColor: UIColor.orangePink
             ],
             for: .normal
         )
         self.cancelButton.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
-            NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+                NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+                NSAttributedStringKey.foregroundColor: UIColor.orangePink
             ],
             for: .highlighted
         )

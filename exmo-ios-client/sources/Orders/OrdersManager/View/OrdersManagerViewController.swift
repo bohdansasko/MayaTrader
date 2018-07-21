@@ -28,13 +28,18 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
         setupInitialState()
         subscribeOnEvents()
     }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 
     // MARK: public methods
     func setupInitialState() {
-        let segmentControlTextFont = UIFont(name: "Exo2-Regular", size: 13)
-        self.segmentController.setTitleTextAttributes([
-            NSAttributedStringKey.font: segmentControlTextFont!
-            ], for: .normal)
+        let segmentControlTextFont = UIFont.getExo2Font(fontType: .Regular, fontSize: 13)
+        self.segmentController.setTitleTextAttributes(
+            [ NSAttributedStringKey.font: segmentControlTextFont ],
+            for: .normal
+        )
         
         displayManager.setTableView(tableView: self.tableView)
         displayManager.showDataBySegment(displayOrderType: .Opened)

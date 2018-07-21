@@ -28,7 +28,7 @@ class WatchlistCurrencyTableViewCell: UITableViewCell {
 
             self.labelTradeVolume.text = String(d.tradeVolume)
             self.labelChanges.text = String(d.changes > 0.0 ? "+" : "-") + String(abs(d.changes))
-            self.labelChanges.textColor = d.changes > 0.0 ? UIColor(named: "exmoGreenBlue") : UIColor(named: "exmoOrangePink")
+            self.labelChanges.textColor = d.changes > 0.0 ? UIColor.greenBlue : UIColor.orangePink
         }
     }
     override func awakeFromNib() {

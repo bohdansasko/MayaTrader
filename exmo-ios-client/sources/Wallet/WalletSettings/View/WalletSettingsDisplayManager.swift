@@ -33,7 +33,7 @@ class WalletSettingsDisplayManager: NSObject {
         guard let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField else { return }
         guard let  glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
         glassIconView.image = nil
-        textFieldInsideSearchBar.font = UIFont(name: "Exo2-Regular", size: 14)
+        textFieldInsideSearchBar.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
     }
     
     func setTableView(tableView: UITableView!) {
@@ -56,7 +56,7 @@ extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSour
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.backgroundView?.backgroundColor = UIColor(red: 3.0/255.0, green: 1.0/255.0, blue: 10.0/255.0, alpha: 1.0)
         header.textLabel?.textColor = UIColor(red: 178.0/255.0, green: 178.0/255.0, blue: 178.0/255.0, alpha: 190.0/255.0)
-        header.textLabel?.font = UIFont(name: "Exo2-Bold", size: 12)
+        header.textLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
         header.textLabel?.frame = header.frame
         header.textLabel?.textAlignment = .left
     }

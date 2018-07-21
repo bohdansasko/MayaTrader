@@ -32,14 +32,14 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
         displayManager.setTableView(tableView: tableView)
         
         cancelButton.setTitleTextAttributes([
-                NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
-                NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+                NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+                NSAttributedStringKey.foregroundColor: UIColor.orangePink
             ],
             for: .normal
         )
         cancelButton.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont(name: "Exo2-SemiBold", size: 17)!,
-            NSAttributedStringKey.foregroundColor: UIColor(named: "exmoOrangePink")!
+                NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+                NSAttributedStringKey.foregroundColor: UIColor.orangePink
             ],
             for: .highlighted
         )

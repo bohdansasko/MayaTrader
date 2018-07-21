@@ -120,7 +120,6 @@
 		20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88820AE239100EC2A4D /* Alerts.storyboard */; };
 		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
 		20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */; };
-		20A5B89120AE283F00EC2A4D /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A5B89020AE283F00EC2A4D /* ExmoUIViewController.swift */; };
 		20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */; };
 		20B42B3320F47C5000C1F56C /* SwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */; };
 		20BEDC53205579FA00973F2F /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */; };
@@ -131,7 +130,7 @@
 		20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */; };
 		20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */; };
 		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
-		20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */; };
+		20CAFED72042AF0D00C7DEA5 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Extensions+Data.swift */; };
 		20CAFF002042EE4F00C7DEA5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* APIService.swift */; };
 		20CCBDB3206395450099D144 /* CreateOrderDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */; };
 		20CCBDB5206396560099D144 /* CreateOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */; };
@@ -172,8 +171,11 @@
 		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
 		36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */; };
 		3671205D06A10EADE42FAF7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F8856A6004AC2CC405B /* User.swift */; };
+		3671220BB478D212AC3CF7B2 /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2E24600DAE35483C9D /* Extension+Color.swift */; };
 		3671270AD41B65A3E7C2B26D /* WalletDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */; };
+		3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */; };
 		36712819605402E3BB398CBA /* ErrorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ErrorModels.swift */; };
+		36712A6D0B8BC149BFAF5E81 /* Extension+Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Extension+Font.swift */; };
 		36712C9A3C90496E33B01C2A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671257CD4262EA9B280ABE0 /* Constants.swift */; };
 		36712E1CBE20D69B04B3000E /* LoginModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */; };
 		36712E4C4C5245EF136945B7 /* MoreDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */; };
@@ -444,7 +446,6 @@
 		20A5B88820AE239100EC2A4D /* Alerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
 		20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreOptions.storyboard; sourceTree = "<group>"; };
-		20A5B89020AE283F00EC2A4D /* ExmoUIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherTableViewCell.swift; sourceTree = "<group>"; };
 		20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitcherTableViewCell.xib; sourceTree = "<group>"; };
 		20BEDC52205579FA00973F2F /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
@@ -455,7 +456,7 @@
 		20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardsDisplayManager.swift; sourceTree = "<group>"; };
 		20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRLoginModel.swift; path = Models/QRLoginModel.swift; sourceTree = "<group>"; };
 		20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiHandler.swift; sourceTree = "<group>"; };
-		20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
+		20CAFED62042AF0D00C7DEA5 /* Extensions+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Data.swift"; sourceTree = "<group>"; };
 		20CAFEF12042C7FD00C7DEA5 /* iphoneos-module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "iphoneos-module.map"; sourceTree = "<group>"; };
 		20CAFEF22042C7FD00C7DEA5 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
 		20CAFEF32042C7FD00C7DEA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -495,7 +496,10 @@
 		3671213D7EACFF552D7D3CDF /* LoginModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModuleInput.swift; sourceTree = "<group>"; };
 		3671257CD4262EA9B280ABE0 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* MoreDataDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreDataDisplayManager.swift; sourceTree = "<group>"; };
+		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* MoreDisplayModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreDisplayModel.swift; sourceTree = "<group>"; };
+		36712B2B3338633190FB399E /* Extension+Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Font.swift"; sourceTree = "<group>"; };
+		36712B2E24600DAE35483C9D /* Extension+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		36712DDE57C5587FC6B6609F /* ErrorModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModels.swift; sourceTree = "<group>"; };
 		36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDisplayManager.swift; sourceTree = "<group>"; };
 		36712F8856A6004AC2CC405B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1002,10 +1006,11 @@
 		206730E12094D36E008B500D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */,
+				20CAFED62042AF0D00C7DEA5 /* Extensions+Data.swift */,
 				206730E22094D427008B500D /* Extension+UITextField.swift */,
 				20E30AD420A966B0003D9BAF /* Extension+UIView.swift */,
-				20A5B89020AE283F00EC2A4D /* ExmoUIViewController.swift */,
+				36712B2E24600DAE35483C9D /* Extension+Color.swift */,
+				36712B2B3338633190FB399E /* Extension+Font.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1121,6 +1126,7 @@
 				205AA982209DE3BD00148649 /* DarkeningPickerViewController.swift */,
 				203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */,
 				20BFCC3020AA1C9300C68D06 /* ViewCells */,
+				367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */,
 			);
 			path = CustomUIControls;
 			sourceTree = "<group>";
@@ -2286,7 +2292,7 @@
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
 				2003B5562048B8DE00BD205F /* WalletTableViewCell.swift in Sources */,
-				20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */,
+				20CAFED72042AF0D00C7DEA5 /* Extensions+Data.swift in Sources */,
 				2003B5692048C78600BD205F /* DataService.swift in Sources */,
 				FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */,
 				202CF16820414FE7008185EB /* ViperModuleTransitionHandler.swift in Sources */,
@@ -2426,7 +2432,6 @@
 				2010155020B0510A00324F22 /* CreateAlertDisplayManager.swift in Sources */,
 				50B079E206282DC07329BBA4 /* WatchlistManagerModuleInput.swift in Sources */,
 				B8E5DEA2A37D23F04B8EE462 /* WatchlistManagerPresenter.swift in Sources */,
-				20A5B89120AE283F00EC2A4D /* ExmoUIViewController.swift in Sources */,
 				919EE986E9EA17B313D8B79E /* WatchlistManagerInteractorInput.swift in Sources */,
 				2955725A78ABC60B7DE0C8F6 /* WatchlistManagerInteractorOutput.swift in Sources */,
 				40F47E98496772BDDF48DCCF /* WatchlistManagerInteractor.swift in Sources */,
@@ -2499,6 +2504,9 @@
 				5AE00036F58513F97F1994D1 /* SearchCurrencyPairRouter.swift in Sources */,
 				7BF15DD1D6D4872F7399A413 /* SearchCurrencyPairConfigurator.swift in Sources */,
 				AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */,
+				3671220BB478D212AC3CF7B2 /* Extension+Color.swift in Sources */,
+				36712A6D0B8BC149BFAF5E81 /* Extension+Font.swift in Sources */,
+				3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
