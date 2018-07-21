@@ -13,7 +13,6 @@ enum AlertStatus: Int {
     case None
     case Active
     case Inactive
-    case Pause
 }
 
 class AlertItem: Mappable {

@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit.UIFont
 
 extension UIFont {
     enum Exo2Color {

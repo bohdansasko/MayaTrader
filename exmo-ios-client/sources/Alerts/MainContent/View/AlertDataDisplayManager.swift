@@ -8,38 +8,11 @@
 
 import UIKit
 
-// Color palette
-
-extension UIColor {
-    @nonobjc class var steel: UIColor {
-        return UIColor(red: 131.0 / 255.0, green: 132.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
-    }
-    
-    @nonobjc class var dodgerBlue: UIColor {
-        return UIColor(red: 74.0 / 255.0, green: 132.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
-    }
-    
-    @nonobjc class var white: UIColor {
-        return UIColor(white: 1.0, alpha: 1.0)
-    }
-    
-    @nonobjc class var dark: UIColor {
-        return UIColor(red: 30.0 / 255.0, green: 28.0 / 255.0, blue: 42.0 / 255.0, alpha: 1.0)
-    }
-    
-    @nonobjc class var orangePink: UIColor {
-        return UIColor(red: 1.0, green: 105.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
-    }
-    
-    @nonobjc class var greenBlue: UIColor {
-        return UIColor(red: 0.0, green: 189.0 / 255.0, blue: 154.0 / 255.0, alpha: 1.0)
-    }
-}
-
 class AlertDataDisplayManager: NSObject {
     private var dataProvider: AlertsDisplayModel!
     private var tableView: UITableView!
     private var actions: [UITableViewRowAction]?
+    private var cells: [AlertTableViewCell] = []
     
     var viewOutput: AlertsViewOutput!
     
@@ -91,7 +64,14 @@ class AlertDataDisplayManager: NSObject {
             print("handleStateAction: item doesn't exists")
             return
         }
+        if let uiCell = getCellItem(elementIndex: elementIndex) {
+            uiCell.setStatus(status: alertModel.status)
+        }
         APIService.socketManager.updateAlert(alertItem: alertModel)
+    }
+    
+    private func getCellItem(elementIndex: Int) -> AlertTableViewCell? {
+        return elementIndex > -1 && elementIndex < cells.count ? self.cells[elementIndex] : nil
     }
     
     private func checkOnRequirePlaceHolder() {
@@ -145,7 +125,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: self.tableView.frame)
         view.backgroundColor = UIColor.black
-        return view
+        return view     
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -164,6 +144,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.AlertTableViewCell.rawValue, for: indexPath) as! AlertTableViewCell
         cell.setData(data: alertModel)
+        self.cells.append(cell)
         return cell
     }
     

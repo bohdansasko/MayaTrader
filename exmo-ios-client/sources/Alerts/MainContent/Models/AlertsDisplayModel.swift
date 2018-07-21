@@ -49,8 +49,8 @@ class AlertsDisplayModel {
         if self.isValidIndex(index: index) {
             switch self.alertsItems[index].status {
             case .Active:
-                self.alertsItems[index].status = .Pause
-            case .Pause:
+                self.alertsItems[index].status = .Inactive
+            case .Inactive:
                 self.alertsItems[index].status = .Active
             default:
                 break

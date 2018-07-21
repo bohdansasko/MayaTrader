@@ -39,15 +39,9 @@ class AlertTableViewCell: UITableViewCell {
         self.topBound.text = data.topBoundary != nil ? String(data.topBoundary!) : "-"
         self.bottomBound.text = data.topBoundary != nil ? String(data.bottomBoundary!) : "-"
         
-        self.status.text = getTextStatusValue(status: data.status)
-        
-        if #available(iOS 11.0, *) {
-            self.status.backgroundColor = data.status == AlertStatus.Active ? UIColor(named: "exmoGreenBlue") : UIColor(named: "exmoSteel")
-        } else {
-            self.status.backgroundColor = data.status == AlertStatus.Active ? UIColor.init(named: "exmoGreenBlue")! : UIColor.init(named: "exmoSteel")!
-        }
         self.status.layer.cornerRadius = 5.0
         self.status.layer.masksToBounds = true
+        self.setStatus(status: data.status)
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd.MM.yyyy HH:mm"
@@ -63,14 +57,21 @@ class AlertTableViewCell: UITableViewCell {
         }
     }
 
+    func setStatus(status: AlertStatus) {
+        updateStatusLabelColorAndValue(status: status)
+    }
+    
+    private func updateStatusLabelColorAndValue(status: AlertStatus) {
+        self.status.text = getTextStatusValue(status: status)
+        self.status.backgroundColor = status == AlertStatus.Active ? UIColor.greenBlue : UIColor.steel
+    }
+    
     private func getTextStatusValue(status: AlertStatus) -> String {
         switch status {
         case .Active:
             return "Active"
         case .Inactive:
             return "Inactive"
-        case .Pause:
-            return "Idle"
         default:
             return ""
         }

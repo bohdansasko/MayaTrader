@@ -4,6 +4,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 extension UIColor {
     class var steel: UIColor {
