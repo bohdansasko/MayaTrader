@@ -117,6 +117,7 @@
 		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084492C20493193007CA79C /* WalletDataProvider.swift */; };
 		20961CC620B2D123002D53AE /* SocketAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20961CC520B2D123002D53AE /* SocketAPIHandler.swift */; };
+		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
 		20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88420AE225300EC2A4D /* Wallet.storyboard */; };
 		20A5B88720AE232E00EC2A4D /* Orders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88620AE232E00EC2A4D /* Orders.storyboard */; };
 		20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88820AE239100EC2A4D /* Alerts.storyboard */; };
@@ -445,6 +446,7 @@
 		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		2084492C20493193007CA79C /* WalletDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDataProvider.swift; sourceTree = "<group>"; };
 		20961CC520B2D123002D53AE /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
+		209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
 		20A5B88420AE225300EC2A4D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		20A5B88620AE232E00EC2A4D /* Orders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Orders.storyboard; sourceTree = "<group>"; };
 		20A5B88820AE239100EC2A4D /* Alerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
@@ -947,6 +949,7 @@
 			isa = PBXGroup;
 			children = (
 				202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */,
+				209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2464,6 +2467,7 @@
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewInput.swift in Sources */,
 				20780A2220E95A6800D9BD36 /* SearchCurrencyPairDisplayManager.swift in Sources */,
 				0B6A83BD11E0BF886F0C649C /* CreateAlertViewOutput.swift in Sources */,
+				209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */,
 				C5211D41B62E787C92F836A3 /* CreateAlertViewController.swift in Sources */,
 				67289E6F31834F1A38B88D4F /* CreateAlertModuleInput.swift in Sources */,
 				1A9B269CD2910DC038EC9F06 /* CreateAlertPresenter.swift in Sources */,

@@ -35,7 +35,7 @@ class WatchlistFlatDisplayManager: NSObject {
     }
     
     func isDataExists() -> Bool {
-        return dataProvider.isDataExists()
+        return self.dataProvider.isDataExists()
     }
 }
 
@@ -57,13 +57,20 @@ extension WatchlistFlatDisplayManager: UITableViewDelegate  {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction.init(style: .normal, title: "Delete", handler: { action, indexPath in
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    
+        let removeAction = UIContextualAction(style: .destructive, title: "", handler: {
+            _, _, completionHandler in
             print("called delete action")
+            self.dataProvider.removeItemBy(index: indexPath.section)
+            completionHandler(true)
         })
-        deleteAction.backgroundColor = UIColor.red
+        removeAction.backgroundColor = UIColor.orangePink
+        removeAction.image = #imageLiteral(resourceName: "icNavbarTrash")
         
-        return [deleteAction]
+        let config = UISwipeActionsConfiguration(actions: [removeAction])
+        return config
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

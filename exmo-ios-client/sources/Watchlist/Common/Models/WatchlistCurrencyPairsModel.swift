@@ -9,63 +9,16 @@
 import Foundation
 import UIKit.UIImage
 
-class WatchlistCurrencyPairModel {
-    private var pairName: String
-    private var currencyVolumeStr: String
-    private var price: Double
-    private var priceIndicator: Double
-    
-    init(pairName: String, currencyVolumeStr: String, price: Double, priceIndicator: Double) {
-        self.pairName = pairName
-        self.currencyVolumeStr = currencyVolumeStr
-        self.price = price
-        self.priceIndicator = priceIndicator
-    }
-    
-    func getPairName() -> String {
-        return self.pairName
-    }
-    
-    func getVolumeStr() -> String {
-        return self.currencyVolumeStr
-    }
-    
-    func getPriceAsStr() -> String {
-        return "$ " + String(price)
-    }
-    
-    func getPriceIndicatorAsStr() -> String {
-        return getSign() + String(abs(priceIndicator)) + "%"
-    }
-    
-    private func getSign() -> String {
-        return priceIndicator > 0.0
-            ? "+"
-            : priceIndicator < 0.0
-                ? "-"
-                : ""
-    }
-    
-    static func mock() -> WatchlistCurrencyPairModel {
-        return WatchlistCurrencyPairModel(pairName: "Test/Test", currencyVolumeStr: "T", price: 0.0, priceIndicator: 0.0)
-    }
-    
-    func getPriceIndicator() -> Double {
-        return self.priceIndicator
-    }
-    
-    func getIconImage() -> UIImage {
-        let suffix = pairName.components(separatedBy: "/")[0].lowercased()
-        let iconName = "icon_" + suffix
-        return UIImage(named: iconName)!
-    }
-}
-
 class WatchlistCurrencyPairsModel {
     var data: [WatchlistCurrencyPairModel]
     
     init() {
-        data = [
+        self.data = []
+        self.data = self.getTestData()
+    }
+    
+    private func getTestData() -> [WatchlistCurrencyPairModel] {
+        return [
             WatchlistCurrencyPairModel(pairName: "ETH/USD", currencyVolumeStr: "$ 269387", price: 230.04, priceIndicator: 0.79),
             WatchlistCurrencyPairModel(pairName: "BTC/USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
             WatchlistCurrencyPairModel(pairName: "BTC/USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
@@ -73,15 +26,25 @@ class WatchlistCurrencyPairsModel {
         ]
     }
     
+    func removeItemBy(index: Int) {
+        if self.isValidIndex(index: index) {
+            self.data.remove(at: index)
+        }
+    }
+    
     func getCountOrders() -> Int {
-        return data.count
+        return self.data.count
     }
 
     func getCurrencyPairBy(index: Int) -> WatchlistCurrencyPairModel {
-        return index > -1 && index < data.count ? data[index] : WatchlistCurrencyPairModel.mock()
+        return self.isValidIndex(index: index) ? self.data[index] : WatchlistCurrencyPairModel.mock()
     }
 
     func isDataExists() -> Bool {
-        return data.isEmpty == false
+        return self.data.isEmpty == false
+    }
+    
+    private func isValidIndex(index: Int) -> Bool {
+        return index > -1 && index < data.count
     }
 }
