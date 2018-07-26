@@ -38,16 +38,16 @@ class MoreOptionsMenuCell: UITableViewCell {
         switch itemData.rightViewOptions {
         case MenuItem.RightViewOptions.Empty:
             self.rightLabel?.removeFromSuperview()
-            self.rightIcon.removeFromSuperview()
+            self.rightIcon?.removeFromSuperview()
             break
         case MenuItem.RightViewOptions.Icon:
             self.rightLabel?.removeFromSuperview()
             break
         case MenuItem.RightViewOptions.Text:
             if self.rightLabel != nil {
-                self.rightLabel.text = itemData.rightText!
+                self.rightLabel?.text = itemData.rightText!
             }
-            self.rightIcon.removeFromSuperview()
+            self.rightIcon?.removeFromSuperview()
             break
         default:
             break
