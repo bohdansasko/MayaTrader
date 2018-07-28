@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol SegueBlock: class {
+protocol SegueBlock {
     // do nothing
 }
 

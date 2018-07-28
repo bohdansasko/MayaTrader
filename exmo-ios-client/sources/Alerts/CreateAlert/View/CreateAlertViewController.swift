@@ -21,23 +21,33 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
+        self.output.viewIsReady()
         
-        setupInitialState()
+        self.setupInitialState()
     }
 
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueId = segue.identifier else {
+            print("CreateAlertViewController: segue id is nil")
+            return
+        }
+        
+        if segueId == AlertsSegueIdentifiers.AddEditAlert {
+            print("view in update state")
+        }
+    }
+    
     // MARK: CreateAlertViewInput
     func setupInitialState() {
-        displayManager.setTableView(tableView: tableView)
+        self.displayManager.setTableView(tableView: tableView)
         
-        cancelButton.setTitleTextAttributes([
+        self.cancelButton.setTitleTextAttributes([
                 NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
                 NSAttributedStringKey.foregroundColor: UIColor.orangePink
             ],
             for: .normal
         )
-        cancelButton.setTitleTextAttributes([
+        self.cancelButton.setTitleTextAttributes([
                 NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
                 NSAttributedStringKey.foregroundColor: UIColor.orangePink
             ],
@@ -56,8 +66,12 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
         self.displayManager.updateSoundElement(soundName: soundName)
     }
     
+    func setAlertItem(alertItem: AlertItem) {
+        self.displayManager.setAlertItem(alertItem: alertItem)
+    }
+    
     @objc private func hideKeyboard() {
-        view.endEditing(true)
+        self.view.endEditing(true)
     }
     
     //

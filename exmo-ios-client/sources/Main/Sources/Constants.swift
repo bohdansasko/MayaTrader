@@ -53,10 +53,6 @@ enum WalletSegueIdentifiers: String {
     case ManageCurrencies
 }
 
-enum AlertsSegueIdentifiers: String {
-    case EditAlert
-}
-
 enum OrdersSegueIdentifiers: String {
     case CreateOrder
 }

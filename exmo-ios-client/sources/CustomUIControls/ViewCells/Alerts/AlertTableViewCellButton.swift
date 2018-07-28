@@ -9,6 +9,9 @@
 import UIKit
 
 class AlertTableViewCellButton: AlertTableViewCellWithTextData {
+    
+    @IBOutlet weak var button: UIButton!
+    
     private var callbackOnTouch: VoidClosure?
     
     override func awakeFromNib() {
@@ -28,5 +31,9 @@ class AlertTableViewCellButton: AlertTableViewCellWithTextData {
     
     @IBAction func handleButtonTouch(_ sender: Any) {
         self.callbackOnTouch?()
+    }
+    
+    func setButtonTitle(text: String) {
+        self.button.setTitle(text, for: .normal)
     }
 }

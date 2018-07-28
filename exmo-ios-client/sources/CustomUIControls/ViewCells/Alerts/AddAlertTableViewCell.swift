@@ -15,11 +15,15 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     private var onTextFieldDidBeginEditing: VoidClosure? = nil
     private var onTextFieldDidEndEditing: VoidClosure? = nil
     
-    func setContentData(data: CreateAlertItem) {
+    func setContentData(data: UIFieldModel) {
         self.headerLabel.text = data.getHeaderText()
         self.inputField.placeholder = data.getLeftText()
         self.inputField.placeholderColor = UIColor.white.withAlphaComponent(0.3)
         self.inputField.delegate = self
+    }
+    
+    func setData(data: String?) {
+        self.inputField.text = data
     }
     
     override func getDoubleValue() -> Double {

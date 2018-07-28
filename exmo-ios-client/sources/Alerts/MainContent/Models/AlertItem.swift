@@ -15,7 +15,7 @@ enum AlertStatus: Int {
     case Inactive
 }
 
-class AlertItem: Mappable {
+class AlertItem: SegueBlock, Mappable {
     var id: String = ""
     var currencyPairName: String! = ""
     var currencyPairPriceAtCreateMoment: Double! = 0.0

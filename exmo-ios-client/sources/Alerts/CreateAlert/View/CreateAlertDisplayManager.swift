@@ -10,32 +10,37 @@ import Foundation
 import UIKit
 
 //
-// @MARK: Model
+// @MARK: UIFieldModel
 //
-class CreateAlertItem {
-    enum FieldType {
-        case None
-        case ActiveInput
-        case InactiveInput
-        case CurrencyPair
-        case Sound
-        case Button
-        case TwoButtons
-        case OrderBy
-        case NotificationType
-        case Note
-    }
+fileprivate enum UIFieldType: Int {
+    case CurrencyPair
+    case UpperBound
+    case BottomBound
+    case Sound
+    case Notification
+    case Note
+    case ButtonCreateUpdate
+}
+
+fileprivate struct UIItem {
+    var type: UIFieldType
+    var item: UIFieldModel?
     
-    var fieldType: FieldType = .None
+    init(type: UIFieldType, item: UIFieldModel?) {
+        self.type = type
+        self.item = item
+    }
+}
+
+class UIFieldModel {
     var textContainer: [String:String]
     
-    convenience init(fieldType: FieldType) {
-        self.init(fieldType: fieldType, headerText: "", leftText: "")
+    convenience init(headerText: String = "") {
+        self.init(headerText: headerText, leftText: "")
     }
     
-    init(fieldType: FieldType, headerText: String, leftText: String, rightText: String = "") {
-        self.fieldType = fieldType
-        textContainer = [String:String]()
+    init(headerText: String, leftText: String, rightText: String = "") {
+        self.textContainer = [String:String]()
         self.textContainer["headerText"] = headerText
         self.textContainer["leftText"] = leftText
         self.textContainer["rightText"] = rightText
@@ -54,10 +59,6 @@ class CreateAlertItem {
     }
 }
 
-//
-// @MARK: DisplayManager
-//
-
 enum CellName: String {
     case AddAlertTableViewCell
     case AlertTableViewCellWithArrow
@@ -66,27 +67,26 @@ enum CellName: String {
     case SwitcherTableViewCell
 }
 
-enum FieldType: Int {
-    case CurrencyPair = 0
-    case AlertSound = 4
-}
-
+//
+// @MARK: CreateAlertDisplayManager
+//
 class CreateAlertDisplayManager: NSObject {
-    private var dataProvider: [CreateAlertItem] = []
+    private var dataProvider: [UIItem] = []
     private var tableView: UITableView!
     private var currencyRow: AlertTableViewCellWithArrow? = nil
     private var soundRow: AlertTableViewCellWithArrow? = nil
     private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
-    
+    private var alertItem: AlertItem? = nil
     
     var output: CreateAlertViewOutput!
     
     override init() {
         super.init()
-        dataProvider = getFieldsForRender()
     }
     
     func setTableView(tableView: UITableView!) {
+        self.dataProvider = getFieldsForRender()
+        
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -106,15 +106,15 @@ class CreateAlertDisplayManager: NSObject {
         }
     }
     
-    private func getFieldsForRender() -> [CreateAlertItem] {
+    private func getFieldsForRender() -> [UIItem] {
         return [
-            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "Select currency pair...", rightText: ""),
-            CreateAlertItem(fieldType: .ActiveInput, headerText: "Upper bound", leftText: "0 USD"),
-            CreateAlertItem(fieldType: .ActiveInput, headerText: "Bottom bound", leftText: "0 USD"),
-            // CreateAlertItem(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
-            CreateAlertItem(fieldType: .NotificationType, headerText: "Notification settings", leftText: "Is persistent alert"),
-            CreateAlertItem(fieldType: .Note, headerText: "Note", leftText: "Write remember note..."),
-            CreateAlertItem(fieldType: .Button)
+            UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
+            UIItem(type: .UpperBound,  item: UIFieldModel(headerText: "Upper bound", leftText: "0 USD")),
+            UIItem(type: .BottomBound,  item: UIFieldModel(headerText: "Bottom bound", leftText: "0 USD")),
+            // UIFieldModel(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
+            UIItem(type: .Notification,  item: UIFieldModel(headerText: "Notification settings", leftText: "Is persistent alert")),
+            UIItem(type: .Note,  item: UIFieldModel(headerText: "Note", leftText: "Write remember note...")),
+            UIItem(type: .ButtonCreateUpdate,  item: UIFieldModel(headerText: self.alertItem == nil ? "Add" : "Update"))
         ]
     }
     
@@ -136,6 +136,10 @@ class CreateAlertDisplayManager: NSObject {
         }
 
         return !statesContainer[0] && (!statesContainer[1] || !statesContainer[2])
+    }
+    
+    private func handleTouchUpdateAlertBtn() {
+        // TODO: send request on create alert
     }
     
     private func handleTouchAddAlertBtn() {
@@ -189,6 +193,10 @@ class CreateAlertDisplayManager: NSObject {
     func updateSoundElement(soundName: String) {
         self.soundRow?.updateData(leftText: soundName, rightText: nil)
     }
+    
+    func setAlertItem(alertItem: AlertItem) {
+        self.alertItem = alertItem
+    }
 }
 
 //
@@ -208,42 +216,69 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             return self.tableCells[indexPath]!
         }
         
-        let fieldType = self.dataProvider[indexPath.section].fieldType
+        let fieldType = self.dataProvider[indexPath.section].type
         switch fieldType {
-        case .ActiveInput:
+        case .UpperBound, .BottomBound:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue) as! AddAlertTableViewCell
-            cell.setContentData(data: self.dataProvider[indexPath.section])
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setContentData(data: data)
+            }
             cell.selectionStyle = .none
             self.tableCells[indexPath] = cell
             return cell
         case .CurrencyPair, .Sound:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellWithArrow.rawValue) as! AlertTableViewCellWithArrow
-            cell.setContentData(data: self.dataProvider[indexPath.section])
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setContentData(data: data)
+            }
             if fieldType == .CurrencyPair {
                 self.currencyRow = cell
+                if let alert = self.alertItem {
+                    updateSelectedCurrency(name: alert.currencyPairName, price: alert.currencyPairPriceAtCreateMoment)
+                }
             } else {
                 self.soundRow = cell
             }
             self.tableCells[indexPath] = cell
             return cell
-        case .NotificationType:
+        case .Notification:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.SwitcherTableViewCell.rawValue) as! SwitcherTableViewCell
-            cell.setContentData(data: self.dataProvider[indexPath.section])
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setContentData(data: data)
+            }
             self.tableCells[indexPath] = cell
+            if let alert = self.alertItem {
+                cell.uiSwitch.isOn = alert.isPersistentNotification
+            }
             return cell
         case .Note:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue)  as! AddAlertTableViewCell
-            cell.setContentData(data: self.dataProvider[indexPath.section])
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setContentData(data: data)
+            }
             cell.selectionStyle = .none
             cell.inputField.keyboardType = .default
+            if let alert = self.alertItem {
+                cell.setData(data: alert.note)
+            }
             self.tableCells[indexPath] = cell
             return cell
-        case .Button:
+        case .ButtonCreateUpdate:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellButton.rawValue) as! AlertTableViewCellButton
             cell.selectionStyle = .none
-            cell.setCallbackOnTouch(callback: {
-                self.handleTouchAddAlertBtn()
-            })
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setButtonTitle(text: data.getHeaderText())
+            }
+            if self.alertItem == nil {
+                cell.setCallbackOnTouch(callback: {
+                    self.handleTouchAddAlertBtn()
+                })
+            } else {
+                cell.setCallbackOnTouch(callback: {
+                    self.handleTouchUpdateAlertBtn()
+                })
+            }
+            
             self.tableCells[indexPath] = cell
             return cell
         default:
@@ -260,7 +295,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if dataProvider[section].fieldType == .Button {
+        if self.dataProvider[section].type == .ButtonCreateUpdate {
             let view = UIView(frame: tableView.frame)
             view.backgroundColor = UIColor.clear
             return view
@@ -284,23 +319,23 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
 //
 extension CreateAlertDisplayManager: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.dataProvider[indexPath.section].fieldType == .Button ? 45 : 70
+        return self.dataProvider[indexPath.section].type == .ButtonCreateUpdate ? 45 : 70
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.dataProvider[section].fieldType == .Button ? 30 : 15
+        return self.dataProvider[section].type == .ButtonCreateUpdate ? 30 : 15
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.dataProvider[section].fieldType == .Button ? 30 : 1
+        return self.dataProvider[section].type == .ButtonCreateUpdate ? 30 : 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch indexPath.section {
-            case FieldType.CurrencyPair.rawValue:
+        switch self.dataProvider[indexPath.section].type {
+            case .CurrencyPair:
                 self.handleTouchSelectCurrencyPair()
                 break
-            case FieldType.AlertSound.rawValue:
+            case .Sound:
                 self.handleTouchSelectSound()
                 break
             default:

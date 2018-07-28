@@ -28,6 +28,10 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
         NotificationCenter.default.removeObserver(self)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.output.prepareSegue(viewController: segue.destination, data: sender)
+    }
+    
     // MARK: AlertsViewInput
     func setupInitialState() {
         self.displayManager.setTableView(tableView: self.tableView)

@@ -24,7 +24,7 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
         // Configure the view for the selected state
     }
  
-    func setContentData(data: CreateAlertItem) {
+    func setContentData(data: UIFieldModel) {
         self.headerLabel.text = data.getHeaderText()
         self.leftLabel.text = data.getLeftText()
     }

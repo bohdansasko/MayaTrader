@@ -7,8 +7,12 @@
 //
 import UIKit.UIViewController
 
+enum AlertsSegueIdentifiers {
+    static var AddEditAlert = "AddEditAlert"
+}
+
 class AlertsRouter: AlertsRouterInput {
-    func showEditView(view: UIViewController, data: AlertItem)  {
-        view.openModule(segueIdentifier: AlertsSegueIdentifiers.EditAlert.rawValue, block: nil)
+    func showEditView(view: UIViewController, data: AlertItem)  {        
+        view.openModule(segueIdentifier: AlertsSegueIdentifiers.AddEditAlert, block: data)
     }
 }

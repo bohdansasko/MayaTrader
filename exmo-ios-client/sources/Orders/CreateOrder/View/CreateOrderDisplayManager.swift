@@ -9,12 +9,31 @@
 import Foundation
 import UIKit
 
+fileprivate enum UIFieldType: Int {
+    case CurrencyPair
+    case Amount
+    case Total
+    case Commision
+    case OrderBy
+    case ButtonCreate
+}
+
+fileprivate struct UIItem {
+    var type: UIFieldType
+    var item: UIFieldModel?
+    
+    init(type: UIFieldType, item: UIFieldModel?) {
+        self.type = type
+        self.item = item
+    }
+}
+
 class CreateOrderDisplayManager: NSObject {
     var tableView: UITableView!
     var output: CreateOrderViewOutput!
     var cell: CreateOrderTableViewCell? = nil
     
-    private var dataProvider: [CreateAlertItem] = []
+    private var dataProvider: [UIItem] = []
     private var currencyRow: AlertTableViewCellWithArrow? = nil
     private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
 
@@ -61,14 +80,14 @@ class CreateOrderDisplayManager: NSObject {
         }
     }
     
-    private func getFieldsForRender() -> [CreateAlertItem] {
+    private func getFieldsForRender() -> [UIItem] {
         return [
-            CreateAlertItem(fieldType: .CurrencyPair, headerText: "Currency pair", leftText: "Select currency pair...", rightText: ""),
-            CreateAlertItem(fieldType: .ActiveInput, headerText: "Amount", leftText: "USD"),
-            CreateAlertItem(fieldType: .ActiveInput, headerText: "Total", leftText: "0 USD"),
-            CreateAlertItem(fieldType: .InactiveInput, headerText: "Commision", leftText: "0 USD"),
-            CreateAlertItem(fieldType: .OrderBy),
-            CreateAlertItem(fieldType: .Button)
+            UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
+            UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
+            UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 USD")),
+            UIItem(type: .Commision, item: UIFieldModel(headerText: "Commision", leftText: "0 USD")),
+            UIItem(type: .OrderBy, item: nil),
+            UIItem(type: .ButtonCreate, item: nil)
         ]
     }
     
@@ -104,18 +123,23 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             return self.tableCells[indexPath]!
         }
 
-        switch self.dataProvider[indexPath.section].fieldType {
-        case .ActiveInput,
-             .InactiveInput:
+        switch self.dataProvider[indexPath.section].type {
+        case .Amount,
+             .Total,
+             .Commision:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue)  as! AddAlertTableViewCell
-            cell.setContentData(data: self.dataProvider[indexPath.section])
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setContentData(data: data)
+            }
             cell.selectionStyle = .none
-            cell.inputField.isEnabled = self.dataProvider[indexPath.section].fieldType == .ActiveInput
+            cell.inputField.isEnabled = self.dataProvider[indexPath.section].type == .Amount
             self.tableCells[indexPath] = cell
             return cell
         case .CurrencyPair:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellWithArrow.rawValue) as! AlertTableViewCellWithArrow
-            cell.setContentData(data: self.dataProvider[indexPath.section])
+            if let data = self.dataProvider[indexPath.section].item {
+                cell.setContentData(data: data)
+            }
             self.currencyRow = cell
             self.tableCells[indexPath] = cell
             return cell
@@ -123,7 +147,7 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.OrderByTableViewCell.rawValue) as! OrderByTableViewCell
             self.tableCells[indexPath] = cell
             return cell
-        case .Button:
+        case .ButtonCreate:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellButton.rawValue) as! AlertTableViewCellButton
             cell.selectionStyle = .none
             cell.setCallbackOnTouch(callback: {
@@ -151,8 +175,8 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
         let footerView = UIView(frame: CGRect(x: 20, y: 0, width: tableView.frame.size.width, height: 2))
         footerView.backgroundColor = UIColor.clear
         
-        let fieldType = self.dataProvider[section].fieldType
-        let shouldAddSeparator = fieldType != .OrderBy && fieldType != .Button
+        let fieldType = self.dataProvider[section].type
+        let shouldAddSeparator = fieldType != .OrderBy && fieldType != .ButtonCreate
         if shouldAddSeparator {
             let separatorLineWidth = footerView.frame.size.width - 40
 
@@ -166,23 +190,23 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch self.dataProvider[indexPath.section].fieldType {
-        case .Button: return 45
+        switch self.dataProvider[indexPath.section].type {
+        case .ButtonCreate: return 45
         case .OrderBy: return 126
         default: return 70
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.dataProvider[section].fieldType == .Button ? 30 : 15
+        return self.dataProvider[section].type == .ButtonCreate ? 30 : 15
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.dataProvider[section].fieldType == .Button ? 30 : 1
+        return self.dataProvider[section].type == .ButtonCreate ? 30 : 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == FieldType.CurrencyPair.rawValue {
+        if indexPath.section == UIFieldType.CurrencyPair.rawValue {
             self.output.openCurrencySearchView(data: Session.sharedInstance.getSearchCurrenciesContainer())
         }
     }

@@ -22,7 +22,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     }
     
     func handleTouchOnCancelBtn() {
-        router.close(uiViewController: view as! UIViewController)
+        self.router.close(uiViewController: view as! UIViewController)
     }
     
     func showSearchViewController(searchType: SearchViewController.SearchType) {
@@ -41,7 +41,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     func showSearchViewController(searchType: SearchViewController.SearchType, data: [SearchModel]) {
         switch searchType {
         case .Currencies:
-            router.openCurrencyPairsSearchView(data: data, uiViewController: view as! UIViewController, callbackOnSelectCurrency: {
+            self.router.openCurrencyPairsSearchView(data: data, uiViewController: view as! UIViewController, callbackOnSelectCurrency: {
                 (currencyId) in
                 print("Currency")
                 self.interactor.handleSelectedCurrency(currencyId: currencyId)
@@ -60,11 +60,11 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     }
     
     func showCurrenciesSearchView(data: [SearchCurrencyPairModel]) {
-        showSearchViewController(searchType: .Currencies, data: data)
+        self.showSearchViewController(searchType: .Currencies, data: data)
     }
     
     func showSoundsSearchView(data: [SearchModel]) {
-        showSearchViewController(searchType: .Sounds, data: data)
+        self.showSearchViewController(searchType: .Sounds, data: data)
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
@@ -73,5 +73,10 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     
     func updateSelectedSoundInUI(soundName: String) {
         self.view.updateSelectedSoundInUI(soundName: soundName)
+    }
+    
+    func setAlertData(alertItem: AlertItem) {
+        self.view.setAlertItem(alertItem: alertItem)
+        print("edit alertItem: \(alertItem.getDataAsText())")
     }
 }

@@ -20,6 +20,23 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
     
     func showEditView(data: AlertItem) {
         let view = self.view as! UIViewController
-        router.showEditView(view: view, data: data)
+        self.router.showEditView(view: view, data: data)
+    }
+    
+    func prepareSegue(viewController: UIViewController, data: Any?) {
+        guard let createAlertNavController = viewController as? UINavigationController else {
+            print("AlertsPresenter: can't cast view controller in create alert view controller")
+            return
+        }
+        guard let createAlertViewController = createAlertNavController.viewControllers.first as? CreateAlertViewController else {
+            print("AlertsPresenter: can't cast view controller in create alert view controller")
+            return
+        }
+        
+        if let alertItem = data as? AlertItem {
+            if let createAlertPresenter = createAlertViewController.output as? CreateAlertModuleInput {
+                 createAlertPresenter.setAlertData(alertItem: alertItem)
+            }
+        }
     }
 }

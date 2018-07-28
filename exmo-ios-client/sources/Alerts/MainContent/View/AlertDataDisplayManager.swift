@@ -11,7 +11,6 @@ import UIKit
 class AlertDataDisplayManager: NSObject {
     private var dataProvider: AlertsDisplayModel!
     private var tableView: UITableView!
-    private var actions: [UITableViewRowAction]?
     private var cells: [AlertTableViewCell] = []
 
     
@@ -73,8 +72,17 @@ class AlertDataDisplayManager: NSObject {
         APIService.socketManager.updateAlert(alertItem: alertModel)
     }
     
+    func handleEditAction(elementIndex: Int) {
+        self.dataProvider.reverseStatus(index: elementIndex)
+        guard let alertModel = self.dataProvider.getCellItem(byRow: elementIndex) else {
+            print("handleStateAction: item doesn't exists")
+            return
+        }
+        self.viewOutput.showEditView(data: alertModel)
+    }
+    
     private func getCellItem(elementIndex: Int) -> AlertTableViewCell? {
-        return elementIndex > -1 && elementIndex < cells.count ? self.cells[elementIndex] : nil
+        return elementIndex > -1 && elementIndex < self.cells.count ? self.cells[elementIndex] : nil
     }
     
     private func checkOnRequirePlaceHolder() {
@@ -178,6 +186,7 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             _, _, completionHandler in
             print("alert: edit action clicked")
+            self.handleEditAction(elementIndex: indexPath.section)
             
             completionHandler(true)
         })

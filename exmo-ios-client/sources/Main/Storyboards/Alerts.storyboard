@@ -227,7 +227,7 @@
                     <navigationItem key="navigationItem" title="Alerts" id="oZR-lc-mv7">
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="wzC-Nb-cgy">
                             <connections>
-                                <segue destination="529-D4-5x1" kind="presentation" id="AhS-Nj-hC7"/>
+                                <segue destination="529-D4-5x1" kind="presentation" identifier="AddEditAlert" id="AhS-Nj-hC7"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
