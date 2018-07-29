@@ -15,11 +15,12 @@ class AlertsApiRequestBuilder {
     //
     static func prepareJSONForCreateAlert(alertItem: AlertItem) -> JSON {
         let alertJSONData = getAlertMessage(
-            price_option: alertItem.currencyPairPriceAtCreateMoment,
             upper_bound : alertItem.topBoundary!,
             bottom_bound: alertItem.bottomBoundary!,
             currency    : alertItem.currencyPairName,
-            description : alertItem.note == nil ? "" : alertItem.note!
+            description : alertItem.note == nil ? "" : alertItem.note!,
+            priceAtCreateMoment: alertItem.priceAtCreateMoment,
+            isPersistent: alertItem.isPersistentNotification
         )
         
         return alertJSONData
@@ -27,11 +28,12 @@ class AlertsApiRequestBuilder {
     
     static func prepareJSONForUpdateAlert(alertItem: AlertItem) -> JSON {
         var alertJSONData = getAlertMessage(
-            price_option: alertItem.currencyPairPriceAtCreateMoment,
             upper_bound : alertItem.topBoundary!,
             bottom_bound: alertItem.bottomBoundary!,
             currency    : alertItem.currencyPairName,
-            description : alertItem.note == nil ? "" : alertItem.note!
+            description : alertItem.note == nil ? "" : alertItem.note!,
+            priceAtCreateMoment: alertItem.priceAtCreateMoment,
+            isPersistent: alertItem.isPersistentNotification
         )
         alertJSONData["server_alert_id"] = JSON(alertItem.id)
         alertJSONData["status"] = JSON(alertItem.status.rawValue)
@@ -48,13 +50,14 @@ class AlertsApiRequestBuilder {
     //
     // @MARK: private methods
     //
-    static private func getAlertMessage(price_option: Double, upper_bound: Double, bottom_bound: Double, currency: String, description: String, status: AlertStatus = .None, timestamp: Double = -1.0, last_update: Double = -1.0, server_alert_id: Int = -1) -> JSON {
+    static private func getAlertMessage(upper_bound: Double, bottom_bound: Double, currency: String, description: String, status: AlertStatus = .None, timestamp: Double = -1.0, last_update: Double = -1.0, server_alert_id: Int = -1, priceAtCreateMoment: Double, isPersistent: Bool) -> JSON {
         var jsonData: JSON = [
-            "price_option" : price_option,
             "upper_bound" : upper_bound,
             "bottom_bound" : bottom_bound,
             "currency" : currency,
             "description" : description,
+            "priceAtCreateMoment" : priceAtCreateMoment,
+            "isPersistent" : isPersistent
         ]
         
         if status != .None {

@@ -25,6 +25,7 @@ class SocketApiHandler {
     }
     
     private enum AlertsMessageType: Int {
+        case None = -1
         case Create = 0
         case Update = 1
         case Delete = 2
@@ -127,12 +128,12 @@ class SocketApiHandler {
     }
     
     private func parseJSON(json: JSON) {
-        if json["topic"] == JSON.null || json["type"] == JSON.null {
-            return
-        }
-
         let messageTopic = json["topic"].int
-        let messageType = json["type"].int
+        var messageType = AlertsMessageType.None.rawValue
+        
+        if json["type"] != JSON.null {
+            messageType = json["type"].int!
+        }
 
         switch messageTopic {
         case ServerMessageType.Authorization.rawValue:
@@ -143,7 +144,6 @@ class SocketApiHandler {
             print("login succeed")
             break
         case ServerMessageType.Alerts.rawValue:
-            
             switch messageType {
             case AlertsMessageType.History.rawValue:
                 self.handleResponseUpdateAlerts(json: json)

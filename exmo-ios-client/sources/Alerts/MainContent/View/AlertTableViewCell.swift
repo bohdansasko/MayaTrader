@@ -35,7 +35,7 @@ class AlertTableViewCell: UITableViewCell {
 
     func setData(data: AlertItem) {
         self.currencyPairName.text = data.getCurrencyPairForDisplay()
-        self.currencyPairPrice.text = String(data.currencyPairPriceAtCreateMoment)
+        self.currencyPairPrice.text = String(data.priceAtCreateMoment)
         self.topBound.text = data.topBoundary != nil ? String(data.topBoundary!) : "-"
         self.bottomBound.text = data.topBoundary != nil ? String(data.bottomBoundary!) : "-"
         

@@ -146,10 +146,13 @@ class CreateAlertDisplayManager: NSObject {
             : false
     }
     
-    private func getAlertDataFromUI() -> AlertItem {
+    private func getAlertDataFromUI() -> AlertItem? {
+        if self.alertItem == nil {
+            return nil
+        }
         // collect data for create alert
         var currencyPairName = ""
-        var currencyPairPriceAtCreateMoment = 0.0
+        var priceAtCreateMoment = 0.0
         var topBoundary = 0.0
         var bottomBoundary = 0.0
         var isPersistentNotification = false
@@ -159,7 +162,7 @@ class CreateAlertDisplayManager: NSObject {
             switch indexPath.section + 1 {
             case 1:
                 currencyPairName = cell.getTextData()
-                currencyPairPriceAtCreateMoment = cell.getDoubleValue()
+                priceAtCreateMoment = cell.getDoubleValue()
             case 2:
                 topBoundary = cell.getDoubleValue()
             case 3:
@@ -173,11 +176,12 @@ class CreateAlertDisplayManager: NSObject {
                 break
             }
         }
+        currencyPairName = currencyPairName.replacingOccurrences(of: "/", with: "_")
         
         return AlertItem(
-            id: "", currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
+            id: self.alertItem!.id, currencyPairName: currencyPairName, priceAtCreateMoment: priceAtCreateMoment,
             note: noteText, topBoundary: topBoundary, bottomBoundary: bottomBoundary,
-            status: .Active, isPersistentNotification: isPersistentNotification
+            status: self.alertItem!.status, isPersistentNotification: isPersistentNotification
         )
     }
     
@@ -196,11 +200,12 @@ class CreateAlertDisplayManager: NSObject {
         if self.alertItem == nil {
             operationType = .Add
         } else {
-            alertModelForServer.id = self.alertItem!.id
             operationType = .Update
         }
         
-        output.handleTouchAlertBtn(alertModel: alertModelForServer, operationType: operationType)
+        if let alertForSend = alertModelForServer {
+            output.handleTouchAlertBtn(alertModel: alertForSend, operationType: operationType)
+        }
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
@@ -257,7 +262,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             if fieldType == .CurrencyPair {
                 self.currencyRow = cell
                 if let alert = self.alertItem {
-                    updateSelectedCurrency(name: alert.getCurrencyPairForDisplay(), price: alert.currencyPairPriceAtCreateMoment)
+                    updateSelectedCurrency(name: alert.getCurrencyPairForDisplay(), price: alert.priceAtCreateMoment)
                 }
             } else {
                 self.soundRow = cell
