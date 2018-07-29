@@ -14,4 +14,5 @@ protocol CreateAlertInteractorInput {
     func showCurrenciesSearchView()
     func showSoundsSearchView()
     func tryCreateAlert(alertModel: AlertItem)
+    func tryUpdateAlert(alertModel: AlertItem)
 }

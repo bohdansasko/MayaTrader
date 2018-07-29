@@ -28,7 +28,7 @@ class WatchlistFlatTableViewCell: UITableViewCell, WatchlistTableViewCell {
     }
     
     func setContent(data: WatchlistCurrencyPairModel) {
-        self.currencyPairNameLabel.text = data.getPairName()
+        self.currencyPairNameLabel.text = data.getDisplayCurrencyPairName()
         self.currencyPairVolumeLabel.text = data.getVolumeStr()
         self.currencyPairPriceLabel.text = data.getPriceAsStr()
         self.currencyPairIndicatorLabel.text = data.getPriceIndicatorAsStr()

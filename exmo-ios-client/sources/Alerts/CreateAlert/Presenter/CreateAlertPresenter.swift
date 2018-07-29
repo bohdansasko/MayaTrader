@@ -16,8 +16,16 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
         // do nothing
     }
     
-    func handleTouchAddAlertBtn(alertModel: AlertItem) {
-        self.interactor.tryCreateAlert(alertModel: alertModel)
+    func handleTouchAlertBtn(alertModel: AlertItem, operationType: AlertOperationType) {
+        switch operationType {
+        case .Add:
+            self.interactor.tryCreateAlert(alertModel: alertModel)
+        case .Update:
+            self.interactor.tryUpdateAlert(alertModel: alertModel)
+        default:
+            // do nothing
+            break
+        }
         self.handleTouchOnCancelBtn()
     }
     

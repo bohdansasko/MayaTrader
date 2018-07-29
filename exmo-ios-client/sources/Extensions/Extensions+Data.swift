@@ -21,5 +21,8 @@ extension Data {
 extension Notification.Name {
     static let UserLoggedIn = Notification.Name("UserLoggedIn")
     static let UserLogout = Notification.Name("UserLogout")
+
     static let AppendAlert = Notification.Name("AppendAlert")
+    static let UpdateAlert = Notification.Name("UpdateAlert")
+    static let DeleteAlert = Notification.Name("DeleteAlert")
 }

@@ -67,8 +67,18 @@ class AlertItem: SegueBlock, Mappable {
                 + "isPersistentNotification: \(isPersistentNotification)\n"
                 + "note: \(note ?? "empty")\n"
     }
+
+    func updateData(newData: AlertItem) {
+        self.currencyPairName = newData.currencyPairName
+        self.currencyPairPriceAtCreateMoment = newData.currencyPairPriceAtCreateMoment
+        self.note = newData.note
+        self.topBoundary = newData.topBoundary
+        self.bottomBoundary = newData.bottomBoundary
+        self.status = newData.status
+        self.isPersistentNotification = newData.isPersistentNotification
+    }
     
-    func updateFieldsForServer() {
-        self.currencyPairName = self.currencyPairName.replacingOccurrences(of: "/", with: "_")
+    func getCurrencyPairForDisplay() -> String {
+        return currencyPairName.replacingOccurrences(of: "_", with: "/")
     }
 }

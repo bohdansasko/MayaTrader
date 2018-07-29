@@ -37,7 +37,9 @@ class SocketApiHandler {
     
     enum ServerMessages: Int {
         case LoginSucceed = 4
-        case History = 3
+        case AlertHistory = 3
+        case AlertDelete = 2
+        case AlertUpdate = 1
         case CreateAlert = 0
     }
     
@@ -131,10 +133,15 @@ class SocketApiHandler {
             let messageCode = json["type"].int
             
             switch messageCode {
-            case ServerMessages.History.rawValue:
-                updateAlerts(json: json)
+            case ServerMessages.AlertHistory.rawValue:
+                self.handleResponseUpdateAlerts(json: json)
             case ServerMessages.CreateAlert.rawValue:
-                self.appendAlert(json: json)
+                self.handleResponseAppendAlert(json: json)
+            case ServerMessages.AlertUpdate.rawValue:
+                self.handleResponseUpdateAlert(json: json)
+            case ServerMessages.AlertDelete.rawValue:
+                self.handleResponseDeleteAlert(json: json)
+                break
             default:
                 break
             }
@@ -142,7 +149,7 @@ class SocketApiHandler {
         }
     }
     
-    private func updateAlerts(json: JSON) {
+    private func handleResponseUpdateAlerts(json: JSON) {
         guard let jsonAlertsContainer = json["data"]["data"].array else {
             print("can't parse json data")
             return
@@ -159,8 +166,18 @@ class SocketApiHandler {
 
         Session.sharedInstance.updateAlerts(alerts: alerts)
     }
+
+    private func getAlertFromJSON(json: JSON) -> AlertItem? {
+        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
+            print("can't parse json data")
+            return nil
+        }
+
+        return AlertItem(JSON: alertServerMap)
+
+    }
     
-    private func appendAlert(json: JSON) {
+    private func handleResponseAppendAlert(json: JSON) {
         guard var alertServerMap = json["data"]["data"].dictionaryObject else {
             print("can't parse json data")
             return
@@ -173,6 +190,24 @@ class SocketApiHandler {
         }
     }
     
+    private func handleResponseUpdateAlert(json: JSON) {
+        let alert = getAlertFromJSON(json: json)
+        if let alertObj = alert {
+            Session.sharedInstance.updateAlert(alertItem: alertObj)
+        }
+    }
+
+    private func handleResponseDeleteAlert(json: JSON) {
+        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
+            print("can't parse json data")
+            return
+        }
+        let alertIdFromJson = alertServerMap["server_alert_id"] as? String
+        if let alertId = alertIdFromJson {
+            Session.sharedInstance.deleteAlert(alertId: alertId)
+        }
+    }
+
     private func sendMessage(message: JSON) {
         guard let msg = message.rawString() else {
             return
@@ -225,7 +260,6 @@ class SocketApiHandler {
     // @MARK: Alerts
     //
     func createAlert(alertItem: AlertItem) {
-        alertItem.updateFieldsForServer()
         let alertJSONData = AlertsApiRequestBuilder.prepareJSONForCreateAlert(alertItem: alertItem)
         let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Create.rawValue, data: alertJSONData)
         

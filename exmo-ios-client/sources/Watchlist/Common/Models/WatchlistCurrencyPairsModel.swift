@@ -19,10 +19,10 @@ class WatchlistCurrencyPairsModel {
     
     private func getTestData() -> [WatchlistCurrencyPairModel] {
         return [
-            WatchlistCurrencyPairModel(pairName: "ETH/USD", currencyVolumeStr: "$ 269387", price: 230.04, priceIndicator: 0.79),
-            WatchlistCurrencyPairModel(pairName: "BTC/USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
-            WatchlistCurrencyPairModel(pairName: "BTC/USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
-            WatchlistCurrencyPairModel(pairName: "ETH/USD", currencyVolumeStr: "$ 1060706", price: 0.18105, priceIndicator: 1.19)
+            WatchlistCurrencyPairModel(pairName: "ETH_USD", currencyVolumeStr: "$ 269387", price: 230.04, priceIndicator: 0.79),
+            WatchlistCurrencyPairModel(pairName: "BTC_USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
+            WatchlistCurrencyPairModel(pairName: "BTC_USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
+            WatchlistCurrencyPairModel(pairName: "ETH_USD", currencyVolumeStr: "$ 1060706", price: 0.18105, priceIndicator: 1.19)
         ]
     }
     

@@ -44,7 +44,26 @@ class AlertsDisplayModel {
     func appendAlert(alertItem: AlertItem) {
         self.alertsItems.insert(alertItem, at: 0)
     }
+
+    func getIndexById(alertId: String) -> Int {
+        let index = self.alertsItems.index(where: { $0.id == alertId })
+        return index ?? -1
+    }
     
+    func removeItem(byId id: String) {
+        let index = self.getIndexById(alertId: id)
+        if self.isValidIndex(index: index) {
+            self.alertsItems.remove(at: index)
+        }
+    }
+
+    func updateAlert(alertItem: AlertItem) {
+        guard let foundAlert = self.alertsItems.first(where: { $0.id == alertItem.id }) else {
+            return
+        }
+        foundAlert.updateData(newData: alertItem)
+    }
+
     func reverseStatus(index: Int) {
         if self.isValidIndex(index: index) {
             switch self.alertsItems[index].status {

@@ -34,6 +34,7 @@ class AlertsApiRequestBuilder {
             description : alertItem.note == nil ? "" : alertItem.note!
         )
         alertJSONData["server_alert_id"] = JSON(alertItem.id)
+        alertJSONData["status"] = JSON(alertItem.status.rawValue)
         
         return alertJSONData
     }

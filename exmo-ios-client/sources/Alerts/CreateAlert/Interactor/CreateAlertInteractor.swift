@@ -62,6 +62,11 @@ class CreateAlertInteractor: CreateAlertInteractorInput {
     
     func tryCreateAlert(alertModel: AlertItem) {
         APIService.socketManager.createAlert(alertItem: alertModel)
-        print("handleTouchAddAlertBtn: " + alertModel.getDataAsText())
+        print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
+    }
+    
+    func tryUpdateAlert(alertModel: AlertItem) {
+        APIService.socketManager.updateAlert(alertItem: alertModel)
+        print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
     }
 }

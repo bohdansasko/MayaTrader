@@ -9,6 +9,12 @@
 import Foundation
 import UIKit
 
+enum AlertOperationType {
+    case Add
+    case Update
+    case None
+}
+
 //
 // @MARK: UIFieldModel
 //
@@ -135,22 +141,12 @@ class CreateAlertDisplayManager: NSObject {
             statesContainer.append(cell.getTextData().isEmpty)
         }
 
-        return !statesContainer[0] && (!statesContainer[1] || !statesContainer[2])
+        return statesContainer.count > 2
+            ? !statesContainer[0] && (!statesContainer[1] || !statesContainer[2])
+            : false
     }
     
-    private func handleTouchUpdateAlertBtn() {
-        // TODO: send request on create alert
-    }
-    
-    private func handleTouchAddAlertBtn() {
-        if !isAllRequiredFieldsFilled() {
-            print("WARNING: required fields don't filled")
-            return
-        }
-        //
-        // show loading view while exec callback
-        //
-        
+    private func getAlertDataFromUI() -> AlertItem {
         // collect data for create alert
         var currencyPairName = ""
         var currencyPairPriceAtCreateMoment = 0.0
@@ -178,12 +174,33 @@ class CreateAlertDisplayManager: NSObject {
             }
         }
         
-        let alertModel = AlertItem(
+        return AlertItem(
             id: "", currencyPairName: currencyPairName, currencyPairPriceAtCreateMoment: currencyPairPriceAtCreateMoment,
             note: noteText, topBoundary: topBoundary, bottomBoundary: bottomBoundary,
             status: .Active, isPersistentNotification: isPersistentNotification
         )
-        output.handleTouchAddAlertBtn(alertModel: alertModel)
+    }
+    
+    private func handleTouchOnAlertBtn() {
+        if !isAllRequiredFieldsFilled() {
+            print("WARNING: required fields don't filled")
+            return
+        }
+        //
+        // show loading view while exec callback
+        //
+        
+        let alertModelForServer = getAlertDataFromUI()
+        var operationType = AlertOperationType.None
+        
+        if self.alertItem == nil {
+            operationType = .Add
+        } else {
+            alertModelForServer.id = self.alertItem!.id
+            operationType = .Update
+        }
+        
+        output.handleTouchAlertBtn(alertModel: alertModelForServer, operationType: operationType)
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
@@ -223,6 +240,12 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             if let data = self.dataProvider[indexPath.section].item {
                 cell.setContentData(data: data)
             }
+            if let alert = self.alertItem {
+                let price = fieldType == .UpperBound ? alert.topBoundary : alert.bottomBoundary
+                if price != nil {
+                    cell.setData(data: String(price!))
+                }
+            }
             cell.selectionStyle = .none
             self.tableCells[indexPath] = cell
             return cell
@@ -234,7 +257,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             if fieldType == .CurrencyPair {
                 self.currencyRow = cell
                 if let alert = self.alertItem {
-                    updateSelectedCurrency(name: alert.currencyPairName, price: alert.currencyPairPriceAtCreateMoment)
+                    updateSelectedCurrency(name: alert.getCurrencyPairForDisplay(), price: alert.currencyPairPriceAtCreateMoment)
                 }
             } else {
                 self.soundRow = cell
@@ -269,16 +292,9 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             if let data = self.dataProvider[indexPath.section].item {
                 cell.setButtonTitle(text: data.getHeaderText())
             }
-            if self.alertItem == nil {
-                cell.setCallbackOnTouch(callback: {
-                    self.handleTouchAddAlertBtn()
-                })
-            } else {
-                cell.setCallbackOnTouch(callback: {
-                    self.handleTouchUpdateAlertBtn()
-                })
-            }
-            
+            cell.setCallbackOnTouch(callback: {
+                self.handleTouchOnAlertBtn()
+            })
             self.tableCells[indexPath] = cell
             return cell
         default:

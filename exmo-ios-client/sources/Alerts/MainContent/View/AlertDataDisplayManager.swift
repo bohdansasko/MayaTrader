@@ -9,9 +9,16 @@
 import UIKit
 
 class AlertDataDisplayManager: NSObject {
+    enum ActionType {
+        case State
+        case Edit
+        case Delete
+    }
+    
     private var dataProvider: AlertsDisplayModel!
     private var tableView: UITableView!
     private var cells: [AlertTableViewCell] = []
+    private var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
 
     
     var viewOutput: AlertsViewOutput!
@@ -46,18 +53,43 @@ class AlertDataDisplayManager: NSObject {
         self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
         self.checkOnRequirePlaceHolder()
     }
-    
+
+    func updateAlert(alertItem: AlertItem) {
+        self.dataProvider.updateAlert(alertItem: alertItem)
+        let index = self.dataProvider.getIndexById(alertId: alertItem.id)
+
+        if let uiCell = getCellItem(elementIndex: index) {
+            uiCell.setStatus(status: alertItem.status)
+        }
+
+        if index > -1 && index < self.cellActions.count {
+            if let actionContainer = self.cellActions[index] {
+                actionContainer[ActionType.State]?.image = self.dataProvider.getStatus(forItem: index) == .Active
+                        ? #imageLiteral(resourceName:"icPause")
+                        : #imageLiteral(resourceName:"icPlay")
+            }
+        }
+
+        self.tableView.reloadSections(IndexSet(integer: index), with: .automatic)
+    }
+
+    func deleteById(alertId: String) {
+        let index = self.dataProvider.getIndexById(alertId: alertId)
+        self.dataProvider.removeItem(byId: alertId)
+        self.tableView.deleteSections(IndexSet(integer: index), with: .automatic)
+        self.checkOnRequirePlaceHolder()
+    }
+
     func handleRemoveAction(elementIndex: Int) {
         guard let alertModel = self.dataProvider.getCellItem(byRow: elementIndex) else {
             print("handleRemoveAction: item doesn't exists")
             return
         }
-        
+
+        //
+        // show activity view
+        //
         APIService.socketManager.deleteAlert(alertId: alertModel.id)
-        self.dataProvider.removeItem(atRow: elementIndex)
-        self.tableView.deleteSections(IndexSet(integer: elementIndex), with: .automatic)
-        
-        self.checkOnRequirePlaceHolder()
     }
     
     func handleStateAction(elementIndex: Int) {
@@ -66,14 +98,10 @@ class AlertDataDisplayManager: NSObject {
             print("handleStateAction: item doesn't exists")
             return
         }
-        if let uiCell = getCellItem(elementIndex: elementIndex) {
-            uiCell.setStatus(status: alertModel.status)
-        }
         APIService.socketManager.updateAlert(alertItem: alertModel)
     }
     
     func handleEditAction(elementIndex: Int) {
-        self.dataProvider.reverseStatus(index: elementIndex)
         guard let alertModel = self.dataProvider.getCellItem(byRow: elementIndex) else {
             print("handleStateAction: item doesn't exists")
             return
@@ -173,9 +201,8 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
             action, _, completionHandler in
             print("alert: state action clicked")
-            self.handleStateAction(elementIndex: indexPath.section)
-            action.image = self.dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
-            
+            self.handleStateAction(elementIndex: indexPath.section) // TODO: change state after got response from server
+
             completionHandler(true)
         })
         stateAction.backgroundColor = self.dataProvider.getStatus(forItem: indexPath.section) == .Active
@@ -202,7 +229,13 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         })
         removeAction.backgroundColor = UIColor.orangePink
         removeAction.image = #imageLiteral(resourceName: "icNavbarTrash")
-        
+
+        self.cellActions[indexPath.section] = [
+            ActionType.Delete : removeAction,
+            ActionType.Edit   : editAction,
+            ActionType.State  : stateAction
+        ]
+
         let config = UISwipeActionsConfiguration(actions: [removeAction, editAction, stateAction])
         return config
     }

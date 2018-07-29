@@ -114,7 +114,18 @@ class Session {
         NotificationCenter.default.post(name: .AppendAlert, object: nil, userInfo: ["alertData": alertItem])
         self.alerts.append(alertItem)
     }
-    
+    func updateAlert(alertItem: AlertItem) {
+        guard var foundAlert = self.alerts.first(where: {$0.id == alertItem.id}) else {
+            return
+        }
+        foundAlert = alertItem
+        NotificationCenter.default.post(name: .UpdateAlert, object: nil, userInfo: ["alertData": alertItem])
+    }
+
+    func deleteAlert(alertId: String) {
+        NotificationCenter.default.post(name: .DeleteAlert, object: nil, userInfo: ["alertData": alertId])
+    }
+
     func updateAlerts(alerts: [AlertItem]) {
         self.alerts += alerts
         print("call updateAlerts(...)")

@@ -22,8 +22,8 @@ class WatchlistCurrencyPairModel {
         self.priceIndicator = priceIndicator
     }
     
-    func getPairName() -> String {
-        return self.pairName
+    func getDisplayCurrencyPairName() -> String {
+        return self.pairName.replacingOccurrences(of: "_", with: "/")
     }
     
     func getVolumeStr() -> String {
@@ -54,8 +54,13 @@ class WatchlistCurrencyPairModel {
         return self.priceIndicator
     }
     
-    func getIconImage() -> UIImage {
-        let suffix = self.pairName.components(separatedBy: "/")[0].lowercased()
+    func getIconImage() -> UIImage? {
+        let pairComponents = self.pairName.components(separatedBy: "_")
+        if pairComponents.isEmpty {
+            return nil
+        }
+        
+        let suffix = pairComponents[0].lowercased()
         let iconName = "icon_" + suffix
         return UIImage(named: iconName)!
     }

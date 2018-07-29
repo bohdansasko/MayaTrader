@@ -21,7 +21,7 @@ class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistTableViewC
     }
     
     func setContent(data: WatchlistCurrencyPairModel) {
-        self.currencyPairNameLabel.text = data.getPairName()
+        self.currencyPairNameLabel.text = data.getDisplayCurrencyPairName()
         self.currencyPairPriceLabel.text = data.getPriceAsStr()
         self.currencyPairIndicatorLabel.text = data.getPriceIndicatorAsStr()
         self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getPriceIndicator())

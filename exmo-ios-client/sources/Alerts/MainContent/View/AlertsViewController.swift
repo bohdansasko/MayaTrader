@@ -36,6 +36,8 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     func setupInitialState() {
         self.displayManager.setTableView(tableView: self.tableView)
         NotificationCenter.default.addObserver(self, selector: #selector(self.onAppendAlert), name: .AppendAlert, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onUpdateAlert), name: .UpdateAlert, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.onDeleteAlert), name: .DeleteAlert, object: nil)
     }
 
     func showPlaceholderNoData() {
@@ -67,4 +69,22 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
         }
         self.displayManager.appendAlert(alertItem: alertItem)
     }
+    
+    @objc func onUpdateAlert(notification: NSNotification) {
+        guard let alertItem = notification.userInfo?["alertData"] as? AlertItem else {
+            print("Can't convert to AlertItem")
+            return
+        }
+        self.displayManager.updateAlert(alertItem: alertItem)
+    }
+
+    @objc func onDeleteAlert(notification: NSNotification) {
+        guard let alertId = notification.userInfo?["alertData"] as? String else {
+            print("Can't convert to AlertItem")
+            return
+        }
+        self.displayManager.deleteById(alertId: alertId)
+    }
+
+    
 }
