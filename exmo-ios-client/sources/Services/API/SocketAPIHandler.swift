@@ -24,23 +24,27 @@ class SocketApiHandler {
         case AccountTopic = 4
     }
     
-    private enum AlertsActionMessageType: Int {
+    private enum AlertsMessageType: Int {
         case Create = 0
         case Update = 1
         case Delete = 2
         case History = 3
     }
-    
+
+    private enum OrdersMessageType: Int {
+        case Create = 0
+        case Cancel = 1
+        case Deals = 2
+    }
+
     private enum ConnectionConfig: String {
         case ServerURL = "ws://localhost:3000/"
     }
     
-    enum ServerMessages: Int {
-        case LoginSucceed = 4
-        case AlertHistory = 3
-        case AlertDelete = 2
-        case AlertUpdate = 1
-        case CreateAlert = 0
+    enum ServerMessageType: Int {
+        case Alerts = 0
+        case Orders = 1
+        case Authorization = 4
     }
     
     //
@@ -123,88 +127,57 @@ class SocketApiHandler {
     }
     
     private func parseJSON(json: JSON) {
-        if json["topic"] != JSON.null && json["topic"].int == ServerMessages.LoginSucceed.rawValue {
+        if json["topic"] == JSON.null || json["type"] == JSON.null {
+            return
+        }
+
+        let messageTopic = json["topic"].int
+        let messageType = json["type"].int
+
+        switch messageTopic {
+        case ServerMessageType.Authorization.rawValue:
             self.sessionKey = json["session_key"].string
             self.loadAllRequiredSessionInfo()
             
             print("socket message[connection_id]: \(self.sessionKey!)")
             print("login succeed")
-        } else if json["type"] != JSON.null {
-            let messageCode = json["type"].int
+            break
+        case ServerMessageType.Alerts.rawValue:
             
-            switch messageCode {
-            case ServerMessages.AlertHistory.rawValue:
+            switch messageType {
+            case AlertsMessageType.History.rawValue:
                 self.handleResponseUpdateAlerts(json: json)
-            case ServerMessages.CreateAlert.rawValue:
+                break
+            case AlertsMessageType.Create.rawValue:
                 self.handleResponseAppendAlert(json: json)
-            case ServerMessages.AlertUpdate.rawValue:
+                break
+            case AlertsMessageType.Update.rawValue:
                 self.handleResponseUpdateAlert(json: json)
-            case ServerMessages.AlertDelete.rawValue:
+                break
+            case AlertsMessageType.Delete.rawValue:
                 self.handleResponseDeleteAlert(json: json)
                 break
             default:
                 break
             }
-            
-        }
-    }
-    
-    private func handleResponseUpdateAlerts(json: JSON) {
-        guard let jsonAlertsContainer = json["data"]["data"].array else {
-            print("can't parse json data")
-            return
-        }
-        
-        var alerts: [AlertItem] = []
-        for jsonAlertItem in jsonAlertsContainer {
-            let alert = AlertItem(JSONString: jsonAlertItem.rawString()!)
-            if let alertObj = alert {
-                alerts.append(alertObj)
-                print(alertObj.getDataAsText())
+            break
+        case ServerMessageType.Orders.rawValue:
+            switch messageType {
+            case OrdersMessageType.Create.rawValue:
+                // do nothing
+                break
+            case OrdersMessageType.Cancel.rawValue:
+                // do nothing
+                break
+            case OrdersMessageType.Deals.rawValue:
+                // do nothing
+                break
+            default:
+                break
             }
-        }
-
-        Session.sharedInstance.updateAlerts(alerts: alerts)
-    }
-
-    private func getAlertFromJSON(json: JSON) -> AlertItem? {
-        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
-            print("can't parse json data")
-            return nil
-        }
-
-        return AlertItem(JSON: alertServerMap)
-
-    }
-    
-    private func handleResponseAppendAlert(json: JSON) {
-        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
-            print("can't parse json data")
-            return
-        }
-        
-        alertServerMap["status"] = 1
-        let alert = AlertItem(JSON: alertServerMap)
-        if let alertObj = alert {
-            Session.sharedInstance.appendAlert(alertItem: alertObj)
-        }
-    }
-    
-    private func handleResponseUpdateAlert(json: JSON) {
-        let alert = getAlertFromJSON(json: json)
-        if let alertObj = alert {
-            Session.sharedInstance.updateAlert(alertItem: alertObj)
-        }
-    }
-
-    private func handleResponseDeleteAlert(json: JSON) {
-        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
-            print("can't parse json data")
-            return
-        }
-        let alertIdFromJson = alertServerMap["server_alert_id"] as? String
-        if let alertId = alertIdFromJson {
-            Session.sharedInstance.deleteAlert(alertId: alertId)
+            break
+        default:
+            break
         }
     }
 
@@ -261,28 +234,86 @@ class SocketApiHandler {
     //
     func createAlert(alertItem: AlertItem) {
         let alertJSONData = AlertsApiRequestBuilder.prepareJSONForCreateAlert(alertItem: alertItem)
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Create.rawValue, data: alertJSONData)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Create.rawValue, data: alertJSONData)
         
         sendMessage(message: msg)
     }
     
     func updateAlert(alertItem: AlertItem) {
         let alertJSONData = AlertsApiRequestBuilder.prepareJSONForUpdateAlert(alertItem: alertItem)
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Update.rawValue, data: alertJSONData)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Update.rawValue, data: alertJSONData)
         
         sendMessage(message: msg)
     }
     
     func deleteAlert(alertId: String) {
         let alertJSONData = AlertsApiRequestBuilder.prepareJSONForDeleteAlert(alertId: alertId)
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.Delete.rawValue, data: alertJSONData)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Delete.rawValue, data: alertJSONData)
         
         sendMessage(message: msg)
     }
     
     private func loadAlerts() {
         print("load alerts")
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsActionMessageType.History.rawValue)
+        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.History.rawValue)
         sendMessage(message: msg)
+    }
+    
+    private func handleResponseUpdateAlerts(json: JSON) {
+        guard let jsonAlertsContainer = json["data"]["data"].array else {
+            print("can't parse json data")
+            return
+        }
+        
+        var alerts: [AlertItem] = []
+        for jsonAlertItem in jsonAlertsContainer {
+            let alert = AlertItem(JSONString: jsonAlertItem.rawString()!)
+            if let alertObj = alert {
+                alerts.append(alertObj)
+                print(alertObj.getDataAsText())
+            }
+        }
+        
+        Session.sharedInstance.updateAlerts(alerts: alerts)
+    }
+    
+    private func getAlertFromJSON(json: JSON) -> AlertItem? {
+        guard let alertServerMap = json["data"]["data"].dictionaryObject else {
+            print("can't parse json data")
+            return nil
+        }
+        return AlertItem(JSON: alertServerMap)
+        
+    }
+    
+    private func handleResponseAppendAlert(json: JSON) {
+        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
+            print("can't parse json data")
+            return
+        }
+        
+        alertServerMap["status"] = 1
+        let alert = AlertItem(JSON: alertServerMap)
+        if let alertObj = alert {
+            Session.sharedInstance.appendAlert(alertItem: alertObj)
+        }
+    }
+    
+    private func handleResponseUpdateAlert(json: JSON) {
+        let alert = getAlertFromJSON(json: json)
+        if let alertObj = alert {
+            Session.sharedInstance.updateAlert(alertItem: alertObj)
+        }
+    }
+    
+    private func handleResponseDeleteAlert(json: JSON) {
+        guard var alertServerMap = json["data"]["data"].dictionaryObject else {
+            print("can't parse json data")
+            return
+        }
+        let alertIdFromJson = alertServerMap["server_alert_id"] as? String
+        if let alertId = alertIdFromJson {
+            Session.sharedInstance.deleteAlert(alertId: alertId)
+        }
     }
 }
