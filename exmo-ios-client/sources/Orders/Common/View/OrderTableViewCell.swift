@@ -44,7 +44,7 @@ class OrderTableViewCell: UITableViewCell {
         self.operationValueLabel.layer.cornerRadius = 5
 
         // update constraints
-        if AppDelegate.shared.getIPhoneModel() == .Five {
+        if AppDelegate.getIPhoneModel() == .Five {
             self.timeLabelWidthConstraint.constant = 70
             self.timeLabelHeightConstraint.constant = 40
         } else {

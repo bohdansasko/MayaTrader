@@ -16,9 +16,11 @@ class LoginInteractor: LoginInteractorInput {
             print("qr data doent's validate")
             return
         }
-        APIService.exmo.setUserInfo(apiKey: loginModel.key!, secretKey: loginModel.secret!)
-        let result = APIService.exmo.loadUserInfo()
         
+        AppDelegate.exmoController.setUserLoginData(apiKey: loginModel.key!, secretKey: loginModel.secret!)
+        AppDelegate.session.login(serverType: .Exmo)
+        
+        let result = AppDelegate.exmoController.loadUserInfo()
         let jsonString = String(data: result!, encoding: .utf8)
         print("loaded userInfo: \(jsonString!)")
         
@@ -28,15 +30,16 @@ class LoginInteractor: LoginInteractorInput {
         }
         
         let user = User(JSONString: jsonString!)
-        user?.walletInfo = WalletModel(JSONString: jsonString!)
+        if let walletInfo = WalletModel(JSONString: jsonString!) {
+            user?.walletInfo = walletInfo
+        }
         user?.qrModel = loginModel
 
         if user != nil {
             let isUserDataSaved = CacheManager.sharedInstance.userCoreManager.saveUserData(user: user!)
             if isUserDataSaved {
-                Session.sharedInstance.user = user!
-                
-                NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
+                AppDelegate.session.updateUserInfo(userData: user!)
+                AppDelegate.session.sendBroadcastNotification(name: .UserLoggedIn)
                 output.emitCloseView()
             }
         }

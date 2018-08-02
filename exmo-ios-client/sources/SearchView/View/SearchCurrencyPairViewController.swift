@@ -33,7 +33,7 @@ class SearchViewController: UIViewController, SearchViewInput {
 
     // MARK: SearchViewInput
     func setupInitialState() {
-        if AppDelegate.shared.isIPhone(model: .X) {
+        if AppDelegate.isIPhone(model: .X) {
             self.layoutConstraintHeaderHeight.constant = 95
         }
         

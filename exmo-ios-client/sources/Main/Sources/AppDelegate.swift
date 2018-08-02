@@ -9,10 +9,26 @@
 import UIKit
 import CoreData
 
+enum IPhoneModel: Int {
+    case None = 0
+    case Five
+    case SixOrSevenEight
+    case SixSevenEightPlus
+    case X
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    static let session = Session.shared
+    static let exmoController = ExmoApiHandler.shared
+    static let roobikController = RoobikApiHandler.shared
+    
+    static var shared: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -48,20 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-enum IPhoneModel: Int {
-    case None = 0
-    case Five
-    case SixOrSevenEight
-    case SixSevenEightPlus
-    case X
-}
-
+//
+// @Mark: static methods
+//
 extension AppDelegate {
-    func isIPhone(model: IPhoneModel) -> Bool {
+    static func isIPhone(model: IPhoneModel) -> Bool {
         return getIPhoneModel() == model
     }
     
-    func getIPhoneModel() -> IPhoneModel {
+    static func getIPhoneModel() -> IPhoneModel {
         if UIDevice.current.userInterfaceIdiom != .phone {
             return .None
         }
@@ -73,9 +84,5 @@ extension AppDelegate {
         case 2436: return .X
           default: return .None
         }
-    }
-    
-    static var shared: AppDelegate {
-        return UIApplication.shared.delegate as! AppDelegate
     }
 }

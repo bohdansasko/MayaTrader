@@ -123,7 +123,7 @@ extension OrdersDisplayManager: UITableViewDelegate  {
             print("called delete action for row = ", indexPath.section)
             self.dataProvider.cancelOpenedOrder(byIndex: indexPath.section)
             self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: UITableViewRowAnimation.top)
-            Session.sharedInstance.cancelOpenedOrder(byIndex: indexPath.section)
+            AppDelegate.session.cancelOpenedOrder(byIndex: indexPath.section)
             self.checkOnRequirePlaceHolder()
             completionHandler(false)
         })

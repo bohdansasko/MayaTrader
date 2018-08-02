@@ -27,7 +27,7 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     
     // MARK: WalletSettingsViewInput
     func setupInitialState() {
-        if AppDelegate.shared.isIPhone(model: .X) {
+        if AppDelegate.isIPhone(model: .X) {
             self.layoutConstraintHeaderHeight.constant = 95
         }
         

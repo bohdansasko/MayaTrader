@@ -118,7 +118,6 @@
 		2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491620492B87007CA79C /* WalletCurrencyModel.swift */; };
 		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084492C20493193007CA79C /* WalletDataProvider.swift */; };
-		20961CC620B2D123002D53AE /* SocketAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20961CC520B2D123002D53AE /* SocketAPIHandler.swift */; };
 		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
 		20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88420AE225300EC2A4D /* Wallet.storyboard */; };
 		20A5B88720AE232E00EC2A4D /* Orders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88620AE232E00EC2A4D /* Orders.storyboard */; };
@@ -136,7 +135,7 @@
 		20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */; };
 		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
 		20CAFED72042AF0D00C7DEA5 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Extensions+Data.swift */; };
-		20CAFF002042EE4F00C7DEA5 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* APIService.swift */; };
+		20CAFF002042EE4F00C7DEA5 /* SocketApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* SocketApiHandler.swift */; };
 		20CCBDB3206395450099D144 /* CreateOrderDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */; };
 		20CCBDB5206396560099D144 /* CreateOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */; };
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
@@ -449,7 +448,6 @@
 		2084491620492B87007CA79C /* WalletCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrencyModel.swift; sourceTree = "<group>"; };
 		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		2084492C20493193007CA79C /* WalletDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletDataProvider.swift; sourceTree = "<group>"; };
-		20961CC520B2D123002D53AE /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
 		209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
 		20A5B88420AE225300EC2A4D /* Wallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Wallet.storyboard; sourceTree = "<group>"; };
 		20A5B88620AE232E00EC2A4D /* Orders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Orders.storyboard; sourceTree = "<group>"; };
@@ -471,7 +469,7 @@
 		20CAFEF22042C7FD00C7DEA5 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
 		20CAFEF32042C7FD00C7DEA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFEF42042C7FD00C7DEA5 /* iphonesimulator-module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "iphonesimulator-module.map"; sourceTree = "<group>"; };
-		20CAFEFF2042EE4F00C7DEA5 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		20CAFEFF2042EE4F00C7DEA5 /* SocketApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketApiHandler.swift; sourceTree = "<group>"; };
 		20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderDisplayManager.swift; sourceTree = "<group>"; };
 		20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderTableViewCell.swift; sourceTree = "<group>"; };
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
@@ -1181,10 +1179,9 @@
 		20CAFED32042AE6400C7DEA5 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFEFF2042EE4F00C7DEA5 /* APIService.swift */,
+				20CAFEFF2042EE4F00C7DEA5 /* SocketApiHandler.swift */,
 				20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */,
 				2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */,
-				20961CC520B2D123002D53AE /* SocketAPIHandler.swift */,
 				20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */,
 			);
 			path = API;
@@ -2283,7 +2280,7 @@
 				D928C52A8583F7A7D684EF35 /* LoginInteractorInput.swift in Sources */,
 				2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorOutput.swift in Sources */,
-				20CAFF002042EE4F00C7DEA5 /* APIService.swift in Sources */,
+				20CAFF002042EE4F00C7DEA5 /* SocketApiHandler.swift in Sources */,
 				20600A2A20532949004D7F45 /* UserEntity+CoreDataProperties.swift in Sources */,
 				20600A262053291C004D7F45 /* WalletTransactionHistoryEntity+CoreDataProperties.swift in Sources */,
 				20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */,
@@ -2384,7 +2381,6 @@
 				4F89858FE7FD02C365D529B5 /* AlertsRouterInput.swift in Sources */,
 				205C71AC0D95BD83EA398C27 /* AlertsRouter.swift in Sources */,
 				01236729B7F200EE9462975B /* AlertsConfigurator.swift in Sources */,
-				20961CC620B2D123002D53AE /* SocketAPIHandler.swift in Sources */,
 				1099C4E67FC05CDE75CFB34B /* AlertsInitializer.swift in Sources */,
 				8EC18746DF7AA718FE04CC63 /* WalletSettingsViewInput.swift in Sources */,
 				20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */,

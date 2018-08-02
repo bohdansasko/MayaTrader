@@ -9,22 +9,146 @@
 import Foundation
 
 class Session {
-    static var sharedInstance = Session()
-    var user: User! // use local info or exmo info
+    enum LoginServerType {
+        case Exmo
+        case Roobik
+    }
     
-    var openedOrders: OrdersModel!
-    var canceledOrders: OrdersModel!
-    var dealsOrders: OrdersModel!
-    var searchCurrenciesContainer: [SearchCurrencyPairModel]!
+    static var shared = Session()
     
-    var alerts: [AlertItem] = []
+    private var user: User! // use local info or exmo info
     
+    private var openedOrders: OrdersModel!
+    private var canceledOrders: OrdersModel!
+    private var dealsOrders: OrdersModel!
+    private var searchCurrenciesContainer: [SearchCurrencyPairModel]!
+    
+    private var alerts: [AlertItem] = []
+
+    private init() {
+        self.initHardcode()
+    }
+    
+    func sendBroadcastNotification(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
+        NotificationCenter.default.post(name: name, object: nil, userInfo: data)
+    }
+
+    //
+    // @common getters
+    //
+    func getSearchCurrenciesContainer() -> [SearchCurrencyPairModel] {
+        return self.searchCurrenciesContainer
+    }
+}
+
+//
+// MARK: Account
+//
+extension Session {
+    func login(serverType: LoginServerType) {
+        switch serverType {
+        case .Exmo:
+            let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+            let localUserExists = CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uid)
+            if localUserExists {
+                user = CacheManager.sharedInstance.getUser()
+            } else {
+                user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
+            }
+            self.sendBroadcastNotification(name: .UserLoggedIn)
+        case .Roobik:
+            //
+            break
+        }
+    }
+    
+    func logout() {
+        CacheManager.sharedInstance.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        self.user = CacheManager.sharedInstance.getUser()
+        
+        self.sendBroadcastNotification(name: .UserLogout)
+        self.sendBroadcastNotification(name: .UserLoggedIn)
+    }
+    
+    func updateUserInfo(userData: User) {
+        self.user = userData
+    }
+    
+    func isExmoAccountExists() -> Bool {
+        return self.user.getIsLoginedAsExmoUser()
+    }
+    
+    func getUser() -> User {
+        return self.user
+    }
+}
+
+//
+// MARK: Orders
+//
+extension Session {
+    func cancelOpenedOrder(byIndex index: Int) {
+        self.openedOrders.cancelOpenedOrder(byIndex: index)
+        // TODO Orders: send message to server
+    }
+    
+    //
+    // @MARK: getters
+    //
+    func getOpenedOrders() -> OrdersModel {
+        return self.openedOrders
+    }
+    
+    func getCanceledOrders() -> OrdersModel {
+        return self.canceledOrders
+    }
+    
+    func getDealsOrders() -> OrdersModel {
+        return self.dealsOrders
+    }
+}
+
+//
+// MARK: Alerts
+//
+extension Session {
+    func appendAlert(alertItem: AlertItem) {
+        self.sendBroadcastNotification(name: .AppendAlert, data: ["alertData": alertItem])
+        self.alerts.append(alertItem)
+    }
+    
+    func updateAlert(alertItem: AlertItem) {
+        guard var foundAlert = self.alerts.first(where: { $0.id == alertItem.id }) else {
+            return
+        }
+        foundAlert = alertItem
+        self.sendBroadcastNotification(name: .UpdateAlert, data: ["alertData": alertItem])
+    }
+    
+    func deleteAlert(alertId: String) {
+        AppDelegate.roobikController.deleteAlert(alertId: alertId)
+    }
+    
+    func updateAlerts(alerts: [AlertItem]) {
+        self.alerts += alerts
+        print("call updateAlerts(...)")
+    }
+    
+    func getAlerts() -> [AlertItem] {
+        return self.alerts
+    }
+}
+
+//
+// MARK: Test code
+//
+extension Session {
     func initHardcode() {
         // opened orders
         self.openedOrders = OrdersModel(orders: [
             OrderModel(orderType: .Buy, currencyPair: "BTC/USD", createdDate: Date(), price: 14234, quantity: 2, amount: 0.5123),
             OrderModel(orderType: .Sell, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
-        ])
+            ])
         
         // canceled orders
         let listOfCanceledOrders = [
@@ -51,88 +175,4 @@ class Session {
             SearchCurrencyPairModel(id: 7, name: "EUR/BTC", price: 9871.976)
         ]
     }
-    
-    init() {
-        self.initHardcode()
-        self.login()
-    }
-
-    //
-    // @perform operations
-    //
-    func login() {
-        let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-        let localUserExists = CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uid)
-        if localUserExists {
-            user = CacheManager.sharedInstance.getUser()
-        } else {
-            user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
-        }
-        NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
-    }
-    
-    func logout() {
-        CacheManager.sharedInstance.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-        user = CacheManager.sharedInstance.getUser()
-        
-        NotificationCenter.default.post(name: .UserLogout, object: nil)
-        NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
-    }
-
-    func cancelOpenedOrder(byIndex index: Int) {
-        self.openedOrders.cancelOpenedOrder(byIndex: index)
-        // TODO Orders: send message to server
-    }
-
-    //
-    // @ getters
-    //
-    func isExmoAccountExists() -> Bool {
-        return user.getIsLoginedAsExmoUser()
-    }
-    
-    func getOpenedOrders() -> OrdersModel {
-        return self.openedOrders
-    }
-    
-    func getCanceledOrders() -> OrdersModel {
-        return self.canceledOrders
-    }
-    
-    func getDealsOrders() -> OrdersModel {
-        return self.dealsOrders
-    }
-    
-    func getSearchCurrenciesContainer() -> [SearchCurrencyPairModel] {
-        return self.searchCurrenciesContainer
-    }
-    
-    //
-    // MARK: orders
-    //
-    func appendAlert(alertItem: AlertItem) {
-        NotificationCenter.default.post(name: .AppendAlert, object: nil, userInfo: ["alertData": alertItem])
-        self.alerts.append(alertItem)
-    }
-    func updateAlert(alertItem: AlertItem) {
-        guard var foundAlert = self.alerts.first(where: {$0.id == alertItem.id}) else {
-            return
-        }
-        foundAlert = alertItem
-        NotificationCenter.default.post(name: .UpdateAlert, object: nil, userInfo: ["alertData": alertItem])
-    }
-
-    func deleteAlert(alertId: String) {
-        NotificationCenter.default.post(name: .DeleteAlert, object: nil, userInfo: ["alertData": alertId])
-    }
-
-    func updateAlerts(alerts: [AlertItem]) {
-        self.alerts += alerts
-        print("call updateAlerts(...)")
-    }
-    
-    func getAlerts() -> [AlertItem] {
-        return self.alerts
-    }
-    
 }

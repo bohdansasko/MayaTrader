@@ -48,7 +48,7 @@ class AlertTableViewCell: UITableViewCell {
         self.date.text = dateFormatter.string(from: data.dateCreated)
         
         // update constraints
-        if AppDelegate.shared.getIPhoneModel() == .Five {
+        if AppDelegate.getIPhoneModel() == .Five {
             self.timeLabelWidthConstraint.constant = 70
             self.timeLabelHeightConstraint.constant = 40
         } else {

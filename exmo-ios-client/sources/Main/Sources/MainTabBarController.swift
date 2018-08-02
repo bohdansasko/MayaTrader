@@ -26,13 +26,13 @@ class MainTabBarController: UITabBarController {
         addSelectedTabIndicator()
         updateIndicatorPosition(index: 0)
 
-        APIService.socketManager.connect()
+        AppDelegate.session.login(serverType: .Roobik)
     }
     
     private func addSelectedTabIndicator() {
         selectedTabIndicatorImage = UIImageView(image: #imageLiteral(resourceName: "icTabbarSelected"))
         selectedTabIndicatorImage.translatesAutoresizingMaskIntoConstraints = true
-        let icOffset: CGFloat = AppDelegate.shared.isIPhone(model: .X) ? 22 : 10
+        let icOffset: CGFloat = AppDelegate.isIPhone(model: .X) ? 22 : 10
         selectedTabIndicatorImage.center = CGPoint(x: 0, y: self.tabBar.bounds.maxY - icOffset)
         selectedTabIndicatorImage.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
         self.tabBar.addSubview(selectedTabIndicatorImage)

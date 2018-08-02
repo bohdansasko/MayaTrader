@@ -84,10 +84,10 @@ class UserCoreDataEngine {
         CacheManager.sharedInstance.appSettings.set(user.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
 
         let userEntity = user.getUserEntity(entity: userEntityDescription, insertInto: moc)
-        let walletEntity = user.walletInfo?.getWalletEntity(entity: walletEntityDescription, insertInto: moc)
+        let walletEntity = user.walletInfo.getWalletEntity(entity: walletEntityDescription, insertInto: moc)
 
         userEntity.wallet = walletEntity
-        walletEntity?.user = userEntity
+        walletEntity.user = userEntity
 
         do {
             try moc.save()

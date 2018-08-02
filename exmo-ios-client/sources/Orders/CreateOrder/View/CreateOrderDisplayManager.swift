@@ -110,8 +110,8 @@ class CreateOrderDisplayManager: NSObject {
                 UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
                 UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
                 
-                UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
-                UIItem(type: .TotalWillBe, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
+//                UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
+//                UIItem(type: .TotalWillBe, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
                 
                 UIItem(type: .OrderBy, item: nil),
                 UIItem(type: .TwoButtonsSellAndBuy, item: nil)
@@ -269,7 +269,7 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == UIFieldType.CurrencyPair.rawValue {
-            self.output.openCurrencySearchView(data: Session.sharedInstance.getSearchCurrenciesContainer())
+            self.output.openCurrencySearchView(data: AppDelegate.session.getSearchCurrenciesContainer())
         }
     }
 }

@@ -14,7 +14,7 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
     private var currencyId: Int = -1
 
     init() {
-        self.data = Session.sharedInstance.getSearchCurrenciesContainer()
+        self.data = AppDelegate.session.getSearchCurrenciesContainer()
     }
 
     func createOrder(orderModel: OrderModel) {

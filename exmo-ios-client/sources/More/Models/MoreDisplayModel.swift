@@ -20,9 +20,9 @@ class MoreDisplayModel {
             MenuItem(title: "App version", iconNamed: "icMenuAppversion", segueIdentifier: "", rightViewOptions: MenuItem.RightViewOptions.Text, rightText: "v.1.0")
         ]
 
-        if Session.sharedInstance.isExmoAccountExists() {
+        if AppDelegate.session.isExmoAccountExists() {
             menuItems.append(MenuItem(title: "Logout", iconNamed: "icMenuLogout", rightViewOptions: MenuItem.RightViewOptions.Icon, action: {
-                Session.sharedInstance.logout()
+                AppDelegate.session.logout()
             }))
         } else {
             menuItems.insert(MenuItem(title: "Login",  iconNamed: "icMenuLogin", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)

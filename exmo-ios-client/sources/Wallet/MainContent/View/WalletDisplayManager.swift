@@ -21,7 +21,7 @@ class WalletDisplayManager: NSObject {
     
     override init() {
         super.init()
-        self.walletDataProvider = Session.sharedInstance.user.walletInfo
+        self.walletDataProvider = AppDelegate.session.getUser().getWalletInfo()
     }
 
     func setBalanceView(balanceView: BalanceView!) {
@@ -35,7 +35,7 @@ class WalletDisplayManager: NSObject {
     }
 
     func reloadData() {
-        self.walletDataProvider = Session.sharedInstance.user.walletInfo
+        self.walletDataProvider = AppDelegate.session.getUser().getWalletInfo()
         self.walletDataProvider.filterCurrenciesByFavourites()
         self.balanceView.btcValueLabel.text = String(walletDataProvider.getAmountMoneyInBTC())
         self.balanceView.usdValueLabel.text = String(walletDataProvider.getAmountMoneyInUSD())

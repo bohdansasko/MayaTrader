@@ -39,7 +39,7 @@ class AlertDataDisplayManager: NSObject {
     }
     
     func updateInfo() {
-        self.dataProvider.setAlerts(alerts: Session.sharedInstance.getAlerts())
+        self.dataProvider.setAlerts(alerts: AppDelegate.session.getAlerts())
         self.tableView.reloadData()
         self.checkOnRequirePlaceHolder()
     }
@@ -89,7 +89,7 @@ class AlertDataDisplayManager: NSObject {
         //
         // show activity view
         //
-        APIService.socketManager.deleteAlert(alertId: alertModel.id)
+        AppDelegate.session.deleteAlert(alertId: alertModel.id)
     }
     
     func handleStateAction(elementIndex: Int) {
@@ -98,7 +98,7 @@ class AlertDataDisplayManager: NSObject {
             print("handleStateAction: item doesn't exists")
             return
         }
-        APIService.socketManager.updateAlert(alertItem: alertModel)
+        AppDelegate.roobikController.updateAlert(alertItem: alertModel)
     }
     
     func handleEditAction(elementIndex: Int) {

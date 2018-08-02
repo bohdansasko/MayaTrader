@@ -25,7 +25,7 @@ class CreateAlertInteractor: CreateAlertInteractorInput {
     ]
     
     init() {
-        self.currenciesContainer = Session.sharedInstance.getSearchCurrenciesContainer()
+        self.currenciesContainer = AppDelegate.session.getSearchCurrenciesContainer()
     }
 
     func handleSelectedCurrency(currencyId: Int) {
@@ -61,12 +61,12 @@ class CreateAlertInteractor: CreateAlertInteractorInput {
     }
     
     func tryCreateAlert(alertModel: AlertItem) {
-        APIService.socketManager.createAlert(alertItem: alertModel)
+        AppDelegate.roobikController.createAlert(alertItem: alertModel)
         print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
     }
     
     func tryUpdateAlert(alertModel: AlertItem) {
-        APIService.socketManager.updateAlert(alertItem: alertModel)
+        AppDelegate.roobikController.updateAlert(alertItem: alertModel)
         print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
     }
 }

@@ -10,6 +10,8 @@ import Foundation
 import CommonCrypto
 
 public class ExmoApiHandler {
+    static var shared = ExmoApiHandler()
+    
     private enum Config: String {
         case API_URL = "https://api.exmo.com/v1/"
         case API_KEY = "your_key"
@@ -21,7 +23,7 @@ public class ExmoApiHandler {
     private var api_key: String!
     private var secret_key: String!
     
-    func setUserInfo(apiKey: String, secretKey: String) {
+    func setUserLoginData(apiKey: String, secretKey: String) {
         self.api_key = apiKey
         self.secret_key = secretKey
     }

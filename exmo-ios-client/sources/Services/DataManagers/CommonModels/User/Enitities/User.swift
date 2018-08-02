@@ -20,7 +20,7 @@ class User: Mappable {
     }
 
     var qrModel: QRLoginModel? = nil
-    var walletInfo: WalletModel? = WalletModel()
+    var walletInfo: WalletModel = WalletModel()
 
     init() {
         // do nothing
@@ -64,5 +64,9 @@ class User: Mappable {
         userEntity.setValue(self.qrModel?.key, forKey: UserEntityKeys.key.rawValue)
         userEntity.setValue(self.qrModel?.secret, forKey: UserEntityKeys.secret.rawValue)
         return userEntity
+    }
+    
+    func getWalletInfo() -> WalletModel {
+        return self.walletInfo
     }
 }
