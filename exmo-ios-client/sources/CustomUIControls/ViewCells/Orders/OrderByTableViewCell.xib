@@ -51,8 +51,8 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icMarket" translatesAutoresizingMaskIntoConstraints="NO" id="XD2-M7-rVN">
                         <rect key="frame" x="20" y="86" width="25" height="25"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cur. exchange" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5R-Io-rWn">
-                        <rect key="frame" x="61" y="35" width="82" height="25"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Limit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q5R-Io-rWn">
+                        <rect key="frame" x="60.999999999999993" y="35" width="29.666666666666664" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="B07-d6-kXW"/>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="kfM-Yh-DCF"/>
@@ -61,7 +61,7 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Market" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVs-Kv-dKN">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instant" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVs-Kv-dKN">
                         <rect key="frame" x="61" y="86" width="42.333333333333343" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="0Be-90-mrA"/>

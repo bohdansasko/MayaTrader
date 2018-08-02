@@ -12,10 +12,14 @@ import UIKit
 fileprivate enum UIFieldType: Int {
     case CurrencyPair
     case Amount
+    case ForAmount
+    case Price
     case Total
+    case TotalWillBe
     case Commision
     case OrderBy
-    case ButtonCreate
+    case AvailableBalance
+    case TwoButtonsSellAndBuy
 }
 
 fileprivate struct UIItem {
@@ -28,10 +32,16 @@ fileprivate struct UIItem {
     }
 }
 
+fileprivate enum ViewOrderType {
+    case Limit
+    case Instant
+}
+
 class CreateOrderDisplayManager: NSObject {
     var tableView: UITableView!
     var output: CreateOrderViewOutput!
     var cell: CreateOrderTableViewCell? = nil
+    fileprivate var viewOrderType: ViewOrderType = .Limit
     
     private var dataProvider: [UIItem] = []
     private var currencyRow: AlertTableViewCellWithArrow? = nil
@@ -60,7 +70,7 @@ class CreateOrderDisplayManager: NSObject {
         let classes = [
             CellName.AddAlertTableViewCell.rawValue,
             CellName.AlertTableViewCellWithArrow.rawValue,
-            CellName.AlertTableViewCellButton.rawValue,
+            CellName.TableViewCellWithTwoButtons.rawValue,
             CellName.OrderByTableViewCell.rawValue
         ]
 
@@ -81,14 +91,33 @@ class CreateOrderDisplayManager: NSObject {
     }
     
     private func getFieldsForRender() -> [UIItem] {
-        return [
-            UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-            UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
-            UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 USD")),
-            UIItem(type: .Commision, item: UIFieldModel(headerText: "Commision", leftText: "0 USD")),
-            UIItem(type: .OrderBy, item: nil),
-            UIItem(type: .ButtonCreate, item: nil)
-        ]
+        switch self.viewOrderType {
+        case .Limit:
+            return [
+                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
+                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "BTC")),
+                UIItem(type: .Price, item: UIFieldModel(headerText: "Price", leftText: "0 USD")),
+                UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 USD")),
+                UIItem(type: .Commision, item: UIFieldModel(headerText: "Commision", leftText: "0 BTC")),
+                UIItem(type: .AvailableBalance, item: UIFieldModel(headerText: "Available balance", leftText: "0 USD")),
+                UIItem(type: .OrderBy, item: nil),
+                UIItem(type: .TwoButtonsSellAndBuy, item: nil)
+            ]
+        case .Instant:
+            return [
+                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
+                
+                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
+                UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
+                
+                UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
+                UIItem(type: .TotalWillBe, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
+                
+                UIItem(type: .OrderBy, item: nil),
+                UIItem(type: .TwoButtonsSellAndBuy, item: nil)
+            ]
+        }
+        
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
@@ -106,8 +135,27 @@ class CreateOrderDisplayManager: NSObject {
         }
         return true
     }
+    
+    private func updateViewLayout(viewType: ViewOrderType) {
+        if viewType != self.viewOrderType {
+            self.viewOrderType = viewType
+            self.dataProvider = getFieldsForRender()
+            self.tableCells = [:]
+            self.reloadData()
+        }
+    }
+    
+    fileprivate func isFieldTouchEnabled(cellType: UIFieldType) -> Bool {
+        switch cellType {
+        case .Amount,
+             .ForAmount,
+             .Price:
+             return true
+        default:
+            return false
+        }
+    }
 }
-
 
 extension CreateOrderDisplayManager: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -123,16 +171,21 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             return self.tableCells[indexPath]!
         }
 
-        switch self.dataProvider[indexPath.section].type {
+        let cellType = self.dataProvider[indexPath.section].type
+        switch cellType {
         case .Amount,
+             .ForAmount,
              .Total,
+             .TotalWillBe,
+             .Price,
+             .AvailableBalance,
              .Commision:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue)  as! AddAlertTableViewCell
             if let data = self.dataProvider[indexPath.section].item {
                 cell.setContentData(data: data)
             }
             cell.selectionStyle = .none
-            cell.inputField.isEnabled = self.dataProvider[indexPath.section].type == .Amount
+            cell.inputField.isEnabled = isFieldTouchEnabled(cellType: cellType)
             self.tableCells[indexPath] = cell
             return cell
         case .CurrencyPair:
@@ -146,14 +199,23 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
         case .OrderBy:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.OrderByTableViewCell.rawValue) as! OrderByTableViewCell
             self.tableCells[indexPath] = cell
-            return cell
-        case .ButtonCreate:
-            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellButton.rawValue) as! AlertTableViewCellButton
-            cell.selectionStyle = .none
-            cell.setCallbackOnTouch(callback: {
-                print("create order")
+            cell.setCallbackOnTouchLimitButton(callback: {
+                self.updateViewLayout(viewType: .Limit)
             })
-            self.tableCells[indexPath] = cell
+            cell.setCallbackOnTouchInstantButton(callback: {
+                self.updateViewLayout(viewType: .Instant)
+            })
+            return cell
+        case .TwoButtonsSellAndBuy:
+            let cell = tableView.dequeueReusableCell(withIdentifier: CellName.TableViewCellWithTwoButtons.rawValue) as! TableViewCellWithTwoButtons
+            cell.selectionStyle = .none
+            cell.setCallbackOnTouchLeftButton(callback: {
+                print("touch left button")
+            })
+            cell.setCallbackOnTouchRightButton(callback: {
+                print("touch right button")
+            })
+             self.tableCells[indexPath] = cell
             return cell
         default:
             // do nothing
@@ -176,7 +238,7 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
         footerView.backgroundColor = UIColor.clear
         
         let fieldType = self.dataProvider[section].type
-        let shouldAddSeparator = fieldType != .OrderBy && fieldType != .ButtonCreate
+        let shouldAddSeparator = fieldType != .OrderBy && fieldType != .TwoButtonsSellAndBuy
         if shouldAddSeparator {
             let separatorLineWidth = footerView.frame.size.width - 40
 
@@ -191,18 +253,18 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch self.dataProvider[indexPath.section].type {
-        case .ButtonCreate: return 45
+        case .TwoButtonsSellAndBuy: return 45
         case .OrderBy: return 126
         default: return 70
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return self.dataProvider[section].type == .ButtonCreate ? 30 : 15
+        return self.dataProvider[section].type == .TwoButtonsSellAndBuy ? 30 : 15
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return self.dataProvider[section].type == .ButtonCreate ? 30 : 1
+        return self.dataProvider[section].type == .TwoButtonsSellAndBuy ? 30 : 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

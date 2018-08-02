@@ -15,6 +15,9 @@ class OrderByTableViewCell: AlertTableViewCellWithTextData {
     
     @IBOutlet weak var icDoneTopConstraint: NSLayoutConstraint!
     
+    private var callbackTouchOnLimitButton: VoidClosure? = nil
+    private var callbackTouchOnInstantButton: VoidClosure? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -52,8 +55,10 @@ class OrderByTableViewCell: AlertTableViewCellWithTextData {
     @objc func onTouchUpInsideButton(_ sender: UIButton?) {
         if sender == exchangeButton {
             self.icDoneTopConstraint.constant = 10
+            self.callbackTouchOnLimitButton?()
         } else {
             self.icDoneTopConstraint.constant = 66
+            self.callbackTouchOnInstantButton?()
         }
         onTouchUpButton(sender)
     }
@@ -72,6 +77,12 @@ class OrderByTableViewCell: AlertTableViewCellWithTextData {
         }
     }
 
+    func setCallbackOnTouchLimitButton(callback: VoidClosure?) {
+        self.callbackTouchOnLimitButton = callback
+    }
     
+    func setCallbackOnTouchInstantButton(callback: VoidClosure?) {
+        self.callbackTouchOnInstantButton = callback
+    }
     
 }
