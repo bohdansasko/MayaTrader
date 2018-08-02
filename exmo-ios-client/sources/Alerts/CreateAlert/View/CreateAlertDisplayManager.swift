@@ -71,6 +71,7 @@ enum CellName: String {
     case AlertTableViewCellButton
     case OrderByTableViewCell
     case SwitcherTableViewCell
+    case TableViewCellWithTwoButtons
 }
 
 //
@@ -147,10 +148,11 @@ class CreateAlertDisplayManager: NSObject {
     }
     
     private func getAlertDataFromUI() -> AlertItem? {
-        if self.alertItem == nil {
-            return nil
-        }
+        //
         // collect data for create alert
+        //
+        let id = self.alertItem == nil ? "" : self.alertItem!.id
+        let status = self.alertItem == nil ? AlertStatus.Inactive : self.alertItem!.status
         var currencyPairName = ""
         var priceAtCreateMoment = 0.0
         var topBoundary = 0.0
@@ -179,9 +181,9 @@ class CreateAlertDisplayManager: NSObject {
         currencyPairName = currencyPairName.replacingOccurrences(of: "/", with: "_")
         
         return AlertItem(
-            id: self.alertItem!.id, currencyPairName: currencyPairName, priceAtCreateMoment: priceAtCreateMoment,
+            id: id, currencyPairName: currencyPairName, priceAtCreateMoment: priceAtCreateMoment,
             note: noteText, topBoundary: topBoundary, bottomBoundary: bottomBoundary,
-            status: self.alertItem!.status, isPersistentNotification: isPersistentNotification
+            status: status, isPersistentNotification: isPersistentNotification
         )
     }
     

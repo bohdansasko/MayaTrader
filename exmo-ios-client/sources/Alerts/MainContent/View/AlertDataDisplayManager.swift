@@ -184,7 +184,9 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.AlertTableViewCell.rawValue, for: indexPath) as! AlertTableViewCell
         cell.setData(data: alertModel)
+        
         self.cells.append(cell)
+        
         return cell
     }
     
@@ -198,10 +200,11 @@ extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
             action, _, completionHandler in
             print("alert: state action clicked")
-            self.handleStateAction(elementIndex: indexPath.section) // TODO: change state after got response from server
+            self.handleStateAction(elementIndex: indexPath.section)
 
             completionHandler(true)
         })
