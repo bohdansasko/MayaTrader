@@ -18,7 +18,7 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
 
     // MARK: Life cycle
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        AppDelegate.notificationController.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -41,8 +41,8 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
     }
     
     private func subscribeOnEvents() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
     }
 
     func setTouchEnabled(isTouchEnabled: Bool) {

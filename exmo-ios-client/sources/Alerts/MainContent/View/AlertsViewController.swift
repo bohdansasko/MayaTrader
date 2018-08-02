@@ -25,7 +25,7 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        AppDelegate.notificationController.removeObserver(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -35,9 +35,9 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     // MARK: AlertsViewInput
     func setupInitialState() {
         self.displayManager.setTableView(tableView: self.tableView)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.onAppendAlert), name: .AppendAlert, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.onUpdateAlert), name: .UpdateAlert, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.onDeleteAlert), name: .DeleteAlert, object: nil)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onAppendAlert), name: .AppendAlert)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUpdateAlert), name: .UpdateAlert)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onDeleteAlert), name: .DeleteAlert)
     }
 
     func showPlaceholderNoData() {

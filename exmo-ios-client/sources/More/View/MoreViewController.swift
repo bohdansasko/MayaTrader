@@ -16,7 +16,7 @@ class MoreViewController: ExmoUIViewController, MoreViewInput {
     
     // MARK: Life cycle
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        AppDelegate.notificationController.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -31,8 +31,8 @@ class MoreViewController: ExmoUIViewController, MoreViewInput {
     func setupInitialState() {
         displayManager.setTableView(tableView: tableView)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
     }
     
     @objc func updateDisplayInfo() {

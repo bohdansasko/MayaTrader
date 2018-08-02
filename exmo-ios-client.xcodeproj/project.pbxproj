@@ -135,9 +135,10 @@
 		20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */; };
 		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
 		20CAFED72042AF0D00C7DEA5 /* Extensions+Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Extensions+Data.swift */; };
-		20CAFF002042EE4F00C7DEA5 /* SocketApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* SocketApiHandler.swift */; };
+		20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */; };
 		20CCBDB3206395450099D144 /* CreateOrderDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */; };
 		20CCBDB5206396560099D144 /* CreateOrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */; };
+		20D7A7C32113B37300D84399 /* RoobikApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */; };
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
 		20DBA23B20B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */; };
@@ -469,9 +470,10 @@
 		20CAFEF22042C7FD00C7DEA5 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
 		20CAFEF32042C7FD00C7DEA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20CAFEF42042C7FD00C7DEA5 /* iphonesimulator-module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "iphonesimulator-module.map"; sourceTree = "<group>"; };
-		20CAFEFF2042EE4F00C7DEA5 /* SocketApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketApiHandler.swift; sourceTree = "<group>"; };
+		20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
 		20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderDisplayManager.swift; sourceTree = "<group>"; };
 		20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderTableViewCell.swift; sourceTree = "<group>"; };
+		20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoobikApiHandler.swift; sourceTree = "<group>"; };
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistFlatTableViewCell.xib; sourceTree = "<group>"; };
@@ -1179,7 +1181,8 @@
 		20CAFED32042AE6400C7DEA5 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFEFF2042EE4F00C7DEA5 /* SocketApiHandler.swift */,
+				20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */,
+				20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */,
 				20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */,
 				2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */,
 				20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */,
@@ -2280,7 +2283,7 @@
 				D928C52A8583F7A7D684EF35 /* LoginInteractorInput.swift in Sources */,
 				2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorOutput.swift in Sources */,
-				20CAFF002042EE4F00C7DEA5 /* SocketApiHandler.swift in Sources */,
+				20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */,
 				20600A2A20532949004D7F45 /* UserEntity+CoreDataProperties.swift in Sources */,
 				20600A262053291C004D7F45 /* WalletTransactionHistoryEntity+CoreDataProperties.swift in Sources */,
 				20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */,
@@ -2351,6 +2354,7 @@
 				320E190D1B73245BC78149C3 /* WalletInteractorInput.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				33FA275589ADB6723CEB02A2 /* WalletInteractorOutput.swift in Sources */,
+				20D7A7C32113B37300D84399 /* RoobikApiHandler.swift in Sources */,
 				A6421BE76AB236312D8A7FB3 /* WalletInteractor.swift in Sources */,
 				3C40522FD523C9ABB1477573 /* WalletRouterInput.swift in Sources */,
 				2C0D8C2083A0CF7F71803DFF /* WalletRouter.swift in Sources */,

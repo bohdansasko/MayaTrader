@@ -53,7 +53,7 @@ class CreateOrderDisplayManager: NSObject {
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        AppDelegate.notificationController.removeObserver(self)
     }
     
     func setTableView(tableView: UITableView!) {

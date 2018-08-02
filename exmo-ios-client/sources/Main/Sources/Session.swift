@@ -14,8 +14,6 @@ class Session {
         case Roobik
     }
     
-    static var shared = Session()
-    
     private var user: User! // use local info or exmo info
     
     private var openedOrders: OrdersModel!
@@ -25,12 +23,9 @@ class Session {
     
     private var alerts: [AlertItem] = []
 
-    private init() {
+    init() {
+        self.user = User()
         self.initHardcode()
-    }
-    
-    func sendBroadcastNotification(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
-        NotificationCenter.default.post(name: name, object: nil, userInfo: data)
     }
 
     //
@@ -55,9 +50,9 @@ extension Session {
             } else {
                 user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
             }
-            self.sendBroadcastNotification(name: .UserLoggedIn)
+            AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
         case .Roobik:
-            //
+            AppDelegate.roobikController.signIn()
             break
         }
     }
@@ -66,8 +61,8 @@ extension Session {
         CacheManager.sharedInstance.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
         self.user = CacheManager.sharedInstance.getUser()
         
-        self.sendBroadcastNotification(name: .UserLogout)
-        self.sendBroadcastNotification(name: .UserLoggedIn)
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     
     func updateUserInfo(userData: User) {
@@ -113,7 +108,7 @@ extension Session {
 //
 extension Session {
     func appendAlert(alertItem: AlertItem) {
-        self.sendBroadcastNotification(name: .AppendAlert, data: ["alertData": alertItem])
+        AppDelegate.notificationController.postBroadcastMessage(name: .AppendAlert, data: ["alertData": alertItem])
         self.alerts.append(alertItem)
     }
     
@@ -122,7 +117,7 @@ extension Session {
             return
         }
         foundAlert = alertItem
-        self.sendBroadcastNotification(name: .UpdateAlert, data: ["alertData": alertItem])
+        AppDelegate.notificationController.postBroadcastMessage(name: .UpdateAlert, data: ["alertData": alertItem])
     }
     
     func deleteAlert(alertId: String) {

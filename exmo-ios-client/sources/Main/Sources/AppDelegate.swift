@@ -21,11 +21,7 @@ enum IPhoneModel: Int {
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
-    static let session = Session.shared
-    static let exmoController = ExmoApiHandler.shared
-    static let roobikController = RoobikApiHandler.shared
-    
+
     static var shared: AppDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
@@ -60,8 +56,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        CoreDataManager.sharedInstance.saveContext()
+        AppDelegate.dbController.saveContext()
     }
+}
+
+class NotificationController {
+    func postBroadcastMessage(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
+        NotificationCenter.default.post(name: name, object: nil, userInfo: data)
+    }
+
+    func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any? = nil) {
+        NotificationCenter.default.addObserver(observer, selector: aSelector, name: aName, object: anObject)
+    }
+    
+    func removeObserver(_ observer: Any) {
+        NotificationCenter.default.removeObserver(observer)
+    }
+}
+
+//
+// @Mark: static methods
+//
+extension AppDelegate {
+    static let session = Session()
+    static let exmoController = ExmoApiHandler()
+    static let roobikController = RoobikApiHandler()
+    static let notificationController = NotificationController()
+    static let dbController = CoreDataManager()
 }
 
 //

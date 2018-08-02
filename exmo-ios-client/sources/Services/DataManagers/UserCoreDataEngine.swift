@@ -15,7 +15,7 @@ class UserCoreDataEngine {
     private var moc = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.mainQueueConcurrencyType)
     
     init() {
-        moc = CoreDataManager.sharedInstance.persistentContainer.viewContext
+        self.moc = AppDelegate.dbController.getViewContext()
     }
 
     func createNewLocalUser() -> User? {

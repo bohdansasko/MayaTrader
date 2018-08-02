@@ -10,7 +10,6 @@ import Foundation
 import CommonCrypto
 
 public class ExmoApiHandler {
-    static var shared = ExmoApiHandler()
     
     private enum Config: String {
         case API_URL = "https://api.exmo.com/v1/"
@@ -37,7 +36,7 @@ public class ExmoApiHandler {
             UserDefaults.standard.set(newValue, forKey: Config.NONCE.rawValue)
         }
     }
-    
+
     init() {
         setupInitValues()
     }

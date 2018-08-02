@@ -39,7 +39,7 @@ class LoginInteractor: LoginInteractorInput {
             let isUserDataSaved = CacheManager.sharedInstance.userCoreManager.saveUserData(user: user!)
             if isUserDataSaved {
                 AppDelegate.session.updateUserInfo(userData: user!)
-                AppDelegate.session.sendBroadcastNotification(name: .UserLoggedIn)
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
                 output.emitCloseView()
             }
         }

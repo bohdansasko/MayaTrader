@@ -31,7 +31,7 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     }
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        AppDelegate.notificationController.removeObserver(self)
     }
 
     // MARK: public methods
@@ -80,8 +80,8 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     
     // MARK: private methods
     private func subscribeOnEvents() {
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLoggedIn, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserLogout, object: nil)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
     }
     
     @objc private func updateDisplayInfo() {
