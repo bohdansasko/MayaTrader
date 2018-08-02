@@ -44,6 +44,8 @@
 		2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5572048BEC100BD205F /* CoreDataManager.swift */; };
 		2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5662048C43300BD205F /* UserCoreDataEngine.swift */; };
 		2003B5692048C78600BD205F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5682048C78600BD205F /* DataService.swift */; };
+		200D2E692112C671007ED238 /* TableViewCellWithTwoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D2E672112C671007ED238 /* TableViewCellWithTwoButtons.swift */; };
+		200D2E6A2112C671007ED238 /* TableViewCellWithTwoButtons.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200D2E682112C671007ED238 /* TableViewCellWithTwoButtons.xib */; };
 		2010154420B02B6B00324F22 /* AlertTableViewCellWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */; };
 		2010154520B02B6B00324F22 /* AlertTableViewCellWithArrow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010154320B02B6B00324F22 /* AlertTableViewCellWithArrow.xib */; };
 		2010154820B02B7800324F22 /* AddAlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154620B02B7800324F22 /* AddAlertTableViewCell.swift */; };
@@ -375,6 +377,8 @@
 		2003B5572048BEC100BD205F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2003B5662048C43300BD205F /* UserCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoreDataEngine.swift; sourceTree = "<group>"; };
 		2003B5682048C78600BD205F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		200D2E672112C671007ED238 /* TableViewCellWithTwoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithTwoButtons.swift; sourceTree = "<group>"; };
+		200D2E682112C671007ED238 /* TableViewCellWithTwoButtons.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellWithTwoButtons.xib; sourceTree = "<group>"; };
 		2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellWithArrow.swift; sourceTree = "<group>"; };
 		2010154320B02B6B00324F22 /* AlertTableViewCellWithArrow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCellWithArrow.xib; sourceTree = "<group>"; };
 		2010154620B02B7800324F22 /* AddAlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAlertTableViewCell.swift; sourceTree = "<group>"; };
@@ -1160,6 +1164,8 @@
 				20DBA23D20B3FEB4007BA0AF /* Watchlist */,
 				20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */,
 				20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */,
+				200D2E672112C671007ED238 /* TableViewCellWithTwoButtons.swift */,
+				200D2E682112C671007ED238 /* TableViewCellWithTwoButtons.xib */,
 			);
 			path = ViewCells;
 			sourceTree = "<group>";
@@ -2147,6 +2153,7 @@
 				2013E5862071464700EFACB7 /* Exo2-ExtraLight.ttf in Resources */,
 				2010154520B02B6B00324F22 /* AlertTableViewCellWithArrow.xib in Resources */,
 				20A5B88720AE232E00EC2A4D /* Orders.storyboard in Resources */,
+				200D2E6A2112C671007ED238 /* TableViewCellWithTwoButtons.xib in Resources */,
 				203B8A8A20AF4285004EF229 /* MoreOptionsMenuCell.xib in Resources */,
 				2070092F20BF5D84000E3059 /* WatchlistCurrencyHeaderView.xib in Resources */,
 				20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */,
@@ -2469,6 +2476,7 @@
 				0B6A83BD11E0BF886F0C649C /* CreateAlertViewOutput.swift in Sources */,
 				209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */,
 				C5211D41B62E787C92F836A3 /* CreateAlertViewController.swift in Sources */,
+				200D2E692112C671007ED238 /* TableViewCellWithTwoButtons.swift in Sources */,
 				67289E6F31834F1A38B88D4F /* CreateAlertModuleInput.swift in Sources */,
 				1A9B269CD2910DC038EC9F06 /* CreateAlertPresenter.swift in Sources */,
 				8B2D71C4450F33B9D9AAA0B9 /* CreateAlertInteractorInput.swift in Sources */,
