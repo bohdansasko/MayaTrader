@@ -82,10 +82,11 @@ class NotificationController {
 //
 extension AppDelegate {
     static let session = Session()
-    static let exmoController = ExmoApiHandler()
+    static let exmoController = ExmoAccountController()
     static let roobikController = RoobikApiHandler()
     static let notificationController = NotificationController()
     static let dbController = CoreDataManager()
+    static var cacheController = CacheManager()
 }
 
 //

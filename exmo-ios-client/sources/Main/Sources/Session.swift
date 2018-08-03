@@ -40,34 +40,30 @@ class Session {
 // MARK: Account
 //
 extension Session {
-    func login(serverType: ServerType) {
-        switch serverType {
-        case .Exmo:
-            let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-            let localUserExists = CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uid)
-            if localUserExists {
-                self.user = CacheManager.sharedInstance.getUser()
-                AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
-            }
-//            else {
-//                self.user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
-//            }
-        case .Roobik:
-            AppDelegate.roobikController.signIn()
-            break
-        }
+    func exmoLogin(loginModel: QRLoginModel) {
+        AppDelegate.exmoController.login(apiKey: loginModel.key!, secretKey: loginModel.secret!)
     }
     
-    func logout() {
-        CacheManager.sharedInstance.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-        self.user = CacheManager.sharedInstance.getUser()
+    func roobikLogin() {
+        AppDelegate.roobikController.signIn()
+    }
+    
+    func exmoLogout() {
+        AppDelegate.cacheController.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        self.user = AppDelegate.cacheController.getUser()
         
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     
-    func updateUserInfo(userData: User) {
+    func setUserModel(userData: User) {
         self.user = userData
+        
+        let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: userData)
+        if isUserSavedToLocalStorage {
+            print("user info cached")
+        }
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     
     func isExmoAccountExists() -> Bool {
@@ -83,6 +79,30 @@ extension Session {
 // MARK: Orders
 //
 extension Session {
+    func loadOrders(orderType: OrdersModel.DisplayOrderType, servertType: ServerType = .Exmo) {
+        switch orderType {
+        case .Opened:
+            // load opened orders
+            break
+        case .Canceled:
+            // load canceled orders
+            break
+        case .Deals:
+            switch servertType {
+            case .Exmo:
+//                guard let data = AppDelegate.exmoController.loadUserTrades(limit: 0, offset: 100) else {
+//                    return
+//                }
+                print()
+                break
+            case .Roobik:
+                break
+            }
+            break
+        }
+    }
+    
+    // loadCanceledOrders
     func cancelOpenedOrder(byIndex index: Int) {
         self.openedOrders.cancelOpenedOrder(byIndex: index)
         // TODO Orders: send message to server

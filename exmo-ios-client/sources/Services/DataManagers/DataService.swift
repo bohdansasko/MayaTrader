@@ -9,15 +9,13 @@
 import Foundation
 
 class CacheManager {
-    static var sharedInstance = CacheManager()
-    
     var appSettings = UserDefaults.standard
     var userCoreManager = UserCoreDataEngine.sharedInstance
     var walletCoreManager = WalletCoreDataEngine.sharedInstance
     
     func getUser() -> User {
-        let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-        let userEntity = CacheManager.sharedInstance.userCoreManager.loadUserData(uid: uid)
+        let uid = AppDelegate.cacheController.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let userEntity = AppDelegate.cacheController.userCoreManager.loadUserData(uid: uid)
         var user = User()
         if userEntity != nil {
             user = User(userEntity: userEntity!)

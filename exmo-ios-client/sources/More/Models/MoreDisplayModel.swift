@@ -22,7 +22,7 @@ class MoreDisplayModel {
 
         if AppDelegate.session.isExmoAccountExists() {
             menuItems.append(MenuItem(title: "Logout", iconNamed: "icMenuLogout", rightViewOptions: MenuItem.RightViewOptions.Icon, action: {
-                AppDelegate.session.logout()
+                AppDelegate.session.exmoLogout()
             }))
         } else {
             menuItems.insert(MenuItem(title: "Login",  iconNamed: "icMenuLogin", segueIdentifier: MoreMenuSegueIdentifier.loginView.rawValue), at: 0)

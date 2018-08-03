@@ -81,7 +81,7 @@ class UserCoreDataEngine {
             return false
         }
 
-        CacheManager.sharedInstance.appSettings.set(user.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        AppDelegate.cacheController.appSettings.set(user.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
 
         let userEntity = user.getUserEntity(entity: userEntityDescription, insertInto: moc)
         let walletEntity = user.walletInfo.getWalletEntity(entity: walletEntityDescription, insertInto: moc)
@@ -101,9 +101,9 @@ class UserCoreDataEngine {
     }
 
     func deleteLastLoggedUser() {
-        let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let uid = AppDelegate.cacheController.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
         deleteUser(uid: uid)
-        CacheManager.sharedInstance.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        AppDelegate.cacheController.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
     }
     
     func deleteUser(uid: Int) {

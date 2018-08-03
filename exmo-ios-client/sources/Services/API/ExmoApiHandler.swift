@@ -10,6 +10,8 @@ import Foundation
 import CommonCrypto
 
 public class ExmoApiHandler {
+    static let shared = ExmoApiHandler()
+    
     fileprivate struct ConnectionConfig {
         static let API_URL = "https://api.exmo.com/v1/"
         static var API_KEY = "your_key"
@@ -27,7 +29,7 @@ public class ExmoApiHandler {
         }
     }
 
-    init() {
+    private init() {
         // do nothing
     }
 }
@@ -101,7 +103,7 @@ extension ExmoApiHandler {
 // @MARK: service methods
 //
 extension ExmoApiHandler {
-    func setUserLoginData(apiKey: String, secretKey: String) {
+    func setAuthorizationData(apiKey: String, secretKey: String) {
         ConnectionConfig.API_KEY = apiKey
         ConnectionConfig.API_SECRET = secretKey
     }
@@ -120,14 +122,17 @@ extension ExmoApiHandler {
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_cancelled_orders")
     }
     
-    func loadUserTrades(limit: Int, offset: Int)-> Data? {
+    func loadUserTrades(limit: Int = 0, offset: Int = 100)-> Data? {
         print("start user_trades")
         var post: [String: Any] = [:]
         post["limit"] = limit
         post["offset"] = offset
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_trades")
     }
-    
+}
+
+
+class ExmoAccountController {
     func getAllCurrenciesOnExmo() -> [String] { // TODO-REF: use cache instead this. cache should update every login
         return [
             "USD","EUR","RUB","PLN","UAH","BTC","LTC","DOGE","DASH","ETH","WAVES","ZEC","USDT","XMR","XRP","KICK","ETC","BCH"
@@ -151,5 +156,34 @@ extension ExmoApiHandler {
     
     func getAllPairsOnExmoAsStr(separator: String = ",") -> String {
         return getAllPairsOnExmo().joined(separator: separator)
+    }
+}
+
+extension ExmoAccountController {
+    func login(apiKey: String, secretKey: String) {
+        ExmoApiHandler.shared.setAuthorizationData(apiKey: apiKey, secretKey: secretKey)
+        
+        let result = ExmoApiHandler.shared.loadUserInfo()
+        let jsonString = String(data: result!, encoding: .utf8)
+        
+        print("loaded exmo userInfo: \(jsonString!)")
+        
+        if let requestError = RequestError(JSONString: jsonString!) {
+            print("qr data doesn't validate: \(requestError.error!)")
+            AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+            return
+        }
+        
+        guard let userData = User(JSONString: jsonString!) else {
+            AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+            return
+        }
+        
+        if let walletInfo = WalletModel(JSONString: jsonString!) {
+            userData.walletInfo = walletInfo
+        }
+        userData.qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: apiKey, secret: secretKey)
+        
+        AppDelegate.session.setUserModel(userData: userData)
     }
 }

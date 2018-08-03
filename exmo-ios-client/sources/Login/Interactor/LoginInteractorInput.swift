@@ -10,4 +10,5 @@ import Foundation
 
 protocol LoginInteractorInput {
     func loadUserInfo(loginModel: QRLoginModel)
+    func viewIsReady()
 }

@@ -26,7 +26,7 @@ class MainTabBarController: UITabBarController {
         self.addSelectedTabIndicator()
         self.updateIndicatorPosition(index: 0)
 
-        AppDelegate.session.login(serverType: .Roobik)
+        AppDelegate.session.roobikLogin()
     }
     
     private func addSelectedTabIndicator() {

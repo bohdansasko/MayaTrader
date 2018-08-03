@@ -15,7 +15,7 @@ class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, Logi
     var router: LoginRouterInput!
     
     func viewIsReady() {
-        // do nothing
+        self.interactor.viewIsReady()
     }
     
     func setLoginData(loginModel: QRLoginModel?) {
