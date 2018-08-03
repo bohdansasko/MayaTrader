@@ -38,8 +38,8 @@ class OrderTableViewCell: UITableViewCell {
         self.quantityValueLabel.text = orderData.getQuantity()
         self.amountValueLabel.text = orderData.getAmount()
         
-        self.operationValueLabel.text = orderData.getOrderTypeAsStr()
-        self.operationValueLabel.backgroundColor = getOrderTypeLabelTextColor(orderType: orderData.getOrderType())
+        self.operationValueLabel.text = orderData.getOrderActionTypeAsStr()
+        self.operationValueLabel.backgroundColor = getOrderActionTypeLabelTextColor(orderType: orderData.getOrderActionType())
         self.operationValueLabel.layer.masksToBounds = true
         self.operationValueLabel.layer.cornerRadius = 5
 
@@ -53,7 +53,7 @@ class OrderTableViewCell: UITableViewCell {
         }
     }
     
-    private func getOrderTypeLabelTextColor(orderType: OrderType) -> UIColor {
+    private func getOrderActionTypeLabelTextColor(orderType: OrderActionType) -> UIColor {
         switch orderType {
         case .Buy:
             return UIColor(red: 74.0/255, green: 132.0/255, blue: 244.0/255, alpha: 1.0)

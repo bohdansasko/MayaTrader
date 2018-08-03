@@ -23,8 +23,8 @@ class MainTabBarController: UITabBarController {
             UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: "AlertsNavigationController"),
             UIStoryboard(name: "MoreOptions", bundle: nil).instantiateViewController(withIdentifier: "MoreNavigationController")
         ]
-        addSelectedTabIndicator()
-        updateIndicatorPosition(index: 0)
+        self.addSelectedTabIndicator()
+        self.updateIndicatorPosition(index: 0)
 
         AppDelegate.session.login(serverType: .Roobik)
     }

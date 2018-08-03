@@ -10,66 +10,33 @@ import Foundation
 import CommonCrypto
 
 public class ExmoApiHandler {
-    
-    private enum Config: String {
-        case API_URL = "https://api.exmo.com/v1/"
-        case API_KEY = "your_key"
-        case API_SECRET = "your_secret"
-        case NONCE = "Nonce"
+    fileprivate struct ConnectionConfig {
+        static let API_URL = "https://api.exmo.com/v1/"
+        static var API_KEY = "your_key"
+        static var API_SECRET = "your_secret"
+        static var NONCE = "Nonce"
     }
-    
 
-    private var api_key: String!
-    private var secret_key: String!
-    
-    func setUserLoginData(apiKey: String, secretKey: String) {
-        self.api_key = apiKey
-        self.secret_key = secretKey
-    }
-    
     private var nonce: Int {
-        get{
-            let value = UserDefaults.standard.integer(forKey: Config.NONCE.rawValue)
+        get {
+            let value = UserDefaults.standard.integer(forKey: ConnectionConfig.NONCE)
             return (value == 0) ? calculateInitialNonce(): value
         }
-        set{
-            UserDefaults.standard.set(newValue, forKey: Config.NONCE.rawValue)
+        set {
+            UserDefaults.standard.set(newValue, forKey: ConnectionConfig.NONCE)
         }
     }
 
     init() {
-        setupInitValues()
+        // do nothing
     }
-    
-    internal func setupInitValues(){
-        self.api_key = Config.API_KEY.rawValue
-        self.secret_key = Config.API_SECRET.rawValue
-    }
-    
-    public func loadUserInfo()-> Data? {
-        print("start user_info")
-        let post: [String: Any] = [:]
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_info")
-    }
-    
+}
 
-    public func canceledOrders(limit: Int, offset: Int)-> Data? {
-        print("start user_cancelled_orders")
-        var post: [String: Any] = [:]
-        post["limit"] = limit
-        post["offset"] = offset
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_cancelled_orders")
-    }
-
-    public func getUserTrades(limit: Int, offset: Int)-> Data? {
-        print("start user_trades")
-        var post: [String: Any] = [:]
-        post["limit"] = limit
-        post["offset"] = offset
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_trades")
-    }
-
-    private func getResponseFromServerForPost(postDictionary: [String: Any], method: String) -> Data? {
+//
+// @MARK: common methods
+//
+extension ExmoApiHandler {
+    fileprivate func getResponseFromServerForPost(postDictionary: [String: Any], method: String) -> Data? {
         var post: String = ""
         var index: Int = 0
         for (key, value) in postDictionary {
@@ -83,19 +50,21 @@ public class ExmoApiHandler {
         post = "\(post)&nonce=\(nonce)"
         nonce += 1
         print(post)
-        let signedPost = hmacForKeyAndData(key: secret_key, data: post)
-        let strUrlValue = Config.API_URL.rawValue as String + method
+        
+        let signedPost = hmacForKeyAndData(key: ConnectionConfig.API_SECRET, data: post)
+        let strUrlValue = ConnectionConfig.API_URL as String + method
         let request = NSMutableURLRequest(url: URL(string: strUrlValue)!)
+        
         request.httpMethod = "POST"
-        request.setValue(api_key, forHTTPHeaderField: "Key")
+        request.setValue(ConnectionConfig.API_KEY, forHTTPHeaderField: "Key")
         request.setValue(signedPost, forHTTPHeaderField: "Sign")
-
+        
         let requestBodyData = post.data(using: .utf8)
         request.httpBody = requestBodyData
-
-        var error: NSError?
+        
+        // var error: NSError?
         let theResponse: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
-        let responseData = try! NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: theResponse) as Data!
+        let responseData = try! NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: theResponse) as Data?
 //        if (error != nil){
 //            return nil
 //        }
@@ -126,8 +95,40 @@ public class ExmoApiHandler {
         }
         return hashString as String
     }
+}
+
+//
+// @MARK: service methods
+//
+extension ExmoApiHandler {
+    func setUserLoginData(apiKey: String, secretKey: String) {
+        ConnectionConfig.API_KEY = apiKey
+        ConnectionConfig.API_SECRET = secretKey
+    }
     
-    func getAllCurrenciesOnExmo() -> [String] {
+    func loadUserInfo()-> Data? {
+        print("start user_info")
+        let post: [String: Any] = [:]
+        return self.getResponseFromServerForPost(postDictionary: post, method: "user_info")
+    }
+    
+    func loadCanceledOrders(limit: Int, offset: Int)-> Data? {
+        print("start user_cancelled_orders")
+        var post: [String: Any] = [:]
+        post["limit"] = limit
+        post["offset"] = offset
+        return self.getResponseFromServerForPost(postDictionary: post, method: "user_cancelled_orders")
+    }
+    
+    func loadUserTrades(limit: Int, offset: Int)-> Data? {
+        print("start user_trades")
+        var post: [String: Any] = [:]
+        post["limit"] = limit
+        post["offset"] = offset
+        return self.getResponseFromServerForPost(postDictionary: post, method: "user_trades")
+    }
+    
+    func getAllCurrenciesOnExmo() -> [String] { // TODO-REF: use cache instead this. cache should update every login
         return [
             "USD","EUR","RUB","PLN","UAH","BTC","LTC","DOGE","DASH","ETH","WAVES","ZEC","USDT","XMR","XRP","KICK","ETC","BCH"
         ]
@@ -149,7 +150,6 @@ public class ExmoApiHandler {
     }
     
     func getAllPairsOnExmoAsStr(separator: String = ",") -> String {
-        let s = getAllPairsOnExmo().joined(separator: separator)
-        return s
+        return getAllPairsOnExmo().joined(separator: separator)
     }
 }

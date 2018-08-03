@@ -326,7 +326,7 @@ extension RoobikApiHandler {
             }
         }
 
-        AppDelegate.session.updateAlerts(alerts: alerts)
+        AppDelegate.session.appendAlerts(alerts: alerts)
     }
 
     private func handleResponseDeleteAlert(json: JSON) {

@@ -27,7 +27,7 @@ class CreateOrderTableViewCell: UITableViewCell {
     var onCreateOrderCallback: () -> Void = {}
     
     
-    @IBAction func handleChangeValueOrderType(_ sender: Any) {
+    @IBAction func handleChangeValueOrderActionType(_ sender: Any) {
         let text = orderTypeSwitch.isOn ? "Buy" : "Sell"
         self.orderTypeLabel.text = text
     }
@@ -51,7 +51,7 @@ class CreateOrderTableViewCell: UITableViewCell {
         self.orderByLabel.text = "Market"
     }
     
-    private func configureOrderTypeObject(orderType: OrderType) {
+    private func configureOrderActionTypeObject(orderType: OrderActionType) {
         switch orderType {
         case .Buy:
             self.orderBySwitch.isOn = true

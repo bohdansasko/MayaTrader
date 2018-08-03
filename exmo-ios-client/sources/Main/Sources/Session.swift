@@ -9,7 +9,7 @@
 import Foundation
 
 class Session {
-    enum LoginServerType {
+    enum ServerType {
         case Exmo
         case Roobik
     }
@@ -40,17 +40,18 @@ class Session {
 // MARK: Account
 //
 extension Session {
-    func login(serverType: LoginServerType) {
+    func login(serverType: ServerType) {
         switch serverType {
         case .Exmo:
             let uid = CacheManager.sharedInstance.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
             let localUserExists = CacheManager.sharedInstance.userCoreManager.isUserExists(uid: uid)
             if localUserExists {
-                user = CacheManager.sharedInstance.getUser()
-            } else {
-                user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
+                self.user = CacheManager.sharedInstance.getUser()
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
             }
-            AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
+//            else {
+//                self.user = CacheManager.sharedInstance.userCoreManager.createNewLocalUser()
+//            }
         case .Roobik:
             AppDelegate.roobikController.signIn()
             break
@@ -124,9 +125,9 @@ extension Session {
         AppDelegate.roobikController.deleteAlert(alertId: alertId)
     }
     
-    func updateAlerts(alerts: [AlertItem]) {
+    func appendAlerts(alerts: [AlertItem]) {
         self.alerts += alerts
-        print("call updateAlerts(...)")
+        print("call appendAlerts(...)")
     }
     
     func getAlerts() -> [AlertItem] {

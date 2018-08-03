@@ -32,7 +32,7 @@ fileprivate struct UIItem {
     }
 }
 
-fileprivate enum ViewOrderType {
+fileprivate enum CreateOrderViewType {
     case Limit
     case Instant
 }
@@ -41,7 +41,7 @@ class CreateOrderDisplayManager: NSObject {
     var tableView: UITableView!
     var output: CreateOrderViewOutput!
     var cell: CreateOrderTableViewCell? = nil
-    fileprivate var viewOrderType: ViewOrderType = .Limit
+    fileprivate var viewOrderType: CreateOrderViewType = .Limit
     
     private var dataProvider: [UIItem] = []
     private var currencyRow: AlertTableViewCellWithArrow? = nil
@@ -55,30 +55,19 @@ class CreateOrderDisplayManager: NSObject {
     deinit {
         AppDelegate.notificationController.removeObserver(self)
     }
-    
+}
+
+extension CreateOrderDisplayManager {
     func setTableView(tableView: UITableView!) {
         self.tableView = tableView
         self.tableView.delegate = self
         self.tableView.dataSource = self
-
+        
         registerTableCells()
-
+        
         self.reloadData()
     }
-
-    private func registerTableCells() {
-        let classes = [
-            CellName.AddAlertTableViewCell.rawValue,
-            CellName.AlertTableViewCellWithArrow.rawValue,
-            CellName.TableViewCellWithTwoButtons.rawValue,
-            CellName.OrderByTableViewCell.rawValue
-        ]
-
-        for className in classes {
-            self.tableView.register(UINib(nibName: className, bundle: nil), forCellReuseIdentifier: className)
-        }
-    }
-
+    
     func reloadData() {
         self.tableView.reloadData()
     }
@@ -90,7 +79,56 @@ class CreateOrderDisplayManager: NSObject {
         }
     }
     
-    private func getFieldsForRender() -> [UIItem] {
+    func updateSelectedCurrency(name: String, price: Double) {
+        self.currencyRow?.updateData(leftText: name, rightText: String(price))
+    }
+    
+    fileprivate func registerTableCells() {
+        let classes = [
+            CellName.AddAlertTableViewCell.rawValue,
+            CellName.AlertTableViewCellWithArrow.rawValue,
+            CellName.TableViewCellWithTwoButtons.rawValue,
+            CellName.OrderByTableViewCell.rawValue
+        ]
+        
+        for className in classes {
+            self.tableView.register(UINib(nibName: className, bundle: nil), forCellReuseIdentifier: className)
+        }
+    }
+    
+    fileprivate func isAllRequiredFieldsFilled() -> Bool {
+        for sectionIndex in 0 ..< 2 {
+            guard let cell = self.tableCells[IndexPath(row: 0, section: sectionIndex)] else {
+                return false
+            }
+            if cell.getTextData().isEmpty {
+                return false
+            }
+        }
+        return true
+    }
+    
+    fileprivate func updateViewLayout(viewType: CreateOrderViewType) {
+        if viewType != self.viewOrderType {
+            self.viewOrderType = viewType
+            self.dataProvider = getFieldsForRender()
+            self.tableCells = [:]
+            self.reloadData()
+        }
+    }
+    
+    fileprivate func isFieldTouchEnabled(cellType: UIFieldType) -> Bool {
+        switch cellType {
+        case .Amount,
+             .ForAmount,
+             .Price:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    fileprivate func getFieldsForRender() -> [UIItem] {
         switch self.viewOrderType {
         case .Limit:
             return [
@@ -110,53 +148,19 @@ class CreateOrderDisplayManager: NSObject {
                 UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
                 UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
                 
-//                UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
-//                UIItem(type: .TotalWillBe, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
+                //                UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
+                //                UIItem(type: .TotalWillBe, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
                 
                 UIItem(type: .OrderBy, item: nil),
                 UIItem(type: .TwoButtonsSellAndBuy, item: nil)
             ]
         }
-        
-    }
-    
-    func updateSelectedCurrency(name: String, price: Double) {
-        self.currencyRow?.updateData(leftText: name, rightText: String(price))
-    }
-
-    private func isAllRequiredFieldsFilled() -> Bool {
-        for sectionIndex in 0 ..< 2 {
-            guard let cell = self.tableCells[IndexPath(row: 0, section: sectionIndex)] else {
-                return false
-            }
-            if cell.getTextData().isEmpty {
-                return false
-            }
-        }
-        return true
-    }
-    
-    private func updateViewLayout(viewType: ViewOrderType) {
-        if viewType != self.viewOrderType {
-            self.viewOrderType = viewType
-            self.dataProvider = getFieldsForRender()
-            self.tableCells = [:]
-            self.reloadData()
-        }
-    }
-    
-    fileprivate func isFieldTouchEnabled(cellType: UIFieldType) -> Bool {
-        switch cellType {
-        case .Amount,
-             .ForAmount,
-             .Price:
-             return true
-        default:
-            return false
-        }
     }
 }
 
+//
+// @MARK: datasource
+//
 extension CreateOrderDisplayManager: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataProvider.count
@@ -217,9 +221,6 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             })
              self.tableCells[indexPath] = cell
             return cell
-        default:
-            // do nothing
-            break
         }
 
         return UITableViewCell()
@@ -232,6 +233,9 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
     }
 }
 
+//
+// @MARK: delegate
+//
 extension CreateOrderDisplayManager: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 20, y: 0, width: tableView.frame.size.width, height: 2))

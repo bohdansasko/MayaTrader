@@ -60,6 +60,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+//
+// @MARK: notification controller
+//
 class NotificationController {
     func postBroadcastMessage(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
         NotificationCenter.default.post(name: name, object: nil, userInfo: data)
@@ -75,7 +78,7 @@ class NotificationController {
 }
 
 //
-// @Mark: static methods
+// @MARK: static instances
 //
 extension AppDelegate {
     static let session = Session()
@@ -86,7 +89,7 @@ extension AppDelegate {
 }
 
 //
-// @Mark: static methods
+// @MARK: static methods
 //
 extension AppDelegate {
     static func isIPhone(model: IPhoneModel) -> Bool {

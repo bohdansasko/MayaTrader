@@ -9,7 +9,7 @@
 import Foundation
 
 struct OrderModel {
-    private var orderType: OrderType
+    private var orderType: OrderActionType
     private var currencyPair: String
     private var createdDate: Date
     private var price: Double
@@ -25,7 +25,7 @@ struct OrderModel {
         amount = 0.0
     }
 
-    init(orderType: OrderType, currencyPair: String, createdDate: Date, price: Double, quantity: Double, amount: Double) {
+    init(orderType: OrderActionType, currencyPair: String, createdDate: Date, price: Double, quantity: Double, amount: Double) {
         self.orderType = orderType
         self.currencyPair = currencyPair
         self.createdDate = createdDate
@@ -34,7 +34,7 @@ struct OrderModel {
         self.amount = amount
     }
     
-    func getOrderType() -> OrderType {
+    func getOrderActionType() -> OrderActionType {
         return orderType
     }
     
@@ -60,7 +60,7 @@ struct OrderModel {
         return String(amount)
     }
     
-    func getOrderTypeAsStr() -> String {
+    func getOrderActionTypeAsStr() -> String {
         switch orderType {
         case .Buy: return "Buy"
         case .Sell: return "Sell"
