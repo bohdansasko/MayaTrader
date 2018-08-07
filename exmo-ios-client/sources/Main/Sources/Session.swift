@@ -79,21 +79,43 @@ extension Session {
 // MARK: Orders
 //
 extension Session {
-    func loadOrders(orderType: OrdersModel.DisplayOrderType, servertType: ServerType = .Exmo) {
+    func loadOrders(orderType: OrdersModel.DisplayOrderType, serverType: ServerType = .Exmo) {
         switch orderType {
         case .Opened:
-            // load opened orders
+            switch serverType {
+            case .Exmo:
+                guard let orders = AppDelegate.exmoController.loadOpenedOrders(limit: 100, offset: 0) else {
+                    return
+                }
+                self.setOpenedOrders(orders: orders)
+                AppDelegate.notificationController.postBroadcastMessage(name: .OpenedOrdersLoaded)
+                break
+            case .Roobik:
+                break
+            }
             break
         case .Canceled:
-            // load canceled orders
+            switch serverType {
+            case .Exmo:
+                guard let orders = AppDelegate.exmoController.loadCanceledOrders(limit: 100, offset: 0) else {
+                    print("can't load canceled orders")
+                    return
+                }
+                self.setCanceledOrders(orders: orders)
+                AppDelegate.notificationController.postBroadcastMessage(name: .CanceledOrdersLoaded)
+                break
+            case .Roobik:
+                break
+            }
             break
         case .Deals:
-            switch servertType {
+            switch serverType {
             case .Exmo:
-//                guard let data = AppDelegate.exmoController.loadUserTrades(limit: 0, offset: 100) else {
-//                    return
-//                }
-                print()
+                guard let orders = AppDelegate.exmoController.loadDeals(limit: 100, offset: 0) else {
+                    return
+                }
+                self.setDeals(orders: orders)
+                AppDelegate.notificationController.postBroadcastMessage(name: .DealsOrdersLoaded)
                 break
             case .Roobik:
                 break
@@ -102,10 +124,34 @@ extension Session {
         }
     }
     
-    // loadCanceledOrders
-    func cancelOpenedOrder(byIndex index: Int) {
-        self.openedOrders.cancelOpenedOrder(byIndex: index)
-        // TODO Orders: send message to server
+    private func setOpenedOrders(orders: OrdersModel) {
+        self.openedOrders = orders
+    }
+
+    private func setCanceledOrders(orders: OrdersModel) {
+        self.canceledOrders = orders
+    }
+
+    private func setDeals(orders: OrdersModel) {
+        self.dealsOrders = orders
+    }
+
+    func createOrder(order: OrderModel) -> Bool {
+        guard let createResult = AppDelegate.exmoController.createOrder(pair: order.getCurrencyPair(), quantity: order.getQuantity(), price: order.getPrice(), type: order.getCreateType()) else {
+            return false
+        }
+        if createResult.result {
+            return true
+        }
+        return false
+    }
+    
+    func cancelOpenedOrder(id: Int64, byIndex index: Int) -> Bool {
+        if AppDelegate.exmoController.cancelOrder(id: id) {
+            self.openedOrders.removeItem(byIndex: index)
+            return true
+        }
+        return false
     }
     
     //
@@ -121,6 +167,10 @@ extension Session {
     
     func getDealsOrders() -> OrdersModel {
         return self.dealsOrders
+    }
+    
+    func isCanceledOrdersLoaded() -> Bool {
+        return true
     }
 }
 
@@ -162,22 +212,22 @@ extension Session {
     func initHardcode() {
         // opened orders
         self.openedOrders = OrdersModel(orders: [
-            OrderModel(orderType: .Buy, currencyPair: "BTC/USD", createdDate: Date(), price: 14234, quantity: 2, amount: 0.5123),
-            OrderModel(orderType: .Sell, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
+            OrderModel(id: 1, orderType: .Buy, currencyPair: "BTC/USD", createdDate: Date(), price: 14234, quantity: 2, amount: 0.5123),
+            OrderModel(id: 2, orderType: .Sell, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
             ])
         
         // canceled orders
         let listOfCanceledOrders = [
-            OrderModel(orderType: .Buy, currencyPair: "ZEC/USD", createdDate: Date(), price: 241.44356774, quantity: 192.76358764, amount: 0.79837947),
-            OrderModel(orderType: .Sell, currencyPair: "LTC/USD", createdDate: Date(), price: 526.78165001, quantity: 23.77988769, amount: 0.15),
-            OrderModel(orderType: .Buy, currencyPair: "ZEC/USD", createdDate: Date(), price: 241.44356774, quantity: 192.76358764, amount: 0.79837947),
-            OrderModel(orderType: .Sell, currencyPair: "LTC/USD", createdDate: Date(), price: 526.78165001, quantity: 23.77988769, amount: 0.15)
+            OrderModel(id: 3, orderType: .Buy, currencyPair: "ZEC/USD", createdDate: Date(), price: 241.44356774, quantity: 192.76358764, amount: 0.79837947),
+            OrderModel(id: 4, orderType: .Sell, currencyPair: "LTC/USD", createdDate: Date(), price: 526.78165001, quantity: 23.77988769, amount: 0.15),
+            OrderModel(id: 5, orderType: .Buy, currencyPair: "ZEC/USD", createdDate: Date(), price: 241.44356774, quantity: 192.76358764, amount: 0.79837947),
+            OrderModel(id: 6, orderType: .Sell, currencyPair: "LTC/USD", createdDate: Date(), price: 526.78165001, quantity: 23.77988769, amount: 0.15)
         ]
         self.canceledOrders = OrdersModel(orders: listOfCanceledOrders)
         
         // deals orders
         let dealsOrders = [
-            OrderModel(orderType: .Sell, currencyPair: "ETH/USD", createdDate: Date(), price: 986, quantity: 152.83, amount: 0.155)
+            OrderModel(id: 7, orderType: .Sell, currencyPair: "ETH/USD", createdDate: Date(), price: 986, quantity: 152.83, amount: 0.155)
         ]
         self.dealsOrders = OrdersModel(orders: dealsOrders)
         

@@ -8,6 +8,7 @@
 
 import Foundation
 import CommonCrypto
+import SwiftyJSON
 
 public class ExmoApiHandler {
     static let shared = ExmoApiHandler()
@@ -114,6 +115,15 @@ extension ExmoApiHandler {
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_info")
     }
     
+    //
+    func loadOpenedOrders(limit: Int, offset: Int)-> Data? {
+        print("start user_opened_orders")
+        var post: [String: Any] = [:]
+        post["limit"] = limit
+        post["offset"] = offset
+        return self.getResponseFromServerForPost(postDictionary: post, method: "user_opened_orders")
+    }
+    
     func loadCanceledOrders(limit: Int, offset: Int)-> Data? {
         print("start user_cancelled_orders")
         var post: [String: Any] = [:]
@@ -122,12 +132,32 @@ extension ExmoApiHandler {
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_cancelled_orders")
     }
     
-    func loadUserTrades(limit: Int = 0, offset: Int = 100)-> Data? {
+    func loadUserTrades(limit: Int = 100, offset: Int = 0, pairs: String = "")-> Data? {
         print("start user_trades")
         var post: [String: Any] = [:]
+        post["pair"] = pairs
         post["limit"] = limit
         post["offset"] = offset
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_trades")
+    }
+    
+    
+    //
+    func createOrder(pair: String, quantity: Double, price: Double, type: String) -> Data? {
+        print("start order_create")
+        var post: [String: Any] = [:]
+        post["pair"] = pair
+        post["quantity"] = quantity
+        post["price"] = price
+        post["type"] = type
+        return self.getResponseFromServerForPost(postDictionary: post, method: "order_create")
+    }
+
+    func cancelOrder(id: Int64)-> Data? {
+        print("start order_cancel")
+        var post: [String: Any] = [:]
+        post["order_id"] = id
+        return self.getResponseFromServerForPost(postDictionary: post, method: "order_cancel")
     }
 }
 
@@ -157,6 +187,87 @@ class ExmoAccountController {
     func getAllPairsOnExmoAsStr(separator: String = ",") -> String {
         return getAllPairsOnExmo().joined(separator: separator)
     }
+    
+    func loadOpenedOrders(limit: Int, offset: Int) -> OrdersModel? {
+        guard let responseData = ExmoApiHandler.shared.loadOpenedOrders(limit: limit, offset: offset) else {
+            print("loadOpenedOrders: responseData is nil")
+            return nil
+        }
+        
+        do {
+            let orders = try OrdersModel(json: JSON(data: responseData))
+            return orders
+        } catch {
+            print("caught json error in method: loadOpenedOrders")
+        }
+        return nil
+    }
+    
+    func loadCanceledOrders(limit: Int, offset: Int) -> OrdersModel? {
+        guard let responseData = ExmoApiHandler.shared.loadCanceledOrders(limit: limit, offset: offset) else {
+            print("loadCanceledOrders: responseData is nil")
+            return nil
+        }
+        
+        do {
+            let orders = try OrdersModel(json: JSON(data: responseData))
+            return orders
+        } catch {
+            print("caught json error in method: loadCanceledOrders")
+        }
+        return nil
+    }
+    
+    func loadDeals(limit: Int = 1000, offset: Int = 0) -> OrdersModel? {
+        guard let responseData = ExmoApiHandler.shared.loadUserTrades(limit: limit, offset: offset, pairs: "XRP_USD") else {
+            print("loadDeals: responseData is nil")
+            return nil
+        }
+        
+        do {
+            let orders = try OrdersModel(json: JSON(data: responseData))
+            return orders
+        } catch {
+            print("caught json error in method: loadDeals")
+        }
+        
+        return nil
+    }
+    
+    //
+    func createOrder(pair: String, quantity: Double, price: Double, type: String) -> OrderRequestResult? {
+        guard let responseData = ExmoApiHandler.shared.createOrder(pair: pair, quantity: quantity, price: price, type: type) else {
+            print("createOrder: empty data")
+            return nil
+        }
+        
+        do {
+            if let requestResult = try OrderRequestResult(JSON: JSON(data: responseData).dictionaryValue) {
+                return requestResult
+            }
+        } catch {
+            print("createOrder: caught json error in method")
+        }
+        
+        return nil
+    }
+    
+    func cancelOrder(id: Int64) -> Bool {
+        guard let responseData = ExmoApiHandler.shared.cancelOrder(id: id) else {
+            print("cancelOrder: empty data")
+            return false
+        }
+        
+        do {
+            if let requestResult = try RequestResult(JSON: JSON(data: responseData).dictionaryValue) {
+                return requestResult.result
+            }
+        } catch {
+            print("cancelOrder: caught json error in method")
+        }
+        
+        return false
+    }
 }
 
 extension ExmoAccountController {
@@ -168,7 +279,7 @@ extension ExmoAccountController {
         
         print("loaded exmo userInfo: \(jsonString!)")
         
-        if let requestError = RequestError(JSONString: jsonString!) {
+        if let requestError = RequestResult(JSONString: jsonString!) {
             print("qr data doesn't validate: \(requestError.error!)")
             AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
             return

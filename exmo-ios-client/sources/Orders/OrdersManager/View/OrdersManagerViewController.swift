@@ -44,6 +44,16 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
         
         self.displayManager.setTableView(tableView: self.tableView)
         self.displayManager.showDataBySegment(displayOrderType: .Opened)
+        
+//        if AppDelegate.session.isOpenedOrdersLoaded() {
+//            // do nothing
+//        }
+//        if AppDelegate.session.isCanceledOrdersLoaded() {
+//            self.onCanceledOrdersLoaded()
+//        }
+//        if AppDelegate.session.isDealsOrdersLoaded() {
+//            self.onDealsOrdersLoaded()
+//        }
     }
     
     // MARK: OrdersManagerViewInput
@@ -82,9 +92,21 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     private func subscribeOnEvents() {
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onCanceledOrdersLoaded), name: .CanceledOrdersLoaded)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onDealsOrdersLoaded), name: .DealsOrdersLoaded)
     }
     
     @objc private func updateDisplayInfo() {
+        self.displayManager.reloadData()
+    }
+    
+    @objc private func onCanceledOrdersLoaded() {
+        self.displayManager.setCanceledOrders(orders: AppDelegate.session.getCanceledOrders())
+        self.displayManager.reloadData()
+    }
+
+    @objc private func onDealsOrdersLoaded() {
+        self.displayManager.setDealsOrders(orders: AppDelegate.session.getDealsOrders())
         self.displayManager.reloadData()
     }
 }

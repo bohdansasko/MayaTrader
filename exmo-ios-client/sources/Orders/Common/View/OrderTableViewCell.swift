@@ -32,11 +32,11 @@ class OrderTableViewCell: UITableViewCell {
     }
 
     func setContent(orderData: OrderModel) {
-        self.currencyPairLabel.text = orderData.getCurrencyPair()
+        self.currencyPairLabel.text = orderData.getDisplayCurrencyPair()
         self.orderCreateDateLabel.text = orderData.getDateCreatedAsStr()
-        self.priceValueLabel.text = orderData.getPrice()
-        self.quantityValueLabel.text = orderData.getQuantity()
-        self.amountValueLabel.text = orderData.getAmount()
+        self.priceValueLabel.text = orderData.getPriceAsStr()
+        self.quantityValueLabel.text = orderData.getQuantityAsStr()
+        self.amountValueLabel.text = orderData.getAmountAsStr()
         
         self.operationValueLabel.text = orderData.getOrderActionTypeAsStr()
         self.operationValueLabel.backgroundColor = getOrderActionTypeLabelTextColor(orderType: orderData.getOrderActionType())

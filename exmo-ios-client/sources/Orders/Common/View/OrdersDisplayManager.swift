@@ -41,6 +41,9 @@ class OrdersDisplayManager: NSObject {
 
     func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
         guard let data = self.getDataBySegmentIndex(displayOrderType: displayOrderType) else {
+            self.dataProvider = OrdersModel()
+            self.checkOnRequirePlaceHolder()
+            self.reloadData()
             return
         }
         self.dataProvider = data
@@ -58,12 +61,14 @@ class OrdersDisplayManager: NSObject {
         }
     }
     
-    func setOrdersData(openedOrders: OrdersModel, canceledOrders: OrdersModel) {
-        self.openedOrders = openedOrders
-        self.canceledOrders = canceledOrders
-        self.dealsOrders = OrdersModel(orders: openedOrders.getOrders() + canceledOrders.getOrders())
+    func setCanceledOrders(orders: OrdersModel) {
+        self.canceledOrders = orders
     }
     
+    func setDealsOrders(orders: OrdersModel) {
+        self.dealsOrders = orders
+    }
+
     private func checkOnRequirePlaceHolder() {
         if (self.dataProvider.isDataExists()) {
             self.view.removePlaceholderNoData()
@@ -120,12 +125,14 @@ extension OrdersDisplayManager: UITableViewDelegate  {
         }
         
         let deleteAction = UIContextualAction(style: .normal, title: "", handler: { action, view, completionHandler  in
-            print("called delete action for row = ", indexPath.section)
-            self.dataProvider.cancelOpenedOrder(byIndex: indexPath.section)
-            self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: UITableViewRowAnimation.top)
-            AppDelegate.session.cancelOpenedOrder(byIndex: indexPath.section)
-            self.checkOnRequirePlaceHolder()
-            completionHandler(false)
+            let id = self.dataProvider.getOrderBy(index: indexPath.section).getId()
+            if AppDelegate.session.cancelOpenedOrder(id: id, byIndex: indexPath.section) {
+                print("called delete action for row = ", indexPath.section)
+                self.dataProvider.removeItem(byIndex: indexPath.section)
+                self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: UITableViewRowAnimation.top)
+                self.checkOnRequirePlaceHolder()
+                completionHandler(false)
+            }
         })
         deleteAction.image = UIImage(named: "icNavbarTrash")
         deleteAction.backgroundColor = UIColor(red: 255/255.0, green: 105/255.0, blue: 96/255.0, alpha: 1.0)

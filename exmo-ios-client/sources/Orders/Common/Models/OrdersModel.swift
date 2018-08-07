@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class OrdersModel {
     // MARK: user types
@@ -20,6 +21,27 @@ class OrdersModel {
     
     init() {
         self.orders = []
+    }
+    
+    convenience init(json: JSON) {
+        self.init()
+        self.parseJSON(json: json)
+    }
+    
+    private func parseJSON(json: JSON) {
+        guard let ordersArray = json.array else {
+            return
+        }
+        
+        for jsonOrder in ordersArray {
+            if let map = jsonOrder.dictionaryObject {
+                guard let order = OrderModel(JSON: map) else {
+                    continue
+                }
+                
+                self.orders.append(order)
+            }
+        }
     }
     
     init(orders: [OrderModel]) {
@@ -38,11 +60,15 @@ class OrdersModel {
         return orders.isEmpty == false
     }
     
-    func cancelOpenedOrder(byIndex index: Int) {
+    func removeItem(byIndex index: Int) {
         self.orders.remove(at: index)
     }
     
     func getOrders() -> [OrderModel] {
         return self.orders
+    }
+    
+    func clear() {
+        self.orders.removeAll()
     }
 }

@@ -6,7 +6,7 @@
 import Foundation
 import ObjectMapper
 
-class RequestError: Mappable {
+class RequestResult: Mappable {
     var result = false
     var error: String?
 
@@ -19,5 +19,19 @@ class RequestError: Mappable {
     func mapping(map: Map) {
         result <- map["result"]
         error <- map["error"]
+    }
+}
+
+class OrderRequestResult : RequestResult {
+    var id: Int64
+    
+    required init?(map: Map) {
+        self.id = -1
+        super.init(map: map)
+    }
+    
+    override func mapping(map: Map) {
+        self.mapping(map: map)
+        id <- map["order_id"]
     }
 }
