@@ -116,12 +116,12 @@ extension ExmoApiHandler {
     }
     
     //
-    func loadOpenedOrders(limit: Int, offset: Int)-> Data? {
+    func loadOpenOrders(limit: Int, offset: Int)-> Data? {
         print("start user_opened_orders")
         var post: [String: Any] = [:]
         post["limit"] = limit
         post["offset"] = offset
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_opened_orders")
+        return self.getResponseFromServerForPost(postDictionary: post, method: "user_open_orders")
     }
     
     func loadCanceledOrders(limit: Int, offset: Int)-> Data? {
@@ -188,9 +188,9 @@ class ExmoAccountController {
         return getAllPairsOnExmo().joined(separator: separator)
     }
     
-    func loadOpenedOrders(limit: Int, offset: Int) -> OrdersModel? {
-        guard let responseData = ExmoApiHandler.shared.loadOpenedOrders(limit: limit, offset: offset) else {
-            print("loadOpenedOrders: responseData is nil")
+    func loadOpenOrders(limit: Int, offset: Int) -> OrdersModel? {
+        guard let responseData = ExmoApiHandler.shared.loadOpenOrders(limit: limit, offset: offset) else {
+            print("loadOpenOrders: responseData is nil")
             return nil
         }
         
@@ -198,7 +198,7 @@ class ExmoAccountController {
             let orders = try OrdersModel(json: JSON(data: responseData))
             return orders
         } catch {
-            print("caught json error in method: loadOpenedOrders")
+            print("caught json error in method: loadOpenOrders")
         }
         return nil
     }
@@ -258,8 +258,13 @@ class ExmoAccountController {
             return false
         }
         
+        let jsonString = String(data: responseData, encoding: .utf8)
+        
         do {
-            if let requestResult = try RequestResult(JSON: JSON(data: responseData).dictionaryValue) {
+            if let requestResult = try RequestResult(JSONString: jsonString!) {
+                if requestResult.error != nil {
+                    print("cancelOrder: \(requestResult.error!)")
+                }
                 return requestResult.result
             }
         } catch {
@@ -280,9 +285,11 @@ extension ExmoAccountController {
         print("loaded exmo userInfo: \(jsonString!)")
         
         if let requestError = RequestResult(JSONString: jsonString!) {
-            print("qr data doesn't validate: \(requestError.error!)")
-            AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-            return
+            if requestError.error != nil {
+                print("qr data doesn't validate: \(requestError.error!)")
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+                return
+            }
         }
         
         guard let userData = User(JSONString: jsonString!) else {

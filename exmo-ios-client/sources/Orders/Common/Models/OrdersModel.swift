@@ -12,7 +12,7 @@ import SwiftyJSON
 class OrdersModel {
     // MARK: user types
     enum DisplayOrderType: Int {
-        case Opened = 0
+        case Open = 0
         case Canceled
         case Deals
     }
@@ -29,17 +29,31 @@ class OrdersModel {
     }
     
     private func parseJSON(json: JSON) {
-        guard let ordersArray = json.array else {
-            return
-        }
         
-        for jsonOrder in ordersArray {
-            if let map = jsonOrder.dictionaryObject {
-                guard let order = OrderModel(JSON: map) else {
-                    continue
+        if let ordersArray = json.array {
+            for jsonOrder in ordersArray {
+                if let map = jsonOrder.dictionaryObject {
+                    guard let order = OrderModel(JSON: map) else {
+                        continue
+                    }
+                    
+                    self.orders.append(order)
                 }
+            }
+        }
+
+        if let ordersDictionary = json.dictionary {
+            for (currencyPair, orders) in ordersDictionary {
+                for order in orders.array! {
+                    guard let map = order.dictionary else {
+                        continue
+                    }
                 
-                self.orders.append(order)
+                    let model = OrderModel(id: (map["order_id"]?.int64Value)!, orderType: .Sell, currencyPair: (map["pair"]?.stringValue)!, createdDate: Date(timeIntervalSince1970: (map["created"]?.doubleValue)! ), price: (map["price"]?.doubleValue)!, quantity: (map["quantity"]?.doubleValue)!, amount: (map["amount"]?.doubleValue)!)
+                    if model != nil {
+                        self.orders.append(model)
+                    }
+                }
             }
         }
     }

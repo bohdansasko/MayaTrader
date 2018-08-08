@@ -35,7 +35,7 @@ class TransformOrderType : TransformType {
 
 struct OrderModel: Mappable {
     private var orderType: OrderActionType
-    private var currencyPair: String
+            var currencyPair: String
     private var createdDate: Date
     private var price: Double
     private var quantity: Double

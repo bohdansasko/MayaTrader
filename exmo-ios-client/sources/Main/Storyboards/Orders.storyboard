@@ -44,7 +44,7 @@
                                     <constraint firstAttribute="height" constant="30" id="kVr-TW-HX4"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="Opened"/>
+                                    <segment title="Open"/>
                                     <segment title="Canceled"/>
                                     <segment title="Deals"/>
                                 </segments>
@@ -131,7 +131,7 @@
                                                                                     <rect key="frame" x="0.0" y="52" width="80" height="33"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="amount: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9o-Pj-LfP" userLabel="amountNameLabel">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="13"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="80" id="73f-LY-Deu"/>
                                                                                                 <constraint firstAttribute="height" constant="20" id="QVF-xH-SoF"/>
@@ -141,7 +141,7 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="207.743263" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0oR-Ha-nLj" userLabel="amountValueLabel">
-                                                                                            <rect key="frame" x="0.0" y="20" width="80" height="13"/>
+                                                                                            <rect key="frame" x="0.0" y="13" width="80" height="20"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="width" constant="80" id="5kj-5K-n6j"/>
                                                                                                 <constraint firstAttribute="height" constant="20" id="wOR-Tp-sCk"/>
@@ -189,7 +189,7 @@
                                                                                     <rect key="frame" x="0.0" y="52" width="80" height="33"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTF-pd-iJl" userLabel="priceNameLabel">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="20"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="80" height="13"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="C7f-iw-FeG"/>
                                                                                                 <constraint firstAttribute="width" constant="80" id="fTg-5W-j4z"/>
@@ -199,7 +199,7 @@
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="401" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3h-fp-Mj8" userLabel="priceValueLabel">
-                                                                                            <rect key="frame" x="0.0" y="20" width="80" height="13"/>
+                                                                                            <rect key="frame" x="0.0" y="13" width="80" height="20"/>
                                                                                             <constraints>
                                                                                                 <constraint firstAttribute="height" constant="20" id="b6H-Ne-Qxd"/>
                                                                                                 <constraint firstAttribute="width" constant="80" id="qw9-vZ-x2d"/>
@@ -323,12 +323,6 @@
         <!--Create Order View Controller-->
         <scene sceneID="cfO-U5-OT8">
             <objects>
-                <customObject id="3CL-Jc-fMg" customClass="CreateOrderModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
-                    <connections>
-                        <outlet property="createOrderViewController" destination="mZn-E2-hBP" id="H9B-K1-TyU"/>
-                    </connections>
-                </customObject>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="R4p-N4-UjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="mZn-E2-hBP" customClass="CreateOrderViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="EqC-N9-oPj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
@@ -351,6 +345,12 @@
                         <outlet property="cancelButton" destination="VjZ-nW-94e" id="nS3-uE-O7G"/>
                     </connections>
                 </tableViewController>
+                <customObject id="3CL-Jc-fMg" customClass="CreateOrderModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="createOrderViewController" destination="mZn-E2-hBP" id="H9B-K1-TyU"/>
+                    </connections>
+                </customObject>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R4p-N4-UjZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2722" y="-1033"/>
         </scene>

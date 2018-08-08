@@ -11,9 +11,7 @@ class RequestResult: Mappable {
     var error: String?
 
     required init?(map: Map) {
-        if map.JSON["error"] == nil {
-            return nil
-        }
+        // do nothing
     }
 
     func mapping(map: Map) {

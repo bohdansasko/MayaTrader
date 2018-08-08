@@ -81,14 +81,14 @@ extension Session {
 extension Session {
     func loadOrders(orderType: OrdersModel.DisplayOrderType, serverType: ServerType = .Exmo) {
         switch orderType {
-        case .Opened:
+        case .Open:
             switch serverType {
             case .Exmo:
-                guard let orders = AppDelegate.exmoController.loadOpenedOrders(limit: 100, offset: 0) else {
+                guard let orders = AppDelegate.exmoController.loadOpenOrders(limit: 100, offset: 0) else {
                     return
                 }
-                self.setOpenedOrders(orders: orders)
-                AppDelegate.notificationController.postBroadcastMessage(name: .OpenedOrdersLoaded)
+                self.setOpenOrders(orders: orders)
+                AppDelegate.notificationController.postBroadcastMessage(name: .OpenOrdersLoaded)
                 break
             case .Roobik:
                 break
@@ -124,7 +124,7 @@ extension Session {
         }
     }
     
-    private func setOpenedOrders(orders: OrdersModel) {
+    private func setOpenOrders(orders: OrdersModel) {
         self.openedOrders = orders
     }
 
@@ -146,7 +146,7 @@ extension Session {
         return false
     }
     
-    func cancelOpenedOrder(id: Int64, byIndex index: Int) -> Bool {
+    func cancelOpenOrder(id: Int64, byIndex index: Int) -> Bool {
         if AppDelegate.exmoController.cancelOrder(id: id) {
             self.openedOrders.removeItem(byIndex: index)
             return true
@@ -157,7 +157,7 @@ extension Session {
     //
     // @MARK: getters
     //
-    func getOpenedOrders() -> OrdersModel {
+    func getOpenOrders() -> OrdersModel {
         return self.openedOrders
     }
     
@@ -169,8 +169,16 @@ extension Session {
         return self.dealsOrders
     }
     
+    func isOpenOrdersLoaded() -> Bool {
+        return self.openedOrders.isDataExists()
+    }
+    
     func isCanceledOrdersLoaded() -> Bool {
-        return true
+        return self.canceledOrders.isDataExists()
+    }
+    
+    func isDealsOrdersLoaded() -> Bool {
+        return self.dealsOrders.isDataExists()
     }
 }
 

@@ -48,17 +48,21 @@ class OrdersDisplayManager: NSObject {
         }
         self.dataProvider = data
         self.checkOnRequirePlaceHolder()
-        self.shouldUseActions = displayOrderType == .Opened
+        self.shouldUseActions = displayOrderType == .Open
         self.reloadData()
     }
 
     // MARK: private methods
     private func getDataBySegmentIndex(displayOrderType: OrdersModel.DisplayOrderType) -> OrdersModel? {
         switch displayOrderType {
-            case .Opened: return self.openedOrders
+            case .Open: return self.openedOrders
             case .Canceled: return self.canceledOrders
             default: return self.dealsOrders
         }
+    }
+    
+    func setOpenOrders(orders: OrdersModel) {
+        self.openedOrders = orders
     }
     
     func setCanceledOrders(orders: OrdersModel) {
@@ -126,13 +130,12 @@ extension OrdersDisplayManager: UITableViewDelegate  {
         
         let deleteAction = UIContextualAction(style: .normal, title: "", handler: { action, view, completionHandler  in
             let id = self.dataProvider.getOrderBy(index: indexPath.section).getId()
-            if AppDelegate.session.cancelOpenedOrder(id: id, byIndex: indexPath.section) {
+            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: indexPath.section) {
                 print("called delete action for row = ", indexPath.section)
-                self.dataProvider.removeItem(byIndex: indexPath.section)
-                self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: UITableViewRowAnimation.top)
+                self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
                 self.checkOnRequirePlaceHolder()
-                completionHandler(false)
             }
+            completionHandler(true)
         })
         deleteAction.image = UIImage(named: "icNavbarTrash")
         deleteAction.backgroundColor = UIColor(red: 255/255.0, green: 105/255.0, blue: 96/255.0, alpha: 1.0)

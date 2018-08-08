@@ -23,7 +23,7 @@ extension Notification.Name {
     static let UserFailSignIn = Notification.Name("UserFailSignIn")
     static let UserSignOut = Notification.Name("UserSignOut")
 
-    static let OpenedOrdersLoaded = Notification.Name("CanceledOrdersLoaded")
+    static let OpenOrdersLoaded = Notification.Name("CanceledOrdersLoaded")
     static let CanceledOrdersLoaded = Notification.Name("CanceledOrdersLoaded")
     static let DealsOrdersLoaded = Notification.Name("CanceledOrdersLoaded")
     

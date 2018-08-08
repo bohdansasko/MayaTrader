@@ -36,6 +36,7 @@ class LoginInteractor: LoginInteractorInput {
     }
     
     @objc func onUserSignIn() {
+        AppDelegate.session.loadOrders(orderType: .Open, serverType: .Exmo)
         AppDelegate.session.loadOrders(orderType: .Deals, serverType: .Exmo)
         AppDelegate.session.loadOrders(orderType: .Canceled, serverType: .Exmo)
         output.emitCloseView()
