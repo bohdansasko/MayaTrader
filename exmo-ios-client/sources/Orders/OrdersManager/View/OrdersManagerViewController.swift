@@ -103,21 +103,21 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     }
     
     @objc private func updateDisplayInfo() {
-        self.displayManager.reloadData()
+        self.displayManager.updateTableUI()
     }
     
     @objc private func onOpenOrdersLoaded() {
         self.displayManager.setOpenOrders(orders: AppDelegate.session.getOpenOrders())
-        self.displayManager.reloadData()
+        self.updateDisplayInfo()
     }
     
     @objc private func onCanceledOrdersLoaded() {
         self.displayManager.setCanceledOrders(orders: AppDelegate.session.getCanceledOrders())
-        self.displayManager.reloadData()
+        self.updateDisplayInfo()
     }
 
     @objc private func onDealsOrdersLoaded() {
         self.displayManager.setDealsOrders(orders: AppDelegate.session.getDealsOrders())
-        self.displayManager.reloadData()
+        self.updateDisplayInfo()
     }
 }

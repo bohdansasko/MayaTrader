@@ -31,7 +31,8 @@ class OrdersDisplayManager: NSObject {
         self.checkOnRequirePlaceHolder()
     }
     
-    func reloadData() {
+    func updateTableUI() {
+        self.checkOnRequirePlaceHolder()
         self.tableView.reloadData()
     }
     
@@ -42,14 +43,12 @@ class OrdersDisplayManager: NSObject {
     func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
         guard let data = self.getDataBySegmentIndex(displayOrderType: displayOrderType) else {
             self.dataProvider = OrdersModel()
-            self.checkOnRequirePlaceHolder()
-            self.reloadData()
+            self.updateTableUI()
             return
         }
         self.dataProvider = data
-        self.checkOnRequirePlaceHolder()
         self.shouldUseActions = displayOrderType == .Open
-        self.reloadData()
+        self.updateTableUI()
     }
 
     // MARK: private methods

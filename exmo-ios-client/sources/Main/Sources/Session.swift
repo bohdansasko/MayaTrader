@@ -16,16 +16,15 @@ class Session {
     
     private var user: User! // use local info or exmo info
     
-    private var openedOrders: OrdersModel!
-    private var canceledOrders: OrdersModel!
-    private var dealsOrders: OrdersModel!
-    private var searchCurrenciesContainer: [SearchCurrencyPairModel]!
+    lazy private var openedOrders = OrdersModel()
+    lazy private var canceledOrders = OrdersModel()
+    lazy private var dealsOrders = OrdersModel()
+    lazy private var searchCurrenciesContainer: [SearchCurrencyPairModel] = []
     
     private var alerts: [AlertItem] = []
 
     init() {
         self.user = User()
-        self.initHardcode()
     }
 
     //
@@ -50,7 +49,11 @@ extension Session {
     
     func exmoLogout() {
         AppDelegate.cacheController.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        
         self.user = AppDelegate.cacheController.getUser()
+        self.openedOrders.clear()
+        self.canceledOrders.clear()
+        self.dealsOrders.clear()
         
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
