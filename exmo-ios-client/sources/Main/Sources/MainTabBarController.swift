@@ -26,6 +26,9 @@ class MainTabBarController: UITabBarController {
         self.addSelectedTabIndicator()
         self.updateIndicatorPosition(index: 0)
 
+        if AppDelegate.session.isUserWasLoggedInExmoAccount() {
+            AppDelegate.session.exmoLoginWithCacheData()
+        }
         AppDelegate.session.roobikLogin()
     }
     

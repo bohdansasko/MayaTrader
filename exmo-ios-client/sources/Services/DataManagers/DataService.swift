@@ -13,13 +13,22 @@ class CacheManager {
     var userCoreManager = UserCoreDataEngine.sharedInstance
     var walletCoreManager = WalletCoreDataEngine.sharedInstance
     
-    func getUser() -> User {
-        let uid = AppDelegate.cacheController.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-        let userEntity = AppDelegate.cacheController.userCoreManager.loadUserData(uid: uid)
-        var user = User()
+    func isUserInfoExistsInCache() -> Bool {
+        let uid = appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        return userCoreManager.isUserExists(uid: uid)
+    }
+    
+    func getUser() -> User? {
+        let uid = self.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let userEntity = self.userCoreManager.loadUserData(uid: uid)
         if userEntity != nil {
-            user = User(userEntity: userEntity!)
+            return User(userEntity: userEntity!)
         }
-        return user
+        return nil
+    }
+    
+    func removeUser() {
+        self.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        self.userCoreManager.deleteLastLoggedUser()
     }
 }

@@ -61,7 +61,7 @@ class UserCoreDataEngine {
         
         do {
             let result = try moc.fetch(fetchRequest)
-            if (result.count == 1) {
+            if (result.count > 1) { // TODO: check
                 print("UserCoreDataEngine: user exists")
                 return true
             }
@@ -102,7 +102,7 @@ class UserCoreDataEngine {
 
     func deleteLastLoggedUser() {
         let uid = AppDelegate.cacheController.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
-        deleteUser(uid: uid)
+        self.deleteUser(uid: uid)
         AppDelegate.cacheController.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
     }
     

@@ -194,6 +194,15 @@ class ExmoAccountController {
             return nil
         }
         
+        let jsonString = String(data: responseData, encoding: .utf8)
+        if let requestError = RequestResult(JSONString: jsonString!) {
+            if requestError.error != nil {
+                print("error details: \(requestError.error!)")
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+                return nil
+            }
+        }
+        
         do {
             let orders = try OrdersModel(json: JSON(data: responseData))
             return orders
@@ -209,6 +218,15 @@ class ExmoAccountController {
             return nil
         }
         
+        let jsonString = String(data: responseData, encoding: .utf8)
+        if let requestError = RequestResult(JSONString: jsonString!) {
+            if requestError.error != nil {
+                print("error details: \(requestError.error!)")
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+                return nil
+            }
+        }
+        
         do {
             let orders = try OrdersModel(json: JSON(data: responseData))
             return orders
@@ -222,6 +240,15 @@ class ExmoAccountController {
         guard let responseData = ExmoApiHandler.shared.loadUserTrades(limit: limit, offset: offset, pairs: "XRP_USD") else {
             print("loadDeals: responseData is nil")
             return nil
+        }
+        
+        let jsonString = String(data: responseData, encoding: .utf8)
+        if let requestError = RequestResult(JSONString: jsonString!) {
+            if requestError.error != nil {
+                print("error details: \(requestError.error!)")
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+                return nil
+            }
         }
         
         do {
@@ -302,6 +329,6 @@ extension ExmoAccountController {
         }
         userData.qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: apiKey, secret: secretKey)
         
-        AppDelegate.session.setUserModel(userData: userData)
+        AppDelegate.session.setUserModel(userData: userData, shouldSaveUserInCache: true)
     }
 }

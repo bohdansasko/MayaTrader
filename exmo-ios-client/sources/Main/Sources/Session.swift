@@ -39,6 +39,21 @@ class Session {
 // MARK: Account
 //
 extension Session {
+    func isUserWasLoggedInExmoAccount() -> Bool {
+        return AppDelegate.cacheController.isUserInfoExistsInCache()
+    }
+    
+    func exmoLoginWithCacheData() {
+        guard let user = AppDelegate.cacheController.getUser() else {
+            return
+        }
+        
+        guard let qrModel = user.qrModel else {
+            return
+        }
+        self.exmoLogin(loginModel: qrModel)
+    }
+    
     func exmoLogin(loginModel: QRLoginModel) {
         AppDelegate.exmoController.login(apiKey: loginModel.key!, secretKey: loginModel.secret!)
     }
@@ -48,9 +63,10 @@ extension Session {
     }
     
     func exmoLogout() {
-        AppDelegate.cacheController.appSettings.set(IDefaultValues.UserUID.rawValue, forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        AppDelegate.cacheController.removeUser()
         
-        self.user = AppDelegate.cacheController.getUser()
+        self.user = User()
+        
         self.openedOrders.clear()
         self.canceledOrders.clear()
         self.dealsOrders.clear()
@@ -59,13 +75,18 @@ extension Session {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     
-    func setUserModel(userData: User) {
+    func setUserModel(userData: User, shouldSaveUserInCache: Bool) {
         self.user = userData
         
-        let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: userData)
-        if isUserSavedToLocalStorage {
-            print("user info cached")
+        if shouldSaveUserInCache {
+            let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: userData)
+            if isUserSavedToLocalStorage {
+                print("user info cached")
+            }
         }
+        
+        self.loadAllOrders()
+        
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     
@@ -82,6 +103,12 @@ extension Session {
 // MARK: Orders
 //
 extension Session {
+    func loadAllOrders() {
+        self.loadOrders(orderType: .Open, serverType: .Exmo)
+        self.loadOrders(orderType: .Deals, serverType: .Exmo)
+        self.loadOrders(orderType: .Canceled, serverType: .Exmo)
+    }
+    
     func loadOrders(orderType: OrdersModel.DisplayOrderType, serverType: ServerType = .Exmo) {
         switch orderType {
         case .Open:
