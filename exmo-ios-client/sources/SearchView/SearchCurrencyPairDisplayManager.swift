@@ -10,7 +10,7 @@ import Foundation
 
 import UIKit.UITableView
 
-class SearchModel {
+class SearchModel : Any {
     var id: Int
     var name: String
     
@@ -26,6 +26,10 @@ class SearchModel {
     func getName() -> String {
         return self.name
     }
+    
+    func getDisplayName() -> String {
+        return self.name.replacingOccurrences(of: "_", with: "/")
+    }
 }
 
 class SearchCurrencyPairModel : SearchModel {
@@ -37,7 +41,7 @@ class SearchCurrencyPairModel : SearchModel {
     }
     
     func getPairPriceAsStr() -> String {
-        return String(self.price)
+        return Utils.getFormatedPrice(value: self.price)
     }
 }
 
@@ -57,6 +61,13 @@ class SearchDisplayManager: NSObject {
     override init() {
         super.init()
         self.filteredBalances = []
+        
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onLoadTickerSuccess), name: .LoadTickerSuccess)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onLoadTickerFailed), name: .LoadTickerFailed)
+    }
+    
+    deinit {
+        AppDelegate.notificationController.removeObserver(self)
     }
     
     func setSearchBar(searchBar: UISearchBar!) {
@@ -71,8 +82,12 @@ class SearchDisplayManager: NSObject {
     }
     
     func setData(dataProvider: [SearchModel], searchType: SearchViewController.SearchType) {
-        self.dataProvider = dataProvider
+        self.setDataProvider(dataProvider: dataProvider)
         self.searchType = searchType
+    }
+    
+    func setDataProvider(dataProvider: [SearchModel]) {
+        self.dataProvider = dataProvider
     }
     
     func setTableView(tableView: UITableView!) {
@@ -82,6 +97,9 @@ class SearchDisplayManager: NSObject {
         self.tableView.dataSource = self
         
         self.tableView.reloadData()
+        
+        // show loader
+        AppDelegate.session.loadCurrenciesPairsWithPrice()
     }
     
     func isDataExists() -> Bool {
@@ -103,6 +121,24 @@ class SearchDisplayManager: NSObject {
         default:      // do nothing
             break
         }
+    }
+}
+
+//
+// @MARK: notifications methods
+//
+extension SearchDisplayManager {
+    @objc func onLoadTickerSuccess(notification: Notification) {
+        guard let currencies = notification.userInfo?["SearchCurrencyPairsContainer"] as? [SearchCurrencyPairModel] else {
+            print("onLoadTickerSuccess: fail cast data")
+            return
+        }
+        self.setDataProvider(dataProvider: currencies)
+    }
+    
+    @objc func onLoadTickerFailed() {
+        // hide loader
+        // show alert
     }
 }
 

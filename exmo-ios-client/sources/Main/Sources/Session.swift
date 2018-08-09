@@ -33,6 +33,19 @@ class Session {
     func getSearchCurrenciesContainer() -> [SearchCurrencyPairModel] {
         return self.searchCurrenciesContainer
     }
+    
+    func loadCurrenciesPairsWithPrice() {
+        guard let currencies = AppDelegate.exmoController.loadTickerData() else {
+            AppDelegate.notificationController.postBroadcastMessage(name: .LoadTickerFailed)
+            return
+        }
+        searchCurrenciesContainer(data: currencies)
+        AppDelegate.notificationController.postBroadcastMessage(name: .LoadTickerSuccess, data: [ "SearchCurrencyPairsContainer" : currencies])
+    }
+    
+    private func searchCurrenciesContainer(data: [SearchCurrencyPairModel]) {
+        self.searchCurrenciesContainer = data
+    }
 }
 
 //
@@ -210,6 +223,8 @@ extension Session {
     func isDealsOrdersLoaded() -> Bool {
         return self.dealsOrders.isDataExists()
     }
+    
+    
 }
 
 //

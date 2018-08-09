@@ -211,7 +211,7 @@ class CreateAlertDisplayManager: NSObject {
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
-        self.currencyRow?.updateData(leftText: name, rightText: String(price))
+        self.currencyRow?.updateData(leftText: name, rightText: Utils.getFormatedPrice(value: price))
     }
     
     func updateSoundElement(soundName: String) {

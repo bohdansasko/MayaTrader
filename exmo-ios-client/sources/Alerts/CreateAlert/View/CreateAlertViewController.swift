@@ -80,5 +80,4 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
     @IBAction func handleTouchOnCancelBtn(_ sender: Any) {
         output.handleTouchOnCancelBtn()
     }
-    
 }

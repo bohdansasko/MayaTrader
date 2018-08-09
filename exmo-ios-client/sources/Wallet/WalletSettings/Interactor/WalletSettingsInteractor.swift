@@ -11,6 +11,6 @@ class WalletSettingsInteractor: WalletSettingsInteractorInput {
     weak var output: WalletSettingsInteractorOutput!
     
     func viewIsReady() {
-        // do nothing
+        AppDelegate.session.getSearchCurrenciesContainer()
     }
 }

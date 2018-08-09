@@ -109,7 +109,7 @@ extension ExmoApiHandler {
         ConnectionConfig.API_SECRET = secretKey
     }
     
-    func loadUserInfo()-> Data? {
+    func loadUserInfo() -> Data? {
         print("start user_info")
         let post: [String: Any] = [:]
         return self.getResponseFromServerForPost(postDictionary: post, method: "user_info")
@@ -161,6 +161,15 @@ extension ExmoApiHandler {
     }
 }
 
+//
+// @MARK: public methods
+//
+extension ExmoApiHandler {
+    func loadTicker() -> Data? {
+        print("call method loadTicker")
+        return self.getResponseFromServerForPost(postDictionary: [:], method: "ticker")
+    }
+}
 
 class ExmoAccountController {
     func getAllCurrenciesOnExmo() -> [String] { // TODO-REF: use cache instead this. cache should update every login
@@ -299,6 +308,38 @@ class ExmoAccountController {
         }
         
         return false
+    }
+}
+
+extension ExmoAccountController {
+    func loadTickerData() -> [SearchCurrencyPairModel]? {
+        let result = ExmoApiHandler.shared.loadTicker()
+        guard let jsonString = String(data: result!, encoding: .utf8) else {
+            print("loadTickerData: jsonString got cast error")
+            return nil
+        }
+        
+        print("loaded: \(jsonString)")
+        
+        if let requestError = RequestResult(JSONString: jsonString) {
+            if requestError.error != nil {
+                print("error details: \(requestError.error!)")
+                return nil
+            }
+        }
+        
+        let json = JSON(parseJSON: jsonString)
+        
+        
+        var currencies: [SearchCurrencyPairModel] = []
+        var index: Int = 1
+        for (currencyPairName, currencyInfoAsJson) in json {
+            let price = currencyInfoAsJson["last_trade"].doubleValue
+            currencies.append(SearchCurrencyPairModel(id: index, name: currencyPairName, price: price))
+            index += 1
+        }
+        
+        return currencies
     }
 }
 

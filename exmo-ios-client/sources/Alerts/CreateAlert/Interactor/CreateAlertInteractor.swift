@@ -25,15 +25,18 @@ class CreateAlertInteractor: CreateAlertInteractorInput {
     ]
     
     init() {
-        self.currenciesContainer = AppDelegate.session.getSearchCurrenciesContainer()
+        self.currenciesContainer = []
     }
 
     func handleSelectedCurrency(currencyId: Int) {
+        self.currenciesContainer = AppDelegate.session.getSearchCurrenciesContainer()
+        
         self.currencyId = currencyId
         guard let currencyItem = self.currenciesContainer.first(where: {$0.id == currencyId}) else {
+            print("handleSelectedCurrency: can't find selected currency")
             return
         }
-        self.output.updateSelectedCurrency(name: currencyItem.name, price: currencyItem.price)
+        self.output.updateSelectedCurrency(name: currencyItem.getDisplayName(), price: currencyItem.price)
     }
 
     func handleSelectedSound(soundId: Int) {

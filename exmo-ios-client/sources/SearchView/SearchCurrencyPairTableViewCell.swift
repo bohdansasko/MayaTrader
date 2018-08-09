@@ -26,7 +26,7 @@ class SearchTableViewCell: AlertTableViewCellWithTextData {
     
     func setContent(currencyPairModel: SearchCurrencyPairModel) {
         self.id = currencyPairModel.id
-        self.nameLabel.text = currencyPairModel.name
+        self.nameLabel.text = currencyPairModel.getDisplayName()
         self.priceLabel.text = currencyPairModel.getPairPriceAsStr()
     }
     

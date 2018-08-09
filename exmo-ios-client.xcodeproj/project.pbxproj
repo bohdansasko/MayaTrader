@@ -44,6 +44,7 @@
 		2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5572048BEC100BD205F /* CoreDataManager.swift */; };
 		2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5662048C43300BD205F /* UserCoreDataEngine.swift */; };
 		2003B5692048C78600BD205F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5682048C78600BD205F /* DataService.swift */; };
+		200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CA489211C9CF300BB0E9B /* Utils.swift */; };
 		200D2E692112C671007ED238 /* TableViewCellWithTwoButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D2E672112C671007ED238 /* TableViewCellWithTwoButtons.swift */; };
 		200D2E6A2112C671007ED238 /* TableViewCellWithTwoButtons.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200D2E682112C671007ED238 /* TableViewCellWithTwoButtons.xib */; };
 		2010154420B02B6B00324F22 /* AlertTableViewCellWithArrow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */; };
@@ -377,6 +378,7 @@
 		2003B5572048BEC100BD205F /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		2003B5662048C43300BD205F /* UserCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoreDataEngine.swift; sourceTree = "<group>"; };
 		2003B5682048C78600BD205F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		200CA489211C9CF300BB0E9B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		200D2E672112C671007ED238 /* TableViewCellWithTwoButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellWithTwoButtons.swift; sourceTree = "<group>"; };
 		200D2E682112C671007ED238 /* TableViewCellWithTwoButtons.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCellWithTwoButtons.xib; sourceTree = "<group>"; };
 		2010154220B02B6B00324F22 /* AlertTableViewCellWithArrow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellWithArrow.swift; sourceTree = "<group>"; };
@@ -992,6 +994,7 @@
 			children = (
 				20A5B88E20AE246600EC2A4D /* Storyboards */,
 				20A5B88F20AE247B00EC2A4D /* Sources */,
+				200CA489211C9CF300BB0E9B /* Utils.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2487,6 +2490,7 @@
 				D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */,
 				9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */,
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
+				200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */,
 				FDE3DD805C8AF1A0EA1D2F5A /* WatchlistCurrencySettingsViewInput.swift in Sources */,
 				DCE1D2AEC37870979581A6D1 /* WatchlistCurrencySettingsViewOutput.swift in Sources */,
 				25A9513BC3709BF7EB569AAD /* WatchlistCurrencySettingsViewController.swift in Sources */,
