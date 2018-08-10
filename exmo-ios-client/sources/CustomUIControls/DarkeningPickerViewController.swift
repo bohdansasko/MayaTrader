@@ -14,7 +14,7 @@ class DarkeningPickerViewManager {
     private var dataSource: [String]!
     private var headerString: String!
     private var frameRect: CGRect!
-    var callback: VoidClosure?
+    var callbackOnSelectAction: IntInVoidOutClosure?
     
     init(frameRect: CGRect, headerString: String, dataSource: [String]) {
         self.mainWindow = UIApplication.shared.keyWindow
@@ -36,11 +36,12 @@ class DarkeningPickerViewManager {
         self.newTopWindow?.makeKeyAndVisible()
     }
     
-    func setOnExitCallback(callback: VoidClosure?) {
-        self.callback = callback
+    func setCallbackOnSelectAction(callback: IntInVoidOutClosure?) {
+        self.callbackOnSelectAction = callback
     }
     
-    func close() {
+    func close(selectedIndex: Int) {
+        self.callbackOnSelectAction?(selectedIndex)
         self.newTopWindow?.isHidden = true
         self.newTopWindow = nil
         self.mainWindow?.makeKeyAndVisible()
@@ -159,9 +160,10 @@ class DarkeningPickerViewController: UIViewController {
     
     @IBAction func pickerViewButtonDonePressed(sender: Any) {
         self.textField.resignFirstResponder()
+        let selectedIndex = self.getSelectedRowInPickerView()
         UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {}, completion: {
             _ in
-            self.pickerViewManager.close()
+            self.pickerViewManager.close(selectedIndex: selectedIndex)
         })
         
     }

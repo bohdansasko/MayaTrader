@@ -9,6 +9,12 @@
 import UIKit
 
 class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput {
+    fileprivate enum OrderAdditionalAction : Int {
+        case DeleteAll
+        case DeleteAllOnBuy
+        case DeleteAllOnSell
+    }
+
     // MARK: Outlets
     var output: OrdersManagerViewOutput!
     var currentViewController: UIViewController?
@@ -44,24 +50,31 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
         
         self.displayManager.setTableView(tableView: self.tableView)
         
+        self.pickerViewManager.setCallbackOnSelectAction(callback: { actionIndex in
+            self.handleSelectedAction(actionIndex: actionIndex)
+        })
+        
         self.loadAllOrders()
         
         self.displayManager.showDataBySegment(displayOrderType: .Open)
     }
     
-    private func loadAllOrders() {
-        if AppDelegate.session.isOpenOrdersLoaded() {
-            self.onOpenOrdersLoaded()
-        }
-        if AppDelegate.session.isCanceledOrdersLoaded() {
-            self.onCanceledOrdersLoaded()
-        }
-        if AppDelegate.session.isDealsOrdersLoaded() {
-            self.onDealsOrdersLoaded()
+    private func handleSelectedAction(actionIndex: Int) {
+        switch (actionIndex) {
+        case OrderAdditionalAction.DeleteAll.rawValue:
+            break
+        case OrderAdditionalAction.DeleteAllOnBuy.rawValue:
+            break
+        case OrderAdditionalAction.DeleteAllOnSell.rawValue:
+            break
+        default:
+            break
         }
     }
-    
-    // MARK: OrdersManagerViewInput
+}
+
+// MARK: OrdersManagerViewInput
+extension OrdersManagerViewController {
     func showPlaceholderNoData() {
         if placeholderNoData != nil {
             print("placeholder no data already exists")
@@ -83,8 +96,10 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
             self.placeholderNoData = nil
         }
     }
-    
-    // MARK: IBActions
+}
+
+// MARK: IBActions
+extension OrdersManagerViewController {
     @IBAction func segmentChanged(_ sender: Any) {
         self.displayManager.showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
     }
@@ -92,8 +107,22 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     @IBAction func handleTouchDeleteButton(_ sender: Any) {
         self.pickerViewManager.showPickerViewWithDarkening()
     }
+}
+
+// MARK: load orders and display them
+extension OrdersManagerViewController {
+    private func loadAllOrders() {
+        if AppDelegate.session.isOpenOrdersLoaded() {
+            self.onOpenOrdersLoaded()
+        }
+        if AppDelegate.session.isCanceledOrdersLoaded() {
+            self.onCanceledOrdersLoaded()
+        }
+        if AppDelegate.session.isDealsOrdersLoaded() {
+            self.onDealsOrdersLoaded()
+        }
+    }
     
-    // MARK: private methods
     private func subscribeOnEvents() {
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
