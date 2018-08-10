@@ -89,7 +89,7 @@ struct OrderModel: Mappable {
     }
     
     func getDisplayCurrencyPair() -> String {
-        return self.currencyPair.replacingOccurrences(of: "_", with: "/")
+        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.currencyPair)
     }
     
     func getDateCreatedAsStr() -> String {

@@ -23,7 +23,7 @@ class WatchlistCurrencyPairModel {
     }
     
     func getDisplayCurrencyPairName() -> String {
-        return self.pairName.replacingOccurrences(of: "_", with: "/")
+        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.pairName)
     }
     
     func getVolumeStr() -> String {

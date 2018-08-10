@@ -28,7 +28,7 @@ class SearchModel : Any {
     }
     
     func getDisplayName() -> String {
-        return self.name.replacingOccurrences(of: "_", with: "/")
+        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.name)
     }
 }
 

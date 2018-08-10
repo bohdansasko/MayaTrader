@@ -79,6 +79,6 @@ class AlertItem: SegueBlock, Mappable {
     }
     
     func getCurrencyPairForDisplay() -> String {
-        return currencyPairName.replacingOccurrences(of: "_", with: "/")
+        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.currencyPairName)
     }
 }
