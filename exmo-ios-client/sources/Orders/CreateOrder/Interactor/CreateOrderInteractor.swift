@@ -5,6 +5,7 @@
 //  Created by TQ0oS on 22/03/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import Foundation
 
 class CreateOrderInteractor: CreateOrderInteractorInput {
 
@@ -14,6 +15,15 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
     private var currencyId: Int = -1
 
     init() {
+        self.data = AppDelegate.session.getSearchCurrenciesContainer()
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onLoadTickers), name: .LoadTickerSuccess)
+    }
+
+    deinit {
+        AppDelegate.notificationController.removeObserver(self)
+    }
+
+    @objc func onLoadTickers() {
         self.data = AppDelegate.session.getSearchCurrenciesContainer()
     }
 
@@ -26,6 +36,6 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
         guard let currencyData = self.data.first(where: {$0.id == currencyId}) else {
             return
         }
-        self.output.updateSelectedCurrency(name: currencyData.name, price: currencyData.price)
+        self.output.updateSelectedCurrency(name: currencyData.getDisplayName(), price: currencyData.price)
     }
 }
