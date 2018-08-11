@@ -67,11 +67,7 @@ class CreateOrderTableViewCell: UITableViewCell {
     @IBAction func createOrderPressed(_ sender: Any) {
         onCreateOrderCallback()
     }
-    
-    func getOrderModel() -> OrderModel {
-        return OrderModel(id: 1, orderType: .Buy, currencyPair: "", createdDate: Date(), price: 0.0, quantity: 0.0, amount: 0.0)
-    }
-    
+
     func setOnCreateOrderCallback(closure: @escaping () -> Void) {
         onCreateOrderCallback = closure
     }

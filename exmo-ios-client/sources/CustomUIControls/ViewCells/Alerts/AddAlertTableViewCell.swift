@@ -12,14 +12,17 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var inputField: UITextField!
     
-    private var onTextFieldDidBeginEditing: VoidClosure? = nil
-    private var onTextFieldDidEndEditing: VoidClosure? = nil
-    
-    func setContentData(data: UIFieldModel) {
-        self.headerLabel.text = data.getHeaderText()
-        self.inputField.placeholder = data.getLeftText()
-        self.inputField.placeholderColor = UIColor.white.withAlphaComponent(0.3)
-        self.inputField.delegate = self
+    private var onTextFieldTextDidChanged: TextInVoidOutClosure? = nil
+    var data: UIFieldModel? {
+        didSet {
+            guard let d = data else {
+                return
+            }
+            self.headerLabel.text = d.getHeaderText()
+            self.inputField.placeholder = d.getLeftText()
+            self.inputField.placeholderColor = UIColor.white.withAlphaComponent(0.3)
+            self.inputField.addTarget(self, action: #selector(self.onTextFieldEditingChanged), for: .editingChanged)
+        }
     }
     
     func setData(data: String?) {
@@ -41,23 +44,21 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
         return text
     }
     
-    //
-    // @callbacks
-    //
-    func setOnTextFieldDidBeginEditing(onTextFieldDidBeginEditing: VoidClosure?) {
-        self.onTextFieldDidBeginEditing = onTextFieldDidBeginEditing
+    private func getTextFromTextField(_ textField: UITextField) -> String {
+        guard let text = textField.text else {
+            return ""
+        }
+        return text
     }
     
-    func setOnTextFieldDidEndEditing(onTextFieldDidEndEditing: VoidClosure?) {
-        self.onTextFieldDidEndEditing = onTextFieldDidEndEditing
+    func setOnTextFieldTextDidChanged(onTextFieldTextDidChanged: TextInVoidOutClosure?) {
+        self.onTextFieldTextDidChanged = onTextFieldTextDidChanged
     }
-}
 
-extension AddAlertTableViewCell : UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.onTextFieldDidBeginEditing?()
-    }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.onTextFieldDidEndEditing?()
+    @objc func onTextFieldEditingChanged(_ button: Any) {
+        let text = self.getTextFromTextField(self.inputField)
+        if !text.isEmpty {
+            self.onTextFieldTextDidChanged?(text)
+        }
     }
 }

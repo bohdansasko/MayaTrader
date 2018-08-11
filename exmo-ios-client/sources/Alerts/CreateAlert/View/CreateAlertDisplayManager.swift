@@ -245,7 +245,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
         case .UpperBound, .BottomBound:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue) as! AddAlertTableViewCell
             if let data = self.dataProvider[indexPath.section].item {
-                cell.setContentData(data: data)
+                cell.data = data
             }
             if let alert = self.alertItem {
                 let price = fieldType == .UpperBound ? alert.topBoundary : alert.bottomBoundary
@@ -284,7 +284,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
         case .Note:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AddAlertTableViewCell.rawValue)  as! AddAlertTableViewCell
             if let data = self.dataProvider[indexPath.section].item {
-                cell.setContentData(data: data)
+                cell.data = data
             }
             cell.selectionStyle = .none
             cell.inputField.keyboardType = .default

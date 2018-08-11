@@ -106,7 +106,6 @@ struct OrderModel: Mappable {
         return String(self.price)
     }
     
-
     func getQuantity() -> Double {
         return self.quantity
     }

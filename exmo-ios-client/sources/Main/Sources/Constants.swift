@@ -4,6 +4,7 @@
 //
 import Foundation
 
+typealias TextInVoidOutClosure = (String) -> Void
 typealias VoidClosure = () -> Void
 typealias IntInVoidOutClosure = (Int) -> Void
 
