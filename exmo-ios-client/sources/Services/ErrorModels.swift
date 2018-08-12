@@ -29,7 +29,7 @@ class OrderRequestResult : RequestResult {
     }
     
     override func mapping(map: Map) {
-        self.mapping(map: map)
+        super.mapping(map: map)
         id <- map["order_id"]
     }
 }
