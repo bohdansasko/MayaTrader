@@ -65,5 +65,9 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
     func updateSelectedCurrency(name: String, price: Double) {
         self.dataDisplayManager.updateSelectedCurrency(name: name, price: price)
     }
+    
+    func setOrderSettings(orderSettings: OrderSettings) {
+        self.dataDisplayManager.setOrderSettings(orderSettings: orderSettings)
+    }
 }
 

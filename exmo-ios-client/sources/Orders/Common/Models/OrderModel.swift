@@ -9,6 +9,60 @@
 import Foundation
 import ObjectMapper
 
+//
+// @MARK: OrderCreateType
+//
+enum OrderCreateType: String {
+    case None = "None"
+    case Buy = "buy"
+    case Sell = "sell"
+    case MarketBuy = "market_buy"
+    case MarketSell = "market_sell"
+    case MarketBuyTotal = "market_buy_total"
+    case MarketSellTotal = "market_sell_total"
+}
+
+//
+// @MARK: OrderSettings
+//
+struct OrderSettings : Mappable {
+    var currencyPair: String
+    var minQuantity: Double
+    var maxQuantity: Double
+    var minPrice: Double
+    var maxPrice: Double
+    var maxAmount: Double
+    var minAmount: Double
+    
+    init() {
+        self.currencyPair = ""
+        self.minQuantity = 0.0
+        self.maxQuantity = 0.0
+        self.minPrice = 0.0
+        self.maxPrice = 0.0
+        self.minAmount = 0.0
+        self.maxAmount = 0.0
+    }
+    
+    init?(map: Map) {
+        self.init()
+    }
+    
+    mutating func mapping(map: Map) {
+        self.minQuantity <- map["min_quantity"]
+        self.maxQuantity <- map["max_quantity"]
+        
+        self.minPrice <- map["min_price"]
+        self.maxPrice <- map["max_price"]
+        
+        self.minAmount <- map["min_amount"]
+        self.maxAmount <- map["max_amount"]
+    }
+}
+
+//
+// @MARK: TransformOrderType
+//
 class TransformOrderType : TransformType {
     typealias Object = OrderActionType
     typealias JSON = String
@@ -33,6 +87,9 @@ class TransformOrderType : TransformType {
     }
 }
 
+//
+// @MARK: OrderModel
+//
 struct OrderModel: Mappable {
     private var orderType: OrderActionType
             var currencyPair: String
@@ -41,6 +98,7 @@ struct OrderModel: Mappable {
     private var quantity: Double
     private var amount: Double
     private var id: Int64
+    private var createType: OrderCreateType = .None
     
     init() {
         orderType = .None
@@ -73,6 +131,34 @@ struct OrderModel: Mappable {
         self.price = price
         self.quantity = quantity
         self.amount = amount
+        self.id = id
+    }
+    
+    init(createType: OrderCreateType, currencyPair: String, price: Double, quantity: Double, amount: Double) {
+        self.createType = createType
+        self.currencyPair = currencyPair
+        self.amount = amount
+        self.price = price
+        self.quantity = quantity
+        
+        self.id = -1
+        self.createdDate = Date()
+        
+        switch self.createType {
+        case .Buy,
+             .MarketBuy,
+             .MarketBuyTotal:
+            self.orderType = .Buy
+        case .Sell,
+             .MarketSell,
+             .MarketSellTotal:
+            self.orderType = .Sell
+        case .None:
+            self.orderType = .None
+        }
+    }
+    
+    mutating func setOrderId(id: Int64) {
         self.id = id
     }
     
@@ -114,15 +200,8 @@ struct OrderModel: Mappable {
         return String(self.quantity)
     }
     
-    func getCreateType() -> String {
-        return "buy"
-//        return "sell"
-//        
-//        return "market_buy"
-//        return "market_sell"
-//        
-//        return "market_buy_total"
-//        return "market_sell_total"
+    func getCreateTypeAsStr() -> String {
+        return self.createType.rawValue
     }
     
     func getAmount() -> Double {

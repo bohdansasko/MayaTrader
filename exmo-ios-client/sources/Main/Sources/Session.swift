@@ -116,6 +116,15 @@ extension Session {
 // MARK: Orders
 //
 extension Session {
+    func loadCurrencyPairSettings(_ name: String) {
+        guard let settings = AppDelegate.exmoController.loadCurrencyPairSettings(name) else {
+            AppDelegate.notificationController.postBroadcastMessage(name: .LoadCurrencySettingsFailed)
+            return
+        }
+        
+        AppDelegate.notificationController.postBroadcastMessage(name: .LoadCurrencySettingsSuccess, data: ["data": settings])
+    }
+    
     func loadAllOrders() {
         self.loadOrders(orderType: .Open, serverType: .Exmo)
         self.loadOrders(orderType: .Deals, serverType: .Exmo)
@@ -167,6 +176,11 @@ extension Session {
         }
     }
     
+    func appendOrder(orderModel: OrderModel) {
+        AppDelegate.notificationController.postBroadcastMessage(name: .AppendOrder, data: ["data": orderModel])
+        self.openedOrders.append(orderModel: orderModel)
+    }
+    
     private func setOpenOrders(orders: OrdersModel) {
         self.openedOrders = orders
     }
@@ -179,14 +193,15 @@ extension Session {
         self.dealsOrders = orders
     }
 
-    func createOrder(order: OrderModel) -> Bool {
-        guard let createResult = AppDelegate.exmoController.createOrder(pair: order.getCurrencyPair(), quantity: order.getQuantity(), price: order.getPrice(), type: order.getCreateType()) else {
-            return false
+    func createOrder(order: OrderModel) -> (Bool, Int64) {
+        guard let createResult = AppDelegate.exmoController.createOrder(pair: order.getCurrencyPair(), quantity: order.getAmount(), price: order.getPrice(), type: order.getCreateTypeAsStr()) else {
+            return (false, -1)
         }
+        
         if createResult.result {
-            return true
+            return (true, createResult.id)
         }
-        return false
+        return (false, -1)
     }
     
     func cancelOpenOrder(id: Int64, byIndex index: Int) -> Bool {

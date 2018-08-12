@@ -17,6 +17,7 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
     init() {
         self.data = AppDelegate.session.getSearchCurrenciesContainer()
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onLoadTickers), name: .LoadTickerSuccess)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onLoadCurrencySettingsSuccess), name: .LoadCurrencySettingsSuccess)
     }
 
     deinit {
@@ -26,9 +27,22 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
     @objc func onLoadTickers() {
         self.data = AppDelegate.session.getSearchCurrenciesContainer()
     }
+    
+    @objc func onLoadCurrencySettingsSuccess(notification: Notification) {
+        guard let orderSettings = notification.userInfo?["data"] as? OrderSettings else {
+            return
+        }
+        output.setOrderSettings(orderSettings: orderSettings)
+    }
 
     func createOrder(orderModel: OrderModel) {
-        print("func createOrder called")
+        let (isSuccess, orderId) = AppDelegate.session.createOrder(order: orderModel)
+        if isSuccess {
+            var newOrderModel = orderModel
+                newOrderModel.setOrderId(id: orderId)
+            AppDelegate.session.appendOrder(orderModel: newOrderModel)
+        }
+        self.output.closeView()
     }
     
     func handleSelectedCurrency(currencyId: Int) {
@@ -36,6 +50,7 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
         guard let currencyData = self.data.first(where: {$0.id == currencyId}) else {
             return
         }
+        AppDelegate.session.loadCurrencyPairSettings(currencyData.getName())
         self.output.updateSelectedCurrency(name: currencyData.getDisplayName(), price: currencyData.price)
     }
 }

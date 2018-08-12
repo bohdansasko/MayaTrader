@@ -28,7 +28,9 @@ class AlertTableViewCellWithArrow: AlertTableViewCellWithTextData {
             return 0.0
         }
         
-        return text.isEmpty ? 0.0 : Double(text)!
+        let value = Double(text)
+        
+        return value != nil ? value! : 0.0
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -36,4 +36,12 @@ class CreateOrderPresenter: CreateOrderModuleInput, CreateOrderViewOutput, Creat
     func updateSelectedCurrency(name: String, price: Double) {
         self.view.updateSelectedCurrency(name: name, price: price)
     }
+    
+    func closeView() {
+        self.handleTouchOnCancelButton()
+    }
+    
+    func setOrderSettings(orderSettings: OrderSettings) {
+        self.view.setOrderSettings(orderSettings: orderSettings)
+    }
 }

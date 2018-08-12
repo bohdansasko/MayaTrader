@@ -178,7 +178,7 @@ class CreateAlertDisplayManager: NSObject {
                 break
             }
         }
-        currencyPairName = currencyPairName.replacingOccurrences(of: "/", with: "_")
+        currencyPairName = Utils.getRawCurrencyPairName(name: currencyPairName)
         
         return AlertItem(
             id: id, currencyPairName: currencyPairName, priceAtCreateMoment: priceAtCreateMoment,

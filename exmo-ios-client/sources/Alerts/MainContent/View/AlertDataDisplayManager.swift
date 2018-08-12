@@ -49,7 +49,7 @@ class AlertDataDisplayManager: NSObject {
     }
     
     func appendAlert(alertItem: AlertItem) {
-        self.dataProvider.appendAlert(alertItem: alertItem)
+        self.dataProvider.append(alertItem: alertItem)
         self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
         self.checkOnRequirePlaceHolder()
     }

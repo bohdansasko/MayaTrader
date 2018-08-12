@@ -72,6 +72,11 @@ class OrdersDisplayManager: NSObject {
         self.dealsOrders = orders
     }
 
+    func appendOpenOrder(orderModel: OrderModel) {
+        self.dataProvider.append(orderModel: orderModel)
+        self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
+    }
+    
     private func checkOnRequirePlaceHolder() {
         if (self.dataProvider.isDataExists()) {
             self.view.removePlaceholderNoData()

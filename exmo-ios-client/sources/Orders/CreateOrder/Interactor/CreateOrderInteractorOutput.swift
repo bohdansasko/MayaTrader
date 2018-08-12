@@ -10,4 +10,6 @@ import Foundation
 
 protocol CreateOrderInteractorOutput: class {
     func updateSelectedCurrency(name: String, price: Double)
+    func closeView()
+    func setOrderSettings(orderSettings: OrderSettings)
 }

@@ -41,7 +41,7 @@ class AlertsDisplayModel {
         return self.isValidIndex(index: row) ? self.alertsItems[row] : nil
     }
     
-    func appendAlert(alertItem: AlertItem) {
+    func append(alertItem: AlertItem) {
         self.alertsItems.insert(alertItem, at: 0)
     }
 

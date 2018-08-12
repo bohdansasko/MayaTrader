@@ -31,6 +31,11 @@ extension Notification.Name {
     static let UpdateAlert = Notification.Name("UpdateAlert")
     static let DeleteAlert = Notification.Name("DeleteAlert")
     
+    static let AppendOrder = Notification.Name("AppendOrder")
+    
     static let LoadTickerSuccess = Notification.Name("LoadTickerSuccess")
     static let LoadTickerFailed = Notification.Name("LoadTickerFailed")
+    
+    static let LoadCurrencySettingsSuccess = Notification.Name("LoadCurrencySettingsSuccess")
+    static let LoadCurrencySettingsFailed = Notification.Name("LoadCurrencySettingsFailed")
 }

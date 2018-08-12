@@ -8,19 +8,11 @@
 
 import Foundation
 import UIKit
+import ObjectMapper
 
 fileprivate enum CreateOrderViewType {
     case Limit
     case Instant
-}
-
-fileprivate enum OrderCreateType: String {
-    case Buy = "buy"
-    case Sell = "sell"
-    case MarketBuy = "market_buy"
-    case MarketSell = "market_sell"
-    case MarketBuyTotal = "market_buy_total"
-    case MarketSellTotal = "market_sell_total"
 }
 
 class CreateOrderDisplayManager: NSObject {
@@ -49,11 +41,13 @@ class CreateOrderDisplayManager: NSObject {
     
     var tableView: UITableView!
     var output: CreateOrderViewOutput!
-    fileprivate var viewOrderType: CreateOrderViewType = .Limit
     
     private var dataProvider: [UIItem] = []
     private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
 
+    fileprivate var viewOrderType: CreateOrderViewType = .Limit
+    fileprivate var orderSettings: OrderSettings?
+    
     override init() {
         super.init()
         self.dataProvider = getFieldsForRender()
@@ -147,7 +141,7 @@ extension CreateOrderDisplayManager {
         if viewType != self.viewOrderType {
             self.viewOrderType = viewType
             self.dataProvider = getFieldsForRender()
-            self.tableCells = [:]
+            self.tableCells.removeAll()
             self.reloadData()
         }
     }
@@ -192,32 +186,112 @@ extension CreateOrderDisplayManager {
         }
     }
     
-    fileprivate func updateFields(number: Double) {
-        if self.viewOrderType != .Limit {
-            return
+    fileprivate func fillFields(number: Double) {
+        switch self.viewOrderType {
+        case .Limit:
+            guard let cellAmount = self.getCellByType(inParamType: .Amount),
+                  let cellPrice = self.getCellByType(inParamType: .Price) else {
+                return
+            }
+            
+            let amount = cellAmount.getDoubleValue()
+            let price = cellPrice.getDoubleValue()
+            let exmoCommisionInPercentage = 2.0
+            
+            let totalValue = amount * price
+            let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
+            
+            guard let cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell,
+                  let cellCommision = self.getCellByType(inParamType: .Commision) as? AddAlertTableViewCell else {
+                return
+            }
+            
+            cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
+            cellCommision.setData(data: Utils.getFormatedPrice(value: comissionValue))
+        case .Instant:
+            guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
+                        let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
+                        let  cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell else {
+                return
+            }
+            
+            let price = cellCurrencyPair.getDoubleValue()
+            let amount = cellAmount.getDoubleValue()
+            let totalValue = amount * price
+            
+            cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
         }
-        guard let cellAmount = self.getCellByType(inParamType: .Amount) else {
-            return
-        }
-        guard let cellPrice = self.getCellByType(inParamType: .Price) else {
-            return
+    }
+    
+    private func getDataFromUI() -> OrderModel? {
+        
+        var currencyPairName = ""
+        var amount = 0.0
+        var price = 0.0
+        var total = 0.0
+        
+        for item in self.dataProvider {
+            guard let cell = getCellByType(inParamType: item.type) else {
+                
+                return nil
+            }
+            
+            switch item.type {
+            case .CurrencyPair:
+                currencyPairName = cell.getTextData()
+            case .Amount:
+                amount = cell.getDoubleValue()
+            case .Price:
+                price = cell.getDoubleValue()
+            case .Total:
+                total = cell.getDoubleValue()
+            default:
+                break
+            }
         }
         
-        let amount = cellAmount.getDoubleValue()
-        let price = cellPrice.getDoubleValue()
-        let exmoCommisionInPercentage = 2.0
+        currencyPairName = Utils.getRawCurrencyPairName(name: currencyPairName)
         
-        let totalValue = amount * price
-        let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
-
-        guard let cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell else {
+        let isSellOrder = true // TODO: add sell/buy option in view
+        var createType = OrderCreateType.None
+        
+        switch self.viewOrderType {
+        case .Limit:
+            if isSellOrder {
+                createType = .Sell
+            } else {
+                createType = .Buy
+            }
+            break
+        case .Instant:
+            if isSellOrder {
+                createType = .MarketSell
+            } else {
+                createType = .MarketBuy
+            }
+            break
+        }
+        
+        return OrderModel(createType: createType, currencyPair: currencyPairName, price: price, quantity: total, amount: amount)
+    }
+        
+    func handleTouchOnButtonCreateOrder() {
+        if !self.isAllRequiredFieldsFilled() {
+            print("handleTouchOnButtonCreateOrder: required fields don't filled")
             return
         }
-        guard let cellCommision = self.getCellByType(inParamType: .Commision) as? AddAlertTableViewCell else {
+        //
+        // show loading view while exec callback
+        //
+        guard let orderModel = self.getDataFromUI() else {
+            print("handleTouchOnButtonCreateOrder: can't parse data from UI")
             return
         }
-        cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
-        cellCommision.setData(data: Utils.getFormatedPrice(value: comissionValue))
+        self.output.createOrder(orderModel: orderModel)
+    }
+    
+    func setOrderSettings(orderSettings: OrderSettings) {
+        self.orderSettings = orderSettings
     }
 }
 
@@ -258,7 +332,10 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
                     guard let numb = Double(text) else {
                         return
                     }
-                    self.updateFields(number: numb)
+                    if self.orderSettings != nil {
+                        print("orderSettings max price: \(self.orderSettings!.maxPrice)")
+                    }
+                    self.fillFields(number: numb)
                     print("user input: \(text)")
                 })
             }
@@ -285,13 +362,11 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.AlertTableViewCellButton.rawValue) as! AlertTableViewCellButton
             cell.selectionStyle = .none
             cell.setCallbackOnTouch(callback: {
-                print("create order")
+                self.handleTouchOnButtonCreateOrder()
             })
             self.tableCells[indexPath] = cell
             return cell
         }
-
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

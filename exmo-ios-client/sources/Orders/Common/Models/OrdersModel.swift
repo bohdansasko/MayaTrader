@@ -58,6 +58,10 @@ class OrdersModel {
         }
     }
     
+    func append(orderModel: OrderModel) {
+        self.orders.insert(orderModel, at: 0)
+    }
+    
     init(orders: [OrderModel]) {
         self.orders = orders
     }

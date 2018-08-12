@@ -91,7 +91,7 @@ class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate
     }
 
     @IBAction func pressedLoginButton(_ sender: Any) {
-        let qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: "K-6cb40a588299195fd7b51d37798d14fdda2a62c8", secret: "S-85cf265b82cae660ff5cdea7363087947f75ecc0")
+        let qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: "K-369302d5be6ba084fde09cdad7e81b6127d240c2", secret: "S-0468871fa277d9c7da6a402bd6c9e1810e45a913")
         output.loadUserInfo(loginModel: qrModel)
     }
     

@@ -129,6 +129,7 @@ extension OrdersManagerViewController {
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onOpenOrdersLoaded), name: .OpenOrdersLoaded)
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onCanceledOrdersLoaded), name: .CanceledOrdersLoaded)
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onDealsOrdersLoaded), name: .DealsOrdersLoaded)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onAppendOrder), name: .AppendOrder)
     }
     
     @objc private func updateDisplayInfo() {
@@ -148,5 +149,13 @@ extension OrdersManagerViewController {
     @objc private func onDealsOrdersLoaded() {
         self.displayManager.setDealsOrders(orders: AppDelegate.session.getDealsOrders())
         self.updateDisplayInfo()
+    }
+    
+    @objc func onAppendOrder(notification: Notification) {
+        guard let orderModel = notification.userInfo?["data"] as? OrderModel else {
+            print("Can't cast to OrderModel")
+            return
+        }
+        self.displayManager.appendOpenOrder(orderModel: orderModel)
     }
 }

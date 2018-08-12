@@ -142,7 +142,6 @@ extension ExmoApiHandler {
     }
     
     
-    //
     func createOrder(pair: String, quantity: Double, price: Double, type: String) -> Data? {
         print("start order_create")
         var post: [String: Any] = [:]
@@ -168,6 +167,11 @@ extension ExmoApiHandler {
     func loadTicker() -> Data? {
         print("call method loadTicker")
         return self.getResponseFromServerForPost(postDictionary: [:], method: "ticker")
+    }
+    
+    func loadCurrencyPairSettings() -> Data? {
+        print("start loadCurrencyPairSettings")
+        return self.getResponseFromServerForPost(postDictionary: [:], method: "pair_settings")
     }
 }
 
@@ -277,12 +281,13 @@ class ExmoAccountController {
             return nil
         }
         
-        do {
-            if let requestResult = try OrderRequestResult(JSON: JSON(data: responseData).dictionaryValue) {
-                return requestResult
+        let jsonString = String(data: responseData, encoding: .utf8)
+        if let response = OrderRequestResult(JSONString: jsonString!) {
+            if !response.result {
+                print("error details: \(response.error!)")
+                return nil
             }
-        } catch {
-            print("createOrder: caught json error in method")
+            return response
         }
         
         return nil
@@ -295,16 +300,11 @@ class ExmoAccountController {
         }
         
         let jsonString = String(data: responseData, encoding: .utf8)
-        
-        do {
-            if let requestResult = try RequestResult(JSONString: jsonString!) {
-                if requestResult.error != nil {
-                    print("cancelOrder: \(requestResult.error!)")
-                }
-                return requestResult.result
+        if let requestResult = RequestResult(JSONString: jsonString!) {
+            if requestResult.error != nil {
+                print("cancelOrder: \(requestResult.error!)")
             }
-        } catch {
-            print("cancelOrder: caught json error in method")
+            return requestResult.result
         }
         
         return false
@@ -340,6 +340,44 @@ extension ExmoAccountController {
         }
         
         return currencies
+    }
+    
+    func loadCurrencyPairSettings(_ currencyPairName: String) -> OrderSettings? {
+        guard let responseData = ExmoApiHandler.shared.loadCurrencyPairSettings() else {
+            print("loadCurrencyPairSettings: empty data")
+            return nil
+        }
+        
+        guard let jsonString = String(data: responseData, encoding: .utf8) else {
+            print("json string is broken")
+            return nil
+        }
+        
+        if let response = OrderRequestResult(JSONString: jsonString) {
+            if response.error != nil && !response.result {
+                print("error details: \(response.error!)")
+                return nil
+            }
+            
+            let json = JSON(parseJSON: jsonString)
+            guard let settingsAsDict = json.dictionaryValue.first(where: { $0.key == currencyPairName }) else {
+                return nil
+            }
+            
+            var dictWithNumbers: [String: Double] = [:]
+            for (key, value) in settingsAsDict.value.dictionaryValue {
+                dictWithNumbers[key] = value.doubleValue
+            }
+            
+            guard var orderSettings = OrderSettings(JSON: dictWithNumbers) else {
+                return nil
+            }
+            orderSettings.currencyPair = settingsAsDict.key
+            
+            return orderSettings
+        }
+        
+        return nil
     }
 }
 

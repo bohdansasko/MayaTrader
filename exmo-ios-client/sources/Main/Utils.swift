@@ -27,4 +27,8 @@ class Utils {
     static func getDisplayCurrencyPair(rawCurrencyPairName: String) -> String {
         return rawCurrencyPairName.replacingOccurrences(of: "_", with: "/")
     }
+    
+    static func getRawCurrencyPairName(name: String) -> String {
+        return name.replacingOccurrences(of: "/", with: "_")
+    }
 }
