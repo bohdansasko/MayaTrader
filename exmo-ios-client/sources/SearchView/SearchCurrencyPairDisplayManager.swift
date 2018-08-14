@@ -210,7 +210,7 @@ extension SearchDisplayManager: UISearchBarDelegate {
         if searchText.isEmpty {
             self.tableView.reloadData()
         } else {
-            self.filteredBalances = self.dataProvider.filter(){ $0.name.contains(searchText.uppercased()) }
+            self.filteredBalances = self.dataProvider.filter(){ $0.getDisplayName().contains(searchText.uppercased()) }
             self.tableView.reloadData()
         }
     }
