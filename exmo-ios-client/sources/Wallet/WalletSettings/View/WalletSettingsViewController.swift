@@ -40,6 +40,7 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
     }
     
     @IBAction func closeView() {
+        self.displayManager.saveChangesToSession()
         output.handleCloseView()
     }
 

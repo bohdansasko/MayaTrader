@@ -16,6 +16,7 @@ class UserCoreDataEngine {
     
     init() {
         self.moc = AppDelegate.dbController.getViewContext()
+        self.moc.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
     }
 
     func createNewLocalUser() -> User? {
@@ -41,9 +42,10 @@ class UserCoreDataEngine {
         do {
             let result = try moc.fetch(fetchRequest)
             if result.count > 0 {
-                let u = result.first as? UserEntity
+                let u = result.last as? UserEntity
                 user = u
             }
+
             return user
         } catch let error as NSError {
             NSLog("Unresolved error: \(error), \(error.userInfo)")
@@ -61,8 +63,8 @@ class UserCoreDataEngine {
         
         do {
             let result = try moc.fetch(fetchRequest)
-            if (result.count > 1) { // TODO: check
-                print("UserCoreDataEngine: user exists")
+            if (result.count > 0) { // TODO: check, because created more than one user
+                print("UserCoreDataEngine: count user exists: \(result.count)")
                 return true
             }
             print("UserCoreDataEngine: user doesn't exists")

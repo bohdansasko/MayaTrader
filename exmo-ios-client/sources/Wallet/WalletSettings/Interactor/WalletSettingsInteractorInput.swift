@@ -8,4 +8,5 @@
 
 protocol WalletSettingsInteractorInput {
     func viewIsReady()
+    func saveWalletDataToCache()
 }

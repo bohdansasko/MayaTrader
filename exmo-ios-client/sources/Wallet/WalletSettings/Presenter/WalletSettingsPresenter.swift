@@ -22,6 +22,7 @@ class WalletSettingsPresenter: WalletSettingsModuleInput, WalletSettingsViewOutp
     }
     
     func handleCloseView() {
+        interactor.saveWalletDataToCache()
         router.closeView(uiViewController: view as! UIViewController)
     }
 }

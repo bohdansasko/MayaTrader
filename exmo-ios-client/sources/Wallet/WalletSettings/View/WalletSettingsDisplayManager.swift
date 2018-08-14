@@ -49,6 +49,10 @@ class WalletSettingsDisplayManager: NSObject {
     func isDataExists() -> Bool {
         return walletDataProvider.isDataExists()
     }
+
+    func saveChangesToSession() {
+        AppDelegate.session.getUser().walletInfo = walletDataProvider
+    }
 }
 
 extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSource  {

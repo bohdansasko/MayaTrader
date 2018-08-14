@@ -13,11 +13,11 @@ class Utils {
         // do nothing
     }
     
-    static func getFormatedPrice(value: Double) -> String {
+    static func getFormatedPrice(value: Double, maxFractDigits: Int = 10) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 10
+        formatter.maximumFractionDigits = maxFractDigits
         if let formattedPrice = formatter.string(for: value) {
             return formattedPrice
         }

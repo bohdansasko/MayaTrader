@@ -112,7 +112,7 @@ struct WalletModel : Mappable {
 
     func getWalletEntity(entity: NSEntityDescription, insertInto context: NSManagedObjectContext?) -> WalletEntity {
         let walletEntity = WalletEntity(entity: entity, insertInto: context)
-        let currencies = NSSet()
+        var currencies = NSSet()
         for currency in self.allBalances {
             let c = WalletCurrencyEntity(context: context!)
             c.balance = currency.balance
@@ -122,7 +122,7 @@ struct WalletModel : Mappable {
             c.wallet = walletEntity
             c.indexInTableView = Int32(currency.orderId)
 
-            currencies.adding(c)
+            currencies = currencies.adding(c) as NSSet
         }
         walletEntity.addToCurrencies(currencies)
         return walletEntity
@@ -158,6 +158,10 @@ struct WalletModel : Mappable {
     
     func getFavouriteCurrencies() -> [WalletCurrencyModel] {
         return self.usedBalances;
+    }
+
+    func getUnusedCurrencies() -> [WalletCurrencyModel] {
+        return self.unusedBalances;
     }
 
     func getAllExistsCurrencies() -> [WalletCurrencyModel] {
@@ -226,5 +230,14 @@ struct WalletModel : Mappable {
         }
         
         return sum
+    }
+
+    func merge(_ walletFromCache : WalletModel) {
+        let balancesFromCache = walletFromCache.getUnusedCurrencies()
+        balancesFromCache.forEach({ currencyModel in
+            if let currency = self.allBalances.first(where: { $0.currency == currencyModel.currency }) {
+                currency.isFavourite = currencyModel.isFavourite
+            }
+        })
     }
 }

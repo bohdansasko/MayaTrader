@@ -37,8 +37,8 @@ class WalletDisplayManager: NSObject {
     func reloadData() {
         self.walletDataProvider = AppDelegate.session.getUser().getWalletInfo()
         self.walletDataProvider.filterCurrenciesByFavourites()
-        self.balanceView.btcValueLabel.text = String(walletDataProvider.getAmountMoneyInBTC())
-        self.balanceView.usdValueLabel.text = String(walletDataProvider.getAmountMoneyInUSD())
+        self.balanceView.btcValueLabel.text = Utils.getFormatedPrice(value: walletDataProvider.getAmountMoneyInBTC(), maxFractDigits: 6)
+        self.balanceView.usdValueLabel.text = Utils.getFormatedPrice(value: walletDataProvider.getAmountMoneyInUSD(), maxFractDigits: 4)
         self.tableView.reloadData()
     }
 

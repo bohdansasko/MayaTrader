@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="13772" systemVersion="16G1314" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="UserEntity" representedClassName="UserEntity" syncable="YES">
         <attribute name="exmoIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="secret" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="uid" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="uid" optional="YES" attributeType="Integer 32" usesScalarValueType="YES" syncable="YES">
+            <userInfo>
+                <entry key="uid" value="value"/>
+            </userInfo>
+        </attribute>
         <relationship name="wallet" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="WalletEntity" inverseName="user" inverseEntity="WalletEntity" syncable="YES"/>
         <relationship name="watchlistCurrencyPairs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="WatchlistCurrencyPairEntity" inverseName="user" inverseEntity="WatchlistCurrencyPairEntity" syncable="YES"/>
     </entity>
@@ -39,7 +43,7 @@
     </entity>
     <elements>
         <element name="UserEntity" positionX="-416" positionY="-133" width="128" height="133"/>
-        <element name="WalletCurrencyEntity" positionX="124" positionY="-211" width="128" height="133"/>
+        <element name="WalletCurrencyEntity" positionX="126" positionY="-304" width="128" height="133"/>
         <element name="WalletEntity" positionX="-92" positionY="-99" width="128" height="88"/>
         <element name="WalletTransactionHistoryEntity" positionX="133" positionY="-25" width="128" height="178"/>
         <element name="WatchlistCurrencyPairEntity" positionX="-146" positionY="-279" width="128" height="88"/>

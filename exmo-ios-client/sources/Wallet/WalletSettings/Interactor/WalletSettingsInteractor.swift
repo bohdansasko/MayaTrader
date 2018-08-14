@@ -11,6 +11,14 @@ class WalletSettingsInteractor: WalletSettingsInteractorInput {
     weak var output: WalletSettingsInteractorOutput!
     
     func viewIsReady() {
-        AppDelegate.session.getSearchCurrenciesContainer()
+        // do nothing
+    }
+
+    func saveWalletDataToCache() {
+        print("WalletSettingsInteractor: save wallet to cache")
+        let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: AppDelegate.session.getUser())
+        if isUserSavedToLocalStorage {
+            print("user info cached")
+        }
     }
 }

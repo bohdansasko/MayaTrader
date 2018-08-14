@@ -91,7 +91,9 @@ extension Session {
     func setUserModel(userData: User, shouldSaveUserInCache: Bool) {
         self.user = userData
         
-        if shouldSaveUserInCache {
+        let userInfoFromCache = AppDelegate.cacheController.getUser()
+        if shouldSaveUserInCache && userInfoFromCache != nil {
+            self.user.walletInfo.merge(userInfoFromCache!.walletInfo)
             let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: userData)
             if isUserSavedToLocalStorage {
                 print("user info cached")
