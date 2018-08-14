@@ -64,10 +64,13 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
         
         switch (actionIndex) {
         case OrderAdditionalAction.DeleteAll.rawValue:
+            self.displayManager.deleteAllOrders()
             break
         case OrderAdditionalAction.DeleteAllOnBuy.rawValue:
+            self.displayManager.deleteAllOrdersOnBuy()
             break
         case OrderAdditionalAction.DeleteAllOnSell.rawValue:
+            self.displayManager.deleteAllOrdersOnSell()
             break
         default:
             break

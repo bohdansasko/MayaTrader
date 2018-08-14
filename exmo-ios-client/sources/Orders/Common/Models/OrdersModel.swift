@@ -12,6 +12,7 @@ import SwiftyJSON
 class OrdersModel {
     // MARK: user types
     enum DisplayOrderType: Int {
+        case None = -1
         case Open = 0
         case Canceled
         case Deals
@@ -43,16 +44,14 @@ class OrdersModel {
         }
 
         if let ordersDictionary = json.dictionary {
-            for (currencyPair, orders) in ordersDictionary {
-                for order in orders.array! {
+            for (_, orders) in ordersDictionary {
+                for order in orders.arrayValue {
                     guard let map = order.dictionary else {
                         continue
                     }
                 
                     let model = OrderModel(id: (map["order_id"]?.int64Value)!, orderType: .Sell, currencyPair: (map["pair"]?.stringValue)!, createdDate: Date(timeIntervalSince1970: (map["created"]?.doubleValue)! ), price: (map["price"]?.doubleValue)!, quantity: (map["quantity"]?.doubleValue)!, amount: (map["amount"]?.doubleValue)!)
-                    if model != nil {
-                        self.orders.append(model)
-                    }
+                    self.orders.append(model)
                 }
             }
         }
@@ -79,7 +78,13 @@ class OrdersModel {
     }
     
     func removeItem(byIndex index: Int) {
-        self.orders.remove(at: index)
+        if isValidIndex(index: index) {
+            self.orders.remove(at: index)
+        }
+    }
+    
+    func isValidIndex(index: Int) -> Bool {
+        return index > -1 && index < self.orders.count
     }
     
     func getOrders() -> [OrderModel] {

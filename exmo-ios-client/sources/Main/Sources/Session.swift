@@ -173,6 +173,9 @@ extension Session {
                 break
             }
             break
+        default:
+            // do nothing
+            break
         }
     }
     

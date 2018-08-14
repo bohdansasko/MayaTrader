@@ -16,11 +16,13 @@ class OrdersDisplayManager: NSObject {
     weak var view: OrdersManagerViewInput!
     
     var shouldUseActions: Bool = false
+    var displayOrderType: OrdersModel.DisplayOrderType = .None
     
     var openedOrders: OrdersModel?
     var canceledOrders: OrdersModel?
     var dealsOrders: OrdersModel?
 
+    var tableViewCells: [Int64 : IndexPath] = [:]
     
     // MARK: public methods
     func setTableView(tableView: UITableView!) {
@@ -41,6 +43,7 @@ class OrdersDisplayManager: NSObject {
     }
 
     func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
+        self.displayOrderType = displayOrderType
         guard let data = self.getDataBySegmentIndex(displayOrderType: displayOrderType) else {
             self.dataProvider = OrdersModel()
             self.updateTableUI()
@@ -73,8 +76,12 @@ class OrdersDisplayManager: NSObject {
     }
 
     func appendOpenOrder(orderModel: OrderModel) {
-        self.dataProvider.append(orderModel: orderModel)
-        self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
+        if (self.displayOrderType == .Open) {
+            setOpenOrders(orders: AppDelegate.session.getOpenOrders())
+            self.dataProvider.append(orderModel: orderModel)
+            self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
+            self.checkOnRequirePlaceHolder()
+        }
     }
     
     private func checkOnRequirePlaceHolder() {
@@ -83,6 +90,65 @@ class OrdersDisplayManager: NSObject {
         } else {
             self.view.showPlaceholderNoData()
         }
+    }
+    
+    func deleteAllOrders() {
+        print("delete all orders")
+        
+        guard let openedOrders = self.openedOrders else {
+            print("deleteAllOrders: openedOrders == nil")
+            return
+        }
+        
+        for order in openedOrders.getOrders() {
+            let id = order.getId()
+            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: -1) {
+                // do nothing
+            }
+        }
+        if displayOrderType == .Open {
+            AppDelegate.session.getOpenOrders().clear()
+            
+            self.dataProvider.clear()
+            self.openedOrders?.clear()
+            self.tableView.reloadData()
+        }
+        self.checkOnRequirePlaceHolder()
+    }
+    
+    func deleteAllOrdersOnBuy() {
+        print("delete all orders on buy")
+        deleteAllOrdersOn(deleteOrderType: .Buy)
+    }
+
+    func deleteAllOrdersOnSell() {
+        print("delete all orders on sell")
+        deleteAllOrdersOn(deleteOrderType: .Sell)
+    }
+
+    private func deleteAllOrdersOn(deleteOrderType: OrderActionType) {
+        guard let openedOrders = self.openedOrders else {
+            print("deleteOrders: openedOrders == nil")
+            return
+        }
+        
+        let ordersOnBuy = openedOrders.getOrders().filter({ $0.getOrderActionType() == deleteOrderType })
+        for order in ordersOnBuy {
+            let id = order.getId()
+            guard let indexPath = self.tableViewCells[id] else {
+                continue
+            }
+            let shouldDeleteSection = self.displayOrderType == .Open
+            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: indexPath.section) {
+                self.openedOrders?.removeItem(byIndex: indexPath.section)
+                if shouldDeleteSection {
+                    self.dataProvider.removeItem(byIndex: indexPath.section)
+                    self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+                }
+            }
+        }
+        
+        self.checkOnRequirePlaceHolder()
     }
 }
 
@@ -121,7 +187,9 @@ extension OrdersDisplayManager: UITableViewDelegate  {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderTableViewCell
         cell.setContent(orderData: orderData)
-
+        
+        self.tableViewCells[orderData.getId()] = indexPath
+        
         return cell
     }
 
