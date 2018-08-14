@@ -41,7 +41,9 @@ class DarkeningPickerViewManager {
     }
     
     func close(selectedIndex: Int) {
-        self.callbackOnSelectAction?(selectedIndex)
+        if selectedIndex > -1 {
+            self.callbackOnSelectAction?(selectedIndex)
+        }
         self.newTopWindow?.isHidden = true
         self.newTopWindow = nil
         self.mainWindow?.makeKeyAndVisible()
@@ -63,7 +65,7 @@ class DarkeningPickerViewController: UIViewController {
         self.textField = UITextField(frame: CGRect.zero)
         self.view.addSubview(self.textField)
         
-        setupPickerView()
+        self.setupPickerView()
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.74)
         var selectRow = 0;
@@ -74,6 +76,13 @@ class DarkeningPickerViewController: UIViewController {
         }
         self.pickerView.selectRow(selectRow, inComponent: 0, animated: false)
         self.textField.becomeFirstResponder()
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onTouchView))
+        self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func onTouchView(_ sender : Any) {
+        self.closeView(selectedIndex: -1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -159,13 +168,15 @@ class DarkeningPickerViewController: UIViewController {
     }
     
     @IBAction func pickerViewButtonDonePressed(sender: Any) {
+        self.closeView(selectedIndex: self.getSelectedRowInPickerView())
+    }
+    
+    func closeView(selectedIndex: Int) {
         self.textField.resignFirstResponder()
-        let selectedIndex = self.getSelectedRowInPickerView()
         UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {}, completion: {
             _ in
             self.pickerViewManager.close(selectedIndex: selectedIndex)
         })
-        
     }
 }
 

@@ -60,6 +60,8 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     }
     
     private func handleSelectedAction(actionIndex: Int) {
+        print("handleSelectedAction: \(actionIndex)")
+        
         switch (actionIndex) {
         case OrderAdditionalAction.DeleteAll.rawValue:
             break
