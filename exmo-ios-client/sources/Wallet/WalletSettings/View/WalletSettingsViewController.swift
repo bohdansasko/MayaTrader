@@ -30,9 +30,9 @@ class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
         if AppDelegate.isIPhone(model: .X) {
             self.layoutConstraintHeaderHeight.constant = 95
         }
-        
-        self.displayManager.setSearchBar(searchBar: searchBar)
-        self.displayManager.setTableView(tableView: tableView)
+
+        self.displayManager.setSearchBar(searchBar: self.searchBar)
+        self.displayManager.setTableView(tableView: self.tableView)
     }
     
     func configure(walletModel: WalletModel) {
