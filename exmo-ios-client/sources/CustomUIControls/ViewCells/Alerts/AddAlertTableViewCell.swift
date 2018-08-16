@@ -21,14 +21,14 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
             self.headerLabel.text = d.getHeaderText()
             self.inputField.placeholder = d.getLeftText()
             self.inputField.placeholderColor = UIColor.white.withAlphaComponent(0.3)
+            self.inputField.delegate = self
             self.inputField.addTarget(self, action: #selector(self.onTextFieldEditingChanged), for: .editingChanged)
         }
     }
     
-    func setData(data: String?) {
-        self.inputField.text = data
-    }
-    
+    //
+    // @MARK: getters
+    //
     override func getDoubleValue() -> Double {
         guard let text = self.inputField.text else {
             return 0.0
@@ -44,21 +44,40 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
         return text
     }
     
-    private func getTextFromTextField(_ textField: UITextField) -> String {
+    fileprivate func getTextFromTextField(_ textField: UITextField) -> String {
         guard let text = textField.text else {
             return ""
         }
         return text
     }
+}
+
+extension AddAlertTableViewCell {
+    func setData(data: String?) {
+        self.inputField.text = data
+    }
     
     func setOnTextFieldTextDidChanged(onTextFieldTextDidChanged: TextInVoidOutClosure?) {
         self.onTextFieldTextDidChanged = onTextFieldTextDidChanged
     }
-
+    
     @objc func onTextFieldEditingChanged(_ button: Any) {
         let text = self.getTextFromTextField(self.inputField)
         if !text.isEmpty {
             self.onTextFieldTextDidChanged?(text)
         }
+    }
+
+    fileprivate func isValidString(currentString: String, newString: String) -> Bool {
+        return currentString.contains(".") && newString.last?.description != "."
+    }
+}
+
+//
+// MARK: text field delegate
+//
+extension AddAlertTableViewCell : UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return self.isValidString(currentString: textField.text!, newString: string)
     }
 }

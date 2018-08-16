@@ -15,12 +15,14 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        self.uiSwitch.tintColor = UIColor.dark1
+        self.uiSwitch.onTintColor = UIColor.dodgerBlue
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
  
