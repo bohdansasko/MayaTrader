@@ -29,10 +29,10 @@ class CreateOrderModuleConfigurator {
 
         presenter.interactor = interactor
         viewController.output = presenter
-        
+
         viewController.dataDisplayManager = CreateOrderDisplayManager()
         viewController.dataDisplayManager.output = viewController.output
-        viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, headerString: "Order by", dataSource: ["Market", "Cryptocurrency Exchange"])
+        viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, model:  viewController.dataDisplayManager.getPickerViewLayout())
     }
 
 }

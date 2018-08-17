@@ -8,6 +8,16 @@
 
 import UIKit
 
+struct DarkeningPickerViewModel {
+    var header: String
+    var dataSouce: [String]
+    
+    init(header: String, dataSouce: [String]) {
+        self.header = header
+        self.dataSouce = dataSouce
+    }
+}
+
 class DarkeningPickerViewManager {
     var mainWindow: UIWindow?
     var newTopWindow: UIWindow?
@@ -16,11 +26,11 @@ class DarkeningPickerViewManager {
     private var frameRect: CGRect!
     var callbackOnSelectAction: IntInVoidOutClosure?
     
-    init(frameRect: CGRect, headerString: String, dataSource: [String]) {
+    init(frameRect: CGRect, model: DarkeningPickerViewModel) {
         self.mainWindow = UIApplication.shared.keyWindow
         self.frameRect = frameRect
-        self.headerString = headerString
-        self.dataSource = dataSource
+        self.headerString = model.header
+        self.dataSource = model.dataSouce
     }
     
     func showPickerViewWithDarkening() {

@@ -150,6 +150,12 @@ class OrdersDisplayManager: NSObject {
         
         self.checkOnRequirePlaceHolder()
     }
+    
+    func getPickerViewLayout() -> DarkeningPickerViewModel {
+        return DarkeningPickerViewModel(
+            header: "Delete orders",
+            dataSouce: ["Delete All", "Delete All on buy", "Delete All on sell"])
+    }
 }
 
 extension OrdersDisplayManager: UITableViewDataSource  {

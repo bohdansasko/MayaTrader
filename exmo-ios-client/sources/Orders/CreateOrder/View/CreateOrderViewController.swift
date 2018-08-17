@@ -30,6 +30,10 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
         
         configureCancelButton()
         
+        self.pickerViewManager.setCallbackOnSelectAction(callback: { actionIndex in
+            self.dataDisplayManager.handleSelectedAction(actionIndex: actionIndex)
+        })
+        
         // for hide keyboard on touch background
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         self.view.addGestureRecognizer(tap)
@@ -39,7 +43,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
         view.endEditing(true)
     }
     
-    fileprivate func configureCancelButton() {
+    private func configureCancelButton() {
         self.cancelButton.setTitleTextAttributes([
                 NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
                 NSAttributedStringKey.foregroundColor: UIColor.orangePink
@@ -54,7 +58,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
         )
     }
     
-    @IBAction func handleTouchFromOrderByButton(_ sender: Any) {
+    func showPickerView() {
         self.pickerViewManager.showPickerViewWithDarkening()
     }
     

@@ -44,4 +44,8 @@ class CreateOrderPresenter: CreateOrderModuleInput, CreateOrderViewOutput, Creat
     func setOrderSettings(orderSettings: OrderSettings) {
         self.view.setOrderSettings(orderSettings: orderSettings)
     }
+    
+    func handleTouchOnOrderType() {
+        view.showPickerView()
+    }
 }
