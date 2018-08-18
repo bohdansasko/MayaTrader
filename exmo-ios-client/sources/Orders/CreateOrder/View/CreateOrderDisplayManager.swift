@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 import ObjectMapper
 
-fileprivate enum CreateOrderViewType {
-    case Limit
-    case Instant
-    case OnSum
+fileprivate enum CreateOrderViewType : Int {
+    case None = -1
+    case Limit = 0
+    case Instant = 1
+    case OnSum = 2
 }
 
 class CreateOrderDisplayManager: NSObject {
@@ -46,12 +47,15 @@ class CreateOrderDisplayManager: NSObject {
     private var dataProvider: [UIItem] = []
     private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
 
-    fileprivate var viewOrderType: CreateOrderViewType = .Limit
+    fileprivate var viewOrderType: CreateOrderViewType = .None
     fileprivate var orderSettings: OrderSettings?
+    private var orderViewModel : DarkeningPickerViewModel!
+    private var selectedOrderViewIndex : Int = 0
     
     override init() {
         super.init()
-        self.dataProvider = getFieldsForRender()
+        self.dataProvider = self.getFieldsForRender()
+        self.orderViewModel = self.getPickerViewLayout()
     }
     
     deinit {
@@ -72,8 +76,8 @@ class CreateOrderDisplayManager: NSObject {
         return cell
     }
     
-    func handleSelectedAction(actionIndex: Int) {
-        print("handleSelectedAction: \(actionIndex)")
+    func handleSelectedActionInOrderPickerView(actionIndex: Int) {
+        print("handleSelectedActionInOrderPickerView: \(actionIndex)")
         
         var layoutViewType = self.viewOrderType
         switch actionIndex {
@@ -83,11 +87,19 @@ class CreateOrderDisplayManager: NSObject {
         default: break
         }
         
+        self.selectedOrderViewIndex = actionIndex
         self.updateViewLayout(viewType: layoutViewType)
     }
     
     func getPickerViewLayout() -> DarkeningPickerViewModel {
-        return DarkeningPickerViewModel(header: "Delete orders", dataSouce: ["Limit", "Instant", "On sum"])
+        return DarkeningPickerViewModel(
+            header: "Order by",
+         dataSouce: ["Limit", "Instant", "On sum"]
+        )
+    }
+    
+    func getSelectedOrderViewIndex() -> Int {
+        return self.selectedOrderViewIndex
     }
 }
 
@@ -100,7 +112,8 @@ extension CreateOrderDisplayManager {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-        registerTableCells()
+        self.registerTableCells()
+        self.handleSelectedActionInOrderPickerView(actionIndex: CreateOrderViewType.Limit.rawValue)
         
         self.reloadData()
     }
@@ -186,7 +199,7 @@ extension CreateOrderDisplayManager {
                 UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 USD")),
                 UIItem(type: .Commision, item: UIFieldModel(headerText: "Commision", leftText: "0 BTC")),
 //                UIItem(type: .AvailableBalance, item: UIFieldModel(headerText: "Available balance", leftText: "0 USD")),
-                UIItem(type: .OrderBy, item: UIFieldModel(headerText: "Order by", leftText: "Select ...", rightText: "")),
+                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
                 UIItem(type: .ButtonCreate, item: nil)
             ]
         case .Instant:
@@ -194,7 +207,7 @@ extension CreateOrderDisplayManager {
                 UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
                 UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
                 UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
-                UIItem(type: .OrderBy, item: UIFieldModel(headerText: "Order by", leftText: "Select ...", rightText: "")),
+                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
                 UIItem(type: .ButtonCreate, item: nil)
                 
                 //                UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
@@ -206,9 +219,11 @@ extension CreateOrderDisplayManager {
                 UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
                 UIItem(type: .ForAmount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
                 UIItem(type: .TotalWillBe, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
-                UIItem(type: .OrderBy, item: UIFieldModel(headerText: "Order by", leftText: "Select ...", rightText: "")),
+                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
                 UIItem(type: .ButtonCreate, item: nil)
             ]
+        default:
+            return []
         }
     }
     
@@ -259,6 +274,8 @@ extension CreateOrderDisplayManager {
             let totalValue = amount * price
             
             cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
+        default: // do nothing
+            break
         }
     }
     
@@ -313,6 +330,8 @@ extension CreateOrderDisplayManager {
             } else {
                 createType = .MarketBuyTotal
             }
+        default: // do nothing
+            break
         }
         
         return OrderModel(createType: createType, currencyPair: currencyPairName, price: price, quantity: total, amount: amount)

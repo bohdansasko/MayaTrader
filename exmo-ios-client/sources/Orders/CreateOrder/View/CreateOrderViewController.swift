@@ -31,7 +31,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
         configureCancelButton()
         
         self.pickerViewManager.setCallbackOnSelectAction(callback: { actionIndex in
-            self.dataDisplayManager.handleSelectedAction(actionIndex: actionIndex)
+            self.dataDisplayManager.handleSelectedActionInOrderPickerView(actionIndex: actionIndex)
         })
         
         // for hide keyboard on touch background
@@ -59,7 +59,7 @@ class CreateOrderViewController: UITableViewController, CreateOrderViewInput {
     }
     
     func showPickerView() {
-        self.pickerViewManager.showPickerViewWithDarkening()
+        self.pickerViewManager.showPickerViewWithDarkening(self.dataDisplayManager.getSelectedOrderViewIndex())
     }
     
     @IBAction func handleTouchOnCancelButton(_ sender: Any) {

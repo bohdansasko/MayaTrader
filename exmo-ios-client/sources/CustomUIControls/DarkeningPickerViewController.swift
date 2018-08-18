@@ -33,11 +33,11 @@ class DarkeningPickerViewManager {
         self.dataSource = model.dataSouce
     }
     
-    func showPickerViewWithDarkening() {
+    func showPickerViewWithDarkening(_ withSelectedIndex: Int = -1) {
         guard let darkeningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DarkeningPickerViewController") as? DarkeningPickerViewController else {
             return
         }
-        darkeningViewController.prepareDataForShow(headerString: self.headerString, dataSource: self.dataSource)
+        darkeningViewController.prepareDataForShow(headerString: self.headerString, dataSource: self.dataSource, selectedRowWhenViewDidLoad: withSelectedIndex)
         darkeningViewController.pickerViewManager = self
         
         self.newTopWindow = UIWindow(frame: self.frameRect)
@@ -67,6 +67,7 @@ class DarkeningPickerViewController: UIViewController {
     private var headerString: String!
     
     var pickerView: UIPickerView!
+    var selectedRowWhenViewDidLoad: Int = -1
     weak var textField: UITextField!
     
     override func viewDidLoad() {
@@ -78,8 +79,11 @@ class DarkeningPickerViewController: UIViewController {
         self.setupPickerView()
         
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.74)
+        
         var selectRow = 0;
-        if !dataSource.isEmpty {
+        if selectedRowWhenViewDidLoad != -1 {
+            selectRow = self.selectedRowWhenViewDidLoad
+        } else if !dataSource.isEmpty {
             selectRow = dataSource.count % 2 == 1
                     ? dataSource.count/2
                     : dataSource.count/2 - 1
@@ -100,9 +104,10 @@ class DarkeningPickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func prepareDataForShow(headerString: String, dataSource: [String]) {
+    func prepareDataForShow(headerString: String, dataSource: [String], selectedRowWhenViewDidLoad: Int) {
         self.headerString = headerString
         self.dataSource = dataSource
+        self.selectedRowWhenViewDidLoad = selectedRowWhenViewDidLoad
     }
     
     func setupPickerView() {

@@ -69,7 +69,10 @@ extension AddAlertTableViewCell {
     }
 
     fileprivate func isValidString(currentString: String, newString: String) -> Bool {
-        return currentString.contains(".") && newString.last?.description != "."
+        if currentString.contains(".") && newString.last?.description == "." {
+            return false
+        }
+        return true
     }
 }
 
