@@ -141,7 +141,31 @@ extension CreateOrderDisplayManager {
         }
 
         currencyCell.updateData(leftText: name, rightText: Utils.getFormatedPrice(value: price))
+
         self.fillFields(number: price)
+        self.updatePlaceholdersInFields(currencyPairName: name)
+    }
+
+    fileprivate func updatePlaceholdersInFields(currencyPairName: String) {
+        let currencies = currencyPairName.split(separator: "/")
+
+        for item in self.dataProvider {
+            guard let cell = getCellByType(inParamType: item.type) as? AddAlertTableViewCell else {
+                continue
+            }
+            switch item.type {
+            case .Amount:
+                cell.setPlaceholderText(string: currencies[0].description)
+            case .Price:
+                cell.setPlaceholderText(string: currencies[1].description)
+            case .Total:
+                cell.setPlaceholderText(string: currencies[1].description)
+            case .Commision:
+                cell.setPlaceholderText(string: currencies[0].description)
+            default:
+                break
+            }
+        }
     }
     
     fileprivate func registerTableCells() {
@@ -193,7 +217,7 @@ extension CreateOrderDisplayManager {
         case .Limit:
             return [
                 UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "BTC")),
+                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "0 BTC")),
                 UIItem(type: .Price, item: UIFieldModel(headerText: "Price", leftText: "0 USD")),
                 UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 USD")),
                 UIItem(type: .Commision, item: UIFieldModel(headerText: "Commision", leftText: "0 BTC")),
@@ -204,7 +228,7 @@ extension CreateOrderDisplayManager {
         case .InstantOnAmount:
             return [
                 UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "USD")),
+                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "0 USD")),
                 UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
                 UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
                 UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
@@ -213,7 +237,7 @@ extension CreateOrderDisplayManager {
         case .InstantOnSum:
             return [
                 UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-                UIItem(type: .Amount, item: UIFieldModel(headerText: "For the amount of", leftText: "USD")),
+                UIItem(type: .Amount, item: UIFieldModel(headerText: "For the amount of", leftText: "0 USD")),
                 UIItem(type: .Total, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
                 UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
                 UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
@@ -243,9 +267,14 @@ extension CreateOrderDisplayManager {
                   let cellCommision = self.getCellByType(inParamType: .Commision) as? AddAlertTableViewCell else {
                 return
             }
-            
-            cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
-            cellCommision.setData(data: Utils.getFormatedPrice(value: comissionValue))
+            cellTotal.setTextInInputField(string: totalValue > 0
+                    ? Utils.getFormatedPrice(value:totalValue)
+                    : ""
+            )
+            cellCommision.setTextInInputField(string: comissionValue > 0
+                    ? Utils.getFormatedPrice(value: comissionValue)
+                    : ""
+            )
         case .InstantOnAmount:
             guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
                   let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
@@ -256,8 +285,12 @@ extension CreateOrderDisplayManager {
             let price = cellCurrencyPair.getDoubleValue()
             let amount = cellAmount.getDoubleValue()
             let totalValue = amount * price
-            
-            cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
+
+            cellTotal.setTextInInputField(string: totalValue > 0
+                    ? Utils.getFormatedPrice(value: totalValue)
+                    : ""
+            )
+
         case .InstantOnSum:
             guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
             let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
@@ -268,8 +301,11 @@ extension CreateOrderDisplayManager {
             let price = cellCurrencyPair.getDoubleValue()
             let amount = cellAmount.getDoubleValue()
             let totalValue = amount * price
-            
-            cellTotal.setData(data: Utils.getFormatedPrice(value: totalValue))
+
+            cellTotal.setTextInInputField(string: totalValue > 0
+                    ? Utils.getFormatedPrice(value: totalValue)
+                    : ""
+            )
         default: // do nothing
             break
         }
@@ -361,7 +397,7 @@ extension CreateOrderDisplayManager {
         var createType = OrderCreateType.None
         var currencyPairName = ""
         var amount = 1.0
-        var price = 0.0 // read from exmo server
+        var price = 0.0
         
         for item in self.dataProvider {
             guard let cell = self.getCellByType(inParamType: item.type) else {
@@ -443,13 +479,10 @@ extension CreateOrderDisplayManager: UITableViewDataSource  {
             cell.inputField.isEnabled = isFieldTouchEnabled(cellType: cellType)
             if cell.inputField.isEnabled {
                 cell.setOnTextFieldTextDidChanged(onTextFieldTextDidChanged: { text in
-                    guard let numb = Double(text) else {
-                        return
-                    }
                     if self.orderSettings != nil {
                         print("orderSettings max price: \(self.orderSettings!.maxPrice)")
                     }
-                    self.fillFields(number: numb)
+                    self.fillFields(number: Double(text) ?? 0)
                     print("user input: \(text)")
                 })
             }
@@ -512,7 +545,6 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch self.dataProvider[indexPath.section].type {
         case .ButtonCreate: return 45
-        // case .OrderBy: return 126
         default: return 70
         }
     }

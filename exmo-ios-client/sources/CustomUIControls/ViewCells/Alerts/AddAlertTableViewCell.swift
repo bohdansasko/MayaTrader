@@ -12,6 +12,8 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var inputField: UITextField!
     
+    @IBOutlet weak var currencyLabel: UILabel!
+    
     private var onTextFieldTextDidChanged: TextInVoidOutClosure? = nil
     var data: UIFieldModel? {
         didSet {
@@ -53,19 +55,25 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
 }
 
 extension AddAlertTableViewCell {
-    func setData(data: String?) {
-        self.inputField.text = data
+    func setTextInInputField(string: String?) {
+        self.inputField.text = string
+        self.currencyLabel.isHidden = string != nil ? string!.isEmpty : true
     }
-    
+
+    func setPlaceholderText(string: String) {
+        self.inputField.placeholder = "0 " + string
+        self.inputField.placeholderColor = UIColor.white.withAlphaComponent(0.3)
+        self.currencyLabel.text = string
+    }
+
     func setOnTextFieldTextDidChanged(onTextFieldTextDidChanged: TextInVoidOutClosure?) {
         self.onTextFieldTextDidChanged = onTextFieldTextDidChanged
     }
     
     @objc func onTextFieldEditingChanged(_ button: Any) {
         let text = self.getTextFromTextField(self.inputField)
-        if !text.isEmpty {
-            self.onTextFieldTextDidChanged?(text)
-        }
+        self.currencyLabel.isHidden = self.getTextData().isEmpty
+        self.onTextFieldTextDidChanged?(text)
     }
 
     fileprivate func isValidString(currentString: String, newString: String) -> Bool {

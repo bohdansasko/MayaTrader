@@ -250,7 +250,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             if let alert = self.alertItem {
                 let price = fieldType == .UpperBound ? alert.topBoundary : alert.bottomBoundary
                 if price != nil {
-                    cell.setData(data: String(price!))
+                    cell.setTextInInputField(string: String(price!))
                 }
             }
             cell.selectionStyle = .none
@@ -289,7 +289,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             cell.selectionStyle = .none
             cell.inputField.keyboardType = .default
             if let alert = self.alertItem {
-                cell.setData(data: alert.note)
+                cell.setTextInInputField(string: alert.note)
             }
             self.tableCells[indexPath] = cell
             return cell
@@ -304,11 +304,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             })
             self.tableCells[indexPath] = cell
             return cell
-        default:
-            // do nothing
-            break
         }
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
