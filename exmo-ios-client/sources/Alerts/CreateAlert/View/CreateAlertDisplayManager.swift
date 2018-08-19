@@ -274,7 +274,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
         case .Notification:
             let cell = tableView.dequeueReusableCell(withIdentifier: CellName.SwitcherTableViewCell.rawValue) as! SwitcherTableViewCell
             if let data = self.dataProvider[indexPath.section].item {
-                cell.setContentData(data: data)
+                cell.data = data
             }
             self.tableCells[indexPath] = cell
             if let alert = self.alertItem {

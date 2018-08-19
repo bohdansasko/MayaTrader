@@ -13,11 +13,32 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var uiSwitch: UISwitch!
     
+    var lefTextSwitchContainer: [String] = [] {
+        didSet {
+            self.updateLeftText()
+        }
+    }
+    
+    var shouldUpdateLeftTextOnChangeState = false {
+        didSet {
+            self.updateLeftText()
+        }
+    }
+    
+    var data: UIFieldModel? = nil {
+        didSet {
+            if let d = self.data {
+                setContentData(data: d)
+            }
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         self.uiSwitch.tintColor = UIColor.dark1
         self.uiSwitch.onTintColor = UIColor.dodgerBlue
+        self.uiSwitch.addTarget(self, action: #selector(uiSwitchValueChanged), for: .valueChanged)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,12 +47,32 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
         // Configure the view for the selected state
     }
  
-    func setContentData(data: UIFieldModel) {
+    private func setContentData(data: UIFieldModel) {
         self.headerLabel.text = data.getHeaderText()
         self.leftLabel.text = data.getLeftText()
     }
     
     override func getBoolValue() -> Bool {
         return self.uiSwitch.isOn
+    }
+    
+    func updateLeftText() {
+        if !self.shouldUpdateLeftTextOnChangeState {
+            return
+        }
+        
+        var index = 0
+        switch self.uiSwitch.isOn {
+        case true:
+            index = 0
+        case false:
+            index = 1
+        }
+        
+        self.leftLabel.text = self.lefTextSwitchContainer[index]
+    }
+    
+    @objc private func uiSwitchValueChanged(_ sender : Any) {
+        self.updateLeftText()
     }
 }
