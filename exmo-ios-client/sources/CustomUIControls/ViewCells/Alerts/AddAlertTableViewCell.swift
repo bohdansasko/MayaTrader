@@ -8,6 +8,18 @@
 
 import UIKit
 
+extension String {
+    func isValidDoubleValue() -> Bool {
+        let formatter = NumberFormatter()
+
+        if formatter.number(from: self) != nil {
+            return true
+        }
+        
+        return false
+    }
+}
+
 class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var inputField: UITextField!
@@ -75,13 +87,6 @@ extension AddAlertTableViewCell {
         self.currencyLabel.isHidden = self.getTextData().isEmpty
         self.onTextFieldTextDidChanged?(text)
     }
-
-    fileprivate func isValidString(currentString: String, newString: String) -> Bool {
-        if currentString.contains(".") && newString.last?.description == "." {
-            return false
-        }
-        return true
-    }
 }
 
 //
@@ -89,6 +94,13 @@ extension AddAlertTableViewCell {
 //
 extension AddAlertTableViewCell : UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        return self.isValidString(currentString: textField.text!, newString: string)
+        let textFieldText = textField.text ?? ""
+        let str = textFieldText + string
+    
+        if str.hasPrefix("00")  {
+            return false
+        }
+
+        return str.isEmpty || str.isValidDoubleValue()
     }
 }
