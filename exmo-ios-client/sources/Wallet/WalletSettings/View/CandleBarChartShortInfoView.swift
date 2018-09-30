@@ -20,7 +20,7 @@ class CandleBarChartShortInfoView : UIView {
     @IBOutlet weak var labelVolume : UILabel!
     @IBOutlet weak var labelDate : UILabel!
     
-    var model: ExmoChartData.CandleData? = nil {
+    var model: ChartCandleModel? = nil {
         didSet {
             if let model = self.model {
                 labelOpen.text = Utils.getFormatedPrice(value: model.open, maxFractDigits: 4)

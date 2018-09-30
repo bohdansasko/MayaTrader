@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WatchlistCurrencyChartInteractorOutput: class {
-
+    func updateChart(chartData: ExmoChartData?)
 }

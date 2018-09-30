@@ -175,109 +175,9 @@ extension ExmoApiHandler {
         print("start loadCurrencyPairSettings")
         return self.getResponseFromServerForPost(postDictionary: [:], method: "pair_settings")
     }
-    
-    func loadCurrencyPairChartHistory(currencyPair: String) {
-        print("start loadCurrencyPairSettings")
-
-        Alamofire.request("https://exmo.com/ctrl/chart/history?symbol=\(currencyPair)&resolution=D&from=1533848754&to=1536440814").responseJSON { response in
-            AppDelegate.exmoController.handleLoadedCurrencyPairChartHistory(response: response)
-        }
-    }
-}
-
-struct ExmoChartData : Mappable {
-    class CandleDataTransformType : TransformType {
-        typealias Object = CandleData
-        typealias JSON = String
-        
-        func transformFromJSON(_ value: Any?) -> ExmoChartData.CandleDataTransformType.Object? {
-            guard let jsonStr = value as? String else {
-                return nil
-            }
-            return CandleData(JSONString: jsonStr)
-        }
-        
-        func transformToJSON(_ value: ExmoChartData.CandleDataTransformType.Object?) -> ExmoChartData.CandleDataTransformType.JSON? {
-            return nil
-        }
-    }
-    
-    struct CandleData : Mappable {
-        var high: Double = 0.0
-        var low: Double = 0.0
-        var open: Double = 0.0
-        var close: Double = 0.0
-        var volume: Double = 0.0
-        var timeSince1970InSec: Double = 0.0
-        
-        init?(map: Map) {
-            // do nothing
-        }
-        
-        mutating func mapping(map: Map) {
-            high <- map["h"]
-            low <- map["l"]
-            open <- map["o"]
-            close <- map["c"]
-            timeSince1970InSec <- map["t"]
-            volume <- map["v"]
-        }
-    }
-    
-    var candles: [CandleData] = []
-    
-    init() {
-        // do nothing
-    }
-    
-    init?(map: Map) {
-        // do nothing
-    }
-    
-    mutating func mapping(map: Map) {
-        candles <- map["candles"]
-    }
-    
-    mutating func saveFirst30Elements() {
-        if candles.count > 30 {
-            candles.removeLast(candles.count - 30)
-        }
-    }
-    
-    func getMinVolume() -> Double {
-        guard let candleData = candles.min(by: { $0.volume < $1.volume }) else {
-            return 0.0
-        }
-        return candleData.volume
-    }
-    
-    func getMinLow() -> Double {
-        guard let candleData = candles.min(by: { $0.low < $1.low }) else {
-            return 0.0
-        }
-        return candleData.low
-    }
 }
 
 class ExmoAccountController {
-    func handleLoadedCurrencyPairChartHistory(response: DataResponse<Any>) {
-        print("Result is : \(response.result)")
-        switch response.result {
-        case .success(_):
-            do {
-                let jsonStr = try JSON(data: response.data!)
-                print("JSON: \(jsonStr)")
-                var chartData = ExmoChartData(JSONString: jsonStr.description)
-                chartData?.saveFirst30Elements()
-                AppDelegate.notificationController.postBroadcastMessage(name: .LoadCurrencyPairChartDataSuccess, data: ["data": chartData as Any])
-            } catch {
-                AppDelegate.notificationController.postBroadcastMessage(name: .LoadCurrencyPairChartDataFailed)
-            }
-        case .failure(_):
-            AppDelegate.notificationController.postBroadcastMessage(name: .LoadCurrencyPairChartDataFailed)
-        }
-    }
-    
     func getAllCurrenciesOnExmo() -> [String] { // TODO-REF: use cache instead this. cache should update every login
         return [
             "USD","EUR","RUB","PLN","UAH","BTC","LTC","DOGE","DASH","ETH","WAVES","ZEC","USDT","XMR","XRP","KICK","ETC","BCH"
@@ -413,11 +313,7 @@ class ExmoAccountController {
     }
 }
 
-extension ExmoAccountController {
-    func loadCurrencyPairChartHistory(rawCurrencyPair: String) {
-        ExmoApiHandler.shared.loadCurrencyPairChartHistory(currencyPair: rawCurrencyPair)
-    }
-    
+extension ExmoAccountController {    
     func loadTickerData() -> [SearchCurrencyPairModel]? {
         let result = ExmoApiHandler.shared.loadTicker()
         guard let jsonString = String(data: result!, encoding: .utf8) else {

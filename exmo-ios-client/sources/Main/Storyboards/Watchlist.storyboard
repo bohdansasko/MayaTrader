@@ -129,7 +129,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-uX-ayb" userLabel="chartTimePeriodContainer">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-uX-ayb" userLabel="chartTimePeriodContainer" customClass="ChartTimePeriodContainer" customModule="exmo_ios_client" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="49" width="375" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-z0-jAQ" userLabel="steelLine">
@@ -209,6 +209,14 @@
                                     <constraint firstItem="2hH-z0-jAQ" firstAttribute="leading" secondItem="Ydz-uX-ayb" secondAttribute="leading" id="lY4-fM-O0k"/>
                                     <constraint firstAttribute="trailing" secondItem="2hH-z0-jAQ" secondAttribute="trailing" id="vbQ-AX-l40"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="btnOneDay" destination="psa-xw-wXE" id="w0s-4t-xkt"/>
+                                    <outlet property="btnOneMonth" destination="aDN-G6-sig" id="cuo-67-iUa"/>
+                                    <outlet property="btnOneWeek" destination="yy3-Pb-TS2" id="y4f-up-nCn"/>
+                                    <outlet property="btnOneYear" destination="4qm-bW-CDy" id="y0Z-xf-Gjy"/>
+                                    <outlet property="currentPeriodViewIndicator" destination="wQJ-ex-gx1" id="osN-Kl-9fW"/>
+                                    <outlet property="indicatorLeadingConstraint" destination="QHY-66-k9L" id="NqM-v0-4xN"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhq-OT-W5R" userLabel="chartAdditionalInfo">
                                 <rect key="frame" x="0.0" y="84" width="375" height="633"/>
@@ -382,9 +390,10 @@
                         <viewLayoutGuide key="safeArea" id="7t4-Pi-3nj"/>
                     </view>
                     <connections>
-                        <outlet property="candleChartView" destination="hL2-tH-eP7" id="pgp-5S-qPf"/>
+                        <outlet property="barChart" destination="fhl-yG-wUS" id="4x6-8Z-mdb"/>
+                        <outlet property="candleChart" destination="hL2-tH-eP7" id="3hL-n5-OFZ"/>
                         <outlet property="candleShortInfoView" destination="g3a-xW-O1A" id="5IG-WH-d2i"/>
-                        <outlet property="lineChartView" destination="fhl-yG-wUS" id="iJ6-7Q-rwC"/>
+                        <outlet property="periodViewController" destination="Ydz-uX-ayb" id="cJ8-hU-wDt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RC0-Sc-NY4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -469,7 +478,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1725" y="-2519"/>
+            <point key="canvasLocation" x="1711" y="-2150"/>
         </scene>
         <!--Watchlistcardsmenu View Controller-->
         <scene sceneID="bdm-fQ-WkQ">

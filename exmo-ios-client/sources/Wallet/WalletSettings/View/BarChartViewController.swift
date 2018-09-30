@@ -106,7 +106,7 @@ extension BarChartViewController : ChartViewDelegate {
             return
         }
         
-        callbackOnchartValueSelected?(dataIndex, chartData.candles[dataIndex].volume, chartData.candles[dataIndex].timeSince1970InSec/1000)
+        callbackOnchartValueSelected?(dataIndex, chartData.candles[dataIndex].volume, chartData.candles[dataIndex].timeSince1970InSec)
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {

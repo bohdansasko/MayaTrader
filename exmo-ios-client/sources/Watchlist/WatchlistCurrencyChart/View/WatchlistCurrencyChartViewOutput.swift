@@ -14,4 +14,5 @@ protocol WatchlistCurrencyChartViewOutput {
     */
 
     func viewIsReady()
+    func loadChartData(currencyPair: String, period: String)
 }

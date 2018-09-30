@@ -50,7 +50,6 @@ class CandleStickChartViewController {
         chartView.xAxis.gridColor = UIColor.clear
 
         chartView.leftAxis.axisMinimum = chartData.getMinLow()
-        chartView.leftAxis.axisMinimum = chartView.leftAxis.axisMinimum - 200
         chartView.leftAxis.enabled = false
         
         chartView.rightAxis.gridColor = UIColor.dark1
@@ -129,7 +128,7 @@ extension CandleStickChartViewController : ChartViewDelegate {
             return
         }
         
-        callbackOnchartValueSelected?(dataIndex, chartData.candles[dataIndex].volume, chartData.candles[dataIndex].timeSince1970InSec/1000)
+        callbackOnchartValueSelected?(dataIndex, chartData.candles[dataIndex].volume, chartData.candles[dataIndex].timeSince1970InSec)
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {

@@ -13,6 +13,14 @@ class WatchlistCurrencyChartPresenter: WatchlistCurrencyChartModuleInput, Watchl
     var router: WatchlistCurrencyChartRouterInput!
 
     func viewIsReady() {
-
+        // do nothing
+    }
+    
+    func loadChartData(currencyPair: String, period: String) {
+        interactor.loadCurrencyPairChartHistory(currencyPair: currencyPair, period: period)
+    }
+    
+    func updateChart(chartData: ExmoChartData?) {
+        view.updateChart(chartData: chartData)
     }
 }

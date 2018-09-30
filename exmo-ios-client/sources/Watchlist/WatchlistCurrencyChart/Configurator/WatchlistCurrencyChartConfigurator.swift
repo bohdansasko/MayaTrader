@@ -26,6 +26,7 @@ class WatchlistCurrencyChartModuleConfigurator {
         presenter.router = router
 
         let interactor = WatchlistCurrencyChartInteractor()
+        interactor.networkAPIHandler = DefaultCandleChartNetworkWorker()
         interactor.output = presenter
 
         presenter.interactor = interactor
