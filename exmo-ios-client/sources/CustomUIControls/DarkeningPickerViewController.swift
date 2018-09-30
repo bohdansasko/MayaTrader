@@ -68,7 +68,7 @@ class DarkeningPickerViewController: UIViewController {
     
     var pickerView: UIPickerView!
     var selectedRowWhenViewDidLoad: Int = -1
-    weak var textField: UITextField!
+    var textField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()

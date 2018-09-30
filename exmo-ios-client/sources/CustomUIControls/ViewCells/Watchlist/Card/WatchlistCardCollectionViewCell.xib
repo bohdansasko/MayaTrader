@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -25,13 +25,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BTC/USD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Ub-RU-5Iq">
-                        <rect key="frame" x="14" y="4" width="68" height="20"/>
+                        <rect key="frame" x="14" y="4" width="70.5" height="19"/>
                         <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="16"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 8723.412" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ck-oZ-Vdh">
-                        <rect key="frame" x="14" y="26" width="68.5" height="17"/>
+                        <rect key="frame" x="14" y="25" width="70.5" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="106" id="SCb-yF-jUc"/>
                         </constraints>
@@ -47,7 +47,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+ 0.79%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7fS-XN-bWZ">
-                        <rect key="frame" x="14" y="46" width="43.5" height="15"/>
+                        <rect key="frame" x="14" y="45" width="46" height="14"/>
                         <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="12"/>
                         <color key="textColor" red="0.078681041800000004" green="0.85859566929999998" blue="0.43560541339999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>

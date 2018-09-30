@@ -44,7 +44,7 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     func setupInitialState() {
         let segmentControlTextFont = UIFont.getExo2Font(fontType: .Regular, fontSize: 13)
         self.segmentController.setTitleTextAttributes(
-            [ NSAttributedStringKey.font: segmentControlTextFont ],
+            [ NSAttributedString.Key.font: segmentControlTextFont ],
             for: .normal
         )
         

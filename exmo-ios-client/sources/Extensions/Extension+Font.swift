@@ -11,6 +11,7 @@ extension UIFont {
         case Regular
         case SemiBold
         case Bold
+        case Medium
     }
 
     static func getExo2Font(fontType: UIFont.Exo2Color, fontSize: CGFloat) -> UIFont {
@@ -21,6 +22,8 @@ extension UIFont {
             return UIFont(name: "Exo2-SemiBold", size: fontSize)!
         case .Bold:
             return UIFont(name: "Exo2-Bold", size: fontSize)!
+        case .Medium:
+            return UIFont(name: "Exo2-Medium", size: fontSize)!
         }
     }
 }

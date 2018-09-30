@@ -16,7 +16,9 @@ class Utils {
     static func getFormatedPrice(value: Double, maxFractDigits: Int = 10) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.minimumFractionDigits = 0
+//        formatter.minimumIntegerDigits = 4
+//        formatter.maximumIntegerDigits = 4
+        formatter.minimumFractionDigits = 4
         formatter.maximumFractionDigits = maxFractDigits
         if let formattedPrice = formatter.string(for: value) {
             return formattedPrice

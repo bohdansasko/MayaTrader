@@ -76,6 +76,9 @@
 		20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */; };
 		20463D8B20E6A16300086B51 /* OrderByTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */; };
 		20467D5051D58148706B41DA /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */; };
+		204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */; };
+		204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F78215B5D9400014017 /* BarChartViewController.swift */; };
+		204F7F7B215B5DAE00014017 /* CandleBarChartShortInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */; };
 		205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */; };
 		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
 		205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC2203CCEBD00A2E28A /* Main.storyboard */; };
@@ -399,6 +402,9 @@
 		2045B5CC21035D4B000F9D4C /* PlaceholderNoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderNoDataView.xib; sourceTree = "<group>"; };
 		20463D8820E6A16300086B51 /* OrderByTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderByTableViewCell.swift; sourceTree = "<group>"; };
 		20463D8920E6A16300086B51 /* OrderByTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderByTableViewCell.xib; sourceTree = "<group>"; };
+		204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
+		204F7F78215B5D9400014017 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleBarChartShortInfoView.swift; sourceTree = "<group>"; };
 		205A7CBF203CCEBD00A2E28A /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		205A7CC1203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		205A7CC3203CCEBD00A2E28A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -740,6 +746,9 @@
 				6C2FC324AD38DA30872BE9C3 /* WalletSettingsViewController.swift */,
 				201D8078205DC62800692DEF /* WalletSettingsTableViewCell.swift */,
 				201D807B205DC6A300692DEF /* WalletSettingsDisplayManager.swift */,
+				204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */,
+				204F7F78215B5D9400014017 /* BarChartViewController.swift */,
+				204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2256,6 +2265,7 @@
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
 				2003B5562048B8DE00BD205F /* WalletTableViewCell.swift in Sources */,
 				2045B5CB21035D39000F9D4C /* PlaceholderNoDataView.swift in Sources */,
+				204F7F7B215B5DAE00014017 /* CandleBarChartShortInfoView.swift in Sources */,
 				20CAFED72042AF0D00C7DEA5 /* Extensions+Data.swift in Sources */,
 				2003B5692048C78600BD205F /* DataService.swift in Sources */,
 				FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */,
@@ -2313,6 +2323,7 @@
 				20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */,
 				36712029F198CF69683FFA1B /* MoreDisplayModel.swift in Sources */,
 				3671205D06A10EADE42FAF7C /* User.swift in Sources */,
+				204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
 				20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */,
 				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
@@ -2418,6 +2429,7 @@
 				20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */,
 				F9987DF527D4DD34825717FC /* WatchlistCardsMenuInitializer.swift in Sources */,
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewInput.swift in Sources */,
+				204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */,
 				20780A2220E95A6800D9BD36 /* SearchCurrencyPairDisplayManager.swift in Sources */,
 				0B6A83BD11E0BF886F0C649C /* CreateAlertViewOutput.swift in Sources */,
 				209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */,
@@ -2547,7 +2559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -2598,7 +2610,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

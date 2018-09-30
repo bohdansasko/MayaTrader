@@ -38,4 +38,7 @@ extension Notification.Name {
     
     static let LoadCurrencySettingsSuccess = Notification.Name("LoadCurrencySettingsSuccess")
     static let LoadCurrencySettingsFailed = Notification.Name("LoadCurrencySettingsFailed")
+    
+    static let LoadCurrencyPairChartDataSuccess = Notification.Name("LoadCurrencyPairChartDataSuccess")
+    static let LoadCurrencyPairChartDataFailed = Notification.Name("LoadCurrencyPairChartDataFailed")
 }
