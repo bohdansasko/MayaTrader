@@ -6,20 +6,6 @@
 	objectVersion = 48;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		20CAFEF72042CAB000C7DEA5 /* CommonCryptoModuleMap */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = 20CAFEF82042CAB000C7DEA5 /* Build configuration list for PBXAggregateTarget "CommonCryptoModuleMap" */;
-			buildPhases = (
-				20CAFEFB2042CAEC00C7DEA5 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = CommonCryptoModuleMap;
-			productName = CommonCryptoModuleMap;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		01236729B7F200EE9462975B /* AlertsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */; };
 		01734E1F7D82963B9E334BA8 /* WalletSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158DF690BEAC86B7282D00 /* WalletSettingsInteractor.swift */; };
@@ -325,16 +311,6 @@
 		FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		20CAFEFC2042CB1E00C7DEA5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 20001D5D203B8D1200B6966F /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 20CAFEF72042CAB000C7DEA5;
-			remoteInfo = CommonCryptoModuleMap;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		20CAFEED2042C5C700C7DEA5 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -468,10 +444,6 @@
 		20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRLoginModel.swift; path = Models/QRLoginModel.swift; sourceTree = "<group>"; };
 		20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiHandler.swift; sourceTree = "<group>"; };
 		20CAFED62042AF0D00C7DEA5 /* Extensions+Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extensions+Data.swift"; sourceTree = "<group>"; };
-		20CAFEF12042C7FD00C7DEA5 /* iphoneos-module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "iphoneos-module.map"; sourceTree = "<group>"; };
-		20CAFEF22042C7FD00C7DEA5 /* CommonCrypto.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = CommonCrypto.xcconfig; sourceTree = "<group>"; };
-		20CAFEF32042C7FD00C7DEA5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		20CAFEF42042C7FD00C7DEA5 /* iphonesimulator-module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = "iphonesimulator-module.map"; sourceTree = "<group>"; };
 		20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
 		20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderDisplayManager.swift; sourceTree = "<group>"; };
 		20CCBDB4206396560099D144 /* CreateOrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderTableViewCell.swift; sourceTree = "<group>"; };
@@ -785,7 +757,6 @@
 			isa = PBXGroup;
 			children = (
 				20001D67203B8D1200B6966F /* exmo-ios-client */,
-				20CAFEE22042C5C700C7DEA5 /* CommonCrypto */,
 				20001D66203B8D1200B6966F /* Products */,
 				921EAAB49762D12A93BC948E /* Pods */,
 				C6509EEAFE1A3E3EACFA0368 /* Frameworks */,
@@ -1191,17 +1162,6 @@
 				20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */,
 			);
 			path = API;
-			sourceTree = "<group>";
-		};
-		20CAFEE22042C5C700C7DEA5 /* CommonCrypto */ = {
-			isa = PBXGroup;
-			children = (
-				20CAFEF22042C7FD00C7DEA5 /* CommonCrypto.xcconfig */,
-				20CAFEF32042C7FD00C7DEA5 /* Info.plist */,
-				20CAFEF12042C7FD00C7DEA5 /* iphoneos-module.map */,
-				20CAFEF42042C7FD00C7DEA5 /* iphonesimulator-module.map */,
-			);
-			path = CommonCrypto;
 			sourceTree = "<group>";
 		};
 		20CAFEFE2042ED8500C7DEA5 /* Services */ = {
@@ -2095,7 +2055,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				20CAFEFD2042CB1E00C7DEA5 /* PBXTargetDependency */,
 			);
 			name = "exmo-ios-client";
 			productName = "exmo-ios-client";
@@ -2117,10 +2076,6 @@
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
-					20CAFEF72042CAB000C7DEA5 = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 20001D60203B8D1200B6966F /* Build configuration list for PBXProject "exmo-ios-client" */;
@@ -2137,7 +2092,6 @@
 			projectRoot = "";
 			targets = (
 				20001D64203B8D1200B6966F /* exmo-ios-client */,
-				20CAFEF72042CAB000C7DEA5 /* CommonCryptoModuleMap */,
 			);
 		};
 /* End PBXProject section */
@@ -2192,19 +2146,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		20CAFEFB2042CAEC00C7DEA5 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# This if-statement means we'll only run the main script if the CommonCryptoModuleMap directory doesn't exist\n# Because otherwise the rest of the script causes a full recompile for anything where CommonCrypto is a dependency\n# Do a \"Clean Build Folder\" to remove this directory and trigger the rest of the script to run\nif [ -d \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap\" ]; then\necho \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap directory already exists, so skipping the rest of the script.\"\nexit 0\nfi\n\nmkdir -p \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap\"\ncat <<EOF > \"${BUILT_PRODUCTS_DIR}/CommonCryptoModuleMap/module.modulemap\"\nmodule CommonCrypto [system] {\n    header \"${SDKROOT}/usr/include/CommonCrypto/CommonCrypto.h\"\n    export *\n}\nEOF";
-		};
 		58BEFB3C39E58648E2204524 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2227,6 +2168,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
@@ -2234,6 +2176,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
@@ -2536,14 +2479,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		20CAFEFD2042CB1E00C7DEA5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 20CAFEF72042CAB000C7DEA5 /* CommonCryptoModuleMap */;
-			targetProxy = 20CAFEFC2042CB1E00C7DEA5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -2679,10 +2614,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQ8948VJT6;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILD_PRODUCTS_DIR)/CommonCryptoModuleMap",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "exmo-ios-client/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2704,10 +2636,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = RQ8948VJT6;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(BUILD_PRODUCTS_DIR)/CommonCryptoModuleMap",
-				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = "exmo-ios-client/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -2717,24 +2646,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		20CAFEF92042CAB000C7DEA5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RQ8948VJT6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		20CAFEFA2042CAB000C7DEA5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = RQ8948VJT6;
-				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -2755,15 +2666,6 @@
 			buildConfigurations = (
 				20001D7B203B8D1200B6966F /* Debug */,
 				20001D7C203B8D1200B6966F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		20CAFEF82042CAB000C7DEA5 /* Build configuration list for PBXAggregateTarget "CommonCryptoModuleMap" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				20CAFEF92042CAB000C7DEA5 /* Debug */,
-				20CAFEFA2042CAB000C7DEA5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

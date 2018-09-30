@@ -6,6 +6,7 @@ target 'exmo-ios-client' do
 
   pod 'SwiftWebSocket'
   pod 'ObjectMapper', '~> 3.1'
+  pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
   pod 'Charts'
 end
