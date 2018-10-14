@@ -33,4 +33,8 @@ class Utils {
     static func getRawCurrencyPairName(name: String) -> String {
         return name.replacingOccurrences(of: "/", with: "_")
     }
+    
+    static func getPairChangesInPercentage(currentValue: Double, prevValue: Double) -> Double {
+        return (currentValue - prevValue)/prevValue * 100
+    }
 }
