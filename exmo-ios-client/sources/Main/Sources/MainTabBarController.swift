@@ -37,7 +37,7 @@ class MainTabBarController: UITabBarController {
         selectedTabIndicatorImage.translatesAutoresizingMaskIntoConstraints = true
         let icOffset: CGFloat = AppDelegate.isIPhone(model: .X) ? 22 : 10
         selectedTabIndicatorImage.center = CGPoint(x: 0, y: self.tabBar.bounds.maxY - icOffset)
-        selectedTabIndicatorImage.autoresizingMask = [UIViewAutoresizing.flexibleLeftMargin, UIViewAutoresizing.flexibleRightMargin, UIViewAutoresizing.flexibleTopMargin, UIViewAutoresizing.flexibleBottomMargin]
+        selectedTabIndicatorImage.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         self.tabBar.addSubview(selectedTabIndicatorImage)
     }
     

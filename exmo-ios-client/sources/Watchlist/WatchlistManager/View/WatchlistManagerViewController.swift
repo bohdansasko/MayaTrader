@@ -30,7 +30,7 @@ class WatchlistManagerViewController: ExmoUIViewController, WatchlistManagerView
     func setupInitialState() {
         let vc = self.viewControllerForSegmentIndex(isOn: self.menuSwitchController.isOn)
         
-        self.addChildViewController(vc)
+        self.addChild(vc)
         vc.view.frame = viewContainer.bounds
         viewContainer.addSubview(vc.view)
         currentViewController = vc
@@ -40,7 +40,7 @@ class WatchlistManagerViewController: ExmoUIViewController, WatchlistManagerView
     @IBAction func menuSwitched(_ sender: Any) {
         let vc = self.viewControllerForSegmentIndex(isOn: self.menuSwitchController.isOn)
         
-        self.addChildViewController(vc)
+        self.addChild(vc)
         self.transition(
             from: self.currentViewController!, to: vc,
             duration: 0.0, options: .showHideTransitionViews,
@@ -50,8 +50,8 @@ class WatchlistManagerViewController: ExmoUIViewController, WatchlistManagerView
                 self.viewContainer.addSubview(vc.view)
             },
             completion: { _ in
-                vc.didMove(toParentViewController: self)
-                self.currentViewController?.removeFromParentViewController()
+                vc.didMove(toParent: self)
+                self.currentViewController?.removeFromParent()
                 self.currentViewController = vc
             }
         )

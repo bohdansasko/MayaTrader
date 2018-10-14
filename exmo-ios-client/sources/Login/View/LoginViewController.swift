@@ -50,8 +50,8 @@ class LoginViewController: UIViewController, LoginViewInput, UITextFieldDelegate
         secretField.keyboardType = .asciiCapable
         
         let inputFieldPlaceHolderAttributes = [
-            NSAttributedStringKey.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3),
-            NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+            NSAttributedString.Key.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3),
+            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
         ]
         self.keyField.attributedPlaceholder = NSAttributedString(string: "Enter your API-secret", attributes: inputFieldPlaceHolderAttributes)
         self.secretField.attributedPlaceholder = NSAttributedString(string: "Enter your API-key", attributes: inputFieldPlaceHolderAttributes)

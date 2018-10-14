@@ -42,7 +42,7 @@ class DarkeningPickerViewManager {
         
         self.newTopWindow = UIWindow(frame: self.frameRect)
         self.newTopWindow?.rootViewController = darkeningViewController
-        self.newTopWindow?.windowLevel = UIWindowLevelStatusBar + 1
+        self.newTopWindow?.windowLevel = UIWindow.Level.statusBar + 1
         self.newTopWindow?.makeKeyAndVisible()
     }
     
@@ -141,14 +141,14 @@ class DarkeningPickerViewController: UIViewController {
         let buttonDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(pickerViewButtonDonePressed(sender:)))
         buttonDone.tintColor = UIColor.white
         buttonDone.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
-            NSAttributedStringKey.foregroundColor: UIColor(red: 74/255.0, green: 132.0/255, blue: 244/255.0, alpha: 1.0)
+            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(red: 74/255.0, green: 132.0/255, blue: 244/255.0, alpha: 1.0)
             ],
             for: .normal
         )
         buttonDone.setTitleTextAttributes([
-            NSAttributedStringKey.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
-            NSAttributedStringKey.foregroundColor: UIColor(red: 74/255.0, green: 132.0/255, blue: 244/255.0, alpha: 1.0)
+            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+            NSAttributedString.Key.foregroundColor: UIColor(red: 74/255.0, green: 132.0/255, blue: 244/255.0, alpha: 1.0)
             ], for: .selected
         )
         

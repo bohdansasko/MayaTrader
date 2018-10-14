@@ -113,7 +113,7 @@ extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSour
         self.walletDataProvider.swapUsedCurrencies(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
     

@@ -1,23 +1,26 @@
 PODS:
-  - Charts (3.1.1):
-    - Charts/Core (= 3.1.1)
-  - Charts/Core (3.1.1)
-  - ObjectMapper (3.1.0)
+  - Alamofire (4.7.3)
+  - Charts (3.2.0):
+    - Charts/Core (= 3.2.0)
+  - Charts/Core (3.2.0)
+  - ObjectMapper (3.3.0)
   - SwiftWebSocket (2.7.0)
   - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
+  - Alamofire (~> 4.7)
   - Charts
   - ObjectMapper (~> 3.1)
   - SwiftWebSocket
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Charts: 90a4d61da0f6e06684c591e3bcab11940fe61736
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 87f3bec5e35ce841456f084eed830584a3c4f327
+PODFILE CHECKSUM: 3924f0920ed3b17ea65501b6192a1ca2fd8394dd
 
 COCOAPODS: 1.4.0
