@@ -1,5 +1,5 @@
 //
-//  WatchlistFlatWatchlistFlatConfigurator.swift
+//  WatchlistFavouriteCurrenciesModuleConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -8,30 +8,28 @@
 
 import UIKit
 
-class WatchlistFlatModuleConfigurator {
+class WatchlistFavouriteCurrenciesModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? WatchlistFlatViewController {
+        if let viewController = viewInput as? WatchlistFavouriteCurrenciesViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: WatchlistFlatViewController) {
+    private func configure(viewController: WatchlistFavouriteCurrenciesViewController) {
 
-        let router = WatchlistFlatRouter()
+        let router = WatchlistFavouriteCurrenciesRouter()
 
-        let presenter = WatchlistFlatPresenter()
+        let presenter = WatchlistFavouriteCurrenciesPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = WatchlistFlatInteractor()
+        let interactor = WatchlistFavouriteCurrenciesInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor
         viewController.output = presenter
-        
-        viewController.displayManager = WatchlistFlatDisplayManager(data: WatchlistCurrencyPairsModel())
     }
 
 }

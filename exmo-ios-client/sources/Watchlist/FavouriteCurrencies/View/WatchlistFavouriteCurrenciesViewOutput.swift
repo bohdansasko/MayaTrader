@@ -1,12 +1,12 @@
 //
-//  WatchlistCardsMenuWatchlistCardsMenuViewOutput.swift
+//  WatchlistFavouriteCurrenciesViewOutput.swift
 //  ExmoMobileClient
 //
-//  Created by TQ0oS on 30/03/2018.
+//  Created by TQ0oS on 27/03/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-protocol WatchlistCardsMenuViewOutput {
+protocol WatchlistFavouriteCurrenciesViewOutput {
 
     /**
         @author TQ0oS

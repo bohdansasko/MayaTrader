@@ -1,5 +1,5 @@
 //
-//  WatchlistManagerWatchlistManagerInitializer.swift
+//  WatchlistFavouriteCurrenciesModuleInitializer.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class WatchlistManagerModuleInitializer: NSObject {
+class WatchlistFavouriteCurrenciesModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var watchlistmanagerViewController: WatchlistManagerViewController!
+    @IBOutlet weak var watchlistmanagerViewController: WatchlistFavouriteCurrenciesViewController!
 
     override func awakeFromNib() {
 
-        let configurator = WatchlistManagerModuleConfigurator()
+        let configurator = WatchlistFavouriteCurrenciesModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: watchlistmanagerViewController)
     }
 

@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrencyPairModel.swift
+//  WatchlistFlatDisplayManagerl.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/27/18.

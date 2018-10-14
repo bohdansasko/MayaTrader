@@ -22,23 +22,11 @@
         <!--Watchlistmanager View Controller-->
         <scene sceneID="mgR-zb-bpD">
             <objects>
-                <viewController title="Watchlist" id="v35-g1-zIZ" customClass="WatchlistManagerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Watchlist" id="v35-g1-zIZ" customClass="WatchlistFavouriteCurrenciesViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sAi-3P-B2U">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gD0-rN-296">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="690"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </containerView>
-                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="gD0-rN-296" firstAttribute="top" secondItem="ycd-gs-0uU" secondAttribute="top" id="Rok-Xy-akN"/>
-                            <constraint firstItem="ycd-gs-0uU" firstAttribute="trailing" secondItem="gD0-rN-296" secondAttribute="trailing" id="a1w-QR-agP"/>
-                            <constraint firstItem="gD0-rN-296" firstAttribute="leading" secondItem="ycd-gs-0uU" secondAttribute="leading" id="kle-1c-XuM"/>
-                            <constraint firstItem="ycd-gs-0uU" firstAttribute="bottom" secondItem="gD0-rN-296" secondAttribute="bottom" id="pFZ-ph-yek"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="ycd-gs-0uU"/>
                     </view>
                     <navigationItem key="navigationItem" title="Watchlist" id="oQh-F6-8OK">
@@ -54,72 +42,20 @@
                                 <action selector="menuSwitched:" destination="v35-g1-zIZ" id="s3Y-rY-Xfd"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Cw5-V6-b0z">
-                            <connections>
-                                <segue destination="y4J-WM-6Ra" kind="presentation" id="iOV-Sk-fGw"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Cw5-V6-b0z"/>
                     </navigationItem>
                     <connections>
                         <outlet property="menuSwitchController" destination="jWW-vD-Kdo" id="mGD-Ps-Fka"/>
-                        <outlet property="viewContainer" destination="gD0-rN-296" id="L8N-kd-Y8e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KV6-NZ-NNS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="k17-uE-Bo1" customClass="WatchlistManagerModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                <customObject id="k17-uE-Bo1" customClass="WatchlistFavouriteCurrenciesModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
                     <connections>
                         <outlet property="watchlistmanagerViewController" destination="v35-g1-zIZ" id="Hr3-FJ-Nev"/>
                     </connections>
                 </customObject>
             </objects>
             <point key="canvasLocation" x="105" y="-2539"/>
-        </scene>
-        <!--Watchlistflat View Controller-->
-        <scene sceneID="eDh-2P-nZ6">
-            <objects>
-                <viewController storyboardIdentifier="WatchlistFlatViewController" id="epo-OA-Mbb" customClass="WatchlistFlatViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="EYz-sF-RJg">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ktZ-7S-ccu">
-                                <rect key="frame" x="0.0" y="44" width="375" height="734"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="53" id="k2I-Ry-5j3" customClass="WatchlistFlatTableViewCell" customModule="exmo_ios_client" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="53"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k2I-Ry-5j3" id="NW9-C2-5un">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="53"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <color key="backgroundColor" red="0.013773798009999999" green="0.0031396639530000001" blue="0.038252305239999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="ktZ-7S-ccu" firstAttribute="leading" secondItem="O21-Fg-FOE" secondAttribute="leading" id="XdG-Lw-quH"/>
-                            <constraint firstItem="O21-Fg-FOE" firstAttribute="trailing" secondItem="ktZ-7S-ccu" secondAttribute="trailing" id="bRl-ZS-Pnv"/>
-                            <constraint firstItem="ktZ-7S-ccu" firstAttribute="top" secondItem="O21-Fg-FOE" secondAttribute="top" id="cYP-rr-ImM"/>
-                            <constraint firstItem="O21-Fg-FOE" firstAttribute="bottom" secondItem="ktZ-7S-ccu" secondAttribute="bottom" id="iLi-F5-ykf"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="O21-Fg-FOE"/>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="ktZ-7S-ccu" id="0cR-hx-vgf"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CH4-Yu-frV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="wye-3o-Fu2" customClass="WatchlistFlatModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
-                    <connections>
-                        <outlet property="watchlistflatViewController" destination="epo-OA-Mbb" id="DIE-RF-UYG"/>
-                    </connections>
-                </customObject>
-            </objects>
-            <point key="canvasLocation" x="966" y="-2117"/>
         </scene>
         <!--Watchlistcurrencychart View Controller-->
         <scene sceneID="oAv-j1-wr8">
@@ -483,7 +419,7 @@
         <!--Watchlistcardsmenu View Controller-->
         <scene sceneID="bdm-fQ-WkQ">
             <objects>
-                <viewController storyboardIdentifier="WatchlistCardsMenuViewController" id="bg7-8O-yPX" customClass="WatchlistCardsMenuViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WatchlistCardsMenuViewController" id="bg7-8O-yPX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OkP-4P-zDl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

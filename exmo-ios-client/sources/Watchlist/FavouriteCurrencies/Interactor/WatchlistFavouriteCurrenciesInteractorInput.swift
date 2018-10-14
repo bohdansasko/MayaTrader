@@ -1,5 +1,5 @@
 //
-//  WatchlistManagerWatchlistManagerInteractorOutput.swift
+//  WatchlistFavouriteCurrenciesInteractorInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol WatchlistManagerInteractorOutput: class {
+protocol WatchlistFavouriteCurrenciesInteractorInput {
 
 }
