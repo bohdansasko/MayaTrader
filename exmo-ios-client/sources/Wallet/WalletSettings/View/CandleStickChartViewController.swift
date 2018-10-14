@@ -12,10 +12,7 @@ import Charts
 //
 // @MARK: CandleStickChartViewController
 //
-class CandleStickChartViewController {
-    typealias CallbackOnchartValueSelected = (Int, Double, Double) -> Void
-    typealias CallbackOnChartTranslated = (CGFloat) -> Void
-    
+class CandleStickChartViewController: ExmoChartViewController {
     @IBOutlet weak var chartView: CandleStickChartView!
     
     var chartData: ExmoChartData = ExmoChartData() {
@@ -24,21 +21,17 @@ class CandleStickChartViewController {
         }
     }
     
-    private var callbackOnchartValueSelected: CallbackOnchartValueSelected? = nil
-    private var callbackOnChartTranslated: CallbackOnChartTranslated? = nil
-    
-    init() {
+    override init() {
         // do nothing
     }
     
-    private func setupChart() {
+    override func setupChart() {
         chartView.delegate = self
         
         let candleData = getCandleChartData()
         chartView.data = candleData
 
         chartView.setVisibleXRangeMaximum(20)
-        chartView.setVisibleXRangeMinimum(10)
         chartView.pinchZoomEnabled = false
         chartView.legend.enabled = false
         chartView.dragXEnabled = true
@@ -48,6 +41,9 @@ class CandleStickChartViewController {
 
         chartView.xAxis.labelPosition = .bottom
         chartView.xAxis.gridColor = UIColor.clear
+        chartView.xAxis.valueFormatter = self
+        chartView.xAxis.granularity = 1
+        chartView.xAxis.labelTextColor = .white
 
         chartView.leftAxis.axisMinimum = chartData.getMinLow()
         chartView.leftAxis.enabled = false
@@ -90,49 +86,33 @@ class CandleStickChartViewController {
         return CandleChartData(dataSet: set1)
     }
     
-    func setCallbackOnchartValueSelected(callback: CallbackOnchartValueSelected?) {
-        callbackOnchartValueSelected = callback
-    }
-    
-    func setCallbackOnChartTranslated(callback: CallbackOnChartTranslated?) {
-        callbackOnChartTranslated = callback
-    }
-    
-    func validIndex(currentIndex: Int, minIndex: Int, maxIndex: Int) -> Bool {
-        let minBorder = minIndex - 1
-        let maxBorder = maxIndex + 1
-        return currentIndex > minBorder && currentIndex < maxBorder
-    }
-    
-    func emitCallbackOnchartValueSelected(dataEntryIndex: Int, volumeValue: Double, secondsSince1970: Double) {
-
-        callbackOnchartValueSelected?(dataEntryIndex, volumeValue, secondsSince1970)
-    }
-    
-    func moveChartByXTo(index: Double) {
-        print(index)
-        chartView.moveViewToAnimated(xValue: index, yValue: 0, axis: .right, duration: 0.5)
+    override func moveChartByXTo(index: Double) {
+        chartView.moveViewToX(index)
     }
 }
 
+extension CandleStickChartViewController : IAxisValueFormatter {
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        guard let candleItem = self.chartData.getCandleByIndex(Int(value)) else { return "" }
+        let timeIntervalSince1970 = candleItem.timeSince1970InSec
+        let dt = DateFormatter()
+        dt.dateFormat = "MM/dd"
+        let formatedDate = dt.string(from: Date(timeIntervalSince1970: timeIntervalSince1970))
+        
+        return formatedDate
+    }
+}
 //
 // @MARK: Delegate
 //
 extension CandleStickChartViewController : ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        guard let candleEntry = entry as? CandleChartDataEntry else {
-            return
-        }
-        let dataIndex = Int(candleEntry.x)
-        if !validIndex(currentIndex: dataIndex, minIndex: 0, maxIndex: chartData.candles.count - 1) {
-            return
-        }
-        
-        callbackOnchartValueSelected?(dataIndex, chartData.candles[dataIndex].volume, chartData.candles[dataIndex].timeSince1970InSec)
+        callbackOnchartValueSelected?(highlight)
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-        print("candle dx\(chartView.viewPortHandler.transX)")
-         callbackOnChartTranslated?(chartView.viewPortHandler.transX)
+        print("candle dx\(dX)")
+        guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
+        callbackOnChartTranslated?(highlight)
     }
 }

@@ -12,10 +12,36 @@ import Charts
 //
 // @MARK: BarChartViewController
 //
-class BarChartViewController {
-    typealias CallbackOnchartValueSelected = (Int, Double, Double) -> Void
-    typealias CallbackOnChartTranslated = (CGFloat) -> Void
+
+class ExmoChartViewController {
+    typealias CallbackOnchartValueSelected = (Highlight) -> Void
+    typealias CallbackOnChartTranslated = (Highlight) -> Void
     
+    var callbackOnchartValueSelected: CallbackOnchartValueSelected?
+    var callbackOnChartTranslated: CallbackOnChartTranslated?
+    
+    func setupChart() {
+        fatalError("moveChartByXTo doesn't have implementation")
+    }
+    
+    func setCallbackOnChartValueSelected(callback: CallbackOnchartValueSelected?) {
+        callbackOnchartValueSelected = callback
+    }
+    
+    func setCallbackOnChartTranslated(callback: CallbackOnChartTranslated?) {
+        callbackOnChartTranslated = callback
+    }
+    
+    func emitCallbackOnchartValueSelected(highlight: Highlight) {
+        callbackOnchartValueSelected?(highlight)
+    }
+    
+    func moveChartByXTo(index: Double) {
+        fatalError("moveChartByXTo doesn't have implementation")
+    }
+}
+
+class BarChartViewController: ExmoChartViewController {
     @IBOutlet weak var chartView: BarChartView!
     
     var chartData: ExmoChartData = ExmoChartData() {
@@ -24,10 +50,7 @@ class BarChartViewController {
         }
     }
     
-    private var callbackOnchartValueSelected: CallbackOnchartValueSelected? = nil
-    private var callbackOnChartTranslated: CallbackOnChartTranslated? = nil
-    
-    private func setupChart() {
+    override func setupChart() {
         let lineData = getBarChartData()
         chartView.data = lineData
         chartView.delegate = self
@@ -73,45 +96,18 @@ class BarChartViewController {
         return barChartData
     }
     
-    func setCallbackOnChartValueSelected(callback: CallbackOnchartValueSelected?) {
-        callbackOnchartValueSelected = callback
-    }
-    
-    func setCallbackOnChartTranslated(callback: CallbackOnChartTranslated?) {
-        callbackOnChartTranslated = callback
-    }
-    
-    func moveChartByXTo(index: Double) {
-        chartView.moveViewToAnimated(xValue: index, yValue: 0, axis: .left, duration: 0.5)
-    }
-    
-    func emitCallbackOnchartValueSelected(candleEntryIndex: Int, volumeValue: Double, secondsSince1970: Double) {
-        callbackOnchartValueSelected?(candleEntryIndex, volumeValue, secondsSince1970)
-    }
-    
-    func validIndex(currentIndex: Int, minIndex: Int, maxIndex: Int) -> Bool {
-        let minBorder = minIndex - 1
-        let maxBorder = maxIndex + 1
-        return currentIndex > minBorder && currentIndex < maxBorder
+    override func moveChartByXTo(index: Double) {
+        chartView.moveViewToX(index)
     }
 }
 
 extension BarChartViewController : ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        guard let candleEntry = entry as? BarChartDataEntry else {
-            return
-        }
-        let dataIndex = Int(candleEntry.x)
-        if !validIndex(currentIndex: dataIndex, minIndex: 0, maxIndex: chartData.candles.count - 1) {
-            return
-        }
-        
-        callbackOnchartValueSelected?(dataIndex, chartData.candles[dataIndex].volume, chartData.candles[dataIndex].timeSince1970InSec)
+        callbackOnchartValueSelected?(highlight)
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-        print("bar dx\(chartView.viewPortHandler.transX)")
-        
-        callbackOnChartTranslated?(chartView.viewPortHandler.transX)
+        guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
+        callbackOnChartTranslated?(highlight)
     }
 }

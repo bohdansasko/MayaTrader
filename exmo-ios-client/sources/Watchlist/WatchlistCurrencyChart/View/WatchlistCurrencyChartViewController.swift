@@ -120,27 +120,25 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         // prepare bar chart
         barChartViewController.chartView = barChart
         barChartViewController.setCallbackOnChartTranslated(callback: {
-            dX in
-            self.candleChartViewController.moveChartByXTo(index: Double(dX))
+            highlight in
+            self.candleChartViewController.moveChartByXTo(index: highlight.x)
         })
         barChartViewController.setCallbackOnChartValueSelected(callback: {
-            candleEntryIndex, volumeValue, secondsSince1970 in
+            highlight in
+            self.candleChartViewController.chartView?.highlightValue(highlight)
+            self.showCandleInfo(candleIndex: Int(highlight.x))
         })
         
         // prepare candle chart
         candleChartViewController.chartView = candleChart
         candleChartViewController.setCallbackOnChartTranslated(callback: {
-            dX in
-            self.barChartViewController.moveChartByXTo(index: Double(dX))
+            highlight in
+            self.barChartViewController.moveChartByXTo(index: highlight.x)
         })
-        candleChartViewController.setCallbackOnchartValueSelected(callback: {
-            candleEntryIndex, volumeValue, timeSince1970InSec in
-            
-            self.barChartViewController.emitCallbackOnchartValueSelected(candleEntryIndex: candleEntryIndex, volumeValue: volumeValue, secondsSince1970: timeSince1970InSec)
-            if self.candleShortInfoView.isHidden {
-                self.candleShortInfoView.isHidden = false
-            }
-            self.candleShortInfoView.model = self.candleChartViewController.chartData.candles[candleEntryIndex]
+        candleChartViewController.setCallbackOnChartValueSelected(callback: {
+            highlight in
+            self.barChartViewController.chartView?.highlightValue(highlight)
+            self.showCandleInfo(candleIndex: Int(highlight.x))
         })
 
         periodViewController.callbackOnChangePeriod = {
@@ -149,10 +147,17 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         }
     }
     
-//    @objc func onLoadCurrencyPairChartDataFailed() {
-//        // show alert
-//        // output.closeView()
-//    }
+    func showCandleInfo(candleIndex: Int) {
+        if self.candleShortInfoView.isHidden {
+            self.candleShortInfoView.isHidden = false
+        }
+        self.candleShortInfoView.model = self.candleChartViewController.chartData.candles[candleIndex]
+    }
+    
+    @objc func onLoadCurrencyPairChartDataFailed() {
+        // show alert
+        // output.closeView()
+    }
     
     func updateChart(chartData: ExmoChartData?) {
         guard let chartData = chartData else { return }

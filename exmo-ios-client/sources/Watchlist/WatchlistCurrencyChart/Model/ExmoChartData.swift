@@ -103,4 +103,7 @@ struct ExmoChartData {
     }
 
 
+    func getCandleByIndex(_ index : Int) -> ChartCandleModel? {
+        return index > -1 && index < candles.count ? candles[index] : nil
+    }
 }
