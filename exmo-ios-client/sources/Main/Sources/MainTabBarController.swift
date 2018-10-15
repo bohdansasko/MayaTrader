@@ -18,11 +18,19 @@ class MainTabBarController: UITabBarController {
         
         super.viewDidLoad()
         
+        setupTabBarItems()
+        setupTabBar()
+        
+        if AppDelegate.session.isUserWasLoggedInExmoAccount() {
+            AppDelegate.session.exmoLoginWithCacheData()
+        }
+        AppDelegate.session.roobikLogin()
+    }
+    
+    private func setupTabBarItems() {
         let watchlist = WatchlistFavouriteCurrenciesModuleInitializer()
         watchlist.watchlistmanagerViewController = WatchlistFavouriteCurrenciesViewController()
         watchlist.awakeFromNib()
-        
-        containerInitial.append(watchlist)
         
         viewControllers = [
             UINavigationController(rootViewController: watchlist.watchlistmanagerViewController),
@@ -31,13 +39,18 @@ class MainTabBarController: UITabBarController {
             UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: "AlertsNavigationController"),
             UIStoryboard(name: "MoreOptions", bundle: nil).instantiateViewController(withIdentifier: "MoreNavigationController")
         ]
-        self.addSelectedTabIndicator()
-        self.updateIndicatorPosition(index: 0)
         
-        if AppDelegate.session.isUserWasLoggedInExmoAccount() {
-            AppDelegate.session.exmoLoginWithCacheData()
-        }
-        AppDelegate.session.roobikLogin()
+        guard let watchlistTabBarItem = tabBar.items?[0] else { return }
+        watchlistTabBarItem.image = UIImage(named: "icTabbarWatchlist")
+        watchlistTabBarItem.selectedImage = UIImage(named: "icTabbarWatchlistSelected")
+    }
+    
+    private func setupTabBar() {
+        tabBar.barTintColor = .black
+        tabBar.isTranslucent = false
+        
+        addSelectedTabIndicator()
+        updateIndicatorPosition(index: 0)
     }
     
     private func addSelectedTabIndicator() {
