@@ -68,6 +68,7 @@ extension CurrenciesListTabBar {
     private func setupSearchBar() {
         searchBar.backgroundImage = UIImage()
         searchBar.barStyle = .black
+        searchBar.tintColor = .white
         searchBar.placeholder = "Search currency..."
         
         guard let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField else { return }
