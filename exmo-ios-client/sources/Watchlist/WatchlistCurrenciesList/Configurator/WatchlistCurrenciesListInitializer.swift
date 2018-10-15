@@ -11,7 +11,7 @@ import UIKit
 class WatchlistCurrenciesListModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var watchlistcurrencieslistViewController: WatchlistCurrenciesListViewController!
+    var watchlistcurrencieslistViewController: WatchlistCurrenciesListViewController!
 
     override func awakeFromNib() {
 

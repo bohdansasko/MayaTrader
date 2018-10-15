@@ -9,5 +9,4 @@
 class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesInteractorInput {
 
     weak var output: WatchlistFavouriteCurrenciesInteractorOutput!
-
 }

@@ -92,6 +92,9 @@
 		20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */; };
 		20600A2E2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */; };
 		206730E32094D427008B500D /* Extension+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206730E22094D427008B500D /* Extension+UITextField.swift */; };
+		206A3B6B2175522400C25E95 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6A2175522400C25E95 /* Cells.swift */; };
+		206A3B6E2175527B00C25E95 /* Datasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6D2175527B00C25E95 /* Datasource.swift */; };
+		206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */; };
 		206BD9522074297400ADC91C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206BD9512074297400ADC91C /* MainTabBarController.swift */; };
 		2070092F20BF5D84000E3059 /* WatchlistCurrencyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2070092E20BF5D84000E3059 /* WatchlistCurrencyHeaderView.xib */; };
 		2075612720B2C0DB0063E548 /* AlertsAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */; };
@@ -402,6 +405,9 @@
 		20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		206730E22094D427008B500D /* Extension+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITextField.swift"; sourceTree = "<group>"; };
+		206A3B6A2175522400C25E95 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
+		206A3B6D2175527B00C25E95 /* Datasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Datasource.swift; sourceTree = "<group>"; };
+		206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListTabBar.swift; sourceTree = "<group>"; };
 		206BD9512074297400ADC91C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		2070092E20BF5D84000E3059 /* WatchlistCurrencyHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCurrencyHeaderView.xib; sourceTree = "<group>"; };
 		2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsAPIHelper.swift; sourceTree = "<group>"; };
@@ -681,7 +687,6 @@
 				556D358C8D17D302E978FD03 /* WatchlistCurrenciesListConfigurator.swift */,
 				2D5DD0FFBF95A907185CBA63 /* WatchlistCurrenciesListInitializer.swift */,
 			);
-			name = Configurator;
 			path = Configurator;
 			sourceTree = "<group>";
 		};
@@ -713,7 +718,6 @@
 				5B25F61885A7F48AD52DDD98 /* WatchlistCurrenciesListRouterInput.swift */,
 				D9936576524E2F156E83AAC8 /* WatchlistCurrenciesListRouter.swift */,
 			);
-			name = Router;
 			path = Router;
 			sourceTree = "<group>";
 		};
@@ -893,6 +897,7 @@
 			children = (
 				202F48F0206A144D0080423E /* Common */,
 				207B1D842173F93F00D2A5DE /* FavouriteCurrencies */,
+				3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesList */,
 				EF219FE3E71E335FA6A028EB /* WatchlistCurrencySettings */,
 				48EFA6894840F77841C1ED3F /* WatchlistCurrencyChart */,
 			);
@@ -951,7 +956,6 @@
 				476496FDF8E745AC892D4DBC /* Orders */,
 				202F48EF206A136D0080423E /* Watchlist */,
 				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
-				3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesList */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -994,6 +998,13 @@
 				36712B2B3338633190FB399E /* Extension+Font.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		206A3B6C2175524500C25E95 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2070093020BF6295000E3059 /* xibs */ = {
@@ -1421,13 +1432,13 @@
 		3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesList */ = {
 			isa = PBXGroup;
 			children = (
+				206A3B6C2175524500C25E95 /* Models */,
 				B46AACE34BAA98A15F6F9E6F /* View */,
 				3FDE641B246C380D9F3131B0 /* Presenter */,
 				5BB50F2EFDC73E7C41F092E8 /* Interactor */,
 				0FFCA8BB4A2A911636CF5E1A /* Router */,
 				09E848E0BF18C1B0049117B5 /* Configurator */,
 			);
-			name = WatchlistCurrenciesList;
 			path = WatchlistCurrenciesList;
 			sourceTree = "<group>";
 		};
@@ -1437,7 +1448,6 @@
 				4E5102C99691FE32DFE077EB /* WatchlistCurrenciesListModuleInput.swift */,
 				F49F43CA7FE0D9869186DF0E /* WatchlistCurrenciesListPresenter.swift */,
 			);
-			name = Presenter;
 			path = Presenter;
 			sourceTree = "<group>";
 		};
@@ -1548,7 +1558,6 @@
 				810BE15FD8633D180969FC8B /* WatchlistCurrenciesListInteractorOutput.swift */,
 				8549F3A1497B53C1C1B6A623 /* WatchlistCurrenciesListInteractor.swift */,
 			);
-			name = Interactor;
 			path = Interactor;
 			sourceTree = "<group>";
 		};
@@ -1752,8 +1761,10 @@
 				A514C98518292D90F11B73D9 /* WatchlistCurrenciesListViewInput.swift */,
 				23427B935D38FC993D6A33A5 /* WatchlistCurrenciesListViewOutput.swift */,
 				91D30D8ED181E94C98784518 /* WatchlistCurrenciesListViewController.swift */,
+				206A3B6A2175522400C25E95 /* Cells.swift */,
+				206A3B6D2175527B00C25E95 /* Datasource.swift */,
+				206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -2166,6 +2177,7 @@
 				20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */,
 				20BEDC5B20557ECD00973F2F /* AlertItem.swift in Sources */,
 				20CCBDB5206396560099D144 /* CreateOrderTableViewCell.swift in Sources */,
+				206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */,
 				201D807C205DC6A300692DEF /* WalletSettingsDisplayManager.swift in Sources */,
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
 				466BE515F58F0A76E05A0A0A /* LoginModuleOutput.swift in Sources */,
@@ -2245,6 +2257,7 @@
 				9B83E5D76255DC1CF427CA5E /* WalletModuleInput.swift in Sources */,
 				202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */,
 				F403E921F12C165CC3DA3F52 /* WalletPresenter.swift in Sources */,
+				206A3B6B2175522400C25E95 /* Cells.swift in Sources */,
 				20600A1F20532831004D7F45 /* WalletEntity+CoreDataClass.swift in Sources */,
 				320E190D1B73245BC78149C3 /* WalletInteractorInput.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
@@ -2342,6 +2355,7 @@
 				209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */,
 				C5211D41B62E787C92F836A3 /* CreateAlertViewController.swift in Sources */,
 				207B1DA32173FA3800D2A5DE /* WatchlistCurrencySettingsViewInput.swift in Sources */,
+				206A3B6E2175527B00C25E95 /* Datasource.swift in Sources */,
 				200D2E692112C671007ED238 /* TableViewCellWithTwoButtons.swift in Sources */,
 				67289E6F31834F1A38B88D4F /* CreateAlertModuleInput.swift in Sources */,
 				207B1D9F2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorInput.swift in Sources */,

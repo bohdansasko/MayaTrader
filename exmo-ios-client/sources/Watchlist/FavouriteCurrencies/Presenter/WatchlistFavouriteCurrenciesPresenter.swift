@@ -5,6 +5,7 @@
 //  Created by TQ0oS on 27/03/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import UIKit.UIViewController
 
 class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleInput, WatchlistFavouriteCurrenciesViewOutput, WatchlistFavouriteCurrenciesInteractorOutput {
 
@@ -13,6 +14,10 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
     var router: WatchlistFavouriteCurrenciesRouterInput!
 
     func viewIsReady() {
-
+        // do nothing
+    }
+    
+    func showCurrenciesListVC() {
+        router.showCurrenciesListVC(senderVC: view as! UIViewController)
     }
 }

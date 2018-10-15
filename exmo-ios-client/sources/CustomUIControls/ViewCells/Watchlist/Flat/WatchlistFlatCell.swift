@@ -23,7 +23,7 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 14)
         label.textAlignment = .center
-        label.textColor = UIColor(r: 93, g: 92, b: 113)
+        label.textColor = .dark2
         return label
     }()
 
@@ -45,7 +45,7 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
     
     var verticalLineSeparatorImage: UIView = {
         let view = UIView()
-        view.backgroundColor = UIColor(r: 93, g: 92, b: 113)
+        view.backgroundColor = .dark2
         view.frame = CGRect(x: 0, y: 0, width: 1, height: 15)
         return view
     }()

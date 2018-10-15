@@ -54,6 +54,6 @@ class Utils {
         return value > 0.0
                 ? .greenBlue
                 : value < 0.0
-                    ? .orangePink : UIColor(r: 93, g: 92, b: 113)
+                    ? .orangePink : .dark2
     }
 }

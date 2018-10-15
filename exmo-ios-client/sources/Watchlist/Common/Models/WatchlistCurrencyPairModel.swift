@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit.UIImage
 
 struct WatchlistCurrencyModel {
     let pairName: String
@@ -29,14 +28,14 @@ struct WatchlistCurrencyModel {
         return Utils.getPairChangesInPercentage(currentValue: buyPrice, prevValue: closeBuyPrice)
     }
 
-    func getIconImage() -> UIImage? {
+    func getIconImageName() -> String {
         let pairComponents = self.pairName.components(separatedBy: "_")
         if pairComponents.isEmpty {
-            return nil
+            return pairName.lowercased()
         }
 
-        let suffix = pairComponents[0].lowercased()
-        let iconName = "icon_" + suffix
-        return UIImage(named: iconName)!
+        let currencyShortName = pairComponents[0].lowercased()
+        let iconName = "ic_crypto_" + currencyShortName
+        return iconName
     }
 }

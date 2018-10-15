@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit.UIViewController
 
 protocol WatchlistFavouriteCurrenciesRouterInput {
-
+    func showCurrenciesListVC(senderVC: UIViewController)
 }

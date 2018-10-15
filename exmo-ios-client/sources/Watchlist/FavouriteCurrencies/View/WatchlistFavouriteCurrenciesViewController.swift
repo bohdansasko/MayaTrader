@@ -75,7 +75,12 @@ extension WatchlistFavouriteCurrenciesViewController {
     private func setupLeftNavigationBarItems() {
         let addCurrencyPairsBtn = UIButton(type: .system)
         addCurrencyPairsBtn.setImage(UIImage(imageLiteralResourceName: "icNavbarPlus").withRenderingMode(.alwaysOriginal), for: .normal)
+        addCurrencyPairsBtn.addTarget(self, action: #selector(onTouchAddCurrencyPairsBtn(_:)), for: .touchUpInside)
         let addCurrencyBarItem = UIBarButtonItem(customView: addCurrencyPairsBtn)
         navigationItem.rightBarButtonItem = addCurrencyBarItem
+    }
+    
+    @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {
+        output.showCurrenciesListVC()
     }
 }

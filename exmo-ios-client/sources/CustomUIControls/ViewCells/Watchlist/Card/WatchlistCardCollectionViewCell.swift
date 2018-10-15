@@ -25,6 +25,6 @@ class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistCell {
         self.currencyPairPriceLabel.text = data.getPriceAsStr()
 //        self.currencyPairIndicatorLabel.text = data.getChangesAsStr()
         self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getChanges())
-        self.currencyIcon.image = data.getIconImage()
+        self.currencyIcon.image = UIImage(named: data.getIconImageName())?.withRenderingMode(.alwaysOriginal)
     }
 }

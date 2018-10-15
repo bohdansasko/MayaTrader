@@ -23,6 +23,10 @@ extension UIColor {
         return UIColor(red: 53.0 / 255.0, green: 51.0 / 255.0, blue: 67.0 / 255.0, alpha: 1.0)
     }
     
+    class var dark2: UIColor {
+        return UIColor(r: 93, g: 92, b: 113)
+    }
+    
     class var orangePink: UIColor {
         return UIColor(red: 1.0, green: 105.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     }
