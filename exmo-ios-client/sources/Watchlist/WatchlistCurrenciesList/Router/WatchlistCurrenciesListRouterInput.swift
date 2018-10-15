@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol WatchlistCurrenciesListRouterInput {
-
+    func closeVC(vc: UIViewController)
 }

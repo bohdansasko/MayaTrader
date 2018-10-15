@@ -14,4 +14,5 @@ protocol WatchlistCurrenciesListViewOutput {
     */
 
     func viewIsReady()
+    func closeVC()
 }

@@ -25,6 +25,10 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
 
     func setupViews() {
         tabBar = CurrenciesListTabBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 95))
+        tabBar.callbackOnTouchDoneBtn = {
+            [weak self] in
+            self?.output.closeVC()
+        }
         view.addSubview(tabBar)
         
         collectionView.backgroundColor = .black

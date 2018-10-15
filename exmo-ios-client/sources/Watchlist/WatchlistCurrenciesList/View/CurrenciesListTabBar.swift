@@ -35,6 +35,8 @@ class CurrenciesListTabBar: UIView {
         return imageView
     }()
     
+    var callbackOnTouchDoneBtn: VoidClosure?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -46,7 +48,7 @@ class CurrenciesListTabBar: UIView {
     }
     
     @objc func onTouchDoneBtn(_ sender: Any) {
-        print("onTouchDoneBtn")
+        callbackOnTouchDoneBtn?()
     }
 }
 

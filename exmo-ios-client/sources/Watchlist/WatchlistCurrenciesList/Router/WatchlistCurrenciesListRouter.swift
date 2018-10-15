@@ -6,6 +6,10 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-class WatchlistCurrenciesListRouter: WatchlistCurrenciesListRouterInput {
+import UIKit
 
+class WatchlistCurrenciesListRouter: WatchlistCurrenciesListRouterInput {
+    func closeVC(vc: UIViewController) {
+        vc.close()
+    }
 }
