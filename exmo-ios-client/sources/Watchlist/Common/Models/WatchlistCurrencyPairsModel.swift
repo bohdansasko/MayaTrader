@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrencyPairsModel.swift
+//  WatchlistFavouriteDataSource.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/27/18.
@@ -8,43 +8,44 @@
 
 import Foundation
 import UIKit.UIImage
+import LBTAComponents
 
-class WatchlistCurrencyPairsModel {
-    var data: [WatchlistCurrencyPairModel]
+class WatchlistFavouriteDataSource: Datasource {
+    var items: [WatchlistCurrencyModel]
     
-    init() {
-        self.data = []
-        self.data = self.getTestData()
+    init(items: [WatchlistCurrencyModel]) {
+        self.items = items
     }
     
-    private func getTestData() -> [WatchlistCurrencyPairModel] {
-        return [
-            WatchlistCurrencyPairModel(pairName: "ETH_USD", currencyVolumeStr: "$ 269387", price: 230.04, priceIndicator: 0.79),
-            WatchlistCurrencyPairModel(pairName: "BTC_USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
-            WatchlistCurrencyPairModel(pairName: "BTC_USD", currencyVolumeStr: "$ 8589420", price: 4970.34, priceIndicator: -2.48),
-            WatchlistCurrencyPairModel(pairName: "ETH_USD", currencyVolumeStr: "$ 1060706", price: 0.18105, priceIndicator: 1.19)
-        ]
+    override func cellClasses() -> [DatasourceCell.Type] {
+        return [WatchlistCardCell.self]
     }
     
+    override func numberOfItems(_ section: Int) -> Int {
+        return items.count
+    }
+    
+    override func item(_ indexPath: IndexPath) -> Any? {
+        return items[indexPath.item]
+    }
+}
+
+extension WatchlistFavouriteDataSource {
     func removeItemBy(index: Int) {
         if self.isValidIndex(index: index) {
-            self.data.remove(at: index)
+            items.remove(at: index)
         }
     }
     
-    func getCountOrders() -> Int {
-        return self.data.count
+    func getCurrencyPairBy(index: Int) -> WatchlistCurrencyModel {
+        return items[index]
     }
-
-    func getCurrencyPairBy(index: Int) -> WatchlistCurrencyPairModel {
-        return self.isValidIndex(index: index) ? self.data[index] : WatchlistCurrencyPairModel.mock()
-    }
-
+    
     func isDataExists() -> Bool {
-        return self.data.isEmpty == false
+        return items.isEmpty == false
     }
     
     private func isValidIndex(index: Int) -> Bool {
-        return index > -1 && index < data.count
+        return index > -1 && index < items.count
     }
 }

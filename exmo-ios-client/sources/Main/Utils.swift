@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit.UIColor
 
 class Utils {
     private init() {
@@ -36,5 +37,23 @@ class Utils {
     
     static func getPairChangesInPercentage(currentValue: Double, prevValue: Double) -> Double {
         return (currentValue - prevValue)/prevValue * 100
+    }
+    
+    static func getFormatedCurrencyPairChanges(changesValue: Double) -> String {
+        return Utils.getSign(value: changesValue) + Utils.getFormatedPrice(value: abs(changesValue), maxFractDigits: 4) + "%"
+    }
+    
+    static func getSign(value: Double) -> String {
+        return value > 0.0
+            ? "+"
+            : value < 0
+                ? "-" : ""
+    }
+    
+    static func getChangesColor(value: Double) -> UIColor {
+        return value > 0.0
+                ? .greenBlue
+                : value < 0.0
+                    ? .orangePink : UIColor(r: 93, g: 92, b: 113)
     }
 }

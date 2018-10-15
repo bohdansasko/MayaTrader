@@ -26,4 +26,8 @@ extension UIFont {
             return UIFont(name: "Exo2-Medium", size: fontSize)!
         }
     }
+    
+    static func getTitleFont() -> UIFont {
+        return getExo2Font(fontType: .SemiBold, fontSize: 20)
+    }
 }

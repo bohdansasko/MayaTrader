@@ -60,7 +60,7 @@
 		201D807C205DC6A300692DEF /* WalletSettingsDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D807B205DC6A300692DEF /* WalletSettingsDisplayManager.swift */; };
 		202CF16820414FE7008185EB /* ViperModuleTransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */; };
 		202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */; };
-		202F48F6206A157D0080423E /* WatchlistFlatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistFlatTableViewCell.swift */; };
+		202F48F6206A157D0080423E /* WatchlistFlatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistFlatCell.swift */; };
 		202F48F8206A16640080423E /* WatchlistCurrencyPairsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */; };
 		203B8A8220AF2DB6004EF229 /* UITouchableNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */; };
 		203B8A8920AF4285004EF229 /* MoreOptionsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */; };
@@ -141,7 +141,6 @@
 		20D7A7C32113B37300D84399 /* RoobikApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */; };
 		20D7F02220460A9B0056F547 /* MenuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02120460A9B0056F547 /* MenuItem.swift */; };
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
-		20DBA23B20B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */; };
 		20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */; };
 		20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */; };
 		20E30AD520A966B0003D9BAF /* Extension+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* Extension+UIView.swift */; };
@@ -361,7 +360,7 @@
 		201D807B205DC6A300692DEF /* WalletSettingsDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletSettingsDisplayManager.swift; sourceTree = "<group>"; };
 		202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViperModuleTransitionHandler.swift; sourceTree = "<group>"; };
 		202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatDisplayManager.swift; sourceTree = "<group>"; };
-		202F48F5206A157D0080423E /* WatchlistFlatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatTableViewCell.swift; sourceTree = "<group>"; };
+		202F48F5206A157D0080423E /* WatchlistFlatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatCell.swift; sourceTree = "<group>"; };
 		202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairsModel.swift; sourceTree = "<group>"; };
 		203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITouchableNibView.swift; sourceTree = "<group>"; };
 		203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionsMenuCell.swift; sourceTree = "<group>"; };
@@ -440,7 +439,6 @@
 		20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoobikApiHandler.swift; sourceTree = "<group>"; };
 		20D7F02120460A9B0056F547 /* MenuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItem.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
-		20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistFlatTableViewCell.xib; sourceTree = "<group>"; };
 		20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
 		20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* Extension+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIView.swift"; sourceTree = "<group>"; };
@@ -967,11 +965,11 @@
 		207B1D842173F93F00D2A5DE /* FavouriteCurrencies */ = {
 			isa = PBXGroup;
 			children = (
-				207B1D852173F93F00D2A5DE /* Presenter */,
 				207B1D882173F93F00D2A5DE /* View */,
-				207B1D8C2173F93F00D2A5DE /* Configurator */,
-				207B1D8F2173F93F00D2A5DE /* Interactor */,
+				207B1D852173F93F00D2A5DE /* Presenter */,
 				207B1D932173F93F00D2A5DE /* Router */,
+				207B1D8F2173F93F00D2A5DE /* Interactor */,
+				207B1D8C2173F93F00D2A5DE /* Configurator */,
 			);
 			name = FavouriteCurrencies;
 			path = "exmo-ios-client/sources/Watchlist/FavouriteCurrencies";
@@ -1218,8 +1216,7 @@
 		20DBA24020B43480007BA0AF /* Flat */ = {
 			isa = PBXGroup;
 			children = (
-				20DBA23920B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib */,
-				202F48F5206A157D0080423E /* WatchlistFlatTableViewCell.swift */,
+				202F48F5206A157D0080423E /* WatchlistFlatCell.swift */,
 			);
 			path = Flat;
 			sourceTree = "<group>";
@@ -1971,7 +1968,6 @@
 				2070092F20BF5D84000E3059 /* WatchlistCurrencyHeaderView.xib in Resources */,
 				20A5B88520AE225300EC2A4D /* Wallet.storyboard in Resources */,
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
-				20DBA23B20B3FEA1007BA0AF /* WatchlistFlatTableViewCell.xib in Resources */,
 				2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */,
 				2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */,
 				20F08D0620A8E20100B782FF /* UITouchableViewWithIndicator.xib in Resources */,
@@ -2130,7 +2126,7 @@
 				920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */,
 				C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */,
 				C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */,
-				202F48F6206A157D0080423E /* WatchlistFlatTableViewCell.swift in Sources */,
+				202F48F6206A157D0080423E /* WatchlistFlatCell.swift in Sources */,
 				D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */,
 				207EAE0A204FE47400FDA3B7 /* Session.swift in Sources */,
 				20600A2220532831004D7F45 /* WalletCurrencyEntity+CoreDataProperties.swift in Sources */,

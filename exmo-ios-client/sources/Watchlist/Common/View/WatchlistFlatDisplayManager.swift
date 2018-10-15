@@ -10,24 +10,27 @@ import Foundation
 import UIKit
 
 class WatchlistFlatDisplayManager: NSObject {
-    private var dataProvider: WatchlistCurrencyPairsModel!
+    let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
+    
+    private var dataProvider: WatchlistFavouriteDataSource!
     var tableView: UITableView!
     
-    init(data: WatchlistCurrencyPairsModel) {
+    
+    init(data: WatchlistFavouriteDataSource) {
         self.dataProvider = data
         
         super.init()
     }
     
     func setTableView(tableView: UITableView!) {
-        self.tableView = tableView
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-        let nib = UINib(nibName: "WatchlistFlatTableViewCell", bundle: nil)
-        self.tableView.register(nib, forCellReuseIdentifier: TableCellIdentifiers.WatchlistMenuViewCell.rawValue)
-        
-        self.reloadData()
+//        self.tableView = tableView
+//        self.tableView.delegate = self
+//        self.tableView.dataSource = self
+//
+//        let nib = UINib(nibName: "WatchlistCardCell", bundle: nil)
+//        self.tableView.register(nib, forCellReuseIdentifier: TableCellIdentifiers.WatchlistMenuViewCell.rawValue)
+//
+//        self.reloadData()
     }
     
     func reloadData() {
@@ -40,22 +43,13 @@ class WatchlistFlatDisplayManager: NSObject {
 }
 
 
-extension WatchlistFlatDisplayManager: UITableViewDataSource  {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataProvider.getCountOrders()
-    }
-}
+//extension WatchlistFlatDisplayManager: UITableViewDataSource  {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return self.dataProvider.getCountOrders()
+//    }
+//}
 
 extension WatchlistFlatDisplayManager: UITableViewDelegate  {
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let orderData = self.dataProvider.getCurrencyPairBy(index: indexPath.row)
-        let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WatchlistFlatTableViewCell
-        cell.setContent(data: orderData)
-        
-        return cell
-    }
     
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {

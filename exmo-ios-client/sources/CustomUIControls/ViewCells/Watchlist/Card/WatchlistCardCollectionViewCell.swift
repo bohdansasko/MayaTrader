@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistTableViewCell {
+class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistCell {
     @IBOutlet weak var currencyPairNameLabel: UILabel!
     @IBOutlet weak var currencyPairPriceLabel: UILabel!
     @IBOutlet weak var currencyPairIndicatorLabel: UILabel!
@@ -20,11 +20,11 @@ class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistTableViewC
         self.layer.cornerRadius = 5.0
     }
     
-    func setContent(data: WatchlistCurrencyPairModel) {
+    func setContent(data: WatchlistCurrencyModel) {
         self.currencyPairNameLabel.text = data.getDisplayCurrencyPairName()
         self.currencyPairPriceLabel.text = data.getPriceAsStr()
-        self.currencyPairIndicatorLabel.text = data.getPriceIndicatorAsStr()
-        self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getPriceIndicator())
+//        self.currencyPairIndicatorLabel.text = data.getChangesAsStr()
+        self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getChanges())
         self.currencyIcon.image = data.getIconImage()
     }
 }

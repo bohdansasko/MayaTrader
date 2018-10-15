@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrencyPairModel.swift
+//  WatchlistCurrencyModel.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 7/26/18.
@@ -9,57 +9,32 @@
 import Foundation
 import UIKit.UIImage
 
-class WatchlistCurrencyPairModel {
-    private var pairName: String
-    private var currencyVolumeStr: String
-    private var price: Double
-    private var priceIndicator: Double
-    
-    init(pairName: String, currencyVolumeStr: String, price: Double, priceIndicator: Double) {
-        self.pairName = pairName
-        self.currencyVolumeStr = currencyVolumeStr
-        self.price = price
-        self.priceIndicator = priceIndicator
-    }
+struct WatchlistCurrencyModel {
+    let pairName: String
+    let buyPrice: Double
+    let timeUpdataInSecFrom1970: Double
+    let closeBuyPrice: Double
+    let volume: Double
+    let volumeCurrency: Double
     
     func getDisplayCurrencyPairName() -> String {
         return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.pairName)
     }
     
-    func getVolumeStr() -> String {
-        return self.currencyVolumeStr
-    }
-    
     func getPriceAsStr() -> String {
-        return "$ " + String(price)
+        return "$ " + String(buyPrice)
     }
     
-    func getPriceIndicatorAsStr() -> String {
-        return getSign() + String(abs(priceIndicator)) + "%"
+    func getChanges() -> Double {
+        return Utils.getPairChangesInPercentage(currentValue: buyPrice, prevValue: closeBuyPrice)
     }
-    
-    private func getSign() -> String {
-        return priceIndicator > 0.0
-            ? "+"
-            : priceIndicator < 0.0
-                ? "-"
-                : ""
-    }
-    
-    static func mock() -> WatchlistCurrencyPairModel {
-        return WatchlistCurrencyPairModel(pairName: "Test/Test", currencyVolumeStr: "T", price: 0.0, priceIndicator: 0.0)
-    }
-    
-    func getPriceIndicator() -> Double {
-        return self.priceIndicator
-    }
-    
+
     func getIconImage() -> UIImage? {
         let pairComponents = self.pairName.components(separatedBy: "_")
         if pairComponents.isEmpty {
             return nil
         }
-        
+
         let suffix = pairComponents[0].lowercased()
         let iconName = "icon_" + suffix
         return UIImage(named: iconName)!

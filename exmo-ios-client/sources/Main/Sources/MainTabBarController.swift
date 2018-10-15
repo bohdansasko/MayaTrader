@@ -11,13 +11,21 @@ import UIKit
 class MainTabBarController: UITabBarController {
     var selectedTabIndicatorImage: UIImageView!
     
+    var containerInitial: [NSObject] = []
+    
     override func viewDidLoad() {
         self.delegate = self as? UITabBarControllerDelegate
         
         super.viewDidLoad()
         
+        let watchlist = WatchlistFavouriteCurrenciesModuleInitializer()
+        watchlist.watchlistmanagerViewController = WatchlistFavouriteCurrenciesViewController()
+        watchlist.awakeFromNib()
+        
+        containerInitial.append(watchlist)
+        
         viewControllers = [
-            UIStoryboard(name: "Watchlist", bundle: nil).instantiateViewController(withIdentifier: "WatchlistNavigationController"),
+            UINavigationController(rootViewController: watchlist.watchlistmanagerViewController),
             UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "OrdersNavigationController"),
             UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletNavigationController"),
             UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: "AlertsNavigationController"),
