@@ -21,6 +21,12 @@ class CurrenciesListHeaderCell: DatasourceCell {
         return label
     }()
     
+    override var datasourceItem: Any? {
+        didSet {
+            guard let headerText = datasourceItem as? String else { return }
+            titleLabel.text = headerText
+        }
+    }
     override func setupViews() {
         super.setupViews()
         

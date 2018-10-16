@@ -13,6 +13,7 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
 
     var output: WatchlistCurrenciesListViewOutput!
     var tabBar: CurrenciesListTabBar!
+    
     let offsetFromLeftAndRight: CGFloat = 2 * 25
     
     // MARK: Life cycle
@@ -29,6 +30,7 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
             [weak self] in
             self?.output.closeVC()
         }
+        tabBar.searchBar.delegate = self
         view.addSubview(tabBar)
         
         collectionView.backgroundColor = .black
@@ -58,5 +60,14 @@ extension WatchlistCurrenciesListViewController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+// MARK: UISearchBarDelegate
+extension WatchlistCurrenciesListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let ds = datasource as? CurrenciesListDatasource else { return }
+        ds.filterBy(text: searchText)
+        collectionView.reloadData()
     }
 }

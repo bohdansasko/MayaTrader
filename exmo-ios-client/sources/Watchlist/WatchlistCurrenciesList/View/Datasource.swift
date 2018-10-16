@@ -19,6 +19,9 @@ class CurrenciesListDatasource: Datasource {
         ]
     }()
     
+    var filteredCurrencies: [WatchlistCurrencyModel] = []
+    private var isInSearchingMode = false
+    
     override func cellClasses() -> [DatasourceCell.Type] {
         return [CurrenciesListCell.self]
     }
@@ -35,7 +38,29 @@ class CurrenciesListDatasource: Datasource {
         return [CurrenciesListHeaderCell.self]
     }
     
+    override func headerItem(_ section: Int) -> Any? {
+        return isInSearchingMode ? "FOUNDED PAIRS" : "ALL PAIRS"
+    }
+    
     override func item(_ indexPath: IndexPath) -> Any? {
         return allCurrencies[indexPath.item]
+    }
+    
+    func filterBy(text: String) {
+        let isWasInSearchingMode = isInSearchingMode
+        let textInUpperCase = text.uppercased()
+        
+        isInSearchingMode = text.count > 0
+        
+        if !isWasInSearchingMode {
+            filteredCurrencies = allCurrencies
+        }
+        
+        if isInSearchingMode {
+            allCurrencies = filteredCurrencies.filter({ $0.pairName.contains(textInUpperCase) })
+        } else {
+            allCurrencies = filteredCurrencies
+            filteredCurrencies = []
+        }
     }
 }
