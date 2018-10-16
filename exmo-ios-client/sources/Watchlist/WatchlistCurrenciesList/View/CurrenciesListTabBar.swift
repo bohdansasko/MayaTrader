@@ -70,12 +70,8 @@ extension CurrenciesListTabBar {
         searchBar.barStyle = .black
         searchBar.tintColor = .white
         searchBar.placeholder = "Search currency..."
-        
-        guard let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField else { return }
-        textFieldInsideSearchBar.textColor = .steel
-        guard let  glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
-        glassIconView.image = nil
-        textFieldInsideSearchBar.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        searchBar.removeGlassIcon()
+        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .Regular, fontSize: 14))
     }
     
     private func setupConstraints() {

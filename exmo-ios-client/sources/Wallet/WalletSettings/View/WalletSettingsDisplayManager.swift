@@ -29,11 +29,8 @@ class WalletSettingsDisplayManager: NSObject {
         self.searchBar = searchBar
         self.searchBar.delegate = self
         self.searchBar.returnKeyType = UIReturnKeyType.done
-        
-        guard let textFieldInsideSearchBar = self.searchBar.value(forKey: "searchField") as? UITextField else { return }
-        guard let  glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
-        glassIconView.image = nil
-        textFieldInsideSearchBar.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        searchBar.removeGlassIcon()
+        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .Regular, fontSize: 14))
     }
     
     func setTableView(tableView: UITableView!) {
