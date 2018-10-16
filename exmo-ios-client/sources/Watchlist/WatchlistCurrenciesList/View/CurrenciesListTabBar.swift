@@ -11,6 +11,7 @@ import LBTAComponents
 class CurrenciesListTabBar: UIView {
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
+        searchBar.returnKeyType = UIReturnKeyType.done
         return searchBar
     }()
     

@@ -37,11 +37,18 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
         collectionView.contentInset = UIEdgeInsets(top: 65, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = collectionView.contentInset
         
+        let tapListener = UITapGestureRecognizer(target: self, action: #selector(onTapView(_:)))
+        view.addGestureRecognizer(tapListener)
+        
         self.datasource = CurrenciesListDatasource()
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: view.frame.width - offsetFromLeftAndRight, height: 65)
+    }
+    
+    @objc func onTapView(_ sender: Any) {
+        view.endEditing(true)
     }
 }
 

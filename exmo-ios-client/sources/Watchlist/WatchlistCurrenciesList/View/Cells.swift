@@ -39,6 +39,7 @@ class CurrenciesListHeaderCell: DatasourceCell {
 // @MARK: CurrenciesListCell
 //
 class CurrenciesListCell: DatasourceCell {
+    
     let separatorHLineView: UIView = {
         let lineView = UIView()
         lineView.backgroundColor = .dark
@@ -59,6 +60,13 @@ class CurrenciesListCell: DatasourceCell {
         return imageView
     }()
     
+    var backgroundButton: UIButton = {
+        let btn = UIButton(type: .system)
+        return btn
+    }()
+    
+    var callbackOnTouchCell: VoidClosure?
+    
     override var datasourceItem: Any? {
         didSet {
             guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
@@ -70,16 +78,44 @@ class CurrenciesListCell: DatasourceCell {
     override func setupViews() {
         super.setupViews()
         
+        addSubview(backgroundButton)
         addSubview(currencyIcon)
         addSubview(pairNameLabel)
         addSubview(separatorHLineView)
         
+        setupTouchBackgroundListeners()
         setupConstraints()
+    }
+    
+    @objc func handleTouchUpInside(_ sender: Any) {
+        setNormalBackground(sender)
+        callbackOnTouchCell?()
+        
+        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
+        print("Touched \(currencyModel.pairName)")
+    }
+    
+    @objc func setNormalBackground(_ sender: Any) {
+        backgroundButton.backgroundColor = UIColor.clear
+    }
+    
+    @objc func setHighlightedBackground(_ sender: Any) {
+        backgroundButton.backgroundColor = UIColor.white.withAlphaComponent(0.1)
     }
 }
 
 extension CurrenciesListCell {
+    func setupTouchBackgroundListeners() {
+        backgroundButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: .touchUpInside)
+        backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchUpOutside)
+        backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchCancel)
+        backgroundButton.addTarget(self, action: #selector(setHighlightedBackground(_:)), for: .touchDown)
+    }
+    
+    
     fileprivate func setupConstraints() {
+        backgroundButton.fillSuperview()
+        
         currencyIcon.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 5, bottomConstant: 20, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         pairNameLabel.anchorCenterYToSuperview()
