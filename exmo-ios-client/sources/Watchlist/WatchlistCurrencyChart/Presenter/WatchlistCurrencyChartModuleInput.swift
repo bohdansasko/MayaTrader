@@ -7,5 +7,5 @@
 //
 
 protocol WatchlistCurrencyChartModuleInput: class {
-
+    func setChartCurrencyPairName(_ currencyPairName: String)
 }

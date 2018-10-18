@@ -49,6 +49,13 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
         view.frame = CGRect(x: 0, y: 0, width: 1, height: 15)
         return view
     }()
+    
+    var backgroundButton: UIButton = {
+        let btn = UIButton(type: .system)
+        return btn
+    }()
+    
+    var callbackOnTouchCell: VoidClosure?
 
     override var datasourceItem: Any? {
         didSet {
@@ -67,20 +74,36 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
     override func setupViews() {
         super.setupViews()
         
+        setupUI()
+        setupConstraints()
+        setupTouchBackgroundListeners()
+    }
+}
+
+extension WatchlistCardCell {
+    func setupUI() {
         layer.cornerRadius = 5
         layer.masksToBounds = true
         backgroundColor = .dark
         
+        addSubview(backgroundButton)
         addSubview(pairNameLabel)
         addSubview(pairPriceLabel)
         addSubview(pairVolumeLabel)
         addSubview(verticalLineSeparatorImage)
         addSubview(currencyChangesLabel)
-
-        setupConstraints()
     }
-
-    private func setupConstraints() {
+    
+    func setupTouchBackgroundListeners() {
+        backgroundButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: .touchUpInside)
+        backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchUpOutside)
+        backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchCancel)
+        backgroundButton.addTarget(self, action: #selector(setHighlightedBackground(_:)), for: .touchDown)
+    }
+    
+    func setupConstraints() {
+        backgroundButton.fillSuperview()
+        
         pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 20)
         pairPriceLabel.anchor(pairNameLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
         
@@ -91,5 +114,22 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
         
         pairVolumeLabel.anchor(verticalLineSeparatorImage.topAnchor, left: pairNameLabel.leftAnchor, bottom: self.bottomAnchor, right: verticalLineSeparatorImage.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 10, widthConstant: 0, heightConstant: 15)
         currencyChangesLabel.anchor(verticalLineSeparatorImage.topAnchor, left: verticalLineSeparatorImage.rightAnchor, bottom: self.bottomAnchor, right: pairNameLabel.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 10, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+}
+
+extension WatchlistCardCell {
+    @objc func handleTouchUpInside(_ sender: Any) {
+        setNormalBackground(sender)
+
+        guard let cellDelegate = controller as? CellDelegate else { return }
+        cellDelegate.didTouchCell(datasourceItem: datasourceItem)
+    }
+    
+    @objc func setNormalBackground(_ sender: Any) {
+        backgroundButton.backgroundColor = UIColor.clear
+    }
+    
+    @objc func setHighlightedBackground(_ sender: Any) {
+        backgroundButton.backgroundColor = UIColor.white.withAlphaComponent(0.1)
     }
 }

@@ -8,7 +8,11 @@
 
 import LBTAComponents
 
-class WatchlistFavouriteCurrenciesViewController: DatasourceController, WatchlistFavouriteCurrenciesViewInput {
+protocol CellDelegate {
+    func didTouchCell(datasourceItem: Any?)
+}
+
+class WatchlistFavouriteCurrenciesViewController: DatasourceController, WatchlistFavouriteCurrenciesViewInput, CellDelegate {
 
     var output: WatchlistFavouriteCurrenciesViewOutput!
     let spaceFromLeftOrRight: CGFloat = 20
@@ -40,6 +44,12 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
         let spaceBetweenCols: CGFloat = 15
         return CGSize(width: (view.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/2, height: 80)
     }
+    
+    func didTouchCell(datasourceItem: Any?) {
+        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
+        print("Touched \(currencyModel.pairName)")
+        output.handleTouchCell(watchlistCurrencyModel: currencyModel)
+    }
 }
 
 //
@@ -50,6 +60,7 @@ extension WatchlistFavouriteCurrenciesViewController {
         return 15
     }
 }
+
 //
 // @MARK: navigation bar
 //

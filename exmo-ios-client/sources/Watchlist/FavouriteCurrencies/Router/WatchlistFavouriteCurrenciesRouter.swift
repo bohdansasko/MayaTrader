@@ -17,4 +17,13 @@ class WatchlistFavouriteCurrenciesRouter: WatchlistFavouriteCurrenciesRouterInpu
     
         senderVC.present(initializer.watchlistcurrencieslistViewController, animated: true, completion: nil)
     }
+    
+    func showChartVC(senderVC: UIViewController, currencyPairName: String) {
+        guard let viewController = UIStoryboard(name: "Watchlist", bundle: nil).instantiateViewController(withIdentifier: "WatchlistCurrencyChartViewController") as? WatchlistCurrencyChartViewController else { return }
+        
+        guard let moduleInput = viewController.output as? WatchlistCurrencyChartModuleInput else { return }
+        moduleInput.setChartCurrencyPairName(currencyPairName)
+        
+        senderVC.navigationController?.pushViewController(viewController, animated: true)
+    }
 }

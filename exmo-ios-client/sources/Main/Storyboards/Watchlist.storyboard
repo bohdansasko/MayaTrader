@@ -60,7 +60,7 @@
         <!--Watchlistcurrencychart View Controller-->
         <scene sceneID="oAv-j1-wr8">
             <objects>
-                <viewController title="BTC/USD" id="y4J-WM-6Ra" customClass="WatchlistCurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WatchlistCurrencyChartViewController" title="BTC/USD" id="y4J-WM-6Ra" customClass="WatchlistCurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VqE-Sc-252">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -15,4 +15,5 @@ protocol WatchlistFavouriteCurrenciesViewOutput {
 
     func viewIsReady()
     func showCurrenciesListVC()
+    func handleTouchCell(watchlistCurrencyModel: WatchlistCurrencyModel)
 }

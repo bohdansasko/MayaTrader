@@ -26,6 +26,9 @@ class CandleStickChartViewController: ExmoChartViewController {
     }
     
     override func setupChart() {
+        if chartData.isEmpty() {
+            return
+        }
         chartView.delegate = self
         
         let candleData = getCandleChartData()

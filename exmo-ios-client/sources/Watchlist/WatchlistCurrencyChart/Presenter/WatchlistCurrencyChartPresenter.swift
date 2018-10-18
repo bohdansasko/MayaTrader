@@ -23,4 +23,8 @@ class WatchlistCurrencyChartPresenter: WatchlistCurrencyChartModuleInput, Watchl
     func updateChart(chartData: ExmoChartData?) {
         view.updateChart(chartData: chartData)
     }
+    
+    func setChartCurrencyPairName(_ currencyPairName: String) {
+        view.setCurrencyPair(currencyPairName)
+    }
 }

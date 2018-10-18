@@ -97,6 +97,7 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     private var chartData: ExmoChartData!
     private var candleChartViewController = CandleStickChartViewController()
     private var barChartViewController = BarChartViewController()
+    private var currencyPair: String = ""
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -143,7 +144,8 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
 
         periodViewController.callbackOnChangePeriod = {
             [weak self] periodAsString in
-            self?.output.loadChartData(currencyPair: "BTC_USD", period: periodAsString)
+            guard let self = self else { return }
+            self.output.loadChartData(currencyPair: self.currencyPair, period: periodAsString)
         }
     }
     
@@ -164,5 +166,9 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         
         candleChartViewController.chartData = chartData
         barChartViewController.chartData = chartData
+    }
+    
+    func setCurrencyPair(_ currencyPair: String) {
+        self.currencyPair = currencyPair
     }
 }

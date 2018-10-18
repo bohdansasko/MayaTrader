@@ -55,6 +55,10 @@ struct ExmoChartData {
     var candles: [ChartCandleModel] = []
 
     init(json: JSON = JSON(), parseType: ParseType = .Default) {
+        if json["data"].isEmpty {
+            return
+        }
+        
         switch parseType {
         case .Default:
             let jsonPriceModel = json["data"]["price"].arrayValue
@@ -81,29 +85,35 @@ struct ExmoChartData {
             }
         }
     }
+}
 
+extension ExmoChartData {
     mutating func saveFirst30Elements() {
         if candles.count > 30 {
             candles.removeLast(candles.count - 30)
         }
     }
-
+    
     func getMinVolume() -> Double {
         guard let candleModel = candles.min(by: { $0.volume < $1.volume }) else {
             return 0.0
         }
         return candleModel.volume
     }
-
+    
     func getMinLow() -> Double {
         guard let candleModel = candles.min(by: { $0.low < $1.low }) else {
             return 0.0
         }
         return candleModel.low
     }
-
-
+    
+    
     func getCandleByIndex(_ index : Int) -> ChartCandleModel? {
         return index > -1 && index < candles.count ? candles[index] : nil
+    }
+    
+    func isEmpty() -> Bool {
+        return candles.isEmpty
     }
 }

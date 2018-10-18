@@ -11,4 +11,5 @@ import UIKit.UIViewController
 
 protocol WatchlistFavouriteCurrenciesRouterInput {
     func showCurrenciesListVC(senderVC: UIViewController)
+    func showChartVC(senderVC: UIViewController, currencyPairName: String)
 }

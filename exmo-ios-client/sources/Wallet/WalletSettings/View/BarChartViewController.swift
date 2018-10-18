@@ -51,6 +51,10 @@ class BarChartViewController: ExmoChartViewController {
     }
     
     override func setupChart() {
+        if chartData.isEmpty() {
+            return
+        }
+        
         let lineData = getBarChartData()
         chartView.data = lineData
         chartView.delegate = self

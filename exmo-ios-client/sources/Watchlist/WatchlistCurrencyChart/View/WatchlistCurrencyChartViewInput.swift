@@ -15,4 +15,5 @@ protocol WatchlistCurrencyChartViewInput: class {
 
     func setupInitialState()
     func updateChart(chartData: ExmoChartData?)
+    func setCurrencyPair(_ currencyPair: String)
 }
