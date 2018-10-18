@@ -89,10 +89,9 @@ class CurrenciesListCell: DatasourceCell {
     
     @objc func handleTouchUpInside(_ sender: Any) {
         setNormalBackground(sender)
-        callbackOnTouchCell?()
         
-        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
-        print("Touched \(currencyModel.pairName)")
+        guard let cellDelegate = controller as? CellDelegate else { return }
+        cellDelegate.didTouchCell(datasourceItem: datasourceItem)
     }
     
     @objc func setNormalBackground(_ sender: Any) {
