@@ -14,9 +14,6 @@
         <array key="Exo2-Medium.ttf">
             <string>Exo2-Medium</string>
         </array>
-        <array key="Exo2-SemiBold.ttf">
-            <string>Exo2-SemiBold</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Watchlistmanager View Controller-->
@@ -341,81 +338,6 @@
             </objects>
             <point key="canvasLocation" x="2604" y="-2539.655172413793"/>
         </scene>
-        <!--Watchlistcurrencysettings View Controller-->
-        <scene sceneID="c2j-Qz-9HS">
-            <objects>
-                <viewController id="mre-Qi-Mhe" customClass="WatchlistCurrencySettingsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="QNH-d5-A8z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icCountryUAH" translatesAutoresizingMaskIntoConstraints="NO" id="1fW-AB-F9d">
-                                <rect key="frame" x="162.66666666666666" y="54" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="MBd-iz-JS0"/>
-                                    <constraint firstAttribute="width" constant="50" id="soT-f9-On1"/>
-                                </constraints>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ukrainian hryvnia" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQ9-07-DPK">
-                                <rect key="frame" x="15" y="104" width="345" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="MSq-QC-SGn"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UAH" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfM-5M-P0S">
-                                <rect key="frame" x="15" y="134" width="345" height="19"/>
-                                <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="16"/>
-                                <color key="textColor" red="0.36470588235294116" green="0.36078431372549019" blue="0.44313725490196076" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="O1b-id-fBU">
-                                <rect key="frame" x="0.0" y="223" width="375" height="555"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qvH-ub-IHR" customClass="WatchlistCurrencyHeaderView" customModule="exmo_ios_client" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="183" width="375" height="40"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="cU2-hL-6td"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="CfM-5M-P0S" firstAttribute="leading" secondItem="C0G-Ys-6LH" secondAttribute="leading" constant="15" id="4HL-Ie-H3F"/>
-                            <constraint firstItem="CfM-5M-P0S" firstAttribute="top" secondItem="EQ9-07-DPK" secondAttribute="bottom" id="4rn-mh-yCD"/>
-                            <constraint firstItem="O1b-id-fBU" firstAttribute="leading" secondItem="C0G-Ys-6LH" secondAttribute="leading" id="7e5-Rn-vpL"/>
-                            <constraint firstItem="EQ9-07-DPK" firstAttribute="leading" secondItem="C0G-Ys-6LH" secondAttribute="leading" constant="15" id="Aw7-aJ-0Tf"/>
-                            <constraint firstItem="1fW-AB-F9d" firstAttribute="top" secondItem="C0G-Ys-6LH" secondAttribute="top" constant="10" id="I4G-U8-fEL"/>
-                            <constraint firstItem="O1b-id-fBU" firstAttribute="top" secondItem="qvH-ub-IHR" secondAttribute="bottom" id="M8g-Hk-a7Q"/>
-                            <constraint firstItem="1fW-AB-F9d" firstAttribute="centerX" secondItem="QNH-d5-A8z" secondAttribute="centerX" id="UCZ-Ps-7Vy"/>
-                            <constraint firstItem="C0G-Ys-6LH" firstAttribute="trailing" secondItem="O1b-id-fBU" secondAttribute="trailing" id="bHG-uI-6Uy"/>
-                            <constraint firstItem="C0G-Ys-6LH" firstAttribute="trailing" secondItem="qvH-ub-IHR" secondAttribute="trailing" id="bQ4-Xe-9uc"/>
-                            <constraint firstItem="C0G-Ys-6LH" firstAttribute="trailing" secondItem="EQ9-07-DPK" secondAttribute="trailing" constant="15" id="bfK-TG-yOi"/>
-                            <constraint firstItem="qvH-ub-IHR" firstAttribute="leading" secondItem="C0G-Ys-6LH" secondAttribute="leading" id="dbg-OS-ADx"/>
-                            <constraint firstItem="EQ9-07-DPK" firstAttribute="top" secondItem="1fW-AB-F9d" secondAttribute="bottom" id="efa-R8-rve"/>
-                            <constraint firstItem="C0G-Ys-6LH" firstAttribute="trailing" secondItem="CfM-5M-P0S" secondAttribute="trailing" constant="15" id="vC2-Xw-tY6"/>
-                            <constraint firstItem="C0G-Ys-6LH" firstAttribute="bottom" secondItem="O1b-id-fBU" secondAttribute="bottom" id="wwc-DU-he1"/>
-                            <constraint firstItem="qvH-ub-IHR" firstAttribute="top" secondItem="CfM-5M-P0S" secondAttribute="bottom" constant="30" id="xxG-vW-a5s"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="C0G-Ys-6LH"/>
-                    </view>
-                    <connections>
-                        <outlet property="tableView" destination="O1b-id-fBU" id="RTz-GM-5Ie"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Qje-qZ-bkQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="UHe-bo-Da9" customClass="WatchlistCurrencySettingsModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
-                    <connections>
-                        <outlet property="watchlistcurrencysettingsViewController" destination="mre-Qi-Mhe" id="6KC-K1-Awe"/>
-                    </connections>
-                </customObject>
-            </objects>
-            <point key="canvasLocation" x="1711" y="-2150"/>
-        </scene>
         <!--Watchlistcardsmenu View Controller-->
         <scene sceneID="bdm-fQ-WkQ">
             <objects>
@@ -486,7 +408,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="icCountryUAH" width="50" height="50"/>
         <image name="icTabbarWatchlist" width="32" height="32"/>
         <image name="icTabbarWatchlistSelected" width="32" height="32"/>
         <namedColor name="exmoMidnight">
