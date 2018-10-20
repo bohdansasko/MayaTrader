@@ -9,9 +9,9 @@
 import LBTAComponents
 
 //
-// @MARK: CurrenciesListHeaderCell
+// @MARK: CurrenciesGroupListHeaderCell
 //
-class CurrenciesListHeaderCell: DatasourceCell {
+class CurrenciesGroupListHeaderCell: DatasourceCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "ALL PAIRS"
@@ -36,9 +36,9 @@ class CurrenciesListHeaderCell: DatasourceCell {
 }
 
 //
-// @MARK: CurrenciesListCell
+// @MARK: CurrenciesGroupListCell
 //
-class CurrenciesListCell: DatasourceCell {
+class CurrenciesGroupListCell: DatasourceCell {
     
     let separatorHLineView: UIView = {
         let lineView = UIView()
@@ -64,8 +64,6 @@ class CurrenciesListCell: DatasourceCell {
         let btn = UIButton(type: .system)
         return btn
     }()
-    
-    var callbackOnTouchCell: VoidClosure?
     
     override var datasourceItem: Any? {
         didSet {
@@ -108,7 +106,7 @@ class CurrenciesListCell: DatasourceCell {
     }
 }
 
-extension CurrenciesListCell {
+extension CurrenciesGroupListCell {
     func setupTouchBackgroundListeners() {
         backgroundButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: .touchUpInside)
         backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchUpOutside)
@@ -125,7 +123,7 @@ extension CurrenciesListCell {
         pairNameLabel.anchorCenterYToSuperview()
         pairNameLabel.leftAnchor.constraint(equalTo: currencyIcon.rightAnchor, constant: 15).isActive = true
         pairNameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 80).isActive = true
-        
+
         separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 1)
     }
 }

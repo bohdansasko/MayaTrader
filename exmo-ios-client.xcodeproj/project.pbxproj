@@ -61,6 +61,7 @@
 		202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */; };
 		202F48F6206A157D0080423E /* WatchlistFlatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistFlatCell.swift */; };
 		202F48F8206A16640080423E /* WatchlistCurrencyPairsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */; };
+		20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20345011217B644400D2E831 /* CurrenciesListViewController.swift */; };
 		203B8A8220AF2DB6004EF229 /* UITouchableNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */; };
 		203B8A8920AF4285004EF229 /* MoreOptionsMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */; };
 		203B8A8A20AF4285004EF229 /* MoreOptionsMenuCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 203B8A8820AF4285004EF229 /* MoreOptionsMenuCell.xib */; };
@@ -361,6 +362,7 @@
 		202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatDisplayManager.swift; sourceTree = "<group>"; };
 		202F48F5206A157D0080423E /* WatchlistFlatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatCell.swift; sourceTree = "<group>"; };
 		202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairsModel.swift; sourceTree = "<group>"; };
+		20345011217B644400D2E831 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITouchableNibView.swift; sourceTree = "<group>"; };
 		203B8A8720AF4285004EF229 /* MoreOptionsMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreOptionsMenuCell.swift; sourceTree = "<group>"; };
 		203B8A8820AF4285004EF229 /* MoreOptionsMenuCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoreOptionsMenuCell.xib; sourceTree = "<group>"; };
@@ -867,8 +869,9 @@
 			children = (
 				202F48F0206A144D0080423E /* Common */,
 				207B1D842173F93F00D2A5DE /* FavouriteCurrencies */,
-				3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesList */,
+				3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesGroupList */,
 				48EFA6894840F77841C1ED3F /* WatchlistCurrencyChart */,
+				20345011217B644400D2E831 /* CurrenciesListViewController.swift */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -1369,7 +1372,7 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesList */ = {
+		3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesGroupList */ = {
 			isa = PBXGroup;
 			children = (
 				206A3B6C2175524500C25E95 /* Models */,
@@ -1379,7 +1382,7 @@
 				0FFCA8BB4A2A911636CF5E1A /* Router */,
 				09E848E0BF18C1B0049117B5 /* Configurator */,
 			);
-			path = WatchlistCurrenciesList;
+			path = WatchlistCurrenciesGroupList;
 			sourceTree = "<group>";
 		};
 		3FDE641B246C380D9F3131B0 /* Presenter */ = {
@@ -2259,6 +2262,7 @@
 				8B2D71C4450F33B9D9AAA0B9 /* CreateAlertInteractorInput.swift in Sources */,
 				EC84987D1BA670CD6A6B4EE0 /* CreateAlertInteractorOutput.swift in Sources */,
 				8E09D1469BC714D8CEE79956 /* CreateAlertInteractor.swift in Sources */,
+				20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */,
 				4C8399DB000EE08F2E8E87E6 /* CreateAlertRouterInput.swift in Sources */,
 				D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */,
 				9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */,

@@ -11,4 +11,5 @@ import UIKit
 
 protocol WatchlistCurrenciesListRouterInput {
     func closeVC(vc: UIViewController)
+    func openCurrenciesListWithCurrenciesRelativeTo(vc: UIViewController, listGroupModel: WatchlistCurrenciesListGroup)
 }

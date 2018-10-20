@@ -9,6 +9,7 @@
 import Foundation
 
 struct WatchlistCurrencyModel {
+    let index: Int
     let pairName: String
     let buyPrice: Double
     let timeUpdataInSecFrom1970: Double

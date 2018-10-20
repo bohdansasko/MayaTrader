@@ -32,7 +32,7 @@ class CurrenciesListDatasource: Datasource {
     private var isInSearchingMode = false
     
     override func cellClasses() -> [DatasourceCell.Type] {
-        return [CurrenciesListCell.self]
+        return [CurrenciesGroupListCell.self]
     }
     
     override func numberOfSections() -> Int {
@@ -44,7 +44,7 @@ class CurrenciesListDatasource: Datasource {
     }
     
     override func headerClasses() -> [DatasourceCell.Type]? {
-        return [CurrenciesListHeaderCell.self]
+        return [CurrenciesGroupListHeaderCell.self]
     }
     
     override func headerItem(_ section: Int) -> Any? {

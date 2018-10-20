@@ -12,4 +12,9 @@ class WatchlistCurrenciesListRouter: WatchlistCurrenciesListRouterInput {
     func closeVC(vc: UIViewController) {
         vc.close()
     }
+    
+    func openCurrenciesListWithCurrenciesRelativeTo(vc: UIViewController, listGroupModel: WatchlistCurrenciesListGroup) {
+        let config = CurrenciesListModuleConfigurator()
+        vc.present(config.viewController, animated: true, completion: nil)
+    }
 }

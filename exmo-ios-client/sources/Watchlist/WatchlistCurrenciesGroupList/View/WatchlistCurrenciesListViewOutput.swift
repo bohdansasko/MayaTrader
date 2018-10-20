@@ -15,4 +15,5 @@ protocol WatchlistCurrenciesListViewOutput {
 
     func viewIsReady()
     func closeVC()
+    func handleTouchCell(listGroupModel: WatchlistCurrenciesListGroup)
 }

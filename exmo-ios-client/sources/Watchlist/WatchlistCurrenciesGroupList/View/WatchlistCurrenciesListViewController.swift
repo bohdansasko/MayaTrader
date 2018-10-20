@@ -9,7 +9,7 @@
 import UIKit
 import LBTAComponents
 
-class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurrenciesListViewInput {
+class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurrenciesListViewInput, CellDelegate {
 
     var output: WatchlistCurrenciesListViewOutput!
     var tabBar: CurrenciesListTabBar!
@@ -49,6 +49,12 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
     
     @objc func onTapView(_ sender: Any) {
         view.endEditing(true)
+    }
+    
+    func didTouchCell(datasourceItem: Any?) {
+        guard let groupModel = datasourceItem as? WatchlistCurrenciesListGroup else { return }
+        print("Touched \(groupModel.name)")
+        output.handleTouchCell(listGroupModel: groupModel)
     }
 }
 

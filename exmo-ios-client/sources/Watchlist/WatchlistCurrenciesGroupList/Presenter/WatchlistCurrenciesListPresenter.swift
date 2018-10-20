@@ -20,4 +20,8 @@ class WatchlistCurrenciesListPresenter: WatchlistCurrenciesListModuleInput, Watc
     func closeVC() {
         router.closeVC(vc: view as! UIViewController)
     }
+    
+    func handleTouchCell(listGroupModel: WatchlistCurrenciesListGroup) {
+        router.openCurrenciesListWithCurrenciesRelativeTo(vc: view as! UIViewController, listGroupModel: listGroupModel)
+    }
 }
