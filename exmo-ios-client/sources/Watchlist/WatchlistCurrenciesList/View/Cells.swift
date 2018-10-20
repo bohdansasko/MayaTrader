@@ -69,9 +69,14 @@ class CurrenciesListCell: DatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
-            guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
-            pairNameLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyModel.pairName)
-            currencyIcon.image = UIImage(named: currencyModel.getIconImageName())?.withRenderingMode(.alwaysOriginal)
+            guard let currencyModel = datasourceItem as? WatchlistCurrenciesListGroup else { return }
+            
+            pairNameLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyModel.name)
+            if let img = UIImage(named: Utils.getCurrencyIconName(currencyShortName: currencyModel.name)) {
+                currencyIcon.image = img.withRenderingMode(.alwaysOriginal)
+            } else {
+                currencyIcon.image = UIImage(named: Utils.getCurrencyIconName(currencyShortName: "fiat"))?.withRenderingMode(.alwaysOriginal)
+            }
         }
     }
     

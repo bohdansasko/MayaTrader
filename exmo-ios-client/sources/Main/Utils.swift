@@ -56,4 +56,9 @@ class Utils {
                 : value < 0.0
                     ? .orangePink : .dark2
     }
+    
+    static func getCurrencyIconName(currencyShortName: String) -> String {
+        let iconName = "ic_crypto_" + currencyShortName.lowercased()
+        return iconName
+    }
 }

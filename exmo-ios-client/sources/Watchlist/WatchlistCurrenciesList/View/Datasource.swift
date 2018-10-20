@@ -9,17 +9,26 @@
 import Foundation
 import LBTAComponents
 
+struct WatchlistCurrenciesListGroup {
+    let name: String
+}
+
 class CurrenciesListDatasource: Datasource {
-    var allCurrencies: [WatchlistCurrencyModel] = {
+    var allCurrencies: [WatchlistCurrenciesListGroup] = {
         return [
-            WatchlistCurrencyModel(pairName: "LTC_USD", buyPrice: 3.82002126, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 3.72920000, volume: 344.89666572, volumeCurrency: 1320.80049895),
-            WatchlistCurrencyModel(pairName: "BTC_USD", buyPrice: 6750.00000001, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 6471.92791793, volume: 1777.63971268, volumeCurrency: 11999068.06062675),
-            WatchlistCurrencyModel(pairName: "WAVES_USD", buyPrice: 0.46100233, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 0.41792313, volume: 4068944.53664728, volumeCurrency: 1876597.22030172),
-            WatchlistCurrencyModel(pairName: "ETH_USD", buyPrice: 215.00300001, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 200.73272851, volume: 9640.59258642, volumeCurrency: 2072756.32795616)
+            WatchlistCurrenciesListGroup(name: "BTC"),
+            WatchlistCurrenciesListGroup(name: "ETH"),
+            WatchlistCurrenciesListGroup(name: "XRP"),
+            WatchlistCurrenciesListGroup(name: "LTC"),
+            WatchlistCurrenciesListGroup(name: "USD"),
+            WatchlistCurrenciesListGroup(name: "EUR"),
+            WatchlistCurrenciesListGroup(name: "RUB"),
+            WatchlistCurrenciesListGroup(name: "Altcoins"),
+            WatchlistCurrenciesListGroup(name: "Fiat")
         ]
     }()
     
-    var filteredCurrencies: [WatchlistCurrencyModel] = []
+    var filteredCurrencies: [WatchlistCurrenciesListGroup] = []
     private var isInSearchingMode = false
     
     override func cellClasses() -> [DatasourceCell.Type] {
@@ -39,7 +48,7 @@ class CurrenciesListDatasource: Datasource {
     }
     
     override func headerItem(_ section: Int) -> Any? {
-        return isInSearchingMode ? "FOUNDED PAIRS" : "ALL PAIRS"
+        return isInSearchingMode ? "FOUNDED GROUPS" : "ALL GROUPS"
     }
     
     override func item(_ indexPath: IndexPath) -> Any? {
@@ -57,7 +66,7 @@ class CurrenciesListDatasource: Datasource {
         }
         
         if isInSearchingMode {
-            allCurrencies = filteredCurrencies.filter({ $0.pairName.contains(textInUpperCase) })
+            allCurrencies = filteredCurrencies.filter({ $0.name.contains(textInUpperCase) })
         } else {
             allCurrencies = filteredCurrencies
             filteredCurrencies = []
