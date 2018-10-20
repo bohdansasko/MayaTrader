@@ -108,11 +108,12 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         setupInitialState()
     }
     
-    
     // MARK: WatchlistCurrencyChartViewInput
     func setupInitialState() {
         candleShortInfoView.isHidden = true
+        navigationController?.navigationBar.tintColor = .white
         
+        setupTitleNavigationBar()
         prepareCharts()
         periodViewController.emitTouch(periodType: .Week)
     }
@@ -170,5 +171,13 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     
     func setCurrencyPair(_ currencyPair: String) {
         self.currencyPair = currencyPair
+    }
+    
+    private func setupTitleNavigationBar() {
+        let titleView = UILabel()
+        titleView.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair)
+        titleView.font = UIFont.getTitleFont()
+        titleView.textColor = .white
+        navigationItem.titleView = titleView
     }
 }
