@@ -152,10 +152,9 @@ class CurrenciesListHeaderCell: DatasourceCell {
 
 class CurrenciesListCell: DatasourceCell {
     var addRemoveFromFavouritesListButton: UIButton = {
-        let btnImage = UIImage(named: "icGlobalHeartOff")?.withRenderingMode(.alwaysOriginal)
-        
-        let btn = UIButton(type: .system)
-        btn.setImage(btnImage, for: .normal)
+        let btn = UIButton(type: .custom)
+        btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOff").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOn").withRenderingMode(.alwaysOriginal), for: .selected)
         return btn
     }()
     
@@ -202,7 +201,6 @@ class CurrenciesListCell: DatasourceCell {
             self.backgroundColor = d.index % 2 == 1 ? .dark : .clear
         }
     }
-
     
     override func setupViews() {
         super.setupViews()
@@ -215,7 +213,14 @@ class CurrenciesListCell: DatasourceCell {
         addSubview(sellValueLabel)
         addSubview(currencyChangesValueLabel)
         
+        addRemoveFromFavouritesListButton.addTarget(self, action: #selector(onTouchFavBtn(_:)), for: .touchUpInside)
+        
         setupConstraints()
+    }
+    
+    @objc func onTouchFavBtn(_ sender: UIButton) {
+        print(sender.isSelected)
+        sender.isSelected = !sender.isSelected
     }
     
     private func setupConstraints() {
@@ -323,18 +328,9 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)
-        collectionView.scrollIndicatorInsets = collectionView.contentInset
-        
-        view.addSubview(tabBar)
-        tabBar.searchBar.delegate = self
-        tabBar.callbackOnTouchDoneBtn = {
-            [weak self] in
-            self?.close()
-        }
-        tabBar.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 95)
+
+        prepareCollectionView()
+        setupNavigationBar()
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -347,6 +343,23 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+
+    private func prepareCollectionView() {
+        collectionView.backgroundColor = .black
+        collectionView.contentInset = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = collectionView.contentInset
+    }
+
+    private func setupNavigationBar() {
+        tabBar = CurrenciesListTabBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 95))
+        tabBar.callbackOnTouchDoneBtn = {
+            [weak self] in
+            self?.dismiss(animated: true, completion: nil)
+        }
+        tabBar.searchBar.delegate = self
+        tabBar.backgroundColor = .clear
+        view.addSubview(tabBar)
     }
 }
 

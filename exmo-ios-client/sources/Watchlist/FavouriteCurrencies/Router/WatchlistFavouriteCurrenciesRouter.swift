@@ -14,8 +14,8 @@ class WatchlistFavouriteCurrenciesRouter: WatchlistFavouriteCurrenciesRouterInpu
         let initializer = WatchlistCurrenciesListModuleInitializer()
         initializer.watchlistcurrencieslistViewController = WatchlistCurrenciesListViewController()
         initializer.awakeFromNib()
-    
-        senderVC.present(initializer.watchlistcurrencieslistViewController, animated: true, completion: nil)
+        
+        senderVC.navigationController?.pushViewController(initializer.watchlistcurrencieslistViewController, animated: true)
     }
     
     func showChartVC(senderVC: UIViewController, currencyPairName: String) {

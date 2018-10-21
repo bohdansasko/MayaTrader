@@ -12,9 +12,14 @@ import LBTAComponents
 class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurrenciesListViewInput, CellDelegate {
 
     var output: WatchlistCurrenciesListViewOutput!
-    var tabBar: CurrenciesListTabBar!
     
-    let offsetFromLeftAndRight: CGFloat = 2 * 25
+    let offsetFromLeftAndRight: CGFloat = 2 * 25 
+    
+    var horizontalTabBarLine: UIView = {
+        let view = UIView()
+        view.backgroundColor = .dark
+        return view
+    }()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -25,17 +30,8 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
     }
 
     func setupViews() {
-        tabBar = CurrenciesListTabBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 95))
-        tabBar.callbackOnTouchDoneBtn = {
-            [weak self] in
-            self?.output.closeVC()
-        }
-        tabBar.searchBar.delegate = self
-        view.addSubview(tabBar)
-        
-        collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 65, left: 0, bottom: 0, right: 0)
-        collectionView.scrollIndicatorInsets = collectionView.contentInset
+        prepareCollectionView()
+        setupNavigationBar()
         
         let tapListener = UITapGestureRecognizer(target: self, action: #selector(onTapView(_:)))
         view.addGestureRecognizer(tapListener)
@@ -56,6 +52,28 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
         print("Touched \(groupModel.name)")
         output.handleTouchCell(listGroupModel: groupModel)
     }
+    
+    func prepareCollectionView() {
+        collectionView.backgroundColor = .black
+        collectionView.contentInset = UIEdgeInsets(top: -15, left: 0, bottom: 0, right: 0)
+        collectionView.scrollIndicatorInsets = collectionView.contentInset
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+
+        let titleView = UILabel()
+        titleView.text = "Currencies groups"
+        titleView.font = UIFont.getTitleFont()
+        titleView.textColor = .white
+        navigationItem.titleView = titleView
+        
+        view.addSubview(horizontalTabBarLine)
+        horizontalTabBarLine.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 1)
+    }
+    
 }
 
 // MARK: WatchlistCurrenciesListViewInput
@@ -73,14 +91,5 @@ extension WatchlistCurrenciesListViewController {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
-    }
-}
-
-// MARK: UISearchBarDelegate
-extension WatchlistCurrenciesListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let ds = datasource as? CurrenciesListDatasource else { return }
-        ds.filterBy(text: searchText)
-        collectionView.reloadData()
     }
 }

@@ -43,10 +43,6 @@ class CurrenciesListDatasource: Datasource {
         return allCurrencies.count
     }
     
-    override func headerClasses() -> [DatasourceCell.Type]? {
-        return [CurrenciesGroupListHeaderCell.self]
-    }
-    
     override func headerItem(_ section: Int) -> Any? {
         return isInSearchingMode ? "FOUNDED GROUPS" : "ALL GROUPS"
     }
