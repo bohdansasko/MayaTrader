@@ -144,6 +144,9 @@
 		20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */; };
 		20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */; };
 		20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */; };
+		20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */; };
+		20DE8854217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */; };
+		20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */; };
 		20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */; };
 		20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* UIView+Extension.swift */; };
 		20E30AD720A96715003D9BAF /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD620A96715003D9BAF /* NibView.swift */; };
@@ -446,6 +449,9 @@
 		20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListDataSource.swift; sourceTree = "<group>"; };
 		20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListCells.swift; sourceTree = "<group>"; };
 		20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListModuleConfigurator.swift; sourceTree = "<group>"; };
+		20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractor.swift; sourceTree = "<group>"; };
+		20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListPresenter.swift; sourceTree = "<group>"; };
+		20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrencyModel.swift; sourceTree = "<group>"; };
 		20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20E30AD620A96715003D9BAF /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
@@ -1259,7 +1265,9 @@
 			children = (
 				20DE884E217CDF4800BA5CF3 /* View */,
 				20DE884F217CDFD000BA5CF3 /* Model */,
+				20DE8852217CE0D400BA5CF3 /* Interactor */,
 				20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */,
+				20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */,
 			);
 			path = CurrenciesList;
 			sourceTree = "<group>";
@@ -1276,9 +1284,18 @@
 		20DE884F217CDFD000BA5CF3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */,
 				20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		20DE8852217CE0D400BA5CF3 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		2613C8285C5455096A6F3487 /* View */ = {
@@ -2259,6 +2276,7 @@
 				C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */,
 				D973E58060E2D991B0A64100 /* CreateOrderConfigurator.swift in Sources */,
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
+				20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersManagerViewInput.swift in Sources */,
 				8075AB2C2709B6B208E3B25E /* OrdersManagerViewOutput.swift in Sources */,
 				20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */,
@@ -2285,6 +2303,7 @@
 				20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */,
 				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewInput.swift in Sources */,
+				20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */,
 				204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */,
 				20780A2220E95A6800D9BD36 /* SearchCurrencyPairDisplayManager.swift in Sources */,
 				0B6A83BD11E0BF886F0C649C /* CreateAlertViewOutput.swift in Sources */,
@@ -2333,6 +2352,7 @@
 				7BF15DD1D6D4872F7399A413 /* SearchCurrencyPairConfigurator.swift in Sources */,
 				AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */,
 				3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */,
+				20DE8854217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift in Sources */,
 				36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */,
 				3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */,
 				36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */,

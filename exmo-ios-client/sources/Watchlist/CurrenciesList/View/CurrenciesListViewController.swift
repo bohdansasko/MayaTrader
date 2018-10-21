@@ -8,15 +8,18 @@
 
 import LBTAComponents
 
-protocol CurrenciesListViewControllerInput {
-    
+protocol CurrenciesListViewControllerInput: class {
+    func onDidLoadTicker(tickerData: [String : TickerCurrencyModel])
 }
 
-protocol CurrenciesListViewControllerOutput {
-    
+protocol CurrenciesListViewControllerOutput: class {
+    func viewIsReady()
 }
 
 class CurrenciesListViewController: DatasourceController, CurrenciesListViewControllerInput {
+    var output: CurrenciesListViewControllerOutput!
+    private var tickerContainer: [String : TickerCurrencyModel] = [:]
+    
     var tabBar: CurrenciesListTabBar = {
         let tabBar = CurrenciesListTabBar()
         return tabBar
@@ -24,9 +27,13 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        output.viewIsReady()
+        
         prepareCollectionView()
         setupNavigationBar()
+        
+        activityIndicatorView.style = .whiteLarge
+        activityIndicatorView.startAnimating()
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -46,8 +53,17 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
             self?.dismiss(animated: true, completion: nil)
         }
         tabBar.searchBar.delegate = self
-        tabBar.backgroundColor = .clear
         view.addSubview(tabBar)
+    }
+    
+    func onDidLoadTicker(tickerData: [String : TickerCurrencyModel]) {
+        tickerContainer = tickerData
+        
+        let items: [WatchlistCurrencyModel] = tickerData.compactMap({(currencyPairCode: String, model: TickerCurrencyModel) in
+            return WatchlistCurrencyModel(index: 1, pairName: currencyPairCode, buyPrice: model.buyPrice, timeUpdataInSecFrom1970: model.timestamp, closeBuyPrice: model.closeBuyPrice, volume: model.volume, volumeCurrency: model.volumeCurrency)
+        })
+        datasource = CurrenciesListDataSource(items: items)
+        activityIndicatorView.stopAnimating()
     }
 }
 

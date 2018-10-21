@@ -63,3 +63,7 @@ enum OrderActionType {
     case Buy
     case Sell
 }
+
+enum ExmoApiURLs: String {
+    case Ticker = "https://exmo.com/ctrl/ticker"
+}

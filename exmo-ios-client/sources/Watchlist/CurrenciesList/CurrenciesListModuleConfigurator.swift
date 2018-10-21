@@ -16,7 +16,18 @@ class CurrenciesListModuleConfigurator {
     
     private func configure() {
         viewController = CurrenciesListViewController()
-        viewController.datasource = CurrenciesListDataSource(items: getTestData())
+        
+        let presenter = CurrenciesListPresenter()
+        let interactor = CurrenciesListInteractor()
+        
+        viewController.output = presenter
+        
+        presenter.view = viewController
+        presenter.interactor = interactor
+        
+        interactor.output = presenter
+        interactor.networkWorker = CurrenciesListNetworkWorker()
+        interactor.filterGroupController = ExmoFilterGroupController()
     }
     
     fileprivate func getTestData() -> [WatchlistCurrencyModel] {

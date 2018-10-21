@@ -9,23 +9,10 @@ import SwiftyJSON
 
 protocol NetworkWorker {
     func handleResponse(response: DataResponse<Any>)
-    var onHandleResponseSuccesfull: ((ExmoChartData) -> Void)? { get set }
+    var onHandleResponseSuccesfull: ((Any) -> Void)? { get set }
 }
 
-protocol BaseAPICandleChartNetworkWorker: NetworkWorker {
-    func loadCurrencyPairChartHistory(currencyPair: String, period: String)
-}
-
-class DefaultCandleChartNetworkWorker: BaseAPICandleChartNetworkWorker {
-    var onHandleResponseSuccesfull: ((ExmoChartData) -> Void)? = nil
-    
-    func loadCurrencyPairChartHistory(currencyPair: String, period: String) {
-        Alamofire.request("https://exmo.com/ctrl/chartMain?type=undefined&period=\(period)&para=\(currencyPair)").responseJSON {
-            [weak self] response in
-            self?.handleResponse(response: response)
-        }
-    }
-
+extension NetworkWorker {
     func handleResponse(response: DataResponse<Any>) {
         print("default result is : \(response.result)")
         switch response.result {
@@ -33,21 +20,33 @@ class DefaultCandleChartNetworkWorker: BaseAPICandleChartNetworkWorker {
             do {
                 let jsonStr = try JSON(data: response.data!)
                 print("default JSON: \(jsonStr)")
-
-                let chartData = ExmoChartData(json: jsonStr, parseType: .Default)
-                print(chartData)
-                onHandleResponseSuccesfull?(chartData)
+                onHandleResponseSuccesfull?(jsonStr)
             } catch {
-                print("DefaultCandleChartNetworkWorker: we caught a problem in handle response")
+                print("NetworkWorker: we caught a problem in handle response")
             }
         case .failure(_):
-            print("DefaultCandleChartNetworkWorker: failure loading chart data")
+            print("NetworkWorker: failure loading chart data")
+        }
+    }
+}
+
+protocol BaseAPICandleChartNetworkWorker: NetworkWorker {
+    func loadCurrencyPairChartHistory(currencyPair: String, period: String)
+}
+
+class DefaultCandleChartNetworkWorker: BaseAPICandleChartNetworkWorker {
+    var onHandleResponseSuccesfull: ((Any) -> Void)?
+    
+    func loadCurrencyPairChartHistory(currencyPair: String, period: String) {
+        Alamofire.request("https://exmo.com/ctrl/chartMain?type=undefined&period=\(period)&para=\(currencyPair)").responseJSON {
+            [weak self] response in
+            self?.handleResponse(response: response)
         }
     }
 }
 
 class ProfessionalCandleChartNetworkWorker: NetworkWorker {
-    var onHandleResponseSuccesfull: ((ExmoChartData) -> Void)? = nil
+    var onHandleResponseSuccesfull: ((Any) -> Void)? = nil
     
     func loadCurrencyPairChartHistory(currencyPair: String, period: String) {
         Alamofire.request("https://exmo.com/ctrl/chart/history?symbol=\(currencyPair)&resolution=D&from=1533848754&to=1536440814").responseJSON {
@@ -55,7 +54,7 @@ class ProfessionalCandleChartNetworkWorker: NetworkWorker {
             self?.handleResponse(response: response)
         }
     }
-
+    // TODO: refactoring
     func handleResponse(response: DataResponse<Any>) {
         print("Result is : \(response.result)")
         switch response.result {

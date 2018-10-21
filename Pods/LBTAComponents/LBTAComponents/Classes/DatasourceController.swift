@@ -18,7 +18,7 @@ open class DatasourceController: UICollectionViewController, UICollectionViewDel
     public let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
         aiv.hidesWhenStopped = true
-        aiv.color = .black
+        aiv.color = .white
         return aiv
     }()
     
