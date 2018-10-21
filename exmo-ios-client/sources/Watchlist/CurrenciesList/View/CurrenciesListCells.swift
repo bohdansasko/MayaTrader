@@ -1,41 +1,16 @@
 //
-//  CurrenciesListViewController.swift
+//  CurrenciesListCells.swift
 //  exmo-ios-client
 //
-//  Created by Bogdan Sasko on 10/20/18.
+//  Created by Bogdan Sasko on 10/21/18.
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
 import LBTAComponents
 
-protocol CurrenciesListViewControllerInput {
-    
-}
-
-protocol CurrenciesListViewControllerOutput {
-    
-}
-
-class CurrenciesListModuleConfigurator {
-    var viewController: CurrenciesListViewController!
-    init() {
-        configure()
-    }
-    
-    private func configure() {
-        viewController = CurrenciesListViewController()
-        viewController.datasource = CurrenciesListDataSource(items: getTestData())
-    }
-    
-    fileprivate func getTestData() -> [WatchlistCurrencyModel] {
-        return [
-            WatchlistCurrencyModel(index: 0, pairName: "ETH_LTC", buyPrice: 3.82002126, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 3.72920000, volume: 344.89666572, volumeCurrency: 1320.80049895),
-            WatchlistCurrencyModel(index: 1, pairName: "ETH_USD", buyPrice: 6750.00000001, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 6471.92791793, volume: 1777.63971268, volumeCurrency: 11999068.06062675),
-            WatchlistCurrencyModel(index: 2, pairName: "ETH_BTC", buyPrice: 0.46100233, timeUpdataInSecFrom1970: 1539544686, closeBuyPrice: 0.41792313, volume: 4068944.53664728, volumeCurrency: 1876597.22030172)
-        ]
-    }
-}
-
+//
+// MARK: CurrenciesListHeaderCell
+//
 class CurrenciesListHeaderCell: DatasourceCell {
     var favouriteLabel: UILabel = {
         let label = UILabel()
@@ -150,6 +125,9 @@ class CurrenciesListHeaderCell: DatasourceCell {
     }
 }
 
+//
+// MARK: CurrenciesListCell
+//
 class CurrenciesListCell: DatasourceCell {
     var addRemoveFromFavouritesListButton: UIButton = {
         let btn = UIButton(type: .custom)
@@ -165,7 +143,7 @@ class CurrenciesListCell: DatasourceCell {
         label.textColor = .white
         return label
     }()
-
+    
     var buyValueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
@@ -173,7 +151,7 @@ class CurrenciesListCell: DatasourceCell {
         label.textColor = .white
         return label
     }()
-   
+    
     var sellValueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
@@ -276,98 +254,3 @@ class CurrenciesListCell: DatasourceCell {
     }
 }
 
-class CurrenciesListDataSource: Datasource {
-    var items: [WatchlistCurrencyModel]
-    var tempItems: [WatchlistCurrencyModel] = []
-    private var isInSearchingMode = false
-
-    init(items: [WatchlistCurrencyModel]) {
-        self.items = items
-    }
-    
-    override func cellClasses() -> [DatasourceCell.Type] {
-        return [CurrenciesListCell.self]
-    }
-    
-    override func numberOfItems(_ section: Int) -> Int {
-        return items.count
-    }
-    
-    override func item(_ indexPath: IndexPath) -> Any? {
-        return items[indexPath.item]
-    }
-    
-    override func headerClasses() -> [DatasourceCell.Type]? {
-        return [CurrenciesListHeaderCell.self]
-    }
-    
-    func filterBy(text: String) {
-        let isWasInSearchingMode = isInSearchingMode
-        let textInUpperCase = text.uppercased()
-        
-        isInSearchingMode = text.count > 0
-        
-        if !isWasInSearchingMode {
-            tempItems = items
-        }
-        
-        if isInSearchingMode {
-            items = tempItems.filter({ $0.pairName.contains(textInUpperCase) })
-        } else {
-            items = tempItems
-            tempItems = []
-        }
-    }
-}
-
-class CurrenciesListViewController: DatasourceController, CurrenciesListViewControllerInput {
-    var tabBar: CurrenciesListTabBar = {
-        let tabBar = CurrenciesListTabBar()
-        return tabBar
-    }()
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        prepareCollectionView()
-        setupNavigationBar()
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 45)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 35)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-
-    private func prepareCollectionView() {
-        collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)
-        collectionView.scrollIndicatorInsets = collectionView.contentInset
-    }
-
-    private func setupNavigationBar() {
-        tabBar = CurrenciesListTabBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 95))
-        tabBar.callbackOnTouchDoneBtn = {
-            [weak self] in
-            self?.dismiss(animated: true, completion: nil)
-        }
-        tabBar.searchBar.delegate = self
-        tabBar.backgroundColor = .clear
-        view.addSubview(tabBar)
-    }
-}
-
-// MARK: UISearchBarDelegate
-extension CurrenciesListViewController: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let ds = datasource as? CurrenciesListDataSource else { return }
-        ds.filterBy(text: searchText)
-        collectionView.reloadData()
-    }
-}

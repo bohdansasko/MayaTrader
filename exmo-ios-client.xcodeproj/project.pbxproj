@@ -141,6 +141,9 @@
 		20D7F02520460E6A0056F547 /* MenuItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */; };
 		20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */; };
 		20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */; };
+		20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */; };
+		20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */; };
+		20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */; };
 		20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */; };
 		20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* UIView+Extension.swift */; };
 		20E30AD720A96715003D9BAF /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD620A96715003D9BAF /* NibView.swift */; };
@@ -440,6 +443,9 @@
 		20D7F02420460E6A0056F547 /* MenuItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTableViewCell.swift; sourceTree = "<group>"; };
 		20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
 		20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCardCollectionViewCell.xib; sourceTree = "<group>"; };
+		20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListDataSource.swift; sourceTree = "<group>"; };
+		20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListCells.swift; sourceTree = "<group>"; };
+		20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListModuleConfigurator.swift; sourceTree = "<group>"; };
 		20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20E30AD620A96715003D9BAF /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
@@ -871,7 +877,7 @@
 				207B1D842173F93F00D2A5DE /* FavouriteCurrencies */,
 				3DDB3E27DAEC8977E4D43CE0 /* WatchlistCurrenciesGroupList */,
 				48EFA6894840F77841C1ED3F /* WatchlistCurrencyChart */,
-				20345011217B644400D2E831 /* CurrenciesListViewController.swift */,
+				20DE8847217CDE9900BA5CF3 /* CurrenciesList */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -1246,6 +1252,33 @@
 				20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		20DE8847217CDE9900BA5CF3 /* CurrenciesList */ = {
+			isa = PBXGroup;
+			children = (
+				20DE884E217CDF4800BA5CF3 /* View */,
+				20DE884F217CDFD000BA5CF3 /* Model */,
+				20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */,
+			);
+			path = CurrenciesList;
+			sourceTree = "<group>";
+		};
+		20DE884E217CDF4800BA5CF3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20345011217B644400D2E831 /* CurrenciesListViewController.swift */,
+				20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		20DE884F217CDFD000BA5CF3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		2613C8285C5455096A6F3487 /* View */ = {
@@ -2102,6 +2135,7 @@
 				207E25012061BD3B00030023 /* OrderTableViewCell.swift in Sources */,
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
+				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
 				202F48F8206A16640080423E /* WatchlistCurrencyPairsModel.swift in Sources */,
 				2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
@@ -2243,11 +2277,13 @@
 				20CA0FD6206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift in Sources */,
 				20F08D0820A8E21300B782FF /* UITouchableViewWithIndicator.swift in Sources */,
 				207B1DA02173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift in Sources */,
+				20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */,
 				20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */,
 				20E80094207A283B00E1AC6C /* BalanceView.swift in Sources */,
 				2010155020B0510A00324F22 /* CreateAlertDisplayManager.swift in Sources */,
 				2010154820B02B7800324F22 /* AddAlertTableViewCell.swift in Sources */,
 				20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */,
+				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewInput.swift in Sources */,
 				204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */,
 				20780A2220E95A6800D9BD36 /* SearchCurrencyPairDisplayManager.swift in Sources */,
