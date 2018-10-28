@@ -41,8 +41,9 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
     }
 
     private func prepareCollectionView() {
+        layout?.sectionHeadersPinToVisibleBounds = true
         collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = collectionView.contentInset
     }
 
