@@ -67,7 +67,7 @@ class CurrenciesGroupListCell: DatasourceCell {
     
     override var datasourceItem: Any? {
         didSet {
-            guard let currencyModel = datasourceItem as? WatchlistCurrenciesListGroup else { return }
+            guard let currencyModel = datasourceItem as? CurrenciesGroupsGroup else { return }
             
             pairNameLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyModel.name)
             if let img = UIImage(named: Utils.getCurrencyIconName(currencyShortName: currencyModel.name)) {

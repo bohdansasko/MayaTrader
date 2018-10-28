@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrenciesListWatchlistCurrenciesListConfigurator.swift
+//  CurrenciesGroupsConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 15/10/2018.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class WatchlistCurrenciesListModuleConfigurator {
+class CurrenciesGroupsModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? WatchlistCurrenciesListViewController {
+        if let viewController = viewInput as? CurrenciesGroupsViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: WatchlistCurrenciesListViewController) {
+    private func configure(viewController: CurrenciesGroupsViewController) {
 
-        let router = WatchlistCurrenciesListRouter()
+        let router = CurrenciesGroupsRouter()
 
-        let presenter = WatchlistCurrenciesListPresenter()
+        let presenter = CurrenciesGroupsPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = WatchlistCurrenciesListInteractor()
+        let interactor = CurrenciesGroupsInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor

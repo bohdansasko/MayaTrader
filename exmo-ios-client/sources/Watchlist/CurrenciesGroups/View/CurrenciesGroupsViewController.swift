@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrenciesListWatchlistCurrenciesListViewController.swift
+//  CurrenciesGroupsViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 15/10/2018.
@@ -9,9 +9,21 @@
 import UIKit
 import LBTAComponents
 
-class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurrenciesListViewInput, CellDelegate {
+protocol CurrenciesGroupsViewInput: class {
+    func setupInitialState()
+}
 
-    var output: WatchlistCurrenciesListViewOutput!
+
+protocol CurrenciesGroupsViewOutput {
+    func viewIsReady()
+    func closeVC()
+    func handleTouchCell(listGroupModel: CurrenciesGroupsGroup)
+}
+
+
+class CurrenciesGroupsViewController: DatasourceController, CurrenciesGroupsViewInput, CellDelegate {
+
+    var output: CurrenciesGroupsViewOutput!
     
     let offsetFromLeftAndRight: CGFloat = 2 * 25 
     
@@ -48,7 +60,7 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
     }
     
     func didTouchCell(datasourceItem: Any?) {
-        guard let groupModel = datasourceItem as? WatchlistCurrenciesListGroup else { return }
+        guard let groupModel = datasourceItem as? CurrenciesGroupsGroup else { return }
         print("Touched \(groupModel.name)")
         output.handleTouchCell(listGroupModel: groupModel)
     }
@@ -76,15 +88,15 @@ class WatchlistCurrenciesListViewController: DatasourceController, WatchlistCurr
     
 }
 
-// MARK: WatchlistCurrenciesListViewInput
-extension WatchlistCurrenciesListViewController {
+// MARK: CurrenciesGroupsViewInput
+extension CurrenciesGroupsViewController {
     func setupInitialState() {
         // do nothing
     }
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
-extension WatchlistCurrenciesListViewController {
+extension CurrenciesGroupsViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: view.frame.width - offsetFromLeftAndRight, height: 20)
     }

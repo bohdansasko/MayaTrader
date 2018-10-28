@@ -11,11 +11,11 @@ import UIKit.UIViewController
 class WatchlistFavouriteCurrenciesRouter: WatchlistFavouriteCurrenciesRouterInput {
 
     func showCurrenciesListVC(senderVC: UIViewController) {
-        let initializer = WatchlistCurrenciesListModuleInitializer()
-        initializer.watchlistcurrencieslistViewController = WatchlistCurrenciesListViewController()
+        let initializer = CurrenciesGroupsModuleInitializer()
+        initializer.CurrenciesGroupsViewController = CurrenciesGroupsViewController()
         initializer.awakeFromNib()
         
-        senderVC.navigationController?.pushViewController(initializer.watchlistcurrencieslistViewController, animated: true)
+        senderVC.navigationController?.pushViewController(initializer.CurrenciesGroupsViewController, animated: true)
     }
     
     func showChartVC(senderVC: UIViewController, currencyPairName: String) {

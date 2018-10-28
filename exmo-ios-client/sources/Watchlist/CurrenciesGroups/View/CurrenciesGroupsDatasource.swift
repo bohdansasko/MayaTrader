@@ -1,5 +1,5 @@
 //
-//  Datasource.swift
+//  CurrenciesGroupsDatasource.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 10/16/18.
@@ -9,26 +9,26 @@
 import Foundation
 import LBTAComponents
 
-struct WatchlistCurrenciesListGroup {
+struct CurrenciesGroupsGroup {
     let name: String
 }
 
 class CurrenciesListDatasource: Datasource {
-    var allCurrencies: [WatchlistCurrenciesListGroup] = {
+    var allCurrencies: [CurrenciesGroupsGroup] = {
         return [
-            WatchlistCurrenciesListGroup(name: "BTC"),
-            WatchlistCurrenciesListGroup(name: "ETH"),
-            WatchlistCurrenciesListGroup(name: "XRP"),
-            WatchlistCurrenciesListGroup(name: "LTC"),
-            WatchlistCurrenciesListGroup(name: "USD"),
-            WatchlistCurrenciesListGroup(name: "EUR"),
-            WatchlistCurrenciesListGroup(name: "RUB"),
-            WatchlistCurrenciesListGroup(name: "Altcoins"),
-            WatchlistCurrenciesListGroup(name: "Fiat")
+            CurrenciesGroupsGroup(name: "BTC"),
+            CurrenciesGroupsGroup(name: "ETH"),
+            CurrenciesGroupsGroup(name: "XRP"),
+            CurrenciesGroupsGroup(name: "LTC"),
+            CurrenciesGroupsGroup(name: "USD"),
+            CurrenciesGroupsGroup(name: "EUR"),
+            CurrenciesGroupsGroup(name: "RUB"),
+            CurrenciesGroupsGroup(name: "Altcoins"),
+            CurrenciesGroupsGroup(name: "Fiat")
         ]
     }()
     
-    var filteredCurrencies: [WatchlistCurrenciesListGroup] = []
+    var filteredCurrencies: [CurrenciesGroupsGroup] = []
     private var isInSearchingMode = false
     
     override func cellClasses() -> [DatasourceCell.Type] {

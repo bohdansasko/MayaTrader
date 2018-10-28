@@ -25,7 +25,7 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
     }
     
     func setSegueBlock(_ segueBlock: SegueBlock) {
-        guard let segueBlock = segueBlock as? WatchlistCurrenciesListGroupSegueBlock else { return }
+        guard let segueBlock = segueBlock as? CurrenciesGroupsGroupSegueBlock else { return }
         interactor.setCurrencyGroupName(segueBlock.groupModel!.name)
     }
 }
