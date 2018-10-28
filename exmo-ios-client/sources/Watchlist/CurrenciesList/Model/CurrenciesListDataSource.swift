@@ -15,6 +15,9 @@ class CurrenciesListDataSource: Datasource {
     
     init(items: [WatchlistCurrencyModel]) {
         self.items = items
+        super.init()
+        
+        self.updateItemsIndexis()
     }
     
     override func cellClasses() -> [DatasourceCell.Type] {
@@ -45,9 +48,16 @@ class CurrenciesListDataSource: Datasource {
         
         if isInSearchingMode {
             items = tempItems.filter({ $0.pairName.contains(textInUpperCase) })
+            updateItemsIndexis()
         } else {
             items = tempItems
             tempItems = []
+        }
+    }
+    
+    private func updateItemsIndexis() {
+        for itemIndex in 0..<items.count {
+            items[itemIndex].index = itemIndex
         }
     }
 }

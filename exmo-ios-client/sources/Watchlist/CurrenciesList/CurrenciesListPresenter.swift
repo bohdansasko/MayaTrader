@@ -8,7 +8,11 @@
 
 import Foundation
 
-class CurrenciesListPresenter: CurrenciesListViewControllerOutput, CurrenciesListInteractorOutput {
+protocol CurrenciesListModuleInput {
+    func setSegueBlock(_ sequeBlock: SegueBlock)
+}
+
+class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewControllerOutput, CurrenciesListInteractorOutput {
     weak var view: CurrenciesListViewControllerInput!
     var interactor: CurrenciesListInteractorInput!
     
@@ -18,5 +22,10 @@ class CurrenciesListPresenter: CurrenciesListViewControllerOutput, CurrenciesLis
     
     func onDidLoadTicker(tickerData: [String : TickerCurrencyModel]) {
         view.onDidLoadTicker(tickerData: tickerData)
+    }
+    
+    func setSegueBlock(_ segueBlock: SegueBlock) {
+        guard let segueBlock = segueBlock as? WatchlistCurrenciesListGroupSegueBlock else { return }
+        interactor.setCurrencyGroupName(segueBlock.groupModel!.name)
     }
 }

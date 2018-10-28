@@ -176,6 +176,7 @@ class CurrenciesListCell: DatasourceCell {
             buyValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 4)
             sellValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 6)
             currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.getChanges())
+            currencyChangesValueLabel.textColor = d.getChanges() < 0 ? .orangePink : .greenBlue
             self.backgroundColor = d.index % 2 == 1 ? .dark : .clear
         }
     }
