@@ -18,17 +18,19 @@ class WatchlistCurrencyModel: Object {
     @objc dynamic var closeBuyPrice: Double = 0.0
     @objc dynamic var volume: Double = 0.0
     @objc dynamic var volumeCurrency: Double = 0.0
+    @objc dynamic var isFavourite = false
     
     init(index: Int, currencyCode: String, tickerCurrencyModel: TickerCurrencyModel) {
         super.init()
         
         self.index = index
         self.pairName = currencyCode
-        self.buyPrice = tickerCurrencyModel.buyPrice
+        buyPrice = tickerCurrencyModel.buyPrice
         timeUpdataInSecFrom1970 = tickerCurrencyModel.timestamp
         closeBuyPrice = tickerCurrencyModel.closeBuyPrice
         volume = tickerCurrencyModel.volume
         volumeCurrency = tickerCurrencyModel.volumeCurrency
+        isFavourite = tickerCurrencyModel.isFavourite
     }
     
     required init() {

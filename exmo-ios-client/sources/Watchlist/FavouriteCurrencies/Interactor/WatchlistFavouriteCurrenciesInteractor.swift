@@ -29,9 +29,16 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
     var timerScheduler: Timer?
     var networkWorker: TickerNetworkWorker!
+    let config = Realm.Configuration(
+        schemaVersion: 1,
+        migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+            }
+    })
     lazy var realm = try! Realm()
     
     func viewIsReady() {
+        Realm.Configuration.defaultConfiguration = config
         loadCurrenciesFromCache()
         networkWorker.onHandleResponseSuccesfull = {
             [weak self](json) in
@@ -43,11 +50,10 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
             scheduleUpdateCurrencies()
         }
     }
-    
+
     func viewWillDisappear() {
-        try! realm.write {
-            realm.add(favouriteCurrenciesPairs)
-        }
+        stopScheduleUpdateCurrencies()
+        saveFavCurrenciesToCache()
     }
     
     private func scheduleUpdateCurrencies() {
@@ -65,7 +71,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     }
     
     private func parseTicker(json: JSON) {
-        print("loaded CurrenciesListInteractor:")
+        print("Loaded ticker for Watchlist")
         
         var tickerContainer: [String : WatchlistCurrencyModel] = [:]
         var currencyIndex = 0
@@ -84,5 +90,18 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
         }
         
         output.didLoadCurrencies(items: favouriteCurrenciesPairs)
+    }
+
+    private func stopScheduleUpdateCurrencies() {
+        if timerScheduler != nil {
+            timerScheduler?.invalidate()
+            timerScheduler = nil
+        }
+    }
+
+    private func saveFavCurrenciesToCache() {
+        try! realm.write {
+            realm.add(favouriteCurrenciesPairs)
+        }
     }
 }

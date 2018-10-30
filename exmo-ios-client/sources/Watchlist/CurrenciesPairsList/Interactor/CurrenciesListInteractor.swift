@@ -9,6 +9,7 @@
 import Alamofire
 import SwiftyJSON
 import RealmSwift
+import Realm
 
 //
 // MARK: ICurrenciesListNetworkWorker
@@ -56,34 +57,63 @@ class ExmoFilterGroupController: IFilterGroupController {
 //
 protocol CurrenciesListInteractorInput: class {
     func viewIsReady()
+    func viewWillDisappear()
     func setCurrencyGroupName(_ currencyGroupName: String)
     func cacheFavCurrencyPair(datasourceItem: Any?)
 }
 
 protocol CurrenciesListInteractorOutput: class {
-    func onDidLoadTicker(tickerData: [String : TickerCurrencyModel])
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel])
 }
 
 class CurrenciesListInteractor: CurrenciesListInteractorInput {
     weak var output: CurrenciesListInteractorOutput!
+    var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
+    var timerScheduler: Timer?
     var networkWorker: ICurrenciesListNetworkWorker!
     var filterGroupController: IFilterGroupController!
     var currencyGroupName: String = ""
+    let config = Realm.Configuration(
+        schemaVersion: 1,
+        migrationBlock: { migration, oldSchemaVersion in
+            if (oldSchemaVersion < 1) {
+            }
+    })
     
+    // Now that we've told Realm how to handle the schema change, opening the file
+    // will automatically perform the migration
     lazy var realm = try! Realm()
     
     func viewIsReady() {
+        Realm.Configuration.defaultConfiguration = config
         networkWorker.onHandleResponseSuccesfull = {
             [weak self](json) in
             guard let jsonObj = json as? JSON else { return }
             self?.parseTicker(json: jsonObj)
         }
-        loadTicker()
+        
+        loadCurrenciesFromCache()
+        scheduleUpdateCurrencies()
     }
     
-    private func loadTicker() {
-        if !currencyGroupName.isEmpty {
-            networkWorker.loadTicker()
+    func viewWillDisappear() {
+        stopScheduleUpdateCurrencies()
+    }
+    
+    private func scheduleUpdateCurrencies() {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+            [weak self] _ in
+            guard let self = self else { return }
+            if !self.currencyGroupName.isEmpty {
+                self.networkWorker.loadTicker()
+            }
+        }
+    }
+    
+    private func stopScheduleUpdateCurrencies() {
+        if timerScheduler != nil {
+            timerScheduler?.invalidate()
+            timerScheduler = nil
         }
     }
     
@@ -99,7 +129,19 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
             }
         })
         
-        output.onDidLoadTicker(tickerData: tickerContainer)
+        for index in (0..<favouriteCurrenciesPairs.count) {
+            let favModel = favouriteCurrenciesPairs[index]
+            if tickerContainer.contains(where: { $0.key == favModel.pairName }) {
+                tickerContainer[favModel.pairName]!.isFavourite = true
+            }
+        }
+        
+        let items: [WatchlistCurrencyModel] = tickerContainer.compactMap({(arg0) in
+            let (currencyPairCode, model) = arg0
+            return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
+        })
+        
+        output.onDidLoadCurrenciesPairs(items: items)
     }
     
     func setCurrencyGroupName(_ currencyGroupName: String) {
@@ -117,6 +159,12 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
         } else {
             self.currencyGroupName = currencyGroupName
         }
+    }
+    
+    private func loadCurrenciesFromCache() {
+        let objects = realm.objects(WatchlistCurrencyModel.self)
+        favouriteCurrenciesPairs = Array(objects)
+        favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
     }
     
     func cacheFavCurrencyPair(datasourceItem: Any?) {

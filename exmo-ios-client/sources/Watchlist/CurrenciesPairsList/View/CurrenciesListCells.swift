@@ -178,6 +178,7 @@ class CurrenciesListCell: DatasourceCell {
             currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.getChanges())
             currencyChangesValueLabel.textColor = d.getChanges() < 0 ? .orangePink : .greenBlue
             self.backgroundColor = d.index % 2 == 1 ? .dark : .clear
+            addRemoveFromFavouritesListButton.isSelected = d.isFavourite
         }
     }
     

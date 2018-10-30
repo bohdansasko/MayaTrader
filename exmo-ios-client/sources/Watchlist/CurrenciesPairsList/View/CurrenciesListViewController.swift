@@ -9,18 +9,17 @@
 import LBTAComponents
 
 protocol CurrenciesListViewControllerInput: class {
-    func onDidLoadTicker(tickerData: [String : TickerCurrencyModel])
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel])
 }
 
 protocol CurrenciesListViewControllerOutput: class {
     func viewIsReady()
+    func viewWillDisappear()
     func handleTouchFavBtn(datasourceItem: Any?)
 }
 
 class CurrenciesListViewController: DatasourceController, CurrenciesListViewControllerInput {
     var output: CurrenciesListViewControllerOutput!
-    private var tickerContainer: [String : TickerCurrencyModel] = [:]
-    
     var tabBar: CurrenciesListTabBar = {
         let tabBar = CurrenciesListTabBar()
         return tabBar
@@ -35,6 +34,11 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
         
         activityIndicatorView.style = .whiteLarge
         activityIndicatorView.startAnimating()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        output.viewWillDisappear()
     }
     
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -58,13 +62,7 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
         view.addSubview(tabBar)
     }
     
-    func onDidLoadTicker(tickerData: [String : TickerCurrencyModel]) {
-        tickerContainer = tickerData
-        let items: [WatchlistCurrencyModel] = tickerData.compactMap({(arg0) in
-            let (currencyPairCode, model) = arg0
-            return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
-        })
-        
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
         datasource = CurrenciesListDataSource(items: items)
         activityIndicatorView.stopAnimating()
     }

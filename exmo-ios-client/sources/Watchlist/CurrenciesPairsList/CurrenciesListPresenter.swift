@@ -20,8 +20,8 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
         interactor.viewIsReady()
     }
     
-    func onDidLoadTicker(tickerData: [String : TickerCurrencyModel]) {
-        view.onDidLoadTicker(tickerData: tickerData)
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
+        view.onDidLoadCurrenciesPairs(items: items)
     }
     
     func setSegueBlock(_ segueBlock: SegueBlock) {
@@ -31,5 +31,9 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
     
     func handleTouchFavBtn(datasourceItem: Any?) {
         interactor.cacheFavCurrencyPair(datasourceItem: datasourceItem)
+    }
+    
+    func viewWillDisappear() {
+        interactor.viewWillDisappear()
     }
 }

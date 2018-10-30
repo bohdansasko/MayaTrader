@@ -34,11 +34,13 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupNavigationBarColor()
         output.viewIsReady()
     }
     
-    func viewWillDisappear() {
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         output.viewWillDisappear()
     }
     
