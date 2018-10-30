@@ -10,4 +10,5 @@ target 'exmo-ios-client' do
   pod 'SwiftyJSON'
   pod 'Charts'
   pod 'LBTAComponents'
+  pod 'RealmSwift'
 end
