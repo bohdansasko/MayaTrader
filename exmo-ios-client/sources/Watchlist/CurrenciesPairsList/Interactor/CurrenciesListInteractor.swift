@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 //
 // MARK: ICurrenciesListNetworkWorker
@@ -62,8 +63,6 @@ protocol CurrenciesListInteractorInput: class {
 protocol CurrenciesListInteractorOutput: class {
     func onDidLoadTicker(tickerData: [String : TickerCurrencyModel])
 }
-
-import RealmSwift
 
 class CurrenciesListInteractor: CurrenciesListInteractorInput {
     weak var output: CurrenciesListInteractorOutput!
@@ -124,7 +123,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
         guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
         try! realm.write {
             realm.add(currencyModel)
-            print("succesfull cached TickerCurrencyModel")
+            print("successful cached TickerCurrencyModel")
         }
     }
 }

@@ -27,7 +27,7 @@ class WatchlistFavouriteCurrenciesModuleConfigurator {
 
         let interactor = WatchlistFavouriteCurrenciesInteractor()
         interactor.output = presenter
-
+        interactor.networkWorker = WatchlistNetworkWorker()
         presenter.interactor = interactor
         viewController.output = presenter
     }

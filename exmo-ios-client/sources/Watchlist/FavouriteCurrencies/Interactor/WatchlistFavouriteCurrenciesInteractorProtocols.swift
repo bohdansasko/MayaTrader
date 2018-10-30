@@ -1,5 +1,5 @@
 //
-//  WatchlistFavouriteCurrenciesInteractorOutput.swift
+//  WatchlistFavouriteCurrenciesInteractorProtocols.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -7,6 +7,11 @@
 //
 
 import Foundation
+
+protocol WatchlistFavouriteCurrenciesInteractorInput {
+    func viewIsReady()
+    func viewWillDisappear()
+}
 
 protocol WatchlistFavouriteCurrenciesInteractorOutput: class {
     func didLoadCurrenciesFromCache(items: [WatchlistCurrencyModel])

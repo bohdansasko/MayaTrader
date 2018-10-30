@@ -6,17 +6,83 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 import RealmSwift
+import Alamofire
+import SwiftyJSON
+
+protocol TickerNetworkWorker: NetworkWorker {
+    func loadTicker()
+}
+
+class WatchlistNetworkWorker: TickerNetworkWorker {
+    var onHandleResponseSuccesfull: ((Any) -> Void)?
+    
+    func loadTicker() {
+        Alamofire.request(ExmoApiURLs.Ticker.rawValue).responseJSON{
+            [weak self] response in
+            self?.handleResponse(response: response)
+        }
+    }
+}
 
 class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesInteractorInput {
     weak var output: WatchlistFavouriteCurrenciesInteractorOutput!
+    var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
+    var timerScheduler: Timer?
+    var networkWorker: TickerNetworkWorker!
     lazy var realm = try! Realm()
     
     func viewIsReady() {
         loadCurrenciesFromCache()
+        networkWorker.onHandleResponseSuccesfull = {
+            [weak self](json) in
+            guard let jsonObj = json as? JSON else { return }
+            self?.parseTicker(json: jsonObj)
+        }
+        
+        if favouriteCurrenciesPairs.count > 0 {
+            scheduleUpdateCurrencies()
+        }
+    }
+    
+    func viewWillDisappear() {
+        try! realm.write {
+            realm.add(favouriteCurrenciesPairs)
+        }
+    }
+    
+    private func scheduleUpdateCurrencies() {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+            [weak self] _ in
+            self?.networkWorker.loadTicker()
+        }
     }
     
     private func loadCurrenciesFromCache() {
         let objects = realm.objects(WatchlistCurrencyModel.self)
-        output.didLoadCurrenciesFromCache(items: Array(objects))
+        favouriteCurrenciesPairs = Array(objects)
+        favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
+        output.didLoadCurrencies(items: favouriteCurrenciesPairs)
+    }
+    
+    private func parseTicker(json: JSON) {
+        print("loaded CurrenciesListInteractor:")
+        
+        var tickerContainer: [String : WatchlistCurrencyModel] = [:]
+        var currencyIndex = 0
+        
+        json["data"]["ticker"].dictionaryValue.forEach({
+            (currencyPairCode, currencyDescriptionInJSON) in
+            let isFavCurrencyPair = favouriteCurrenciesPairs.contains(where: { $0.pairName == currencyPairCode })
+            guard let model = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description), isFavCurrencyPair == true else { return }
+            tickerContainer[currencyPairCode] = WatchlistCurrencyModel(index: currencyIndex, currencyCode: currencyPairCode, tickerCurrencyModel: model)
+            currencyIndex = currencyIndex + 1
+        })
+        
+        for favCurrencyIndex in (0..<favouriteCurrenciesPairs.count) {
+            let model = favouriteCurrenciesPairs[favCurrencyIndex]
+            favouriteCurrenciesPairs[favCurrencyIndex] = tickerContainer[model.pairName]!
+        }
+        
+        output.didLoadCurrencies(items: favouriteCurrenciesPairs)
     }
 }

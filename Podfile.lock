@@ -5,6 +5,11 @@ PODS:
   - Charts/Core (3.2.0)
   - LBTAComponents (1.0.2)
   - ObjectMapper (3.3.0)
+  - Realm (3.10.0):
+    - Realm/Headers (= 3.10.0)
+  - Realm/Headers (3.10.0)
+  - RealmSwift (3.10.0):
+    - Realm (= 3.10.0)
   - SwiftWebSocket (2.7.0)
   - SwiftyJSON (4.1.0)
 
@@ -13,6 +18,7 @@ DEPENDENCIES:
   - Charts
   - LBTAComponents
   - ObjectMapper (~> 3.1)
+  - RealmSwift
   - SwiftWebSocket
   - SwiftyJSON
 
@@ -21,9 +27,11 @@ SPEC CHECKSUMS:
   Charts: 680c8328bd5e90cb14f67e00d2176f3113d19141
   LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
   ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+  Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
+  RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
-PODFILE CHECKSUM: 358edeffd9a04c757e3aa1d8a5d0c01dae0d319f
+PODFILE CHECKSUM: 7147bfc36ceff71c875a11142de29a66300df6ef
 
 COCOAPODS: 1.4.0

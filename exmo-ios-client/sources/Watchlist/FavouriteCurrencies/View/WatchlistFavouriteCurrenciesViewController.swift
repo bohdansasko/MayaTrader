@@ -38,6 +38,10 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
         output.viewIsReady()
     }
     
+    func viewWillDisappear() {
+        output.viewWillDisappear()
+    }
+    
     //
     // @MARK: setup collection
     //

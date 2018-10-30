@@ -17,6 +17,10 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
         interactor.viewIsReady()
     }
     
+    func viewWillDisappear() {
+        interactor.viewWillDisappear()
+    }
+    
     func showCurrenciesListVC() {
         router.showCurrenciesListVC(senderVC: view as! UIViewController)
     }
@@ -25,7 +29,7 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
         router.showChartVC(senderVC: view as! UIViewController, currencyPairName: watchlistCurrencyModel.pairName)
     }
     
-    func didLoadCurrenciesFromCache(items: [WatchlistCurrencyModel]) {
+    func didLoadCurrencies(items: [WatchlistCurrencyModel]) {
         view.presentFavouriteCurrencies(items: items)
     }
 }
