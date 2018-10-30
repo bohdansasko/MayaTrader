@@ -28,4 +28,8 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
         guard let segueBlock = segueBlock as? CurrenciesGroupsGroupSegueBlock else { return }
         interactor.setCurrencyGroupName(segueBlock.groupModel!.name)
     }
+    
+    func handleTouchFavBtn(datasourceItem: Any?) {
+        interactor.cacheFavCurrencyPair(datasourceItem: datasourceItem)
+    }
 }

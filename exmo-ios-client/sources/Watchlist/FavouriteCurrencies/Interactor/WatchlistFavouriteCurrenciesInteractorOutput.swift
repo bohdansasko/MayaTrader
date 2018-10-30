@@ -9,5 +9,5 @@
 import Foundation
 
 protocol WatchlistFavouriteCurrenciesInteractorOutput: class {
-
+    func didLoadCurrenciesFromCache(items: [WatchlistCurrencyModel])
 }

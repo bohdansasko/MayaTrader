@@ -7,15 +7,41 @@
 //
 
 import Foundation
+import Realm
+import RealmSwift
 
-struct WatchlistCurrencyModel {
-    var index: Int
-    let pairName: String
-    let buyPrice: Double
-    let timeUpdataInSecFrom1970: Double
-    let closeBuyPrice: Double
-    let volume: Double
-    let volumeCurrency: Double
+class WatchlistCurrencyModel: Object {
+    @objc dynamic var index: Int = 0
+    @objc dynamic var pairName: String = ""
+    @objc dynamic var buyPrice: Double = 0.0
+    @objc dynamic var timeUpdataInSecFrom1970: Double = 0.0
+    @objc dynamic var closeBuyPrice: Double = 0.0
+    @objc dynamic var volume: Double = 0.0
+    @objc dynamic var volumeCurrency: Double = 0.0
+    
+    init(index: Int, currencyCode: String, tickerCurrencyModel: TickerCurrencyModel) {
+        super.init()
+        
+        self.index = index
+        self.pairName = currencyCode
+        self.buyPrice = tickerCurrencyModel.buyPrice
+        timeUpdataInSecFrom1970 = tickerCurrencyModel.timestamp
+        closeBuyPrice = tickerCurrencyModel.closeBuyPrice
+        volume = tickerCurrencyModel.volume
+        volumeCurrency = tickerCurrencyModel.volumeCurrency
+    }
+    
+    required init() {
+        super.init()
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
     
     func getDisplayCurrencyPairName() -> String {
         return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.pairName)

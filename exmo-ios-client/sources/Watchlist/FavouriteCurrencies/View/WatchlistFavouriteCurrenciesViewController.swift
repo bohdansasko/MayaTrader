@@ -35,6 +35,7 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
     
     override func viewWillAppear(_ animated: Bool) {
         setupNavigationBarColor()
+        output.viewIsReady()
     }
     
     //
@@ -49,6 +50,10 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
         guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
         print("Touched \(currencyModel.pairName)")
         output.handleTouchCell(watchlistCurrencyModel: currencyModel)
+    }
+    
+    func presentFavouriteCurrencies(items: [WatchlistCurrencyModel]) {
+        datasource = WatchlistFavouriteDataSource(items: items)
     }
 }
 

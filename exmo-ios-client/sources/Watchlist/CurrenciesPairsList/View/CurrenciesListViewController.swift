@@ -14,6 +14,7 @@ protocol CurrenciesListViewControllerInput: class {
 
 protocol CurrenciesListViewControllerOutput: class {
     func viewIsReady()
+    func handleTouchFavBtn(datasourceItem: Any?)
 }
 
 class CurrenciesListViewController: DatasourceController, CurrenciesListViewControllerInput {
@@ -59,10 +60,11 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
     
     func onDidLoadTicker(tickerData: [String : TickerCurrencyModel]) {
         tickerContainer = tickerData
-        
-        let items: [WatchlistCurrencyModel] = tickerData.compactMap({(currencyPairCode: String, model: TickerCurrencyModel) in
-            return WatchlistCurrencyModel(index: 1, pairName: currencyPairCode, buyPrice: model.buyPrice, timeUpdataInSecFrom1970: model.timestamp, closeBuyPrice: model.closeBuyPrice, volume: model.volume, volumeCurrency: model.volumeCurrency)
+        let items: [WatchlistCurrencyModel] = tickerData.compactMap({(arg0) in
+            let (currencyPairCode, model) = arg0
+            return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
         })
+        
         datasource = CurrenciesListDataSource(items: items)
         activityIndicatorView.stopAnimating()
     }
@@ -85,5 +87,12 @@ extension CurrenciesListViewController: UISearchBarDelegate {
         guard let ds = datasource as? CurrenciesListDataSource else { return }
         ds.filterBy(text: searchText)
         collectionView.reloadData()
+    }
+}
+
+// MARK: UISearchBarDelegate
+extension CurrenciesListViewController: CellDelegate {
+    func didTouchCell(datasourceItem: Any?) {
+        output.handleTouchFavBtn(datasourceItem: datasourceItem)
     }
 }

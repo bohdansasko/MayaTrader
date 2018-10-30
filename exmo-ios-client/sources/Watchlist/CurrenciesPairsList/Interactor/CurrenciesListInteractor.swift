@@ -54,13 +54,16 @@ class ExmoFilterGroupController: IFilterGroupController {
 // MARK: CurrenciesListInteractorInput/CurrenciesListInteractorOutput
 //
 protocol CurrenciesListInteractorInput: class {
-    func setCurrencyGroupName(_ currencyGroupName: String)
     func viewIsReady()
+    func setCurrencyGroupName(_ currencyGroupName: String)
+    func cacheFavCurrencyPair(datasourceItem: Any?)
 }
 
 protocol CurrenciesListInteractorOutput: class {
     func onDidLoadTicker(tickerData: [String : TickerCurrencyModel])
 }
+
+import RealmSwift
 
 class CurrenciesListInteractor: CurrenciesListInteractorInput {
     weak var output: CurrenciesListInteractorOutput!
@@ -68,7 +71,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     var filterGroupController: IFilterGroupController!
     var currencyGroupName: String = ""
     
-    private var tickerContainer: [String : TickerCurrencyModel] = [:]
+    lazy var realm = try! Realm()
     
     func viewIsReady() {
         networkWorker.onHandleResponseSuccesfull = {
@@ -88,12 +91,15 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     private func parseTicker(json: JSON) {
         print("loaded CurrenciesListInteractor:")
         
+        var tickerContainer: [String : TickerCurrencyModel] = [:]
+        
         json["data"]["ticker"].dictionaryValue.forEach({
-            [weak self](currencyPairCode, currencyDescriptionInJSON) in
+            (currencyPairCode, currencyDescriptionInJSON) in
             if filterGroupController.isCurrencyCodeRelativeToGroup(currencyCode: currencyPairCode, currencyGroupName: currencyGroupName) {
-                self?.tickerContainer[currencyPairCode] = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description)
+                tickerContainer[currencyPairCode] = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description)
             }
         })
+        
         output.onDidLoadTicker(tickerData: tickerContainer)
     }
     
@@ -111,6 +117,14 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
             self.currencyGroupName = "EUR,USD,RUB,XRP,UAH,PLN,TRY"
         } else {
             self.currencyGroupName = currencyGroupName
+        }
+    }
+    
+    func cacheFavCurrencyPair(datasourceItem: Any?) {
+        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
+        try! realm.write {
+            realm.add(currencyModel)
+            print("succesfull cached TickerCurrencyModel")
         }
     }
 }

@@ -14,7 +14,7 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
     var router: WatchlistFavouriteCurrenciesRouterInput!
 
     func viewIsReady() {
-        // do nothing
+        interactor.viewIsReady()
     }
     
     func showCurrenciesListVC() {
@@ -23,5 +23,9 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
     
     func handleTouchCell(watchlistCurrencyModel: WatchlistCurrencyModel) {
         router.showChartVC(senderVC: view as! UIViewController, currencyPairName: watchlistCurrencyModel.pairName)
+    }
+    
+    func didLoadCurrenciesFromCache(items: [WatchlistCurrencyModel]) {
+        view.presentFavouriteCurrencies(items: items)
     }
 }
