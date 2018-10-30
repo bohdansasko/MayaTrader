@@ -17,6 +17,10 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
         interactor.viewIsReady()
     }
     
+    func viewWillAppear() {
+        interactor.viewWillAppear()
+    }
+    
     func viewWillDisappear() {
         interactor.viewWillDisappear()
     }

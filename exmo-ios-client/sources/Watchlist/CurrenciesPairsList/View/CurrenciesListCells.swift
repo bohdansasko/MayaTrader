@@ -199,11 +199,12 @@ class CurrenciesListCell: DatasourceCell {
     }
     
     @objc func onTouchFavBtn(_ sender: UIButton) {
-        print(sender.isSelected)
         sender.isSelected = !sender.isSelected
         
         guard let cellDelegate = controller as? CellDelegate else { return }
-        cellDelegate.didTouchCell(datasourceItem: datasourceItem)
+        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
+        currencyModel.isFavourite = sender.isSelected
+        cellDelegate.didTouchCell(datasourceItem: currencyModel)
     }
     
     private func setupConstraints() {

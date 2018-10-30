@@ -30,7 +30,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     var timerScheduler: Timer?
     var networkWorker: TickerNetworkWorker!
     let config = Realm.Configuration(
-        schemaVersion: 1,
+        schemaVersion: 2,
         migrationBlock: { migration, oldSchemaVersion in
             if (oldSchemaVersion < 1) {
             }
@@ -39,18 +39,23 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     
     func viewIsReady() {
         Realm.Configuration.defaultConfiguration = config
-        loadCurrenciesFromCache()
+//        try! realm.write {
+//            realm.deleteAll()
+//        }
         networkWorker.onHandleResponseSuccesfull = {
             [weak self](json) in
             guard let jsonObj = json as? JSON else { return }
             self?.parseTicker(json: jsonObj)
         }
-        
+    }
+
+    func viewWillAppear() {
+        loadCurrenciesFromCache()
         if favouriteCurrenciesPairs.count > 0 {
             scheduleUpdateCurrencies()
         }
     }
-
+    
     func viewWillDisappear() {
         stopScheduleUpdateCurrencies()
         saveFavCurrenciesToCache()
@@ -64,7 +69,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     }
     
     private func loadCurrenciesFromCache() {
-        let objects = realm.objects(WatchlistCurrencyModel.self)
+        let objects = realm.objects(WatchlistCurrencyModel.self).filter({ $0.isFavourite })
         favouriteCurrenciesPairs = Array(objects)
         favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
         output.didLoadCurrencies(items: favouriteCurrenciesPairs)
@@ -87,6 +92,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
         for favCurrencyIndex in (0..<favouriteCurrenciesPairs.count) {
             let model = favouriteCurrenciesPairs[favCurrencyIndex]
             favouriteCurrenciesPairs[favCurrencyIndex] = tickerContainer[model.pairName]!
+            favouriteCurrenciesPairs[favCurrencyIndex].isFavourite = model.isFavourite
         }
         
         output.didLoadCurrencies(items: favouriteCurrenciesPairs)
@@ -101,7 +107,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
 
     private func saveFavCurrenciesToCache() {
         try! realm.write {
-            realm.add(favouriteCurrenciesPairs)
+            realm.add(favouriteCurrenciesPairs, update: true)
         }
     }
 }

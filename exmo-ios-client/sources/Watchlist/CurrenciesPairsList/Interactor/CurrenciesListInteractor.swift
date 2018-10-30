@@ -74,7 +74,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     var filterGroupController: IFilterGroupController!
     var currencyGroupName: String = ""
     let config = Realm.Configuration(
-        schemaVersion: 1,
+        schemaVersion: 2,
         migrationBlock: { migration, oldSchemaVersion in
             if (oldSchemaVersion < 1) {
             }
@@ -101,7 +101,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) {
             [weak self] _ in
             guard let self = self else { return }
             if !self.currencyGroupName.isEmpty {
@@ -169,9 +169,20 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     
     func cacheFavCurrencyPair(datasourceItem: Any?) {
         guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
+        let isInFavList = favouriteCurrenciesPairs.contains(where: { $0.pairName == currencyModel.pairName })
+        if !isInFavList && currencyModel.isFavourite {
+           favouriteCurrenciesPairs.append(currencyModel)
+        } else {
+            favouriteCurrenciesPairs.removeAll(where: { $0.pairName == currencyModel.pairName })
+        }
+        
         try! realm.write {
-            realm.add(currencyModel)
-            print("successful cached TickerCurrencyModel")
+            if currencyModel.isFavourite {
+                realm.add(currencyModel)
+            } else {
+                realm.add(currencyModel, update: true)
+            }
+            print("successful cached \(currencyModel)")
         }
     }
 }

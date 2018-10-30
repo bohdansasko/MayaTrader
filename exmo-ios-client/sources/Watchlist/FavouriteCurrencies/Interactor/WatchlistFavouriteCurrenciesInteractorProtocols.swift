@@ -10,6 +10,7 @@ import Foundation
 
 protocol WatchlistFavouriteCurrenciesInteractorInput {
     func viewIsReady()
+    func viewWillAppear()
     func viewWillDisappear()
 }
 

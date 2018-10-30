@@ -45,6 +45,10 @@ class WatchlistCurrencyModel: Object {
         super.init(value: value, schema: schema)
     }
     
+    override static func primaryKey() -> String? {
+        return "pairName"
+    }
+    
     func getDisplayCurrencyPairName() -> String {
         return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.pairName)
     }
