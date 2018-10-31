@@ -205,7 +205,6 @@
 		69496187267B8697A0D01EDC /* WatchlistCurrencyChartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D265F6D569AFA5D2FB70CA0F /* WatchlistCurrencyChartConfigurator.swift */; };
 		6982526DA482F5B7AB47FA25 /* OrdersManagerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAD9ABA92E4B5D8C9BA66C /* OrdersManagerInteractor.swift */; };
 		6DB1D1516F26E97C850CB63F /* OrdersManagerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DBDCD76FD9AC84E1C00E12 /* OrdersManagerRouter.swift */; };
-		6F4E2E9D37A8F2FAF95EF6A9 /* QRScannerViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */; };
 		70EA7FF337A4F7F26F9F4A42 /* MoreViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FD8E53273F656F5A94F776 /* MoreViewInput.swift */; };
 		71F1CAF456A68AAE7886A679 /* CreateOrderModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E461BDC390A6DC76CC68B /* CreateOrderModuleInput.swift */; };
 		73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */; };
@@ -220,7 +219,6 @@
 		811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E8254A5B3DEC5E5D94D4DB /* CreateOrderRouterInput.swift */; };
 		81D6C5A005CDED67BB51198D /* SearchCurrencyPairPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3347B252E6586875751363 /* SearchCurrencyPairPresenter.swift */; };
 		820D8F305E45D621689112C1 /* OrdersManagerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB62089BA8D5D64E222050 /* OrdersManagerPresenter.swift */; };
-		88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */; };
 		88F374AA6AB2C96E9516D8AB /* WatchlistCurrencyChartModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C72D5E70DF60A940E065AF /* WatchlistCurrencyChartModuleInput.swift */; };
 		8B2D71C4450F33B9D9AAA0B9 /* CreateAlertInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437A7929205B0B131B0F3EC /* CreateAlertInteractorInput.swift */; };
 		8E09D1469BC714D8CEE79956 /* CreateAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */; };
@@ -228,7 +226,7 @@
 		8F0AEFDE9AEF6C58DC4F078D /* AlertsViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12FFF3C48F1874EECA05E38 /* AlertsViewInput.swift */; };
 		8F61BBEA01E98C5F4DF6F7E2 /* WalletSettingsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0C0EF8250B7C9CE68995A3B /* WalletSettingsRouterInput.swift */; };
 		9166AC3B5AC9A5EEFCD31C76 /* OrdersManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BE974C2513907BDD66D135 /* OrdersManagerViewController.swift */; };
-		920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */; };
+		920278E6318EFE15D1B07821 /* QRScannerInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */; };
 		92437E8E2F40D002B32DD853 /* MoreViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72AFD63623E5A23D5AAC4E67 /* MoreViewOutput.swift */; };
 		940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */; };
 		969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9936576524E2F156E83AAC8 /* CurrenciesGroupsRouter.swift */; };
@@ -276,7 +274,7 @@
 		EABF76B025CEFE0E8375F4D1 /* WatchlistCurrencyChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFDAA34E9FD08CDEBF8CFA2 /* WatchlistCurrencyChartPresenter.swift */; };
 		EBC38D6BBBA093BFC55BCA2A /* WalletSettingsInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A8B00CB85A45F762BB1669F /* WalletSettingsInitializer.swift */; };
 		EC84987D1BA670CD6A6B4EE0 /* CreateAlertInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9D7A0A71D729063B169362 /* CreateAlertInteractorOutput.swift */; };
-		EEBC1EA66242D71226026D0B /* QRScannerViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */; };
+		EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */; };
 		EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287C505BB92AB6197863E9E /* AlertsViewController.swift */; };
 		F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5CC4983136487CA151E5 /* LoginInteractor.swift */; };
 		F403E921F12C165CC3DA3F52 /* WalletPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F609337FB595DB76DBBE6C /* WalletPresenter.swift */; };
@@ -480,7 +478,6 @@
 		36712F3BF4234409BE0C353E /* WalletDisplayManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletDisplayManager.swift; sourceTree = "<group>"; };
 		36712F8856A6004AC2CC405B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
-		3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewOutput.swift; sourceTree = "<group>"; };
 		3E9D7A0A71D729063B169362 /* CreateAlertInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractorOutput.swift; sourceTree = "<group>"; };
 		3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInitializer.swift; sourceTree = "<group>"; };
 		40C4BA797069940DD7E962FF /* CreateAlertViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertViewOutput.swift; sourceTree = "<group>"; };
@@ -500,7 +497,7 @@
 		6070BC376D8AC4F1A5006B4B /* CreateAlertViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertViewInput.swift; sourceTree = "<group>"; };
 		60C72D5E70DF60A940E065AF /* WatchlistCurrencyChartModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartModuleInput.swift; sourceTree = "<group>"; };
 		645ECA500CFCF983CB3537DF /* WalletRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletRouterInput.swift; sourceTree = "<group>"; };
-		6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorOutput.swift; sourceTree = "<group>"; };
+		6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorProtocols.swift; sourceTree = "<group>"; };
 		65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInitializer.swift; sourceTree = "<group>"; };
 		67729B16DBBF7E9BF5484BD2 /* Pods-exmo-ios-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug.xcconfig"; sourceTree = "<group>"; };
 		680AF92D203CA7D262F893CE /* SearchCurrencyPairInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairInteractorInput.swift; sourceTree = "<group>"; };
@@ -512,7 +509,7 @@
 		71507EC9D731B380187FF88E /* MoreInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreInteractor.swift; sourceTree = "<group>"; };
 		71D8F089146D6698EAB70643 /* MoreInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreInitializer.swift; sourceTree = "<group>"; };
 		72AFD63623E5A23D5AAC4E67 /* MoreViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreViewOutput.swift; sourceTree = "<group>"; };
-		73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewInput.swift; sourceTree = "<group>"; };
+		73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewProtocols.swift; sourceTree = "<group>"; };
 		7421909015612BCF6F66203E /* WatchlistCurrencyChartViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartViewController.swift; sourceTree = "<group>"; };
 		77E435360E49F73ABF4C888C /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsConfigurator.swift; sourceTree = "<group>"; };
@@ -546,7 +543,6 @@
 		B3D35167E18996F164F478C8 /* OrdersManagerInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerInteractorInput.swift; sourceTree = "<group>"; };
 		B47E070653804BF1B34694BD /* AlertsInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsInteractorOutput.swift; sourceTree = "<group>"; };
 		B4B1E01604B2B5A8C4A860F6 /* MoreConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreConfigurator.swift; sourceTree = "<group>"; };
-		B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorInput.swift; sourceTree = "<group>"; };
 		B6158DF690BEAC86B7282D00 /* WalletSettingsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletSettingsInteractor.swift; sourceTree = "<group>"; };
 		B7C8C6BAC16047D8F23A2219 /* QRScannerRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouterInput.swift; sourceTree = "<group>"; };
 		B9CAD9ABA92E4B5D8C9BA66C /* OrdersManagerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersManagerInteractor.swift; sourceTree = "<group>"; };
@@ -1501,8 +1497,7 @@
 		5073454438EB686C72360DF9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				73544C83E2351279A35FEA8C /* QRScannerViewInput.swift */,
-				3B6832D214D78D52E1FEEC38 /* QRScannerViewOutput.swift */,
+				73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */,
 				DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */,
 			);
 			path = View;
@@ -1866,8 +1861,7 @@
 		F2AB511EA27F0DBADD48BBE5 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				B53C4ACC058C773437FCE770 /* QRScannerInteractorInput.swift */,
-				6463546423363E6BA20C09C8 /* QRScannerInteractorOutput.swift */,
+				6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */,
 				25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */,
 			);
 			path = Interactor;
@@ -2127,8 +2121,7 @@
 				2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
 				20600A2920532949004D7F45 /* UserEntity+CoreDataClass.swift in Sources */,
-				EEBC1EA66242D71226026D0B /* QRScannerViewInput.swift in Sources */,
-				6F4E2E9D37A8F2FAF95EF6A9 /* QRScannerViewOutput.swift in Sources */,
+				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				207B1D9B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift in Sources */,
 				203B8A8220AF2DB6004EF229 /* UITouchableNibView.swift in Sources */,
@@ -2144,10 +2137,9 @@
 				FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */,
 				202CF16820414FE7008185EB /* ViperModuleTransitionHandler.swift in Sources */,
 				2084492D20493193007CA79C /* WalletDataProvider.swift in Sources */,
-				88A6BC935E0ACF98EA1760BD /* QRScannerInteractorInput.swift in Sources */,
 				2010154D20B04FD600324F22 /* AlertTableViewCellButton.swift in Sources */,
 				2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */,
-				920278E6318EFE15D1B07821 /* QRScannerInteractorOutput.swift in Sources */,
+				920278E6318EFE15D1B07821 /* QRScannerInteractorProtocols.swift in Sources */,
 				C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */,
 				C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */,
 				202F48F6206A157D0080423E /* WatchlistFlatCell.swift in Sources */,

@@ -7,7 +7,8 @@
 //
 
 import Foundation
+import UIKit
 
 protocol QRScannerRouterInput {
-    // do nothing
+    func closeViewController(_ vc: UIViewController)
 }

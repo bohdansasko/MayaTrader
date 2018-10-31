@@ -5,15 +5,25 @@
 //  Created by TQ0oS on 23/02/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import UIKit
 import AVFoundation
 
 class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerInteractorOutput {
     weak var view: QRScannerViewInput!
     var interactor: QRScannerInteractorInput!
     var router: QRScannerRouterInput!
-    
     var loginPresenter: LoginModuleOutput!
-    
+}
+
+// @MARK: QRScannerModuleInput
+extension QRScannerPresenter {
+    func setLoginPresenter(presenter: LoginModuleOutput) {
+        loginPresenter = presenter
+    }
+}
+
+// @MARK: QRScannerViewOutput
+extension QRScannerPresenter {
     func viewIsReady() {
         // do nothing
     }
@@ -22,12 +32,19 @@ class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerIn
         interactor.tryFetchKeyAndSecret(metadataObjects: metadataObjects)
     }
     
+    func closeViewController() {
+        router.closeViewController(view as! UIViewController)
+    }
+}
+
+// @MARK: QRScannerInteractorOutput
+extension QRScannerPresenter {
     func setLoginData(loginModel: QRLoginModel?) {
         loginPresenter.setLoginData(loginModel: loginModel)
-        view.dismissView()
+        closeViewController()
     }
-
-    func setLoginPresenter(presenter: LoginModuleOutput) {
-        loginPresenter = presenter
+    
+    func showAlert(title: String, message: String) {
+        view.showAlert(title: title, message: message)
     }
 }

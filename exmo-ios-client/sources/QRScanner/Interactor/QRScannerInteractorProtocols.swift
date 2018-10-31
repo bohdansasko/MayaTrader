@@ -7,7 +7,13 @@
 //
 
 import Foundation
+import AVFoundation
+
+protocol QRScannerInteractorInput {
+    func tryFetchKeyAndSecret(metadataObjects: [AVMetadataObject])
+}
 
 protocol QRScannerInteractorOutput: class {
     func setLoginData(loginModel: QRLoginModel?)
+    func showAlert(title: String, message: String)
 }

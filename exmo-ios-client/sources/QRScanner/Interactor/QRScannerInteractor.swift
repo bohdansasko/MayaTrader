@@ -12,18 +12,15 @@ class QRScannerInteractor: QRScannerInteractorInput {
 
     func tryFetchKeyAndSecret(metadataObjects: [AVMetadataObject]) {
         if metadataObjects.count > 0 {
-            if let object = metadataObjects[0] as? AVMetadataMachineReadableCodeObject {
-                if object.type == AVMetadataObject.ObjectType.qr {
-                    tryParseQRData(object.stringValue)
-                }
+            guard let avObject = metadataObjects[0] as? AVMetadataMachineReadableCodeObject,
+                      avObject.type == .qr,
+                  let qrDataAsString = avObject.stringValue
+            else {
+                output.showAlert(title: "QR Scanner", message: "Sorry! Occur problem with QR. Please check if it's correct.")
+                return
             }
-        }
-    }
-    
-    private func tryParseQRData(_ strData: String?) {
-        if let qrParsedStr = strData {
-            let loginModel = QRLoginModel(qrParsedStr: qrParsedStr)
-            output.setLoginData(loginModel: loginModel)
+            
+            output.setLoginData(loginModel: QRLoginModel(qrParsedStr: qrDataAsString))
         }
     }
 }
