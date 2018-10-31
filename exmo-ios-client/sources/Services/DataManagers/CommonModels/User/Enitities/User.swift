@@ -8,6 +8,7 @@
 
 import Foundation
 import ObjectMapper
+import SwiftyJSON
 import CoreData
 
 class User: Mappable {
@@ -37,7 +38,13 @@ class User: Mappable {
     }
 
     required init?(map: Map) {
-        // do nothing
+        if !map["uid"].isKeyPresent {
+            return nil
+        }
+        
+        if let walletInfo = WalletModel(JSON: map.JSON) {
+            self.walletInfo = walletInfo
+        }
     }
 
     func mapping(map: Map) {

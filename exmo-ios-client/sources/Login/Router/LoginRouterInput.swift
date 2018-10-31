@@ -10,5 +10,5 @@ import Foundation
 import UIKit
 
 protocol LoginRouterInput {
-    func handleCloseBtn(viewController: UIViewController!)
+    func closeViewController(_ vc: UIViewController)
 }

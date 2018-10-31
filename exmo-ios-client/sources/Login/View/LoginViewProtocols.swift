@@ -6,9 +6,15 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
+protocol LoginViewInput: class {
+    func setLoginData(loginModel: QRLoginModel?)
+    func login()
+    func showAlert(title: String, message: String)
+}
+
 protocol LoginViewOutput {
     func viewIsReady()
-    func loadUserInfo(loginModel: QRLoginModel?)
+    func loadUserInfo(loginModel: QRLoginModel)
     func prepareToOpenQRView(qrViewController: QRScannerViewController)
-    func handlePressedCloseBtn()
+    func closeViewController()
 }

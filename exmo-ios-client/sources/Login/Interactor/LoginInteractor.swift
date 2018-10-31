@@ -7,42 +7,49 @@
 //
 import Foundation
 import ObjectMapper
+import SwiftyJSON
 
 class LoginInteractor: LoginInteractorInput {
     weak var output: LoginInteractorOutput!
+    var networkWorker: ILoginNetworkWorker!
+    var loginModel: QRLoginModel?
     
     func viewIsReady() {
-        self.subscribeOnEvents()
-    }
-    
-    deinit {
-        AppDelegate.notificationController.removeObserver(self)
-    }
-    
-    private func subscribeOnEvents() {
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignIn), name: .UserSignIn)
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserFailSignIn), name: .UserFailSignIn)
+        networkWorker.onHandleResponseSuccesfull = {
+            [weak self] response in
+            self?.onDidLoadUserInfo(response: response)
+        }
     }
     
     func loadUserInfo(loginModel: QRLoginModel) {
         if !loginModel.isValidate() {
-            print("qr data doesn't validate")
+            output.showAlert(title: "Login", message: "QR doesn't validate")
             return
         }
-        AppDelegate.session.exmoLogin(loginModel: loginModel)
-        //
-        // TODO-REF: show loader view
-        //
+        self.loginModel = loginModel
+        networkWorker.loadUserInfo(loginModel: loginModel)
     }
     
-    @objc func onUserSignIn() {
-        output.emitCloseView()
-    }
-    
-    @objc func onUserFailSignIn() {
-        //
-        // hide loader view
-        // show alert with message
-        //
+    func onDidLoadUserInfo(response: Any) {
+        guard let json = response as? JSON else { return }
+        if let requestError = RequestResult(JSONString: json.description) {
+            if requestError.error != nil {
+                self.output.showAlert(title: "Login", message: requestError.error!)
+                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+                return
+            }
+        }
+        guard let userInfoAsDictionary = json.dictionaryObject else { return }
+        
+        guard let userData = User(JSON: userInfoAsDictionary) else {
+            output.showAlert(title: "Login", message: "Undefined error")
+            AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+            return
+        }
+        userData.qrModel = loginModel
+        loginModel = nil
+        
+        AppDelegate.session.setUserModel(userData: userData, shouldSaveUserInCache: true)
+        output.closeViewController()
     }
 }

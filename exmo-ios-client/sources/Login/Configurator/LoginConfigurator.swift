@@ -27,6 +27,7 @@ class LoginModuleConfigurator {
 
         let interactor = LoginInteractor()
         interactor.output = presenter
+        interactor.networkWorker = LoginNetworkWorker()
 
         presenter.interactor = interactor
         viewController.output = presenter

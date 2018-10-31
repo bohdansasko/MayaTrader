@@ -6,6 +6,11 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
+protocol LoginModuleInput: class {
+    // do nothing
+}
+
+
 protocol LoginModuleOutput: class {
      func setLoginData(loginModel: QRLoginModel?)
 }

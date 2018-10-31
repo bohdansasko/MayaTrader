@@ -8,6 +8,12 @@
 
 import Foundation
 
+protocol LoginInteractorInput {
+    func viewIsReady()
+    func loadUserInfo(loginModel: QRLoginModel)
+}
+
 protocol LoginInteractorOutput: class {
-    func emitCloseView()
+    func showAlert(title: String, message: String)
+    func closeViewController()
 }

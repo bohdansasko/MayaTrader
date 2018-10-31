@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginRouter: LoginRouterInput {
-    func handleCloseBtn(viewController: UIViewController!) {
-        viewController.popViewController()
+    func closeViewController(_ vc: UIViewController) {
+        vc.popViewController()
     }
 }
