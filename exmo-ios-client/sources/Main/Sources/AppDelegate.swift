@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.windowLevel = UIWindow.Level.normal
         window?.makeKeyAndVisible()
         
+        UITextField.appearance().keyboardAppearance = .dark
+        
         return true
     }
 
