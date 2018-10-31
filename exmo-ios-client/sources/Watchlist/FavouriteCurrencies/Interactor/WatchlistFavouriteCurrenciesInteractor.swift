@@ -33,6 +33,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
         schemaVersion: 2,
         migrationBlock: { migration, oldSchemaVersion in
             if (oldSchemaVersion < 1) {
+                // do nothing
             }
     })
     lazy var realm = try! Realm()
