@@ -64,7 +64,10 @@ class CurrenciesListViewController: DatasourceController, CurrenciesListViewCont
     
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
         datasource = CurrenciesListDataSource(items: items)
-        activityIndicatorView.stopAnimating()
+        tabBar.filter()
+        if activityIndicatorView.isAnimating {
+            activityIndicatorView.stopAnimating()
+        }
     }
 }
 

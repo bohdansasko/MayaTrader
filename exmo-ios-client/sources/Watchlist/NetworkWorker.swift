@@ -23,7 +23,6 @@ extension NetworkWorker {
         case .success(_):
             do {
                 let jsonStr = try JSON(data: response.data!)
-                print("default JSON: \(jsonStr)")
                 onHandleResponseSuccesfull?(jsonStr)
             } catch {
                 print("NetworkWorker: we caught a problem in handle response")

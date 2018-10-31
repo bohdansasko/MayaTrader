@@ -131,7 +131,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
         
         for index in (0..<favouriteCurrenciesPairs.count) {
             let favModel = favouriteCurrenciesPairs[index]
-            if tickerContainer.contains(where: { $0.key == favModel.pairName }) {
+            if favModel.isFavourite && tickerContainer.contains(where: { $0.key == favModel.pairName }) {
                 tickerContainer[favModel.pairName]!.isFavourite = true
             }
         }
@@ -162,7 +162,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     private func loadCurrenciesFromCache() {
-        let objects = realm.objects(WatchlistCurrencyModel.self)
+        let objects = realm.objects(WatchlistCurrencyModel.self).filter({ $0.isFavourite })
         favouriteCurrenciesPairs = Array(objects)
         favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
     }

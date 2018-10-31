@@ -51,6 +51,11 @@ class CurrenciesListTabBar: UIView {
     @objc func onTouchDoneBtn(_ sender: Any) {
         callbackOnTouchDoneBtn?()
     }
+    
+    func filter() {
+        guard let searchBarDelegate = searchBar.delegate, let text = searchBar.text else { return }
+        searchBarDelegate.searchBar!(searchBar, textDidChange: text)
+    }
 }
 
 extension CurrenciesListTabBar {
