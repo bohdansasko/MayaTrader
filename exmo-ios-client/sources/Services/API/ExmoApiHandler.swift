@@ -12,36 +12,101 @@ import Alamofire
 import ObjectMapper
 import CommonCrypto
 
-public class ExmoApiHandler {
-    static let shared = ExmoApiHandler()
-    
-    fileprivate struct ConnectionConfig {
-        static let API_URL = "https://api.exmo.com/v1/"
-        static var API_KEY = "your_key"
-        static var API_SECRET = "your_secret"
-        static var NONCE = "Nonce"
-    }
+struct ConnectionConfig {
+    static let API_URL = "https://api.exmo.com/v1/"
+    static var API_KEY = "your_key"
+    static var API_SECRET = "your_secret"
+    static var NONCE = "Nonce"
+}
 
-    private var nonce: Int {
+enum MethodId: String {
+    case UserInfo = "user_info"
+    case OpenOrders = "user_open_orders"
+    case CancelledOrders = "user_cancelled_orders"
+    case UserTrades = "user_trades"
+    case OrderCreate = "order_create"
+    case OrderCancel = "order_cancel"
+    case Ticker = "ticker"
+    case PairSettings = "pair_settings"
+}
+
+//
+// @MARK: public requests
+//
+protocol ExmoPublicApiRequests {
+    func getPublicRequest(method: String) -> URLRequest
+    func getTickerRequest() -> URLRequest
+    func getCurrencyPairSettingsRequest() -> URLRequest
+}
+
+protocol ExmoAuthenticationApiRequests {
+    func setAuthorizationData(apiKey: String, secretKey: String)
+    func getAuthenticatedRequest(postDictionary: [String: Any], method: String) -> URLRequest
+    func getUserInfoRequest() -> URLRequest
+    func getOpenOrdersRequest(limit: Int, offset: Int) -> URLRequest
+    func getCanceledOrdersRequest(limit: Int, offset: Int) -> URLRequest
+    func getUserTradesRequest(limit: Int, offset: Int, pairs: String) -> URLRequest
+    func getCreateOrderRequest(pair: String, quantity: Double, price: Double, type: String) -> URLRequest
+    func getCancelOrderRequest(id: Int64) -> URLRequest
+}
+
+protocol IApiRequestBuilder: ExmoPublicApiRequests, ExmoAuthenticationApiRequests {
+    func hmacForKeyAndData(key: String, data: String) -> String
+    func calculateInitialNonce() -> Int
+    
+    var nonce: Int { get set }
+}
+
+public class ExmoApiRequestBuilder: IApiRequestBuilder {
+    static let shared: IApiRequestBuilder = {
+        return ExmoApiRequestBuilder()
+    }()
+    
+    var nonce: Int {
         get {
             let value = UserDefaults.standard.integer(forKey: ConnectionConfig.NONCE)
-            return (value == 0) ? calculateInitialNonce(): value
+            return value == 0 ? calculateInitialNonce() : value
         }
-        set {
-            UserDefaults.standard.set(newValue, forKey: ConnectionConfig.NONCE)
-        }
+        set { UserDefaults.standard.set(newValue, forKey: ConnectionConfig.NONCE) }
     }
-
+    
     private init() {
         // do nothing
     }
 }
 
 //
-// @MARK: common methods
+// @MARK: public API methods
 //
-extension ExmoApiHandler {
-    fileprivate func getResponseFromServerForPost(postDictionary: [String: Any], method: String) -> Data? {
+extension ExmoApiRequestBuilder {
+    func getPublicRequest(method: String) -> URLRequest {
+        let apiUrl = URL(string: ConnectionConfig.API_URL + method)!
+        
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        
+        return request
+    }
+    
+    func getTickerRequest() -> URLRequest {
+        return getPublicRequest(method: MethodId.Ticker.rawValue)
+    }
+    
+    func getCurrencyPairSettingsRequest() -> URLRequest {
+        return getPublicRequest(method: MethodId.PairSettings.rawValue)
+    }
+}
+
+//
+// @MARK: Authenticated API methods
+//
+extension ExmoApiRequestBuilder {
+    func setAuthorizationData(apiKey: String, secretKey: String) {
+        ConnectionConfig.API_KEY = apiKey
+        ConnectionConfig.API_SECRET = secretKey
+    }
+    
+    func getAuthenticatedRequest(postDictionary: [String: Any], method: String) -> URLRequest {
         var post: String = ""
         var index: Int = 0
         for (key, value) in postDictionary {
@@ -56,28 +121,20 @@ extension ExmoApiHandler {
         nonce += 1
         print(post)
         
+        let apiUrl = URL(string: ConnectionConfig.API_URL + method)!
+        let requestBodyData = post.data(using: .utf8)
         let signedPost = hmacForKeyAndData(key: ConnectionConfig.API_SECRET, data: post)
-        let strUrlValue = ConnectionConfig.API_URL as String + method
-        let request = NSMutableURLRequest(url: URL(string: strUrlValue)!)
         
-        request.httpMethod = "POST"
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
         request.setValue(ConnectionConfig.API_KEY, forHTTPHeaderField: "Key")
         request.setValue(signedPost, forHTTPHeaderField: "Sign")
-        
-        let requestBodyData = post.data(using: .utf8)
         request.httpBody = requestBodyData
         
-        // var error: NSError?
-        let theResponse: AutoreleasingUnsafeMutablePointer<URLResponse?>? = nil
-        let responseData = try! NSURLConnection.sendSynchronousRequest(request as URLRequest, returning: theResponse) as Data?
-//        if (error != nil){
-//            return nil
-//        }
-        
-        return responseData
+        return request
     }
     
-    private func calculateInitialNonce()-> Int {
+    func calculateInitialNonce() -> Int {
         let dataFormat = DateFormatter()
         dataFormat.dateFormat = "yyyy-MM-dd HH:mm:ss xxxx"
         let timeStamp = Date().timeIntervalSince(dataFormat.date(from: "2012-04-18 00:00:03 +0600")!)
@@ -85,8 +142,7 @@ extension ExmoApiHandler {
         return currentNonce
     }
     
-    
-    private func hmacForKeyAndData(key: String, data: String)-> String {
+    func hmacForKeyAndData(key: String, data: String) -> String {
         let cKey =  key.cString(using: String.Encoding.ascii)
         let cData = data.cString(using: String.Encoding.ascii)
         let _ = [CUnsignedChar](repeatElement(0, count: Int(CC_SHA512_DIGEST_LENGTH)))
@@ -100,83 +156,57 @@ extension ExmoApiHandler {
         }
         return hashString as String
     }
-}
-
-//
-// @MARK: service methods
-//
-extension ExmoApiHandler {
-    func setAuthorizationData(apiKey: String, secretKey: String) {
-        ConnectionConfig.API_KEY = apiKey
-        ConnectionConfig.API_SECRET = secretKey
-    }
     
-    func loadUserInfo() -> Data? {
-        print("start user_info")
+    func getUserInfoRequest() -> URLRequest {
         let post: [String: Any] = [:]
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_info")
+        
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.UserInfo.rawValue)
     }
     
-    //
-    func loadOpenOrders(limit: Int, offset: Int)-> Data? {
-        print("start user_opened_orders")
+    func getOpenOrdersRequest(limit: Int, offset: Int) -> URLRequest {
         var post: [String: Any] = [:]
         post["limit"] = limit
         post["offset"] = offset
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_open_orders")
+        
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.OpenOrders.rawValue)
     }
     
-    func loadCanceledOrders(limit: Int, offset: Int)-> Data? {
-        print("start user_cancelled_orders")
+    func getCanceledOrdersRequest(limit: Int, offset: Int) -> URLRequest {
         var post: [String: Any] = [:]
         post["limit"] = limit
         post["offset"] = offset
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_cancelled_orders")
+        
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.CancelledOrders.rawValue)
     }
     
-    func loadUserTrades(limit: Int = 100, offset: Int = 0, pairs: String = "")-> Data? {
-        print("start user_trades")
+    func getUserTradesRequest(limit: Int = 100, offset: Int = 0, pairs: String = "") -> URLRequest {
         var post: [String: Any] = [:]
         post["pair"] = pairs
         post["limit"] = limit
         post["offset"] = offset
-        return self.getResponseFromServerForPost(postDictionary: post, method: "user_trades")
+        
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.UserTrades.rawValue)
     }
     
-    
-    func createOrder(pair: String, quantity: Double, price: Double, type: String) -> Data? {
-        print("start order_create")
+    func getCreateOrderRequest(pair: String, quantity: Double, price: Double, type: String) -> URLRequest {
         var post: [String: Any] = [:]
         post["pair"] = pair
         post["quantity"] = quantity
         post["price"] = price
         post["type"] = type
-        return self.getResponseFromServerForPost(postDictionary: post, method: "order_create")
+        
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.OrderCreate.rawValue)
     }
 
-    func cancelOrder(id: Int64)-> Data? {
-        print("start order_cancel")
+    func getCancelOrderRequest(id: Int64) -> URLRequest {
         var post: [String: Any] = [:]
         post["order_id"] = id
-        return self.getResponseFromServerForPost(postDictionary: post, method: "order_cancel")
+        
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.OrderCancel.rawValue)
     }
 }
 
-//
-// @MARK: public methods
-//
-extension ExmoApiHandler {
-    func loadTicker() -> Data? {
-        print("call method loadTicker")
-        return self.getResponseFromServerForPost(postDictionary: [:], method: "ticker")
-    }
-    
-    func loadCurrencyPairSettings() -> Data? {
-        print("start loadCurrencyPairSettings")
-        return self.getResponseFromServerForPost(postDictionary: [:], method: "pair_settings")
-    }
-}
-
+// MARK: ExmoAccountController
 class ExmoAccountController {
     func getAllCurrenciesOnExmo() -> [String] { // TODO-REF: use cache instead this. cache should update every login
         return [
@@ -184,7 +214,7 @@ class ExmoAccountController {
         ]
     }
     
-    func getAllPairsOnExmo() -> [String] {
+    func getAllPairsOnExmo() -> [String] { // TODO: check this method, because some currencies doesn't exists
         let currencies = getAllCurrenciesOnExmo()
         var allCombOfCurrencies = [String]()
         
@@ -204,110 +234,107 @@ class ExmoAccountController {
     }
     
     func loadOpenOrders(limit: Int, offset: Int) -> OrdersModel? {
-        guard let responseData = ExmoApiHandler.shared.loadOpenOrders(limit: limit, offset: offset) else {
-            print("loadOpenOrders: responseData is nil")
-            return nil
-        }
-        
-        let jsonString = String(data: responseData, encoding: .utf8)
-        if let requestError = RequestResult(JSONString: jsonString!) {
-            if requestError.error != nil {
-                print("error details: \(requestError.error!)")
-                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-                return nil
-            }
-        }
-        
-        do {
-            let orders = try OrdersModel(json: JSON(data: responseData))
-            return orders
-        } catch {
-            print("caught json error in method: loadOpenOrders")
-        }
+//        let responseData = ExmoApiRequestBuilder.shared.loadOpenOrders(limit: limit, offset: offset)
+//
+//        let jsonString = String(data: responseData, encoding: .utf8)
+//        if let requestError = RequestResult(JSONString: jsonString!) {
+//            if requestError.error != nil {
+//                print("error details: \(requestError.error!)")
+//                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+//                return nil
+//            }
+//        }
+//
+//        do {
+//            let orders = try OrdersModel(json: JSON(data: responseData))
+//            return orders
+//        } catch {
+//            print("caught json error in method: loadOpenOrders")
+//        }
         return nil
     }
     
     func loadCanceledOrders(limit: Int, offset: Int) -> OrdersModel? {
-        guard let responseData = ExmoApiHandler.shared.loadCanceledOrders(limit: limit, offset: offset) else {
-            print("loadCanceledOrders: responseData is nil")
-            return nil
-        }
-        
-        let jsonString = String(data: responseData, encoding: .utf8)
-        if let requestError = RequestResult(JSONString: jsonString!) {
-            if requestError.error != nil {
-                print("error details: \(requestError.error!)")
-                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-                return nil
-            }
-        }
-        
-        do {
-            let orders = try OrdersModel(json: JSON(data: responseData))
-            return orders
-        } catch {
-            print("caught json error in method: loadCanceledOrders")
-        }
+//        guard let responseData = ExmoApiRequestBuilder.shared.loadCanceledOrders(limit: limit, offset: offset) else {
+//            print("loadCanceledOrders: responseData is nil")
+//            return nil
+//        }
+//
+//        let jsonString = String(data: responseData, encoding: .utf8)
+//        if let requestError = RequestResult(JSONString: jsonString!) {
+//            if requestError.error != nil {
+//                print("error details: \(requestError.error!)")
+//                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+//                return nil
+//            }
+//        }
+//
+//        do {
+//            let orders = try OrdersModel(json: JSON(data: responseData))
+//            return orders
+//        } catch {
+//            print("caught json error in method: loadCanceledOrders")
+//        }
         return nil
     }
     
     func loadDeals(limit: Int = 1000, offset: Int = 0) -> OrdersModel? {
-        guard let responseData = ExmoApiHandler.shared.loadUserTrades(limit: limit, offset: offset, pairs: "XRP_USD") else {
-            print("loadDeals: responseData is nil")
-            return nil
-        }
-        
-        let jsonString = String(data: responseData, encoding: .utf8)
-        if let requestError = RequestResult(JSONString: jsonString!) {
-            if requestError.error != nil {
-                print("error details: \(requestError.error!)")
-                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-                return nil
-            }
-        }
-        
-        do {
-            let orders = try OrdersModel(json: JSON(data: responseData))
-            return orders
-        } catch {
-            print("caught json error in method: loadDeals")
-        }
+//        guard let responseData = ExmoApiRequestBuilder.shared.loadUserTrades(limit: limit, offset: offset, pairs: "XRP_USD") else {
+//            print("loadDeals: responseData is nil")
+//            return nil
+//        }
+//
+//        let jsonString = String(data: responseData, encoding: .utf8)
+//        if let requestError = RequestResult(JSONString: jsonString!) {
+//            if requestError.error != nil {
+//                print("error details: \(requestError.error!)")
+//                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+//                return nil
+//            }
+//        }
+//
+//        do {
+//            let orders = try OrdersModel(json: JSON(data: responseData))
+//            return orders
+//        } catch {
+//            print("caught json error in method: loadDeals")
+//        }
         
         return nil
     }
     
     //
     func createOrder(pair: String, quantity: Double, price: Double, type: String) -> OrderRequestResult? {
-        guard let responseData = ExmoApiHandler.shared.createOrder(pair: pair, quantity: quantity, price: price, type: type) else {
-            print("createOrder: empty data")
-            return nil
-        }
-        
-        let jsonString = String(data: responseData, encoding: .utf8)
-        if let response = OrderRequestResult(JSONString: jsonString!) {
-            if !response.result {
-                print("error details: \(response.error!)")
-                return nil
-            }
-            return response
-        }
+//        guard let responseData = ExmoApiRequestBuilder.shared.createOrder(pair: pair, quantity: quantity, price: price, type: type) else {
+//            print("createOrder: empty data")
+//            return nil
+//        }
+//
+//        let jsonString = String(data: responseData, encoding: .utf8)
+//        if let response = OrderRequestResult(JSONString: jsonString!) {
+//            if !response.result {
+//                print("error details: \(response.error!)")
+//                return nil
+//            }
+//            return response
+//        }
         
         return nil
     }
     
     func cancelOrder(id: Int64) -> Bool {
-        guard let responseData = ExmoApiHandler.shared.cancelOrder(id: id) else {
-            print("cancelOrder: empty data")
-            return false
-        }
-        
-        let jsonString = String(data: responseData, encoding: .utf8)
-        if let requestResult = RequestResult(JSONString: jsonString!) {
-            if requestResult.error != nil {
-                print("cancelOrder: \(requestResult.error!)")
-            }
-            return requestResult.result
-        }
+//        guard let responseData = ExmoApiRequestBuilder.shared.cancelOrder(id: id) else {
+//            print("cancelOrder: empty data")
+//            return false
+//        }
+//
+//        let jsonString = String(data: responseData, encoding: .utf8)
+//        if let requestResult = RequestResult(JSONString: jsonString!) {
+//            if requestResult.error != nil {
+//                print("cancelOrder: \(requestResult.error!)")
+//            }
+//            return requestResult.result
+//        }
         
         return false
     }
@@ -315,69 +342,69 @@ class ExmoAccountController {
 
 extension ExmoAccountController {    
     func loadTickerData() -> [SearchCurrencyPairModel]? {
-        let result = ExmoApiHandler.shared.loadTicker()
-        guard let jsonString = String(data: result!, encoding: .utf8) else {
-            print("loadTickerData: jsonString got cast error")
-            return nil
-        }
+//        let result = ExmoApiRequestBuilder.shared.loadTicker()
+//        guard let jsonString = String(data: result!, encoding: .utf8) else {
+//            print("loadTickerData: jsonString got cast error")
+//            return nil
+//        }
+//
+//        print("loaded: \(jsonString)")
+//
+//        if let requestError = RequestResult(JSONString: jsonString) {
+//            if requestError.error != nil {
+//                print("error details: \(requestError.error!)")
+//                return nil
+//            }
+//        }
         
-        print("loaded: \(jsonString)")
-        
-        if let requestError = RequestResult(JSONString: jsonString) {
-            if requestError.error != nil {
-                print("error details: \(requestError.error!)")
-                return nil
-            }
-        }
-        
-        let json = JSON(parseJSON: jsonString)
-        
-        
+//        let json = JSON(parseJSON: jsonString)
+//
+//
         var currencies: [SearchCurrencyPairModel] = []
-        var index: Int = 1
-        for (currencyPairName, currencyInfoAsJson) in json {
-            let price = currencyInfoAsJson["last_trade"].doubleValue
-            currencies.append(SearchCurrencyPairModel(id: index, name: currencyPairName, price: price))
-            index += 1
-        }
+//        var index: Int = 1
+//        for (currencyPairName, currencyInfoAsJson) in json {
+//            let price = currencyInfoAsJson["last_trade"].doubleValue
+//            currencies.append(SearchCurrencyPairModel(id: index, name: currencyPairName, price: price))
+//            index += 1
+//        }
         
         return currencies
     }
     
     func loadCurrencyPairSettings(_ currencyPairName: String) -> OrderSettings? {
-        guard let responseData = ExmoApiHandler.shared.loadCurrencyPairSettings() else {
-            print("loadCurrencyPairSettings: empty data")
-            return nil
-        }
-        
-        guard let jsonString = String(data: responseData, encoding: .utf8) else {
-            print("json string is broken")
-            return nil
-        }
-        
-        if let response = OrderRequestResult(JSONString: jsonString) {
-            if response.error != nil && !response.result {
-                print("error details: \(response.error!)")
-                return nil
-            }
-            
-            let json = JSON(parseJSON: jsonString)
-            guard let settingsAsDict = json.dictionaryValue.first(where: { $0.key == currencyPairName }) else {
-                return nil
-            }
-            
-            var dictWithNumbers: [String: Double] = [:]
-            for (key, value) in settingsAsDict.value.dictionaryValue {
-                dictWithNumbers[key] = value.doubleValue
-            }
-            
-            guard var orderSettings = OrderSettings(JSON: dictWithNumbers) else {
-                return nil
-            }
-            orderSettings.currencyPair = settingsAsDict.key
-            
-            return orderSettings
-        }
+//        guard let responseData = ExmoApiRequestBuilder.shared.loadCurrencyPairSettings() else {
+//            print("loadCurrencyPairSettings: empty data")
+//            return nil
+//        }
+//
+//        guard let jsonString = String(data: responseData, encoding: .utf8) else {
+//            print("json string is broken")
+//            return nil
+//        }
+//
+//        if let response = OrderRequestResult(JSONString: jsonString) {
+//            if response.error != nil && !response.result {
+//                print("error details: \(response.error!)")
+//                return nil
+//            }
+//
+//            let json = JSON(parseJSON: jsonString)
+//            guard let settingsAsDict = json.dictionaryValue.first(where: { $0.key == currencyPairName }) else {
+//                return nil
+//            }
+//
+//            var dictWithNumbers: [String: Double] = [:]
+//            for (key, value) in settingsAsDict.value.dictionaryValue {
+//                dictWithNumbers[key] = value.doubleValue
+//            }
+//
+//            guard var orderSettings = OrderSettings(JSON: dictWithNumbers) else {
+//                return nil
+//            }
+//            orderSettings.currencyPair = settingsAsDict.key
+//
+//            return orderSettings
+//        }
         
         return nil
     }
@@ -385,31 +412,6 @@ extension ExmoAccountController {
 
 extension ExmoAccountController {
     func login(apiKey: String, secretKey: String) {
-        ExmoApiHandler.shared.setAuthorizationData(apiKey: apiKey, secretKey: secretKey)
         
-        let result = ExmoApiHandler.shared.loadUserInfo()
-        let jsonString = String(data: result!, encoding: .utf8)
-        
-        print("loaded exmo userInfo: \(jsonString!)")
-        
-        if let requestError = RequestResult(JSONString: jsonString!) {
-            if requestError.error != nil {
-                print("qr data doesn't validate: \(requestError.error!)")
-                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-                return
-            }
-        }
-        
-        guard let userData = User(JSONString: jsonString!) else {
-            AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-            return
-        }
-        
-        if let walletInfo = WalletModel(JSONString: jsonString!) {
-            userData.walletInfo = walletInfo
-        }
-        userData.qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: apiKey, secret: secretKey)
-        
-        AppDelegate.session.setUserModel(userData: userData, shouldSaveUserInCache: true)
     }
 }
