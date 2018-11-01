@@ -15,6 +15,6 @@ protocol LoginViewInput: class {
 protocol LoginViewOutput {
     func viewIsReady()
     func loadUserInfo(loginModel: QRLoginModel)
-    func prepareToOpenQRView(qrViewController: QRScannerViewController)
+    func handleTouchOnScanQRButton()
     func closeViewController()
 }

@@ -10,5 +10,6 @@ import Foundation
 import UIKit
 
 protocol LoginRouterInput {
+    func showQRScannerVC(segueBlock: QRScannerSegueBlock)
     func closeViewController(_ vc: UIViewController)
 }

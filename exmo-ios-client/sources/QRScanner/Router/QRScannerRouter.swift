@@ -11,6 +11,6 @@ class QRScannerRouter: QRScannerRouterInput {
     weak var viewController: QRScannerViewController!
     
     func closeViewController(_ vc: UIViewController) {
-        vc.popViewController()
+        vc.close()
     }
 }

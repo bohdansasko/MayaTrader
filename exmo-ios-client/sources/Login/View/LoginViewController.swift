@@ -9,16 +9,107 @@
 import UIKit
 
 class LoginViewController: UIViewController, LoginViewInput {
-    @IBOutlet weak var keyField: UITextField!
-    @IBOutlet weak var secretField: UITextField!
-    
     var output: LoginViewOutput!
+    
+    var backgroundImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "bgLoginOpacity")
+        return imageView
+    }()
+    
+    var logoImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFit
+        imageView.image = UIImage(named: "icAuthLogo")
+        return imageView
+    }()
+    
+    var apiKeyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "API Key:"
+        label.textColor = .white
+        label.textAlignment = .left
+        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        return label
+    }()
+    
+    var apiKeyField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .none
+        textField.placeholder = "Enter your API key"
+        textField.placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+        textField.textColor = .white
+        textField.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        textField.keyboardType = .asciiCapable
+        textField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
+        return textField
+    }()
+    
+    var secretKeyLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Secret Key:"
+        label.textColor = .white
+        label.textAlignment = .left
+        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        return label
+    }()
+
+    var secretKeyField: UITextField = {
+        let textField = UITextField()
+        textField.borderStyle = .none
+        textField.placeholder = "Enter your API secret key"
+        textField.placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
+        textField.textColor = .white
+        textField.keyboardType = .asciiCapable
+        textField.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
+        return textField
+    }()
+    
+    let closeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "icWalletClose"), for: .normal)
+        return button
+    }()
+
+    let scanQRButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("SCAN QR", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        button.titleLabel?.textAlignment = .center
+        button.setBackgroundImage(UIImage(named: "icGrayButtonSe"), for: .normal)
+        return button
+    }()
+    
+    let signInButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("SIGN IN", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        button.titleLabel?.textAlignment = .center
+        button.setBackgroundImage(UIImage(named: "icBlueButtonSe"), for: .normal)
+        return button
+    }()
+    
+    let skipButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Skip authorization", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.titleLabel?.textAlignment = .center
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 14)
+        return button
+    }()
+
     public let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
         aiv.hidesWhenStopped = true
         aiv.color = .white
         return aiv
     }()
+    
+    var inputFieldsStackView: UIStackView!
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -41,68 +132,34 @@ class LoginViewController: UIViewController, LoginViewInput {
         hideLoader()
     }
     
+    //
     func setNavigationBarVisible(isHidden: Bool) {
         navigationController?.setNavigationBarHidden(isHidden, animated: false)
         navigationController?.tabBarController?.tabBar.isHidden = isHidden
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let qrViewController = segue.destination as? QRScannerViewController else { return }
-        output.prepareToOpenQRView(qrViewController: qrViewController)
-    }
-    
-    @objc private func hideKeyboard() {
+    @objc func hideKeyboard() {
         view.endEditing(true)
     }
 }
 
-extension LoginViewController {
-    func setupViews() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-        view.addGestureRecognizer(tapGesture)
-        
-        setupActivityViewIndicator()
-        setupInputFields()
-    }
-    
-    private func setupActivityViewIndicator() {
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.anchorCenterSuperview()
-        activityIndicatorView.isHidden = true
-    }
-    
-    private func setupInputFields() {
-        keyField.delegate = self
-        secretField.delegate = self
-        
-        keyField.keyboardType = .asciiCapable
-        keyField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
-        secretField.keyboardType = .asciiCapable
-        secretField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
-        
-        let inputFieldPlaceHolderAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3),
-            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
-        ]
-        keyField.attributedPlaceholder = NSAttributedString(string: "Enter your API-secret", attributes: inputFieldPlaceHolderAttributes)
-        secretField.attributedPlaceholder = NSAttributedString(string: "Enter your API-key", attributes: inputFieldPlaceHolderAttributes)
-    }
-}
 // @MARK: LoginViewInput
 extension LoginViewController {
     func setLoginData(loginModel: QRLoginModel?) {
         guard let loginModel = loginModel else {
-            // TODO: show alert
+            showAlert(title: "Login", message: "Sorry, we can't recognize QR code.")
             return
         }
         
-        keyField.text = loginModel.key
-        secretField.text = loginModel.secret
+        if loginModel.isValidate() {
+            apiKeyField.text = loginModel.key
+            secretKeyField.text = loginModel.secret
+        }
     }
     
     func login() {
         showLoader()
-        guard let key = keyField.text, let secret = secretField.text else {
+        guard let key = apiKeyField.text, let secret = secretKeyField.text else {
             print("Fields is empty!")
             return
         }
@@ -135,11 +192,15 @@ extension LoginViewController {
 
 // @MARK: actions
 extension LoginViewController {
-    @IBAction func pressedLoginButton(_ sender: Any) {
+    @objc func onTouchSignInButton(_ sender: Any) {
         login()
     }
-    
-    @IBAction func handlePressedCloseBtn(_ sender: Any) {
+
+    @objc func onTouchScanQRButton(_ sender: Any) {
+        output.handleTouchOnScanQRButton()
+    }
+
+    @objc func onTouchSkipButton(_ sender: Any) {
         output.closeViewController()
     }
 }

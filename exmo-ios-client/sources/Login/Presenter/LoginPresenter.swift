@@ -8,6 +8,16 @@
 
 import UIKit
 
+class QRScannerSegueBlock: SegueBlock {
+    var sourceVC: UIViewController
+    var outputPresenter: LoginModuleOutput
+
+    init(sourceVC: UIViewController, outputPresenter: LoginModuleOutput) {
+        self.sourceVC = sourceVC
+        self.outputPresenter = outputPresenter
+    }
+}
+
 class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, LoginInteractorOutput {
     weak var view: LoginViewInput!
     var interactor: LoginInteractorInput!
@@ -36,10 +46,9 @@ extension LoginPresenter {
         interactor.loadUserInfo(loginModel: loginModel)
     }
     
-    func prepareToOpenQRView(qrViewController: QRScannerViewController) {
-        if let qrPresenter = qrViewController.outputProtocol as? QRScannerModuleInput {
-            qrPresenter.setLoginPresenter(presenter: self)
-        }
+    func handleTouchOnScanQRButton() {
+        let qrScannerSegue = QRScannerSegueBlock(sourceVC: view as! UIViewController, outputPresenter: self)
+        router.showQRScannerVC(segueBlock: qrScannerSegue)
     }
     
     func showAlert(title: String, message: String) {
