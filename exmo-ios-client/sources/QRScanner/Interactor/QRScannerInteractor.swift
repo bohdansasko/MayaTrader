@@ -16,11 +16,16 @@ class QRScannerInteractor: QRScannerInteractorInput {
                       avObject.type == .qr,
                   let qrDataAsString = avObject.stringValue
             else {
-                output.showAlert(title: "QR Scanner", message: "Sorry! Occur problem with QR. Please check if it's correct.")
+                output.showAlert(title: "QR Scanner", message: "Sorry! Occur problem with QR. Please check if it's correct.", shouldCloseViewController: true)
                 return
             }
             
-            output.setLoginData(loginModel: QRLoginModel(qrParsedStr: qrDataAsString))
+            let qrModel = QRLoginModel(qrParsedStr: qrDataAsString)
+            if qrModel.isValidate() {
+                output.setLoginData(loginModel: qrModel)
+            } else {
+                output.showAlert(title: "Login", message: "This is QR code doesn't relative to Exmo. Please, try another QR code.", shouldCloseViewController: false)
+            }
         }
     }
 }

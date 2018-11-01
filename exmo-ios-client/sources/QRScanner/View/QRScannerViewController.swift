@@ -53,11 +53,13 @@ extension QRScannerViewController {
 
 // @MARK: QRScannerViewInput
 extension QRScannerViewController {
-    func showAlert(title: String, message: String) {
+    func showAlert(title: String, message: String, shouldCloseViewController: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
             [weak self] action in
-            self?.outputProtocol.closeViewController()
+            if shouldCloseViewController {
+                self?.outputProtocol.closeViewController()
+            }
         }))
         present(alert, animated: true, completion: nil)
     }
@@ -68,7 +70,7 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     private func prepareCameraToReadQRCode() {
         let session = AVCaptureSession()
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-            showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera")
+            showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera", shouldCloseViewController: true)
             return
         }
         
@@ -77,11 +79,11 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
             if session.canAddInput(input) {
                 session.addInput(input)
             } else {
-                showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera")
+                showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera", shouldCloseViewController: true)
                 return
             }
         } catch {
-            showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera")
+            showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera", shouldCloseViewController: true)
             return
         }
         

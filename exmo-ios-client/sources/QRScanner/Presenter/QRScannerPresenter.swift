@@ -44,7 +44,7 @@ extension QRScannerPresenter {
         closeViewController()
     }
     
-    func showAlert(title: String, message: String) {
-        view.showAlert(title: title, message: message)
+    func showAlert(title: String, message: String, shouldCloseViewController: Bool) {
+        view.showAlert(title: title, message: message, shouldCloseViewController: shouldCloseViewController)
     }
 }
