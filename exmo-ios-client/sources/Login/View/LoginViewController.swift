@@ -132,7 +132,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         hideLoader()
     }
     
-    //
     func setNavigationBarVisible(isHidden: Bool) {
         navigationController?.setNavigationBarHidden(isHidden, animated: false)
         navigationController?.tabBarController?.tabBar.isHidden = isHidden
@@ -140,6 +139,12 @@ class LoginViewController: UIViewController, LoginViewInput {
     
     @objc func hideKeyboard() {
         view.endEditing(true)
+    }
+    
+    func updateButtonsEnableState(isTouchEnabled: Bool) {
+        scanQRButton.isEnabled = isTouchEnabled
+        signInButton.isEnabled = isTouchEnabled
+        skipButton.isEnabled = isTouchEnabled
     }
 }
 
@@ -164,6 +169,8 @@ extension LoginViewController {
             return
         }
         
+        updateButtonsEnableState(isTouchEnabled: false)
+        
         let qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: key, secret: secret)
         output.loadUserInfo(loginModel: qrModel)
     }
@@ -179,6 +186,7 @@ extension LoginViewController {
     }
     
     func showAlert(title: String, message: String) {
+        updateButtonsEnableState(isTouchEnabled: true)
         hideLoader()
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
