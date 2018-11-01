@@ -12,14 +12,6 @@ import AVFoundation
 class QRScannerViewController: UIViewController, QRScannerViewInput {
     var outputProtocol: QRScannerViewOutput!
     var videoLayer : AVCaptureVideoPreviewLayer?
-    let codeFrame: UIView = {
-        let codeFrame = UIView()
-        codeFrame.layer.borderColor = UIColor.green.cgColor
-        codeFrame.layer.borderWidth = 2.0
-        codeFrame.layer.frame = CGRect.zero
-        codeFrame.translatesAutoresizingMaskIntoConstraints = false
-        return codeFrame
-    }()
     
     func setupInitialState() {
         // do nothing
@@ -106,14 +98,6 @@ extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     }
     
     func metadataOutput(_ avCaptureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
-        if metadataObjects.count < 1 {
-            return
-        }
-        
-        view.addSubview(codeFrame)
-        guard let qrCodeObject = videoLayer?.transformedMetadataObject(for: metadataObjects[0]) else { return }
-        codeFrame.frame = qrCodeObject.bounds
-        
         outputProtocol.tryFetchKeyAndSecret(metadataObjects: metadataObjects)
     }
 }
