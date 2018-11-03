@@ -10,12 +10,18 @@ import UIKit
 
 class LoginViewController: UIViewController, LoginViewInput {
     var output: LoginViewOutput!
+    var activeTextField: UITextField?
     
     var backgroundImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "bgLoginOpacity")
         return imageView
+    }()
+    
+    var scrollView: UIScrollView = {
+        let sv = UIScrollView()
+        return sv
     }()
     
     var logoImage: UIImageView = {
@@ -125,13 +131,52 @@ class LoginViewController: UIViewController, LoginViewInput {
         setNavigationBarVisible(isHidden: true)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        subscribeOnKeyboardNotifications()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
+        unsubscribeAllEvents()
         setNavigationBarVisible(isHidden: false)
         hideLoader()
     }
     
+    func subscribeOnKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardDidShow(_:)), name: UIControl.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillHide(_:)), name: UIControl.keyboardWillHideNotification, object: nil)
+    }
+    
+    func unsubscribeAllEvents() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func onKeyboardDidShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo else { return }
+        guard let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect)?.size else { return }
+        
+        let tabBarHeight = tabBarController?.tabBar.frame.size.height ?? 0
+        let toolbarHeight = navigationController?.toolbar.frame.size.height ?? 0
+        let bottomInset = keyboardSize.height - tabBarHeight - toolbarHeight
+        
+        scrollView.contentInset.bottom = bottomInset
+        scrollView.scrollIndicatorInsets.bottom = bottomInset
+        
+        guard var activeFieldFrame = activeTextField?.superview?.frame else { return }
+        activeFieldFrame.size.height = activeFieldFrame.size.height + keyboardSize.height
+        
+        scrollView.setContentOffset(activeFieldFrame.origin, animated: true)
+    }
+
+    @objc func onKeyboardWillHide(_ notification: Notification) {
+        scrollView.contentInset = .zero
+        scrollView.scrollIndicatorInsets = .zero
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+    }
+
     func setNavigationBarVisible(isHidden: Bool) {
         navigationController?.setNavigationBarHidden(isHidden, animated: false)
         navigationController?.tabBarController?.tabBar.isHidden = isHidden
@@ -218,5 +263,13 @@ extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        activeTextField = nil
     }
 }

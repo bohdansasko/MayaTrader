@@ -17,6 +17,9 @@ extension LoginViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         view.addGestureRecognizer(tapGesture)
         
+        view.addSubview(scrollView)
+        scrollView.fillSuperview()
+        
         setupInputViews()
         setupLogo()
         setupBottomButtons()
@@ -24,13 +27,13 @@ extension LoginViewController {
     }
     
     private func setupActivityViewIndicator() {
-        view.addSubview(activityIndicatorView)
+        scrollView.addSubview(activityIndicatorView)
         activityIndicatorView.anchorCenterSuperview()
         activityIndicatorView.isHidden = true
     }
     
     private func setupLogo() {
-        view.addSubview(logoImage)
+        scrollView.addSubview(logoImage)
         logoImage.anchor(inputFieldsStackView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -85, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
     }
     
@@ -39,22 +42,21 @@ extension LoginViewController {
         secretKeyField.delegate = self
         
         let apiKeyStackView = UIStackView(arrangedSubviews: [apiKeyLabel, apiKeyField])
-        view.addSubview(apiKeyStackView)
         apiKeyStackView.axis = .vertical
         apiKeyStackView.distribution = .fill
         apiKeyStackView.spacing = 10
         
         let apiSecretKeyStackView = UIStackView(arrangedSubviews: [secretKeyLabel, secretKeyField])
-        view.addSubview(apiSecretKeyStackView)
         apiSecretKeyStackView.axis = .vertical
         apiSecretKeyStackView.distribution = .fill
         apiSecretKeyStackView.spacing = 10
         
         inputFieldsStackView = UIStackView(arrangedSubviews: [apiKeyStackView, apiSecretKeyStackView])
-        view.addSubview(inputFieldsStackView)
+        scrollView.addSubview(inputFieldsStackView)
         inputFieldsStackView.axis = .vertical
         inputFieldsStackView.distribution = .fill
         inputFieldsStackView.spacing = 20
+        
         inputFieldsStackView.anchorCenterXToSuperview()
         inputFieldsStackView.anchorCenterYToSuperview()
         inputFieldsStackView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -60).isActive = true
@@ -66,13 +68,14 @@ extension LoginViewController {
         skipButton.addTarget(self, action: #selector(onTouchSkipButton(_ :)), for: .touchUpInside)
         
         let bottomButtonsStacksView = UIStackView(arrangedSubviews: [scanQRButton, signInButton])
-        view.addSubview(bottomButtonsStacksView)
+        scrollView.addSubview(bottomButtonsStacksView)
         bottomButtonsStacksView.axis = .horizontal
         bottomButtonsStacksView.distribution = .fillEqually
         bottomButtonsStacksView.spacing = 30
+        
         bottomButtonsStacksView.anchor(inputFieldsStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 60, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
         
-        view.addSubview(skipButton)
+        scrollView.addSubview(skipButton)
         skipButton.anchor(bottomButtonsStacksView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 30, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 25)
     }
 }
