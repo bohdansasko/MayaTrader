@@ -3,7 +3,8 @@ platform :ios, '10.0'
 
 target 'exmo-ios-client' do
   use_frameworks!
-
+  pod 'Fabric'
+  pod 'Crashlytics'
   pod 'SwiftWebSocket'
   pod 'ObjectMapper', '~> 3.1'
   pod 'Alamofire', '~> 4.7'
@@ -11,4 +12,5 @@ target 'exmo-ios-client' do
   pod 'Charts'
   pod 'LBTAComponents'
   pod 'RealmSwift'
+  
 end
