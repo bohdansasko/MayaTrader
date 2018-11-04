@@ -28,21 +28,24 @@ class MainTabBarController: UITabBarController {
     }
     
     private func setupTabBarItems() {
-        let watchlist = WatchlistFavouriteCurrenciesModuleInitializer()
-        watchlist.watchlistmanagerViewController = WatchlistFavouriteCurrenciesViewController()
-        watchlist.awakeFromNib()
+        let watchlistInitializer = WatchlistFavouriteCurrenciesModuleInitializer()
+        let menuInitializer = MenuModuleInitializer()
         
         viewControllers = [
-            UINavigationController(rootViewController: watchlist.watchlistmanagerViewController),
+            UINavigationController(rootViewController: watchlistInitializer.viewController),
             UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "OrdersNavigationController"),
             UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: "WalletNavigationController"),
             UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: "AlertsNavigationController"),
-            UIStoryboard(name: "MoreOptions", bundle: nil).instantiateViewController(withIdentifier: "MoreNavigationController")
+            UINavigationController(rootViewController: menuInitializer.viewController)
         ]
         
         guard let watchlistTabBarItem = tabBar.items?[0] else { return }
         watchlistTabBarItem.image = UIImage(named: "icTabbarWatchlist")
         watchlistTabBarItem.selectedImage = UIImage(named: "icTabbarWatchlistSelected")
+        
+        guard let menuTabBarItem = tabBar.items?[4] else { return }
+        menuTabBarItem.image = UIImage(named: "icTabbarMenu")
+        menuTabBarItem.selectedImage = UIImage(named: "icTabbarMenuSelected")
     }
     
     private func setupTabBar() {

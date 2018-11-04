@@ -1,5 +1,5 @@
 //
-//  MoreMoreRouterInput.swift
+//  MoreMenuRouterInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/02/2018.
@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-protocol MoreRouterInput {
-    func onDidSelectMenuItem(viewController: UIViewController, segueIdentifier: String)
+protocol MenuRouterInput {
+    func showViewController(sourceVC: UIViewController, touchedCellType: MenuCellType)
 }

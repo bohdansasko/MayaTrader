@@ -1,5 +1,5 @@
 //
-//  MoreMoreConfigurator.swift
+//  MoreMenuConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/02/2018.
@@ -8,30 +8,27 @@
 
 import UIKit
 
-class MoreModuleConfigurator {
+class MenuModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? MoreViewController {
+        if let viewController = viewInput as? TableMenuViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: MoreViewController) {
-        let router = MoreRouter()
+    private func configure(viewController: TableMenuViewController) {
+        let router = MenuRouter()
 
-        let presenter = MorePresenter()
+        let presenter = MenuPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = MoreInteractor()
+        let interactor = MenuInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor
         viewController.output = presenter
-        
-        viewController.displayManager = MoreDataDisplayManager()
-        viewController.displayManager.viewOutput = viewController.output
     }
 
 }

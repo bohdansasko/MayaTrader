@@ -24,7 +24,7 @@ class WatchlistCardsDisplayManager: NSObject {
 //        self.collectionView.dataSource = self
         
 //        let cellNib = UINib(nibName: "WatchlistCardCollectionViewCell", bundle: nil)
-//        self.collectionView.register(cellNib, forCellWithReuseIdentifier: TableCellIdentifiers.WatchlistMenuViewCell.rawValue)
+//        self.collectionView.register(cellNib, forCellWithReuseIdentifier: TableCellIdentifiers.WatchlistTableMenuViewCell.rawValue)
     }
 }
 
@@ -37,7 +37,7 @@ class WatchlistCardsDisplayManager: NSObject {
 extension WatchlistCardsDisplayManager: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let orderData = self.dataProvider.getCurrencyPairBy(index: indexPath.row)
-        let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
+        let cellId = TableCellIdentifiers.WatchlistTableMenuViewCell.rawValue
         
         let cell = self.collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! WatchlistCardCollectionViewCell
         cell.setContent(data: orderData)

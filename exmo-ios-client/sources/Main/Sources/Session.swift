@@ -85,7 +85,6 @@ extension Session {
         self.dealsOrders.clear()
         
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
-        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     
     func setUserModel(userData: User, shouldSaveUserInCache: Bool) {

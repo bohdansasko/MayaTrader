@@ -33,21 +33,12 @@ enum UserEntityKeys: String {
     case balances
 }
 
-enum MoreMenuSegueIdentifier: String {
-    case loginView
-    case Logout
-    case newsView
-    case chatView
-    case faqView
-}
-
 enum TableCellIdentifiers: String {
-    case MoreMenuItem
     case WalletTableViewCell
     case WalletSettingsCell
     case AlertTableViewCell
     case OrderTableViewCell
-    case WatchlistMenuViewCell
+    case WatchlistTableMenuViewCell
 }
 
 enum WalletSegueIdentifiers: String {

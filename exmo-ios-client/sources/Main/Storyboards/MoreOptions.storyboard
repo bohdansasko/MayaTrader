@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -21,7 +22,7 @@
         <!--More View Controller-->
         <scene sceneID="Aau-yr-SQ5">
             <objects>
-                <viewController title="More" id="PCm-9t-sIM" customClass="MoreViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Menu" id="PCm-9t-sIM" customClass="TableMenuViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LRF-wY-5cf">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,7 +49,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qie-Od-VCz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="9q9-Lp-rF2" customClass="MoreModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                <customObject id="9q9-Lp-rF2" customClass="MenuModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
                     <connections>
                         <outlet property="moreViewController" destination="PCm-9t-sIM" id="dSU-pZ-Lcy"/>
                     </connections>
@@ -247,7 +248,7 @@
         <!--Navigation Controller-->
         <scene sceneID="mKE-ck-dd2">
             <objects>
-                <navigationController storyboardIdentifier="MoreNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Utw-ho-ZEi" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MenuNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Utw-ho-ZEi" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" image="icTabbarMenu" selectedImage="icTabbarMenuSelected" id="93w-wg-jBg">
                         <color key="badgeColor" red="0.41176470590000003" green="0.91372549020000005" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
@@ -328,7 +329,7 @@
             <color red="0.11800000071525574" green="0.10999999940395355" blue="0.16500000655651093" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="exmoMidnight">
-            <color red="0.0120000001" green="0.0040000001900000002" blue="0.039000000799999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

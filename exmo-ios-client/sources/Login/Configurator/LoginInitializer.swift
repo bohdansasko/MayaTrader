@@ -8,12 +8,13 @@
 
 import UIKit
 
-class LoginModuleInitializer: NSObject {
-    lazy var loginViewController: LoginViewController = LoginViewController()
-
-    override func awakeFromNib() {
+class LoginModuleInitializer {
+    var viewController: LoginViewController
+    
+    init() {
+        viewController = LoginViewController()
+        
         let configurator = LoginModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: loginViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
-
 }

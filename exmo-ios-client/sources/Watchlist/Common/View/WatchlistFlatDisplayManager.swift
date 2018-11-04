@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class WatchlistFlatDisplayManager: NSObject {
-    let cellId = TableCellIdentifiers.WatchlistMenuViewCell.rawValue
+    let cellId = TableCellIdentifiers.WatchlistTableMenuViewCell.rawValue
     
     private var dataProvider: WatchlistFavouriteDataSource!
     var tableView: UITableView!
@@ -28,7 +28,7 @@ class WatchlistFlatDisplayManager: NSObject {
 //        self.tableView.dataSource = self
 //
 //        let nib = UINib(nibName: "WatchlistCardCell", bundle: nil)
-//        self.tableView.register(nib, forCellReuseIdentifier: TableCellIdentifiers.WatchlistMenuViewCell.rawValue)
+//        self.tableView.register(nib, forCellReuseIdentifier: TableCellIdentifiers.WatchlistTableMenuViewCell.rawValue)
 //
 //        self.reloadData()
     }

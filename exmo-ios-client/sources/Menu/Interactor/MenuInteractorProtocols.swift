@@ -1,5 +1,5 @@
 //
-//  MoreMoreInteractorInput.swift
+//  MoreMenuInteractorOutput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/02/2018.
@@ -9,6 +9,10 @@
 import Foundation
 import UIKit.UIViewController
 
-@objc protocol MoreInteractorInput {
+@objc protocol MenuInteractorInput {
     func viewIsReady()
+}
+
+protocol MenuInteractorOutput: class {
+    // do nothing
 }

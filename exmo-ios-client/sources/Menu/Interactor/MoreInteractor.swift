@@ -1,5 +1,5 @@
 //
-//  MoreMoreInteractor.swift
+//  MoreMenuInteractor.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/02/2018.
@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-class MoreInteractor: MoreInteractorInput {
-    weak var output: MoreInteractorOutput!
+class MenuInteractor: MenuInteractorInput {
+    weak var output: MenuInteractorOutput!
 
     func viewIsReady() {
         // do nothing

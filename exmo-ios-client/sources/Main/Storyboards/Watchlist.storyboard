@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -20,8 +16,8 @@
         <scene sceneID="mgR-zb-bpD">
             <objects>
                 <viewController title="Watchlist" id="v35-g1-zIZ" customClass="WatchlistFavouriteCurrenciesViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sAi-3P-B2U">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="sAi-3P-B2U">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ycd-gs-0uU"/>
@@ -59,14 +55,14 @@
             <objects>
                 <viewController storyboardIdentifier="WatchlistCurrencyChartViewController" title="BTC/USD" id="y4J-WM-6Ra" customClass="WatchlistCurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VqE-Sc-252">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-uX-ayb" userLabel="chartTimePeriodContainer" customClass="ChartTimePeriodContainer" customModule="exmo_ios_client" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49" width="375" height="35"/>
+                                <rect key="frame" x="0.0" y="25" width="600" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-z0-jAQ" userLabel="steelLine">
-                                        <rect key="frame" x="0.0" y="34" width="375" height="1"/>
+                                        <rect key="frame" x="0.0" y="34" width="600" height="1"/>
                                         <color key="backgroundColor" name="exmoSteel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="EcJ-ej-bfd"/>
@@ -81,7 +77,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="YmL-nx-XTy">
-                                        <rect key="frame" x="30" y="0.0" width="315" height="34"/>
+                                        <rect key="frame" x="30" y="0.0" width="540" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qm-bW-CDy">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="34"/>
@@ -94,7 +90,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDN-G6-sig">
-                                                <rect key="frame" x="98.333333333333343" y="0.0" width="20" height="34"/>
+                                                <rect key="frame" x="173.5" y="0.0" width="20" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="07Z-NN-gSM"/>
                                                 </constraints>
@@ -104,7 +100,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yy3-Pb-TS2">
-                                                <rect key="frame" x="196.66666666666666" y="0.0" width="20" height="34"/>
+                                                <rect key="frame" x="346.5" y="0.0" width="20" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="6wf-F1-4pv"/>
                                                 </constraints>
@@ -114,7 +110,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psa-xw-wXE">
-                                                <rect key="frame" x="295" y="0.0" width="20" height="34"/>
+                                                <rect key="frame" x="520" y="0.0" width="20" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="mnO-2u-mUR"/>
                                                 </constraints>
@@ -152,30 +148,30 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhq-OT-W5R" userLabel="chartAdditionalInfo">
-                                <rect key="frame" x="0.0" y="84" width="375" height="633"/>
+                                <rect key="frame" x="0.0" y="60" width="600" height="479"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hL2-tH-eP7" userLabel="Candle Chart View" customClass="CandleStickChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="500"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="580" height="377"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhl-yG-wUS" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="505" width="355" height="128"/>
+                                        <rect key="frame" x="0.0" y="382" width="580" height="97"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3a-xW-O1A" customClass="CandleBarChartShortInfoView" customModule="exmo_ios_client" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="5" width="335" height="55"/>
+                                        <rect key="frame" x="30" y="5" width="560" height="55"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IY7-SJ-W5J" userLabel="Date Container">
-                                                <rect key="frame" x="0.0" y="0.0" width="60.666666666666664" height="14.666666666666666"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="67.5" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7A-zQ-cwK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="8" height="14.666666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="8.5" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549020000002" green="0.51764705879999995" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120 BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBz-gk-osL">
-                                                        <rect key="frame" x="12.999999999999996" y="0.0" width="47.666666666666657" height="14.666666666666666"/>
+                                                        <rect key="frame" x="13.5" y="0.0" width="54" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549019607838" green="0.51764705882352935" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -183,16 +179,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MOk-Gp-iTY" userLabel="Open Container">
-                                                <rect key="frame" x="0.0" y="20" width="61" height="14.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="20" width="68.5" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvm-mA-nwW">
-                                                        <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="14.666666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="9.5" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549020000002" green="0.51764705879999995" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120 BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ar-NO-BqI">
-                                                        <rect key="frame" x="13.333333333333339" y="0.0" width="47.666666666666657" height="14.666666666666666"/>
+                                                        <rect key="frame" x="14.5" y="0.0" width="54" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -200,16 +196,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Mma-na-Fn3" userLabel="Close Container">
-                                                <rect key="frame" x="66" y="20" width="59.666666666666657" height="14.666666666666664"/>
+                                                <rect key="frame" x="73.5" y="20" width="68" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="C" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV8-Be-JcZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="7" height="14.666666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="9" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549020000002" green="0.51764705879999995" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120 BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HeP-DT-ViB">
-                                                        <rect key="frame" x="11.999999999999996" y="0.0" width="47.666666666666657" height="14.666666666666666"/>
+                                                        <rect key="frame" x="14" y="0.0" width="54" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -217,16 +213,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="OcQ-Mz-ZJO" userLabel="Volume Container">
-                                                <rect key="frame" x="130.66666666666666" y="20" width="60.333333333333343" height="14.666666666666664"/>
+                                                <rect key="frame" x="146.5" y="20" width="66.5" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="V" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMf-xB-hfp">
-                                                        <rect key="frame" x="0.0" y="0.0" width="7.666666666666667" height="14.666666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="7.5" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549020000002" green="0.51764705879999995" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120 BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB5-QG-xlJ">
-                                                        <rect key="frame" x="12.666666666666682" y="0.0" width="47.666666666666657" height="14.666666666666666"/>
+                                                        <rect key="frame" x="12.5" y="0.0" width="54" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -234,16 +230,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="CWY-qj-tfr" userLabel="High Container">
-                                                <rect key="frame" x="0.0" y="39.666666666666657" width="61" height="14.666666666666664"/>
+                                                <rect key="frame" x="0.0" y="39" width="68" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zat-ic-vau">
-                                                        <rect key="frame" x="0.0" y="0.0" width="8.3333333333333339" height="14.666666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="9" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549020000002" green="0.51764705879999995" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120 BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVd-6m-HLW">
-                                                        <rect key="frame" x="13.333333333333339" y="0.0" width="47.666666666666657" height="14.666666666666666"/>
+                                                        <rect key="frame" x="14" y="0.0" width="54" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -251,16 +247,16 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="O8E-cr-oah" userLabel="Low Container">
-                                                <rect key="frame" x="66" y="39" width="59" height="14.666666666666664"/>
+                                                <rect key="frame" x="73" y="38.5" width="66" height="14"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0ZG-lE-WBv">
-                                                        <rect key="frame" x="0.0" y="0.0" width="6.333333333333333" height="14.666666666666666"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="7" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" red="0.51372549020000002" green="0.51764705879999995" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1120 BTC" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tjk-4c-fYd">
-                                                        <rect key="frame" x="11.333333333333325" y="0.0" width="47.666666666666657" height="14.666666666666666"/>
+                                                        <rect key="frame" x="12" y="0.0" width="54" height="14"/>
                                                         <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -341,13 +337,13 @@
         <!--Watchlistcardsmenu View Controller-->
         <scene sceneID="bdm-fQ-WkQ">
             <objects>
-                <viewController storyboardIdentifier="WatchlistCardsMenuViewController" id="bg7-8O-yPX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WatchlistCardsTableMenuViewController" id="bg7-8O-yPX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OkP-4P-zDl">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-kJ-bOA">
-                                <rect key="frame" x="0.0" y="54" width="375" height="724"/>
+                                <rect key="frame" x="0.0" y="30" width="600" height="570"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="dei-w5-Vav">
                                     <size key="itemSize" width="150" height="65"/>
