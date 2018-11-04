@@ -8,15 +8,12 @@
 
 import UIKit
 
-class WatchlistFavouriteCurrenciesModuleInitializer: NSObject {
+class WatchlistFavouriteCurrenciesModuleInitializer {
+    var viewController: WatchlistFavouriteCurrenciesViewController
 
-    //Connect with object on storyboard
-    var watchlistmanagerViewController: WatchlistFavouriteCurrenciesViewController!
-
-    override func awakeFromNib() {
-
+    init() {
+        viewController = WatchlistFavouriteCurrenciesViewController()
         let configurator = WatchlistFavouriteCurrenciesModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: watchlistmanagerViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
-
 }
