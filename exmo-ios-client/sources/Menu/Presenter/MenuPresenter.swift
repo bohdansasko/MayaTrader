@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class MenuPresenter: MenuModuleInput, TableMenuViewOutput, MenuInteractorOutput {
+class MenuPresenter: MenuModuleInput, TableMenuViewOutput, MenuInteractorOutput, MenuRouterOutput {
 
     weak var view: TableMenuViewInput!
     var interactor: MenuInteractorInput!
@@ -29,5 +29,12 @@ extension MenuPresenter {
 extension MenuPresenter {
     func onUserLogInOut(isLoggedUser: Bool) {
         view.updateLayoutView(isLoggedUser: isLoggedUser)
+    }
+}
+
+// @MARK: MenuRouterOutput
+extension MenuPresenter {
+    func userLogout() {
+        interactor.logout()
     }
 }

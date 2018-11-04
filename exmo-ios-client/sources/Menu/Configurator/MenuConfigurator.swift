@@ -19,11 +19,13 @@ class MenuModuleConfigurator {
 
     private func configure(viewController: TableMenuViewController) {
         let router = MenuRouter()
-
+        
         let presenter = MenuPresenter()
         presenter.view = viewController
         presenter.router = router
-
+        
+        router.output = presenter
+        
         let interactor = MenuInteractor()
         interactor.output = presenter
 

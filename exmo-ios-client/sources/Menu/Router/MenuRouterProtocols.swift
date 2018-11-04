@@ -12,3 +12,7 @@ import UIKit
 protocol MenuRouterInput {
     func showViewController(sourceVC: UIViewController, touchedCellType: MenuCellType)
 }
+
+protocol MenuRouterOutput: class {
+    func userLogout()
+}

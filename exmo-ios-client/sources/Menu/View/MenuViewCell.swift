@@ -13,11 +13,8 @@ class TableMenuViewCell: UITableViewCell {
         didSet {
             iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
             titleLabel.text = cellType.title
+            selectionStyle = cellType == .AppVersion ? .none : .gray
             updateRightView()
-            
-            if cellType == .AppVersion {
-                selectionStyle = .none
-            }
         }
     }
     

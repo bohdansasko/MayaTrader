@@ -9,8 +9,9 @@
 import Foundation
 import UIKit.UIViewController
 
-@objc protocol MenuInteractorInput {
+protocol MenuInteractorInput {
     func viewIsReady()
+    func logout()
 }
 
 protocol MenuInteractorOutput: class {

@@ -8,6 +8,8 @@
 import UIKit
 
 class MenuRouter: MenuRouterInput {
+    weak var output: MenuRouterOutput!
+    
     func showViewController(sourceVC: UIViewController, touchedCellType: MenuCellType) {
         var nextViewController: UIViewController!
         switch touchedCellType {
@@ -20,7 +22,7 @@ class MenuRouter: MenuRouterInput {
             
             sourceVC.navigationController?.pushViewController(nextViewController, animated: true)
         case .Logout:
-            AppDelegate.session.exmoLogout()
+            output.userLogout()
         default:
             break
         }
