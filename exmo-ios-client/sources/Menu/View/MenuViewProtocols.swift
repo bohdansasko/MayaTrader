@@ -8,7 +8,7 @@
 import UIKit.UITableView
 
 protocol TableMenuViewInput: class {
-    func setupInitialState()
+    func updateLayoutView(isLoggedUser: Bool)
 }
 
 protocol TableMenuViewOutput {

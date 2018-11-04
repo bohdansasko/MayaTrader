@@ -12,12 +12,22 @@ class MenuPresenter: MenuModuleInput, TableMenuViewOutput, MenuInteractorOutput 
     weak var view: TableMenuViewInput!
     var interactor: MenuInteractorInput!
     var router: MenuRouterInput!
+}
 
+// @MARK: TableMenuViewOutput
+extension MenuPresenter {
     func viewIsReady() {
-        // do nothing
+        interactor.viewIsReady()
     }
     
     func didTouchCell(type: MenuCellType) {
         router.showViewController(sourceVC: view as! UIViewController, touchedCellType: type)
+    }
+}
+
+// @MARK: MenuInteractorOutput
+extension MenuPresenter {
+    func onUserLogInOut(isLoggedUser: Bool) {
+        view.updateLayoutView(isLoggedUser: isLoggedUser)
     }
 }

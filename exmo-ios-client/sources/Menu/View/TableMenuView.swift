@@ -11,7 +11,11 @@ import UIKit
 
 class TableMenuView: UIView {
     var viewOutput: TableMenuViewOutput!
-    
+    var isLoggedUser: Bool = false {
+        didSet {
+            updateViewLayout()
+        }
+    }
     private var cellsTypeContainer: [IndexPath: MenuCellType] = [:] {
         didSet {
             tableView.reloadData()
@@ -40,33 +44,22 @@ class TableMenuView: UIView {
     func setupTableView() {
         addSubview(tableView)
         tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         tableView.register(TableMenuViewCell.self, forCellReuseIdentifier: cellId)
-        
-        updateViewLayout()
-    }
-    
-    func getCountMenuItems() -> Int {
-        return cellsTypeContainer.count
     }
 
-    //
-    // @MARK: selectors
-    //
-    @objc func updateViewLayout() {
-        if AppDelegate.session.isExmoAccountExists() {
-            cellsTypeContainer = [:]
-            cellsTypeContainer = MenuCellType.getLoginedUserCellsLayout()
-        } else {
-            cellsTypeContainer = [:]
-            cellsTypeContainer = MenuCellType.getGuestUserCellsLayout()
-        }
+    private func updateViewLayout() {
+        cellsTypeContainer = isLoggedUser
+            ? MenuCellType.getLoginedUserCellsLayout()
+            : MenuCellType.getGuestUserCellsLayout()
     }
 }
 
+// @MARK: UITableViewDataSource
 extension TableMenuView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cellsTypeContainer.count
@@ -77,7 +70,7 @@ extension TableMenuView: UITableViewDataSource  {
     }
 }
 
-
+// @MARK: UITableViewDelegate
 extension TableMenuView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let menuCell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableMenuViewCell

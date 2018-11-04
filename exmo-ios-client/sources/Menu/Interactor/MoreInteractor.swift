@@ -12,6 +12,20 @@ class MenuInteractor: MenuInteractorInput {
     weak var output: MenuInteractorOutput!
 
     func viewIsReady() {
-        // do nothing
+        subscribeOnEvents()
+        onUserLogInOut()
+    }
+    
+    deinit {
+        AppDelegate.notificationController.removeObserver(self)
+    }
+    
+    private func subscribeOnEvents() {
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserLogInOut), name: .UserSignIn)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserLogInOut), name: .UserSignOut)
+    }
+    
+    @objc func onUserLogInOut() {
+        output.onUserLogInOut(isLoggedUser: AppDelegate.session.isExmoAccountExists())
     }
 }

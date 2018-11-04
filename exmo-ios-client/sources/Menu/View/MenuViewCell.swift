@@ -14,6 +14,10 @@ class TableMenuViewCell: UITableViewCell {
             iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
             titleLabel.text = cellType.title
             updateRightView()
+            
+            if cellType == .AppVersion {
+                selectionStyle = .none
+            }
         }
     }
     
@@ -52,7 +56,7 @@ class TableMenuViewCell: UITableViewCell {
         view.backgroundColor = .dark1
         return view
     }()
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
@@ -73,7 +77,7 @@ class TableMenuViewCell: UITableViewCell {
 extension TableMenuViewCell {
     func setupView() {
         self.backgroundColor = .clear
-        
+
         let bgColorView = UIView()
         bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
         self.selectedBackgroundView = bgColorView
@@ -89,7 +93,7 @@ extension TableMenuViewCell {
         
         addSubview(disclosureImage)
         disclosureImage.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 20, rightConstant: 30, widthConstant: 0, heightConstant: 0)
-        
+
         addSubview(bottomSeparatorLine)
         bottomSeparatorLine.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
     }

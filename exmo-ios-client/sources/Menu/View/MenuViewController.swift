@@ -10,7 +10,7 @@ import UIKit
 
 class TableMenuViewController: ExmoUIViewController, TableMenuViewInput {
     var output: TableMenuViewOutput!
-    
+
     var tableMenuView: TableMenuView = {
         let tmv = TableMenuView()
         return tmv
@@ -19,26 +19,24 @@ class TableMenuViewController: ExmoUIViewController, TableMenuViewInput {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
         
-        setupInitialState()
+        setupViews()
+        output.viewIsReady()
     }
+}
 
-    deinit {
-        AppDelegate.notificationController.removeObserver(self)
+// MARK: TableMenuViewInput
+extension TableMenuViewController {
+    func updateLayoutView(isLoggedUser: Bool) {
+        tableMenuView.isLoggedUser = isLoggedUser
     }
+}
 
-    // MARK: TableMenuViewInput
-    func setupInitialState() {
+// @MARK: setup UI
+extension TableMenuViewController {
+    func setupViews() {
         setupTitleNavigationBar()
         setupTableView()
-        
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
-    }
-    
-    @objc func updateDisplayInfo() {
-        tableMenuView.updateViewLayout()
     }
     
     private func setupTitleNavigationBar() {

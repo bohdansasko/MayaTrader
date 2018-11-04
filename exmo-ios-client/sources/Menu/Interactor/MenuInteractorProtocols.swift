@@ -14,5 +14,5 @@ import UIKit.UIViewController
 }
 
 protocol MenuInteractorOutput: class {
-    // do nothing
+    func onUserLogInOut(isLoggedUser: Bool)
 }
