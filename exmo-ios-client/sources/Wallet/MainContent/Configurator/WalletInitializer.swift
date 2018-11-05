@@ -8,15 +8,12 @@
 
 import UIKit
 
-class WalletModuleInitializer: NSObject {
-
-    //Connect with object on storyboard
-    @IBOutlet weak var walletViewController: WalletViewController!
-
-    override func awakeFromNib() {
-
+class WalletModuleInitializer {
+    var viewController: WalletViewController!
+    
+    init() {
+        viewController = WalletViewController()
         let configurator = WalletModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: walletViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
-
 }

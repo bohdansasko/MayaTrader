@@ -8,6 +8,10 @@
 import Foundation
 import UIKit.UITableView
 
+protocol WalletViewInput: class {
+    func setTouchEnabled(isTouchEnabled: Bool)
+}
+
 protocol WalletViewOutput {
     func viewIsReady()
     func openWalletSettings(segueBlock: SegueBlock?)

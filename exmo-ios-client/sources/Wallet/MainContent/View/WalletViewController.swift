@@ -9,42 +9,32 @@
 import UIKit
 
 class WalletViewController: ExmoUIViewController, WalletViewInput {
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var currencySettingsBtn: UIBarButtonItem!
-    @IBOutlet weak var balanceView: BalanceView!
+    var currencySettingsBtn: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(named: "icWalletOptions"), style: .done, target: nil, action: nil)
+    }()
+    
+    var balanceView = WalletBalanceView()
     
     var output: WalletViewOutput!
-    var displayManager: WalletDisplayManager!
+    var favCurrenciesTableView: WalletDisplayManager!
 
     // MARK: Life cycle
-    deinit {
-        AppDelegate.notificationController.removeObserver(self)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         output.viewIsReady()
         setupInitialState()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        displayManager.reloadData()
-    }
 
     // MARK: WalletViewInput
     func setupInitialState() {
-        self.displayManager.setBalanceView(balanceView: self.balanceView)
-        displayManager.setTableView(tableView: tableView)
-        updateDisplayInfo();
-        subscribeOnEvents()
+        view.backgroundColor = .black
+        currencySettingsBtn.target = self
+        currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
+        
+        setupNavigationBar()
+        setupCurrenciesTable()
     }
     
-    private func subscribeOnEvents() {
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
-    }
-
     func setTouchEnabled(isTouchEnabled: Bool) {
         currencySettingsBtn.isEnabled = isTouchEnabled
     }
@@ -55,18 +45,33 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         }
     }
     
-    @objc func updateDisplayInfo() {
-        displayManager.reloadData()
-        setTouchEnabled(isTouchEnabled: displayManager.isDataExists())
-    }
-    
     func getWalletModelAsSegueBlock() -> SegueBlock? {
-        return displayManager.getWalletModelAsSegueBlock()
+        return nil // favCurrenciesTableView.getWalletModelAsSegueBlock()
     }
     
     
     // MARK: IBActions
-    @IBAction func openCurrenciesManager(_ sender: Any) {
-        output.openWalletSettings(segueBlock: displayManager.getWalletModelAsSegueBlock())
+    @objc func openCurrenciesManager(_ sender: Any) {
+//        output.openWalletSettings(segueBlock: favCurrenciesTableView.getWalletModelAsSegueBlock())
+    }
+    
+    private func setupNavigationBar() {
+        navigationController?.navigationBar.barTintColor = .black
+        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.isTranslucent = false
+        
+        let titleView = UILabel()
+        titleView.text = "Wallet"
+        titleView.font = UIFont.getTitleFont()
+        titleView.textColor = .white
+        navigationItem.titleView = titleView
+        
+        navigationItem.rightBarButtonItem = currencySettingsBtn
+    }
+    
+    private func setupCurrenciesTable() {
+        view.addSubview(favCurrenciesTableView)
+        favCurrenciesTableView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        favCurrenciesTableView.dataProvider = AppDelegate.session.getUser().getWalletInfo()
     }
 }

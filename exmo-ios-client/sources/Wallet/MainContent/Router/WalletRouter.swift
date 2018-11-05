@@ -19,7 +19,7 @@ class WalletRouter: WalletRouterInput {
         let segueBlock = sender as? SegueBlock
         let walletSegueBlock = segueBlock as? WalletSegueBlock
 
-        walletSettingsPresenterIn.configure(walletModel: (walletSegueBlock?.walletDataProvider)!)
+        walletSettingsPresenterIn.configure(walletModel: (walletSegueBlock?.dataProvider)!)
     }
     
 }

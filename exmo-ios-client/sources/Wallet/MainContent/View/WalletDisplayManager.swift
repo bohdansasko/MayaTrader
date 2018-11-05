@@ -7,62 +7,84 @@ import Foundation
 import UIKit
 
 class WalletSegueBlock: SegueBlock {
-    private(set) var walletDataProvider: WalletModel!
+    private(set) var dataProvider: WalletModel!
     
     init(dataModel: WalletModel?) {
-        self.walletDataProvider = dataModel
+        dataProvider = dataModel
     }
 }
 
-class WalletDisplayManager: NSObject {
-    var walletDataProvider: WalletModel!
-    private weak var tableView: UITableView!
-    private weak var balanceView: BalanceView!
+class WalletDisplayManager: UIView {
+    weak var balanceView: WalletBalanceView!
     
-    override init() {
-        super.init()
-        self.walletDataProvider = AppDelegate.session.getUser().getWalletInfo()
-    }
-
-    func setBalanceView(balanceView: BalanceView!) {
-        self.balanceView = balanceView
+    private var tableView: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = .clear
+        tv.separatorStyle = .none
+        tv.tableFooterView = UIView()
+        tv.allowsSelection = false
+        return tv;
+    }()
+    
+    var dataProvider: WalletModel! {
+        didSet {
+            dataProvider.filterCurrenciesByFavourites()
+            tableView.reloadData()
+        }
     }
     
-    func setTableView(tableView: UITableView!) {
-        self.tableView = tableView
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+    let currencyCellId = "currencyCell"
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupTableView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        fatalError("Doesn't have implementation")
+    }
+    
+    func setupTableView() {
+        addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(WalletCurrencyCell.self, forCellReuseIdentifier: currencyCellId)
+        tableView.fillSuperview()
     }
 
     func reloadData() {
-        self.walletDataProvider = AppDelegate.session.getUser().getWalletInfo()
-        self.walletDataProvider.filterCurrenciesByFavourites()
-        self.balanceView.btcValueLabel.text = Utils.getFormatedPrice(value: walletDataProvider.getAmountMoneyInBTC(), maxFractDigits: 6)
-        self.balanceView.usdValueLabel.text = Utils.getFormatedPrice(value: walletDataProvider.getAmountMoneyInUSD(), maxFractDigits: 4)
-        self.tableView.reloadData()
-    }
-
-    func isDataExists() -> Bool {
-        return walletDataProvider.isDataExists()
+//        dataProvider = AppDelegate.session.getUser().getWalletInfo()
+//        balanceView.btcValueLabel.text = Utils.getFormatedPrice(value: dataProvider.getAmountMoneyInBTC(), maxFractDigits: 6)
+//        balanceView.usdValueLabel.text = Utils.getFormatedPrice(value: dataProvider.getAmountMoneyInUSD(), maxFractDigits: 4)
+//        tableView.reloadData()
     }
     
     func getWalletModelAsSegueBlock() -> SegueBlock? {
-        return WalletSegueBlock(dataModel: walletDataProvider)
+        return WalletSegueBlock(dataModel: dataProvider)
     }
 }
 
 extension WalletDisplayManager: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.walletDataProvider.getCountUsedCurrencies()
+        return dataProvider.getCountUsedCurrencies()
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return WalletCurrencyHeaderView()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 35
+    }
+    
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currency = self.walletDataProvider.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: 1)
-        let cellId =  TableCellIdentifiers.WalletTableViewCell.rawValue
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletTableViewCell
-        cell.setContent(balance: currency.balance, currency: currency.currency, countInOrders: 0/*currency.countInOrders as! Int*/)
-        cell.backgroundColor = (indexPath.row + 1) % 2 == 0 ? UIColor.dark : UIColor.black
-        
+        let currencyModel = dataProvider.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: 1)
+        let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellId, for: indexPath) as! WalletCurrencyCell
+        cell.index = indexPath.row
+        cell.currencyModel = currencyModel
         return cell
     }
     

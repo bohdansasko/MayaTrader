@@ -56,8 +56,8 @@ struct WalletModel : Mappable {
     init() {
         self.rawBalances = [:]
         self.rawReserved = [:]
-        self.allBalances = []
-        self.usedBalances = []
+        self.allBalances = getTestData()
+        self.usedBalances = getTestData()
         self.unusedBalances = []
     }
 

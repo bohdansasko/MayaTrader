@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import UIKit.UITableView
+
+@objc protocol WalletInteractorInput {
+    func viewIsReady()
+}
 
 protocol WalletInteractorOutput: class {
     // do nothing

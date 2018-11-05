@@ -11,7 +11,21 @@ import UIKit
 class WalletInteractor: WalletInteractorInput {
     weak var output: WalletInteractorOutput!
     
+    deinit {
+        AppDelegate.notificationController.removeObserver(self)
+    }
+    
     func viewIsReady() {
-        // do nothing
+        subscribeOnEvents()
+    }
+    
+    private func subscribeOnEvents() {
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignIn)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.updateDisplayInfo), name: .UserSignOut)
+    }
+    
+    @objc func updateDisplayInfo() {
+//        displayManager.reloadData()
+//        setTouchEnabled(isTouchEnabled: displayManager.isDataExists())
     }
 }
