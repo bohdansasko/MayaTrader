@@ -12,7 +12,7 @@ class WalletCurrencyHeaderView: UIView {
     var balanceLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Currency"
@@ -22,7 +22,7 @@ class WalletCurrencyHeaderView: UIView {
     var currencyLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Balance"
@@ -32,7 +32,7 @@ class WalletCurrencyHeaderView: UIView {
     var countInOrdersLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
         label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "In Orders"

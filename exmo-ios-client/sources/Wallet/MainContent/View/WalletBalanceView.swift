@@ -23,7 +23,7 @@ class WalletBalanceView: UIView {
         label.textAlignment = .left
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 24)
         label.textColor = .dodgerBlue
-        label.text = "56.19284"
+        label.text = "\u{20BF} 56.19284"
         return label
     }()
     
@@ -41,26 +41,34 @@ class WalletBalanceView: UIView {
         label.textAlignment = .right
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 24)
         label.textColor = .dodgerBlue
-        label.text = "$ 271 362"
+        label.text = "$ 271, 362"
         return label
     }()
     
     var currencyDividerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "icWalletDivider")
+        imageView.contentMode = .scaleAspectFit
         return imageView
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         addSubview(currencyDividerImage)
+        currencyDividerImage.anchorCenterSuperview()
         
-        addSubview(btcTextLabel)
-        addSubview(btcValueLabel)
-        
-        addSubview(usdTextLabel)
-        addSubview(usdValueLabel)
+        let btcStackView = UIStackView(arrangedSubviews: [btcTextLabel, btcValueLabel])
+        addSubview(btcStackView)
+        btcStackView.axis = .vertical
+        btcStackView.spacing = 5
+        btcStackView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 30, leftConstant: 30, bottomConstant: 48, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+
+        let usdStackView = UIStackView(arrangedSubviews: [usdTextLabel, usdValueLabel])
+        addSubview(usdStackView)
+        usdStackView.axis = .vertical
+        usdStackView.spacing = 5
+        usdStackView.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 48, rightConstant: 30, widthConstant: 0, heightConstant: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

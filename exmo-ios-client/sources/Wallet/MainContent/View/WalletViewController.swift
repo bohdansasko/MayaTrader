@@ -13,8 +13,14 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         return UIBarButtonItem(image: UIImage(named: "icWalletOptions"), style: .done, target: nil, action: nil)
     }()
     
-    var balanceView = WalletBalanceView()
+    var glowImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icWalletGlow")
+        imageView.contentMode = .center
+        return imageView
+    }()
     
+    var balanceView = WalletBalanceView()
     var output: WalletViewOutput!
     var favCurrenciesTableView: WalletDisplayManager!
 
@@ -31,7 +37,16 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         currencySettingsBtn.target = self
         currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
         
+        view.addSubview(glowImage)
+        view.addSubview(balanceView)
+        view.addSubview(favCurrenciesTableView)
+        
         setupNavigationBar()
+        
+        glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: balanceView.bottomAnchor, right: view.rightAnchor, topConstant: -10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: favCurrenciesTableView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
         setupCurrenciesTable()
     }
     
@@ -70,7 +85,6 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
     }
     
     private func setupCurrenciesTable() {
-        view.addSubview(favCurrenciesTableView)
         favCurrenciesTableView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         favCurrenciesTableView.dataProvider = AppDelegate.session.getUser().getWalletInfo()
     }
