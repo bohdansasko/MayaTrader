@@ -248,7 +248,7 @@
         <!--Walletsettings View Controller-->
         <scene sceneID="Qjt-3L-Swl">
             <objects>
-                <viewController title="Currencies" id="hnM-bo-MPl" customClass="WalletSettingsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ManageCurrencies" title="Currencies" id="hnM-bo-MPl" customClass="WalletSettingsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Uc-wD-FJy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

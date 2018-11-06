@@ -55,24 +55,37 @@ class WalletBalanceView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(currencyDividerImage)
-        currencyDividerImage.anchorCenterSuperview()
-        
-        let btcStackView = UIStackView(arrangedSubviews: [btcTextLabel, btcValueLabel])
-        addSubview(btcStackView)
-        btcStackView.axis = .vertical
-        btcStackView.spacing = 5
-        btcStackView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 30, leftConstant: 30, bottomConstant: 48, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-
-        let usdStackView = UIStackView(arrangedSubviews: [usdTextLabel, usdValueLabel])
-        addSubview(usdStackView)
-        usdStackView.axis = .vertical
-        usdStackView.spacing = 5
-        usdStackView.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 48, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         fatalError("This method doesn't have implemention")
+    }
+}
+
+extension WalletBalanceView {
+    func setupViews() {
+        addSubview(currencyDividerImage)
+        currencyDividerImage.anchorCenterSuperview()
+        
+        setupBTCView()
+        setupUSDView()
+    }
+    
+    private func setupBTCView() {
+        let btcStackView = UIStackView(arrangedSubviews: [btcTextLabel, btcValueLabel])
+        addSubview(btcStackView)
+        btcStackView.axis = .vertical
+        btcStackView.spacing = 5
+        btcStackView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 30, leftConstant: 30, bottomConstant: 48, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+    
+    private func setupUSDView() {
+        let usdStackView = UIStackView(arrangedSubviews: [usdTextLabel, usdValueLabel])
+        addSubview(usdStackView)
+        usdStackView.axis = .vertical
+        usdStackView.spacing = 5
+        usdStackView.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 48, rightConstant: 30, widthConstant: 0, heightConstant: 0)
     }
 }

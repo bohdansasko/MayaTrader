@@ -17,11 +17,11 @@ class WalletPresenter: WalletModuleInput, WalletViewOutput, WalletInteractorOutp
         interactor.viewIsReady()
     }
     
-    func openWalletSettings(segueBlock: SegueBlock?) {
-        router.openWalletSettings(viewController: view as! UIViewController, data: segueBlock)
+    func openCurrencyListVC() {
+        router.openCurrencyListVC(sourceVC: view as! UIViewController)
     }
-
-    func sendDataToWalletSettings(segue: UIStoryboardSegue, sender: Any?) {
-        router.sendDataToWalletSettings(segue: segue, sender: sender)
+    
+    func onDidLoadWallet(_ wallet: WalletModel) {
+        view.updateWallet(wallet)
     }
 }

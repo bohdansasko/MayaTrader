@@ -10,10 +10,10 @@ import UIKit.UITableView
 
 protocol WalletViewInput: class {
     func setTouchEnabled(isTouchEnabled: Bool)
+    func updateWallet(_ wallet: WalletModel)
 }
 
 protocol WalletViewOutput {
     func viewIsReady()
-    func openWalletSettings(segueBlock: SegueBlock?)
-    func sendDataToWalletSettings(segue: UIStoryboardSegue, sender: Any?)
+    func openCurrencyListVC()
 }

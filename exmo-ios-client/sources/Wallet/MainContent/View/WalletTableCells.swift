@@ -8,6 +8,7 @@
 
 import UIKit
 
+// @MARK: WalletCurrencyHeaderView
 class WalletCurrencyHeaderView: UIView {
     var balanceLabel: UILabel = {
         let label = UILabel()
@@ -57,6 +58,7 @@ class WalletCurrencyHeaderView: UIView {
     }
 }
 
+// @MARK: WalletCurrencyCell
 class WalletCurrencyCell: UITableViewCell {
     var balanceLabel: UILabel = {
         let label = UILabel()

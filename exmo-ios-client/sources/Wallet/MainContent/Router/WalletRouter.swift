@@ -8,18 +8,9 @@
 
 import UIKit.UIViewController
 
-class WalletRouter: WalletRouterInput {    
-    func openWalletSettings(viewController: UIViewController, data: SegueBlock?) {
-        viewController.openModule(segueIdentifier: WalletSegueIdentifiers.ManageCurrencies.rawValue, block: data)
+class WalletRouter: WalletRouterInput {
+    func openCurrencyListVC(sourceVC: UIViewController) {
+        let uiWalletList = UIStoryboard(name: "Wallet", bundle: nil).instantiateViewController(withIdentifier: WalletSegueIdentifiers.ManageCurrencies.rawValue) as! WalletSettingsViewController
+        sourceVC.present(uiWalletList, animated: true, completion: nil)
     }
-    
-    func sendDataToWalletSettings(segue: UIStoryboardSegue, sender: Any?) {
-        guard let destinationController = segue.destination as? WalletSettingsViewController else { return }
-        guard let walletSettingsPresenterIn = destinationController.output as? WalletSettingsModuleInput else { return }
-        let segueBlock = sender as? SegueBlock
-        let walletSegueBlock = segueBlock as? WalletSegueBlock
-
-        walletSettingsPresenterIn.configure(walletModel: (walletSegueBlock?.dataProvider)!)
-    }
-    
 }

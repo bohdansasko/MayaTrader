@@ -14,5 +14,5 @@ import UIKit.UITableView
 }
 
 protocol WalletInteractorOutput: class {
-    // do nothing
+    func onDidLoadWallet(_ wallet: WalletModel)
 }

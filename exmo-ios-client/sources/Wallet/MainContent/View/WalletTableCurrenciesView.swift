@@ -14,9 +14,7 @@ class WalletSegueBlock: SegueBlock {
     }
 }
 
-class WalletDisplayManager: UIView {
-    weak var balanceView: WalletBalanceView!
-    
+class WalletTableCurrenciesView: UIView {
     private var tableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .clear
@@ -28,6 +26,7 @@ class WalletDisplayManager: UIView {
     
     var dataProvider: WalletModel! {
         didSet {
+            
             dataProvider.filterCurrenciesByFavourites()
             tableView.reloadData()
         }
@@ -66,7 +65,7 @@ class WalletDisplayManager: UIView {
     }
 }
 
-extension WalletDisplayManager: UITableViewDelegate, UITableViewDataSource  {
+extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataProvider.getCountUsedCurrencies()
     }

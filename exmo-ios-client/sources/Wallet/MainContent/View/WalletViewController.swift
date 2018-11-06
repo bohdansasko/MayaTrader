@@ -19,55 +19,54 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         imageView.contentMode = .center
         return imageView
     }()
-    
     var balanceView = WalletBalanceView()
+    var tableCurrenciesView = WalletTableCurrenciesView()
+    
     var output: WalletViewOutput!
-    var favCurrenciesTableView: WalletDisplayManager!
-
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         output.viewIsReady()
-        setupInitialState()
     }
 
     // MARK: WalletViewInput
-    func setupInitialState() {
+    func setTouchEnabled(isTouchEnabled: Bool) {
+        currencySettingsBtn.isEnabled = isTouchEnabled
+    }
+    
+    @objc func openCurrenciesManager(_ sender: Any) {
+        output.openCurrencyListVC()
+    }
+}
+
+extension WalletViewController {
+    func updateWallet(_ wallet: WalletModel) {
+        tableCurrenciesView.dataProvider = wallet
+    }
+}
+
+extension WalletViewController {
+    func setupViews() {
         view.backgroundColor = .black
+        
         currencySettingsBtn.target = self
         currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
         
         view.addSubview(glowImage)
         view.addSubview(balanceView)
-        view.addSubview(favCurrenciesTableView)
+        view.addSubview(tableCurrenciesView)
         
         setupNavigationBar()
+        setupConstraints()
         
-        glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: balanceView.bottomAnchor, right: view.rightAnchor, topConstant: -10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: favCurrenciesTableView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        setupCurrenciesTable()
-    }
-    
-    func setTouchEnabled(isTouchEnabled: Bool) {
-        currencySettingsBtn.isEnabled = isTouchEnabled
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == WalletSegueIdentifiers.ManageCurrencies.rawValue {
-            output.sendDataToWalletSettings(segue: segue, sender: sender)
-        }
-    }
-    
-    func getWalletModelAsSegueBlock() -> SegueBlock? {
-        return nil // favCurrenciesTableView.getWalletModelAsSegueBlock()
-    }
-    
-    
-    // MARK: IBActions
-    @objc func openCurrenciesManager(_ sender: Any) {
-//        output.openWalletSettings(segueBlock: favCurrenciesTableView.getWalletModelAsSegueBlock())
+        tableCurrenciesView.dataProvider = AppDelegate.session.getUser().getWalletInfo()
     }
     
     private func setupNavigationBar() {
@@ -84,8 +83,11 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         navigationItem.rightBarButtonItem = currencySettingsBtn
     }
     
-    private func setupCurrenciesTable() {
-        favCurrenciesTableView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        favCurrenciesTableView.dataProvider = AppDelegate.session.getUser().getWalletInfo()
+    private func setupConstraints() {
+        glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: balanceView.bottomAnchor, right: view.rightAnchor, topConstant: -10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: tableCurrenciesView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        tableCurrenciesView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
 }
