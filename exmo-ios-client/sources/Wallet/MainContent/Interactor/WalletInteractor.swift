@@ -9,57 +9,137 @@ import Foundation
 import UIKit
 import Alamofire
 import SwiftyJSON
-import ObjectMapper
 
-protocol IWalletNetworkWorker: NetworkWorker {
-    func loadWalletInfo()
-}
-
-class ExmoWalletNetworkWorker : IWalletNetworkWorker {
-    var onHandleResponseSuccesfull: ((Any) -> Void)?
-    
-    func loadWalletInfo() {
-        let request = ExmoApiRequestBuilder.shared.getUserInfoRequest();
-        Alamofire.request(request).responseJSON {
-            [weak self] response in
-            self?.handleResponse(response: response)
-        }
-    }
+protocol IWalletHelpsMethods {
+    func parseTicker(json: JSON) -> [String : WatchlistCurrencyModel]
+    func calculateBalance( _ wm: inout WalletModel, _ tickerContainer: [String : WatchlistCurrencyModel])
 }
 
 class WalletInteractor: WalletInteractorInput {
     weak var output: WalletInteractorOutput!
     var networkWorker: IWalletNetworkWorker!
+    var walletModel: WalletModel? {
+        didSet {
+            tryUpdateWallet()
+        }
+    }
     
-    deinit {
-        AppDelegate.notificationController.removeObserver(self)
+    var tickerContainer: [String : WatchlistCurrencyModel]? {
+        didSet {
+            tryUpdateWallet()
+        }
+    }
+    
+    func viewDidLoad() {
+        subscribeOnEvents()
     }
     
     func viewIsReady() {
-        networkWorker.onHandleResponseSuccesfull = {
-            [weak self] response in
-            guard let json = response as? JSON else { return }
-            guard let wallet = WalletModel(JSONString: json.description) else { return }
-            self?.output.onDidLoadWallet(wallet)
-        }
-        
-        subscribeOnEvents()
         if AppDelegate.session.isExmoAccountExists() {
-            networkWorker.loadWalletInfo()
+            loadWallet()
         }
     }
     
-    private func subscribeOnEvents() {
+    deinit {
+        AppDelegate.notificationController.removeObserver(self)
+        AppDelegate.notificationController
+    }
+}
+
+extension WalletInteractor {
+    func loadWallet() {
+        walletModel = nil
+        tickerContainer = nil
+        
+        networkWorker.loadWalletInfo()
+        networkWorker.loadTicker()
+    }
+    
+    func tryUpdateWallet() {
+        guard var wm = walletModel, let tc = tickerContainer else { return }
+        calculateBalance(&wm, tc)
+        output.onDidLoadWallet(wm)
+    }
+    
+    func subscribeOnEvents() {
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignIn), name: .UserSignIn)
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignOut), name: .UserSignOut)
     }
-
+    
     @objc func onUserSignIn() {
-        networkWorker.loadWalletInfo()
+        loadWallet()
     }
     
     @objc func onUserSignOut() {
         self.output.onDidLoadWallet(WalletModel())
     }
+}
 
+// @MARK: IWalletNetworkWorkerDelegate
+extension WalletInteractor: IWalletNetworkWorkerDelegate {
+    func onDidLoadWalletInfo(response: DataResponse<Any>) {
+        switch response.result {
+        case .success(_):
+            do {
+                let json = try JSON(data: response.data!)
+                guard let wallet = WalletModel(JSONString: json.description) else { return }
+                walletModel = wallet
+            } catch {
+                print("NetworkWorker: we caught a problem in handle response")
+            }
+        case .failure(_):
+            output.onDidLoadWallet(WalletModel())
+        }
+    }
+
+    func onDidLoadTicker(response: DataResponse<Any>) {
+        switch response.result {
+        case .success(_):
+            do {
+                let json = try JSON(data: response.data!)
+                tickerContainer = parseTicker(json: json)
+            } catch {
+                print("NetworkWorker: we caught a problem in handle response")
+            }
+            
+        case .failure(_):
+            output.onDidLoadWallet(WalletModel())
+        }
+    }
+}
+
+// @MARK: IWalletHelpsMethods
+extension WalletInteractor: IWalletHelpsMethods {
+    func parseTicker(json: JSON) -> [String : WatchlistCurrencyModel] {
+        var tickerContainer: [String : WatchlistCurrencyModel] = [:]
+        var currencyIndex = 0
+        
+        json.dictionaryValue.forEach({
+            (currencyPairCode, currencyDescriptionInJSON) in
+            guard let model = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description) else { return }
+            tickerContainer[currencyPairCode] = WatchlistCurrencyModel(index: currencyIndex, currencyCode: currencyPairCode, tickerCurrencyModel: model)
+            currencyIndex = currencyIndex + 1
+        })
+        
+        return tickerContainer
+    }
+    
+    func calculateBalance( _ wm: inout WalletModel, _ tickerContainer: [String : WatchlistCurrencyModel]) {
+        var amountBTC: Double = 0
+        var amountUSD: Double = 0
+        
+        for currency in wm.getAllExistsCurrencies() {
+            if currency.balance > 0 {
+                if let btcTicker = tickerContainer[currency.currency + "_BTC"] {
+                    amountBTC = amountBTC + (currency.balance * btcTicker.buyPrice)
+                }
+                if let usdTicker = tickerContainer[currency.currency + "_USD"] {
+                    amountUSD = amountUSD + (currency.balance * usdTicker.buyPrice)
+                }
+            }
+        }
+        
+        wm.amountBTC = amountBTC
+        wm.amountUSD = amountUSD
+    }
 }

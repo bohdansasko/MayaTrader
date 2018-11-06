@@ -24,4 +24,8 @@ class WalletPresenter: WalletModuleInput, WalletViewOutput, WalletInteractorOutp
     func onDidLoadWallet(_ wallet: WalletModel) {
         view.updateWallet(wallet)
     }
+    
+    func viewDidLoad() {
+        interactor.viewDidLoad()
+    }
 }

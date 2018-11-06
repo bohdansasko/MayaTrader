@@ -19,6 +19,7 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         imageView.contentMode = .center
         return imageView
     }()
+    
     var balanceView = WalletBalanceView()
     var tableCurrenciesView = WalletTableCurrenciesView()
     
@@ -28,6 +29,7 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        output.viewDidLoad()
         setupViews()
     }
     
@@ -48,6 +50,7 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
 
 extension WalletViewController {
     func updateWallet(_ wallet: WalletModel) {
+        balanceView.dataProvider = wallet
         tableCurrenciesView.dataProvider = wallet
     }
 }

@@ -14,6 +14,7 @@ protocol WalletViewInput: class {
 }
 
 protocol WalletViewOutput {
+    func viewDidLoad()
     func viewIsReady()
     func openCurrencyListVC()
 }

@@ -38,6 +38,9 @@ struct WalletModel : Mappable {
     private var unusedBalances: [WalletCurrencyModel]!
     private var transactionHistory: [WalletTransactionHistory]!
 
+    var amountBTC: Double = 0
+    var amountUSD: Double = 0
+    
     private var rawBalances: [String: String] {
         didSet { tryUpdateData() }
     }

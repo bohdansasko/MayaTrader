@@ -26,7 +26,6 @@ class WalletTableCurrenciesView: UIView {
     
     var dataProvider: WalletModel! {
         didSet {
-            
             dataProvider.filterCurrenciesByFavourites()
             tableView.reloadData()
         }

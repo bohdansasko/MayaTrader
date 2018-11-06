@@ -23,7 +23,7 @@ class WalletBalanceView: UIView {
         label.textAlignment = .left
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 24)
         label.textColor = .dodgerBlue
-        label.text = "\u{20BF} 56.19284"
+        label.text = "\u{20BF} 0.0"
         return label
     }()
     
@@ -41,7 +41,7 @@ class WalletBalanceView: UIView {
         label.textAlignment = .right
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 24)
         label.textColor = .dodgerBlue
-        label.text = "$ 271, 362"
+        label.text = "$ 0.0"
         return label
     }()
     
@@ -51,6 +51,14 @@ class WalletBalanceView: UIView {
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
+    
+    var dataProvider: WalletModel? {
+        didSet {
+            guard let dp = dataProvider else { return }
+            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: dp.amountBTC, maxFractDigits: 4))"
+            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: dp.amountUSD, maxFractDigits: 4))"
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -78,7 +86,7 @@ extension WalletBalanceView {
         addSubview(btcStackView)
         btcStackView.axis = .vertical
         btcStackView.spacing = 5
-        btcStackView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 30, leftConstant: 30, bottomConstant: 48, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        btcStackView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: currencyDividerImage.leftAnchor, topConstant: 30, leftConstant: 30, bottomConstant: 48, rightConstant: 20, widthConstant: 0, heightConstant: 0)
     }
     
     private func setupUSDView() {
@@ -86,6 +94,6 @@ extension WalletBalanceView {
         addSubview(usdStackView)
         usdStackView.axis = .vertical
         usdStackView.spacing = 5
-        usdStackView.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 30, leftConstant: 0, bottomConstant: 48, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        usdStackView.anchor(self.topAnchor, left: currencyDividerImage.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 30, leftConstant: 20, bottomConstant: 48, rightConstant: 30, widthConstant: 0, heightConstant: 0)
     }
 }

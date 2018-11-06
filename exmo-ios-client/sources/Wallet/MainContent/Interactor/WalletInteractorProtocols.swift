@@ -10,6 +10,7 @@ import Foundation
 import UIKit.UITableView
 
 @objc protocol WalletInteractorInput {
+    func viewDidLoad()
     func viewIsReady()
 }
 

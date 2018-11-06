@@ -14,6 +14,7 @@ protocol NetworkWorker {
     func handleResponse(response: DataResponse<Any>)
     
     var onHandleResponseSuccesfull: ((Any) -> Void)? { get set }
+    
 }
 
 extension NetworkWorker {
