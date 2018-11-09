@@ -9,105 +9,114 @@
 import Foundation
 import UIKit.UITableView
 
-class WalletSettingsDisplayManager: NSObject {
-    private var walletDataProvider: WalletModel!
+class WalletSettingsDisplayManager: UIView {
+    var tableView: UITableView = {
+        let tv = UITableView()
+        tv.setEditing(true, animated: true)
+        tv.tableFooterView = UIView()
+        tv.backgroundColor = .clear
+        tv.separatorStyle = .none
+        return tv
+    }()
+    
+    var walletDataProvider: WalletModel? {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     private var filteredBalances: [WalletCurrencyModel]!
+    private let cellId = "cellId"
+    private var isSearching = false
     
-    var tableView: UITableView!
-    var searchBar: UISearchBar!
-    
-    var isSearching = false
-    
-    init(walletDataProvider: WalletModel!) {
-        super.init()
-        self.walletDataProvider = walletDataProvider
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
-        self.filteredBalances = []
+        filteredBalances = []
+        setupViews()
     }
     
-    func setSearchBar(searchBar: UISearchBar!) {
-        self.searchBar = searchBar
-        self.searchBar.delegate = self
-        self.searchBar.returnKeyType = UIReturnKeyType.done
-        searchBar.removeGlassIcon()
-        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .Regular, fontSize: 14))
-    }
-    
-    func setTableView(tableView: UITableView!) {
-        self.tableView = tableView
-        
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        
-        self.tableView.reloadData()
-        self.tableView.setEditing(true, animated: true)
-    }
-    
-    func isDataExists() -> Bool {
-        return walletDataProvider.isDataExists()
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     func saveChangesToSession() {
-        AppDelegate.session.getUser().walletInfo = walletDataProvider
+        AppDelegate.session.getUser().walletInfo = walletDataProvider!
+    }
+}
+
+extension WalletSettingsDisplayManager {
+    func setupViews() {
+        setupTableView()
+    }
+    
+    private func setupTableView() {
+        addSubview(tableView)
+        tableView.fillSuperview()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(WalletSettingsTableViewCell.self, forCellReuseIdentifier: cellId)
+    }
+    
+    func filterBy(text: String) {
+        
     }
 }
 
 extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSource  {
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.backgroundView?.backgroundColor = UIColor(red: 3.0/255.0, green: 1.0/255.0, blue: 10.0/255.0, alpha: 1.0)
-        header.textLabel?.textColor = UIColor(red: 178.0/255.0, green: 178.0/255.0, blue: 178.0/255.0, alpha: 190.0/255.0)
-        header.textLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
-        header.textLabel?.frame = header.frame
-        header.textLabel?.textAlignment = .left
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = WalletSettingsTableHeaderCell()
+        headerView.title = "NO RESULTS FOUND"
+//            isSearching
+//            ? filteredBalances.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
+//            : walletDataProvider!.getCountSections() == 1
+//            ? ""
+//            : section == 0 ? "SELECTED" : "UNUSED"
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return isSearching ? 1 : self.walletDataProvider.getCountSections()
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return isSearching
-            ? self.filteredBalances.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
-            : self.walletDataProvider.getCountSections() == 1
-                ? ""
-                : section == 0 ? "SELECTED" : "UNUSED"
+        return isSearching ? 1 : walletDataProvider!.getCountSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return isSearching
-            ? self.filteredBalances.count
-            : self.walletDataProvider.getCountSections() == 1
-                ? self.walletDataProvider.getCountAllExistsCurrencies()
+            ? filteredBalances.count
+            : walletDataProvider!.getCountSections() == 1
+                ? walletDataProvider!.getCountAllExistsCurrencies()
                 : section == 0
-                    ? self.walletDataProvider.getCountUsedCurrencies()
-                    : self.walletDataProvider.getCountUnusedCurrencies()
+                    ? walletDataProvider!.getCountUsedCurrencies()
+                    : walletDataProvider!.getCountUnusedCurrencies()
         
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let currency = isSearching
-            ? self.filteredBalances[indexPath.row]
-            : self.walletDataProvider.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: self.walletDataProvider.getCountSections())
-        let cell = tableView.dequeueReusableCell(withIdentifier: TableCellIdentifiers.WalletSettingsCell.rawValue, for: indexPath) as! WalletSettingsTableViewCell
-        cell.setContent(id: currency.orderId, currencyLabel: currency.currency, isFavourite: currency.isFavourite, onSwitchValueCallback: { [weak self] (id, isFavourite) in
-            self?.walletDataProvider.setIsFavourite(id: id, isFavourite: isFavourite)
+            ? filteredBalances[indexPath.row]
+            : walletDataProvider!.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: walletDataProvider!.getCountSections())
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletSettingsTableViewCell
+        cell.currency = currency
+        cell.onSwitchValueCallback = {
+            [weak self] currency in
+            self?.walletDataProvider!.setIsFavourite(id: currency.orderId, isFavourite: currency.isFavourite)
             self?.tableView.reloadData()
-        })
-        
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return self.isSearching
+        return isSearching
             ? false
-            : self.walletDataProvider.getCountSections() == 2 && indexPath.section != 1
+            : walletDataProvider!.getCountSections() == 2 && indexPath.section != 1
                 ? true
                 : false
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        self.walletDataProvider.swapUsedCurrencies(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        walletDataProvider!.swapUsedCurrencies(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -119,15 +128,15 @@ extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSour
     }
 }
 
-extension WalletSettingsDisplayManager: UISearchBarDelegate {
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            self.isSearching = false
-            self.tableView.reloadData()
-        } else {
-            self.isSearching = true
-            self.filteredBalances = self.walletDataProvider.getCurrenciesByFilter(filterClosure: { $0.currency.contains(searchText.uppercased()) })
-            self.tableView.reloadData()
-        }
-    }
-}
+//extension WalletSettingsDisplayManager: UISearchBarDelegate {
+//    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+//        if searchText.isEmpty {
+//            isSearching = false
+//            tableView.reloadData()
+//        } else {
+//            isSearching = true
+//            filteredBalances = walletDataProvider.getCurrenciesByFilter(filterClosure: { $0.currency.contains(searchText.uppercased()) })
+//            tableView.reloadData()
+//        }
+//    }
+//}

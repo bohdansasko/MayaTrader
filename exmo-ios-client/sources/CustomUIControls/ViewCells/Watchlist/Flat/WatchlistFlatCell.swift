@@ -45,7 +45,7 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
     
     var verticalLineSeparatorImage: UIView = {
         let view = UIView()
-        view.backgroundColor = .dark2
+        view.backgroundColor = .dark1
         view.frame = CGRect(x: 0, y: 0, width: 1, height: 15)
         return view
     }()

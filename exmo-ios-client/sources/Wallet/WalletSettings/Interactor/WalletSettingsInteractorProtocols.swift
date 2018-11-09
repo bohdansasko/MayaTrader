@@ -8,6 +8,11 @@
 
 import Foundation
 
+protocol WalletSettingsInteractorInput {
+    func viewIsReady()
+    func saveWalletDataToCache()
+}
+
 protocol WalletSettingsInteractorOutput: class {
     // do nothing
 }
