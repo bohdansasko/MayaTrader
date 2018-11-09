@@ -27,7 +27,8 @@ class WalletSettingsModuleConfigurator {
 
         let interactor = WalletSettingsInteractor()
         interactor.output = presenter
-
+        interactor.networkWorker = ExmoWalletCurrenciesListNetworkWorker()
+        
         presenter.interactor = interactor
         viewController.output = presenter
     }

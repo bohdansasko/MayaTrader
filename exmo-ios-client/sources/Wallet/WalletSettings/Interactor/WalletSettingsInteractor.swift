@@ -6,12 +6,19 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 import UIKit.UIViewController
+import Alamofire
+import SwiftyJSON
 
 class WalletSettingsInteractor: WalletSettingsInteractorInput {
     weak var output: WalletSettingsInteractorOutput!
+    var networkWorker: IWalletCurrenciesListNetworkWorker!
     
     func viewIsReady() {
-        // do nothing
+        networkWorker.delegate = self
+    }
+    
+    func viewIsReadyToLoadData() {
+        networkWorker.loadWalletInfo()
     }
 
     func saveWalletDataToCache() {
@@ -19,6 +26,23 @@ class WalletSettingsInteractor: WalletSettingsInteractorInput {
         let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: AppDelegate.session.getUser())
         if isUserSavedToLocalStorage {
             print("user info cached")
+        }
+    }
+}
+
+extension WalletSettingsInteractor: IWalletCurrenciesListNetworkWorkerDelegate {
+    func onDidLoadWalletInfo(response: DataResponse<Any>) {
+        switch response.result {
+        case .success(_):
+            do {
+                let json = try JSON(data: response.data!)
+                guard let wallet = WalletModel(JSONString: json.description) else { return }
+                output.onDidLoadWallet(wallet)
+            } catch {
+                print("NetworkWorker: we caught a problem in handle response")
+            }
+        case .failure(_):
+            output.onDidLoadWallet(WalletModel())
         }
     }
 }

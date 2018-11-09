@@ -12,17 +12,36 @@ class WalletSettingsPresenter: WalletSettingsModuleInput, WalletSettingsViewOutp
     weak var view: WalletSettingsViewInput!
     var interactor: WalletSettingsInteractorInput!
     var router: WalletSettingsRouterInput!
+}
 
+// @MARK: WalletSettingsModuleInput
+extension WalletSettingsPresenter {
+    func configure(wallet: WalletModel) {
+        view.updateWallet(wallet)
+    }
+}
+
+
+// @MARK: WalletSettingsViewOutput
+extension WalletSettingsPresenter {
     func viewIsReady() {
         interactor.viewIsReady()
     }
     
-    func configure(walletModel: WalletModel) {
-        view.configure(walletModel: walletModel)
+    func viewDidAppear() {
+        interactor.viewIsReadyToLoadData()
     }
     
-    func handleCloseView() {
+    func handleTouchCloseVC() {
         interactor.saveWalletDataToCache()
         router.closeView(uiViewController: view as! UIViewController)
+    }
+}
+
+
+// @MARK: WalletSettingsInteractorOutput
+extension WalletSettingsPresenter {
+    func onDidLoadWallet(_ wallet: WalletModel) {
+        view.updateWallet(wallet)
     }
 }

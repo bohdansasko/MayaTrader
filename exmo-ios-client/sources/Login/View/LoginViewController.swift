@@ -108,7 +108,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         return button
     }()
 
-    public let activityIndicatorView: UIActivityIndicatorView = {
+    let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
         aiv.hidesWhenStopped = true
         aiv.color = .white

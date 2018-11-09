@@ -8,45 +8,55 @@
 
 import UIKit
 
-class WalletSettingsViewController: UIViewController, WalletSettingsViewInput {
+class WalletSettingsViewController: UIViewController {
     var output: WalletSettingsViewOutput!
 
     var tabBar: CurrenciesListTabBar = {
         let tabBar = CurrenciesListTabBar()
         return tabBar
     }()
+    
     var currenciesListView: WalletSettingsDisplayManager = {
         let dm = WalletSettingsDisplayManager()
         return dm
     }()
     
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.hidesWhenStopped = true
+        aiv.color = .white
+        return aiv
+    }()
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
         
         view.backgroundColor = .black
         setupViews()
+        output.viewIsReady()
     }
     
-    func configure(walletModel: WalletModel) {
-//        currenciesListView.walletDataProvider = walletModel
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewDidAppear()
     }
     
     @objc func closeView() {
         currenciesListView.saveChangesToSession()
-        output.handleCloseView()
+        output.handleTouchCloseVC()
     }
-
 }
 
-// MARK: WalletSettingsViewInput
-
-// @MARK:
+// @MARK: setup views
 extension WalletSettingsViewController {
     func setupViews() {
         setupNavigationBar()
         setupCurrenciesList()
+        
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.anchorCenterSuperview()
+        activityIndicatorView.startAnimating()
 //        if AppDelegate.isIPhone(model: .X) {
 //            self.layoutConstraintHeaderHeight.constant = 95
 //        }
@@ -64,15 +74,20 @@ extension WalletSettingsViewController {
     private func setupCurrenciesList() {
         view.addSubview(currenciesListView)
         currenciesListView.anchor(tabBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        currenciesListView.walletDataProvider = WalletModel()
+    }
+}
+
+// @MARK: WalletSettingsViewInput
+extension WalletSettingsViewController: WalletSettingsViewInput {
+    func updateWallet(_ wallet: WalletModel) {
+        currenciesListView.wallet = wallet
+        activityIndicatorView.stopAnimating()
     }
 }
 
 // MARK: UISearchBarDelegate
 extension WalletSettingsViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        guard let ds = datasource as? CurrenciesListDataSource else { return }
-//        ds.filterBy(text: searchText)
         currenciesListView.filterBy(text: searchText)
     }
 }

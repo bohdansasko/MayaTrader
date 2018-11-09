@@ -10,9 +10,10 @@ import Foundation
 
 protocol WalletSettingsInteractorInput {
     func viewIsReady()
+    func viewIsReadyToLoadData()
     func saveWalletDataToCache()
 }
 
 protocol WalletSettingsInteractorOutput: class {
-    // do nothing
+    func onDidLoadWallet(_ wallet: WalletModel)
 }

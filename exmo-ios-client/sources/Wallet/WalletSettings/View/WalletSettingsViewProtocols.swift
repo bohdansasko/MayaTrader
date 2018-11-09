@@ -9,10 +9,11 @@
 import UIKit.UITableView
 
 protocol WalletSettingsViewInput: class {
-    func configure(walletModel: WalletModel)
+    func updateWallet(_ wallet: WalletModel)
 }
 
 protocol WalletSettingsViewOutput {
     func viewIsReady()
-    func handleCloseView()
+    func viewDidAppear()
+    func handleTouchCloseVC()
 }

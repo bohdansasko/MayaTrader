@@ -7,5 +7,5 @@
 //
 
 protocol WalletSettingsModuleInput: class {
-    func configure(walletModel: WalletModel)
+    func configure(wallet: WalletModel)
 }

@@ -50,7 +50,7 @@ class WalletSettingsTableViewCell: UITableViewCell {
     
     var amountCurrencyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 10)
+        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .dark2
         label.text = "9600.235"
@@ -60,6 +60,7 @@ class WalletSettingsTableViewCell: UITableViewCell {
     var actionButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setBackgroundImage(UIImage(named: "icWalletAssign"), for: .normal)
+        button.setBackgroundImage(UIImage(named: "icWalletUnassign"), for: .highlighted)
         button.setBackgroundImage(UIImage(named: "icWalletUnassign"), for: .selected)
         return button
     }()
@@ -74,6 +75,7 @@ class WalletSettingsTableViewCell: UITableViewCell {
         didSet {
             guard let c = currency else { return }
             currencyNameLabel.text = c.currency
+            amountCurrencyLabel.text = Utils.getFormatedPrice(value: c.balance, maxFractDigits: 3)
             actionButton.isSelected = c.isFavourite
         }
     }
@@ -103,10 +105,10 @@ extension WalletSettingsTableViewCell {
         actionButton.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 30, bottomConstant: 20, rightConstant: 0, widthConstant: 25, heightConstant: 25)
         
         addSubview(currencyNameLabel)
-        currencyNameLabel.anchor(self.topAnchor, left: actionButton.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 24, leftConstant: 20, bottomConstant: 24, rightConstant: 0, widthConstant: 100, heightConstant: 0)
+        currencyNameLabel.anchor(self.topAnchor, left: actionButton.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 15, leftConstant: 20, bottomConstant: 33, rightConstant: 0, widthConstant: 100, heightConstant: 0)
         
         addSubview(amountCurrencyLabel)
-        amountCurrencyLabel.anchor(currencyNameLabel.bottomAnchor, left: currencyNameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 2, rightConstant: 85, widthConstant: 0, heightConstant: 0)
+        amountCurrencyLabel.anchor(currencyNameLabel.bottomAnchor, left: currencyNameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 11, rightConstant: 85, widthConstant: 0, heightConstant: 0)
         
         addSubview(bottomSeparatorLine)
         bottomSeparatorLine.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
