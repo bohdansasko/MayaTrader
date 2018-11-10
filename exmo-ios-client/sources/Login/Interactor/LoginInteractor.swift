@@ -8,17 +8,18 @@
 import Foundation
 import ObjectMapper
 import SwiftyJSON
+import Alamofire
 
-class LoginInteractor: LoginInteractorInput {
+class LoginInteractor  {
     weak var output: LoginInteractorOutput!
     var networkWorker: ILoginNetworkWorker!
     var loginModel: QRLoginModel?
-    
+}
+
+// @MARK: LoginInteractorInput
+extension LoginInteractor: LoginInteractorInput {
     func viewIsReady() {
-        networkWorker.onHandleResponseSuccesfull = {
-            [weak self] response in
-            self?.onDidLoadUserInfo(response: response)
-        }
+        networkWorker.delegate = self
     }
     
     func loadUserInfo(loginModel: QRLoginModel) {
@@ -29,9 +30,10 @@ class LoginInteractor: LoginInteractorInput {
         self.loginModel = loginModel
         networkWorker.loadUserInfo(loginModel: loginModel)
     }
-    
-    func onDidLoadUserInfo(response: Any) {
-        guard let json = response as? JSON else { return }
+}
+
+extension LoginInteractor {
+    func parseAndFinishLogin(json: JSON) {
         if let requestError = RequestResult(JSONString: json.description) {
             if requestError.error != nil {
                 self.output.showAlert(title: "Login", message: requestError.error!)
@@ -51,5 +53,22 @@ class LoginInteractor: LoginInteractorInput {
         
         AppDelegate.session.setUserModel(userData: userData, shouldSaveUserInCache: true)
         output.closeViewController()
+    }
+}
+
+// @MARK: ILoginNetworkWorkerDelegate
+extension LoginInteractor: ILoginNetworkWorkerDelegate {
+    func onDidLoadUserInfo(response: DataResponse<Any>) {
+        switch response.result {
+        case .success(_):
+            do {
+                let jsonStr = try JSON(data: response.data!)
+                parseAndFinishLogin(json: jsonStr)
+            } catch {
+                print("NetworkWorker: we caught a problem in handle response")
+            }
+        case .failure(_):
+            print("NetworkWorker: failure loading chart data")
+        }
     }
 }

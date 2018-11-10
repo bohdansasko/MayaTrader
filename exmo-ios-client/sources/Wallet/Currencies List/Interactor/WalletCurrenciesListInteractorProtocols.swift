@@ -11,7 +11,7 @@ import Foundation
 protocol WalletCurrenciesListInteractorInput {
     func viewIsReady()
     func viewIsReadyToLoadData()
-    func saveWalletDataToCache()
+    func saveChangesToCache()
 }
 
 protocol WalletCurrenciesListInteractorOutput: class {

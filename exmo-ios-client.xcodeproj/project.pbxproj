@@ -64,6 +64,12 @@
 		202F48F6206A157D0080423E /* WatchlistFlatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistFlatCell.swift */; };
 		202F48F8206A16640080423E /* WatchlistCurrencyPairsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */; };
 		20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20345011217B644400D2E831 /* CurrenciesListViewController.swift */; };
+		20369A4421972149001D6628 /* MainTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4321972149001D6628 /* MainTabBarInteractor.swift */; };
+		20369A4621972159001D6628 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4521972159001D6628 /* MainTabBarPresenter.swift */; };
+		20369A482197223C001D6628 /* MainTabBarModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A472197223C001D6628 /* MainTabBarModuleInitializer.swift */; };
+		20369A4A2197232E001D6628 /* MainTabBarProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A492197232E001D6628 /* MainTabBarProtocols.swift */; };
+		20369A4D219723FB001D6628 /* MainTabBarInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4C219723FB001D6628 /* MainTabBarInteractorProtocols.swift */; };
+		20369A5121972438001D6628 /* MainTabBarPresenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A5021972438001D6628 /* MainTabBarPresenterProtocols.swift */; };
 		203B8A8220AF2DB6004EF229 /* UITouchableNibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */; };
 		2045B5CB21035D39000F9D4C /* PlaceholderNoDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */; };
 		2045B5CD21035D4B000F9D4C /* PlaceholderNoDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2045B5CC21035D4B000F9D4C /* PlaceholderNoDataView.xib */; };
@@ -355,6 +361,12 @@
 		202F48F5206A157D0080423E /* WatchlistFlatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatCell.swift; sourceTree = "<group>"; };
 		202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairsModel.swift; sourceTree = "<group>"; };
 		20345011217B644400D2E831 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
+		20369A4321972149001D6628 /* MainTabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractor.swift; sourceTree = "<group>"; };
+		20369A4521972159001D6628 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
+		20369A472197223C001D6628 /* MainTabBarModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarModuleInitializer.swift; sourceTree = "<group>"; };
+		20369A492197232E001D6628 /* MainTabBarProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarProtocols.swift; sourceTree = "<group>"; };
+		20369A4C219723FB001D6628 /* MainTabBarInteractorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractorProtocols.swift; sourceTree = "<group>"; };
+		20369A5021972438001D6628 /* MainTabBarPresenterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenterProtocols.swift; sourceTree = "<group>"; };
 		203B8A8120AF2DB6004EF229 /* UITouchableNibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITouchableNibView.swift; sourceTree = "<group>"; };
 		2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderNoDataView.swift; sourceTree = "<group>"; };
 		2045B5CC21035D4B000F9D4C /* PlaceholderNoDataView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderNoDataView.xib; sourceTree = "<group>"; };
@@ -875,6 +887,44 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		20369A42219720F0001D6628 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				20369A4B21972343001D6628 /* View */,
+				20369A4F2197242A001D6628 /* Presenter */,
+				20369A4E2197240F001D6628 /* Interactor */,
+				20369A472197223C001D6628 /* MainTabBarModuleInitializer.swift */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		20369A4B21972343001D6628 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				20369A492197232E001D6628 /* MainTabBarProtocols.swift */,
+				206BD9512074297400ADC91C /* MainTabBarController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		20369A4E2197240F001D6628 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				20369A4C219723FB001D6628 /* MainTabBarInteractorProtocols.swift */,
+				20369A4321972149001D6628 /* MainTabBarInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		20369A4F2197242A001D6628 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				20369A4521972159001D6628 /* MainTabBarPresenter.swift */,
+				20369A5021972438001D6628 /* MainTabBarPresenterProtocols.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		20463D8720E6A13C00086B51 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +942,7 @@
 				2084492B2049311F007CA79C /* CoreData */,
 				205A7CBE203CCEBD00A2E28A /* Main */,
 				20CAFEFE2042ED8500C7DEA5 /* Services */,
+				20369A42219720F0001D6628 /* MainTabBar */,
 				2F5076038FAE7726FAFBB74C /* Login */,
 				9E01C470C3E1B77012FC4051 /* QRScanner */,
 				0D42C8C67FEB7E4CCB711CBC /* Menu */,
@@ -1092,7 +1143,6 @@
 				202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */,
 				207EAE09204FE47400FDA3B7 /* Session.swift */,
 				3671257CD4262EA9B280ABE0 /* Constants.swift */,
-				206BD9512074297400ADC91C /* MainTabBarController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2067,6 +2117,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20001D71203B8D1200B6966F /* exmo_ios_client.xcdatamodeld in Sources */,
+				20369A4421972149001D6628 /* MainTabBarInteractor.swift in Sources */,
 				205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */,
 				206BD9522074297400ADC91C /* MainTabBarController.swift in Sources */,
 				20600A2120532831004D7F45 /* WalletCurrencyEntity+CoreDataClass.swift in Sources */,
@@ -2150,6 +2201,7 @@
 				B49D5CFB9505A49D6256530A /* WalletViewController.swift in Sources */,
 				9B83E5D76255DC1CF427CA5E /* WalletModuleInput.swift in Sources */,
 				202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */,
+				20369A482197223C001D6628 /* MainTabBarModuleInitializer.swift in Sources */,
 				F403E921F12C165CC3DA3F52 /* WalletPresenter.swift in Sources */,
 				206A3B6B2175522400C25E95 /* Cells.swift in Sources */,
 				20600A1F20532831004D7F45 /* WalletEntity+CoreDataClass.swift in Sources */,
@@ -2212,6 +2264,7 @@
 				3E6304CF146BD0C1098DBB72 /* CreateOrderInteractor.swift in Sources */,
 				2010154420B02B6B00324F22 /* AlertTableViewCellWithArrow.swift in Sources */,
 				811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */,
+				20369A4621972159001D6628 /* MainTabBarPresenter.swift in Sources */,
 				C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */,
 				D973E58060E2D991B0A64100 /* CreateOrderConfigurator.swift in Sources */,
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
@@ -2258,6 +2311,7 @@
 				20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */,
 				4C8399DB000EE08F2E8E87E6 /* CreateAlertRouterInput.swift in Sources */,
 				D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */,
+				20369A4D219723FB001D6628 /* MainTabBarInteractorProtocols.swift in Sources */,
 				9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */,
 				207B1D992173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift in Sources */,
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
@@ -2267,7 +2321,9 @@
 				207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */,
 				74208443D94F8B7E1F98710D /* WatchlistCurrencyChartViewInput.swift in Sources */,
 				CAB081780C816F30AA959325 /* WatchlistCurrencyChartViewOutput.swift in Sources */,
+				20369A4A2197232E001D6628 /* MainTabBarProtocols.swift in Sources */,
 				5A2AFB98DDCEF332BD76F334 /* WatchlistCurrencyChartViewController.swift in Sources */,
+				20369A5121972438001D6628 /* MainTabBarPresenterProtocols.swift in Sources */,
 				88F374AA6AB2C96E9516D8AB /* WatchlistCurrencyChartModuleInput.swift in Sources */,
 				EABF76B025CEFE0E8375F4D1 /* WatchlistCurrencyChartPresenter.swift in Sources */,
 				BA0F381B769424B4E72E2954 /* WatchlistCurrencyChartInteractorInput.swift in Sources */,

@@ -9,22 +9,53 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    var selectedTabIndicatorImage: UIImageView!
+    var output: MainTabBarViewOutput!
     
+    var selectedTabIndicatorImage: UIImageView!
     var containerInitial: [NSObject] = []
     
     override func viewDidLoad() {
-        self.delegate = self as? UITabBarControllerDelegate
-        
         super.viewDidLoad()
-        
+
+        setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewIsReady()
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let index = tabBar.items?.index(of: item) else { return }
+        updateIndicatorPosition(index: index)
+    }
+    
+    func updateIndicatorPosition(index: Int) {
+        let count = 5
+        let width = CGFloat(self.tabBar.frame.width) / CGFloat(count)
+        let posX = width * CGFloat(index) + CGFloat(width/2)
+        selectedTabIndicatorImage.center.x = CGFloat(posX)
+    }
+}
+
+// @MARK: setup UI
+extension MainTabBarController {
+    func setupViews() {
         setupTabBarItems()
         setupTabBar()
+    }
+    
+    private func setupTabBar() {
+        tabBar.barTintColor = .black
+        tabBar.isTranslucent = false
         
-        if AppDelegate.session.isUserWasLoggedInExmoAccount() {
-            AppDelegate.session.exmoLoginWithCacheData()
-        }
-        AppDelegate.session.roobikLogin()
+        addSelectedTabIndicator()
+        updateIndicatorPosition(index: 0)
     }
     
     private func setupTabBarItems() {
@@ -43,22 +74,14 @@ class MainTabBarController: UITabBarController {
         guard let watchlistTabBarItem = tabBar.items?[0] else { return }
         watchlistTabBarItem.image = UIImage(named: "icTabbarWatchlist")
         watchlistTabBarItem.selectedImage = UIImage(named: "icTabbarWatchlistSelected")
-
+        
         guard let walletTabBarItem = tabBar.items?[2] else { return }
         walletTabBarItem.image = UIImage(named: "icTabbarWallet")
         walletTabBarItem.selectedImage = UIImage(named: "icTabbarWalletSelected")
-
+        
         guard let menuTabBarItem = tabBar.items?[4] else { return }
         menuTabBarItem.image = UIImage(named: "icTabbarMenu")
         menuTabBarItem.selectedImage = UIImage(named: "icTabbarMenuSelected")
-    }
-    
-    private func setupTabBar() {
-        tabBar.barTintColor = .black
-        tabBar.isTranslucent = false
-        
-        addSelectedTabIndicator()
-        updateIndicatorPosition(index: 0)
     }
     
     private func addSelectedTabIndicator() {
@@ -69,30 +92,9 @@ class MainTabBarController: UITabBarController {
         selectedTabIndicatorImage.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
         self.tabBar.addSubview(selectedTabIndicatorImage)
     }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        guard let index = tabBar.items?.index(of: item) else { return }
-        updateIndicatorPosition(index: index)
-    }
-    
-    private func updateIndicatorPosition(index: Int) {
-        let count = 5
-        let width = CGFloat(self.tabBar.frame.width) / CGFloat(count)
-        let posX = width * CGFloat(index) + CGFloat(width/2)
-        selectedTabIndicatorImage.center.x = CGFloat(posX)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+}
 
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // do nothing
-    }
+// @MARK: MainTabBarInput
+extension MainTabBarController: MainTabBarViewInput {
+    // do nothing
 }

@@ -33,7 +33,7 @@ extension WalletCurrenciesListPresenter {
     }
     
     func handleTouchCloseVC() {
-        interactor.saveWalletDataToCache()
+        interactor.saveChangesToCache()
         router.closeView(uiViewController: view as! UIViewController)
     }
 }

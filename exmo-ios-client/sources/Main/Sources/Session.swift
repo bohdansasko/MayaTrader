@@ -52,25 +52,6 @@ class Session {
 // MARK: Account
 //
 extension Session {
-    func isUserWasLoggedInExmoAccount() -> Bool {
-        return AppDelegate.cacheController.isUserInfoExistsInCache()
-    }
-    
-    func exmoLoginWithCacheData() {
-        guard let user = AppDelegate.cacheController.getUser() else {
-            return
-        }
-        
-        guard let qrModel = user.qrModel else {
-            return
-        }
-        self.exmoLogin(loginModel: qrModel)
-    }
-    
-    func exmoLogin(loginModel: QRLoginModel) {
-        AppDelegate.exmoController.login(apiKey: loginModel.key!, secretKey: loginModel.secret!)
-    }
-    
     func roobikLogin() {
         AppDelegate.roobikController.signIn()
     }
