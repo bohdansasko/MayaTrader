@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsViewController.swift
+//  WalletCurrenciesListViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-class WalletSettingsViewController: UIViewController {
-    var output: WalletSettingsViewOutput!
+class WalletCurrenciesListViewController: UIViewController {
+    var output: WalletCurrenciesListViewOutput!
 
     var tabBar: CurrenciesListTabBar = {
         let tabBar = CurrenciesListTabBar()
         return tabBar
     }()
     
-    var currenciesListView: WalletSettingsDisplayManager = {
-        let dm = WalletSettingsDisplayManager()
+    var currenciesListView: WalletCurrenciesListView = {
+        let dm = WalletCurrenciesListView()
         return dm
     }()
     
@@ -49,7 +49,7 @@ class WalletSettingsViewController: UIViewController {
 }
 
 // @MARK: setup views
-extension WalletSettingsViewController {
+extension WalletCurrenciesListViewController {
     func setupViews() {
         setupNavigationBar()
         setupCurrenciesList()
@@ -77,8 +77,8 @@ extension WalletSettingsViewController {
     }
 }
 
-// @MARK: WalletSettingsViewInput
-extension WalletSettingsViewController: WalletSettingsViewInput {
+// @MARK: WalletCurrenciesListViewInput
+extension WalletCurrenciesListViewController: WalletCurrenciesListViewInput {
     func updateWallet(_ wallet: WalletModel) {
         currenciesListView.wallet = wallet
         activityIndicatorView.stopAnimating()
@@ -86,7 +86,7 @@ extension WalletSettingsViewController: WalletSettingsViewInput {
 }
 
 // MARK: UISearchBarDelegate
-extension WalletSettingsViewController: UISearchBarDelegate {
+extension WalletCurrenciesListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         currenciesListView.filterBy(text: searchText)
     }

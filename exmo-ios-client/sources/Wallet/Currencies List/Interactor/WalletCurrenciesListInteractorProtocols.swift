@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsInteractorOutput.swift
+//  WalletCurrenciesListWalletCurrenciesListInteractorOutput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol WalletSettingsInteractorInput {
+protocol WalletCurrenciesListInteractorInput {
     func viewIsReady()
     func viewIsReadyToLoadData()
     func saveWalletDataToCache()
 }
 
-protocol WalletSettingsInteractorOutput: class {
+protocol WalletCurrenciesListInteractorOutput: class {
     func onDidLoadWallet(_ wallet: WalletModel)
 }

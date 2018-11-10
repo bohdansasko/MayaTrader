@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsViewOutput.swift
+//  WalletCurrenciesListWalletCurrenciesListViewOutput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -8,11 +8,11 @@
 
 import UIKit.UITableView
 
-protocol WalletSettingsViewInput: class {
+protocol WalletCurrenciesListViewInput: class {
     func updateWallet(_ wallet: WalletModel)
 }
 
-protocol WalletSettingsViewOutput {
+protocol WalletCurrenciesListViewOutput {
     func viewIsReady()
     func viewDidAppear()
     func handleTouchCloseVC()

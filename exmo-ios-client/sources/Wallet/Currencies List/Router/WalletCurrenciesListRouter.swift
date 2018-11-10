@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsRouter.swift
+//  WalletCurrenciesListWalletCurrenciesListRouter.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -7,7 +7,7 @@
 //
 import UIKit.UIViewController
 
-class WalletSettingsRouter: WalletSettingsRouterInput {
+class WalletCurrenciesListRouter: WalletCurrenciesListRouterInput {
     func closeView(uiViewController: UIViewController) {
         uiViewController.close()
     }

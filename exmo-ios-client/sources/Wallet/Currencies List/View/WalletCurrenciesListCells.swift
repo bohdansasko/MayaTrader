@@ -1,5 +1,5 @@
 //
-//  WalletSettingsTableViewCell.swift
+//  WalletCurrenciesListTableViewCell.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/17/18.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-// @MARK: WalletSettingsTableHeaderCell
-class WalletSettingsTableHeaderCell: UITableViewHeaderFooterView {
+// @MARK: WalletCurrenciesListTableHeaderCell
+class WalletCurrenciesListTableHeaderCell: UITableViewHeaderFooterView {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
@@ -38,8 +38,8 @@ class WalletSettingsTableHeaderCell: UITableViewHeaderFooterView {
     }
 }
 
-// @MARK: WalletSettingsTableViewCell
-class WalletSettingsTableViewCell: UITableViewCell {
+// @MARK: WalletCurrenciesListTableViewCell
+class WalletCurrenciesListTableViewCell: UITableViewCell {
     var currencyNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 14)
@@ -70,6 +70,7 @@ class WalletSettingsTableViewCell: UITableViewCell {
         let button = UIImageView()
         button.image = image
         button.contentMode = .center
+        button.isExclusiveTouch = true
         return button
     }()
     
@@ -111,7 +112,7 @@ class WalletSettingsTableViewCell: UITableViewCell {
     }
 }
 
-extension WalletSettingsTableViewCell {
+extension WalletCurrenciesListTableViewCell {
     func setupViews() {
         addSubview(actionButton)
         actionButton.addTarget(self, action: #selector(handleTouchActionButton(_ :)), for: .touchUpInside)

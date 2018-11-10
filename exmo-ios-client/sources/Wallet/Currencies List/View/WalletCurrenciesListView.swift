@@ -1,5 +1,5 @@
 //
-//  WalletSettingsDisplayManager.swift
+//  WalletCurrenciesListView.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/17/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit.UITableView
 
-class WalletSettingsDisplayManager: UIView {
+class WalletCurrenciesListView: UIView {
     var tableView: UITableView = {
         let tv = UITableView()
         tv.allowsSelection = false
@@ -46,7 +46,7 @@ class WalletSettingsDisplayManager: UIView {
     }
 }
 
-extension WalletSettingsDisplayManager {
+extension WalletCurrenciesListView {
     func setupTableView() {
         addSubview(tableView)
         tableView.fillSuperview()
@@ -54,7 +54,7 @@ extension WalletSettingsDisplayManager {
         tableView.dataSource = self
         tableView.dragDelegate = self
         tableView.dropDelegate = self
-        tableView.register(WalletSettingsTableViewCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(WalletCurrenciesListTableViewCell.self, forCellReuseIdentifier: cellId)
     }
     
     func filterBy(text: String) {
@@ -70,7 +70,7 @@ extension WalletSettingsDisplayManager {
 }
 
 // @MARK: UITableViewDataSource
-extension WalletSettingsDisplayManager: UITableViewDataSource  {
+extension WalletCurrenciesListView: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let w = wallet else { return 0 }
         return isSearching ? 1 : w.getCountSections()
@@ -94,7 +94,7 @@ extension WalletSettingsDisplayManager: UITableViewDataSource  {
         let currency = isSearching
             ? filteredBalances[indexPath.row]
             : w.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: w.getCountSections())
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletSettingsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletCurrenciesListTableViewCell
         cell.currency = currency
         cell.onSwitchValueCallback = {
             [weak self] currency in
@@ -118,7 +118,7 @@ extension WalletSettingsDisplayManager: UITableViewDataSource  {
 }
 
 // @MARK: UITableViewDelegate
-extension WalletSettingsDisplayManager: UITableViewDelegate  {
+extension WalletCurrenciesListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var title = ""
         if isSearching {
@@ -129,7 +129,7 @@ extension WalletSettingsDisplayManager: UITableViewDelegate  {
             title = section == 0 ? "SELECTED" : "UNUSED"
         }
         
-        let headerView = WalletSettingsTableHeaderCell()
+        let headerView = WalletCurrenciesListTableHeaderCell()
         headerView.title = title
         return headerView
     }
@@ -148,7 +148,7 @@ extension WalletSettingsDisplayManager: UITableViewDelegate  {
 }
 
 // @MARK: UITableViewDragDelegate
-extension WalletSettingsDisplayManager: UITableViewDragDelegate {
+extension WalletCurrenciesListView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard let w = wallet, isSearching == false else { return [] }
         
@@ -162,7 +162,7 @@ extension WalletSettingsDisplayManager: UITableViewDragDelegate {
 }
 
 // @MARK: UITableViewDropDelegate
-extension WalletSettingsDisplayManager: UITableViewDropDelegate {
+extension WalletCurrenciesListView: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
         // do something
     }

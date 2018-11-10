@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsConfigurator.swift
+//  WalletCurrenciesListWalletCurrenciesListConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class WalletSettingsModuleConfigurator {
+class WalletCurrenciesListModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? WalletSettingsViewController {
+        if let viewController = viewInput as? WalletCurrenciesListViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: WalletSettingsViewController) {
+    private func configure(viewController: WalletCurrenciesListViewController) {
 
-        let router = WalletSettingsRouter()
+        let router = WalletCurrenciesListRouter()
 
-        let presenter = WalletSettingsPresenter()
+        let presenter = WalletCurrenciesListPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = WalletSettingsInteractor()
+        let interactor = WalletCurrenciesListInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoWalletCurrenciesListNetworkWorker()
         

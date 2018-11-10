@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsPresenter.swift
+//  WalletCurrenciesListWalletCurrenciesListPresenter.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -7,23 +7,23 @@
 //
 import UIKit.UIViewController
 
-class WalletSettingsPresenter: WalletSettingsModuleInput, WalletSettingsViewOutput, WalletSettingsInteractorOutput {
+class WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput, WalletCurrenciesListViewOutput, WalletCurrenciesListInteractorOutput {
 
-    weak var view: WalletSettingsViewInput!
-    var interactor: WalletSettingsInteractorInput!
-    var router: WalletSettingsRouterInput!
+    weak var view: WalletCurrenciesListViewInput!
+    var interactor: WalletCurrenciesListInteractorInput!
+    var router: WalletCurrenciesListRouterInput!
 }
 
-// @MARK: WalletSettingsModuleInput
-extension WalletSettingsPresenter {
+// @MARK: WalletCurrenciesListModuleInput
+extension WalletCurrenciesListPresenter {
     func configure(wallet: WalletModel) {
         view.updateWallet(wallet)
     }
 }
 
 
-// @MARK: WalletSettingsViewOutput
-extension WalletSettingsPresenter {
+// @MARK: WalletCurrenciesListViewOutput
+extension WalletCurrenciesListPresenter {
     func viewIsReady() {
         interactor.viewIsReady()
     }
@@ -39,8 +39,8 @@ extension WalletSettingsPresenter {
 }
 
 
-// @MARK: WalletSettingsInteractorOutput
-extension WalletSettingsPresenter {
+// @MARK: WalletCurrenciesListInteractorOutput
+extension WalletCurrenciesListPresenter {
     func onDidLoadWallet(_ wallet: WalletModel) {
         view.updateWallet(wallet)
     }

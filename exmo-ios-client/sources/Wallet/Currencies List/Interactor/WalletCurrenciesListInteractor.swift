@@ -1,5 +1,5 @@
 //
-//  WalletSettingsWalletSettingsInteractor.swift
+//  WalletCurrenciesListWalletCurrenciesListInteractor.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 17/03/2018.
@@ -9,8 +9,8 @@ import UIKit.UIViewController
 import Alamofire
 import SwiftyJSON
 
-class WalletSettingsInteractor: WalletSettingsInteractorInput {
-    weak var output: WalletSettingsInteractorOutput!
+class WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
+    weak var output: WalletCurrenciesListInteractorOutput!
     var networkWorker: IWalletCurrenciesListNetworkWorker!
     
     func viewIsReady() {
@@ -22,7 +22,7 @@ class WalletSettingsInteractor: WalletSettingsInteractorInput {
     }
 
     func saveWalletDataToCache() {
-        print("WalletSettingsInteractor: save wallet to cache")
+        print("WalletCurrenciesListInteractor: save wallet to cache")
         let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: AppDelegate.session.getUser())
         if isUserSavedToLocalStorage {
             print("user info cached")
@@ -30,7 +30,7 @@ class WalletSettingsInteractor: WalletSettingsInteractorInput {
     }
 }
 
-extension WalletSettingsInteractor: IWalletCurrenciesListNetworkWorkerDelegate {
+extension WalletCurrenciesListInteractor: IWalletCurrenciesListNetworkWorkerDelegate {
     func onDidLoadWalletInfo(response: DataResponse<Any>) {
         switch response.result {
         case .success(_):

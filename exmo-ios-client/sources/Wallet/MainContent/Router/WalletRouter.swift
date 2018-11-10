@@ -10,7 +10,7 @@ import UIKit.UIViewController
 
 class WalletRouter: WalletRouterInput {
     func openCurrencyListVC(sourceVC: UIViewController) {
-        let moduleInit = WalletSettingsModuleInitializer()
+        let moduleInit = WalletCurrenciesListModuleInitializer()
         sourceVC.present(moduleInit.viewController, animated: true, completion: nil)
     }
 }
