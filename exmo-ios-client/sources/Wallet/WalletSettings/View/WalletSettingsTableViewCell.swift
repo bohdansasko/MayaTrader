@@ -65,6 +65,14 @@ class WalletSettingsTableViewCell: UITableViewCell {
         return button
     }()
     
+    var burgerImage: UIImageView = {
+        let image = UIImage(named: "icWalletDragDrop")?.withRenderingMode(.alwaysOriginal)
+        let button = UIImageView()
+        button.image = image
+        button.contentMode = .center
+        return button
+    }()
+    
     var bottomSeparatorLine: UIView = {
         let view = UIView()
         view.backgroundColor = .dark1
@@ -82,10 +90,15 @@ class WalletSettingsTableViewCell: UITableViewCell {
 
     var onSwitchValueCallback: ((_ currency: WalletCurrencyModel) -> Void)?
     
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = .clear
+        backgroundColor = .black
+        contentView.backgroundColor = .black
+        backgroundView?.backgroundColor = .black
+        
+        showsReorderControl = false
         setupViews()
     }
     
@@ -109,6 +122,9 @@ extension WalletSettingsTableViewCell {
         
         addSubview(amountCurrencyLabel)
         amountCurrencyLabel.anchor(currencyNameLabel.bottomAnchor, left: currencyNameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 11, rightConstant: 85, widthConstant: 0, heightConstant: 0)
+        
+        addSubview(burgerImage)
+        burgerImage.anchor(actionButton.topAnchor, left: amountCurrencyLabel.rightAnchor, bottom: actionButton.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
         
         addSubview(bottomSeparatorLine)
         bottomSeparatorLine.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)

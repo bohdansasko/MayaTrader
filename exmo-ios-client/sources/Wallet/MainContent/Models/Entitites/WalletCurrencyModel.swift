@@ -8,7 +8,7 @@
 
 import Foundation
 
-class WalletCurrencyModel {
+class WalletCurrencyModel: NSObject {
     var orderId: Int
     var balance: Double
     var currency: String
@@ -28,5 +28,15 @@ class WalletCurrencyModel {
         self.balance = balance
         self.currency = currency
         self.countInOrders = countInOrders
+    }
+}
+
+extension WalletCurrencyModel: NSItemProviderWriting {
+    public static var writableTypeIdentifiersForItemProvider: [String] {
+        return [] // something here
+    }
+    
+    public func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Swift.Void) -> Progress? {
+        return nil // something here
     }
 }

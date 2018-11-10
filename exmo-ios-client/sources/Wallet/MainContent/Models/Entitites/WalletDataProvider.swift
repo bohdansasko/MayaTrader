@@ -199,7 +199,6 @@ struct WalletModel : Mappable {
         if id > -1 && id < self.allBalances.count {
             self.allBalances[id].isFavourite = isFavourite
             filterCurrenciesByFavourites()
-            print("balances[\(id)] has favourite state: \(isFavourite)")
         }
     }
     
@@ -215,24 +214,6 @@ struct WalletModel : Mappable {
             swap(&self.usedBalances[sourceRow].orderId, &self.usedBalances[destinationRow].orderId)
             self.usedBalances.swapAt(sourceRow, destinationRow)
         }
-    }
-    
-    func getAmountMoneyInBTC() -> Double {
-        var sum = 0.0
-        for currency in allBalances {
-            sum += currency.balance
-        }
-        
-        return sum
-    }
-    
-    func getAmountMoneyInUSD() -> Double {
-        var sum = 0.0
-        for currency in allBalances {
-            sum += currency.balance
-        }
-        
-        return sum
     }
 
     func merge(_ walletFromCache : WalletModel) {

@@ -12,10 +12,12 @@ import UIKit.UITableView
 class WalletSettingsDisplayManager: UIView {
     var tableView: UITableView = {
         let tv = UITableView()
-        tv.setEditing(true, animated: true)
-        tv.tableFooterView = UIView()
+        tv.allowsSelection = false
         tv.backgroundColor = .clear
         tv.separatorStyle = .none
+        tv.showsVerticalScrollIndicator = false
+        tv.dragInteractionEnabled = true
+        tv.tableFooterView = UIView()
         return tv
     }()
     
@@ -32,7 +34,7 @@ class WalletSettingsDisplayManager: UIView {
         super.init(frame: frame)
         
         filteredBalances = []
-        setupViews()
+        setupTableView()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -45,50 +47,30 @@ class WalletSettingsDisplayManager: UIView {
 }
 
 extension WalletSettingsDisplayManager {
-    func setupViews() {
-        setupTableView()
-    }
-    
-    private func setupTableView() {
+    func setupTableView() {
         addSubview(tableView)
         tableView.fillSuperview()
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.dragDelegate = self
+        tableView.dropDelegate = self
         tableView.register(WalletSettingsTableViewCell.self, forCellReuseIdentifier: cellId)
     }
     
     func filterBy(text: String) {
         isSearching = !text.isEmpty
+        
         if isSearching {
             filteredBalances = wallet?.getCurrenciesByFilter(filterClosure: { $0.currency.contains(text.uppercased()) })
         } else {
             filteredBalances = []
         }
-        
         tableView.reloadData()
     }
 }
 
-extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSource  {
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        var title = ""
-        if isSearching {
-            title = filteredBalances.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
-        } else if let w = wallet, w.getCountSections() == 1 {
-            title = "CURRENCIES"
-        } else {
-            title = section == 0 ? "SELECTED" : "UNUSED"
-        }
-        
-        let headerView = WalletSettingsTableHeaderCell()
-        headerView.title = title
-        return headerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 30
-    }
-    
+// @MARK: UITableViewDataSource
+extension WalletSettingsDisplayManager: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         guard let w = wallet else { return 0 }
         return isSearching ? 1 : w.getCountSections()
@@ -133,6 +115,28 @@ extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         wallet!.swapUsedCurrencies(from: sourceIndexPath.row, to: destinationIndexPath.row)
     }
+}
+
+// @MARK: UITableViewDelegate
+extension WalletSettingsDisplayManager: UITableViewDelegate  {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var title = ""
+        if isSearching {
+            title = filteredBalances.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
+        } else if let w = wallet, w.getCountSections() == 1 {
+            title = "CURRENCIES"
+        } else {
+            title = section == 0 ? "SELECTED" : "UNUSED"
+        }
+        
+        let headerView = WalletSettingsTableHeaderCell()
+        headerView.title = title
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
@@ -140,5 +144,26 @@ extension WalletSettingsDisplayManager: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
+    }
+}
+
+// @MARK: UITableViewDragDelegate
+extension WalletSettingsDisplayManager: UITableViewDragDelegate {
+    func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
+        guard let w = wallet, isSearching == false else { return [] }
+        
+        let item = w.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: w.getCountSections())
+        
+        let itemProvider = NSItemProvider(object: item as NSItemProviderWriting)
+        let dragItem = UIDragItem(itemProvider: itemProvider)
+        dragItem.localObject = item
+        return [dragItem]
+    }
+}
+
+// @MARK: UITableViewDropDelegate
+extension WalletSettingsDisplayManager: UITableViewDropDelegate {
+    func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
+        // do something
     }
 }
