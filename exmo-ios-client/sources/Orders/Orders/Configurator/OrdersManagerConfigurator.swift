@@ -1,5 +1,5 @@
 //
-//  OrdersManagerOrdersManagerConfigurator.swift
+//  OrdersConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class OrdersManagerModuleConfigurator {
+class OrdersModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? OrdersManagerViewController {
+        if let viewController = viewInput as? OrdersViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: OrdersManagerViewController) {
+    private func configure(viewController: OrdersViewController) {
 
-        let router = OrdersManagerRouter()
+        let router = OrdersRouter()
 
-        let presenter = OrdersManagerPresenter()
+        let presenter = OrdersPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = OrdersManagerInteractor()
+        let interactor = OrdersInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor

@@ -13,7 +13,7 @@ class OrdersDisplayManager: NSObject {
     // MARK: outlets
     var dataProvider: OrdersModel!
     weak var tableView: UITableView!
-    weak var view: OrdersManagerViewInput!
+    weak var view: OrdersViewInput!
     
     var shouldUseActions: Bool = false
     var displayOrderType: OrdersModel.DisplayOrderType = .None

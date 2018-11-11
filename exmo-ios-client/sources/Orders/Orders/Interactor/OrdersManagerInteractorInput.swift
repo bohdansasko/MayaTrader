@@ -1,5 +1,5 @@
 //
-//  OrdersManagerOrdersManagerInteractorInput.swift
+//  OrdersInteractorInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,6 +8,10 @@
 
 import Foundation
 
-protocol OrdersManagerInteractorInput {
+protocol OrdersInteractorInput {
 
+}
+
+protocol OrdersInteractorOutput: class {
+    
 }

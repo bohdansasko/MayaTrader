@@ -1,5 +1,5 @@
 //
-//  OrdersManagerOrdersManagerRouterInput.swift
+//  OrdersRouterInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol OrdersManagerRouterInput {
+protocol OrdersRouterInput {
 
 }

@@ -12,3 +12,9 @@ protocol CreateOrderInteractorInput {
     func createOrder(orderModel: OrderModel)
     func handleSelectedCurrency(currencyId: Int)
 }
+
+protocol CreateOrderInteractorOutput: class {
+    func updateSelectedCurrency(name: String, price: Double)
+    func closeView()
+    func setOrderSettings(orderSettings: OrderSettings)
+}

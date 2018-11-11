@@ -1,5 +1,5 @@
 //
-//  OrdersManagerOrdersManagerViewController.swift
+//  OrdersViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 24/03/2018.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput {
+class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     fileprivate enum OrderAdditionalAction : Int {
         case DeleteAll
         case DeleteAllOnBuy
@@ -16,7 +16,7 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     }
 
     // MARK: Outlets
-    var output: OrdersManagerViewOutput!
+    var output: OrdersViewOutput!
     var currentViewController: UIViewController?
     var pickerViewManager: DarkeningPickerViewManager!
     var displayManager: OrdersDisplayManager!
@@ -78,8 +78,8 @@ class OrdersManagerViewController: ExmoUIViewController, OrdersManagerViewInput 
     }
 }
 
-// MARK: OrdersManagerViewInput
-extension OrdersManagerViewController {
+// MARK: OrdersViewInput
+extension OrdersViewController {
     func showPlaceholderNoData() {
         if placeholderNoData != nil {
             print("placeholder no data already exists")
@@ -104,7 +104,7 @@ extension OrdersManagerViewController {
 }
 
 // MARK: IBActions
-extension OrdersManagerViewController {
+extension OrdersViewController {
     @IBAction func segmentChanged(_ sender: Any) {
         self.displayManager.showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType(rawValue: self.segmentController.selectedSegmentIndex)!)
     }
@@ -115,7 +115,7 @@ extension OrdersManagerViewController {
 }
 
 // MARK: load orders and display them
-extension OrdersManagerViewController {
+extension OrdersViewController {
     private func loadAllOrders() {
         if AppDelegate.session.isOpenOrdersLoaded() {
             self.onOpenOrdersLoaded()
