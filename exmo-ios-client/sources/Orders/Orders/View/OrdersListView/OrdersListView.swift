@@ -1,5 +1,5 @@
 //
-//  OrdersDisplayManager.swift
+//  OrdersListView.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/20/18.
@@ -9,93 +9,113 @@
 import Foundation
 import UIKit
 
-class OrdersDisplayManager: NSObject {    
-    // MARK: outlets
-    var dataProvider: OrdersModel!
-    weak var tableView: UITableView!
+class OrdersListView: UIView {
     weak var view: OrdersViewInput!
-    
     var shouldUseActions: Bool = false
-    var displayOrderType: OrdersModel.DisplayOrderType = .None
-    
-    var openedOrders: OrdersModel?
-    var canceledOrders: OrdersModel?
-    var dealsOrders: OrdersModel?
-
+    var displayOrderType: Orders.DisplayType = .None
     var tableViewCells: [Int64 : IndexPath] = [:]
+    var dataProvider: Orders!
+    let kCellId = "OrderCell"
+    
+    var openedOrders: Orders? {
+        didSet {
+            updateTableUI()
+        }
+    }
+    var canceledOrders: Orders? {
+        didSet {
+            updateTableUI()
+        }
+    }
+    var dealsOrders: Orders? {
+        didSet {
+            updateTableUI()
+        }
+    }
+    
+    var tableView: UITableView = {
+        let tv = UITableView()
+        tv.allowsSelection = false
+        tv.backgroundColor = .clear
+        tv.separatorStyle = .none
+        tv.tableFooterView = UIView()
+        return tv
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
     
     // MARK: public methods
-    func setTableView(tableView: UITableView!) {
-        self.dataProvider = OrdersModel()
-        self.tableView = tableView
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
-        self.checkOnRequirePlaceHolder()
+    func setupViews() {
+        setupTableView()
+    }
+    
+    func setupTableView() {
+        addSubview(tableView)
+        tableView.fillSuperview()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(OrderViewCell.self, forCellReuseIdentifier: kCellId)
     }
     
     func updateTableUI() {
-        self.checkOnRequirePlaceHolder()
-        self.tableView.reloadData()
+        checkOnRequirePlaceHolder()
+        tableView.reloadData()
     }
     
     func isDataExists() -> Bool {
-        return self.dataProvider.isDataExists()
+        return dataProvider.isDataExists()
     }
 
-    func showDataBySegment(displayOrderType: OrdersModel.DisplayOrderType) {
+    func showDataBySegment(displayOrderType: Orders.DisplayType) {
         self.displayOrderType = displayOrderType
-        guard let data = self.getDataBySegmentIndex(displayOrderType: displayOrderType) else {
-            self.dataProvider = OrdersModel()
-            self.updateTableUI()
+        guard let data = getDataBySegmentIndex(displayOrderType: displayOrderType) else {
+            dataProvider = Orders()
+            updateTableUI()
             return
         }
-        self.dataProvider = data
-        self.shouldUseActions = displayOrderType == .Open
-        self.updateTableUI()
+        dataProvider = data
+        shouldUseActions = displayOrderType == .Open
+        updateTableUI()
     }
 
     // MARK: private methods
-    private func getDataBySegmentIndex(displayOrderType: OrdersModel.DisplayOrderType) -> OrdersModel? {
+    private func getDataBySegmentIndex(displayOrderType: Orders.DisplayType) -> Orders? {
         switch displayOrderType {
-            case .Open: return self.openedOrders
-            case .Canceled: return self.canceledOrders
-            default: return self.dealsOrders
+            case .Open: return openedOrders
+            case .Canceled: return canceledOrders
+            default: return dealsOrders
         }
     }
     
-    func setOpenOrders(orders: OrdersModel) {
-        self.openedOrders = orders
-    }
-    
-    func setCanceledOrders(orders: OrdersModel) {
-        self.canceledOrders = orders
-    }
-    
-    func setDealsOrders(orders: OrdersModel) {
-        self.dealsOrders = orders
-    }
-
     func appendOpenOrder(orderModel: OrderModel) {
-        if (self.displayOrderType == .Open) {
-            setOpenOrders(orders: AppDelegate.session.getOpenOrders())
-            self.dataProvider.append(orderModel: orderModel)
-            self.tableView.insertSections(IndexSet(integer: 0), with: .automatic)
-            self.checkOnRequirePlaceHolder()
+        if (displayOrderType == .Open) {
+            openedOrders = AppDelegate.session.getOpenOrders()
+            dataProvider.append(orderModel: orderModel)
+            tableView.insertSections(IndexSet(integer: 0), with: .automatic)
+            checkOnRequirePlaceHolder()
         }
     }
     
     private func checkOnRequirePlaceHolder() {
-        if (self.dataProvider.isDataExists()) {
-            self.view.removePlaceholderNoData()
+        if (dataProvider.isDataExists()) {
+            view.removePlaceholderNoData()
         } else {
-            self.view.showPlaceholderNoData()
+            view.showPlaceholderNoData()
         }
     }
     
     func deleteAllOrders() {
         print("delete all orders")
         
-        guard let openedOrders = self.openedOrders else {
+        guard let openedOrders = openedOrders else {
             print("deleteAllOrders: openedOrders == nil")
             return
         }
@@ -106,14 +126,15 @@ class OrdersDisplayManager: NSObject {
                 // do nothing
             }
         }
+        
         if displayOrderType == .Open {
             AppDelegate.session.getOpenOrders().clear()
-            
-            self.dataProvider.clear()
-            self.openedOrders?.clear()
-            self.tableView.reloadData()
+            dataProvider.clear()
+            openedOrders.clear()
+            tableView.reloadData()
         }
-        self.checkOnRequirePlaceHolder()
+        
+        checkOnRequirePlaceHolder()
     }
     
     func deleteAllOrdersOnBuy() {
@@ -127,7 +148,7 @@ class OrdersDisplayManager: NSObject {
     }
 
     private func deleteAllOrdersOn(deleteOrderType: OrderActionType) {
-        guard let openedOrders = self.openedOrders else {
+        guard let openedOrders = openedOrders else {
             print("deleteOrders: openedOrders == nil")
             return
         }
@@ -135,40 +156,35 @@ class OrdersDisplayManager: NSObject {
         let ordersOnBuy = openedOrders.getOrders().filter({ $0.getOrderActionType() == deleteOrderType })
         for order in ordersOnBuy {
             let id = order.getId()
-            guard let indexPath = self.tableViewCells[id] else {
+            guard let indexPath = tableViewCells[id] else {
                 continue
             }
-            let shouldDeleteSection = self.displayOrderType == .Open
+            let shouldDeleteSection = displayOrderType == .Open
             if AppDelegate.session.cancelOpenOrder(id: id, byIndex: indexPath.section) {
-                self.openedOrders?.removeItem(byIndex: indexPath.section)
+                openedOrders.removeItem(byIndex: indexPath.section)
                 if shouldDeleteSection {
-                    self.dataProvider.removeItem(byIndex: indexPath.section)
-                    self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+                    dataProvider.removeItem(byIndex: indexPath.section)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
                 }
             }
         }
         
-        self.checkOnRequirePlaceHolder()
+        checkOnRequirePlaceHolder()
     }
     
-    func getPickerViewLayout() -> DarkeningPickerViewModel {
-        return DarkeningPickerViewModel(
-            header: "Delete orders",
-            dataSouce: ["Delete All", "Delete All on buy", "Delete All on sell"])
-    }
 }
 
-extension OrdersDisplayManager: UITableViewDataSource  {
+extension OrdersListView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.dataProvider.getCountOrders()
+        return dataProvider.getCountOrders()
     }
 }
 
-extension OrdersDisplayManager: UITableViewDelegate  {
+extension OrdersListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 10 : 30
     }
@@ -182,31 +198,33 @@ extension OrdersDisplayManager: UITableViewDelegate  {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: self.tableView.frame)
+        let view = UIView(frame: tableView.frame)
         view.backgroundColor = UIColor.black
         return view
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let orderData = self.dataProvider.getOrderBy(index: indexPath.section)
-        let cellId = TableCellIdentifiers.OrderTableViewCell.rawValue
-
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! OrderTableViewCell
-        cell.setContent(orderData: orderData)
+        let order = dataProvider.getOrderBy(index: indexPath.section)
         
-        self.tableViewCells[orderData.getId()] = indexPath
+        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! OrderViewCell
+        cell.order = order
+        
+        tableViewCells[order.getId()] = indexPath
         
         return cell
     }
 
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if !self.shouldUseActions {
+        if !shouldUseActions {
             let configurator = UISwipeActionsConfiguration(actions: [])
             return configurator
         }
         
-        let deleteAction = UIContextualAction(style: .normal, title: "", handler: { action, view, completionHandler  in
+        let deleteAction = UIContextualAction(style: .normal, title: "", handler: {
+            [weak self] action, view, completionHandler  in
+            guard let self = self else { return }
+            
             let id = self.dataProvider.getOrderBy(index: indexPath.section).getId()
             if AppDelegate.session.cancelOpenOrder(id: id, byIndex: indexPath.section) {
                 print("called delete action for row = ", indexPath.section)

@@ -92,8 +92,8 @@ class CreateOrderDisplayManager: NSObject {
     
     func getPickerViewLayout() -> DarkeningPickerViewModel {
         return DarkeningPickerViewModel(
-            header: "Order by",
-         dataSouce: ["Limit", "Instant order(On amount)", "Instant order(On sum)"]
+                header: "Order by",
+             dataSouce: ["Limit", "Instant order(On amount)", "Instant order(On sum)"]
         )
     }
     

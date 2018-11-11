@@ -9,9 +9,9 @@
 import Foundation
 
 protocol OrdersInteractorInput {
-
+    func viewIsReady()
 }
 
 protocol OrdersInteractorOutput: class {
-    
+    func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders])
 }

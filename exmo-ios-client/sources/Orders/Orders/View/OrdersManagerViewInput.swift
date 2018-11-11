@@ -7,9 +7,10 @@
 //
 
 protocol OrdersViewInput: class {
-    func setupInitialState()
     func showPlaceholderNoData()
     func removePlaceholderNoData()
+    
+    func updateOrders(loadedOrders: [Orders.DisplayType : Orders])
 }
 
 protocol OrdersViewOutput {

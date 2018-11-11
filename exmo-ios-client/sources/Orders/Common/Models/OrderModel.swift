@@ -180,7 +180,7 @@ struct OrderModel: Mappable {
     
     func getDateCreatedAsStr() -> String {
         let dataFormat = DateFormatter()
-        dataFormat.dateFormat = "dd.MM.yyyy HH:mm:ss"
+        dataFormat.dateFormat = "dd.MM.yyyy HH:mm"
         return dataFormat.string(from: self.createdDate)
     }
     
@@ -214,8 +214,8 @@ struct OrderModel: Mappable {
     
     func getOrderActionTypeAsStr() -> String {
         switch self.orderType {
-        case .Buy: return "Buy"
-        case .Sell: return "Sell"
+        case .Buy: return "BUY"
+        case .Sell: return "SELL"
         case .None: return "Unknown"
         }
     }

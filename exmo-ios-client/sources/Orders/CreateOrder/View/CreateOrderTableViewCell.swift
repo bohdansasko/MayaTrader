@@ -1,5 +1,5 @@
 //
-//  CreateOrderTableViewCell.swift
+//  CreateOrderViewCell.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/22/18.
@@ -13,7 +13,7 @@ enum OrderBy {
     case CurrencyExchange
 }
 
-class CreateOrderTableViewCell: UITableViewCell {
+class CreateOrderViewCell: UITableViewCell {
     @IBOutlet weak var currencyPairTextField: UITextField!
     @IBOutlet weak var totalMoneyTextField: UITextField!
     @IBOutlet weak var currencyPriceTextField: UITextField!

@@ -114,8 +114,8 @@
 		207B1D9E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D912173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift */; };
 		207B1DA02173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D942173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift */; };
 		207B1DA12173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D952173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift */; };
-		207E24FF2061B85B00030023 /* OrdersDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */; };
-		207E25012061BD3B00030023 /* OrderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderTableViewCell.swift */; };
+		207E24FF2061B85B00030023 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersListView.swift */; };
+		207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderViewCell.swift */; };
 		207E25042061C3FD00030023 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25032061C3FD00030023 /* OrderModel.swift */; };
 		207E25062061C41000030023 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25052061C41000030023 /* OrdersModel.swift */; };
 		207EAE0A204FE47400FDA3B7 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EAE09204FE47400FDA3B7 /* Session.swift */; };
@@ -405,8 +405,8 @@
 		207B1D912173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesInteractorProtocols.swift; sourceTree = "<group>"; };
 		207B1D942173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesRouter.swift; sourceTree = "<group>"; };
 		207B1D952173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesRouterInput.swift; sourceTree = "<group>"; };
-		207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersDisplayManager.swift; sourceTree = "<group>"; };
-		207E25002061BD3B00030023 /* OrderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTableViewCell.swift; sourceTree = "<group>"; };
+		207E24FE2061B85B00030023 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
+		207E25002061BD3B00030023 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
 		207E25032061C3FD00030023 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		207E25052061C41000030023 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		207EAE09204FE47400FDA3B7 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -961,18 +961,17 @@
 			isa = PBXGroup;
 			children = (
 				207E25022061C3EF00030023 /* Models */,
-				205C25712067EC5700588ABE /* View */,
 			);
 			path = Common;
 			sourceTree = "<group>";
 		};
-		205C25712067EC5700588ABE /* View */ = {
+		205C25712067EC5700588ABE /* OrdersListView */ = {
 			isa = PBXGroup;
 			children = (
-				207E24FE2061B85B00030023 /* OrdersDisplayManager.swift */,
-				207E25002061BD3B00030023 /* OrderTableViewCell.swift */,
+				207E24FE2061B85B00030023 /* OrdersListView.swift */,
+				207E25002061BD3B00030023 /* OrderViewCell.swift */,
 			);
-			path = View;
+			path = OrdersListView;
 			sourceTree = "<group>";
 		};
 		206730E12094D36E008B500D /* Extensions */ = {
@@ -1856,6 +1855,7 @@
 		F2135BA70A24ABCA42A0EB87 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				205C25712067EC5700588ABE /* OrdersListView */,
 				810E78A3091C97B1DBE4FA20 /* OrdersManagerViewInput.swift */,
 				30BE974C2513907BDD66D135 /* OrdersManagerViewController.swift */,
 			);
@@ -2135,7 +2135,7 @@
 				20E30AD720A96715003D9BAF /* NibView.swift in Sources */,
 				940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */,
 				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
-				207E25012061BD3B00030023 /* OrderTableViewCell.swift in Sources */,
+				207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */,
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
 				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
@@ -2169,7 +2169,7 @@
 				D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */,
 				207EAE0A204FE47400FDA3B7 /* Session.swift in Sources */,
 				20600A2220532831004D7F45 /* WalletCurrencyEntity+CoreDataProperties.swift in Sources */,
-				207E24FF2061B85B00030023 /* OrdersDisplayManager.swift in Sources */,
+				207E24FF2061B85B00030023 /* OrdersListView.swift in Sources */,
 				34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */,
 				0F96E308D2D80F19AD5155F8 /* QRScannerInitializer.swift in Sources */,
 				92437E8E2F40D002B32DD853 /* MenuViewProtocols.swift in Sources */,

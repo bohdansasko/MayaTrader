@@ -16,15 +16,16 @@ class Session {
     
     private var user: User! // use local info or exmo info
     
-    lazy private var openedOrders = OrdersModel()
-    lazy private var canceledOrders = OrdersModel()
-    lazy private var dealsOrders = OrdersModel()
+    lazy private var openedOrders = Orders()
+    lazy private var canceledOrders = Orders()
+    lazy private var dealsOrders = Orders()
     lazy private var searchCurrenciesContainer: [SearchCurrencyPairModel] = []
     
     private var alerts: [AlertItem] = []
 
     init() {
         self.user = User()
+        initHardcode()
     }
 
     //
@@ -113,7 +114,7 @@ extension Session {
         self.loadOrders(orderType: .Canceled, serverType: .Exmo)
     }
     
-    func loadOrders(orderType: OrdersModel.DisplayOrderType, serverType: ServerType = .Exmo) {
+    func loadOrders(orderType: Orders.DisplayType, serverType: ServerType = .Exmo) {
         switch orderType {
         case .Open:
             switch serverType {
@@ -166,15 +167,15 @@ extension Session {
         self.openedOrders.append(orderModel: orderModel)
     }
     
-    private func setOpenOrders(orders: OrdersModel) {
+    private func setOpenOrders(orders: Orders) {
         self.openedOrders = orders
     }
 
-    private func setCanceledOrders(orders: OrdersModel) {
+    private func setCanceledOrders(orders: Orders) {
         self.canceledOrders = orders
     }
 
-    private func setDeals(orders: OrdersModel) {
+    private func setDeals(orders: Orders) {
         self.dealsOrders = orders
     }
 
@@ -200,15 +201,15 @@ extension Session {
     //
     // @MARK: getters
     //
-    func getOpenOrders() -> OrdersModel {
+    func getOpenOrders() -> Orders {
         return self.openedOrders
     }
     
-    func getCanceledOrders() -> OrdersModel {
+    func getCanceledOrders() -> Orders {
         return self.canceledOrders
     }
     
-    func getDealsOrders() -> OrdersModel {
+    func getDealsOrders() -> Orders {
         return self.dealsOrders
     }
     
@@ -264,7 +265,7 @@ extension Session {
 extension Session {
     func initHardcode() {
         // opened orders
-        self.openedOrders = OrdersModel(orders: [
+        self.openedOrders = Orders(orders: [
             OrderModel(id: 1, orderType: .Buy, currencyPair: "BTC/USD", createdDate: Date(), price: 14234, quantity: 2, amount: 0.5123),
             OrderModel(id: 2, orderType: .Sell, currencyPair: "BTC/EUR", createdDate: Date(), price: 44186, quantity: 100, amount: 1.5)
             ])
@@ -276,13 +277,13 @@ extension Session {
             OrderModel(id: 5, orderType: .Buy, currencyPair: "ZEC/USD", createdDate: Date(), price: 241.44356774, quantity: 192.76358764, amount: 0.79837947),
             OrderModel(id: 6, orderType: .Sell, currencyPair: "LTC/USD", createdDate: Date(), price: 526.78165001, quantity: 23.77988769, amount: 0.15)
         ]
-        self.canceledOrders = OrdersModel(orders: listOfCanceledOrders)
+        self.canceledOrders = Orders(orders: listOfCanceledOrders)
         
         // deals orders
         let dealsOrders = [
             OrderModel(id: 7, orderType: .Sell, currencyPair: "ETH/USD", createdDate: Date(), price: 986, quantity: 152.83, amount: 0.155)
         ]
-        self.dealsOrders = OrdersModel(orders: dealsOrders)
+        self.dealsOrders = Orders(orders: dealsOrders)
         
         self.searchCurrenciesContainer = [
             SearchCurrencyPairModel(id: 1, name: "BTC/USD", price: 7809.976),

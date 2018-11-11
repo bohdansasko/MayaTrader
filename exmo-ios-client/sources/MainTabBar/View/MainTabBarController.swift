@@ -60,28 +60,29 @@ extension MainTabBarController {
     
     private func setupTabBarItems() {
         let watchlistInitializer = WatchlistFavouriteCurrenciesModuleInitializer()
+        let orderInitializer = OrdersModuleInitializer()
         let walletInitializer = WalletModuleInitializer()
         let menuInitializer = MenuModuleInitializer()
         
         viewControllers = [
             UINavigationController(rootViewController: watchlistInitializer.viewController),
-            UIStoryboard(name: "Orders", bundle: nil).instantiateViewController(withIdentifier: "OrdersNavigationController"),
+            UINavigationController(rootViewController: orderInitializer.viewController),
             UINavigationController(rootViewController: walletInitializer.viewController),
             UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: "AlertsNavigationController"),
             UINavigationController(rootViewController: menuInitializer.viewController)
         ]
-        
-        guard let watchlistTabBarItem = tabBar.items?[0] else { return }
-        watchlistTabBarItem.image = UIImage(named: "icTabbarWatchlist")
-        watchlistTabBarItem.selectedImage = UIImage(named: "icTabbarWatchlistSelected")
-        
-        guard let walletTabBarItem = tabBar.items?[2] else { return }
-        walletTabBarItem.image = UIImage(named: "icTabbarWallet")
-        walletTabBarItem.selectedImage = UIImage(named: "icTabbarWalletSelected")
-        
-        guard let menuTabBarItem = tabBar.items?[4] else { return }
-        menuTabBarItem.image = UIImage(named: "icTabbarMenu")
-        menuTabBarItem.selectedImage = UIImage(named: "icTabbarMenuSelected")
+
+        let iconsNamesWithIndices = [
+            0: "icTabbarWatchlist",
+            1: "icTabbarOrders",
+            2: "icTabbarWallet",
+            4: "icTabbarMenu"
+        ]
+        for (iconIndex, iconNameNormalState) in iconsNamesWithIndices {
+            guard let watchlistTabBarItem = tabBar.items?[iconIndex] else { continue }
+            watchlistTabBarItem.image = UIImage(named: iconNameNormalState)
+            watchlistTabBarItem.selectedImage = UIImage(named: "\(iconNameNormalState)Selected")
+        }
     }
     
     private func addSelectedTabIndicator() {

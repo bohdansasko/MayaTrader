@@ -1,5 +1,5 @@
 //
-//  OrdersModel.swift
+//  Orders.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/21/18.
@@ -9,9 +9,9 @@
 import Foundation
 import SwiftyJSON
 
-class OrdersModel {
+class Orders {
     // MARK: user types
-    enum DisplayOrderType: Int {
+    enum DisplayType: Int {
         case None = -1
         case Open = 0
         case Canceled

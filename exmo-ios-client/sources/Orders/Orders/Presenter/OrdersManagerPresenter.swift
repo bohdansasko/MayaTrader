@@ -13,6 +13,10 @@ class OrdersPresenter: OrdersModuleInput, OrdersViewOutput, OrdersInteractorOutp
     var router: OrdersRouterInput!
 
     func viewIsReady() {
-
+        interactor.viewIsReady()
+    }
+    
+    func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+        view.updateOrders(loadedOrders: loadedOrders)
     }
 }

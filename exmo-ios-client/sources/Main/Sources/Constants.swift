@@ -35,7 +35,6 @@ enum UserEntityKeys: String {
 
 enum TableCellIdentifiers: String {
     case AlertTableViewCell
-    case OrderTableViewCell
     case WatchlistTableMenuViewCell
 }
 

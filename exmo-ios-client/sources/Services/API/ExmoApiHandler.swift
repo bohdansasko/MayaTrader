@@ -233,7 +233,7 @@ class ExmoAccountController {
         return getAllPairsOnExmo().joined(separator: separator)
     }
     
-    func loadOpenOrders(limit: Int, offset: Int) -> OrdersModel? {
+    func loadOpenOrders(limit: Int, offset: Int) -> Orders? {
 //        let responseData = ExmoApiRequestBuilder.shared.loadOpenOrders(limit: limit, offset: offset)
 //
 //        let jsonString = String(data: responseData, encoding: .utf8)
@@ -246,7 +246,7 @@ class ExmoAccountController {
 //        }
 //
 //        do {
-//            let orders = try OrdersModel(json: JSON(data: responseData))
+//            let orders = try Orders(json: JSON(data: responseData))
 //            return orders
 //        } catch {
 //            print("caught json error in method: loadOpenOrders")
@@ -254,7 +254,7 @@ class ExmoAccountController {
         return nil
     }
     
-    func loadCanceledOrders(limit: Int, offset: Int) -> OrdersModel? {
+    func loadCanceledOrders(limit: Int, offset: Int) -> Orders? {
 //        guard let responseData = ExmoApiRequestBuilder.shared.loadCanceledOrders(limit: limit, offset: offset) else {
 //            print("loadCanceledOrders: responseData is nil")
 //            return nil
@@ -270,7 +270,7 @@ class ExmoAccountController {
 //        }
 //
 //        do {
-//            let orders = try OrdersModel(json: JSON(data: responseData))
+//            let orders = try Orders(json: JSON(data: responseData))
 //            return orders
 //        } catch {
 //            print("caught json error in method: loadCanceledOrders")
@@ -278,7 +278,7 @@ class ExmoAccountController {
         return nil
     }
     
-    func loadDeals(limit: Int = 1000, offset: Int = 0) -> OrdersModel? {
+    func loadDeals(limit: Int = 1000, offset: Int = 0) -> Orders? {
 //        guard let responseData = ExmoApiRequestBuilder.shared.loadUserTrades(limit: limit, offset: offset, pairs: "XRP_USD") else {
 //            print("loadDeals: responseData is nil")
 //            return nil
@@ -294,7 +294,7 @@ class ExmoAccountController {
 //        }
 //
 //        do {
-//            let orders = try OrdersModel(json: JSON(data: responseData))
+//            let orders = try Orders(json: JSON(data: responseData))
 //            return orders
 //        } catch {
 //            print("caught json error in method: loadDeals")
