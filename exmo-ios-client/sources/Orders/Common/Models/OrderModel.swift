@@ -8,10 +8,32 @@
 
 import Foundation
 import ObjectMapper
+import SwiftyJSON
 
-//
+struct CurrencySettings {
+    let codeName: String
+    let minQuantity: Double
+    let maxQuantity: Double
+    let minPrice: Double
+    let maxPrice: Double
+    let maxAmount: Double
+    let minAmount: Double
+    
+    init(code: String, json: JSON) {
+        codeName = code
+        
+        minQuantity = json["min_quantity"].doubleValue
+        maxQuantity = json["max_quantity"].doubleValue
+        
+        minPrice = json["min_price"].doubleValue
+        maxPrice = json["max_price"].doubleValue
+        
+        minAmount = json["min_amount"].doubleValue
+        maxAmount = json["max_amount"].doubleValue
+    }
+}
+
 // @MARK: OrderCreateType
-//
 enum OrderCreateType: String {
     case None = "None"
     case Buy = "buy"
@@ -22,9 +44,7 @@ enum OrderCreateType: String {
     case MarketSellTotal = "market_sell_total"
 }
 
-//
 // @MARK: OrderSettings
-//
 struct OrderSettings : Mappable {
     var currencyPair: String
     var minQuantity: Double
@@ -60,9 +80,7 @@ struct OrderSettings : Mappable {
     }
 }
 
-//
 // @MARK: TransformOrderType
-//
 class TransformOrderType : TransformType {
     typealias Object = OrderActionType
     typealias JSON = String
@@ -87,9 +105,8 @@ class TransformOrderType : TransformType {
     }
 }
 
-//
+
 // @MARK: OrderModel
-//
 struct OrderModel: Mappable {
     private var orderType: OrderActionType
             var currencyPair: String
