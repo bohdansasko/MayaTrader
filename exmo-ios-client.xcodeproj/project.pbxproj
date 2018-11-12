@@ -57,6 +57,7 @@
 		2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E57F2071464600EFACB7 /* Exo2-ThinItalic.ttf */; };
 		201D8079205DC62800692DEF /* WalletCurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D8078205DC62800692DEF /* WalletCurrenciesListCells.swift */; };
 		201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */; };
+		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
 		20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */; };
 		202CF16820414FE7008185EB /* ViperModuleTransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */; };
 		202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */; };
@@ -350,6 +351,7 @@
 		2013E57F2071464600EFACB7 /* Exo2-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-ThinItalic.ttf"; sourceTree = "<group>"; };
 		201D8078205DC62800692DEF /* WalletCurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListCells.swift; sourceTree = "<group>"; };
 		201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListView.swift; sourceTree = "<group>"; };
+		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViperModuleTransitionHandler.swift; sourceTree = "<group>"; };
 		202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkWorker.swift; sourceTree = "<group>"; };
@@ -836,6 +838,22 @@
 			path = MainContent;
 			sourceTree = "<group>";
 		};
+		201E281E2199C3F2000960FD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				20C85D8421963B2400B233AB /* WalletCurrenciesListNetworkWorker.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		201E281F2199C415000960FD /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				201E28202199C439000960FD /* OrdersListNetworkWorker.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		202F48EF206A136D0080423E /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -1304,6 +1322,7 @@
 		2B284081A368AD62BA7D0900 /* Currencies List */ = {
 			isa = PBXGroup;
 			children = (
+				201E281E2199C3F2000960FD /* Network */,
 				188097DD26ABFBFDD2FADD88 /* View */,
 				9162C3E62660B71C3EBF74B2 /* Presenter */,
 				EFDC094783F39E5BEDA59C4F /* Interactor */,
@@ -1605,6 +1624,7 @@
 		82D689F868D2EC74100A45FD /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				201E281F2199C415000960FD /* Network */,
 				F2135BA70A24ABCA42A0EB87 /* View */,
 				C1B8D71DAEFAD579C1CB7B00 /* Presenter */,
 				C03FED18B8A796C334009CF3 /* Interactor */,
@@ -1847,7 +1867,6 @@
 			children = (
 				32BC3DFE94094F9C19C047E2 /* WalletCurrenciesListInteractorProtocols.swift */,
 				B6158DF690BEAC86B7282D00 /* WalletCurrenciesListInteractor.swift */,
-				20C85D8421963B2400B233AB /* WalletCurrenciesListNetworkWorker.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2143,6 +2162,7 @@
 				2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
 				20600A2920532949004D7F45 /* UserEntity+CoreDataClass.swift in Sources */,
+				201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */,
 				202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */,
 				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,

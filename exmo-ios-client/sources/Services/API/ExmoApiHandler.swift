@@ -43,7 +43,7 @@ protocol ExmoAuthenticationApiRequests {
     func setAuthorizationData(apiKey: String, secretKey: String)
     func getAuthenticatedRequest(postDictionary: [String: Any], method: String) -> URLRequest
     func getUserInfoRequest() -> URLRequest
-    func getOpenOrdersRequest(limit: Int, offset: Int) -> URLRequest
+    func getOpenOrdersRequest() -> URLRequest
     func getCanceledOrdersRequest(limit: Int, offset: Int) -> URLRequest
     func getUserTradesRequest(limit: Int, offset: Int, pairs: String) -> URLRequest
     func getCreateOrderRequest(pair: String, quantity: Double, price: Double, type: String) -> URLRequest
@@ -163,12 +163,8 @@ extension ExmoApiRequestBuilder {
         return getAuthenticatedRequest(postDictionary: post, method: MethodId.UserInfo.rawValue)
     }
     
-    func getOpenOrdersRequest(limit: Int, offset: Int) -> URLRequest {
-        var post: [String: Any] = [:]
-        post["limit"] = limit
-        post["offset"] = offset
-        
-        return getAuthenticatedRequest(postDictionary: post, method: MethodId.OpenOrders.rawValue)
+    func getOpenOrdersRequest() -> URLRequest {
+        return getAuthenticatedRequest(postDictionary: [:], method: MethodId.OpenOrders.rawValue)
     }
     
     func getCanceledOrdersRequest(limit: Int, offset: Int) -> URLRequest {

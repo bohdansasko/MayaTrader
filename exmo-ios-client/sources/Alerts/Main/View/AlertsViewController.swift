@@ -14,7 +14,12 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     
     var output: AlertsViewOutput!
     var displayManager: AlertDataDisplayManager!
-    private var placeholderNoData: PlaceholderNoDataView!
+    private var placeholderNoData: PlaceholderNoDataView = {
+        let view = PlaceholderNoDataView()
+        view.text = "You haven't alerts right now"
+        view.isHidden = true
+        return view
+    }()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -22,6 +27,7 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
         output.viewIsReady()
         
         setupInitialState()
+        setupPlaceholderNoData()
     }
     
     deinit {
@@ -40,25 +46,18 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onDeleteAlert), name: .DeleteAlert)
     }
 
+    private func setupPlaceholderNoData() {
+        view.addSubview(placeholderNoData)
+        let topOffset: CGFloat = AppDelegate.isIPhone(model: .Five) ? 35 : 90
+        placeholderNoData.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+    
     func showPlaceholderNoData() {
-        if placeholderNoData != nil {
-            print("placeholder no data already exists")
-            return
-        }
-        print("show placeholder no data")
-        
-        self.placeholderNoData = PlaceholderNoDataView(frame: self.view.bounds)
-        self.placeholderNoData.setDescriptionType(descriptionType: .Alerts)
-        self.placeholderNoData?.frame = self.view.bounds
-        self.view.addSubview(self.placeholderNoData!)
-        self.placeholderNoData?.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY + 140)
+        placeholderNoData.isHidden = false
     }
     
     func removePlaceholderNoData() {
-        if self.placeholderNoData != nil {
-            self.placeholderNoData?.removeFromSuperview()
-            self.placeholderNoData = nil
-        }
+        placeholderNoData.isHidden = true
     }
     
     // MARK: actions

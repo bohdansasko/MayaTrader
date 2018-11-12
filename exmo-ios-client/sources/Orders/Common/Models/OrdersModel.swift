@@ -30,14 +30,12 @@ class Orders {
     }
     
     private func parseJSON(json: JSON) {
-        return; // TODO: fix crash after login
         if let ordersArray = json.array {
             for jsonOrder in ordersArray {
                 if let map = jsonOrder.dictionaryObject {
                     guard let order = OrderModel(JSON: map) else {
                         continue
                     }
-                    
                     self.orders.append(order)
                 }
             }

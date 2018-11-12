@@ -8,27 +8,41 @@
 
 import UIKit
 
-class PlaceholderNoDataView: NibView {
-    enum DescriptionType {
-        case None
-        case Orders
-        case Alerts
-    }
+class PlaceholderNoDataView: UIView {    
+    private var placeHolderImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "no_orders_image")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
-    @IBOutlet weak var descriptionLabel: UILabel!
+    private var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = .white
+        label.text = "Text"
+        label.numberOfLines = 0
+        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 20)
+        return label
+    }()
     
-    func setDescriptionType(descriptionType: DescriptionType) {
-        self.descriptionLabel.text = self.getDescriptionText(descriptionType: descriptionType)
-    }
-    
-    private func getDescriptionText(descriptionType: DescriptionType) -> String {
-        switch descriptionType {
-        case .Orders:
-            return "You have no orders right now"
-        case .Alerts:
-            return "You have no alerts right now"
-        default:
-            return ""
+    var text: String? {
+        didSet {
+            descriptionLabel.text = text
         }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview(placeHolderImage)
+        placeHolderImage.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        
+        addSubview(descriptionLabel)
+        descriptionLabel.anchor(placeHolderImage.bottomAnchor, left: placeHolderImage.leftAnchor, bottom: nil, right: placeHolderImage.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 0)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }

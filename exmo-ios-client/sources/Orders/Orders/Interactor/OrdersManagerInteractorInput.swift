@@ -10,6 +10,7 @@ import Foundation
 
 protocol OrdersInteractorInput {
     func viewIsReady()
+    func loadOrderByType(_ orderType: Orders.DisplayType)
 }
 
 protocol OrdersInteractorOutput: class {

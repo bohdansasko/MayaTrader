@@ -123,7 +123,7 @@ extension Session {
                     return
                 }
                 self.setOpenOrders(orders: orders)
-                AppDelegate.notificationController.postBroadcastMessage(name: .OpenOrdersLoaded)
+//                AppDelegate.notificationController.postBroadcastMessage(name: .OpenOrdersLoaded)
                 break
             case .Roobik:
                 break
@@ -137,7 +137,7 @@ extension Session {
                     return
                 }
                 self.setCanceledOrders(orders: orders)
-                AppDelegate.notificationController.postBroadcastMessage(name: .CanceledOrdersLoaded)
+//                AppDelegate.notificationController.postBroadcastMessage(name: .CanceledOrdersLoaded)
                 break
             case .Roobik:
                 break
@@ -150,7 +150,7 @@ extension Session {
                     return
                 }
                 self.setDeals(orders: orders)
-                AppDelegate.notificationController.postBroadcastMessage(name: .DealsOrdersLoaded)
+//                AppDelegate.notificationController.postBroadcastMessage(name: .DealsOrdersLoaded)
                 break
             case .Roobik:
                 break
@@ -163,7 +163,7 @@ extension Session {
     }
     
     func appendOrder(orderModel: OrderModel) {
-        AppDelegate.notificationController.postBroadcastMessage(name: .AppendOrder, data: ["data": orderModel])
+//        AppDelegate.notificationController.postBroadcastMessage(name: .AppendOrder, data: ["data": orderModel])
         self.openedOrders.append(orderModel: orderModel)
     }
     

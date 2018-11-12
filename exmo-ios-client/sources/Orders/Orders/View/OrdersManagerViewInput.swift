@@ -7,12 +7,10 @@
 //
 
 protocol OrdersViewInput: class {
-    func showPlaceholderNoData()
-    func removePlaceholderNoData()
-    
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders])
 }
 
 protocol OrdersViewOutput {
     func viewIsReady()
+    func onDidSelectTab(_ orderTab: Orders.DisplayType)
 }

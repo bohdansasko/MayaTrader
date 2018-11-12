@@ -19,4 +19,8 @@ class OrdersPresenter: OrdersModuleInput, OrdersViewOutput, OrdersInteractorOutp
     func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders]) {
         view.updateOrders(loadedOrders: loadedOrders)
     }
+    
+    func onDidSelectTab(_ orderTab: Orders.DisplayType) {
+        interactor.loadOrderByType(orderTab)
+    }
 }

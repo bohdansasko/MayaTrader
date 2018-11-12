@@ -10,29 +10,6 @@ import Foundation
 import UIKit
 
 class OrdersListView: UIView {
-    weak var view: OrdersViewInput!
-    var shouldUseActions: Bool = false
-    var displayOrderType: Orders.DisplayType = .None
-    var tableViewCells: [Int64 : IndexPath] = [:]
-    var dataProvider: Orders!
-    let kCellId = "OrderCell"
-    
-    var openedOrders: Orders? {
-        didSet {
-            updateTableUI()
-        }
-    }
-    var canceledOrders: Orders? {
-        didSet {
-            updateTableUI()
-        }
-    }
-    var dealsOrders: Orders? {
-        didSet {
-            updateTableUI()
-        }
-    }
-    
     var tableView: UITableView = {
         let tv = UITableView()
         tv.allowsSelection = false
@@ -41,6 +18,29 @@ class OrdersListView: UIView {
         tv.tableFooterView = UIView()
         return tv
     }()
+    
+    private var placeholderNoData: PlaceholderNoDataView = {
+        let view = PlaceholderNoDataView()
+        view.isHidden = true
+        return view
+    }()
+    
+    weak var view: OrdersViewInput!
+    var dataProvider: Orders!
+    var tableViewCells: [Int64 : IndexPath] = [:]
+    var displayOrderType: Orders.DisplayType = .None
+    let kCellId = "OrderCell"
+    var shouldUseActions: Bool = false
+    
+    var openedOrders: Orders? {
+        didSet { showDataBySegment(displayOrderType: .Open) }
+    }
+    var canceledOrders: Orders? {
+        didSet { showDataBySegment(displayOrderType: .Canceled) }
+    }
+    var dealsOrders: Orders? {
+        didSet { showDataBySegment(displayOrderType: .Deals) }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,24 +50,6 @@ class OrdersListView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-    
-    // MARK: public methods
-    func setupViews() {
-        setupTableView()
-    }
-    
-    func setupTableView() {
-        addSubview(tableView)
-        tableView.fillSuperview()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(OrderViewCell.self, forCellReuseIdentifier: kCellId)
-    }
-    
-    func updateTableUI() {
-        checkOnRequirePlaceHolder()
-        tableView.reloadData()
     }
     
     func isDataExists() -> Bool {
@@ -94,7 +76,45 @@ class OrdersListView: UIView {
             default: return dealsOrders
         }
     }
+}
+
+// MARK: setup UI
+extension OrdersListView {
+    func updateTableUI() {
+        checkOnRequirePlaceHolder()
+        tableView.reloadData()
+    }
     
+    func setupViews() {
+        setupTableView()
+        setupPlaceholderNoData()
+    }
+    
+    private func setupPlaceholderNoData() {
+        self.addSubview(placeholderNoData)
+        let topOffset: CGFloat = AppDelegate.isIPhone(model: .Five) ? -5 : 50
+        placeholderNoData.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+    
+    private func setupTableView() {
+        addSubview(tableView)
+        tableView.fillSuperview()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(OrderViewCell.self, forCellReuseIdentifier: kCellId)
+    }
+    
+    func checkOnRequirePlaceHolder() {
+        if (dataProvider.isDataExists()) {
+            removePlaceholderNoData()
+        } else {
+            showPlaceholderNoData()
+        }
+    }
+}
+
+// @MARK: help operations for orders
+extension OrdersListView {
     func appendOpenOrder(orderModel: OrderModel) {
         if (displayOrderType == .Open) {
             openedOrders = AppDelegate.session.getOpenOrders()
@@ -102,39 +122,6 @@ class OrdersListView: UIView {
             tableView.insertSections(IndexSet(integer: 0), with: .automatic)
             checkOnRequirePlaceHolder()
         }
-    }
-    
-    private func checkOnRequirePlaceHolder() {
-        if (dataProvider.isDataExists()) {
-            view.removePlaceholderNoData()
-        } else {
-            view.showPlaceholderNoData()
-        }
-    }
-    
-    func deleteAllOrders() {
-        print("delete all orders")
-        
-        guard let openedOrders = openedOrders else {
-            print("deleteAllOrders: openedOrders == nil")
-            return
-        }
-        
-        for order in openedOrders.getOrders() {
-            let id = order.getId()
-            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: -1) {
-                // do nothing
-            }
-        }
-        
-        if displayOrderType == .Open {
-            AppDelegate.session.getOpenOrders().clear()
-            dataProvider.clear()
-            openedOrders.clear()
-            tableView.reloadData()
-        }
-        
-        checkOnRequirePlaceHolder()
     }
     
     func deleteAllOrdersOnBuy() {
@@ -172,8 +159,53 @@ class OrdersListView: UIView {
         checkOnRequirePlaceHolder()
     }
     
+    func deleteAllOrders() {
+        print("delete all orders")
+        
+        guard let openedOrders = openedOrders else {
+            print("deleteAllOrders: openedOrders == nil")
+            return
+        }
+        
+        for order in openedOrders.getOrders() {
+            let id = order.getId()
+            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: -1) {
+                // do nothing
+            }
+        }
+        
+        if displayOrderType == .Open {
+            AppDelegate.session.getOpenOrders().clear()
+            dataProvider.clear()
+            openedOrders.clear()
+            tableView.reloadData()
+        }
+        
+        checkOnRequirePlaceHolder()
+    }
 }
 
+// @MARK: placeholder
+extension OrdersListView {
+    func showPlaceholderNoData() {
+        placeholderNoData.isHidden = false
+        switch displayOrderType {
+        case .Open:
+            placeholderNoData.text = "You haven't open orders right now"
+        case .Canceled:
+            placeholderNoData.text = "You haven't canceled orders right now"
+        case .Deals:
+            placeholderNoData.text = "You haven't deals orders right now"
+        default: break
+        }
+    }
+    
+    func removePlaceholderNoData() {
+        placeholderNoData.isHidden = true
+    }
+}
+
+// @MARK: UITableViewDataSource
 extension OrdersListView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -184,6 +216,7 @@ extension OrdersListView: UITableViewDataSource  {
     }
 }
 
+// @MARK: UITableViewDelegate
 extension OrdersListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 10 : 30

@@ -23,7 +23,6 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         let lv = OrdersListView()
         return lv
     }()
-    private var placeholderNoData: PlaceholderNoDataView? = nil
     
     var buttonDeleteOrders: UIButton = {
         let image = UIImage(named: "icNavbarTrash")?.withRenderingMode(.alwaysOriginal)
@@ -63,6 +62,10 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         super.viewDidLoad()
         
         setupViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         output.viewIsReady()
     }
     
@@ -104,6 +107,8 @@ extension OrdersViewController {
         view.addSubview(ordersListView)
         ordersListView.view = self
         ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        
+        output.onDidSelectTab(.Open)
         ordersListView.showDataBySegment(displayOrderType: .Open)
     }
     
@@ -142,7 +147,8 @@ extension OrdersViewController {
 // MARK: buttons handlers
 extension OrdersViewController {
     @objc func onSegmentChanged(_ sender: Any) {
-        ordersListView.showDataBySegment(displayOrderType: Orders.DisplayType(rawValue: segmentControlView.selectedSegmentIndex)!)
+        let displayOrderType = Orders.DisplayType(rawValue: segmentControlView.selectedSegmentIndex)!
+        output.onDidSelectTab(displayOrderType)
     }
     
     @objc func onTouchButtonDelete(_ sender: Any) {
@@ -157,28 +163,6 @@ extension OrdersViewController {
 
 // MARK: OrdersViewInput
 extension OrdersViewController {
-    func showPlaceholderNoData() {
-        if placeholderNoData != nil {
-            print("placeholder no data already exists")
-            return
-        }
-        print("show placeholder no data")
-        
-        placeholderNoData = PlaceholderNoDataView(frame: view.bounds)
-        placeholderNoData?.setDescriptionType(descriptionType: .Orders)
-        placeholderNoData?.frame = view.bounds
-        view.addSubview(placeholderNoData!)
-        
-        placeholderNoData?.center = CGPoint(x: view.bounds.midX, y: view.bounds.midY + 140)
-    }
-    
-    func removePlaceholderNoData() {
-        if placeholderNoData != nil {
-            placeholderNoData?.removeFromSuperview()
-            placeholderNoData = nil
-        }
-    }
-    
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders]) {
         for (orderType, orders) in loadedOrders {
             switch orderType {

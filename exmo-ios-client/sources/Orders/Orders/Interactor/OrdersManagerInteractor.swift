@@ -6,62 +6,41 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 import Foundation
+import Alamofire
 
-class OrdersInteractor: OrdersInteractorInput {
+class OrdersInteractor {
     weak var output: OrdersInteractorOutput!
     var loadedOrders: [Orders.DisplayType : Orders] = [:]
+    var networkWorker: IOrdersListNetworkWorker!
 }
 
-// @MARK:
-extension OrdersInteractor {
+// @MARK: OrdersInteractorInput
+extension OrdersInteractor: OrdersInteractorInput {
     func viewIsReady() {
         subscribeOnEvents()
-        loadAllOrders()
+        networkWorker.delegate = self
+    }
+    
+    func loadOrderByType(_ orderType: Orders.DisplayType) {
+        switch orderType {
+        case .Open: networkWorker.loadOpenOrders()
+        case .Canceled: networkWorker.loadCanceledOrders()
+        case .Deals: networkWorker.loadDeals()
+        case .None: break
+        }
     }
 }
 
 // MARK: load orders and display them
 extension OrdersInteractor {
-    func loadAllOrders() {
-        if AppDelegate.session.isOpenOrdersLoaded() {
-            onDidLoadOrders(orderType: .Open)
-        }
-        
-        if AppDelegate.session.isCanceledOrdersLoaded() {
-            onDidLoadOrders(orderType: .Canceled)
-        }
-        
-        if AppDelegate.session.isDealsOrdersLoaded() {
-            onDidLoadOrders(orderType: .Deals)
-        }
-    }
-    
     func subscribeOnEvents() {
         AppDelegate.notificationController.addObserver(self, selector: #selector(onUserSignOut), name: .UserSignOut)
-//        AppDelegate.notificationController.addObserver(self, selector: #selector(onOpenOrdersLoaded), name: .OpenOrdersLoaded)
-//        AppDelegate.notificationController.addObserver(self, selector: #selector(onCanceledOrdersLoaded), name: .CanceledOrdersLoaded)
-//        AppDelegate.notificationController.addObserver(self, selector: #selector(onDealsOrdersLoaded), name: .DealsOrdersLoaded)
-//        AppDelegate.notificationController.addObserver(self, selector: #selector(onAppendOrder), name: .AppendOrder)
-    }
-    
-    @objc func onUserSignIn() {
-//        displayManager.updateTableUI()
     }
     
     @objc func onUserSignOut() {
         output.onDidLoadOrders(loadedOrders: [:])
     }
     
-    func onDidLoadOrders(orderType: Orders.DisplayType) {
-        let orders: Orders!
-        switch orderType {
-        case .Open: orders = AppDelegate.session.getOpenOrders()
-        case .Canceled: orders = AppDelegate.session.getCanceledOrders()
-        case .Deals: orders = AppDelegate.session.getDealsOrders()
-        default: orders = Orders()
-        }
-        output.onDidLoadOrders(loadedOrders: [orderType : orders])
-    }
     
     @objc func onAppendOrder(notification: Notification) {
         guard let orderModel = notification.userInfo?["data"] as? OrderModel else {
@@ -69,5 +48,31 @@ extension OrdersInteractor {
             return
         }
 //        displayManager.appendOpenOrder(orderModel: orderModel)
+    }
+}
+
+extension OrdersInteractor: IOrdersListNetworkWorkerDelegate {
+    func onDidLoadSuccessOpenOrders(orders: Orders) {
+        output.onDidLoadOrders(loadedOrders: [.Open : orders])
+    }
+    
+    func onDidLoadFailsOpenOrders(orders: Orders) {
+        print("onDidLoadFailsOpenOrders")
+    }
+    
+    func onDidLoadSuccessCanceledOrders(orders: Orders) {
+        output.onDidLoadOrders(loadedOrders: [.Canceled : orders])
+    }
+    
+    func onDidLoadFailsCanceledOrders(orders: Orders) {
+        print("onDidLoadFailsCanceledOrders")
+    }
+    
+    func onDidLoadSuccessDeals(orders: Orders) {
+        output.onDidLoadOrders(loadedOrders: [.Deals : orders])
+    }
+    
+    func onDidLoadFailsDeals(orders: Orders) {
+        print("onDidLoadFailsDeals")
     }
 }

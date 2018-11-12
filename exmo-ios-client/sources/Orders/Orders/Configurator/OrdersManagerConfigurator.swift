@@ -27,6 +27,7 @@ class OrdersModuleConfigurator {
 
         let interactor = OrdersInteractor()
         interactor.output = presenter
+        interactor.networkWorker = ExmoOrdersListNetworkWorker()
 
         presenter.interactor = interactor
         viewController.output = presenter
