@@ -13,8 +13,56 @@ enum OrderBy {
     case CurrencyExchange
 }
 
+class TableOrderViewCellWithModel: UITableViewCell {
+    var model: ModelOrderViewCell?
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        backgroundColor = nil
+        
+        let selectedView = UIView()
+        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        selectedBackgroundView = selectedView
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
+class TableOrderViewCellTitle: TableOrderViewCellWithModel {
+    var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = .white
+        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
+        return label
+    }()
+    
+    let separatorHLineView: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = .dark
+        return lineView
+    }()
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
+        addSubview(titleLabel)
+        titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
+        
+        addSubview(separatorHLineView)
+        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+}
+
 // @MARK: CellButton
-class CellButton: UITableViewCell {
+class CellButton: TableOrderViewCellWithModel {
     var button: UIButton = {
         let btn = UIButton(type: .system)
         btn.setBackgroundImage(UIImage(named: "icWidthButtonBlue"), for: .normal)
@@ -24,7 +72,7 @@ class CellButton: UITableViewCell {
         return btn
     }()
     
-    var model: UIFieldModel? {
+    override var model: ModelOrderViewCell? {
         didSet {
             button.setTitle(model?.getHeaderText(), for: .normal)
         }
@@ -33,7 +81,6 @@ class CellButton: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = nil
         addSubview(button)
         
         button.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
@@ -45,15 +92,7 @@ class CellButton: UITableViewCell {
 }
 
 // @MARK: CellUISwitcher
-class CellUISwitcher: UITableViewCell {
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.textColor = .white
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
-        return label
-    }()
-    
+class CellUISwitcher: TableOrderViewCellTitle {
     var leftLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -74,13 +113,7 @@ class CellUISwitcher: UITableViewCell {
         }
     }
     
-    let separatorHLineView: UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = .dark
-        return lineView
-    }()
-    
-    var model: UIFieldModel? {
+    override var model: ModelOrderViewCell? {
         didSet {
             titleLabel.text = model?.getHeaderText()
         }
@@ -90,21 +123,13 @@ class CellUISwitcher: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = nil
-        
-        addSubview(titleLabel)
         addSubview(leftLabel)
-        addSubview(uiSwitch)
-        addSubview(separatorHLineView)
-        
-        titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
-        
         leftLabel.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         
+        addSubview(uiSwitch)
         uiSwitch.anchorCenterYToSuperview()
         uiSwitch.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -30).isActive = true
         uiSwitch.addTarget(self, action: #selector(onSwitchValueChanged(_:)), for: .valueChanged)
-        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -125,15 +150,7 @@ class CellUISwitcher: UITableViewCell {
 }
 
 // @MARK: CellInputField
-class CellInputField: UITableViewCell {
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .left
-        label.textColor = .white
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
-        return label
-    }()
-    
+class CellInputField: TableOrderViewCellTitle {
     var textInput: UITextField = {
         let textInpt = UITextField()
         textInpt.keyboardType = .decimalPad
@@ -155,13 +172,7 @@ class CellInputField: UITableViewCell {
         return label
     }()
     
-    let separatorHLineView: UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = .dark
-        return lineView
-    }()
-    
-    var model: UIFieldModel? {
+    override var model: ModelOrderViewCell? {
         didSet {
             guard let d = model else {
                 return
@@ -175,21 +186,13 @@ class CellInputField: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = nil
-        addSubview(titleLabel)
         addSubview(textInput)
         addSubview(rightLabel)
-        addSubview(separatorHLineView)
-        
-        titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         
         textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         textInput.delegate = self
 
         rightLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -203,9 +206,19 @@ class CellInputField: UITableViewCell {
 }
 
 extension CellInputField: UITextFieldDelegate {
-    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let textFieldText = textField.text ?? ""
+        let str = textFieldText + string
+        
+        if str.hasPrefix("00")  {
+            return false
+        }
+        
+        return str.isEmpty || str.isValidDoubleValue()
+    }
 }
 
+// @MARK: CellMoreVariantsField
 class CellMoreVariantsField: CellInputField {
     var arrowImage: UIImageView = {
         let imageView = UIImageView()
@@ -214,7 +227,7 @@ class CellMoreVariantsField: CellInputField {
         return imageView
     }()
     
-    override var model: UIFieldModel? {
+    override var model: ModelOrderViewCell? {
         didSet {
             guard let d = model else {
                 return
@@ -227,10 +240,6 @@ class CellMoreVariantsField: CellInputField {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        let selectedView = UIView()
-        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-        selectedBackgroundView = selectedView
         
         addSubview(arrowImage)
         arrowImage.anchor(textInput.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 18, rightConstant: 30, widthConstant: 0, heightConstant: 0)
