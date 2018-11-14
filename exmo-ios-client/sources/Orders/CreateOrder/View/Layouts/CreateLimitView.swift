@@ -123,16 +123,16 @@ extension CreateOrderLimitView {
     }
 
     func getLimitCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var model: UIFieldModel?
+        var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
-        case 0: model = UIFieldModel(headerText: "Currency pair", placeholderText: "Select currency pair...")
-        case 1: model = UIFieldModel(headerText: "Amount", placeholderText: "0 BTC")
-        case 2: model = UIFieldModel(headerText: "Price", placeholderText: "0 USD")
-        case 3: model = UIFieldModel(headerText: "Total", placeholderText: "0 USD")
-        case 4: model = UIFieldModel(headerText: "Commision", placeholderText: "0 BTC")
-        case 5: model = UIFieldModel(headerText: "Order Type")
-        case 6: model = UIFieldModel(headerText: "Create")
+        case 0: model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+        case 1: model = ModelOrderViewCell(headerText: "Amount", placeholderText: "0 BTC")
+        case 2: model = ModelOrderViewCell(headerText: "Price", placeholderText: "0 USD")
+        case 3: model = ModelOrderViewCell(headerText: "Total", placeholderText: "0 USD")
+        case 4: model = ModelOrderViewCell(headerText: "Commision", placeholderText: "0 BTC")
+        case 5: model = ModelOrderViewCell(headerText: "Order Type")
+        case 6: model = ModelOrderViewCell(headerText: "Create")
         default: break
         }
         
@@ -140,14 +140,14 @@ extension CreateOrderLimitView {
     }
     
     func getInstantOnAmountCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var model: UIFieldModel?
+        var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
-        case 0: model = UIFieldModel(headerText: "Currency pair", placeholderText: "Select currency pair...")
-        case 1: model = UIFieldModel(headerText: "Amount", placeholderText: "0 BTC")
-        case 2: model = UIFieldModel(headerText: "Total", placeholderText: "0 USD")
-        case 3: model = UIFieldModel(headerText: "Order Type")
-        case 4: model = UIFieldModel(headerText: "Create")
+        case 0: model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+        case 1: model = ModelOrderViewCell(headerText: "Amount", placeholderText: "0 BTC")
+        case 2: model = ModelOrderViewCell(headerText: "Total", placeholderText: "0 USD")
+        case 3: model = ModelOrderViewCell(headerText: "Order Type")
+        case 4: model = ModelOrderViewCell(headerText: "Create")
         default: break
         }
         
@@ -155,21 +155,21 @@ extension CreateOrderLimitView {
     }
     
     func getInstantOnSumCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var model: UIFieldModel?
+        var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
-        case 0: model = UIFieldModel(headerText: "Currency pair", placeholderText: "Select currency pair...")
-        case 1: model = UIFieldModel(headerText: "For the amount of", placeholderText: "0 BTC")
-        case 2: model = UIFieldModel(headerText: "The amount will be", placeholderText: "0 USD")
-        case 3: model = UIFieldModel(headerText: "Order Type")
-        case 4: model = UIFieldModel(headerText: "Create")
+        case 0: model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+        case 1: model = ModelOrderViewCell(headerText: "For the amount of", placeholderText: "0 BTC")
+        case 2: model = ModelOrderViewCell(headerText: "The amount will be", placeholderText: "0 USD")
+        case 3: model = ModelOrderViewCell(headerText: "Order Type")
+        case 4: model = ModelOrderViewCell(headerText: "Create")
         default: break
         }
         
         return getOrderCell(cellForRowAt: indexPath, model: model)
     }
     
-    func getOrderCell(cellForRowAt indexPath: IndexPath, model: UIFieldModel?) -> UITableViewCell {
+    func getOrderCell(cellForRowAt indexPath: IndexPath, model: ModelOrderViewCell?) -> UITableViewCell {
         if indexPath.section == getCellIndexMoreDetails() {
             let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdMoreVariants) as! CellMoreVariantsField
             cell.model = model

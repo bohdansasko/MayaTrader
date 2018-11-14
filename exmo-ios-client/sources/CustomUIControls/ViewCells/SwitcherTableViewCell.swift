@@ -25,7 +25,7 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
         }
     }
     
-    var data: UIFieldModel? = nil {
+    var data: ModelOrderViewCell? = nil {
         didSet {
             if let d = self.data {
                 setContentData(data: d)
@@ -47,7 +47,7 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
         // Configure the view for the selected state
     }
  
-    private func setContentData(data: UIFieldModel) {
+    private func setContentData(data: ModelOrderViewCell) {
         self.headerLabel.text = data.getHeaderText()
         self.leftLabel.text = data.getPlaceholderText()
     }

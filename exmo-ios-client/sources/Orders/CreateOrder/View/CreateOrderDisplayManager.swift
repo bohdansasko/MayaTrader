@@ -31,25 +31,12 @@ class CreateOrderDisplayManager: NSObject {
     
     fileprivate struct UIItem {
         var type: UIFieldType
-        var item: UIFieldModel?
+        var item: ModelOrderViewCell?
         
-        init(type: UIFieldType, item: UIFieldModel?) {
+        init(type: UIFieldType, item: ModelOrderViewCell?) {
             self.type = type
             self.item = item
         }
-
-//        
-//        func getOnAmountLayout() -> [UIItem] {
-//            return [
-//                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-//                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "0 USD")),
-//                UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
-//                UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
-//                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
-//                UIItem(type: .ButtonCreate, item: nil)
-//            ]
-//        }
-//      
     }
     
     var tableView: UITableView!

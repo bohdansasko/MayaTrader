@@ -16,7 +16,7 @@ enum AlertOperationType {
 }
 
 //
-// @MARK: UIFieldModel
+// @MARK: ModelOrderViewCell
 //
 fileprivate enum UIFieldType: Int {
     case CurrencyPair
@@ -30,15 +30,15 @@ fileprivate enum UIFieldType: Int {
 
 fileprivate struct UIItem {
     var type: UIFieldType
-    var item: UIFieldModel?
+    var item: ModelOrderViewCell?
     
-    init(type: UIFieldType, item: UIFieldModel?) {
+    init(type: UIFieldType, item: ModelOrderViewCell?) {
         self.type = type
         self.item = item
     }
 }
 
-struct UIFieldModel {
+struct ModelOrderViewCell {
     private var textContainer: [String:String]
     
     init(headerText: String, placeholderText: String, currencyName: String = "") {
@@ -115,13 +115,13 @@ class CreateAlertDisplayManager: NSObject {
     
     private func getFieldsForRender() -> [UIItem] {
         return [
-//            UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", placeholderText: "Select currency pair...", rightText: "")),
-//            UIItem(type: .UpperBound,  item: UIFieldModel(headerText: "Upper bound", leftText: "0 USD")),
-//            UIItem(type: .BottomBound,  item: UIFieldModel(headerText: "Bottom bound", leftText: "0 USD")),
-//            // UIFieldModel(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
-//            UIItem(type: .Notification,  item: UIFieldModel(headerText: "Notification settings", leftText: "Is persistent alert")),
-//            UIItem(type: .Note,  item: UIFieldModel(headerText: "Note", leftText: "Write remember note...")),
-//            UIItem(type: .ButtonCreateUpdate,  item: UIFieldModel(headerText: self.alertItem == nil ? "Add" : "Update"))
+//            UIItem(type: .CurrencyPair, item: ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...", rightText: "")),
+//            UIItem(type: .UpperBound,  item: ModelOrderViewCell(headerText: "Upper bound", leftText: "0 USD")),
+//            UIItem(type: .BottomBound,  item: ModelOrderViewCell(headerText: "Bottom bound", leftText: "0 USD")),
+//            // ModelOrderViewCell(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
+//            UIItem(type: .Notification,  item: ModelOrderViewCell(headerText: "Notification settings", leftText: "Is persistent alert")),
+//            UIItem(type: .Note,  item: ModelOrderViewCell(headerText: "Note", leftText: "Write remember note...")),
+//            UIItem(type: .ButtonCreateUpdate,  item: ModelOrderViewCell(headerText: self.alertItem == nil ? "Add" : "Update"))
         ]
     }
     

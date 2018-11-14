@@ -27,7 +27,7 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     @IBOutlet weak var currencyLabel: UILabel!
     
     private var onTextFieldTextDidChanged: TextInVoidOutClosure? = nil
-    var data: UIFieldModel? {
+    var data: ModelOrderViewCell? {
         didSet {
             guard let d = data else {
                 return

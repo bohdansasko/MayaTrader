@@ -13,7 +13,7 @@ class AlertTableViewCellWithArrow: AlertTableViewCellWithTextData {
     @IBOutlet weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
     
-    func setContentData(data: UIFieldModel) {
+    func setContentData(data: ModelOrderViewCell) {
         self.headerLabel.text = data.getHeaderText()
         self.leftLabel.text = data.getPlaceholderText()
         self.rightLabel.text = data.getCurrencyName()
