@@ -7,12 +7,6 @@
 //
 
 protocol CreateOrderViewInput: class {
-
-    /**
-        @author TQ0oS
-        Setup initial state of the view
-    */
-
     func setupInitialState()
     func updateSelectedCurrency(name: String, price: Double)
     func setOrderSettings(orderSettings: OrderSettings)
@@ -20,12 +14,6 @@ protocol CreateOrderViewInput: class {
 }
 
 protocol CreateOrderViewOutput {
-    
-    /**
-     @author TQ0oS
-     Notify presenter that view is ready
-     */
-    
     func viewIsReady()
     func createOrder(orderModel: OrderModel)
     func handleTouchOnCancelButton()

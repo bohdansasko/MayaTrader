@@ -13,4 +13,5 @@ protocol OrdersViewInput: class {
 protocol OrdersViewOutput {
     func viewIsReady()
     func onDidSelectTab(_ orderTab: Orders.DisplayType)
+    func onTouchButtonAddOrder()
 }

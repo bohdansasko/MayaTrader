@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 import ObjectMapper
 
-fileprivate enum CreateOrderViewType : Int {
-    case None = -1
+enum CreateOrderDisplayType : Int {
     case Limit = 0
     case InstantOnAmount = 1
     case InstantOnSum = 2
@@ -38,6 +37,19 @@ class CreateOrderDisplayManager: NSObject {
             self.type = type
             self.item = item
         }
+
+//        
+//        func getOnAmountLayout() -> [UIItem] {
+//            return [
+//                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
+//                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "0 USD")),
+//                UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
+//                UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
+//                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
+//                UIItem(type: .ButtonCreate, item: nil)
+//            ]
+//        }
+//      
     }
     
     var tableView: UITableView!
@@ -46,7 +58,7 @@ class CreateOrderDisplayManager: NSObject {
     private var dataProvider: [UIItem] = []
     private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
 
-    fileprivate var viewOrderType: CreateOrderViewType = .None
+    fileprivate var viewOrderType: CreateOrderDisplayType = .Limit
     fileprivate var orderSettings: OrderSettings?
     private var orderViewModel : DarkeningPickerViewModel!
     private var selectedOrderViewIndex : Int = 0
@@ -112,7 +124,7 @@ extension CreateOrderDisplayManager {
         self.tableView.dataSource = self
         
         self.registerTableCells()
-        self.handleSelectedActionInOrderPickerView(actionIndex: CreateOrderViewType.Limit.rawValue)
+        self.handleSelectedActionInOrderPickerView(actionIndex: CreateOrderDisplayType.Limit.rawValue)
         
         self.reloadData()
     }
@@ -193,7 +205,7 @@ extension CreateOrderDisplayManager {
         return true
     }
     
-    fileprivate func updateViewLayout(viewType: CreateOrderViewType) {
+    fileprivate func updateViewLayout(viewType: CreateOrderDisplayType) {
         if viewType != self.viewOrderType {
             self.viewOrderType = viewType
             self.dataProvider = getFieldsForRender()
@@ -213,39 +225,7 @@ extension CreateOrderDisplayManager {
     }
     
     fileprivate func getFieldsForRender() -> [UIItem] {
-        switch self.viewOrderType {
-        case .Limit:
-            return [
-                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "0 BTC")),
-                UIItem(type: .Price, item: UIFieldModel(headerText: "Price", leftText: "0 USD")),
-                UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 USD")),
-                UIItem(type: .Commision, item: UIFieldModel(headerText: "Commision", leftText: "0 BTC")),
-                UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
-                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
-                UIItem(type: .ButtonCreate, item: nil)
-            ]
-        case .InstantOnAmount:
-            return [
-                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-                UIItem(type: .Amount, item: UIFieldModel(headerText: "Amount", leftText: "0 USD")),
-                UIItem(type: .Total, item: UIFieldModel(headerText: "Total", leftText: "0 BTC")),
-                UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
-                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
-                UIItem(type: .ButtonCreate, item: nil)
-            ]
-        case .InstantOnSum:
-            return [
-                UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-                UIItem(type: .Amount, item: UIFieldModel(headerText: "For the amount of", leftText: "0 USD")),
-                UIItem(type: .Total, item: UIFieldModel(headerText: "The amount will be", leftText: "0 USD")),
-                UIItem(type: .OrderType, item: UIFieldModel(headerText: "Order Type")),
-                UIItem(type: .OrderBy, item: UIFieldModel(headerText: orderViewModel.header, leftText: orderViewModel.dataSouce[self.selectedOrderViewIndex], rightText: "")),
-                UIItem(type: .ButtonCreate, item: nil)
-            ]
-        default:
-            return []
-        }
+        return []
     }
     
     fileprivate func fillFields(number: Double) {
@@ -447,9 +427,7 @@ extension CreateOrderDisplayManager {
     }
 }
 
-//
 // @MARK: datasource
-//
 extension CreateOrderDisplayManager: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataProvider.count

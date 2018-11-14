@@ -38,30 +38,30 @@ fileprivate struct UIItem {
     }
 }
 
-class UIFieldModel {
-    var textContainer: [String:String]
+struct UIFieldModel {
+    private var textContainer: [String:String]
     
-    convenience init(headerText: String = "") {
-        self.init(headerText: headerText, leftText: "")
-    }
-    
-    init(headerText: String, leftText: String, rightText: String = "") {
+    init(headerText: String, placeholderText: String, currencyName: String = "") {
         self.textContainer = [String:String]()
         self.textContainer["headerText"] = headerText
-        self.textContainer["leftText"] = leftText
-        self.textContainer["rightText"] = rightText
+        self.textContainer["placeholderText"] = placeholderText
+        self.textContainer["currencyName"] = currencyName
+    }
+    
+    init(headerText: String = "") {
+        self.init(headerText: headerText, placeholderText: "")
     }
     
     func getHeaderText() -> String {
         return textContainer["headerText"] ?? ""
     }
     
-    func getLeftText() -> String {
-        return textContainer["leftText"] ?? ""
+    func getPlaceholderText() -> String {
+        return textContainer["placeholderText"] ?? ""
     }
     
-    func getRightText() -> String {
-        return textContainer["rightText"] ?? ""
+    func getCurrencyName() -> String {
+        return textContainer["currencyName"] ?? ""
     }
 }
 
@@ -115,13 +115,13 @@ class CreateAlertDisplayManager: NSObject {
     
     private func getFieldsForRender() -> [UIItem] {
         return [
-            UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", leftText: "Select currency pair...", rightText: "")),
-            UIItem(type: .UpperBound,  item: UIFieldModel(headerText: "Upper bound", leftText: "0 USD")),
-            UIItem(type: .BottomBound,  item: UIFieldModel(headerText: "Bottom bound", leftText: "0 USD")),
-            // UIFieldModel(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
-            UIItem(type: .Notification,  item: UIFieldModel(headerText: "Notification settings", leftText: "Is persistent alert")),
-            UIItem(type: .Note,  item: UIFieldModel(headerText: "Note", leftText: "Write remember note...")),
-            UIItem(type: .ButtonCreateUpdate,  item: UIFieldModel(headerText: self.alertItem == nil ? "Add" : "Update"))
+//            UIItem(type: .CurrencyPair, item: UIFieldModel(headerText: "Currency pair", placeholderText: "Select currency pair...", rightText: "")),
+//            UIItem(type: .UpperBound,  item: UIFieldModel(headerText: "Upper bound", leftText: "0 USD")),
+//            UIItem(type: .BottomBound,  item: UIFieldModel(headerText: "Bottom bound", leftText: "0 USD")),
+//            // UIFieldModel(fieldType: .Sound, headerText: "Sound", leftText: "Melody1"),
+//            UIItem(type: .Notification,  item: UIFieldModel(headerText: "Notification settings", leftText: "Is persistent alert")),
+//            UIItem(type: .Note,  item: UIFieldModel(headerText: "Note", leftText: "Write remember note...")),
+//            UIItem(type: .ButtonCreateUpdate,  item: UIFieldModel(headerText: self.alertItem == nil ? "Add" : "Update"))
         ]
     }
     

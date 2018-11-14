@@ -5,6 +5,7 @@
 //  Created by TQ0oS on 24/03/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+import UIKit
 
 class OrdersPresenter: OrdersModuleInput, OrdersViewOutput, OrdersInteractorOutput {
 
@@ -22,5 +23,9 @@ class OrdersPresenter: OrdersModuleInput, OrdersViewOutput, OrdersInteractorOutp
     
     func onDidSelectTab(_ orderTab: Orders.DisplayType) {
         interactor.loadOrderByType(orderTab)
+    }
+    
+    func onTouchButtonAddOrder() {
+        router.showAddOrderVC(view as! UIViewController)
     }
 }

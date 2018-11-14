@@ -49,7 +49,7 @@ class SwitcherTableViewCell: AlertTableViewCellWithTextData {
  
     private func setContentData(data: UIFieldModel) {
         self.headerLabel.text = data.getHeaderText()
-        self.leftLabel.text = data.getLeftText()
+        self.leftLabel.text = data.getPlaceholderText()
     }
     
     override func getBoolValue() -> Bool {

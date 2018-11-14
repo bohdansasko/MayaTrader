@@ -33,7 +33,7 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
                 return
             }
             self.headerLabel.text = d.getHeaderText()
-            self.inputField.placeholder = d.getLeftText()
+            self.inputField.placeholder = d.getPlaceholderText()
             self.inputField.placeholderColor = UIColor.white.withAlphaComponent(0.3)
             self.inputField.delegate = self
             self.inputField.addTarget(self, action: #selector(self.onTextFieldEditingChanged), for: .editingChanged)

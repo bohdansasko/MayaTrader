@@ -156,7 +156,7 @@ extension OrdersViewController {
     }
     
     @objc func onTouchButtonAddOrder(_ sender: Any) {
-        print("should show create order view")
+        output.onTouchButtonAddOrder()
     }
 }
 

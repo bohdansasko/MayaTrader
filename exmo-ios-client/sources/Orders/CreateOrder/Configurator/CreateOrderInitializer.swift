@@ -8,10 +8,10 @@
 
 import UIKit
 
-class CreateOrderModuleInitializer: NSObject {
+class CreateOrderModuleInitializer {
     var viewController: CreateOrderViewController!
 
-    override func awakeFromNib() {
+    init() {
         viewController = CreateOrderViewController()
         let configurator = CreateOrderModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: viewController)

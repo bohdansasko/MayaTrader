@@ -15,8 +15,8 @@ class AlertTableViewCellWithArrow: AlertTableViewCellWithTextData {
     
     func setContentData(data: UIFieldModel) {
         self.headerLabel.text = data.getHeaderText()
-        self.leftLabel.text = data.getLeftText()
-        self.rightLabel.text = data.getRightText()
+        self.leftLabel.text = data.getPlaceholderText()
+        self.rightLabel.text = data.getCurrencyName()
     }
     
     override func getTextData() -> String {
