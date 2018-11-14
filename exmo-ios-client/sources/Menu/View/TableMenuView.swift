@@ -25,6 +25,7 @@ class TableMenuView: UIView {
     private var tableView: UITableView = {
         let table = UITableView()
         table.backgroundColor = .clear
+        table.delaysContentTouches = false
         return table
     }()
     
