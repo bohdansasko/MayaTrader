@@ -13,6 +13,7 @@ enum OrderBy {
     case CurrencyExchange
 }
 
+// @MARK: TableOrderViewCellWithModel
 class TableOrderViewCellWithModel: UITableViewCell {
     var model: ModelOrderViewCell?
     
@@ -31,6 +32,7 @@ class TableOrderViewCellWithModel: UITableViewCell {
     }
 }
 
+// @MARK: TableOrderViewCellTitle
 class TableOrderViewCellTitle: TableOrderViewCellWithModel {
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -167,7 +169,7 @@ class CellInputField: TableOrderViewCellTitle {
     var rightLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.textColor = UIColor.white.withAlphaComponent(0.3)
+        label.textColor = .white
         label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
         return label
     }()
@@ -180,6 +182,7 @@ class CellInputField: TableOrderViewCellTitle {
             titleLabel.text = d.getHeaderText()
             textInput.placeholder = d.getPlaceholderText()
             textInput.placeholderColor = UIColor.white.withAlphaComponent(0.3)
+            textInput.isEnabled = d.isTextInputEnabled
         }
     }
     
@@ -192,7 +195,7 @@ class CellInputField: TableOrderViewCellTitle {
         textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         textInput.delegate = self
 
-        rightLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        rightLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 50, widthConstant: 0, heightConstant: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -205,6 +208,7 @@ class CellInputField: TableOrderViewCellTitle {
     }
 }
 
+// MARK: CellInputField+UITextFieldDelegate
 extension CellInputField: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let textFieldText = textField.text ?? ""
@@ -232,9 +236,14 @@ class CellMoreVariantsField: CellInputField {
             guard let d = model else {
                 return
             }
+        
             titleLabel.text = d.getHeaderText()
-            textInput.text = d.getPlaceholderText()
-            textInput.isEnabled = false
+            
+            textInput.placeholder = d.getPlaceholderText()
+            textInput.isEnabled = d.isTextInputEnabled
+            textInput.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: d.getCurrencyName())
+    
+            rightLabel.text = d.getRightText()
         }
     }
     

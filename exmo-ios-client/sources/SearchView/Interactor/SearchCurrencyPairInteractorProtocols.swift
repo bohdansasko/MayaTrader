@@ -1,5 +1,5 @@
 //
-//  SearchInteractorOutput.swift
+//  SearchInteractorInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -7,6 +7,10 @@
 //
 
 import Foundation
+
+protocol SearchInteractorInput {
+    // do nothing
+}
 
 protocol SearchInteractorOutput: class {
     // do nothing

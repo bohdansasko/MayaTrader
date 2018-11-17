@@ -41,7 +41,7 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
         )
         return sc
     }()
-    var cellsLayoutView = CreateOrderLimitView()
+    lazy var cellsLayoutView = CreateOrderLimitView()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -54,8 +54,6 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
 
     // MARK: CreateOrderViewInput
     func setupInitialState() {
-//        dataDisplayManager.setTableView(tableView: tableView)
-        
         setupNavigationBar()
         setupSegmentControlView()
         setupCellsLayout()
@@ -75,6 +73,7 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     
     private func setupCellsLayout() {
         view.addSubview(cellsLayoutView)
+        cellsLayoutView.output = output
         cellsLayoutView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
@@ -103,7 +102,8 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
-        dataDisplayManager.updateSelectedCurrency(name: name, price: price)
+        cellsLayoutView.updateSelectedCurrency(name: name, price: price)
+//        dataDisplayManager.updateSelectedCurrency(name: name, price: price)
     }
     
     func setOrderSettings(orderSettings: OrderSettings) {

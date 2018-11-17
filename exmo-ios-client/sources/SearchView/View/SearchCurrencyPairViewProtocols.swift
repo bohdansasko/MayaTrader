@@ -1,5 +1,5 @@
 //
-//  SearchViewInput.swift
+//  SearchCurrencyPairViewProtocols.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 01/07/2018.
@@ -7,12 +7,12 @@
 //
 
 protocol SearchViewInput: class {
+    
+}
 
-    /**
-        @author TQ0oS
-        Setup initial state of the view
-    */
-
-    func setupInitialState()
+protocol SearchViewOutput: class {
+    func viewIsReady()
+    func closeVC()
+    func onTouchCurrencyPair(rawName: String)
     func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel])
 }

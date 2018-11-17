@@ -13,10 +13,9 @@ protocol CreateOrderViewInput: class {
     func showPickerView()
 }
 
-protocol CreateOrderViewOutput {
+protocol CreateOrderViewOutput: class {
     func viewIsReady()
     func createOrder(orderModel: OrderModel)
     func handleTouchOnCancelButton()
-    func openCurrencySearchView(data: [SearchModel])
-    func handleTouchOnOrderType()
+    func openCurrencySearchVC()
 }

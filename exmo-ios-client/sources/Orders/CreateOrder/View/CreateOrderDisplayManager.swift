@@ -525,9 +525,7 @@ extension CreateOrderDisplayManager: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch self.dataProvider[indexPath.section].type {
         case UIFieldType.CurrencyPair:
-            self.output.openCurrencySearchView(data: AppDelegate.session.getSearchCurrenciesContainer())
-        case UIFieldType.OrderBy:
-            output.handleTouchOnOrderType()
+            self.output.openCurrencySearchVC()
         default: // do nothing
             break
         }

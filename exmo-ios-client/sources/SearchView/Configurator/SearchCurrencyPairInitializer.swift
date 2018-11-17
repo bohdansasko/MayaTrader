@@ -8,15 +8,13 @@
 
 import UIKit
 
-class SearchModuleInitializer: NSObject {
+class SearchModuleInitializer {
+    var viewController: SearchViewController!
 
-    //Connect with object on storyboard
-    @IBOutlet weak var searchCurrencyPairViewController: SearchViewController!
-
-    override func awakeFromNib() {
-
+    init() {
+        viewController = SearchViewController()
         let configurator = SearchModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: searchCurrencyPairViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
 
 }

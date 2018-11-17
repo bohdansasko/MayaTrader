@@ -11,31 +11,26 @@ class SearchPresenter: SearchModuleInput, SearchViewOutput, SearchInteractorOutp
     weak var view: SearchViewInput!
     var interactor: SearchInteractorInput!
     var router: SearchRouterInput!
-    
-    private var callbackOnSelectCurrency: IntInVoidOutClosure? = nil
+    var moduleOutput: SearchModuleOutput?
     
     func viewIsReady() {
         // do nothing
     }
     
-    func handleCloseView() {
+    func closeVC() {
         self.router.closeView(uiViewController: view as! UIViewController)
     }
     
-    func subscribeOnSelectCurrency(callback: IntInVoidOutClosure?) {
-        self.callbackOnSelectCurrency = callback
-    }
-    
-    func subscribeOnSelectCurrency(callback: @escaping IntInVoidOutClosure) {
-        self.callbackOnSelectCurrency = callback
-    }
-    
-    func handleTouchOnCurrency(currencyPairId: Int) {
-        self.callbackOnSelectCurrency?(currencyPairId)
-        self.handleCloseView()
+    func onTouchCurrencyPair(rawName: String) {
+        moduleOutput?.onDidSelectCurrencyPair(rawName: rawName)
+        self.closeVC()
     }
     
     func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel]) {
-        self.view.setSearchData(searchType, data)
+//        self.view.setSearchData(searchType, data)
+    }
+    
+    func setInputModule(output: SearchModuleOutput?) {
+        moduleOutput = output
     }
 }

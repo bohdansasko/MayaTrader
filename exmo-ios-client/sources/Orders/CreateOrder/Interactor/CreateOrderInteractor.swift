@@ -12,7 +12,7 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
     weak var output: CreateOrderInteractorOutput!
 
     private var data: [SearchCurrencyPairModel]
-    private var currencyId: Int = -1
+    private var rawName: String = ""
 
     init() {
         self.data = AppDelegate.session.getSearchCurrenciesContainer()
@@ -45,12 +45,12 @@ class CreateOrderInteractor: CreateOrderInteractorInput {
         self.output.closeView()
     }
     
-    func handleSelectedCurrency(currencyId: Int) {
-        self.currencyId = currencyId
-        guard let currencyData = self.data.first(where: {$0.id == currencyId}) else {
-            return
-        }
-        AppDelegate.session.loadCurrencyPairSettings(currencyData.getName())
-        self.output.updateSelectedCurrency(name: currencyData.getDisplayName(), price: currencyData.price)
+    func handleSelectedCurrency(rawName: String) {
+        self.rawName = rawName
+//        guard let currencyData = self.data.first(where: { $0.name == rawName }) else {
+//            return
+//        }
+        // AppDelegate.session.loadCurrencyPairSettings(currencyData.getName())
+        self.output.updateSelectedCurrency(name: rawName, price: 1230)
     }
 }

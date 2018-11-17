@@ -115,7 +115,7 @@ class SearchDisplayManager: NSObject {
                 ? self.filteredBalances[currencyIndex].getId()
                 : self.dataProvider[currencyIndex].getId()
             
-            self.output.handleTouchOnCurrency(currencyPairId: currencyPairId)
+//            self.output.handleTouchCurrency(currencyPairId: currencyPairId)
         case .Sounds: // do nothing
             break
         default:      // do nothing

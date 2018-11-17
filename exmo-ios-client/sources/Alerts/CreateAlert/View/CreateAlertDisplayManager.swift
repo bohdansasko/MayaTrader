@@ -40,12 +40,14 @@ fileprivate struct UIItem {
 
 struct ModelOrderViewCell {
     private var textContainer: [String:String]
+    var isTextInputEnabled = true
     
-    init(headerText: String, placeholderText: String, currencyName: String = "") {
+    init(headerText: String, placeholderText: String, currencyName: String = "", rightText: String = "") {
         self.textContainer = [String:String]()
         self.textContainer["headerText"] = headerText
         self.textContainer["placeholderText"] = placeholderText
         self.textContainer["currencyName"] = currencyName
+        self.textContainer["rightText"] = rightText
     }
     
     init(headerText: String = "") {
@@ -62,6 +64,10 @@ struct ModelOrderViewCell {
     
     func getCurrencyName() -> String {
         return textContainer["currencyName"] ?? ""
+    }
+    
+    func getRightText() -> String {
+        return textContainer["rightText"] ?? ""
     }
 }
 

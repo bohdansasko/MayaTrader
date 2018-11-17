@@ -10,7 +10,7 @@ import Foundation
 
 protocol CreateOrderInteractorInput {
     func createOrder(orderModel: OrderModel)
-    func handleSelectedCurrency(currencyId: Int)
+    func handleSelectedCurrency(rawName: String)
 }
 
 protocol CreateOrderInteractorOutput: class {

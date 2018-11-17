@@ -12,11 +12,10 @@ class CreateOrderRouter: CreateOrderRouterInput {
         view.close()
     }
     
-    func openCurrencySearchView(data: [SearchModel], view: UIViewController, callbackOnSelectCurrency: IntInVoidOutClosure?) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.output.setSearchData(.Currencies, data)
-        vc.output.subscribeOnSelectCurrency(callback: callbackOnSelectCurrency)
-        view.present(vc, animated: true, completion: nil)
+    func openCurrencySearchVC(_ sourceVC: UIViewController, moduleOutput: SearchModuleOutput!) {
+        let destinationModule = SearchModuleInitializer()
+        let minput = destinationModule.viewController.output as! SearchModuleInput
+        minput.setInputModule(output: moduleOutput)
+        sourceVC.present(destinationModule.viewController, animated: true, completion: nil)
     }
 }

@@ -11,10 +11,16 @@ import Foundation
 import UIKit
 
 class CreateOrderLimitView: UIView {
+    weak var output: CreateOrderViewOutput!
     let kCellId = "kCellId"
     let kCellIdMoreVariants = "kCellIdMoreVariants"
     let kCellButtonId = "CellButton"
     let kCellUISwitcherId = "kCellUISwitcher"
+    var layoutType: CreateOrderDisplayType = .Limit {
+        didSet {
+            updateLayout(layoutType)
+        }
+    }
     
     var tableView: UITableView = {
         let tv = UITableView()
@@ -24,12 +30,6 @@ class CreateOrderLimitView: UIView {
         tv.delaysContentTouches = false
         return tv
     }()
-    
-    var layoutType: CreateOrderDisplayType = .Limit {
-        didSet {
-            updateLayout(layoutType)
-        }
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -53,6 +53,14 @@ class CreateOrderLimitView: UIView {
 extension CreateOrderLimitView {
     func updateLayout(_ layoutType: CreateOrderDisplayType) {
         tableView.reloadData()
+    }
+    
+    func updateSelectedCurrency(name: String, price: Double) {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: getSelectCurrencyIndexCell(), section: 0)) as? CellMoreVariantsField else { return }
+        
+        var model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...", currencyName: name, rightText: String(price))
+        model.isTextInputEnabled = false
+        cell.model = model
     }
 }
 
@@ -93,6 +101,7 @@ extension CreateOrderLimitView: UITableViewDataSource  {
 extension CreateOrderLimitView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
+        output.openCurrencySearchVC()
     }
 }
 
@@ -104,7 +113,7 @@ extension CreateOrderLimitView {
         }
     }
     
-    func getCellIndexMoreDetails() -> Int {
+    func getSelectCurrencyIndexCell() -> Int {
         return 0
     }
 
@@ -126,11 +135,17 @@ extension CreateOrderLimitView {
         var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
-        case 0: model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+        case 0:
+            model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+            model?.isTextInputEnabled = false
         case 1: model = ModelOrderViewCell(headerText: "Amount", placeholderText: "0 BTC")
         case 2: model = ModelOrderViewCell(headerText: "Price", placeholderText: "0 USD")
-        case 3: model = ModelOrderViewCell(headerText: "Total", placeholderText: "0 USD")
-        case 4: model = ModelOrderViewCell(headerText: "Commision", placeholderText: "0 BTC")
+        case 3:
+            model = ModelOrderViewCell(headerText: "Total", placeholderText: "0 USD")
+            model?.isTextInputEnabled = false
+        case 4:
+            model = ModelOrderViewCell(headerText: "Commision", placeholderText: "0 BTC")
+            model?.isTextInputEnabled = false
         case 5: model = ModelOrderViewCell(headerText: "Order Type")
         case 6: model = ModelOrderViewCell(headerText: "Create")
         default: break
@@ -143,9 +158,13 @@ extension CreateOrderLimitView {
         var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
-        case 0: model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+        case 0:
+            model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+            model?.isTextInputEnabled = false
         case 1: model = ModelOrderViewCell(headerText: "Amount", placeholderText: "0 BTC")
-        case 2: model = ModelOrderViewCell(headerText: "Total", placeholderText: "0 USD")
+        case 2:
+            model = ModelOrderViewCell(headerText: "Total", placeholderText: "0 USD")
+            model?.isTextInputEnabled = false
         case 3: model = ModelOrderViewCell(headerText: "Order Type")
         case 4: model = ModelOrderViewCell(headerText: "Create")
         default: break
@@ -158,9 +177,13 @@ extension CreateOrderLimitView {
         var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
-        case 0: model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+        case 0:
+            model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...")
+            model?.isTextInputEnabled = false
         case 1: model = ModelOrderViewCell(headerText: "For the amount of", placeholderText: "0 BTC")
-        case 2: model = ModelOrderViewCell(headerText: "The amount will be", placeholderText: "0 USD")
+        case 2:
+            model = ModelOrderViewCell(headerText: "The amount will be", placeholderText: "0 USD")
+            model?.isTextInputEnabled = false
         case 3: model = ModelOrderViewCell(headerText: "Order Type")
         case 4: model = ModelOrderViewCell(headerText: "Create")
         default: break
@@ -170,7 +193,7 @@ extension CreateOrderLimitView {
     }
     
     func getOrderCell(cellForRowAt indexPath: IndexPath, model: ModelOrderViewCell?) -> UITableViewCell {
-        if indexPath.section == getCellIndexMoreDetails() {
+        if indexPath.section == getSelectCurrencyIndexCell() {
             let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdMoreVariants) as! CellMoreVariantsField
             cell.model = model
             cell.selectionStyle = .gray

@@ -16,39 +16,56 @@ class SearchViewController: UIViewController, SearchViewInput {
     }
     
     var output: SearchViewOutput!
-    var displayManager: SearchDisplayManager!
     
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var layoutConstraintHeaderHeight: NSLayoutConstraint!
+    var tabBar = CurrenciesListTabBar()
+    var listView = SearchDatasourceListView()
+    
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.hidesWhenStopped = true
+        aiv.color = .white
+        return aiv
+    }()
     
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
-        setupInitialState()
-    }
-
-
-    // MARK: SearchViewInput
-    func setupInitialState() {
-        if AppDelegate.isIPhone(model: .X) {
-            self.layoutConstraintHeaderHeight.constant = 95
-        }
         
-        self.displayManager.setSearchBar(searchBar: searchBar)
-        self.displayManager.setTableView(tableView: self.tableView)
-    }
-    
-    @IBAction func closeView() {
-        self.output.handleCloseView()
-    }
-    
-    //
-    //@ this method called before viewDidLoad
-    //
-    func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel]) {
-        self.displayManager.setData(dataProvider: data, searchType: searchType)
+        setupViews()
+        output.viewIsReady()
     }
 }
+
+extension SearchViewController {
+    func setupViews() {
+        view.backgroundColor = .black
+        
+        setupNavigationBar()
+        setupCurrenciesList()
+    }
+    
+    private func setupNavigationBar() {
+        view.addSubview(tabBar)
+        tabBar.callbackOnTouchDoneBtn = {
+            [weak self] in
+            self?.output.closeVC()
+        }
+        tabBar.searchBar.delegate = self
+        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 44)
+    }
+    
+    private func setupCurrenciesList() {
+        view.addSubview(listView)
+        listView.output = output
+        listView.anchor(tabBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+}
+
+// MARK: UISearchBarDelegate
+extension SearchViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        listView.filterBy(text: searchText)
+    }
+}
+

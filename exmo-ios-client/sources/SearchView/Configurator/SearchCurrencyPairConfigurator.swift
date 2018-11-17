@@ -18,7 +18,6 @@ class SearchModuleConfigurator {
     }
 
     private func configure(viewController: SearchViewController) {
-
         let router = SearchRouter()
 
         let presenter = SearchPresenter()
@@ -31,8 +30,8 @@ class SearchModuleConfigurator {
         presenter.interactor = interactor
         viewController.output = presenter
         
-        viewController.displayManager = SearchDisplayManager()
-        viewController.displayManager.output = viewController.output
+//        viewController.displayManager = SearchDisplayManager()
+//        viewController.displayManager.output = viewController.output
     }
 
 }

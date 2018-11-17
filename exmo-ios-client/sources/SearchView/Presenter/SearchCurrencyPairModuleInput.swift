@@ -7,5 +7,9 @@
 //
 
 protocol SearchModuleInput: class {
-    // do nothing
+    func setInputModule(output: SearchModuleOutput?)
+}
+
+protocol SearchModuleOutput: class {
+    func onDidSelectCurrencyPair(rawName: String)
 }
