@@ -12,10 +12,16 @@ import UIKit
 
 class CreateOrderLimitView: UIView {
     weak var output: CreateOrderViewOutput!
+    var selectedCurrency: TickerCurrencyModel? {
+        didSet {
+            print("did set selectedCurrency")
+        }
+    }
     let kCellId = "kCellId"
     let kCellIdMoreVariants = "kCellIdMoreVariants"
     let kCellButtonId = "CellButton"
     let kCellUISwitcherId = "kCellUISwitcher"
+    
     var layoutType: CreateOrderDisplayType = .Limit {
         didSet {
             updateLayout(layoutType)
@@ -215,5 +221,68 @@ extension CreateOrderLimitView {
         cell.model = model
         cell.selectionStyle = .none
         return cell
+    }
+    
+    fileprivate func fillFields(number: Double) {
+        switch layoutType {
+//        case .Limit:
+//            guard let cellAmount = self.getCellByType(inParamType: .Amount),
+//                let cellPrice = self.getCellByType(inParamType: .Price) else {
+//                    return
+//            }
+//
+//            let amount = cellAmount.getDoubleValue()
+//            let price = cellPrice.getDoubleValue()
+//            let exmoCommisionInPercentage = 2.0
+//
+//            let totalValue = amount * price
+//            let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
+//
+//            guard let cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell,
+//                let cellCommision = self.getCellByType(inParamType: .Commision) as? AddAlertTableViewCell else {
+//                    return
+//            }
+//            cellTotal.setTextInInputField(string: totalValue > 0
+//                ? Utils.getFormatedPrice(value:totalValue)
+//                : ""
+//            )
+//            cellCommision.setTextInInputField(string: comissionValue > 0
+//                ? Utils.getFormatedPrice(value: comissionValue)
+//                : ""
+//            )
+//        case .InstantOnAmount:
+//            guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
+//                let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
+//                let  cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell else {
+//                    return
+//            }
+//
+//            let price = cellCurrencyPair.getDoubleValue()
+//            let amount = cellAmount.getDoubleValue()
+//            let totalValue = amount * price
+//
+//            cellTotal.setTextInInputField(string: totalValue > 0
+//                ? Utils.getFormatedPrice(value: totalValue)
+//                : ""
+//            )
+            
+//        case .InstantOnSum:
+//            guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
+//                let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
+//                let  cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell else {
+//                    return
+//            }
+//
+//            let price = cellCurrencyPair.getDoubleValue()
+//            let amount = cellAmount.getDoubleValue()
+//            let totalValue = amount * price
+//
+//            cellTotal.setTextInInputField(string: totalValue > 0
+//                ? Utils.getFormatedPrice(value: totalValue)
+//                : ""
+//            )
+        default: // do nothing
+            break
+        }
     }
 }

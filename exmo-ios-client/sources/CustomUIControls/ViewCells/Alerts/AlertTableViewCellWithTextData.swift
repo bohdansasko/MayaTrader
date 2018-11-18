@@ -8,11 +8,9 @@
 
 import UIKit
 
-class AlertTableViewCellWithTextData: UITableViewCell {
+class AlertTableViewCellWithTextData: ExmoTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        setupSelectionView()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -21,11 +19,6 @@ class AlertTableViewCellWithTextData: UITableViewCell {
         // Configure the view for the selected state
     }
 
-    private func setupSelectionView() {
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
-        self.selectedBackgroundView = bgColorView
-    }
     
     func getTextData() -> String {
         return ""

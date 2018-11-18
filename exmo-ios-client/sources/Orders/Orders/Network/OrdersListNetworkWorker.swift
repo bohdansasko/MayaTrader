@@ -10,26 +10,6 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-protocol IOrdersListNetworkWorkerDelegate: class {
-    func onDidLoadSuccessOpenOrders(orders: Orders)
-    func onDidLoadFailsOpenOrders(orders: Orders)
-    
-    func onDidLoadSuccessCanceledOrders(orders: Orders)
-    func onDidLoadFailsCanceledOrders(orders: Orders)
-    
-    func onDidLoadSuccessDeals(orders: Orders)
-    func onDidLoadFailsDeals(orders: Orders)
-}
-
-protocol IOrdersListNetworkWorker {
-    var delegate: IOrdersListNetworkWorkerDelegate? { get set }
-    
-    func loadAllOrders()
-    func loadOpenOrders()
-    func loadCanceledOrders()
-    func loadDeals()
-}
-
 class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     var delegate: IOrdersListNetworkWorkerDelegate?
     

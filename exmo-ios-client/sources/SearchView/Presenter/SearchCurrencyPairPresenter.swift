@@ -7,14 +7,32 @@
 //
 import UIKit.UIViewController
 
-class SearchPresenter: SearchModuleInput, SearchViewOutput, SearchInteractorOutput {
+class SearchPresenter {
     weak var view: SearchViewInput!
     var interactor: SearchInteractorInput!
     var router: SearchRouterInput!
-    var moduleOutput: SearchModuleOutput?
+    weak var moduleOutput: SearchModuleOutput?
     
+    deinit {
+        print("deinit \(String(describing: self))")
+    }
+}
+
+// @MARK: SearchInteractorOutput
+extension SearchPresenter: SearchModuleInput {
+    func setInputModule(output: SearchModuleOutput?) {
+        moduleOutput = output
+    }
+}
+
+// @MARK: SearchInteractorOutput
+extension SearchPresenter: SearchViewOutput {
     func viewIsReady() {
-        // do nothing
+        interactor.viewIsReady()
+    }
+    
+    func viewWillDisappear() {
+        interactor.viewWillDisappear()
     }
     
     func closeVC() {
@@ -25,12 +43,11 @@ class SearchPresenter: SearchModuleInput, SearchViewOutput, SearchInteractorOutp
         moduleOutput?.onDidSelectCurrencyPair(rawName: rawName)
         self.closeVC()
     }
-    
-    func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel]) {
-//        self.view.setSearchData(searchType, data)
-    }
-    
-    func setInputModule(output: SearchModuleOutput?) {
-        moduleOutput = output
+}
+
+// @MARK: SearchInteractorOutput
+extension SearchPresenter: SearchInteractorOutput {
+    func onDidLoadCurrenciesPairs(_ pairs: [SearchCurrencyPairModel]) {
+        view.updatePairsList(pairs)
     }
 }

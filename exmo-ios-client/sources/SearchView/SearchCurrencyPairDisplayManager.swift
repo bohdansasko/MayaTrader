@@ -11,16 +11,16 @@ import Foundation
 import UIKit.UITableView
 
 class SearchModel : Any {
-    var id: Int
+//    var id: Int
     var name: String
     
     init(id: Int, name: String) {
-        self.id = id
+//        self.id = id
         self.name = name
     }
     
     func getId() -> Int {
-        return self.id
+        return 0
     }
     
     func getName() -> String {

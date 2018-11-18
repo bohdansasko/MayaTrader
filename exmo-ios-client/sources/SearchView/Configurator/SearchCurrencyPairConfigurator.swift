@@ -26,7 +26,8 @@ class SearchModuleConfigurator {
 
         let interactor = SearchInteractor()
         interactor.output = presenter
-
+        interactor.networkWorker = SearchCurrencyListNetworkWorker()
+        
         presenter.interactor = interactor
         viewController.output = presenter
         

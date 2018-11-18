@@ -9,9 +9,11 @@
 import Foundation
 
 protocol SearchInteractorInput {
-    // do nothing
+    func viewIsReady()
+    func viewWillDisappear()
+    func loadCurrenciesPairs()
 }
 
 protocol SearchInteractorOutput: class {
-    // do nothing
+    func onDidLoadCurrenciesPairs(_ pairs: [SearchCurrencyPairModel])
 }

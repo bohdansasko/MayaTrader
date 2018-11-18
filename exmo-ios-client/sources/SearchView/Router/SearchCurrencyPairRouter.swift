@@ -11,4 +11,8 @@ class SearchRouter: SearchRouterInput {
     func closeView(uiViewController: UIViewController) {
         uiViewController.close()
     }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
+    }
 }

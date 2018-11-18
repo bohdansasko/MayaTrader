@@ -145,6 +145,12 @@
 		20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */; };
 		20CCBDB3206395450099D144 /* CreateOrderDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */; };
 		20CCBDB5206396560099D144 /* CreateOrderCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderCells.swift */; };
+		20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */; };
+		20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */; };
+		20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */; };
+		20CE7EB321A19CAB00EC14FA /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB221A19CAB00EC14FA /* Structures.swift */; };
+		20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB421A19CF700EC14FA /* TickerNetworkProtocols.swift */; };
+		20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */; };
 		20D7A7C32113B37300D84399 /* RoobikApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */; };
 		20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuViewCell.swift */; };
 		20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */; };
@@ -437,6 +443,12 @@
 		20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
 		20CCBDB2206395450099D144 /* CreateOrderDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderDisplayManager.swift; sourceTree = "<group>"; };
 		20CCBDB4206396560099D144 /* CreateOrderCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderCells.swift; sourceTree = "<group>"; };
+		20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListCell.swift; sourceTree = "<group>"; };
+		20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkProtocols.swift; sourceTree = "<group>"; };
+		20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNetworkWorker.swift; sourceTree = "<group>"; };
+		20CE7EB221A19CAB00EC14FA /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		20CE7EB421A19CF700EC14FA /* TickerNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNetworkProtocols.swift; sourceTree = "<group>"; };
+		20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoobikApiHandler.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
@@ -849,6 +861,7 @@
 		201E281F2199C415000960FD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */,
 				201E28202199C439000960FD /* OrdersListNetworkWorker.swift */,
 			);
 			path = Network;
@@ -971,6 +984,7 @@
 				20A5B88E20AE246600EC2A4D /* Storyboards */,
 				20A5B88F20AE247B00EC2A4D /* Sources */,
 				200CA489211C9CF300BB0E9B /* Utils.swift */,
+				20CE7EB221A19CAB00EC14FA /* Structures.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1001,6 +1015,7 @@
 				36712B2E24600DAE35483C9D /* Color+Extension.swift */,
 				36712B2B3338633190FB399E /* Font+Extension.swift */,
 				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
+				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1232,6 +1247,24 @@
 				36712DDE57C5587FC6B6609F /* ErrorModels.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		20CE7EAA21A16F4C00EC14FA /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */,
+				20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		20CE7EAF21A1734000EC14FA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				20CE7EB421A19CF700EC14FA /* TickerNetworkProtocols.swift */,
+				20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		20D7F02020460A560056F547 /* Models */ = {
@@ -1523,9 +1556,9 @@
 		4E72F2AF56E048E471332222 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				20CE7EAA21A16F4C00EC14FA /* ListView */,
 				E8BE3CACEB7580F7E0E0138A /* SearchCurrencyPairViewProtocols.swift */,
 				6AC1156744718574B0A28931 /* SearchCurrencyPairViewController.swift */,
-				20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1678,6 +1711,7 @@
 		8CA0F04B11898DFC3CDAEE08 /* SearchView */ = {
 			isa = PBXGroup;
 			children = (
+				20CE7EAF21A1734000EC14FA /* Network */,
 				4E72F2AF56E048E471332222 /* View */,
 				1C48AB1378A22C60CF910EDA /* Presenter */,
 				FAC2DE8B15DE9DB8AA471101 /* Interactor */,
@@ -2218,6 +2252,7 @@
 				9B83E5D76255DC1CF427CA5E /* WalletModuleInput.swift in Sources */,
 				20B9CC9B219A34B9004AC3B2 /* CreateLimitView.swift in Sources */,
 				202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */,
+				20CE7EB321A19CAB00EC14FA /* Structures.swift in Sources */,
 				20369A482197223C001D6628 /* MainTabBarModuleInitializer.swift in Sources */,
 				F403E921F12C165CC3DA3F52 /* WalletPresenter.swift in Sources */,
 				206A3B6B2175522400C25E95 /* Cells.swift in Sources */,
@@ -2234,10 +2269,12 @@
 				36712C9A3C90496E33B01C2A /* Constants.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* WalletTableCurrenciesView.swift in Sources */,
 				36712E4C4C5245EF136945B7 /* TableMenuView.swift in Sources */,
+				20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */,
 				20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */,
 				36712029F198CF69683FFA1B /* MenuCellType.swift in Sources */,
 				3671205D06A10EADE42FAF7C /* User.swift in Sources */,
 				204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */,
+				20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
 				20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */,
 				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
@@ -2267,6 +2304,7 @@
 				3C137E9B40C2BD707086FEF6 /* WalletCurrenciesListInteractorProtocols.swift in Sources */,
 				205AA983209DE3BD00148649 /* DarkeningPickerViewController.swift in Sources */,
 				01734E1F7D82963B9E334BA8 /* WalletCurrenciesListInteractor.swift in Sources */,
+				20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */,
 				8F61BBEA01E98C5F4DF6F7E2 /* WalletCurrenciesListRouterInput.swift in Sources */,
 				D1D3CCDC25886E62AE5D26BB /* WalletCurrenciesListRouter.swift in Sources */,
 				B0F73F18849BE389D8168863 /* WalletCurrenciesListConfigurator.swift in Sources */,
@@ -2330,8 +2368,10 @@
 				207B1D992173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift in Sources */,
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
 				200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */,
+				20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */,
 				207B1D9E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift in Sources */,
 				20780A2420E9642E00D9BD36 /* SearchCurrencyPairTableViewCell.swift in Sources */,
+				20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */,
 				207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */,
 				74208443D94F8B7E1F98710D /* WatchlistCurrencyChartViewInput.swift in Sources */,
 				CAB081780C816F30AA959325 /* WatchlistCurrencyChartViewOutput.swift in Sources */,

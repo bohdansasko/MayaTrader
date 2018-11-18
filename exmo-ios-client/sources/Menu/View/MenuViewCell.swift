@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableMenuViewCell: UITableViewCell {
+class TableMenuViewCell: ExmoTableViewCell {
     var cellType: MenuCellType = .None {
         didSet {
             iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
@@ -74,10 +74,6 @@ class TableMenuViewCell: UITableViewCell {
 extension TableMenuViewCell {
     func setupView() {
         self.backgroundColor = .clear
-
-        let bgColorView = UIView()
-        bgColorView.backgroundColor = UIColor.white.withAlphaComponent(0.08)
-        self.selectedBackgroundView = bgColorView
         
         addSubview(iconImage)
         iconImage.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 30, bottomConstant: 20, rightConstant: 0, widthConstant: 0, heightConstant: 0)

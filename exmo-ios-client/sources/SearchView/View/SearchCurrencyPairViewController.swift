@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, SearchViewInput {
+class SearchViewController: UIViewController {
     enum SearchType {
         case None
         case Currencies
@@ -33,7 +33,20 @@ class SearchViewController: UIViewController, SearchViewInput {
         super.viewDidLoad()
         
         setupViews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         output.viewIsReady()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        output.viewWillDisappear()
+    }
+    
+    deinit {
+        print("deinit \(String(describing: self))")
     }
 }
 
@@ -43,6 +56,10 @@ extension SearchViewController {
         
         setupNavigationBar()
         setupCurrenciesList()
+        
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.anchorCenterSuperview()
+        activityIndicatorView.startAnimating()
     }
     
     private func setupNavigationBar() {
@@ -66,6 +83,15 @@ extension SearchViewController {
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         listView.filterBy(text: searchText)
+    }
+}
+
+// MARK: UISearchBarDelegate
+extension SearchViewController: SearchViewInput {
+    func updatePairsList(_ pairs: [SearchCurrencyPairModel]) {
+        activityIndicatorView.stopAnimating()
+        listView.originalPairs = pairs
+        tabBar.filter()
     }
 }
 

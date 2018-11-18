@@ -34,4 +34,8 @@ extension UIColor {
     class var greenBlue: UIColor {
         return UIColor(red: 0.0, green: 189.0 / 255.0, blue: 154.0 / 255.0, alpha: 1.0)
     }
+    
+    class var backgroundColorSelectedCell: UIColor {
+        return UIColor.white.withAlphaComponent(0.08)
+    }
 }

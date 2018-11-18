@@ -7,12 +7,12 @@
 //
 
 protocol SearchViewInput: class {
-    
+    func updatePairsList(_ pairs: [SearchCurrencyPairModel])
 }
 
 protocol SearchViewOutput: class {
     func viewIsReady()
+    func viewWillDisappear()
     func closeVC()
     func onTouchCurrencyPair(rawName: String)
-    func setSearchData(_ searchType: SearchViewController.SearchType, _ data: [SearchModel])
 }

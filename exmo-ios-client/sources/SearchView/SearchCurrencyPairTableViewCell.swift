@@ -25,13 +25,13 @@ class SearchTableViewCell: AlertTableViewCellWithTextData {
     }
     
     func setContent(currencyPairModel: SearchCurrencyPairModel) {
-        self.id = currencyPairModel.id
+//        self.id = currencyPairModel.id
         self.nameLabel.text = currencyPairModel.getDisplayName()
         self.priceLabel.text = currencyPairModel.getPairPriceAsStr()
     }
     
     func setContent(currencyPairModel: SearchModel) {
-        self.id = currencyPairModel.id
+//        self.id = currencyPairModel.id
         self.nameLabel.text = currencyPairModel.name
         self.priceLabel.isHidden = true
     }
