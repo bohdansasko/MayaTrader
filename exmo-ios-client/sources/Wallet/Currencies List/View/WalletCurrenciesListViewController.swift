@@ -65,7 +65,7 @@ extension WalletCurrenciesListViewController {
         view.addSubview(tabBar)
         tabBar.callbackOnTouchDoneBtn = {
             [weak self] in
-            self?.dismiss(animated: true, completion: nil)
+            self?.output.handleTouchCloseVC()
         }
         tabBar.searchBar.delegate = self
         tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 44)
