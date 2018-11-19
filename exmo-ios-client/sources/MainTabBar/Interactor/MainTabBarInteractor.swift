@@ -28,39 +28,12 @@ extension MainTabBarInteractor: MainTabBarInteractorInput {
 
 // @MARK: ILoginNetworkWorkerDelegate
 extension MainTabBarInteractor: ILoginNetworkWorkerDelegate {
-    func onDidLoadUserInfo(response: DataResponse<Any>) {
-        switch response.result {
-        case .success(_):
-            do {
-                let json = try JSON(data: response.data!)
-                parseAndFinishLogin(json: json)
-            } catch {
-                print("NetworkWorker: we caught a problem in handle response")
-            }
-        case .failure(_):
-            print("NetworkWorker: failure loading chart data")
-        }
-    }
-}
-
-extension MainTabBarInteractor {
-    func parseAndFinishLogin(json: JSON) {
-        if let requestError = RequestResult(JSONString: json.description) {
-            if requestError.error != nil {
-//                self.output.showAlert(title: "Login", message: requestError.error!)
-                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-                return
-            }
-        }
-        guard let userInfoAsDictionary = json.dictionaryObject else { return }
-        
-        guard let user = User(JSON: userInfoAsDictionary) else {
-//            output.showAlert(title: "Login", message: "Undefined error")
-            AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-            return
-        }
-        user.qrModel = AppDelegate.cacheController.getUser()?.qrModel
+    func onDidLoadUserSuccessful(user: User) {
         AppDelegate.session.setUserModel(userData: user, shouldSaveUserInCache: true)
     }
+    
+    func onDidLoadUserFail(errorMessage: String?) {
+//        output.showAlert(title: "Login", message: errorMessage ?? "Undefined error")
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+    }
 }
-

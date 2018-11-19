@@ -136,6 +136,7 @@
 		20BEDC5520557BB200973F2F /* AlertDataDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */; };
 		20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */; };
 		20BEDC5B20557ECD00973F2F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5A20557ECD00973F2F /* AlertItem.swift */; };
+		20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */; };
 		20C85D8521963B2400B233AB /* WalletCurrenciesListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C85D8421963B2400B233AB /* WalletCurrenciesListNetworkWorker.swift */; };
 		20CA0FD6206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */; };
 		20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */; };
@@ -434,6 +435,7 @@
 		20BEDC5420557BB200973F2F /* AlertDataDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataDisplayManager.swift; sourceTree = "<group>"; };
 		20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsDisplayModel.swift; sourceTree = "<group>"; };
 		20BEDC5A20557ECD00973F2F /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProtocols.swift; sourceTree = "<group>"; };
 		20C85D8421963B2400B233AB /* WalletCurrenciesListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListNetworkWorker.swift; sourceTree = "<group>"; };
 		20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardsDisplayManager.swift; sourceTree = "<group>"; };
@@ -1219,6 +1221,15 @@
 			path = ViewCells;
 			sourceTree = "<group>";
 		};
+		20C0E3FB21A3760700CAEEF9 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */,
+				20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		20CAFED0204208AD00C7DEA5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1386,6 +1397,7 @@
 		2F5076038FAE7726FAFBB74C /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				20C0E3FB21A3760700CAEEF9 /* Network */,
 				05469F8310D9B6760A569123 /* View */,
 				F76A472BAE9890092EB14DEF /* Presenter */,
 				805346028F332A0BAD6109CE /* Interactor */,
@@ -1658,7 +1670,6 @@
 			children = (
 				FBC7B14E3C96EC51DF9EEB44 /* LoginInteractorProtocols.swift */,
 				B33B5CC4983136487CA151E5 /* LoginInteractor.swift */,
-				20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2240,6 +2251,7 @@
 				7C80BE19C44E3D1F07DE5B2D /* MenuPresenter.swift in Sources */,
 				0F98487E92B6C785E714D43F /* MenuInteractorProtocols.swift in Sources */,
 				20600A2020532831004D7F45 /* WalletEntity+CoreDataProperties.swift in Sources */,
+				20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */,
 				2DCAAC583A7618B6F7024C58 /* MoreInteractor.swift in Sources */,
 				20600A2E2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift in Sources */,
 				44C5D2B416D47E19F636B03C /* MenuRouterProtocols.swift in Sources */,

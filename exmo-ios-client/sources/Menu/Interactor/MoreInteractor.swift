@@ -14,25 +14,32 @@ class MenuInteractor: MenuInteractorInput {
     deinit {
         AppDelegate.notificationController.removeObserver(self)
     }
-    
-    private func subscribeOnEvents() {
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserLogInOut), name: .UserSignIn)
-        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserLogInOut), name: .UserSignOut)
-    }
-    
-    @objc func onUserLogInOut() {
-        output.onUserLogInOut(isLoggedUser: AppDelegate.session.isExmoAccountExists())
-    }
 }
 
 // @MARK: MenuInteractorInput
 extension MenuInteractor {
     func viewIsReady() {
         subscribeOnEvents()
-        onUserLogInOut()
+        onUserSignOut()
     }
 
     func logout() {
         AppDelegate.session.exmoLogout()
+    }
+}
+
+// @MARK: MenuInteractorInput
+extension MenuInteractor {
+    private func subscribeOnEvents() {
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignIn), name: .UserSignIn)
+        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignOut), name: .UserSignOut)
+    }
+    
+    @objc func onUserSignIn() {
+        output.onUserLogInOut(isLoggedUser: true)
+    }
+    
+    @objc func onUserSignOut() {
+        output.onUserLogInOut(isLoggedUser: false)
     }
 }
