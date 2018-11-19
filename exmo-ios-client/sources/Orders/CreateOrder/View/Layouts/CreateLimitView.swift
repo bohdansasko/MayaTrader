@@ -11,10 +11,37 @@ import Foundation
 import UIKit
 
 class CreateOrderLimitView: UIView {
+    enum CellType: Int {
+        case CurrencyPair
+        case Amount
+        case Price
+        case Total
+        case Commision
+        case OrderType
+        case ButtonCreate
+    }
+    
+    var orderType: OrderActionType = .Sell {
+        didSet {
+            guard let currency = selectedCurrency else {
+                updateSelectedCurrency(name: "", price: 0)
+                return
+            }
+            let price = orderType == .Buy ? currency.buyPrice : currency.sellPrice
+            updateSelectedCurrency(name: currency.code, price: price)
+        }
+    }
+    
     weak var output: CreateOrderViewOutput!
     var selectedCurrency: TickerCurrencyModel? {
         didSet {
             print("did set selectedCurrency")
+            guard let currency = selectedCurrency else {
+                updateSelectedCurrency(name: "", price: 0)
+                return
+            }
+            let price = orderType == .Buy ? currency.buyPrice : currency.sellPrice
+            updateSelectedCurrency(name: currency.code, price: price)
         }
     }
     let kCellId = "kCellId"
@@ -24,6 +51,8 @@ class CreateOrderLimitView: UIView {
     
     var layoutType: CreateOrderDisplayType = .Limit {
         didSet {
+            cells.removeAll()
+            orderType = .Sell
             updateLayout(layoutType)
         }
     }
@@ -36,6 +65,7 @@ class CreateOrderLimitView: UIView {
         tv.delaysContentTouches = false
         return tv
     }()
+    var cells: [IndexPath: ExmoTableViewCell?] = [:]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -62,6 +92,7 @@ extension CreateOrderLimitView {
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
+        fillFields(number: 0)
         guard let cell = tableView.cellForRow(at: IndexPath(row: getSelectCurrencyIndexCell(), section: 0)) as? CellMoreVariantsField else { return }
         
         var model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...", currencyName: name, rightText: String(price))
@@ -95,22 +126,64 @@ extension CreateOrderLimitView: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if cells[indexPath] != nil {
+            return cells[indexPath]! ?? UITableViewCell()
+        }
         switch (layoutType) {
-        case .Limit: return getLimitCell(cellForRowAt: indexPath)
-        case .InstantOnAmount: return getInstantOnAmountCell(cellForRowAt: indexPath)
-        case .InstantOnSum: return getInstantOnSumCell(cellForRowAt: indexPath)
+        case .Limit: cells[indexPath] = getLimitCell(cellForRowAt: indexPath)
+        case .InstantOnAmount: cells[indexPath] = getInstantOnAmountCell(cellForRowAt: indexPath)
+        case .InstantOnSum: cells[indexPath] = getInstantOnSumCell(cellForRowAt: indexPath)
+        }
+        return cells[indexPath]!!
+    }
+}
+
+// @MARK: UITableViewDelegate
+extension CreateOrderLimitView: UITableViewDelegate  {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        if indexPath.section == getSelectCurrencyIndexCell() {
+            output.openCurrencySearchVC()
         }
     }
 }
 
-// @MARK: datasource
-extension CreateOrderLimitView: UITableViewDelegate  {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        output.openCurrencySearchVC()
+extension CreateOrderLimitView {
+    fileprivate func fillFields(number: Double) {
+        switch layoutType {
+        case .Limit:
+            guard let cellAmount = self.getCellByType(inParamType: .Amount) as? CellInputField,
+                  let cellPrice = self.getCellByType(inParamType: .Price) as? CellInputField else {
+                    return
+            }
+            
+            let exmoCommisionInPercentage = 2.0
+            let price = cellPrice.getDoubleValue()
+            let amount = cellAmount.getDoubleValue()
+            
+            let totalValue = amount * price
+            let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
+            
+            guard let cellTotal = self.getCellByType(inParamType: .Total) as? CellInputField,
+                let cellCommision = self.getCellByType(inParamType: .Commision) as? CellInputField else {
+                    return
+            }
+            cellTotal.datasource = totalValue
+            cellCommision.datasource = comissionValue
+        case .InstantOnAmount, .InstantOnSum:
+            guard let cellAmount = self.getCellByType(inParamType: .Amount) as? CellInputField,
+                  let cellTotal = self.getCellByType(inParamType: .Total) as? CellInputField,
+                  let selectedCurrency = self.selectedCurrency else {
+                    return
+            }
+            
+            let totalValue = cellAmount.getDoubleValue() * (orderType == .Buy ? selectedCurrency.buyPrice : selectedCurrency.sellPrice)
+            cellTotal.datasource = totalValue
+        }
     }
 }
-
+// @MARK: layout
 extension CreateOrderLimitView {
     func numberOfRowsInTab() -> Int {
         switch (layoutType) {
@@ -122,7 +195,14 @@ extension CreateOrderLimitView {
     func getSelectCurrencyIndexCell() -> Int {
         return 0
     }
-
+    
+    func getTotalCellIndex() -> Int {
+        switch (layoutType) {
+        case .Limit: return 3
+        case .InstantOnAmount, .InstantOnSum: return 2
+        }
+    }
+        
     func getCellIndexButtonCreate() -> Int {
         switch (layoutType) {
         case .Limit: return 6
@@ -136,8 +216,63 @@ extension CreateOrderLimitView {
         case .InstantOnAmount, .InstantOnSum: return 3
         }
     }
+}
 
-    func getLimitCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+extension CreateOrderLimitView {
+    func getOrderCell(cellForRowAt indexPath: IndexPath, model: ModelOrderViewCell?) -> ExmoTableViewCell {
+        if indexPath.section == getSelectCurrencyIndexCell() {
+            let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdMoreVariants) as! CellMoreVariantsField
+            cell.model = model
+            cell.selectionStyle = .gray
+            return cell
+        } else if indexPath.section == getCellIndexButtonCreate() {
+            let cell = tableView.dequeueReusableCell(withIdentifier: kCellButtonId) as! CellButton
+            cell.model = model
+            cell.selectionStyle = .none
+            return cell
+        } else if indexPath.section == getCellIndexOrderCreate() {
+            let cell = tableView.dequeueReusableCell(withIdentifier: kCellUISwitcherId) as! CellUISwitcher
+            cell.model = model
+            cell.datasource = orderType
+            cell.selectionStyle = .none
+            cell.onStateChanged = {
+                [weak self] datasource in
+                guard let orderType = datasource as? OrderActionType else { return }
+                self?.orderType = orderType
+            }
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId) as! CellInputField
+        cell.model = model
+        cell.onTextChanged = {
+            [weak self] in
+            self?.fillFields(number: 1)
+        }
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func getCellByType(inParamType: CellType) -> ExmoTableViewCell? {
+        var itemIndex = -1
+        switch inParamType {
+        case .CurrencyPair: itemIndex = getSelectCurrencyIndexCell()
+        case .Amount: itemIndex = 1
+        case .Price: itemIndex = 2
+        case .Total: itemIndex = getTotalCellIndex()
+        case .OrderType: itemIndex = getCellIndexOrderCreate()
+        case .Commision: itemIndex = 4
+        default: break
+        }
+        guard let cell = cells[IndexPath(row: 0, section: itemIndex)] else {
+            print("getCellByType: cell with section index \(itemIndex) doesn't exists")
+            return nil
+        }
+        
+        return cell
+    }
+    
+    func getLimitCell(cellForRowAt indexPath: IndexPath) -> ExmoTableViewCell {
         var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
@@ -160,7 +295,7 @@ extension CreateOrderLimitView {
         return getOrderCell(cellForRowAt: indexPath, model: model)
     }
     
-    func getInstantOnAmountCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func getInstantOnAmountCell(cellForRowAt indexPath: IndexPath) -> ExmoTableViewCell {
         var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
@@ -179,7 +314,7 @@ extension CreateOrderLimitView {
         return getOrderCell(cellForRowAt: indexPath, model: model)
     }
     
-    func getInstantOnSumCell(cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func getInstantOnSumCell(cellForRowAt indexPath: IndexPath) -> ExmoTableViewCell {
         var model: ModelOrderViewCell?
         
         switch (indexPath.section) {
@@ -196,93 +331,5 @@ extension CreateOrderLimitView {
         }
         
         return getOrderCell(cellForRowAt: indexPath, model: model)
-    }
-    
-    func getOrderCell(cellForRowAt indexPath: IndexPath, model: ModelOrderViewCell?) -> UITableViewCell {
-        if indexPath.section == getSelectCurrencyIndexCell() {
-            let cell = tableView.dequeueReusableCell(withIdentifier: kCellIdMoreVariants) as! CellMoreVariantsField
-            cell.model = model
-            cell.selectionStyle = .gray
-            return cell
-        } else if indexPath.section == getCellIndexButtonCreate() {
-            let cell = tableView.dequeueReusableCell(withIdentifier: kCellButtonId) as! CellButton
-            cell.model = model
-            cell.selectionStyle = .none
-            return cell
-        } else if indexPath.section == getCellIndexOrderCreate() {
-            let cell = tableView.dequeueReusableCell(withIdentifier: kCellUISwitcherId) as! CellUISwitcher
-            cell.model = model
-            cell.textForStateOnOff = ["Sell", "Buy"]
-            cell.selectionStyle = .none
-            return cell
-        }
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId) as! CellInputField
-        cell.model = model
-        cell.selectionStyle = .none
-        return cell
-    }
-    
-    fileprivate func fillFields(number: Double) {
-        switch layoutType {
-//        case .Limit:
-//            guard let cellAmount = self.getCellByType(inParamType: .Amount),
-//                let cellPrice = self.getCellByType(inParamType: .Price) else {
-//                    return
-//            }
-//
-//            let amount = cellAmount.getDoubleValue()
-//            let price = cellPrice.getDoubleValue()
-//            let exmoCommisionInPercentage = 2.0
-//
-//            let totalValue = amount * price
-//            let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
-//
-//            guard let cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell,
-//                let cellCommision = self.getCellByType(inParamType: .Commision) as? AddAlertTableViewCell else {
-//                    return
-//            }
-//            cellTotal.setTextInInputField(string: totalValue > 0
-//                ? Utils.getFormatedPrice(value:totalValue)
-//                : ""
-//            )
-//            cellCommision.setTextInInputField(string: comissionValue > 0
-//                ? Utils.getFormatedPrice(value: comissionValue)
-//                : ""
-//            )
-//        case .InstantOnAmount:
-//            guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
-//                let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
-//                let  cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell else {
-//                    return
-//            }
-//
-//            let price = cellCurrencyPair.getDoubleValue()
-//            let amount = cellAmount.getDoubleValue()
-//            let totalValue = amount * price
-//
-//            cellTotal.setTextInInputField(string: totalValue > 0
-//                ? Utils.getFormatedPrice(value: totalValue)
-//                : ""
-//            )
-            
-//        case .InstantOnSum:
-//            guard let cellCurrencyPair = self.getCellByType(inParamType: .CurrencyPair) as? AlertTableViewCellWithArrow,
-//                let cellAmount = self.getCellByType(inParamType: .Amount) as? AddAlertTableViewCell,
-//                let  cellTotal = self.getCellByType(inParamType: .Total) as? AddAlertTableViewCell else {
-//                    return
-//            }
-//
-//            let price = cellCurrencyPair.getDoubleValue()
-//            let amount = cellAmount.getDoubleValue()
-//            let totalValue = amount * price
-//
-//            cellTotal.setTextInInputField(string: totalValue > 0
-//                ? Utils.getFormatedPrice(value: totalValue)
-//                : ""
-//            )
-        default: // do nothing
-            break
-        }
     }
 }

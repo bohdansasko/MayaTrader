@@ -9,12 +9,14 @@
 import Foundation
 
 protocol CreateOrderInteractorInput {
+    func viewIsReady()
+    func viewWillDisappear()
     func createOrder(orderModel: OrderModel)
     func handleSelectedCurrency(rawName: String)
 }
 
 protocol CreateOrderInteractorOutput: class {
-    func updateSelectedCurrency(name: String, price: Double)
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func closeView()
     func setOrderSettings(orderSettings: OrderSettings)
 }

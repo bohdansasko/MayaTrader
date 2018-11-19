@@ -26,13 +26,14 @@ class CreateOrderModuleConfigurator {
 
         let interactor = CreateOrderInteractor()
         interactor.output = presenter
+        interactor.networkWorker = TickerNetworkWorker()
 
         presenter.interactor = interactor
         viewController.output = presenter
 
-        viewController.dataDisplayManager = CreateOrderDisplayManager()
-        viewController.dataDisplayManager.output = viewController.output
-        viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, model:  viewController.dataDisplayManager.getPickerViewLayout())
+//        viewController.dataDisplayManager = CreateOrderDisplayManager()
+//        viewController.dataDisplayManager.output = viewController.output
+//        viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, model:  viewController.dataDisplayManager.getPickerViewLayout())
     }
 
 }

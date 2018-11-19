@@ -11,7 +11,6 @@ import UIKit
 class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     var output: CreateOrderViewOutput!
     var dataDisplayManager: CreateOrderDisplayManager!
-    var pickerViewManager: DarkeningPickerViewManager!
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -31,6 +30,7 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
         button.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 20)
         return button
     }()
+    
     var segmentControlView: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Limit", "On amount", "On sum"])
         sc.tintColor = .dodgerBlue
@@ -51,6 +51,11 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
         view.backgroundColor = .black
         setupInitialState()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        output.viewWillDisappear()
+    }
 
     // MARK: CreateOrderViewInput
     func setupInitialState() {
@@ -60,10 +65,6 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
         
         segmentControlView.selectedSegmentIndex = 0
         segmentControlView.sendActions(for: .valueChanged)
-        
-        pickerViewManager.setCallbackOnSelectAction(callback: { actionIndex in
-            self.dataDisplayManager.handleSelectedActionInOrderPickerView(actionIndex: actionIndex)
-        })
         
         // for hide keyboard on touch background
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -87,22 +88,19 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     @objc func onSegmentChanged(_ sender: Any) {
         let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .Limit
         cellsLayoutView.layoutType = layoutType
+        output.onTabChanged()
     }
     
     @objc private func hideKeyboard() {
         view.endEditing(true)
     }
     
-    func showPickerView() {
-        pickerViewManager.showPickerViewWithDarkening(dataDisplayManager.getSelectedOrderViewIndex())
-    }
-    
     @IBAction func handleTouchOnCancelButton(_ sender: Any) {
         output.handleTouchOnCancelButton()
     }
     
-    func updateSelectedCurrency(name: String, price: Double) {
-        cellsLayoutView.updateSelectedCurrency(name: name, price: price)
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
+        cellsLayoutView.selectedCurrency = tickerCurrencyPair
 //        dataDisplayManager.updateSelectedCurrency(name: name, price: price)
     }
     

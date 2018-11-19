@@ -14,17 +14,12 @@ enum OrderBy {
 }
 
 // @MARK: TableOrderViewCellWithModel
-class TableOrderViewCellWithModel: UITableViewCell {
+class TableOrderViewCellWithModel: ExmoTableViewCell {
     var model: ModelOrderViewCell?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        backgroundColor = nil
-        
-        let selectedView = UIView()
-        selectedView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
-        selectedBackgroundView = selectedView
+        backgroundColor = nil 
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -109,18 +104,21 @@ class CellUISwitcher: TableOrderViewCellTitle {
         return sw
     }()
     
-    var textForStateOnOff: [String?] = [] {
+    override var model: ModelOrderViewCell? {
+        didSet {
+            uiSwitch.isOn = false
+            titleLabel.text = model?.getHeaderText()
+        }
+    }
+    
+    override var datasource: Any? {
         didSet {
             updateTextBasedOnSwitcher()
         }
     }
     
-    override var model: ModelOrderViewCell? {
-        didSet {
-            titleLabel.text = model?.getHeaderText()
-        }
-    }
-    
+    typealias OnChangeState = (Any?) -> Void
+    var onStateChanged: OnChangeState?
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -139,14 +137,16 @@ class CellUISwitcher: TableOrderViewCellTitle {
     }
     
     private func updateTextBasedOnSwitcher() {
-        if textForStateOnOff.count == 2 {
-            leftLabel.text = uiSwitch.isOn ? textForStateOnOff[0] : textForStateOnOff[1]
-        } else {
+        guard let orderType = datasource as? OrderActionType else {
             leftLabel.text = nil
+            return
         }
+        leftLabel.text = orderType.rawValue
     }
     
     @objc func onSwitchValueChanged(_ sender: Any) {
+        datasource = uiSwitch.isOn ? OrderActionType.Buy : OrderActionType.Sell
+        onStateChanged?(datasource)
         updateTextBasedOnSwitcher()
     }
 }
@@ -162,7 +162,6 @@ class CellInputField: TableOrderViewCellTitle {
         textInpt.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
         textInpt.attributedPlaceholder = NSAttributedString(string: "",
                                                              attributes: [NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 14)])
-        textInpt.addTarget(self, action: #selector(onTextFieldEditingChanged(_:)), for: .editingChanged)
         return textInpt
     }()
     
@@ -174,14 +173,27 @@ class CellInputField: TableOrderViewCellTitle {
         return label
     }()
     
+    override var datasource: Any? {
+        didSet {
+            guard let value = datasource as? Double else { return }
+            textInput.text = Utils.getFormatedPrice(value: value)
+        }
+    }
+    
+    var onTextChanged: VoidClosure?
+    
     override var model: ModelOrderViewCell? {
         didSet {
             guard let d = model else {
+                titleLabel.text = nil
+                textInput.text = nil
+                textInput.placeholder = nil
                 return
             }
             titleLabel.text = d.getHeaderText()
             textInput.placeholder = d.getPlaceholderText()
             textInput.placeholderColor = UIColor.white.withAlphaComponent(0.3)
+            textInput.text = nil
             textInput.isEnabled = d.isTextInputEnabled
         }
     }
@@ -194,7 +206,8 @@ class CellInputField: TableOrderViewCellTitle {
         
         textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         textInput.delegate = self
-
+        textInput.addTarget(self, action: #selector(onTextFieldEditingChanged(_:)), for: .editingChanged)
+        
         rightLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 50, widthConstant: 0, heightConstant: 0)
     }
     
@@ -203,8 +216,16 @@ class CellInputField: TableOrderViewCellTitle {
     }
     
     @objc func onTextFieldEditingChanged(_ senderTextField: UITextField) {
+        onTextChanged?()
         guard let text = senderTextField.text else { return }
         rightLabel.isHidden = text.isEmpty
+        
+    }
+    
+    func getDoubleValue() -> Double {
+        guard let inTextValue = textInput.text,
+              let value = Double(inTextValue) else { return 0.0 }
+        return value
     }
 }
 
@@ -234,6 +255,10 @@ class CellMoreVariantsField: CellInputField {
     override var model: ModelOrderViewCell? {
         didSet {
             guard let d = model else {
+                titleLabel.text = nil
+                textInput.text = nil
+                textInput.placeholder = nil
+                rightLabel.text = nil
                 return
             }
         

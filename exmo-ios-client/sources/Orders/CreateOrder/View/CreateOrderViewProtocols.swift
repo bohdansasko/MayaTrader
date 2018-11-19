@@ -8,13 +8,14 @@
 
 protocol CreateOrderViewInput: class {
     func setupInitialState()
-    func updateSelectedCurrency(name: String, price: Double)
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func setOrderSettings(orderSettings: OrderSettings)
-    func showPickerView()
 }
 
 protocol CreateOrderViewOutput: class {
     func viewIsReady()
+    func viewWillDisappear()
+    func onTabChanged()
     func createOrder(orderModel: OrderModel)
     func handleTouchOnCancelButton()
     func openCurrencySearchVC()
