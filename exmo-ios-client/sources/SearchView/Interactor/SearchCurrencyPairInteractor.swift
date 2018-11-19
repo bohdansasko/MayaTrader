@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class SearchInteractor {
     weak var output: SearchInteractorOutput!
-    var networkWorker: ISearchCurrencyListNetworkWorker!
+    var networkWorker: ITickerNetworkWorker!
     var timerScheduler: Timer?
     
     deinit {

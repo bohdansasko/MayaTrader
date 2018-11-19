@@ -46,12 +46,8 @@ enum OrdersSegueIdentifiers: String {
     case CreateOrder
 }
 
-enum OrderActionType {
+enum OrderActionType: String {
     case None
-    case Buy
-    case Sell
-}
-
-enum ExmoApiURLs: String {
-    case Ticker = "https://exmo.com/ctrl/ticker"
+    case Buy = "Buy"
+    case Sell = "Sell"
 }

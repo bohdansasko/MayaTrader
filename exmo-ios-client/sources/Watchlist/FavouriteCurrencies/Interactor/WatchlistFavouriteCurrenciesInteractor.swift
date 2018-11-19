@@ -9,21 +9,6 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-protocol TickerNetworkWorker: NetworkWorker {
-    func loadTicker()
-}
-
-class WatchlistNetworkWorker: TickerNetworkWorker {
-    var onHandleResponseSuccesfull: ((Any) -> Void)?
-    
-    func loadTicker() {
-        Alamofire.request(ExmoApiURLs.Ticker.rawValue).responseJSON{
-            [weak self] response in
-            self?.handleResponse(response: response)
-        }
-    }
-}
-
 class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesInteractorInput {
     weak var output: WatchlistFavouriteCurrenciesInteractorOutput!
     var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
@@ -43,11 +28,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
 //        try! realm.write {
 //            realm.deleteAll()
 //        }
-        networkWorker.onHandleResponseSuccesfull = {
-            [weak self](json) in
-            guard let jsonObj = json as? JSON else { return }
-            self?.parseTicker(json: jsonObj)
-        }
+        networkWorker.delegate = self
     }
 
     func viewWillAppear() {
@@ -112,3 +93,37 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
         }
     }
 }
+
+extension WatchlistFavouriteCurrenciesInteractor: ITickerNetworkWorkerDelegate {
+    func onDidLoadTickerSuccess(_ ticker: Ticker?) {
+        print("onDidLoadTickerSuccess")
+        guard let tickerPairs = ticker?.pairs else { return }
+        
+        var tickerContainer: [String : WatchlistCurrencyModel] = [:]
+        var currencyIndex = 0
+        
+        tickerPairs.forEach({
+            (currencyPairCode, currencyModel) in
+            let isFavCurrencyPair = favouriteCurrenciesPairs.contains(where: { $0.pairName == currencyPairCode })
+            if currencyModel != nil && isFavCurrencyPair == true {
+                tickerContainer[currencyPairCode] = WatchlistCurrencyModel(index: currencyIndex, currencyCode: currencyPairCode, tickerCurrencyModel: currencyModel!)
+                currencyIndex = currencyIndex + 1
+            }
+        })
+        
+        for favCurrencyIndex in (0..<favouriteCurrenciesPairs.count) {
+            let model = favouriteCurrenciesPairs[favCurrencyIndex]
+            favouriteCurrenciesPairs[favCurrencyIndex] = tickerContainer[model.pairName]!
+            favouriteCurrenciesPairs[favCurrencyIndex].isFavourite = model.isFavourite
+        }
+        
+        output.didLoadCurrencies(items: favouriteCurrenciesPairs)
+        
+    }
+    
+    func onDidLoadTickerFails(_ ticker: Ticker?) {
+        print("onDidLoadTickerFails")
+        
+    }
+}
+

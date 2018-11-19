@@ -36,6 +36,6 @@ extension UIColor {
     }
     
     class var backgroundColorSelectedCell: UIColor {
-        return UIColor.white.withAlphaComponent(0.08)
+        return UIColor.white.withAlphaComponent(0.03)
     }
 }

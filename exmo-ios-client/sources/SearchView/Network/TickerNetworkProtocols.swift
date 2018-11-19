@@ -13,7 +13,7 @@ protocol ITickerNetworkWorkerDelegate: class {
     func onDidLoadTickerFails(_ ticker: Ticker?)
 }
 
-protocol ISearchCurrencyListNetworkWorker: class {
+protocol ITickerNetworkWorker: class {
     var delegate: ITickerNetworkWorkerDelegate? { get set }
     func loadTicker()
 }

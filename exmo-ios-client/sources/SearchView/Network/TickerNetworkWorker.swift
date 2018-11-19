@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-class SearchCurrencyListNetworkWorker: ISearchCurrencyListNetworkWorker {
+class TickerNetworkWorker: ITickerNetworkWorker {
     weak var delegate: ITickerNetworkWorkerDelegate?
     
     func loadTicker() {
@@ -31,7 +31,7 @@ class SearchCurrencyListNetworkWorker: ISearchCurrencyListNetworkWorker {
     }
 }
 
-extension SearchCurrencyListNetworkWorker {
+extension TickerNetworkWorker {
     fileprivate func parseResponseIntoModel(_ response: DataResponse<Any>) -> Ticker? {
         do {
             guard let responseData = response.data else { return nil }

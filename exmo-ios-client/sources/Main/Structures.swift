@@ -18,7 +18,10 @@ struct Ticker: Mappable {
         pairs = [:]
         for (key, value) in map.JSON {
             guard let json = value as? JSON else { continue }
-            pairs[key] = TickerCurrencyModel(JSONString: json.description)
+            if var model = TickerCurrencyModel(JSONString: json.description) {
+                model.code = key
+                pairs[key] = model
+            }
         }
     }
     

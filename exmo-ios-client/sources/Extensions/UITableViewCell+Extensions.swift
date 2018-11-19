@@ -9,6 +9,8 @@
 import UIKit
 
 class ExmoTableViewCell: UITableViewCell {
+    var datasource: Any?
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupSelectionView()

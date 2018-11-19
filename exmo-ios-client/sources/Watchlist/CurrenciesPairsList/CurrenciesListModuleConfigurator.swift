@@ -27,7 +27,7 @@ class CurrenciesListModuleConfigurator {
         presenter.interactor = interactor
         
         interactor.output = presenter
-        interactor.networkWorker = CurrenciesListNetworkWorker()
+        interactor.networkWorker = TickerNetworkWorker()
         interactor.filterGroupController = ExmoFilterGroupController()
     }
 }

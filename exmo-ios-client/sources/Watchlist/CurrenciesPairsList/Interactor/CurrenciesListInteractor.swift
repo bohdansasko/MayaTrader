@@ -12,24 +12,6 @@ import RealmSwift
 import Realm
 
 //
-// MARK: ICurrenciesListNetworkWorker
-//
-protocol ICurrenciesListNetworkWorker: NetworkWorker {
-    func loadTicker()
-}
-
-class CurrenciesListNetworkWorker: ICurrenciesListNetworkWorker {
-    var onHandleResponseSuccesfull: ((Any) -> Void)?
-    
-    func loadTicker() {
-        Alamofire.request(ExmoApiURLs.Ticker.rawValue).responseJSON {
-            [weak self] response in
-            self?.handleResponse(response: response)
-        }
-    }
-}
-
-//
 // MARK: groups filter
 //
 protocol IFilterGroupController: class {
@@ -70,7 +52,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     weak var output: CurrenciesListInteractorOutput!
     var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
     var timerScheduler: Timer?
-    var networkWorker: ICurrenciesListNetworkWorker!
+    var networkWorker: ITickerNetworkWorker!
     var filterGroupController: IFilterGroupController!
     var currencyGroupName: String = ""
     let config = Realm.Configuration(
@@ -86,11 +68,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     
     func viewIsReady() {
         Realm.Configuration.defaultConfiguration = config
-        networkWorker.onHandleResponseSuccesfull = {
-            [weak self](json) in
-            guard let jsonObj = json as? JSON else { return }
-            self?.parseTicker(json: jsonObj)
-        }
+        networkWorker.delegate = self
         
         loadCurrenciesFromCache()
         scheduleUpdateCurrencies()
@@ -115,33 +93,6 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
             timerScheduler?.invalidate()
             timerScheduler = nil
         }
-    }
-    
-    private func parseTicker(json: JSON) {
-        print("loaded CurrenciesListInteractor:")
-        
-        var tickerContainer: [String : TickerCurrencyModel] = [:]
-        
-        json["data"]["ticker"].dictionaryValue.forEach({
-            (currencyPairCode, currencyDescriptionInJSON) in
-            if filterGroupController.isCurrencyCodeRelativeToGroup(currencyCode: currencyPairCode, currencyGroupName: currencyGroupName) {
-                tickerContainer[currencyPairCode] = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description)
-            }
-        })
-        
-        for index in (0..<favouriteCurrenciesPairs.count) {
-            let favModel = favouriteCurrenciesPairs[index]
-            if favModel.isFavourite && tickerContainer.contains(where: { $0.key == favModel.pairName }) {
-                tickerContainer[favModel.pairName]!.isFavourite = true
-            }
-        }
-        
-        let items: [WatchlistCurrencyModel] = tickerContainer.compactMap({(arg0) in
-            let (currencyPairCode, model) = arg0
-            return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
-        })
-        
-        output.onDidLoadCurrenciesPairs(items: items)
     }
     
     func setCurrencyGroupName(_ currencyGroupName: String) {
@@ -184,5 +135,40 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
             }
             print("successful cached \(currencyModel)")
         }
+    }
+}
+
+extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
+    func onDidLoadTickerSuccess(_ ticker: Ticker?) {
+        print("onDidLoadTickerSuccess")
+        guard let tickerPairs = ticker?.pairs else { return }
+        
+        var tickerContainer: [String : TickerCurrencyModel] = [:]
+        
+        tickerPairs.forEach({
+            (currencyPairCode, tickerCurrencyModel) in
+            if filterGroupController.isCurrencyCodeRelativeToGroup(currencyCode: currencyPairCode, currencyGroupName: currencyGroupName) {
+                tickerContainer[currencyPairCode] = tickerCurrencyModel
+            }
+        })
+        
+        for index in (0..<favouriteCurrenciesPairs.count) {
+            let favModel = favouriteCurrenciesPairs[index]
+            if favModel.isFavourite && tickerContainer.contains(where: { $0.key == favModel.pairName }) {
+                tickerContainer[favModel.pairName]!.isFavourite = true
+            }
+        }
+        
+        let items: [WatchlistCurrencyModel] = tickerContainer.compactMap({(arg0) in
+            let (currencyPairCode, model) = arg0
+            return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
+        })
+        
+        output.onDidLoadCurrenciesPairs(items: items)
+    }
+    
+    func onDidLoadTickerFails(_ ticker: Ticker?) {
+        print("onDidLoadTickerFails")
+        
     }
 }

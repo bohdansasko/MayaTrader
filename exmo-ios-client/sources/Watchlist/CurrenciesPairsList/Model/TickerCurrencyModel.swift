@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 struct TickerCurrencyModel: Mappable {
+    var code: String = ""
     private(set) var buyPrice: Double = 0.0
     private(set) var sellPrice: Double = 0.0
     private(set) var lastTrade: Double = 0.0
@@ -18,7 +19,6 @@ struct TickerCurrencyModel: Mappable {
     private(set) var average: Double = 0.0
     private(set) var volume: Double = 0.0
     private(set) var volumeCurrency: Double = 0.0
-    private(set) var closeBuyPrice: Double = 0.0
     private(set) var timestamp: Double = 0.0
     var isFavourite: Bool = false
     
@@ -40,7 +40,6 @@ struct TickerCurrencyModel: Mappable {
         average <- (map["avg"], transform)
         volume <- (map["vol"], transform)
         volumeCurrency <- (map["vol_curr"], transform)
-        closeBuyPrice <- (map["close_buy_price"], transform)
         timestamp <- map["updated"]
     }
 }

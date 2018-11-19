@@ -15,7 +15,7 @@ class WatchlistCurrencyModel: Object {
     @objc dynamic var pairName: String = ""
     @objc dynamic var buyPrice: Double = 0.0
     @objc dynamic var timeUpdataInSecFrom1970: Double = 0.0
-    @objc dynamic var closeBuyPrice: Double = 0.0
+    @objc dynamic var lastTrade: Double = 0.0
     @objc dynamic var volume: Double = 0.0
     @objc dynamic var volumeCurrency: Double = 0.0
     @objc dynamic var isFavourite = false
@@ -27,7 +27,7 @@ class WatchlistCurrencyModel: Object {
         self.pairName = currencyCode
         buyPrice = tickerCurrencyModel.buyPrice
         timeUpdataInSecFrom1970 = tickerCurrencyModel.timestamp
-        closeBuyPrice = tickerCurrencyModel.closeBuyPrice
+        lastTrade = tickerCurrencyModel.lastTrade
         volume = tickerCurrencyModel.volume
         volumeCurrency = tickerCurrencyModel.volumeCurrency
         isFavourite = tickerCurrencyModel.isFavourite
@@ -58,7 +58,7 @@ class WatchlistCurrencyModel: Object {
     }
     
     func getChanges() -> Double {
-        return Utils.getPairChangesInPercentage(currentValue: buyPrice, prevValue: closeBuyPrice)
+        return Utils.getPairChangesInPercentage(currentValue: lastTrade, prevValue: buyPrice)
     }
 
     func getIconImageName() -> String {
