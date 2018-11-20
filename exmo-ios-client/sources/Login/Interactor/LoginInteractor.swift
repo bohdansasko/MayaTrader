@@ -13,7 +13,6 @@ import Alamofire
 class LoginInteractor  {
     weak var output: LoginInteractorOutput!
     var networkWorker: ILoginNetworkWorker!
-    var loginModel: QRLoginModel?
 }
 
 // @MARK: LoginInteractorInput
@@ -27,7 +26,6 @@ extension LoginInteractor: LoginInteractorInput {
             output.showAlert(title: "Login", message: "QR doesn't validate")
             return
         }
-        self.loginModel = loginModel
         networkWorker.loadUserInfo(loginModel: loginModel)
     }
 }

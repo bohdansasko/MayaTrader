@@ -36,13 +36,13 @@ class ExmoLoginNetworkWorker: ILoginNetworkWorker {
                     }
                 }
                 guard let userInfoAsDictionary = json.dictionaryObject else { return }
-                
                 guard let userData = User(JSON: userInfoAsDictionary) else {
                     delegate.onDidLoadUserFail(errorMessage: nil)
                     return
                 }
                 userData.qrModel = loginModel
                 loginModel = nil
+                
                 delegate.onDidLoadUserSuccessful(user: userData)
             } catch {
                 delegate.onDidLoadUserFail(errorMessage: nil)

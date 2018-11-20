@@ -8,56 +8,46 @@
 
 import UIKit
 
-class QRScannerSegueBlock: SegueBlock {
-    var sourceVC: UIViewController
-    var outputPresenter: LoginModuleOutput
-
-    init(sourceVC: UIViewController, outputPresenter: LoginModuleOutput) {
-        self.sourceVC = sourceVC
-        self.outputPresenter = outputPresenter
-    }
-}
-
-class LoginPresenter: LoginModuleInput, LoginModuleOutput, LoginViewOutput, LoginInteractorOutput {
+class LoginPresenter {
     weak var view: LoginViewInput!
     var interactor: LoginInteractorInput!
     var router: LoginRouterInput!
 }
 
 // @MARK: LoginModuleInput
-extension LoginPresenter {
+extension LoginPresenter: LoginModuleInput {
     // do nothing
 }
 
 // @MARK: LoginModuleOutput
-extension LoginPresenter {
+extension LoginPresenter: LoginModuleOutput {
     func setLoginData(loginModel: QRLoginModel?) {
         view.setLoginData(loginModel: loginModel)
     }
 }
 
 // @MARK: LoginViewOutput
-extension LoginPresenter {
+extension LoginPresenter: LoginViewOutput {
     func viewIsReady() {
         self.interactor.viewIsReady()
     }
-    
+
     func loadUserInfo(loginModel: QRLoginModel) {
         interactor.loadUserInfo(loginModel: loginModel)
     }
-    
+
     func handleTouchOnScanQRButton() {
         let qrScannerSegue = QRScannerSegueBlock(sourceVC: view as! UIViewController, outputPresenter: self)
         router.showQRScannerVC(segueBlock: qrScannerSegue)
     }
-    
+
     func showAlert(title: String, message: String) {
         view.showAlert(title: title, message: message)
     }
 }
 
 // @MARK: LoginInteractorOutput
-extension LoginPresenter {
+extension LoginPresenter: LoginInteractorOutput {
     func closeViewController() {
         router.closeViewController(view as! UIViewController)
     }
