@@ -10,6 +10,7 @@ import UIKit
 
 class MenuInteractor: MenuInteractorInput {
     weak var output: MenuInteractorOutput!
+    var dbManager: OperationsDatabaseProtocol!
     
     deinit {
         AppDelegate.notificationController.removeObserver(self)
@@ -20,11 +21,18 @@ class MenuInteractor: MenuInteractorInput {
 extension MenuInteractor {
     func viewIsReady() {
         subscribeOnEvents()
-        onUserSignOut()
+        
+        if Defaults.isUserLoggedIn() {
+            onUserSignIn()
+        } else {
+            onUserSignOut()
+        }
     }
 
     func logout() {
-        AppDelegate.session.exmoLogout()
+        dbManager.delete(data: dbManager.object(type: ExmoUser.self, key: "")!)
+        Defaults.setUserLoggedIn(false)
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
     }
 }
 

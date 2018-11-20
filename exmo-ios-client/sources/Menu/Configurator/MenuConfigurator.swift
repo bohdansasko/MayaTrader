@@ -28,7 +28,8 @@ class MenuModuleConfigurator {
         
         let interactor = MenuInteractor()
         interactor.output = presenter
-
+        interactor.dbManager = RealmDatabaseManager()
+        
         presenter.interactor = interactor
         viewController.output = presenter
     }

@@ -23,7 +23,8 @@ class WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
 
     func saveChangesToCache() {
         print("WalletCurrenciesListInteractor: save wallet to cache")
-        let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: AppDelegate.session.getUser())
+        // TODO: check
+        let isUserSavedToLocalStorage = false // AppDelegate.cacheController.userCoreManager.saveUserData(user: AppDelegate.session.getUser())
         if isUserSavedToLocalStorage {
             print("user info cached")
         }

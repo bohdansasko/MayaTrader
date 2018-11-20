@@ -22,7 +22,7 @@ class UserCoreDataEngine {
     func createNewLocalUser() -> User? {
         print("createNewLocalUser")
         let user = User()
-        user.uid = IDefaultValues.UserUID.rawValue
+        user.uid = -1
         user.walletInfo = WalletModel()
         
         let result = saveUserData(user: user)
@@ -83,7 +83,7 @@ class UserCoreDataEngine {
             return false
         }
 
-        AppDelegate.cacheController.appSettings.set(user.getUID(), forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        AppDelegate.cacheController.appSettings.set(user.getUID(), forKey: DefaultStringValues.LastLoginedUID.rawValue)
 
         let userEntity = user.getUserEntity(entity: userEntityDescription, insertInto: moc)
         let walletEntity = user.walletInfo.getWalletEntity(entity: walletEntityDescription, insertInto: moc)
@@ -103,9 +103,9 @@ class UserCoreDataEngine {
     }
 
     func deleteLastLoggedUser() {
-        let uid = AppDelegate.cacheController.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let uid = AppDelegate.cacheController.appSettings.integer(forKey: DefaultStringValues.LastLoginedUID.rawValue)
         self.deleteUser(uid: uid)
-        AppDelegate.cacheController.appSettings.removeObject(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        AppDelegate.cacheController.appSettings.removeObject(forKey: DefaultStringValues.LastLoginedUID.rawValue)
     }
     
     func deleteUser(uid: Int) {

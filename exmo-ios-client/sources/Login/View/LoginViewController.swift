@@ -195,7 +195,7 @@ class LoginViewController: UIViewController, LoginViewInput {
 
 // @MARK: LoginViewInput
 extension LoginViewController {
-    func setLoginData(loginModel: QRLoginModel?) {
+    func setLoginData(loginModel: ExmoQRModel?) {
         guard let loginModel = loginModel else {
             showAlert(title: "Login", message: "Sorry, we can't recognize QR code.")
             return
@@ -216,7 +216,7 @@ extension LoginViewController {
         
         updateButtonsEnableState(isTouchEnabled: false)
         
-        let qrModel = QRLoginModel(exmoIdentifier: SDefaultValues.ExmoIdentifier.rawValue, key: key, secret: secret)
+        let qrModel = ExmoQRModel(exmoIdentifier: DefaultStringValues.ExmoIdentifier.rawValue, key: key, secret: secret)
         output.loadUserInfo(loginModel: qrModel)
     }
     

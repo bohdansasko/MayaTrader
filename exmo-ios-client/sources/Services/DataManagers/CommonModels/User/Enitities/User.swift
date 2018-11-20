@@ -52,7 +52,7 @@ class User: Mappable {
     }
 
     func updateUserID() {
-        let uidForCheck = AppDelegate.cacheController.appSettings.integer(forKey: AppSettingsKeys.LastLoginedUID.rawValue)
+        let uidForCheck = AppDelegate.cacheController.appSettings.integer(forKey: DefaultStringValues.LastLoginedUID.rawValue)
         if AppDelegate.cacheController.userCoreManager.isUserExists(uid: uidForCheck) {
             uid = uidForCheck
         }

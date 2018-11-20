@@ -23,6 +23,7 @@ class MainTabBarModuleInitializer {
         let interactor = MainTabBarInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoLoginNetworkWorker()
+        interactor.dbManager = RealmDatabaseManager()
         
         presenter.view = tabBarController
         presenter.interactor = interactor

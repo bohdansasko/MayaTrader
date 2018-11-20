@@ -14,7 +14,7 @@ class Session {
         case Roobik
     }
     
-    private var user: User! // use local info or exmo info
+    private var user: ExmoUser! // use local info or exmo info
     
     lazy private var openedOrders = Orders()
     lazy private var canceledOrders = Orders()
@@ -24,7 +24,7 @@ class Session {
     private var alerts: [AlertItem] = []
 
     init() {
-        self.user = User()
+        self.user = ExmoUser()
         initHardcode()
     }
 
@@ -58,9 +58,8 @@ extension Session {
     }
     
     func exmoLogout() {
-        AppDelegate.cacheController.removeUser()
         
-        self.user = User()
+        self.user = ExmoUser()
         
         self.openedOrders.clear()
         self.canceledOrders.clear()
@@ -69,17 +68,17 @@ extension Session {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
     }
     
-    func setUserModel(userData: User, shouldSaveUserInCache: Bool) {
+    func setUserModel(userData: ExmoUser, shouldSaveUserInCache: Bool) {
         self.user = userData
         
-        let userInfoFromCache = AppDelegate.cacheController.getUser()
-        if shouldSaveUserInCache && userInfoFromCache != nil {
-            self.user.walletInfo.merge(userInfoFromCache!.walletInfo)
-            let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: userData)
-            if isUserSavedToLocalStorage {
-                print("user info cached")
-            }
-        }
+//        let userInfoFromCache = AppDelegate.cacheController.getUser()
+//        if shouldSaveUserInCache && userInfoFromCache != nil {
+//            self.user.walletInfo.merge(userInfoFromCache!.walletInfo)
+//            let isUserSavedToLocalStorage = AppDelegate.cacheController.userCoreManager.saveUserData(user: userData)
+//            if isUserSavedToLocalStorage {
+//                print("user info cached")
+//            }
+//        }
         
         self.loadAllOrders()
         
@@ -87,10 +86,11 @@ extension Session {
     }
     
     func isExmoAccountExists() -> Bool {
-        return self.user.getIsLoginedAsExmoUser()
+        return false
+//        return self.user.getIsLoginedAsExmoUser()
     }
     
-    func getUser() -> User {
+    func getUser() -> ExmoUser {
         return self.user
     }
 }

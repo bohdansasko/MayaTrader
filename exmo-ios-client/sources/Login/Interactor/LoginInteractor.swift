@@ -13,6 +13,7 @@ import Alamofire
 class LoginInteractor  {
     weak var output: LoginInteractorOutput!
     var networkWorker: ILoginNetworkWorker!
+    var dbManager: OperationsDatabaseProtocol!
 }
 
 // @MARK: LoginInteractorInput
@@ -21,7 +22,7 @@ extension LoginInteractor: LoginInteractorInput {
         networkWorker.delegate = self
     }
     
-    func loadUserInfo(loginModel: QRLoginModel) {
+    func loadUserInfo(loginModel: ExmoQRModel) {
         if !loginModel.isValidate() {
             output.showAlert(title: "Login", message: "QR doesn't validate")
             return
@@ -32,14 +33,15 @@ extension LoginInteractor: LoginInteractorInput {
 
 // @MARK: ILoginNetworkWorkerDelegate
 extension LoginInteractor: ILoginNetworkWorkerDelegate {
-    func onDidLoadUserSuccessful(user: User) {
-        AppDelegate.session.setUserModel(userData: user, shouldSaveUserInCache: true)
+    func onDidLoadUserSuccessful(user: ExmoUser) {
+        dbManager.add(data: user, update: true)
+        Defaults.setUserLoggedIn(true)
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
         output.closeViewController()
     }
     
     func onDidLoadUserFail(errorMessage: String?) {
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
         output.showAlert(title: "Login", message: errorMessage ?? "Undefined error")
     }
-    
-    
 }

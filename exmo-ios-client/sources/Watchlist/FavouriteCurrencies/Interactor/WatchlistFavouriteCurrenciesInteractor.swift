@@ -14,20 +14,9 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
     var timerScheduler: Timer?
     var networkWorker: TickerNetworkWorker!
-    let config = Realm.Configuration(
-        schemaVersion: 2,
-        migrationBlock: { migration, oldSchemaVersion in
-            if (oldSchemaVersion < 1) {
-                // do nothing
-            }
-    })
-    lazy var realm = try! Realm()
+    var dbManager: OperationsDatabaseProtocol!
     
     func viewIsReady() {
-        Realm.Configuration.defaultConfiguration = config
-//        try! realm.write {
-//            realm.deleteAll()
-//        }
         networkWorker.delegate = self
     }
 
@@ -51,7 +40,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     }
     
     private func loadCurrenciesFromCache() {
-        let objects = realm.objects(WatchlistCurrencyModel.self).filter({ $0.isFavourite })
+        guard let objects = dbManager.objects(type: WatchlistCurrencyModel.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else { return }
         favouriteCurrenciesPairs = Array(objects)
         favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
         output.didLoadCurrencies(items: favouriteCurrenciesPairs)
@@ -88,9 +77,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     }
 
     private func saveFavCurrenciesToCache() {
-        try! realm.write {
-            realm.add(favouriteCurrenciesPairs, update: true)
-        }
+        dbManager.add(data: favouriteCurrenciesPairs, update: true)
     }
 }
 

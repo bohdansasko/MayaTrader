@@ -8,15 +8,24 @@ typealias TextInVoidOutClosure = (String) -> Void
 typealias VoidClosure = () -> Void
 typealias IntInVoidOutClosure = (Int) -> Void
 
-enum AppSettingsKeys: String {
+class Defaults {
+    private init() { }
+    
+    static func isUserLoggedIn() -> Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isLoggedIn.rawValue)
+    }
+    
+    static func setUserLoggedIn(_ state: Bool) {
+        return UserDefaults.standard.set(state, forKey: UserDefaultsKeys.isLoggedIn.rawValue)
+    }
+}
+
+enum UserDefaultsKeys: String {
+    case isLoggedIn
+}
+
+enum DefaultStringValues: String {
     case LastLoginedUID
-}
-
-enum IDefaultValues: Int {
-    case UserUID = -1
-}
-
-enum SDefaultValues: String {
     case ExmoIdentifier = "EXMO"
 }
 
@@ -36,14 +45,6 @@ enum UserEntityKeys: String {
 enum TableCellIdentifiers: String {
     case AlertTableViewCell
     case WatchlistTableMenuViewCell
-}
-
-enum WalletSegueIdentifiers: String {
-    case ManageCurrencies
-}
-
-enum OrdersSegueIdentifiers: String {
-    case CreateOrder
 }
 
 enum OrderActionType: String {

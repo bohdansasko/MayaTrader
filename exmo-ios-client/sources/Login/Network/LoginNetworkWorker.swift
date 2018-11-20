@@ -12,9 +12,11 @@ import SwiftyJSON
 
 class ExmoLoginNetworkWorker: ILoginNetworkWorker {
     var delegate: ILoginNetworkWorkerDelegate!
-    var loginModel: QRLoginModel?
+    var loginModel: ExmoQRModel?
     
-    func loadUserInfo(loginModel: QRLoginModel) {
+    func loadUserInfo(loginModel: ExmoQRModel) {
+        print("Loading user info...")
+        self.loginModel = loginModel
         ExmoApiRequestBuilder.shared.setAuthorizationData(apiKey: loginModel.key, secretKey: loginModel.secret)
         
         let userInfoRequest = ExmoApiRequestBuilder.shared.getUserInfoRequest()
@@ -36,13 +38,11 @@ class ExmoLoginNetworkWorker: ILoginNetworkWorker {
                     }
                 }
                 guard let userInfoAsDictionary = json.dictionaryObject else { return }
-                guard let userData = User(JSON: userInfoAsDictionary) else {
+                guard let userData = ExmoUser(JSON: userInfoAsDictionary) else {
                     delegate.onDidLoadUserFail(errorMessage: nil)
                     return
                 }
-                userData.qrModel = loginModel
-                loginModel = nil
-                
+                userData.qr = loginModel!
                 delegate.onDidLoadUserSuccessful(user: userData)
             } catch {
                 delegate.onDidLoadUserFail(errorMessage: nil)

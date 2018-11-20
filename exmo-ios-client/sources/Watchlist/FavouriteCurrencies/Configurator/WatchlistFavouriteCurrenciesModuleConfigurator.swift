@@ -28,6 +28,8 @@ class WatchlistFavouriteCurrenciesModuleConfigurator {
         let interactor = WatchlistFavouriteCurrenciesInteractor()
         interactor.output = presenter
         interactor.networkWorker = TickerNetworkWorker()
+        interactor.dbManager = RealmDatabaseManager()
+        
         presenter.interactor = interactor
         viewController.output = presenter
     }

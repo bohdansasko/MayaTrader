@@ -69,7 +69,7 @@ extension WalletViewController {
         setupNavigationBar()
         setupConstraints()
         
-        tableCurrenciesView.dataProvider = AppDelegate.session.getUser().getWalletInfo()
+        //        tableCurrenciesView.dataProvider = AppDelegate.session.getUser().getWalletInfo() // TODO: check
     }
     
     private func setupNavigationBar() {

@@ -58,6 +58,8 @@
 		201D8079205DC62800692DEF /* WalletCurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D8078205DC62800692DEF /* WalletCurrenciesListCells.swift */; };
 		201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */; };
 		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
+		201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */; };
+		201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */; };
 		20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */; };
 		202CF16820414FE7008185EB /* ViperModuleTransitionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */; };
 		202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */; };
@@ -359,6 +361,8 @@
 		201D8078205DC62800692DEF /* WalletCurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListCells.swift; sourceTree = "<group>"; };
 		201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListView.swift; sourceTree = "<group>"; };
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
+		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
+		201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDatabaseProtocol.swift; sourceTree = "<group>"; };
 		20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		202CF16720414FE7008185EB /* ViperModuleTransitionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViperModuleTransitionHandler.swift; sourceTree = "<group>"; };
 		202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkWorker.swift; sourceTree = "<group>"; };
@@ -869,6 +873,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		201EA2B221A4952000A1E693 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */,
+				201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
 		202F48EF206A136D0080423E /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
@@ -987,6 +1000,7 @@
 				20A5B88F20AE247B00EC2A4D /* Sources */,
 				200CA489211C9CF300BB0E9B /* Utils.swift */,
 				20CE7EB221A19CAB00EC14FA /* Structures.swift */,
+				201EA2B221A4952000A1E693 /* Database */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -2178,6 +2192,7 @@
 			files = (
 				20001D71203B8D1200B6966F /* exmo_ios_client.xcdatamodeld in Sources */,
 				20369A4421972149001D6628 /* MainTabBarInteractor.swift in Sources */,
+				201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */,
 				205A7CFB203CCEBD00A2E28A /* AppDelegate.swift in Sources */,
 				206BD9522074297400ADC91C /* MainTabBarController.swift in Sources */,
 				20600A2120532831004D7F45 /* WalletCurrencyEntity+CoreDataClass.swift in Sources */,
@@ -2296,6 +2311,7 @@
 				EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */,
 				038EE6FEA6EA37D5F343A6F3 /* AlertsModuleInput.swift in Sources */,
 				C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */,
+				201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsAPIHelper.swift in Sources */,
 				20BEDC53205579FA00973F2F /* AlertTableViewCell.swift in Sources */,
 				34B9983C9AAFD253B3BA58F9 /* AlertsInteractorInput.swift in Sources */,

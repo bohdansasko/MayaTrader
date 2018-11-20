@@ -42,7 +42,7 @@ class WalletCurrenciesListView: UIView {
     }
 
     func saveChangesToSession() {
-        AppDelegate.session.getUser().walletInfo = wallet!
+//        AppDelegate.session.getUser().walletInfo = wallet!
     }
 }
 

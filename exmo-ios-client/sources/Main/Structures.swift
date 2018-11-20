@@ -11,6 +11,7 @@ import Foundation
 import SwiftyJSON
 import ObjectMapper
 import RealmSwift
+import Realm
 
 class QRScannerSegueBlock: SegueBlock {
     var sourceVC: UIViewController
@@ -42,10 +43,22 @@ struct Ticker: Mappable {
 }
 
 class ExmoUser: Object, Mappable {
-    @objc dynamic var uid: Int = 0
+    @objc dynamic var uid = 0
     @objc dynamic var qr: ExmoQRModel?
-    @objc var wallet: ExmoWallet?
+    @objc dynamic var wallet: ExmoWallet?
 
+    required init() {
+        super.init()
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
     convenience required init?(map: Map) {
         self.init()
         
@@ -57,9 +70,13 @@ class ExmoUser: Object, Mappable {
     func mapping(map: Map) {
         uid <- map["uid"]
         
-        if let wallet = ExmoWallet(JSON: map.JSON) {
-            self.wallet = wallet
+        if let w = ExmoWallet(JSON: map.JSON) {
+            wallet = w
         }
+    }
+    
+    override static func primaryKey() -> String? {
+        return "uid"
     }
 }
 
@@ -77,9 +94,14 @@ class ExmoWalletCurrencyModel: Object {
         self.balance = balance
         self.countInOrders = countInOrders
     }
+    
+    override static func primaryKey() -> String? {
+        return "code"
+    }
 }
 
 class ExmoQRModel: Object {
+    @objc dynamic var id = 0
     @objc dynamic var exmoIdentifier: String = ""
     @objc dynamic var key: String = ""
     @objc dynamic var secret: String = ""
@@ -109,6 +131,10 @@ class ExmoQRModel: Object {
             secret = componentsArr[2]
         }
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }
 
 class ExmoWalletTransactionHistory: Object {
@@ -123,11 +149,12 @@ class ExmoWalletTransactionHistory: Object {
 }
 
 class ExmoWallet: Object, Mappable {
-    var balances = List<ExmoWalletCurrencyModel>()
-
+    @objc dynamic var id = 0
     @objc dynamic var amountBTC: Double = 0
     @objc dynamic var amountUSD: Double = 0
-
+    
+    var balances = List<ExmoWalletCurrencyModel>()
+    
     required convenience init?(map: Map) {
         self.init()
     }
@@ -150,5 +177,9 @@ class ExmoWallet: Object, Mappable {
 
     func isDataExists() -> Bool {
         return !balances.isEmpty
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
