@@ -96,11 +96,11 @@ class WalletCurrencyCell: UITableViewCell {
             self.backgroundColor = (index + 1) % 2 == 0 ? .dark : .clear
         }
     }
-    var currencyModel: WalletCurrencyModel? {
+    var currencyModel: ExmoWalletCurrencyModel? {
         didSet {
             guard let currencyModel = currencyModel else { return }
             balanceLabel.text = String(currencyModel.balance)
-            currencyLabel.text = currencyModel.currency
+            currencyLabel.text = currencyModel.code
             countInOrdersLabel.text = String(currencyModel.countInOrders)
         }
     }

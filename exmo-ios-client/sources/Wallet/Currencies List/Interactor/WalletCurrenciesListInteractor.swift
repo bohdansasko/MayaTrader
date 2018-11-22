@@ -9,41 +9,45 @@ import UIKit.UIViewController
 import Alamofire
 import SwiftyJSON
 
-class WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
+class WalletCurrenciesListInteractor {
     weak var output: WalletCurrenciesListInteractorOutput!
-    var networkWorker: IWalletCurrenciesListNetworkWorker!
-    
-    func viewIsReady() {
-        networkWorker.delegate = self
-    }
-    
-    func viewIsReadyToLoadData() {
-        networkWorker.loadWalletInfo()
-    }
+    var walletNetworkWorker: IWalletNetworkWorker!
+    var dbManager: OperationsDatabaseProtocol!
+}
 
-    func saveChangesToCache() {
-        print("WalletCurrenciesListInteractor: save wallet to cache")
-        // TODO: check
-        let isUserSavedToLocalStorage = false // AppDelegate.cacheController.userCoreManager.saveUserData(user: AppDelegate.session.getUser())
-        if isUserSavedToLocalStorage {
-            print("user info cached")
-        }
+// @MARK: IWalletNetworkWorkerDelegate
+extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
+    func viewIsReady() {
+        walletNetworkWorker.delegate = self
+    }
+    
+    func viewDidAppear() {
+        walletNetworkWorker.load()
+    }
+    
+    func saveToCache(wallet: ExmoWallet) {
+        print("wallet was saved to cache")
+        dbManager.add(data: wallet, update: true)
     }
 }
 
-extension WalletCurrenciesListInteractor: IWalletCurrenciesListNetworkWorkerDelegate {
-    func onDidLoadWalletInfo(response: DataResponse<Any>) {
-        switch response.result {
-        case .success(_):
-            do {
-                let json = try JSON(data: response.data!)
-                guard let wallet = WalletModel(JSONString: json.description) else { return }
-                output.onDidLoadWallet(wallet)
-            } catch {
-                print("NetworkWorker: we caught a problem in handle response")
-            }
-        case .failure(_):
-            output.onDidLoadWallet(WalletModel())
+// @MARK: IWalletNetworkWorkerDelegate
+extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
+    func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
+        guard let cachedWallet = dbManager.object(type: ExmoUser.self, key: "")?.wallet else {
+            return
         }
+        cachedWallet.balances.forEach({
+            currency in
+            guard let iCurrency = w.balances.first(where: { $0.code == currency.code }) else { return }
+            iCurrency.isFavourite = currency.isFavourite
+        })
+        w.refresh()
+        output.onDidLoadWallet(w)
+    }
+    
+    func onDidLoadWalletFail(messageError: String?) {
+        output.onDidLoadWallet(ExmoWallet())
+        print(messageError ?? "Undefined error")
     }
 }

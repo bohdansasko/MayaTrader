@@ -63,6 +63,17 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
             realm.deleteAll()
         }
     }
+    
+    func performTransaction(closure: @escaping () -> Void) {
+        if !isRealmAccessible() { return }
+        
+        let realm = try! Realm()
+        realm.refresh()
+        
+        try? realm.write {
+            closure()
+        }
+    }
 }
 
 extension RealmDatabaseManager {

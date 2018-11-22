@@ -83,7 +83,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
             [weak self] _ in
             guard let self = self else { return }
             if !self.currencyGroupName.isEmpty {
-                self.networkWorker.loadTicker()
+                self.networkWorker.load()
             }
         }
     }

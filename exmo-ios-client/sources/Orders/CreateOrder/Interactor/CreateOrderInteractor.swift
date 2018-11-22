@@ -28,7 +28,7 @@ class CreateOrderInteractor {
     private func scheduleUpdateCurrencies() {
         timerScheduler = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) {
             [weak self] _ in
-            self?.networkWorker.loadTicker()
+            self?.networkWorker.load()
         }
     }
     
@@ -64,7 +64,7 @@ extension CreateOrderInteractor: CreateOrderInteractorInput {
     func handleSelectedCurrency(rawName: String) {
         currencyPairCode = rawName
         scheduleUpdateCurrencies()
-        networkWorker.loadTicker()
+        networkWorker.load()
     }
 }
 

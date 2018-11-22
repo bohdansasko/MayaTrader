@@ -13,19 +13,19 @@ class WalletPresenter: WalletModuleInput, WalletViewOutput, WalletInteractorOutp
     var interactor: WalletInteractorInput!
     var router: WalletRouterInput!
 
-    func viewIsReady() {
-        interactor.viewIsReady()
+    func viewDidLoad() {
+        interactor.viewDidLoad()
+    }
+    
+    func viewDidAppear() {
+        interactor.viewDidAppear()
     }
     
     func openCurrencyListVC() {
         router.openCurrencyListVC(sourceVC: view as! UIViewController)
     }
     
-    func onDidLoadWallet(_ wallet: WalletModel) {
+    func onDidLoadWallet(_ wallet: ExmoWallet) {
         view.updateWallet(wallet)
-    }
-    
-    func viewDidLoad() {
-        interactor.viewDidLoad()
     }
 }

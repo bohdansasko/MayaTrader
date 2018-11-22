@@ -35,7 +35,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     private func scheduleUpdateCurrencies() {
         timerScheduler = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
             [weak self] _ in
-            self?.networkWorker.loadTicker()
+            self?.networkWorker.load()
         }
     }
     
@@ -92,8 +92,8 @@ extension WatchlistFavouriteCurrenciesInteractor: ITickerNetworkWorkerDelegate {
         tickerPairs.forEach({
             (currencyPairCode, currencyModel) in
             let isFavCurrencyPair = favouriteCurrenciesPairs.contains(where: { $0.pairName == currencyPairCode })
-            if currencyModel != nil && isFavCurrencyPair == true {
-                tickerContainer[currencyPairCode] = WatchlistCurrencyModel(index: currencyIndex, currencyCode: currencyPairCode, tickerCurrencyModel: currencyModel!)
+            if isFavCurrencyPair == true {
+                tickerContainer[currencyPairCode] = WatchlistCurrencyModel(index: currencyIndex, currencyCode: currencyPairCode, tickerCurrencyModel: currencyModel)
                 currencyIndex = currencyIndex + 1
             }
         })

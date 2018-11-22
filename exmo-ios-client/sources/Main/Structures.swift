@@ -24,7 +24,7 @@ class QRScannerSegueBlock: SegueBlock {
 }
 
 struct Ticker: Mappable {
-    var pairs: [String: TickerCurrencyModel?] = [:]
+    var pairs: [String: TickerCurrencyModel] = [:]
     
     init?(map: Map) {
         pairs = [:]
@@ -84,7 +84,7 @@ class ExmoWalletCurrencyModel: Object {
     @objc dynamic var code: String = ""
     @objc dynamic var balance: Double = 0
     @objc dynamic var orderId: Int = 0
-    @objc dynamic var isFavourite = false
+    @objc dynamic var isFavourite = true
     @objc dynamic var countInOrders: Double = 0
     
     required convenience init(code: String, balance: Double, countInOrders: Double) {
@@ -99,6 +99,17 @@ class ExmoWalletCurrencyModel: Object {
         return "code"
     }
 }
+
+extension ExmoWalletCurrencyModel: NSItemProviderWriting {
+    public static var writableTypeIdentifiersForItemProvider: [String] {
+        return [] // something here
+    }
+    
+    public func loadData(withTypeIdentifier typeIdentifier: String, forItemProviderCompletionHandler completionHandler: @escaping (Data?, Error?) -> Swift.Void) -> Progress? {
+        return nil // something here
+    }
+}
+
 
 class ExmoQRModel: Object {
     @objc dynamic var id = 0
@@ -154,6 +165,8 @@ class ExmoWallet: Object, Mappable {
     @objc dynamic var amountUSD: Double = 0
     
     var balances = List<ExmoWalletCurrencyModel>()
+    var favBalances: [ExmoWalletCurrencyModel] = []
+    var dislikedBalances: [ExmoWalletCurrencyModel] = []
     
     required convenience init?(map: Map) {
         self.init()
@@ -181,5 +194,42 @@ class ExmoWallet: Object, Mappable {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+}
+
+extension ExmoWallet {
+    func refresh() {
+        favBalances = balances.filter({ $0.isFavourite })
+        dislikedBalances = balances.filter({ !$0.isFavourite })
+    }
+    
+    func getCountSections() -> Int {
+        return favBalances.count != balances.count ? 2 : 1
+    }
+    
+    func filter(_ closure: (ExmoWalletCurrencyModel) -> Bool) -> [ExmoWalletCurrencyModel] {
+        return balances.filter(closure)
+    }
+    
+    func countCurrencies() -> Int {
+        return balances.count
+    }
+    
+    func isAllCurrenciesFav() -> Bool {
+        return favBalances.count > 0 && dislikedBalances.isEmpty
+    }
+    
+    func swapByIndex(from fIndex: Int, to tIndex: Int) {
+        balances.swapAt(fIndex, tIndex)
+    }
+    
+    func setFavourite(orderId: Int, isFavourite: Bool) {
+        let currency = balances.first(where: { $0.orderId == orderId })
+        currency?.isFavourite = isFavourite
+        refresh()
+    }
+    
+    func getCurrency(index: Int) -> ExmoWalletCurrencyModel {
+        return balances[index]
     }
 }

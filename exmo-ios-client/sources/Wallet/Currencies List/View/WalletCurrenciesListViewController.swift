@@ -42,8 +42,14 @@ class WalletCurrenciesListViewController: UIViewController {
         output.viewDidAppear()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard let w = currenciesListView.wallet else { return }
+        output.viewWillDisappear(wallet: w)
+    }
+    
     @objc func closeView() {
-        currenciesListView.saveChangesToSession()
         output.handleTouchCloseVC()
     }
 }
@@ -79,7 +85,7 @@ extension WalletCurrenciesListViewController {
 
 // @MARK: WalletCurrenciesListViewInput
 extension WalletCurrenciesListViewController: WalletCurrenciesListViewInput {
-    func updateWallet(_ wallet: WalletModel) {
+    func updateWallet(_ wallet: ExmoWallet) {
         currenciesListView.wallet = wallet
         activityIndicatorView.stopAnimating()
     }

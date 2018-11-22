@@ -12,11 +12,12 @@ import SwiftyJSON
 class TickerNetworkWorker: ITickerNetworkWorker {
     weak var delegate: ITickerNetworkWorkerDelegate?
     
-    func loadTicker() {
+    func load() {
         let request = ExmoApiRequestBuilder.shared.getTickerRequest()
         Alamofire.request(request).responseJSON {
             [weak self] response in
             guard let self = self else { return }
+
             switch response.result {
             case .success(_):
                 self.delegate?.onDidLoadTickerSuccess(self.parseResponseIntoModel(response))

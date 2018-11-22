@@ -27,8 +27,9 @@ class WalletCurrenciesListModuleConfigurator {
 
         let interactor = WalletCurrenciesListInteractor()
         interactor.output = presenter
-        interactor.networkWorker = ExmoWalletCurrenciesListNetworkWorker()
-        
+        interactor.walletNetworkWorker = ExmoWalletNetworkWorker()
+        interactor.dbManager = RealmDatabaseManager()
+            
         presenter.interactor = interactor
         viewController.output = presenter
     }

@@ -7,10 +7,10 @@ import Foundation
 import UIKit
 
 class WalletSegueBlock: SegueBlock {
-    private(set) var dataProvider: WalletModel!
+    private(set) var wallet: ExmoWallet!
     
-    init(dataModel: WalletModel?) {
-        dataProvider = dataModel
+    init(dataModel: ExmoWallet?) {
+        wallet = dataModel
     }
 }
 
@@ -24,9 +24,8 @@ class WalletTableCurrenciesView: UIView {
         return tv;
     }()
     
-    var dataProvider: WalletModel! {
+    var wallet = ExmoWallet() {
         didSet {
-            dataProvider.filterCurrenciesByFavourites()
             tableView.reloadData()
         }
     }
@@ -51,22 +50,15 @@ class WalletTableCurrenciesView: UIView {
         tableView.register(WalletCurrencyCell.self, forCellReuseIdentifier: currencyCellId)
         tableView.fillSuperview()
     }
-
-    func reloadData() {
-//        dataProvider = AppDelegate.session.getUser().getWalletInfo()
-//        balanceView.btcValueLabel.text = Utils.getFormatedPrice(value: dataProvider.getAmountMoneyInBTC(), maxFractDigits: 6)
-//        balanceView.usdValueLabel.text = Utils.getFormatedPrice(value: dataProvider.getAmountMoneyInUSD(), maxFractDigits: 4)
-//        tableView.reloadData()
-    }
     
     func getWalletModelAsSegueBlock() -> SegueBlock? {
-        return WalletSegueBlock(dataModel: dataProvider)
+        return WalletSegueBlock(dataModel: wallet)
     }
 }
 
 extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataProvider.getCountUsedCurrencies()
+        return wallet.favBalances.count
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -77,12 +69,10 @@ extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource 
         return 35
     }
     
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let currencyModel = dataProvider.getCurrencyByIndexPath(indexPath: indexPath, numberOfSections: 1)
         let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellId, for: indexPath) as! WalletCurrencyCell
         cell.index = indexPath.row
-        cell.currencyModel = currencyModel
+        cell.currencyModel = wallet.favBalances[indexPath.row]
         return cell
     }
     

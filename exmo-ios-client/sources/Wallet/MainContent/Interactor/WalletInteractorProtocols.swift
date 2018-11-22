@@ -11,9 +11,9 @@ import UIKit.UITableView
 
 @objc protocol WalletInteractorInput {
     func viewDidLoad()
-    func viewIsReady()
+    func viewDidAppear()
 }
 
 protocol WalletInteractorOutput: class {
-    func onDidLoadWallet(_ wallet: WalletModel)
+    func onDidLoadWallet(_ wallet: ExmoWallet)
 }

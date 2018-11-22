@@ -35,7 +35,7 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        output.viewIsReady()
+        output.viewDidAppear()
     }
 
     // MARK: WalletViewInput
@@ -49,9 +49,9 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
 }
 
 extension WalletViewController {
-    func updateWallet(_ wallet: WalletModel) {
-        balanceView.dataProvider = wallet
-        tableCurrenciesView.dataProvider = wallet
+    func updateWallet(_ wallet: ExmoWallet) {
+        balanceView.wallet = wallet
+        tableCurrenciesView.wallet = wallet
     }
 }
 
@@ -68,8 +68,6 @@ extension WalletViewController {
         
         setupNavigationBar()
         setupConstraints()
-        
-        //        tableCurrenciesView.dataProvider = AppDelegate.session.getUser().getWalletInfo() // TODO: check
     }
     
     private func setupNavigationBar() {

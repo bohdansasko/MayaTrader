@@ -80,16 +80,16 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
         return view
     }()
     
-    var currency: WalletCurrencyModel? {
+    var currency: ExmoWalletCurrencyModel? {
         didSet {
             guard let c = currency else { return }
-            currencyNameLabel.text = c.currency
+            currencyNameLabel.text = c.code
             amountCurrencyLabel.text = Utils.getFormatedPrice(value: c.balance, maxFractDigits: 3)
             actionButton.isSelected = c.isFavourite
         }
     }
 
-    var onSwitchValueCallback: ((_ currency: WalletCurrencyModel) -> Void)?
+    var onSwitchValueCallback: ((_ currency: ExmoWalletCurrencyModel) -> Void)?
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

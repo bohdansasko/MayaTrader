@@ -33,13 +33,13 @@ extension SearchInteractor: SearchInteractorInput {
     }
     
     func loadCurrenciesPairs() {
-        networkWorker?.loadTicker()
+        networkWorker?.load()
     }
     
     private func scheduleUpdateCurrencies() {
         timerScheduler = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) {
             [weak self] _ in
-            self?.networkWorker.loadTicker()
+            self?.networkWorker.load()
         }
     }
     
@@ -71,8 +71,7 @@ extension SearchInteractor: ITickerNetworkWorkerDelegate {
         
         tickerPairs.forEach({
             currencyCode, tickerCurrency in
-            guard let currencyModel = tickerCurrency else { return }
-            searchPairs.append(SearchCurrencyPairModel(id: 0, name: currencyCode, price: currencyModel.lastTrade))
+            searchPairs.append(SearchCurrencyPairModel(id: 0, name: currencyCode, price: tickerCurrency.lastTrade))
         })
         
         output.onDidLoadCurrenciesPairs(searchPairs)

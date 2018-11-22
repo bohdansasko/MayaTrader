@@ -15,5 +15,6 @@ protocol ITickerNetworkWorkerDelegate: class {
 
 protocol ITickerNetworkWorker: class {
     var delegate: ITickerNetworkWorkerDelegate? { get set }
-    func loadTicker()
+    
+    func load()
 }

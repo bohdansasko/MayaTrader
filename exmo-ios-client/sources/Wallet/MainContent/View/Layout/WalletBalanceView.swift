@@ -52,11 +52,11 @@ class WalletBalanceView: UIView {
         return imageView
     }()
     
-    var dataProvider: WalletModel? {
+    var wallet: ExmoWallet? {
         didSet {
-            guard let dp = dataProvider else { return }
-            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: dp.amountBTC, maxFractDigits: 4))"
-            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: dp.amountUSD, maxFractDigits: 4))"
+            guard let w = wallet else { return }
+            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: w.amountBTC, maxFractDigits: 4))"
+            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: w.amountUSD, maxFractDigits: 4))"
         }
     }
     

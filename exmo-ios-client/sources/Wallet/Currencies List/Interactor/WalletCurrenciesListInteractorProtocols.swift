@@ -10,10 +10,10 @@ import Foundation
 
 protocol WalletCurrenciesListInteractorInput {
     func viewIsReady()
-    func viewIsReadyToLoadData()
-    func saveChangesToCache()
+    func viewDidAppear()
+    func saveToCache(wallet: ExmoWallet)
 }
 
 protocol WalletCurrenciesListInteractorOutput: class {
-    func onDidLoadWallet(_ wallet: WalletModel)
+    func onDidLoadWallet(_ wallet: ExmoWallet)
 }

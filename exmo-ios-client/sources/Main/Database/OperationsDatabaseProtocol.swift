@@ -15,4 +15,5 @@ protocol OperationsDatabaseProtocol {
     func add<T: Object>(data: T, update: Bool)
     func delete<T: Object>(data: T)
     func clearAllData()
+    func performTransaction(closure: @escaping () -> Void)
 }
