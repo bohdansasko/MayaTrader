@@ -356,7 +356,7 @@ extension ExmoAccountController {
 //        let json = JSON(parseJSON: jsonString)
 //
 //
-        var currencies: [SearchCurrencyPairModel] = []
+        let currencies: [SearchCurrencyPairModel] = []
 //        var index: Int = 1
 //        for (currencyPairName, currencyInfoAsJson) in json {
 //            let price = currencyInfoAsJson["last_trade"].doubleValue

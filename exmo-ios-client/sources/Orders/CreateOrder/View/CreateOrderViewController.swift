@@ -10,7 +10,6 @@ import UIKit
 
 class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     var output: CreateOrderViewOutput!
-    var dataDisplayManager: CreateOrderDisplayManager!
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -101,11 +100,10 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         cellsLayoutView.selectedCurrency = tickerCurrencyPair
-//        dataDisplayManager.updateSelectedCurrency(name: name, price: price)
     }
     
     func setOrderSettings(orderSettings: OrderSettings) {
-        dataDisplayManager.setOrderSettings(orderSettings: orderSettings)
+        // do nothing
     }
 }
 

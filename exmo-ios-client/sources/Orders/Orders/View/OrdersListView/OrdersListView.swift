@@ -120,11 +120,14 @@ extension OrdersListView {
             activityIndicatorView.stopAnimating()
             removePlaceholderNoData()
         } else {
+            removePlaceholderNoData()
             activityIndicatorView.startAnimating()
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                if (!self.dataProvider.isDataExists()) {
-                    self.activityIndicatorView.stopAnimating()
-                    self.showPlaceholderNoData()
+                [weak self] in
+                guard let isDataExists = self?.dataProvider.isDataExists() else { return }
+                if (!isDataExists) {
+                    self?.activityIndicatorView.stopAnimating()
+                    self?.showPlaceholderNoData()
                 }
             })
         }
@@ -141,7 +144,7 @@ extension OrdersListView {
             checkOnRequirePlaceHolder()
         }
     }
-    
+
     func deleteAllOrdersOnBuy() {
         print("delete all orders on buy")
         deleteAllOrdersOn(deleteOrderType: .Buy)

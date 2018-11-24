@@ -112,7 +112,7 @@ class DarkeningPickerViewController: UIViewController {
     
     func setupPickerView() {
         pickerView = UIPickerView()
-        pickerView.backgroundColor = UIColor.black
+        pickerView.backgroundColor = .black
         pickerView.dataSource = self
         pickerView.delegate = self
         self.pickerView.translatesAutoresizingMaskIntoConstraints = false

@@ -39,14 +39,6 @@ extension OrdersInteractor {
     func onUserSignOut() {
         output.onDidLoadOrders(loadedOrders: [:])
     }
-    
-    @objc func onAppendOrder(notification: Notification) {
-        guard let orderModel = notification.userInfo?["data"] as? OrderModel else {
-            print("Can't cast to OrderModel")
-            return
-        }
-//        displayManager.appendOpenOrder(orderModel: orderModel)
-    }
 }
 
 // @MARK: Load Open orders

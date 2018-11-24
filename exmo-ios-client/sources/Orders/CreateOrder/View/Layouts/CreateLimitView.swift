@@ -10,6 +10,12 @@
 import Foundation
 import UIKit
 
+enum CreateOrderDisplayType : Int {
+    case Limit = 0
+    case InstantOnAmount = 1
+    case InstantOnSum = 2
+}
+
 class CreateOrderLimitView: UIView {
     enum CellType: Int {
         case CurrencyPair
