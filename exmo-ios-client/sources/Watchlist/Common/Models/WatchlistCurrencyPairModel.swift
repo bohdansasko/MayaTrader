@@ -54,7 +54,7 @@ class WatchlistCurrencyModel: Object {
     }
     
     func getPriceAsStr() -> String {
-        return "$ " + String(buyPrice)
+        return Utils.getFormatedPrice(value: buyPrice, maxFractDigits: 10)
     }
     
     func getChanges() -> Double {

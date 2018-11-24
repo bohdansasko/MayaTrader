@@ -14,16 +14,12 @@ class CreateOrderInteractor {
     
     private var currencyPairCode: String = ""
     
-//    deinit {
-//        // LoadCurrencySettingsSuccess
-//    }
-    
-//    @objc func onLoadCurrencySettingsSuccess(notification: Notification) {
-//        guard let orderSettings = notification.userInfo?["data"] as? OrderSettings else {
-//            return
-//        }
-//        output.setOrderSettings(orderSettings: orderSettings)
-//    }
+    @objc func onLoadCurrencySettingsSuccess(notification: Notification) {
+        guard let orderSettings = notification.userInfo?["data"] as? OrderSettings else {
+            return
+        }
+        output.setOrderSettings(orderSettings: orderSettings)
+    }
     
     private func scheduleUpdateCurrencies() {
         timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CreateOrder, repeats: true) {

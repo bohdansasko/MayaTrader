@@ -138,7 +138,7 @@ class CurrenciesListCell: DatasourceCell {
     
     var pairNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
         label.textAlignment = .center
         label.textColor = .white
         return label
@@ -146,7 +146,7 @@ class CurrenciesListCell: DatasourceCell {
     
     var buyValueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
         label.textAlignment = .center
         label.textColor = .white
         return label
@@ -154,7 +154,7 @@ class CurrenciesListCell: DatasourceCell {
     
     var sellValueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
         label.textAlignment = .center
         label.textColor = .white
         return label
@@ -162,7 +162,7 @@ class CurrenciesListCell: DatasourceCell {
     
     var currencyChangesValueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
         label.textAlignment = .center
         label.textColor = .greenBlue
         label.text = "+4.2 %"
@@ -173,11 +173,12 @@ class CurrenciesListCell: DatasourceCell {
         didSet {
             guard let d = datasourceItem as? WatchlistCurrencyModel else { return }
             pairNameLabel.text = d.getDisplayCurrencyPairName()
-            buyValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 4)
-            sellValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 6)
+            buyValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 9)
+            sellValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 9)
             currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.getChanges())
             currencyChangesValueLabel.textColor = d.getChanges() < 0 ? .orangePink : .greenBlue
-            self.backgroundColor = d.index % 2 == 1 ? .dark : .clear
+            
+            backgroundColor = d.index % 2 == 1 ? .dark : .clear
             addRemoveFromFavouritesListButton.isSelected = d.isFavourite
         }
     }

@@ -61,13 +61,13 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
         didSet {
             guard let cm = datasourceItem as? WatchlistCurrencyModel else { return }
             
-            self.pairNameLabel.text = cm.getDisplayCurrencyPairName()
-            self.pairPriceLabel.text = cm.getPriceAsStr()
-            self.pairVolumeLabel.text = Utils.getFormatedPrice(value: cm.volume, maxFractDigits: 4)
-            self.currencyChangesLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: cm.getChanges())
+            pairNameLabel.text = cm.getDisplayCurrencyPairName()
+            pairPriceLabel.text = cm.getPriceAsStr()
+            pairVolumeLabel.text = Utils.getFormatedPrice(value: cm.volume)
+            currencyChangesLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: cm.getChanges())
             
-            self.pairVolumeLabel.textColor = Utils.getChangesColor(value: cm.getChanges())
-            self.currencyChangesLabel.textColor = self.pairVolumeLabel.textColor
+            pairVolumeLabel.textColor = Utils.getChangesColor(value: cm.getChanges())
+            currencyChangesLabel.textColor = pairVolumeLabel.textColor
         }
     }
     

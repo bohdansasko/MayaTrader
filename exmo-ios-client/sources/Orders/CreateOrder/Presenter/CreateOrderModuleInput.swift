@@ -7,5 +7,5 @@
 //
 
 protocol CreateOrderModuleInput: class {
-    
+    // do nothing
 }

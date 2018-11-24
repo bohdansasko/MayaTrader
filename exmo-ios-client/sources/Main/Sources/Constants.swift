@@ -30,10 +30,10 @@ enum DefaultStringValues: String {
 }
 
 struct FrequencyUpdateInSec {
-    static let Watchlist = 3.0
-    static let CurrenciesList = 5.0
-    static let CreateOrder = 10.0
-    static let SearchPair = 5.0
+    static let Watchlist = 10.0
+    static let CurrenciesList = 10.0
+    static let CreateOrder = 15.0
+    static let SearchPair = 10.0
 }
 
 enum EntityNameKeys: String {

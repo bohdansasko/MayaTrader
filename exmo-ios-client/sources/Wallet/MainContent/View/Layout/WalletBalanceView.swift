@@ -55,8 +55,8 @@ class WalletBalanceView: UIView {
     var wallet: ExmoWallet? {
         didSet {
             guard let w = wallet else { return }
-            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: w.amountBTC, maxFractDigits: 4))"
-            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: w.amountUSD, maxFractDigits: 4))"
+            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: w.amountBTC))"
+            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: w.amountUSD))"
         }
     }
     

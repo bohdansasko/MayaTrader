@@ -99,7 +99,7 @@ class WalletCurrencyCell: UITableViewCell {
     var currencyModel: ExmoWalletCurrencyModel? {
         didSet {
             guard let currencyModel = currencyModel else { return }
-            balanceLabel.text = String(currencyModel.balance)
+            balanceLabel.text = Utils.getFormatedPrice(value: currencyModel.balance)
             currencyLabel.text = currencyModel.code
             countInOrdersLabel.text = String(currencyModel.countInOrders)
         }
