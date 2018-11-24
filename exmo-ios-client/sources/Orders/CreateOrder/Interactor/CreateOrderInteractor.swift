@@ -26,7 +26,7 @@ class CreateOrderInteractor {
 //    }
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CreateOrder, repeats: true) {
             [weak self] _ in
             self?.networkWorker.load()
         }

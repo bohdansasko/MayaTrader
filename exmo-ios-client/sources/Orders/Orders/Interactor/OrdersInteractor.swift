@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class OrdersInteractor {
+class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     weak var output: OrdersInteractorOutput!
     var loadedOrders: [Orders.DisplayType : Orders] = [:]
     var networkWorker: IOrdersListNetworkWorker!
@@ -17,7 +17,6 @@ class OrdersInteractor {
 // @MARK: OrdersInteractorInput
 extension OrdersInteractor: OrdersInteractorInput {
     func viewIsReady() {
-        subscribeOnEvents()
         networkWorker.delegate = self
     }
     
@@ -29,18 +28,17 @@ extension OrdersInteractor: OrdersInteractorInput {
         case .None: break
         }
     }
+    
+    func cancelOrder(id: Int64) {
+        networkWorker.cancelOrder(id: id)
+    }
 }
 
 // MARK: load orders and display them
 extension OrdersInteractor {
-    func subscribeOnEvents() {
-        AppDelegate.notificationController.addObserver(self, selector: #selector(onUserSignOut), name: .UserSignOut)
-    }
-    
-    @objc func onUserSignOut() {
+    func onUserSignOut() {
         output.onDidLoadOrders(loadedOrders: [:])
     }
-    
     
     @objc func onAppendOrder(notification: Notification) {
         guard let orderModel = notification.userInfo?["data"] as? OrderModel else {
@@ -51,7 +49,8 @@ extension OrdersInteractor {
     }
 }
 
-extension OrdersInteractor: IOrdersListNetworkWorkerDelegate {
+// @MARK: Load Open orders
+extension OrdersInteractor {
     func onDidLoadSuccessOpenOrders(orders: Orders) {
         output.onDidLoadOrders(loadedOrders: [.Open : orders])
     }
@@ -59,7 +58,10 @@ extension OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     func onDidLoadFailsOpenOrders(orders: Orders) {
         print("onDidLoadFailsOpenOrders")
     }
-    
+}
+
+// @MARK: Load Canceled orders
+extension OrdersInteractor {
     func onDidLoadSuccessCanceledOrders(orders: Orders) {
         output.onDidLoadOrders(loadedOrders: [.Canceled : orders])
     }
@@ -67,12 +69,26 @@ extension OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     func onDidLoadFailsCanceledOrders(orders: Orders) {
         print("onDidLoadFailsCanceledOrders")
     }
-    
+}
+
+// @MARK: Load deals
+extension OrdersInteractor {
     func onDidLoadSuccessDeals(orders: Orders) {
         output.onDidLoadOrders(loadedOrders: [.Deals : orders])
     }
     
     func onDidLoadFailsDeals(orders: Orders) {
         print("onDidLoadFailsDeals")
+    }
+}
+
+// @MARK: Cancel order
+extension OrdersInteractor {
+    func onDidCancelOrderSuccess(id: Int64) {
+        output.orderCanceled(id: id)
+    }
+    
+    func onDidCancelOrderFail(errorDescription: String) {
+        print("Error \(errorDescription)")
     }
 }

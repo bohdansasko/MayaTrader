@@ -9,6 +9,13 @@
 import UIKit
 
 class ExmoUIViewController: UIViewController {
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.hidesWhenStopped = true
+        aiv.color = .white
+        return aiv
+    }()
+    
     func updateNavigationBar(shouldHideNavigationBar: Bool) {
         let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
         
@@ -27,4 +34,5 @@ class ExmoUIViewController: UIViewController {
 
         updateNavigationBar(shouldHideNavigationBar: false)
     }
+    
 }

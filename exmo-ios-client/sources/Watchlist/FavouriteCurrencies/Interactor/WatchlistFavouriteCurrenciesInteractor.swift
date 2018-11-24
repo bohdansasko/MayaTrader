@@ -33,7 +33,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     }
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.Watchlist, repeats: true) {
             [weak self] _ in
             self?.networkWorker.load()
         }

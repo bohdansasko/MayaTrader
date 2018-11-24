@@ -31,7 +31,7 @@ class ExmoLoginNetworkWorker: ILoginNetworkWorker {
         case .success(_):
             do {
                 let json = try JSON(data: response.data!)
-                if let requestError = RequestResult(JSONString: json.description) {
+                if let requestError = ExmoResponseResult(JSONString: json.description) {
                     if requestError.error != nil {
                         delegate.onDidLoadUserFail(errorMessage: requestError.error)
                         return

@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import ObjectMapper
 
 class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     var delegate: IOrdersListNetworkWorkerDelegate?
@@ -85,6 +86,29 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         }
         
     }
+    
+    func cancelOrder(id: Int64) {
+        let request = ExmoApiRequestBuilder.shared.getCancelOrderRequest(id: id)
+        Alamofire.request(request).responseJSON {
+            [weak self] jsonResponse in
+            switch (jsonResponse.result) {
+            case .success(let data):
+                guard let exmoResponseResult = Mapper<ExmoResponseResult>().map(JSONObject: data) else {
+                    self?.delegate?.onDidCancelOrderFail(errorDescription: "Error: can't get order result")
+                    return
+                }
+                
+                if exmoResponseResult.result {
+                    self?.delegate?.onDidCancelOrderSuccess(id: id)
+                } else {
+                    self?.delegate?.onDidCancelOrderFail(errorDescription: exmoResponseResult.error ?? "Undefined error")
+                }
+            case .failure(let error):
+                self?.delegate?.onDidCancelOrderFail(errorDescription: "Undefined error\(error)")
+            }
+        }
+    }
+
     
     private func parseResponseIntoModel(_ response: DataResponse<Any>) -> Orders {
         do {

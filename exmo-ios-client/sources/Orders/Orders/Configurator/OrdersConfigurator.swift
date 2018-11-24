@@ -24,13 +24,14 @@ class OrdersModuleConfigurator {
         let presenter = OrdersPresenter()
         presenter.view = viewController
         presenter.router = router
-
+        
         let interactor = OrdersInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoOrdersListNetworkWorker()
 
         presenter.interactor = interactor
         viewController.output = presenter
+        viewController.ordersListView.presenter = presenter
         
         let pickerViewLayout = DarkeningPickerViewModel(
             header: "Delete orders",

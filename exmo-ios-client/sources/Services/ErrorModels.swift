@@ -6,7 +6,7 @@
 import Foundation
 import ObjectMapper
 
-class RequestResult: Mappable {
+class ExmoResponseResult: Mappable {
     var result = false
     var error: String?
 
@@ -20,7 +20,7 @@ class RequestResult: Mappable {
     }
 }
 
-class OrderRequestResult : RequestResult {
+class OrderExmoResponseResult : ExmoResponseResult {
     var id: Int64
     
     required init?(map: Map) {

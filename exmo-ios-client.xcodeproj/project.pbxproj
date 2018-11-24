@@ -156,6 +156,7 @@
 		20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */; };
 		20D7A7C32113B37300D84399 /* RoobikApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */; };
 		20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuViewCell.swift */; };
+		20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */; };
 		20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */; };
 		20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */; };
 		20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */; };
@@ -457,6 +458,7 @@
 		20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		20D7A7C22113B37300D84399 /* RoobikApiHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoobikApiHandler.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
+		20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrdersListView+UITableView_Delegate+DataSource.swift"; sourceTree = "<group>"; };
 		20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
 		20DBA24320B43518007BA0AF /* WatchlistCardCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WatchlistCardCollectionViewCell.xib; sourceTree = "<group>"; };
 		20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListView.swift; sourceTree = "<group>"; };
@@ -1010,6 +1012,7 @@
 			children = (
 				207E24FE2061B85B00030023 /* OrdersListView.swift */,
 				207E25002061BD3B00030023 /* OrderViewCell.swift */,
+				20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */,
 			);
 			path = OrdersListView;
 			sourceTree = "<group>";
@@ -2248,6 +2251,7 @@
 				201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */,
 				202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */,
 				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
+				20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				207B1D9B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift in Sources */,
 				203B8A8220AF2DB6004EF229 /* UITouchableNibView.swift in Sources */,

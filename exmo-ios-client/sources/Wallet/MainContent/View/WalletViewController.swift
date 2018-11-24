@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletViewController: ExmoUIViewController, WalletViewInput {
+class WalletViewController: ExmoUIViewController {
     var currencySettingsBtn: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(named: "icWalletOptions"), style: .done, target: nil, action: nil)
     }()
@@ -37,24 +37,25 @@ class WalletViewController: ExmoUIViewController, WalletViewInput {
         super.viewDidAppear(animated)
         output.viewDidAppear()
     }
-
-    // MARK: WalletViewInput
-    func setTouchEnabled(isTouchEnabled: Bool) {
-        currencySettingsBtn.isEnabled = isTouchEnabled
-    }
     
     @objc func openCurrenciesManager(_ sender: Any) {
         output.openCurrencyListVC()
     }
 }
 
-extension WalletViewController {
+// MARK: WalletViewInput
+extension WalletViewController: WalletViewInput {
+    func setTouchEnabled(isTouchEnabled: Bool) {
+        currencySettingsBtn.isEnabled = isTouchEnabled
+    }
+    
     func updateWallet(_ wallet: ExmoWallet) {
         balanceView.wallet = wallet
         tableCurrenciesView.wallet = wallet
     }
 }
 
+// MARK: setup initial UI state for view controller
 extension WalletViewController {
     func setupViews() {
         view.backgroundColor = .black

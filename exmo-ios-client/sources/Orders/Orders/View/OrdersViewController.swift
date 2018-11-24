@@ -18,6 +18,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     // MARK: Outlets
     var output: OrdersViewOutput!
     var currentViewController: UIViewController?
+    
     var pickerViewManager: DarkeningPickerViewManager!
     var ordersListView: OrdersListView = {
         let lv = OrdersListView()
@@ -50,11 +51,6 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
             for: .normal
         )
         return sc
-    }()
-    
-    var viewContainer: UIView = {
-        let view = UIView()
-        return view
     }()
     
     // MARK: Life cycle
@@ -105,7 +101,6 @@ extension OrdersViewController {
         })
         
         view.addSubview(ordersListView)
-        ordersListView.view = self
         ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         output.onDidSelectTab(.Open)
@@ -148,6 +143,7 @@ extension OrdersViewController {
 extension OrdersViewController {
     @objc func onSegmentChanged(_ sender: Any) {
         let displayOrderType = Orders.DisplayType(rawValue: segmentControlView.selectedSegmentIndex)!
+        ordersListView.displayOrderType = displayOrderType
         output.onDidSelectTab(displayOrderType)
     }
     
@@ -172,5 +168,9 @@ extension OrdersViewController {
             default: break
             }
         }
+    }
+    
+    func orderCanceled(id: Int64) {
+        ordersListView.orderWasCanceled(id: id)
     }
 }

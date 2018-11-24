@@ -25,21 +25,30 @@ class OrdersListView: UIView {
         return view
     }()
     
-    weak var view: OrdersViewInput!
+    let activityIndicatorView: UIActivityIndicatorView = {
+        let aiv = UIActivityIndicatorView(style: .whiteLarge)
+        aiv.hidesWhenStopped = true
+        aiv.color = .white
+        return aiv
+    }()
+    
+    weak var presenter: OrdersViewOutput!
     var dataProvider: Orders!
     var tableViewCells: [Int64 : IndexPath] = [:]
-    var displayOrderType: Orders.DisplayType = .None
+    var displayOrderType: Orders.DisplayType = .None {
+        didSet { showDataBySegment(displayOrderType: displayOrderType) }
+    }
     let kCellId = "OrderCell"
     var shouldUseActions: Bool = false
     
     var openedOrders: Orders? {
-        didSet { showDataBySegment(displayOrderType: .Open) }
+        didSet { displayOrderType = .Open }
     }
     var canceledOrders: Orders? {
-        didSet { showDataBySegment(displayOrderType: .Canceled) }
+        didSet { displayOrderType = .Canceled }
     }
     var dealsOrders: Orders? {
-        didSet { showDataBySegment(displayOrderType: .Deals) }
+        didSet { displayOrderType = .Deals }
     }
 
     override init(frame: CGRect) {
@@ -57,7 +66,6 @@ class OrdersListView: UIView {
     }
 
     func showDataBySegment(displayOrderType: Orders.DisplayType) {
-        self.displayOrderType = displayOrderType
         guard let data = getDataBySegmentIndex(displayOrderType: displayOrderType) else {
             dataProvider = Orders()
             updateTableUI()
@@ -88,6 +96,9 @@ extension OrdersListView {
     func setupViews() {
         setupTableView()
         setupPlaceholderNoData()
+        
+        addSubview(activityIndicatorView)
+        activityIndicatorView.anchorCenterSuperview()
     }
     
     private func setupPlaceholderNoData() {
@@ -106,9 +117,16 @@ extension OrdersListView {
     
     func checkOnRequirePlaceHolder() {
         if (dataProvider.isDataExists()) {
+            activityIndicatorView.stopAnimating()
             removePlaceholderNoData()
         } else {
-            showPlaceholderNoData()
+            activityIndicatorView.startAnimating()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                if (!self.dataProvider.isDataExists()) {
+                    self.activityIndicatorView.stopAnimating()
+                    self.showPlaceholderNoData()
+                }
+            })
         }
     }
 }
@@ -183,6 +201,17 @@ extension OrdersListView {
         
         checkOnRequirePlaceHolder()
     }
+    
+    func orderWasCanceled(id: Int64) {
+        guard let indexPath = tableViewCells[id] else {
+            print("orderWasCanceled: can't find cell for remove")
+            return
+        }
+        dataProvider.removeItem(byIndex: indexPath.section)
+        tableViewCells.removeValue(forKey: id)
+        tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+        checkOnRequirePlaceHolder()
+    }
 }
 
 // @MARK: placeholder
@@ -202,74 +231,5 @@ extension OrdersListView {
     
     func removePlaceholderNoData() {
         placeholderNoData.isHidden = true
-    }
-}
-
-// @MARK: UITableViewDataSource
-extension OrdersListView: UITableViewDataSource  {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return dataProvider.getCountOrders()
-    }
-}
-
-// @MARK: UITableViewDelegate
-extension OrdersListView: UITableViewDelegate  {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 10 : 30
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 85
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.backgroundColor = UIColor.clear
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: tableView.frame)
-        view.backgroundColor = UIColor.black
-        return view
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let order = dataProvider.getOrderBy(index: indexPath.section)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! OrderViewCell
-        cell.order = order
-        
-        tableViewCells[order.getId()] = indexPath
-        
-        return cell
-    }
-
-    @available(iOS 11.0, *)
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if !shouldUseActions {
-            let configurator = UISwipeActionsConfiguration(actions: [])
-            return configurator
-        }
-        
-        let deleteAction = UIContextualAction(style: .normal, title: "", handler: {
-            [weak self] action, view, completionHandler  in
-            guard let self = self else { return }
-            
-            let id = self.dataProvider.getOrderBy(index: indexPath.section).getId()
-            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: indexPath.section) {
-                print("called delete action for row = ", indexPath.section)
-                self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
-                self.checkOnRequirePlaceHolder()
-            }
-            completionHandler(true)
-        })
-        deleteAction.image = UIImage(named: "icNavbarTrash")
-        deleteAction.backgroundColor = UIColor(red: 255/255.0, green: 105/255.0, blue: 96/255.0, alpha: 1.0)
-
-        let configurator = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configurator
     }
 }

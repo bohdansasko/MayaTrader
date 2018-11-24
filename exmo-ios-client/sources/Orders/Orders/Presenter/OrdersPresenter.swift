@@ -7,18 +7,16 @@
 //
 import UIKit
 
-class OrdersPresenter: OrdersModuleInput, OrdersViewOutput, OrdersInteractorOutput {
-
+class OrdersPresenter: OrdersModuleInput {
     weak var view: OrdersViewInput!
     var interactor: OrdersInteractorInput!
     var router: OrdersRouterInput!
+}
 
+// @MARK: OrdersViewOutput
+extension OrdersPresenter: OrdersViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
-    }
-    
-    func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders]) {
-        view.updateOrders(loadedOrders: loadedOrders)
     }
     
     func onDidSelectTab(_ orderTab: Orders.DisplayType) {
@@ -27,5 +25,20 @@ class OrdersPresenter: OrdersModuleInput, OrdersViewOutput, OrdersInteractorOutp
     
     func onTouchButtonAddOrder() {
         router.showAddOrderVC(view as! UIViewController)
+    }
+    
+    func cancelOrder(id: Int64) {
+        interactor.cancelOrder(id: id)
+    }
+}
+
+// @MARK: OrdersInteractorOutput
+extension OrdersPresenter: OrdersInteractorOutput {
+    func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+        view.updateOrders(loadedOrders: loadedOrders)
+    }
+    
+    func orderCanceled(id: Int64) {
+        view.orderCanceled(id: id)
     }
 }

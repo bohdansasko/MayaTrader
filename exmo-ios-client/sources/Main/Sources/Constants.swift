@@ -29,6 +29,13 @@ enum DefaultStringValues: String {
     case ExmoIdentifier = "EXMO"
 }
 
+struct FrequencyUpdateInSec {
+    static let Watchlist = 3.0
+    static let CurrenciesList = 5.0
+    static let CreateOrder = 10.0
+    static let SearchPair = 5.0
+}
+
 enum EntityNameKeys: String {
     case UserEntity
     case WalletEntity

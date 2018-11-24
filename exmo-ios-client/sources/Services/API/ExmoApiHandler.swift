@@ -197,7 +197,7 @@ extension ExmoApiRequestBuilder {
     func getCancelOrderRequest(id: Int64) -> URLRequest {
         var post: [String: Any] = [:]
         post["order_id"] = id
-        
+
         return getAuthenticatedRequest(postDictionary: post, method: MethodId.OrderCancel.rawValue)
     }
 }
@@ -233,7 +233,7 @@ class ExmoAccountController {
 //        let responseData = ExmoApiRequestBuilder.shared.loadOpenOrders(limit: limit, offset: offset)
 //
 //        let jsonString = String(data: responseData, encoding: .utf8)
-//        if let requestError = RequestResult(JSONString: jsonString!) {
+//        if let requestError = ExmoResponseResult(JSONString: jsonString!) {
 //            if requestError.error != nil {
 //                print("error details: \(requestError.error!)")
 //                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
@@ -257,7 +257,7 @@ class ExmoAccountController {
 //        }
 //
 //        let jsonString = String(data: responseData, encoding: .utf8)
-//        if let requestError = RequestResult(JSONString: jsonString!) {
+//        if let requestError = ExmoResponseResult(JSONString: jsonString!) {
 //            if requestError.error != nil {
 //                print("error details: \(requestError.error!)")
 //                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
@@ -281,7 +281,7 @@ class ExmoAccountController {
 //        }
 //
 //        let jsonString = String(data: responseData, encoding: .utf8)
-//        if let requestError = RequestResult(JSONString: jsonString!) {
+//        if let requestError = ExmoResponseResult(JSONString: jsonString!) {
 //            if requestError.error != nil {
 //                print("error details: \(requestError.error!)")
 //                AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
@@ -300,14 +300,14 @@ class ExmoAccountController {
     }
     
     //
-    func createOrder(pair: String, quantity: Double, price: Double, type: String) -> OrderRequestResult? {
+    func createOrder(pair: String, quantity: Double, price: Double, type: String) -> OrderExmoResponseResult? {
 //        guard let responseData = ExmoApiRequestBuilder.shared.createOrder(pair: pair, quantity: quantity, price: price, type: type) else {
 //            print("createOrder: empty data")
 //            return nil
 //        }
 //
 //        let jsonString = String(data: responseData, encoding: .utf8)
-//        if let response = OrderRequestResult(JSONString: jsonString!) {
+//        if let response = OrderExmoResponseResult(JSONString: jsonString!) {
 //            if !response.result {
 //                print("error details: \(response.error!)")
 //                return nil
@@ -325,7 +325,7 @@ class ExmoAccountController {
 //        }
 //
 //        let jsonString = String(data: responseData, encoding: .utf8)
-//        if let requestResult = RequestResult(JSONString: jsonString!) {
+//        if let requestResult = ExmoResponseResult(JSONString: jsonString!) {
 //            if requestResult.error != nil {
 //                print("cancelOrder: \(requestResult.error!)")
 //            }
@@ -346,7 +346,7 @@ extension ExmoAccountController {
 //
 //        print("loaded: \(jsonString)")
 //
-//        if let requestError = RequestResult(JSONString: jsonString) {
+//        if let requestError = ExmoResponseResult(JSONString: jsonString) {
 //            if requestError.error != nil {
 //                print("error details: \(requestError.error!)")
 //                return nil
@@ -378,7 +378,7 @@ extension ExmoAccountController {
 //            return nil
 //        }
 //
-//        if let response = OrderRequestResult(JSONString: jsonString) {
+//        if let response = OrderExmoResponseResult(JSONString: jsonString) {
 //            if response.error != nil && !response.result {
 //                print("error details: \(response.error!)")
 //                return nil

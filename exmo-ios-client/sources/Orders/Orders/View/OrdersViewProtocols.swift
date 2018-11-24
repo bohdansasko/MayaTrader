@@ -8,10 +8,12 @@
 
 protocol OrdersViewInput: class {
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders])
+    func orderCanceled(id: Int64)
 }
 
-protocol OrdersViewOutput {
+protocol OrdersViewOutput: class {
     func viewIsReady()
     func onDidSelectTab(_ orderTab: Orders.DisplayType)
     func onTouchButtonAddOrder()
+    func cancelOrder(id: Int64)
 }

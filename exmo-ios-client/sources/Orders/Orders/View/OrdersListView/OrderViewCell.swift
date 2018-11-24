@@ -11,7 +11,7 @@ import UIKit
 class OrderViewCell: UITableViewCell {
     var labelTimeCreateOrder: UILabel = {
         let label = OrderViewCell.getTitleLabel(text: "quantity")
-        label.text = "29.12.1972 12:13"
+        label.text = "29.12.1972 06:02"
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -93,8 +93,6 @@ class OrderViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
 }
 

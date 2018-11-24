@@ -37,7 +37,7 @@ extension SearchInteractor: SearchInteractorInput {
     }
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.SearchPair, repeats: true) {
             [weak self] _ in
             self?.networkWorker.load()
         }

@@ -79,7 +79,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CurrenciesList, repeats: true) {
             [weak self] _ in
             guard let self = self else { return }
             if !self.currencyGroupName.isEmpty {

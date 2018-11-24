@@ -7,12 +7,14 @@
 //
 import UIKit.UITableView
 
-class WalletPresenter: WalletModuleInput, WalletViewOutput, WalletInteractorOutput {
-
+class WalletPresenter: WalletModuleInput {
     weak var view: WalletViewInput!
     var interactor: WalletInteractorInput!
     var router: WalletRouterInput!
+}
 
+// @MARK: WalletViewOutput
+extension WalletPresenter: WalletViewOutput {
     func viewDidLoad() {
         interactor.viewDidLoad()
     }
@@ -24,7 +26,10 @@ class WalletPresenter: WalletModuleInput, WalletViewOutput, WalletInteractorOutp
     func openCurrencyListVC() {
         router.openCurrencyListVC(sourceVC: view as! UIViewController)
     }
-    
+}
+
+// @MARK: WalletViewOutput
+extension WalletPresenter: WalletInteractorOutput {
     func onDidLoadWallet(_ wallet: ExmoWallet) {
         view.updateWallet(wallet)
     }
