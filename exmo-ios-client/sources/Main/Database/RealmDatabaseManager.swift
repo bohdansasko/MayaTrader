@@ -74,6 +74,15 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
             closure()
         }
     }
+    
+    func isInWriteTransaction() -> Bool {
+        if !isRealmAccessible() { return false }
+        
+        let realm = try! Realm()
+        realm.refresh()
+        
+        return realm.isInWriteTransaction
+    }
 }
 
 extension RealmDatabaseManager {

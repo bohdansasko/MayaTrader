@@ -17,12 +17,7 @@ class WalletInteractor: WalletInteractorInput {
     var tickerNetworkWorker: ITickerNetworkWorker!
     var dbManager: OperationsDatabaseProtocol!
     
-    var walletModel: ExmoWallet? {
-        didSet {
-            tryUpdateWallet()
-        }
-    }
-    
+    var walletModel: ExmoWallet?
     var ticker: Ticker? {
         didSet {
             tryUpdateWallet()
@@ -58,6 +53,9 @@ extension WalletInteractor {
     }
     
     func tryUpdateWallet() {
+        if dbManager.isInWriteTransaction() {
+            return
+        }
         guard let wm = walletModel, let _ = ticker else {
             return
         }
@@ -85,10 +83,11 @@ extension WalletInteractor: IWalletNetworkWorkerDelegate {
             [unowned self] in
             self.walletModel = cachedWallet
         }
+        tryUpdateWallet()
     }
     
     func onDidLoadWalletFail(messageError: String?) {
-        print(messageError)
+        print(messageError ?? "Error")
     }
 }
 
