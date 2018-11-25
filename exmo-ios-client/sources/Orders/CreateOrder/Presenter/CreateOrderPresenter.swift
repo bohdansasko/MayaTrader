@@ -54,6 +54,14 @@ extension CreateOrderPresenter: CreateOrderInteractorOutput {
     func setOrderSettings(orderSettings: OrderSettings) {
         self.view.setOrderSettings(orderSettings: orderSettings)
     }
+    
+    func onCreateOrderSuccessull() {
+        view.onCreateOrderSuccessull()
+    }
+    
+    func showAlert(message: String) {
+        view.showAlert(message: message)
+    }
 }
 
 // @MARK: CreateOrderInteractorOutput

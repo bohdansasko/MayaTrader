@@ -16,6 +16,7 @@ class OrdersListView: UIView {
         tv.backgroundColor = .clear
         tv.separatorStyle = .none
         tv.tableFooterView = UIView()
+        tv.delaysContentTouches = false
         return tv
     }()
     
@@ -161,9 +162,9 @@ extension OrdersListView {
             return
         }
         
-        let ordersOnBuy = openedOrders.getOrders().filter({ $0.getOrderActionType() == deleteOrderType })
+        let ordersOnBuy = openedOrders.getOrders().filter({ $0.orderType == deleteOrderType })
         for order in ordersOnBuy {
-            let id = order.getId()
+            let id = order.id
             guard let indexPath = tableViewCells[id] else {
                 continue
             }
@@ -189,7 +190,7 @@ extension OrdersListView {
         }
         
         for order in openedOrders.getOrders() {
-            let id = order.getId()
+            let id = order.id
             if AppDelegate.session.cancelOpenOrder(id: id, byIndex: -1) {
                 // do nothing
             }

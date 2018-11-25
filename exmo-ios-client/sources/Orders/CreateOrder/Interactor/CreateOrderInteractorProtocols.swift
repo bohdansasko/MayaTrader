@@ -19,4 +19,6 @@ protocol CreateOrderInteractorOutput: class {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func closeView()
     func setOrderSettings(orderSettings: OrderSettings)
+    func onCreateOrderSuccessull()
+    func showAlert(message: String)
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateOrderViewController: UIViewController, CreateOrderViewInput {
+class CreateOrderViewController: ExmoUIViewController {
     var output: CreateOrderViewOutput!
     
     var titleLabel: UILabel = {
@@ -45,19 +45,60 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupViews()
         output.viewIsReady()
-
-        view.backgroundColor = .black
-        setupInitialState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         output.viewWillDisappear()
     }
+    
+    @objc func onSegmentChanged(_ sender: Any) {
+        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .Limit
+        cellsLayoutView.layoutType = layoutType
+        output.onTabChanged()
+    }
+    
+    @objc private func hideKeyboard() {
+        view.endEditing(true)
+    }
+    
+    @IBAction func handleTouchOnCancelButton(_ sender: Any) {
+        output.handleTouchOnCancelButton()
+    }
+}
 
-    // MARK: CreateOrderViewInput
-    func setupInitialState() {
+// MARK: CreateOrderViewInput
+extension CreateOrderViewController: CreateOrderViewInput {
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
+        cellsLayoutView.selectedCurrency = tickerCurrencyPair
+    }
+    
+    func setOrderSettings(orderSettings: OrderSettings) {
+        // do nothing
+    }
+    
+    func showAlert(message: String) {
+        hideLoader()
+        showOkAlert(title: "Create order", message: message, onTapOkButton: nil)
+    }
+    
+    func onCreateOrderSuccessull() {
+        hideLoader()
+        
+        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .Limit
+        cellsLayoutView.layoutType = layoutType
+        
+        showOkAlert(title: "Create order", message: "Order has been created successfully", onTapOkButton: nil)
+    }
+}
+
+extension CreateOrderViewController {
+    func setupViews() {
+        view.backgroundColor = .black
+        
         setupNavigationBar()
         setupSegmentControlView()
         setupCellsLayout()
@@ -74,6 +115,7 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
     private func setupCellsLayout() {
         view.addSubview(cellsLayoutView)
         cellsLayoutView.output = output
+        cellsLayoutView.parentVC = self
         cellsLayoutView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
@@ -83,33 +125,6 @@ class CreateOrderViewController: UIViewController, CreateOrderViewInput {
         segmentControlView.anchor(titleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
         segmentControlView.anchorCenterXToSuperview()
     }
-    
-    @objc func onSegmentChanged(_ sender: Any) {
-        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .Limit
-        cellsLayoutView.layoutType = layoutType
-        output.onTabChanged()
-    }
-    
-    @objc private func hideKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @IBAction func handleTouchOnCancelButton(_ sender: Any) {
-        output.handleTouchOnCancelButton()
-    }
-    
-    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
-        cellsLayoutView.selectedCurrency = tickerCurrencyPair
-    }
-    
-    func setOrderSettings(orderSettings: OrderSettings) {
-        // do nothing
-    }
-}
-
-// @MARK: navigation bar
-extension CreateOrderViewController {
-    
 }
 
 // @MARK: navigation bar

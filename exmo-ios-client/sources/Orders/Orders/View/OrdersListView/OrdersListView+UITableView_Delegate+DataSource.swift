@@ -45,7 +45,7 @@ extension OrdersListView: UITableViewDelegate  {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! OrderViewCell
         cell.order = order
         
-        tableViewCells[order.getId()] = indexPath
+        tableViewCells[order.id] = indexPath
         
         return cell
     }
@@ -62,7 +62,7 @@ extension OrdersListView: UITableViewDelegate  {
             guard let self = self else { return }
             
             self.activityIndicatorView.startAnimating()
-            let id = self.dataProvider.getOrderBy(index: indexPath.section).getId()
+            let id = self.dataProvider.getOrderBy(index: indexPath.section).id
             self.presenter.cancelOrder(id: id)
             
             print("called delete action for row = \(id), \(indexPath.section)")

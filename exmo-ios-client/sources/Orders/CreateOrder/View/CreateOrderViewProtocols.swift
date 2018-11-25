@@ -7,9 +7,10 @@
 //
 
 protocol CreateOrderViewInput: class {
-    func setupInitialState()
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func setOrderSettings(orderSettings: OrderSettings)
+    func onCreateOrderSuccessull()
+    func showAlert(message: String)
 }
 
 protocol CreateOrderViewOutput: class {

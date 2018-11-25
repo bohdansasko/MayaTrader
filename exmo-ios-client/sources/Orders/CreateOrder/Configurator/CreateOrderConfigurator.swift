@@ -27,6 +27,7 @@ class CreateOrderModuleConfigurator {
         let interactor = CreateOrderInteractor()
         interactor.output = presenter
         interactor.networkWorker = TickerNetworkWorker()
+        interactor.ordersNetworkWorker = OrdersNetworkWorker()
 
         presenter.interactor = interactor
         viewController.output = presenter

@@ -71,7 +71,7 @@ class OrderViewCell: UITableViewCell {
             }
             
             orderTypeLabel.text = orderData.getOrderActionTypeAsStr()
-            orderTypeLabel.backgroundColor = getOrderActionTypeLabelTextColor(orderType: orderData.getOrderActionType())
+            orderTypeLabel.backgroundColor = getOrderActionTypeLabelTextColor(orderType: orderData.orderType)
             
             currencyLabel.text = orderData.getDisplayCurrencyPair()
             amountValueLabel.text = orderData.getAmountAsStr()

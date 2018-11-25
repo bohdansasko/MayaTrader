@@ -10,16 +10,10 @@ import Foundation
 class CreateOrderInteractor {
     weak var output: CreateOrderInteractorOutput!
     var networkWorker: ITickerNetworkWorker!
+    var ordersNetworkWorker: IOrdersNetworkWorker!
     var timerScheduler: Timer?
     
     private var currencyPairCode: String = ""
-    
-    @objc func onLoadCurrencySettingsSuccess(notification: Notification) {
-        guard let orderSettings = notification.userInfo?["data"] as? OrderSettings else {
-            return
-        }
-        output.setOrderSettings(orderSettings: orderSettings)
-    }
     
     private func scheduleUpdateCurrencies() {
         timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CreateOrder, repeats: true) {
@@ -28,7 +22,7 @@ class CreateOrderInteractor {
         }
     }
     
-    private func stopScheduleUpdateCurrencies() {
+    private func unscheduleUpdateCurrencies() {
         if timerScheduler != nil {
             timerScheduler?.invalidate()
             timerScheduler = nil
@@ -36,25 +30,22 @@ class CreateOrderInteractor {
     }
 }
 
-
+// @MARK: CreateOrderInteractorInput
 extension CreateOrderInteractor: CreateOrderInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
+        ordersNetworkWorker.delegate = self
     }
     
     func viewWillDisappear() {
         currencyPairCode = ""
-        stopScheduleUpdateCurrencies()
+        unscheduleUpdateCurrencies()
     }
     
     func createOrder(orderModel: OrderModel) {
-        let (isSuccess, orderId) = AppDelegate.session.createOrder(order: orderModel)
-        if isSuccess {
-            var newOrderModel = orderModel
-            newOrderModel.setOrderId(id: orderId)
-            AppDelegate.session.appendOrder(orderModel: newOrderModel)
-        }
-        self.output.closeView()
+        print(orderModel)
+        unscheduleUpdateCurrencies()
+        ordersNetworkWorker.createOrder(order: orderModel)
     }
     
     func handleSelectedCurrency(rawName: String) {
@@ -64,20 +55,34 @@ extension CreateOrderInteractor: CreateOrderInteractorInput {
     }
 }
 
+// @MARK: ITickerNetworkWorkerDelegate
 extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
-        print("onDidLoadTickerSuccess")
-        if currencyPairCode.isEmpty {
-            return
-        }
-        
         guard let ticker = ticker,
-              let currencyPairModel = ticker.pairs[currencyPairCode] else { return }
+              currencyPairCode.isEmpty == false,
+              let currencyPairModel = ticker.pairs[currencyPairCode] else {
+                output.showAlert(message: "Something went wrong.")
+                return
+        }
         self.output.updateSelectedCurrency(currencyPairModel)
     }
     
     func onDidLoadTickerFails(_ ticker: Ticker?) {
         print("onDidLoadTickerFails")
-        self.output.updateSelectedCurrency(nil)
+        output.updateSelectedCurrency(nil)
+        output.showAlert(message: "Can't load data. Please try again a little bit later.")
+    }
+}
+
+// @MARK: IOrdersNetworkWorkerDelegate
+extension CreateOrderInteractor: IOrdersNetworkWorkerDelegate {
+    func onDidCreateOrderSuccess() {
+        output.onCreateOrderSuccessull()
+    }
+    
+    func onDidCreateOrderFail(errorMessage: String) {
+        print(errorMessage)
+        scheduleUpdateCurrencies()
+        output.showAlert(message: errorMessage)
     }
 }

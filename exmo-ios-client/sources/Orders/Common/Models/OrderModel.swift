@@ -108,14 +108,14 @@ class TransformOrderType : TransformType {
 
 // @MARK: OrderModel
 struct OrderModel: Mappable {
-    private var orderType: OrderActionType
-            var currencyPair: String
-    private var createdDate: Date
-    private var price: Double
-    private var quantity: Double
-    private var amount: Double
-    private var id: Int64
-    private var createType: OrderCreateType = .None
+    var orderType: OrderActionType
+    var currencyPair: String
+    var createdDate: Date
+    var price: Double
+    var quantity: Double
+    var amount: Double
+    var id: Int64
+    var createType: OrderCreateType = .None
     
     init() {
         orderType = .None
@@ -175,22 +175,6 @@ struct OrderModel: Mappable {
         }
     }
     
-    mutating func setOrderId(id: Int64) {
-        self.id = id
-    }
-    
-    func getId() -> Int64 {
-        return self.id
-    }
-    
-    func getOrderActionType() -> OrderActionType {
-        return self.orderType
-    }
-    
-    func getCurrencyPair() -> String {
-        return self.currencyPair
-    }
-    
     func getDisplayCurrencyPair() -> String {
         return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.currencyPair)
     }
@@ -201,17 +185,10 @@ struct OrderModel: Mappable {
         return dataFormat.string(from: self.createdDate)
     }
     
-    func getPrice() -> Double {
-        return self.price
-    }
-
     func getPriceAsStr() -> String {
         return String(self.price)
     }
     
-    func getQuantity() -> Double {
-        return self.quantity
-    }
     
     func getQuantityAsStr() -> String {
         return String(self.quantity)
@@ -219,10 +196,6 @@ struct OrderModel: Mappable {
     
     func getCreateTypeAsStr() -> String {
         return self.createType.rawValue
-    }
-    
-    func getAmount() -> Double {
-        return self.amount
     }
     
     func getAmountAsStr() -> String {
