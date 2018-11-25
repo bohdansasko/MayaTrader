@@ -172,6 +172,7 @@
 		20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */; };
 		20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* UIView+Extension.swift */; };
 		20E30AD720A96715003D9BAF /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD620A96715003D9BAF /* NibView.swift */; };
+		20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */; };
 		20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* WalletBalanceView.swift */; };
 		20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */; };
 		20F08D0620A8E20100B782FF /* UITouchableViewWithIndicator.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20F08D0520A8E20100B782FF /* UITouchableViewWithIndicator.xib */; };
@@ -477,6 +478,7 @@
 		20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20E30AD620A96715003D9BAF /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
+		20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewCell+SetupViews.swift"; sourceTree = "<group>"; };
 		20E80093207A283B00E1AC6C /* WalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBalanceView.swift; sourceTree = "<group>"; };
 		20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20F08D0520A8E20100B782FF /* UITouchableViewWithIndicator.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UITouchableViewWithIndicator.xib; sourceTree = "<group>"; };
@@ -1016,8 +1018,8 @@
 		205C25712067EC5700588ABE /* OrdersListView */ = {
 			isa = PBXGroup;
 			children = (
+				20E54F8621AB2181006A70E8 /* Cell */,
 				207E24FE2061B85B00030023 /* OrdersListView.swift */,
-				207E25002061BD3B00030023 /* OrderViewCell.swift */,
 				20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */,
 			);
 			path = OrdersListView;
@@ -1403,6 +1405,15 @@
 				20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		20E54F8621AB2181006A70E8 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				207E25002061BD3B00030023 /* OrderViewCell.swift */,
+				20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		2613C8285C5455096A6F3487 /* View */ = {
@@ -2439,6 +2450,7 @@
 				207B1D9E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift in Sources */,
 				20780A2420E9642E00D9BD36 /* SearchCurrencyPairTableViewCell.swift in Sources */,
 				20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */,
+				20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */,
 				207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */,
 				74208443D94F8B7E1F98710D /* WatchlistCurrencyChartViewInput.swift in Sources */,
 				CAB081780C816F30AA959325 /* WatchlistCurrencyChartViewOutput.swift in Sources */,

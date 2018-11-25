@@ -26,6 +26,7 @@ class TableMenuView: UIView {
         let table = UITableView()
         table.backgroundColor = .clear
         table.delaysContentTouches = false
+        table.canCancelContentTouches = false
         table.separatorStyle = .none
         table.tableFooterView = UIView()
         return table
@@ -74,12 +75,18 @@ extension TableMenuView: UITableViewDataSource  {
 // @MARK: UITableViewDelegate
 extension TableMenuView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let menuCell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! TableMenuViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let menuCell = cell as! TableMenuViewCell
         menuCell.cellType = cellsTypeContainer[indexPath]!
-        return menuCell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        print("\(indexPath)")
         viewOutput.didTouchCell(type: cellsTypeContainer[indexPath]!)
     }
 }

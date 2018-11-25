@@ -40,14 +40,15 @@ extension OrdersListView: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let order = dataProvider.getOrderBy(index: indexPath.section)
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath) as! OrderViewCell
-        cell.order = order
-        
-        tableViewCells[order.id] = indexPath
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId, for: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let order = dataProvider.getOrderBy(index: indexPath.section)
+        let orderCell = cell as! OrderViewCell
+        orderCell.order = order
+        tableViewCells[order.id] = indexPath
     }
     
     @available(iOS 11.0, *)
