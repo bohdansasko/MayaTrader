@@ -237,11 +237,11 @@ extension Session {
     }
     
     func updateAlert(alertItem: AlertItem) {
-        guard var foundAlert = self.alerts.first(where: { $0.id == alertItem.id }) else {
-            return
-        }
-        foundAlert = alertItem
-        AppDelegate.notificationController.postBroadcastMessage(name: .UpdateAlert, data: ["alertData": alertItem])
+//        guard var foundAlert = self.alerts.first(where: { $0.id == alertItem.id }) else {
+//            return
+//        }
+//        foundAlert = alertItem
+//        AppDelegate.notificationController.postBroadcastMessage(name: .UpdateAlert, data: ["alertData": alertItem])
     }
     
     func deleteAlert(alertId: String) {

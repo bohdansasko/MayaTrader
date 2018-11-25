@@ -63,7 +63,7 @@ class AlertItem: SegueBlock, Mappable {
                 + "topBoundary: \(topBoundary!)\n"
                 + "bottomBoundary: \(bottomBoundary!)\n"
                 + "status: \(status)\n"
-                + "dateCreated: \(dateCreated)\n"
+                + "dateCreated: \(dateCreated.debugDescription)\n"
                 + "isPersistentNotification: \(isPersistentNotification)\n"
                 + "note: \(note ?? "empty")\n"
     }

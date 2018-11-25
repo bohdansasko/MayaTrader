@@ -30,9 +30,6 @@ class SearchModuleConfigurator {
         
         presenter.interactor = interactor
         viewController.output = presenter
-        
-//        viewController.displayManager = SearchDisplayManager()
-//        viewController.displayManager.output = viewController.output
     }
 
 }

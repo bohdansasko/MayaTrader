@@ -29,7 +29,7 @@ class NibView: UIView {
 extension NibView {
     func xibSetup() {
         backgroundColor = UIColor.clear
-        contentView = loadNib() as! UIView
+        contentView = loadNib()
         // use bounds not frame or it'll be offset
         contentView.frame = bounds
         // Adding custom subview on top of our view

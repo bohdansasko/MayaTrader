@@ -50,9 +50,6 @@ class UITouchableNibView: NibView {
             backgroundButton.backgroundColor = UIColor.clear
         case .Highlighted:
             backgroundButton.backgroundColor = UIColor.white.withAlphaComponent(0.1)
-        default:
-            // do nothing
-            break
         }
     }
     

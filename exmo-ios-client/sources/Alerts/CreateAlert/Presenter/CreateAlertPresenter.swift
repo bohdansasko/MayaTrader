@@ -30,7 +30,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     }
     
     func handleTouchOnCancelBtn() {
-        self.router.close(uiViewController: view as! UIViewController)
+        self.router.close(uiViewController: view as? UIViewController)
     }
     
     func showSearchViewController(searchType: SearchViewController.SearchType) {
@@ -49,14 +49,14 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
     func showSearchViewController(searchType: SearchViewController.SearchType, data: [SearchModel]) {
         switch searchType {
         case .Currencies:
-            self.router.openCurrencyPairsSearchView(data: data, uiViewController: view as! UIViewController, callbackOnSelectCurrency: {
+            self.router.openCurrencyPairsSearchView(data: data, uiViewController: view as? UIViewController, callbackOnSelectCurrency: {
                 (currencyId) in
                 print("Currency")
                 self.interactor.handleSelectedCurrency(currencyId: currencyId)
             })
             break
         case .Sounds:
-            self.router.openSoundsSearchView(data: data, uiViewController: view as! UIViewController, callbackOnSelectSound: {
+            self.router.openSoundsSearchView(data: data, uiViewController: view as? UIViewController, callbackOnSelectSound: {
                 (soundId) in
                 self.interactor.handleSelectedSound(soundId: soundId)
             })

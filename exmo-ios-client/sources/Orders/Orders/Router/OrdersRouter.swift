@@ -10,7 +10,6 @@ import UIKit
 class OrdersRouter: OrdersRouterInput {
     func showAddOrderVC(_ vc: UIViewController) {
         let moduleInit = CreateOrderModuleInitializer()
-        vc
         vc.present(moduleInit.viewController, animated: true, completion: nil)
     }
 }

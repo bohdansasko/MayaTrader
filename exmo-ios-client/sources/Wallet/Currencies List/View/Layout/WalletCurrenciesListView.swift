@@ -162,7 +162,7 @@ extension WalletCurrenciesListView: UITableViewDragDelegate {
                     ? w.dislikedBalances[indexPath.row]
                     : ExmoWalletCurrencyModel()
         
-        let itemProvider = NSItemProvider(object: item as! NSItemProviderWriting)
+        let itemProvider = NSItemProvider(object: item as NSItemProviderWriting)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
         return [dragItem]

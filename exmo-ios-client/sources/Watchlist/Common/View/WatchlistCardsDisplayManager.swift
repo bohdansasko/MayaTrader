@@ -35,7 +35,7 @@ class WatchlistCardsDisplayManager: NSObject {
 //}
 
 extension WatchlistCardsDisplayManager: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    private func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let orderData = self.dataProvider.getCurrencyPairBy(index: indexPath.row)
         let cellId = TableCellIdentifiers.WatchlistTableMenuViewCell.rawValue
         

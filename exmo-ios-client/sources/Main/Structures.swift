@@ -233,3 +233,36 @@ extension ExmoWallet {
         return balances[index]
     }
 }
+
+class SearchModel : Any {
+    var name: String
+    
+    init(id: Int, name: String) {
+        self.name = name
+    }
+    
+    func getId() -> Int {
+        return 0
+    }
+    
+    func getName() -> String {
+        return self.name
+    }
+    
+    func getDisplayName() -> String {
+        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.name)
+    }
+}
+
+class SearchCurrencyPairModel : SearchModel {
+    var price: Double
+    
+    init(id: Int, name: String, price: Double) {
+        self.price = price
+        super.init(id: id, name: name)
+    }
+    
+    func getPairPriceAsStr() -> String {
+        return Utils.getFormatedPrice(value: self.price)
+    }
+}
