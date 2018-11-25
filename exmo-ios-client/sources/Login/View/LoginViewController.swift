@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, LoginViewInput {
+class LoginViewController: ExmoUIViewController, LoginViewInput {
     var output: LoginViewOutput!
     var activeTextField: UITextField?
     
@@ -108,13 +108,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         return button
     }()
 
-    let activityIndicatorView: UIActivityIndicatorView = {
-        let aiv = UIActivityIndicatorView(style: .whiteLarge)
-        aiv.hidesWhenStopped = true
-        aiv.color = .white
-        return aiv
-    }()
-    
     var inputFieldsStackView: UIStackView!
     
     // MARK: Life cycle
@@ -216,18 +209,8 @@ extension LoginViewController {
         
         updateButtonsEnableState(isTouchEnabled: false)
         
-        let qrModel = ExmoQRModel(exmoIdentifier: DefaultStringValues.ExmoIdentifier.rawValue, key: key, secret: secret)
+        let qrModel = ExmoQRModel(exmoIdentifier: DefaultStringValues.ExmoId.rawValue, key: key, secret: secret)
         output.loadUserInfo(loginModel: qrModel)
-    }
-    
-    func showLoader() {
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
-    }
-    
-    func hideLoader() {
-        activityIndicatorView.isHidden = true
-        activityIndicatorView.stopAnimating()
     }
     
     func showAlert(title: String, message: String) {

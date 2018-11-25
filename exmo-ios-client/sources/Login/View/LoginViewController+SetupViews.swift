@@ -29,7 +29,6 @@ extension LoginViewController {
     private func setupActivityViewIndicator() {
         scrollView.addSubview(activityIndicatorView)
         activityIndicatorView.anchorCenterSuperview()
-        activityIndicatorView.isHidden = true
     }
     
     private func setupLogo() {

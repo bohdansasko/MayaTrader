@@ -13,6 +13,7 @@ class ExmoUIViewController: UIViewController {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
         aiv.hidesWhenStopped = true
         aiv.color = .white
+        aiv.isHidden = true
         return aiv
     }()
     
@@ -23,6 +24,13 @@ class ExmoUIViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = dummyImage
         self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.anchorCenterSuperview()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,8 +39,26 @@ class ExmoUIViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         updateNavigationBar(shouldHideNavigationBar: false)
     }
     
+    func showOkAlert(title: String, message: String,  onTapOkButton: (() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            _ in
+            onTapOkButton?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showLoader() {
+        activityIndicatorView.isHidden = false
+        activityIndicatorView.startAnimating()
+    }
+    
+    func hideLoader() {
+        activityIndicatorView.isHidden = true
+        activityIndicatorView.stopAnimating()
+    }
+
 }
