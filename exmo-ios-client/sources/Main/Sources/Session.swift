@@ -163,7 +163,6 @@ extension Session {
     }
     
     func appendOrder(orderModel: OrderModel) {
-//        AppDelegate.notificationController.postBroadcastMessage(name: .AppendOrder, data: ["data": orderModel])
         self.openedOrders.append(orderModel: orderModel)
     }
     
@@ -180,7 +179,7 @@ extension Session {
     }
 
     func createOrder(order: OrderModel) -> (Bool, Int64) {
-        guard let createResult = AppDelegate.exmoController.createOrder(pair: order.getCurrencyPair(), quantity: order.getAmount(), price: order.getPrice(), type: order.getCreateTypeAsStr()) else {
+        guard let createResult = AppDelegate.exmoController.createOrder(pair: order.currencyPair, quantity: order.amount, price: order.price, type: order.getCreateTypeAsStr()) else {
             return (false, -1)
         }
         

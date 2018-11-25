@@ -31,7 +31,7 @@ class QRLoginModel {
     }
 
     func isValidate() -> Bool {
-        return self.key.count > 0 && self.secret.count > 0 && self.exmoIdentifier == DefaultStringValues.ExmoIdentifier.rawValue
+        return self.key.count > 0 && self.secret.count > 0 && self.exmoIdentifier == DefaultStringValues.ExmoId.rawValue
     }
     
     private func parseQRString(qrString: String) {

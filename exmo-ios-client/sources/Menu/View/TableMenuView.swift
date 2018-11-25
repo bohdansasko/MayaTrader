@@ -26,6 +26,8 @@ class TableMenuView: UIView {
         let table = UITableView()
         table.backgroundColor = .clear
         table.delaysContentTouches = false
+        table.separatorStyle = .none
+        table.tableFooterView = UIView()
         return table
     }()
     
@@ -44,8 +46,6 @@ class TableMenuView: UIView {
     
     func setupTableView() {
         addSubview(tableView)
-        tableView.separatorStyle = .none
-        tableView.tableFooterView = UIView()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)

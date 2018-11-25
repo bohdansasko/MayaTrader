@@ -26,7 +26,7 @@ enum UserDefaultsKeys: String {
 
 enum DefaultStringValues: String {
     case LastLoginedUID
-    case ExmoIdentifier = "EXMO"
+    case ExmoId = "EXMO"
 }
 
 struct FrequencyUpdateInSec {

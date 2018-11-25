@@ -131,7 +131,7 @@ class ExmoQRModel: Object {
     }
 
     func isValidate() -> Bool {
-        return key.count > 0 && secret.count > 0 && exmoIdentifier == "EXMO"
+        return key.count > 0 && secret.count > 0 && exmoIdentifier == DefaultStringValues.ExmoId.rawValue
     }
 
     private func parseQRString(qrString: String) {
@@ -161,8 +161,8 @@ class ExmoWalletTransactionHistory: Object {
 
 class ExmoWallet: Object, Mappable {
     @objc dynamic var id = 0
-    @objc dynamic var amountBTC: Double = 0
-    @objc dynamic var amountUSD: Double = 0
+    var amountBTC: Double = 0
+    var amountUSD: Double = 0
     
     var balances = List<ExmoWalletCurrencyModel>()
     var favBalances: [ExmoWalletCurrencyModel] = []
