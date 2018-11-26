@@ -8,12 +8,10 @@
 import UIKit.UIViewController
 
 protocol AlertsViewInput: class {
-    func setupInitialState()
-    func showPlaceholderNoData()
-    func removePlaceholderNoData()
+    // do nothing
 }
 
-protocol AlertsViewOutput {
+protocol AlertsViewOutput: class {
     func viewIsReady()
     func showEditView(data: AlertItem)
     func prepareSegue(viewController: UIViewController, data: Any?)

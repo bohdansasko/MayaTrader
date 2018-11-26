@@ -1,5 +1,5 @@
 //
-//  AlertDataDisplayManager.swift
+//  AlertsListView.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/11/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertDataDisplayManager: NSObject {
+class AlertsListView: NSObject {
     enum ActionType {
         case State
         case Edit
@@ -16,13 +16,22 @@ class AlertDataDisplayManager: NSObject {
     }
     
     private var dataProvider: AlertsDisplayModel!
-    private var tableView: UITableView!
     private var cells: [AlertTableViewCell] = []
     private var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
 
+    private var placeholderNoData: PlaceholderNoDataView = {
+        let view = PlaceholderNoDataView()
+        view.text = "You haven't alerts right now"
+        view.isHidden = true
+        return view
+    }()
     
-    var viewOutput: AlertsViewOutput!
-    var view: AlertsViewInput!
+    var tableView: UITableView = {
+        return UITableView()
+    }()
+    
+    weak var viewOutput: AlertsViewOutput!
+    weak var view: AlertsViewInput!
     
     override init() {
         super.init()
@@ -115,9 +124,9 @@ class AlertDataDisplayManager: NSObject {
     
     private func checkOnRequirePlaceHolder() {
         if (self.dataProvider.isEmpty()) {
-            self.view.showPlaceholderNoData()
+            placeholderNoData.isHidden = false
         } else {
-            self.view.removePlaceholderNoData()
+            placeholderNoData.isHidden = true
         }
     }
     
@@ -153,7 +162,18 @@ class AlertDataDisplayManager: NSObject {
     }
 }
 
-extension AlertDataDisplayManager: UITableViewDelegate, UITableViewDataSource  {
+extension AlertsListView {
+    //    private func setupPlaceholderNoData() {
+    //        view.addSubview(placeholderNoData)
+    //        let topOffset: CGFloat = AppDelegate.isIPhone(model: .Five) ? 35 : 90
+    //        placeholderNoData.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    //    }
+    //
+}
+
+// @MARK: UITableViewDelegate
+// @MARK: UITableViewDataSource
+extension AlertsListView: UITableViewDelegate, UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataProvider.getCountMenuItems()
     }

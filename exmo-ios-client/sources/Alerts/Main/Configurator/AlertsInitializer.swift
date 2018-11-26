@@ -8,15 +8,11 @@
 
 import UIKit
 
-class AlertsModuleInitializer: NSObject {
-
-    //Connect with object on storyboard
-    @IBOutlet weak var alertsViewController: AlertsViewController!
-
-    override func awakeFromNib() {
-
+class AlertsModuleInitializer {
+    var viewController: AlertsViewController!
+    init() {
+        viewController = AlertsViewController()
         let configurator = AlertsModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: alertsViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
-
 }

@@ -8,6 +8,10 @@
 
 import Foundation
 
+protocol AlertsInteractorInput {
+    func viewIsReady()
+}
+
 protocol AlertsInteractorOutput: class {
     // do nothing
 }

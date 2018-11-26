@@ -15,7 +15,7 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
     var router: AlertsRouterInput!
 
     func viewIsReady() {
-       // do nothing
+       interactor.viewIsReady()
     }
     
     func showEditView(data: AlertItem) {

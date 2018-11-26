@@ -31,9 +31,9 @@ class AlertsModuleConfigurator {
         presenter.interactor = interactor
         viewController.output = presenter
         
-        viewController.displayManager = AlertDataDisplayManager()
-        viewController.displayManager.viewOutput = viewController.output
-        viewController.displayManager.view = viewController
+        viewController.listView = AlertsListView()
+        viewController.listView.viewOutput = viewController.output
+        viewController.listView.view = viewController
 
     }
 

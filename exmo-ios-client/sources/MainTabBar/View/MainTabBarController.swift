@@ -62,13 +62,14 @@ extension MainTabBarController {
         let watchlistInitializer = WatchlistFavouriteCurrenciesModuleInitializer()
         let orderInitializer = OrdersModuleInitializer()
         let walletInitializer = WalletModuleInitializer()
+        let alertsInitializer = AlertsModuleInitializer()
         let menuInitializer = MenuModuleInitializer()
         
         viewControllers = [
             UINavigationController(rootViewController: watchlistInitializer.viewController),
             UINavigationController(rootViewController: orderInitializer.viewController),
             UINavigationController(rootViewController: walletInitializer.viewController),
-            UIStoryboard(name: "Alerts", bundle: nil).instantiateViewController(withIdentifier: "AlertsNavigationController"),
+            UINavigationController(rootViewController: alertsInitializer.viewController),
             UINavigationController(rootViewController: menuInitializer.viewController)
         ]
 
@@ -76,6 +77,7 @@ extension MainTabBarController {
             0: "icTabbarWatchlist",
             1: "icTabbarOrders",
             2: "icTabbarWallet",
+            3: "icTabbarAlerts",
             4: "icTabbarMenu"
         ]
         for (iconIndex, iconNameNormalState) in iconsNamesWithIndices {
