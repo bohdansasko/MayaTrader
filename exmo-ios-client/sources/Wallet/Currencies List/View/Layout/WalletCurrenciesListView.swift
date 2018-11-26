@@ -177,8 +177,8 @@ extension WalletCurrenciesListView: UITableViewDelegate  {
 // @MARK: UITableViewDragDelegate
 extension WalletCurrenciesListView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        let item = currencies[indexPath.section]?[indexPath.row]
-        let itemProvider = NSItemProvider(object: item as! NSItemProviderWriting)
+        guard let item = currencies[indexPath.section]?[indexPath.row] else { return [] }
+        let itemProvider = NSItemProvider(object: item as NSItemProviderWriting)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
         return [dragItem]
