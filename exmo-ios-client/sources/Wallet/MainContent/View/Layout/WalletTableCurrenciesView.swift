@@ -70,10 +70,14 @@ extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellId, for: indexPath) as! WalletCurrencyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: currencyCellId, for: indexPath)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let cell = cell as! WalletCurrencyCell
         cell.index = indexPath.row
         cell.currencyModel = wallet.favBalances[indexPath.row]
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

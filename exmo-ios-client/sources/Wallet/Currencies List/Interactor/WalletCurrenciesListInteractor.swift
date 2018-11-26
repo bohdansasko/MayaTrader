@@ -27,6 +27,10 @@ extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
     
     func saveToCache(wallet: ExmoWallet) {
         print("wallet was saved to cache")
+        dbManager.performTransaction {
+            wallet.refreshOnFavDislikeBalances()
+        }
+        print(wallet.favBalances)
         dbManager.add(data: wallet, update: true)
     }
 }
@@ -37,11 +41,14 @@ extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
         guard let cachedWallet = dbManager.object(type: ExmoUser.self, key: "")?.wallet else {
             return
         }
-        cachedWallet.balances.forEach({
-            currency in
-            guard let iCurrency = w.balances.first(where: { $0.code == currency.code }) else { return }
-            iCurrency.isFavourite = currency.isFavourite
-        })
+        dbManager.performTransaction {
+            cachedWallet.balances.forEach({
+                cachedCurrency in
+                guard let currency = w.balances.first(where: { $0.code == cachedCurrency.code }) else { return }
+                currency.isFavourite = cachedCurrency.isFavourite
+                currency.orderId = cachedCurrency.orderId
+            })
+        }
         w.refresh()
         output.onDidLoadWallet(w)
     }

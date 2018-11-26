@@ -198,9 +198,26 @@ class ExmoWallet: Object, Mappable {
 }
 
 extension ExmoWallet {
+    func refreshOnFavDislikeBalances() {
+        balances.removeAll()
+        
+        for currencyIndex in (0..<favBalances.count) {
+            favBalances[currencyIndex].orderId = currencyIndex
+        }
+        for currencyIndex in (0..<dislikedBalances.count) {
+            dislikedBalances[currencyIndex].orderId = currencyIndex
+        }
+        
+        balances.append(objectsIn: favBalances)
+        balances.append(objectsIn: dislikedBalances)
+    }
+    
     func refresh() {
-        favBalances = balances.filter({ $0.isFavourite })
-        dislikedBalances = balances.filter({ !$0.isFavourite })
+        favBalances = Array(balances.filter({ $0.isFavourite }))
+        dislikedBalances = Array(balances.filter({ !$0.isFavourite }))
+
+        favBalances = favBalances.sorted(by: { $0.orderId < $1.orderId })
+        dislikedBalances = dislikedBalances.sorted(by: { $0.orderId < $1.orderId })
     }
     
     func getCountSections() -> Int {
@@ -222,9 +239,21 @@ extension ExmoWallet {
     func swapByIndex(from fIndex: Int, to tIndex: Int) {
         balances.swapAt(fIndex, tIndex)
     }
-    
-    func setFavourite(orderId: Int, isFavourite: Bool) {
-        let currency = balances.first(where: { $0.orderId == orderId })
+
+    func swap(from sourceDestination: IndexPath, to targetDestination: IndexPath) {
+        var fromContainer = sourceDestination.section == 0 && favBalances.count > 0 ? favBalances : dislikedBalances
+        var toContainer = targetDestination.section == 0 && favBalances.count > 0 ? favBalances : dislikedBalances
+        
+        let sourceItem = fromContainer[sourceDestination.item]
+        toContainer.insert(sourceItem, at: targetDestination.item)
+        fromContainer.remove(at: sourceDestination.item)
+        
+        print("sourceDestination = \(sourceDestination)")
+        print("targetDestination = \(targetDestination)")
+    }
+
+    func setFavourite(currencyCode: String, isFavourite: Bool) {
+        let currency = balances.first(where: { $0.code == currencyCode })
         currency?.isFavourite = isFavourite
         refresh()
     }

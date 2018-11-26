@@ -84,7 +84,7 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
         didSet {
             guard let c = currency else { return }
             currencyNameLabel.text = c.code
-            amountCurrencyLabel.text = Utils.getFormatedPrice(value: c.balance)
+            amountCurrencyLabel.text = Utils.getFormatedPrice(value: c.balance, maxFractDigits: 10)
             actionButton.isSelected = c.isFavourite
         }
     }

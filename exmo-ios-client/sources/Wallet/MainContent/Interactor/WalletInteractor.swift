@@ -78,9 +78,9 @@ extension WalletInteractor: IWalletNetworkWorkerDelegate {
                 cachedCurrency.countInOrders = iCurrency.countInOrders
             }
         })
-        cachedWallet.refresh()
         dbManager.performTransaction {
             [unowned self] in
+            cachedWallet.refresh()
             self.walletModel = cachedWallet
         }
         tryUpdateWallet()

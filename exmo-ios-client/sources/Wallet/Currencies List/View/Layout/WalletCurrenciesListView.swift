@@ -23,10 +23,10 @@ class WalletCurrenciesListView: UIView {
     
     var wallet: ExmoWallet? {
         didSet {
-            tableView.reloadData()
+            refreshCurrenciesList()
         }
     }
-    private var filteredCurrencies: [ExmoWalletCurrencyModel] = []
+    private var currencies: [Int: [ExmoWalletCurrencyModel]] = [:]
     private let cellId = "cellId"
     private var isSearching = false
     
@@ -56,66 +56,92 @@ extension WalletCurrenciesListView {
         isSearching = !text.isEmpty
         
         if isSearching {
-            filteredCurrencies = wallet?.filter({ $0.code.contains(text.uppercased()) }) ?? []
+            currencies[0] = wallet?.filter({ $0.code.contains(text.uppercased()) }) ?? []
+            tableView.reloadData()
         } else {
-            filteredCurrencies = []
+            refreshCurrenciesList()
         }
-        tableView.reloadData()
+    }
+    
+    private func refreshCurrenciesList() {
+        guard let w = wallet else { return }
+        
+        var index = 0
+        if w.favBalances.count > 0 {
+            currencies[index] = w.favBalances
+            index = index + 1
+        }
+        
+        if w.dislikedBalances.count > 0 {
+            currencies[index] = w.dislikedBalances
+        }
+        
+        if !isSearching {
+            syncWalletWithCurrencies()
+            tableView.reloadData()
+        }
+    }
+    
+    private func syncWalletWithCurrencies() {
+        if currencies.count == 2 {
+            wallet?.favBalances = currencies[0] ?? []
+            wallet?.dislikedBalances = currencies[1] ?? []
+        } else if currencies.count == 1 {
+            let isFavouriteCurrencies = currencies[0]?[0].isFavourite ?? false
+            if isFavouriteCurrencies {
+                wallet?.favBalances = currencies[0] ?? []
+                wallet?.dislikedBalances = []
+            } else {
+                wallet?.dislikedBalances = currencies[0] ?? []
+                wallet?.favBalances = []
+            }
+        }
     }
 }
 
 // @MARK: UITableViewDataSource
 extension WalletCurrenciesListView: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
-        guard let w = wallet else { return 0 }
-        return isSearching ? 1 : w.getCountSections()
+        return isSearching ? 1 : currencies.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let w = wallet else { return 0 }
-
-        return isSearching
-            ? filteredCurrencies.count
-            : w.isAllCurrenciesFav()
-                ? w.balances.count
-                : section == 0
-                    ? w.favBalances.count
-                    : section == 1 ? w.dislikedBalances.count : 0
+        return currencies[section]?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let w = wallet else { return UITableViewCell() }
-
-        let currency = isSearching
-            ? filteredCurrencies[indexPath.row]
-            : w.isAllCurrenciesFav()
-                ? w.balances[indexPath.row]
-                : indexPath.section == 0
-                    ? w.favBalances[indexPath.row]
-                    : indexPath.section == 1
-                        ? w.dislikedBalances[indexPath.row]
-                        : ExmoWalletCurrencyModel()
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! WalletCurrenciesListTableViewCell
-        cell.currency = currency
-        cell.onSwitchValueCallback = {
-            [weak self] currency in
-            self?.wallet?.setFavourite(orderId: currency.orderId, isFavourite: currency.isFavourite)
-            self?.tableView.reloadData()
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let currency = currencies[indexPath.section]?[indexPath.item] else { return }
+        let wclCell = cell as! WalletCurrenciesListTableViewCell
+        wclCell.currency = currency
+        wclCell.onSwitchValueCallback = {
+            [weak self] currency in
+            guard let self = self, let w = self.wallet else { return }
+            w.setFavourite(currencyCode: currency.code, isFavourite: currency.isFavourite)
+            self.refreshCurrenciesList()
+        }
     }
 
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return isSearching
-            ? false
-            : wallet!.getCountSections() == 2 && indexPath.section != 1
-                ? true
-                : false
+        return isSearching ? false : true
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        wallet?.swapByIndex(from: sourceIndexPath.row, to: destinationIndexPath.row)
+        guard let sourceItem = currencies[sourceIndexPath.section]?[sourceIndexPath.item] else {
+            return
+        }
+        sourceItem.isFavourite = currencies.count == 2 && destinationIndexPath.section == 0
+        currencies[sourceIndexPath.section]?.remove(at: sourceIndexPath.item)
+        currencies[destinationIndexPath.section]?.insert(sourceItem, at: destinationIndexPath.item)
+        
+        sourceItem.orderId = destinationIndexPath.row
+        
+        syncWalletWithCurrencies()
+        tableView.reloadData()
     }
 }
 
@@ -124,11 +150,10 @@ extension WalletCurrenciesListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var title = ""
         if isSearching {
-            title = filteredCurrencies.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
-        } else if let w = wallet, w.getCountSections() == 1 {
-            title = "CURRENCIES"
+            title = currencies.isEmpty ? "NO RESULTS FOUND" : "SEARCH RESULTS"
         } else {
-            title = section == 0 ? "SELECTED" : "UNUSED"
+            let isFirstSectionFav = currencies[0]?[0].isFavourite ?? false
+            title = isFirstSectionFav && section == 0 ? "FAVOURITE" : "UNUSED"
         }
         
         let headerView = WalletCurrenciesListTableHeaderCell()
@@ -152,17 +177,8 @@ extension WalletCurrenciesListView: UITableViewDelegate  {
 // @MARK: UITableViewDragDelegate
 extension WalletCurrenciesListView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
-        guard let w = wallet, isSearching == false else { return [] }
-        
-        let item = w.isAllCurrenciesFav()
-            ? w.balances[indexPath.row]
-            : indexPath.section == 0
-                ? w.favBalances[indexPath.row]
-                : indexPath.section == 1
-                    ? w.dislikedBalances[indexPath.row]
-                    : ExmoWalletCurrencyModel()
-        
-        let itemProvider = NSItemProvider(object: item as NSItemProviderWriting)
+        let item = currencies[indexPath.section]?[indexPath.row]
+        let itemProvider = NSItemProvider(object: item as! NSItemProviderWriting)
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
         return [dragItem]
