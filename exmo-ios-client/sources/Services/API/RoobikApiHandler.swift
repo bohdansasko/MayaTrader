@@ -180,7 +180,7 @@ extension RoobikApiHandler {
     }
 
     fileprivate enum ConnectionConfig: String {
-        case ServerURL = "ws://localhost:3000/"
+        case ServerURL = "ws://193.228.52.26:3000/"
     }
 
     fileprivate enum ServerMessageType: Int {

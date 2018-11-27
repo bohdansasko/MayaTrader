@@ -75,9 +75,7 @@ public class ExmoApiRequestBuilder: IApiRequestBuilder {
     }
 }
 
-//
 // @MARK: public API methods
-//
 extension ExmoApiRequestBuilder {
     func getPublicRequest(method: String) -> URLRequest {
         let apiUrl = URL(string: ConnectionConfig.API_URL + method)!
@@ -97,9 +95,7 @@ extension ExmoApiRequestBuilder {
     }
 }
 
-//
 // @MARK: Authenticated API methods
-//
 extension ExmoApiRequestBuilder {
     func setAuthorizationData(apiKey: String, secretKey: String) {
         ConnectionConfig.API_KEY = apiKey
