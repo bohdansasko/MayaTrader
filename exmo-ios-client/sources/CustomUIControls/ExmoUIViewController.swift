@@ -17,19 +17,17 @@ class ExmoUIViewController: UIViewController {
         return aiv
     }()
     
-    func updateNavigationBar(shouldHideNavigationBar: Bool) {
-        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
-        
-        self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
-        self.navigationController?.navigationBar.shadowImage = dummyImage
-        self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
-    }
+    var glowImage: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icWalletGlow")
+        imageView.contentMode = .center
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.anchorCenterSuperview()
+        setupInitialViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +39,24 @@ class ExmoUIViewController: UIViewController {
         super.viewWillDisappear(animated)
         updateNavigationBar(shouldHideNavigationBar: false)
     }
+}
+
+extension ExmoUIViewController {
+    func setupInitialViews() {
+        view.addSubview(activityIndicatorView)
+        activityIndicatorView.anchorCenterSuperview()
+        
+        view.addSubview(glowImage)
+        glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -90, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+    
+    func updateNavigationBar(shouldHideNavigationBar: Bool) {
+        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
+        
+        self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
+        self.navigationController?.navigationBar.shadowImage = dummyImage
+        self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
+    }
     
     func showOkAlert(title: String, message: String,  onTapOkButton: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -50,7 +66,9 @@ class ExmoUIViewController: UIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
-    
+}
+
+extension ExmoUIViewController {
     func showLoader() {
         activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
@@ -60,5 +78,4 @@ class ExmoUIViewController: UIViewController {
         activityIndicatorView.isHidden = true
         activityIndicatorView.stopAnimating()
     }
-
 }

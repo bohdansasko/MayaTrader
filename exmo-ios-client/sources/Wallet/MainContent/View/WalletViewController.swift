@@ -13,13 +13,6 @@ class WalletViewController: ExmoUIViewController {
         return UIBarButtonItem(image: UIImage(named: "icWalletOptions"), style: .done, target: nil, action: nil)
     }()
     
-    var glowImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "icWalletGlow")
-        imageView.contentMode = .center
-        return imageView
-    }()
-    
     var balanceView = WalletBalanceView()
     var tableCurrenciesView = WalletTableCurrenciesView()
     
@@ -63,7 +56,6 @@ extension WalletViewController {
         currencySettingsBtn.target = self
         currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
         
-        view.addSubview(glowImage)
         view.addSubview(balanceView)
         view.addSubview(tableCurrenciesView)
         
@@ -86,8 +78,6 @@ extension WalletViewController {
     }
     
     private func setupConstraints() {
-        glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: balanceView.bottomAnchor, right: view.rightAnchor, topConstant: -10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
         balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: tableCurrenciesView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         tableCurrenciesView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)

@@ -8,11 +8,23 @@
 
 import UIKit.UITableView
 
-class AlertsInteractor: AlertsInteractorInput {
-
+class AlertsInteractor  {
     weak var output: AlertsInteractorOutput!
+    var alertsNetworkWorker: IAlertsNetworkWorker!
+}
 
+extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
-        // do nothing
+        alertsNetworkWorker.delegate = self
+    }
+}
+
+extension AlertsInteractor: IAlertsNetworkWorkerDelegate {
+    func onDidLoadAlertsHistorySuccessful(_ w: ExmoWallet) {
+        print("loaded alerts history")
+    }
+    
+    func onDidLoadAlertsHistoryFail(messageError: String) {
+        print(messageError)
     }
 }

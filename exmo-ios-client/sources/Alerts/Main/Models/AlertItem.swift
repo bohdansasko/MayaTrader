@@ -17,7 +17,7 @@ enum AlertStatus: Int {
 
 class AlertItem: SegueBlock, Mappable {
     var id: String = ""
-    var currencyPairName: String! = ""
+    var currencyCode: String! = ""
     var priceAtCreateMoment: Double! = 0.0
     var topBoundary: Double? = 0.0
     var bottomBoundary: Double? = 0.0
@@ -27,9 +27,9 @@ class AlertItem: SegueBlock, Mappable {
     var isPersistentNotification: Bool = false
     var isApproved: Bool = false
     
-    init(id: String, currencyPairName: String!, priceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .None, isPersistentNotification: Bool) {
+    init(id: String, currencyPairName: String!, priceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .Active, isPersistentNotification: Bool) {
         self.id = id
-        self.currencyPairName = currencyPairName
+        self.currencyCode = currencyPairName
         self.priceAtCreateMoment = priceAtCreateMoment
         self.note = note
         self.topBoundary = topBoundary
@@ -45,7 +45,7 @@ class AlertItem: SegueBlock, Mappable {
     
     func mapping(map: Map) {
         self.id               <- map["server_alert_id"]
-        self.currencyPairName <- map["currency"]
+        self.currencyCode <- map["currency"]
         self.priceAtCreateMoment <- map["priceAtCreateMoment"]
         self.topBoundary      <- map["upper_bound"]
         self.bottomBoundary   <- map["bottom_bound"]
@@ -58,7 +58,7 @@ class AlertItem: SegueBlock, Mappable {
     
     func getDataAsText() -> String {
         return    "id: \(id)\n"
-                + "currencyPairName: \(currencyPairName!)\n"
+                + "currencyPairName: \(currencyCode!)\n"
                 + "priceAtCreateMoment: \(priceAtCreateMoment!)\n"
                 + "topBoundary: \(topBoundary!)\n"
                 + "bottomBoundary: \(bottomBoundary!)\n"
@@ -69,7 +69,7 @@ class AlertItem: SegueBlock, Mappable {
     }
 
     func updateData(newData: AlertItem) {
-        self.currencyPairName = newData.currencyPairName
+        self.currencyCode = newData.currencyCode
         self.priceAtCreateMoment = newData.priceAtCreateMoment
         self.note = newData.note
         self.topBoundary = newData.topBoundary
@@ -78,7 +78,9 @@ class AlertItem: SegueBlock, Mappable {
         self.isPersistentNotification = newData.isPersistentNotification
     }
     
-    func getCurrencyPairForDisplay() -> String {
-        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.currencyPairName)
+    func formatedDate() -> String {
+        let dataFormat = DateFormatter()
+        dataFormat.dateFormat = "dd.MM.yyyy HH:mm"
+        return dataFormat.string(from: self.dateCreated)
     }
 }

@@ -270,7 +270,7 @@ extension CreateAlertDisplayManager: UITableViewDataSource {
             if fieldType == .CurrencyPair {
                 self.currencyRow = cell
                 if let alert = self.alertItem {
-                    updateSelectedCurrency(name: alert.getCurrencyPairForDisplay(), price: alert.priceAtCreateMoment)
+                    updateSelectedCurrency(name: alert.currencyCode, price: alert.priceAtCreateMoment)
                 }
             } else {
                 self.soundRow = cell

@@ -17,7 +17,7 @@ class AlertsApiRequestBuilder {
         let alertJSONData = getAlertMessage(
             upper_bound : alertItem.topBoundary!,
             bottom_bound: alertItem.bottomBoundary!,
-            currency    : alertItem.currencyPairName,
+            currency    : alertItem.currencyCode,
             description : alertItem.note == nil ? "" : alertItem.note!,
             priceAtCreateMoment: alertItem.priceAtCreateMoment,
             isPersistent: alertItem.isPersistentNotification
@@ -30,7 +30,7 @@ class AlertsApiRequestBuilder {
         var alertJSONData = getAlertMessage(
             upper_bound : alertItem.topBoundary!,
             bottom_bound: alertItem.bottomBoundary!,
-            currency    : alertItem.currencyPairName,
+            currency    : alertItem.currencyCode,
             description : alertItem.note == nil ? "" : alertItem.note!,
             priceAtCreateMoment: alertItem.priceAtCreateMoment,
             isPersistent: alertItem.isPersistentNotification
