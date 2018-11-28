@@ -15,7 +15,7 @@ class AlertsListView: UIView {
         case Delete
     }
     
-    var dataProvider: AlertsDisplayModel!
+    var dataProvider: AlertsModel!
     var cells: [AlertViewCell] = []
     var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
 
@@ -32,7 +32,6 @@ class AlertsListView: UIView {
         tv.separatorStyle = .none
         tv.tableFooterView = UIView()
         tv.delaysContentTouches = false
-        tv.allowsSelection = false
         return tv
     }()
     
@@ -45,7 +44,7 @@ class AlertsListView: UIView {
         super.init(frame: frame)
         
         setupTableView()
-        dataProvider = AlertsDisplayModel()
+        dataProvider = AlertsModel()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,13 +69,13 @@ class AlertsListView: UIView {
         return dataProvider.getCountMenuItems()
     }
     
-    func appendAlert(alertItem: AlertItem) {
+    func appendAlert(alertItem: Alert) {
         dataProvider.append(alertItem: alertItem)
         tableView.insertSections(IndexSet(integer: 0), with: .automatic)
         checkOnRequirePlaceHolder()
     }
 
-    func updateAlert(alertItem: AlertItem) {
+    func updateAlert(alertItem: Alert) {
         dataProvider.updateAlert(alertItem: alertItem)
         let index = dataProvider.getIndexById(alertId: alertItem.id)
 
@@ -128,7 +127,7 @@ class AlertsListView: UIView {
             print("handleStateAction: item doesn't exists")
             return
         }
-        viewOutput.showEditView(data: alertModel)
+        viewOutput.editAlert(alertModel)
     }
     
     private func getCellItem(elementIndex: Int) -> AlertViewCell? {

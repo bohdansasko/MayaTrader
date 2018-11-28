@@ -89,7 +89,7 @@ class CreateAlertDisplayManager: NSObject {
     private var currencyRow: AlertTableViewCellWithArrow? = nil
     private var soundRow: AlertTableViewCellWithArrow? = nil
     private var tableCells: [IndexPath : AlertTableViewCellWithTextData] = [:]
-    private var alertItem: AlertItem? = nil
+    private var alertItem: Alert? = nil
     
     var output: CreateAlertViewOutput!
     
@@ -153,7 +153,7 @@ class CreateAlertDisplayManager: NSObject {
             : false
     }
     
-    private func getAlertDataFromUI() -> AlertItem? {
+    private func getAlertDataFromUI() -> Alert? {
         //
         // collect data for create alert
         //
@@ -186,7 +186,7 @@ class CreateAlertDisplayManager: NSObject {
         }
         currencyPairName = Utils.getRawCurrencyPairName(name: currencyPairName)
         
-        return AlertItem(
+        return Alert(
             id: id, currencyPairName: currencyPairName, priceAtCreateMoment: priceAtCreateMoment,
             note: noteText, topBoundary: topBoundary, bottomBoundary: bottomBoundary,
             status: status, isPersistentNotification: isPersistentNotification
@@ -224,7 +224,7 @@ class CreateAlertDisplayManager: NSObject {
         self.soundRow?.updateData(leftText: soundName, rightText: nil)
     }
     
-    func setAlertItem(alertItem: AlertItem) {
+    func setAlertItem(alertItem: Alert) {
         self.alertItem = alertItem
     }
 }

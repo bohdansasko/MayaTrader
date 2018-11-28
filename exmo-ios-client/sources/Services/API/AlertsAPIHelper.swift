@@ -13,7 +13,7 @@ class AlertsApiRequestBuilder {
     //
     // @MARK: public methods
     //
-    static func prepareJSONForCreateAlert(alertItem: AlertItem) -> JSON {
+    static func prepareJSONForCreateAlert(alertItem: Alert) -> JSON {
         let alertJSONData = getAlertMessage(
             upper_bound : alertItem.topBoundary!,
             bottom_bound: alertItem.bottomBoundary!,
@@ -26,7 +26,7 @@ class AlertsApiRequestBuilder {
         return alertJSONData
     }
     
-    static func prepareJSONForUpdateAlert(alertItem: AlertItem) -> JSON {
+    static func prepareJSONForUpdateAlert(alertItem: Alert) -> JSON {
         var alertJSONData = getAlertMessage(
             upper_bound : alertItem.topBoundary!,
             bottom_bound: alertItem.bottomBoundary!,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertViewCell: UITableViewCell {
+class AlertViewCell: ExmoTableViewCell {
     var labelTimeCreate: UILabel = {
         let label = OrderViewCell.getTitleLabel(text: "quantity")
         label.text = "29.12.1972 06:02"
@@ -61,7 +61,7 @@ class AlertViewCell: UITableViewCell {
         return OrderViewCell.getValueLabel()
     }()
     
-    var item: AlertItem? {
+    var item: Alert? {
         didSet {
             guard let item = item else { return }
             labelTimeCreate.text = item.formatedDate()
@@ -70,7 +70,7 @@ class AlertViewCell: UITableViewCell {
             }
 
             labelAlertStatus.text = getTextStatusValue(status: item.status)
-            labelAlertStatus.backgroundColor = item.status == AlertStatus.Active ? .greenBlue : .steel
+            updateAlertStatusBackground()
 
             currencyLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: item.currencyCode)
             priceValueLabel.text = Utils.getFormatedPrice(value: item.priceAtCreateMoment)
@@ -92,6 +92,17 @@ class AlertViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        updateAlertStatusBackground()
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        updateAlertStatusBackground()
+    }
+    
+    private func updateAlertStatusBackground() {
+        guard let item = item else { return }
+        labelAlertStatus.backgroundColor = item.status == AlertStatus.Active ? .greenBlue : .steel
     }
     
     private func getTextStatusValue(status: AlertStatus) -> String {

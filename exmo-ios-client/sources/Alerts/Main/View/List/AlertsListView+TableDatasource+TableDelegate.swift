@@ -54,11 +54,12 @@ extension AlertsListView: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         guard let alertModel = dataProvider.getCellItem(byRow: indexPath.row) else {
             print("didSelectRowAt: item doesn't exists")
             return
         }
-        viewOutput.showEditView(data: alertModel)
+        viewOutput.editAlert(alertModel)
     }
     
     @available(iOS 11.0, *)

@@ -143,8 +143,8 @@
 		20B9CC9B219A34B9004AC3B2 /* CreateLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */; };
 		20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertViewCell.swift */; };
 		20BEDC5520557BB200973F2F /* AlertsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertsListView.swift */; };
-		20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */; };
-		20BEDC5B20557ECD00973F2F /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5A20557ECD00973F2F /* AlertItem.swift */; };
+		20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsModel.swift */; };
+		20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5A20557ECD00973F2F /* Alert.swift */; };
 		20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */; };
 		20CA0FD6206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */; };
 		20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */; };
@@ -448,8 +448,8 @@
 		20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLimitView.swift; sourceTree = "<group>"; };
 		20BEDC52205579FA00973F2F /* AlertViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewCell.swift; sourceTree = "<group>"; };
 		20BEDC5420557BB200973F2F /* AlertsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsListView.swift; sourceTree = "<group>"; };
-		20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsDisplayModel.swift; sourceTree = "<group>"; };
-		20BEDC5A20557ECD00973F2F /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		20BEDC5820557E2F00973F2F /* AlertsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsModel.swift; sourceTree = "<group>"; };
+		20BEDC5A20557ECD00973F2F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProtocols.swift; sourceTree = "<group>"; };
 		20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCollectionViewCell.swift; sourceTree = "<group>"; };
 		20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardsDisplayManager.swift; sourceTree = "<group>"; };
@@ -1284,8 +1284,8 @@
 		20BEDC5720557CBA00973F2F /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				20BEDC5820557E2F00973F2F /* AlertsDisplayModel.swift */,
-				20BEDC5A20557ECD00973F2F /* AlertItem.swift */,
+				20BEDC5820557E2F00973F2F /* AlertsModel.swift */,
+				20BEDC5A20557ECD00973F2F /* Alert.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2255,7 +2255,7 @@
 				73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */,
 				207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */,
 				20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */,
-				20BEDC5B20557ECD00973F2F /* AlertItem.swift in Sources */,
+				20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */,
 				20CCBDB5206396560099D144 /* CreateOrderCells.swift in Sources */,
 				206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */,
 				201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */,
@@ -2270,7 +2270,7 @@
 				20600A2A20532949004D7F45 /* UserEntity+CoreDataProperties.swift in Sources */,
 				207B1D9A2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewInput.swift in Sources */,
 				20600A262053291C004D7F45 /* WalletTransactionHistoryEntity+CoreDataProperties.swift in Sources */,
-				20BEDC5920557E2F00973F2F /* AlertsDisplayModel.swift in Sources */,
+				20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */,
 				201D8079205DC62800692DEF /* WalletCurrenciesListCells.swift in Sources */,
 				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
 				2010155220B05F1100324F22 /* AlertTableViewCellWithTextData.swift in Sources */,

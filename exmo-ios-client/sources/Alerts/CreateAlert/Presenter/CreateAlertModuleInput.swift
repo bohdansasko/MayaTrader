@@ -7,5 +7,5 @@
 //
 
 protocol CreateAlertModuleInput: class {
-    func setAlertData(alertItem: AlertItem)
+    func setAlertData(alertItem: Alert)
 }

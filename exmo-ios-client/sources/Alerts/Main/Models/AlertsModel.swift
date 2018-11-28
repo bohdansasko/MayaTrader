@@ -1,5 +1,5 @@
 //
-//  AlertsDisplayModel.swift
+//  AlertsModel.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/11/18.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-class AlertsDisplayModel {
-    private var alertsItems: [AlertItem] = [
-        AlertItem(id: "1", currencyPairName: "BTC_USD", priceAtCreateMoment: 8000, note: "Nothing", topBoundary: 1000, bottomBoundary: 2000, isPersistentNotification: true),
-        AlertItem(id: "2", currencyPairName: "BTC_EUR", priceAtCreateMoment: 6000, note: "Nothing", topBoundary: 6900.965, bottomBoundary: 3670.89641, status: .Inactive, isPersistentNotification: false)
+class AlertsModel {
+    private var alertsItems: [Alert] = [
+        Alert(id: "1", currencyPairName: "BTC_USD", priceAtCreateMoment: 8000, note: "Nothing", topBoundary: 1000, bottomBoundary: 2000, isPersistentNotification: true),
+        Alert(id: "2", currencyPairName: "BTC_EUR", priceAtCreateMoment: 6000, note: "Nothing", topBoundary: 6900.965, bottomBoundary: 3670.89641, status: .Inactive, isPersistentNotification: false)
 
     ]
     
-    func setAlerts(alerts: [AlertItem]) {
+    func setAlerts(alerts: [Alert]) {
         self.alertsItems = alerts
     }
     
@@ -41,11 +41,11 @@ class AlertsDisplayModel {
         return self.alertsItems.count
     }
 
-    func getCellItem(byRow row: Int) -> AlertItem? {
+    func getCellItem(byRow row: Int) -> Alert? {
         return self.isValidIndex(index: row) ? self.alertsItems[row] : nil
     }
     
-    func append(alertItem: AlertItem) {
+    func append(alertItem: Alert) {
         self.alertsItems.insert(alertItem, at: 0)
     }
 
@@ -61,7 +61,7 @@ class AlertsDisplayModel {
         }
     }
 
-    func updateAlert(alertItem: AlertItem) {
+    func updateAlert(alertItem: Alert) {
         guard let foundAlert = self.alertsItems.first(where: { $0.id == alertItem.id }) else {
             return
         }

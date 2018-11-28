@@ -25,17 +25,6 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
         
         self.setupInitialState()
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let segueId = segue.identifier else {
-            print("CreateAlertViewController: segue id is nil")
-            return
-        }
-        
-        if segueId == AlertsSegueIdentifiers.AddEditAlert {
-            print("view in update state")
-        }
-    }
     
     // MARK: CreateAlertViewInput
     func setupInitialState() {
@@ -66,7 +55,7 @@ class CreateAlertViewController: UITableViewController, CreateAlertViewInput {
         self.displayManager.updateSoundElement(soundName: soundName)
     }
     
-    func setAlertItem(alertItem: AlertItem) {
+    func setAlertItem(alertItem: Alert) {
         self.displayManager.setAlertItem(alertItem: alertItem)
     }
     

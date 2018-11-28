@@ -21,7 +21,7 @@ class Session {
     lazy private var dealsOrders = Orders()
     lazy private var searchCurrenciesContainer: [SearchCurrencyPairModel] = []
     
-    private var alerts: [AlertItem] = []
+    private var alerts: [Alert] = []
 
     init() {
         self.user = ExmoUser()
@@ -231,12 +231,12 @@ extension Session {
 // MARK: Alerts
 //
 extension Session {
-    func appendAlert(alertItem: AlertItem) {
+    func appendAlert(alertItem: Alert) {
         AppDelegate.notificationController.postBroadcastMessage(name: .AppendAlert, data: ["alertData": alertItem])
         self.alerts.append(alertItem)
     }
     
-    func updateAlert(alertItem: AlertItem) {
+    func updateAlert(alertItem: Alert) {
 //        guard var foundAlert = self.alerts.first(where: { $0.id == alertItem.id }) else {
 //            return
 //        }
@@ -248,12 +248,12 @@ extension Session {
         AppDelegate.roobikController.deleteAlert(alertId: alertId)
     }
     
-    func appendAlerts(alerts: [AlertItem]) {
+    func appendAlerts(alerts: [Alert]) {
         self.alerts += alerts
         print("call appendAlerts(...)")
     }
     
-    func getAlerts() -> [AlertItem] {
+    func getAlerts() -> [Alert] {
         return self.alerts
     }
 }

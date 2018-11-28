@@ -63,12 +63,12 @@ class CreateAlertInteractor: CreateAlertInteractorInput {
         self.output.showSoundsSearchView(data: self.getSoundsContainer())
     }
     
-    func tryCreateAlert(alertModel: AlertItem) {
+    func tryCreateAlert(alertModel: Alert) {
         AppDelegate.roobikController.createAlert(alertItem: alertModel)
         print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
     }
     
-    func tryUpdateAlert(alertModel: AlertItem) {
+    func tryUpdateAlert(alertModel: Alert) {
         AppDelegate.roobikController.updateAlert(alertItem: alertModel)
         print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
     }

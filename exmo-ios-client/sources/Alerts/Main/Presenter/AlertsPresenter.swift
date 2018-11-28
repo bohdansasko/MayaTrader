@@ -18,9 +18,9 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
        interactor.viewIsReady()
     }
     
-    func showEditView(data: AlertItem) {
+    func editAlert(_ alert: Alert) {
         let view = self.view as! UIViewController
-        self.router.showEditView(view: view, data: data)
+        self.router.editAlert(view: view, alert: alert)
     }
     
     func prepareSegue(viewController: UIViewController, data: Any?) {
@@ -33,7 +33,7 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
             return
         }
         
-        if let alertItem = data as? AlertItem {
+        if let alertItem = data as? Alert {
             if let createAlertPresenter = createAlertViewController.output as? CreateAlertModuleInput {
                  createAlertPresenter.setAlertData(alertItem: alertItem)
             }

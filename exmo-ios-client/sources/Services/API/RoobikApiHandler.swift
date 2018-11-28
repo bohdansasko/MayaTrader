@@ -252,11 +252,11 @@ extension RoobikApiHandler {
 // @MARK: alerts
 //
 extension RoobikApiHandler {
-    private func getAlertFromJSON(json: JSON) -> AlertItem? {
+    private func getAlertFromJSON(json: JSON) -> Alert? {
         guard let alertServerMap = getDictionaryFromJSON(json: json) else {
             return nil
         }
-        return AlertItem(JSON: alertServerMap)
+        return Alert(JSON: alertServerMap)
     }
 
     //
@@ -268,14 +268,14 @@ extension RoobikApiHandler {
         self.socketAPI.sendMessage(message: msg)
     }
     
-    func createAlert(alertItem: AlertItem) {
+    func createAlert(alertItem: Alert) {
         let alertJSONData = AlertsApiRequestBuilder.prepareJSONForCreateAlert(alertItem: alertItem)
         let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Create.rawValue, data: alertJSONData)
 
         self.socketAPI.sendMessage(message: msg)
     }
 
-    func updateAlert(alertItem: AlertItem) {
+    func updateAlert(alertItem: Alert) {
         let alertJSONData = AlertsApiRequestBuilder.prepareJSONForUpdateAlert(alertItem: alertItem)
         let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Update.rawValue, data: alertJSONData)
 
@@ -298,7 +298,7 @@ extension RoobikApiHandler {
         }
 
         alertServerMap["status"] = 1
-        let alert = AlertItem(JSON: alertServerMap)
+        let alert = Alert(JSON: alertServerMap)
         if let alertObj = alert {
             AppDelegate.session.appendAlert(alertItem: alertObj)
         }
@@ -317,9 +317,9 @@ extension RoobikApiHandler {
             return
         }
 
-        var alerts: [AlertItem] = []
+        var alerts: [Alert] = []
         for jsonAlertItem in jsonAlertsContainer {
-            let alert = AlertItem(JSONString: jsonAlertItem.rawString()!)
+            let alert = Alert(JSONString: jsonAlertItem.rawString()!)
             if let alertObj = alert {
                 alerts.append(alertObj)
                 print(alertObj.getDataAsText())

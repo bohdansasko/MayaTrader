@@ -12,8 +12,8 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     
-    var currencySettingsBtn: UIBarButtonItem = {
-        return UIBarButtonItem(image: UIImage(named: "icWalletOptions"),
+    var btnCreateAlert: UIBarButtonItem = {
+        return UIBarButtonItem(image: UIImage(named: "icNavbarPlus"),
                                style: .done,
                                target: nil,
                                action: nil)
@@ -39,8 +39,8 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
 // MARK: setup initial UI state for view controller
 extension AlertsViewController {
     func setupViews() {
-        currencySettingsBtn.target = self
-        currencySettingsBtn.action = #selector(showViewCreateOrder(_ :))
+        btnCreateAlert.target = self
+        btnCreateAlert.action = #selector(showViewCreateOrder(_ :))
         
         view.addSubview(listView)
         
@@ -53,7 +53,7 @@ extension AlertsViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
         
-        navigationItem.rightBarButtonItem = currencySettingsBtn
+        navigationItem.rightBarButtonItem = btnCreateAlert
     }
     
     private func setupConstraints() {

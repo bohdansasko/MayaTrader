@@ -1,5 +1,5 @@
 //
-//  AlertItem.swift
+//  Alert.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/11/18.
@@ -15,7 +15,7 @@ enum AlertStatus: Int {
     case Inactive
 }
 
-class AlertItem: SegueBlock, Mappable {
+class Alert: SegueBlock, Mappable {
     var id: String = ""
     var currencyCode: String! = ""
     var priceAtCreateMoment: Double! = 0.0
@@ -68,7 +68,7 @@ class AlertItem: SegueBlock, Mappable {
                 + "note: \(note ?? "empty")\n"
     }
 
-    func updateData(newData: AlertItem) {
+    func updateData(newData: Alert) {
         self.currencyCode = newData.currencyCode
         self.priceAtCreateMoment = newData.priceAtCreateMoment
         self.note = newData.note

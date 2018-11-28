@@ -16,7 +16,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
         // do nothing
     }
     
-    func handleTouchAlertBtn(alertModel: AlertItem, operationType: AlertOperationType) {
+    func handleTouchAlertBtn(alertModel: Alert, operationType: AlertOperationType) {
         switch operationType {
         case .Add:
             self.interactor.tryCreateAlert(alertModel: alertModel)
@@ -83,7 +83,7 @@ class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, Creat
         self.view.updateSelectedSoundInUI(soundName: soundName)
     }
     
-    func setAlertData(alertItem: AlertItem) {
+    func setAlertData(alertItem: Alert) {
         self.view.setAlertItem(alertItem: alertItem)
         print("edit alertItem: \(alertItem.getDataAsText())")
     }
