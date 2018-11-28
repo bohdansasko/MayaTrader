@@ -12,6 +12,16 @@ protocol CellDelegate {
     func didTouchCell(datasourceItem: Any?)
 }
 
+extension DatasourceController {
+    func setupTitleNavigationBar(text: String) {
+        let titleView = UILabel()
+        titleView.text = text
+        titleView.font = UIFont.getTitleFont()
+        titleView.textColor = .white
+        navigationItem.titleView = titleView
+    }
+}
+
 class WatchlistFavouriteCurrenciesViewController: DatasourceController, WatchlistFavouriteCurrenciesViewInput, CellDelegate {
 
     var output: WatchlistFavouriteCurrenciesViewOutput!
@@ -77,21 +87,13 @@ extension WatchlistFavouriteCurrenciesViewController {
 //
 extension WatchlistFavouriteCurrenciesViewController {
     func setupNavigationBar() {
-        setupTitleNavigationBar()
+        setupTitleNavigationBar(text: "Watchlist")
         setupLeftNavigationBarItems()
     }
     
     func setupNavigationBarColor() {
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = false
-    }
-    
-    private func setupTitleNavigationBar() {
-        let titleView = UILabel()
-        titleView.text = "Watchlist"
-        titleView.font = UIFont.getTitleFont()
-        titleView.textColor = .white
-        navigationItem.titleView = titleView
     }
     
     private func setupLeftNavigationBarItems() {

@@ -114,16 +114,8 @@ extension OrdersViewController {
     }
     
     private func setupNavigationBar() {
-        setupTitleView()
+        titleNavBar = "Orders"
         setupRightBarButtons()
-    }
-    
-    private func setupTitleView() {
-        let titleView = UILabel()
-        titleView.text = "Orders"
-        titleView.font = UIFont.getTitleFont()
-        titleView.textColor = .white
-        navigationItem.titleView = titleView
     }
     
     private func setupRightBarButtons() {

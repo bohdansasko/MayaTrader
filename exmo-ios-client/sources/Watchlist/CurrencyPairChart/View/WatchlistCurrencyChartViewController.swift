@@ -102,7 +102,7 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleNavBar = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair)
         output.viewIsReady()
         periodViewController.viewDidLoad()
         setupInitialState()
@@ -113,7 +113,6 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         candleShortInfoView.isHidden = true
         navigationController?.navigationBar.tintColor = .white
         
-        setupTitleNavigationBar()
         prepareCharts()
         periodViewController.emitTouch(periodType: .Week)
     }
@@ -171,13 +170,5 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     
     func setCurrencyPair(_ currencyPair: String) {
         self.currencyPair = currencyPair
-    }
-    
-    private func setupTitleNavigationBar() {
-        let titleView = UILabel()
-        titleView.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair)
-        titleView.font = UIFont.getTitleFont()
-        titleView.textColor = .white
-        navigationItem.titleView = titleView
     }
 }

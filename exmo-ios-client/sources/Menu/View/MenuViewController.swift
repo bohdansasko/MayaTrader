@@ -35,16 +35,8 @@ extension TableMenuViewController {
 // @MARK: setup UI
 extension TableMenuViewController {
     func setupViews() {
-        setupTitleNavigationBar()
+        titleNavBar = "Menu"
         setupTableView()
-    }
-    
-    private func setupTitleNavigationBar() {
-        let titleView = UILabel()
-        titleView.text = "Menu"
-        titleView.font = UIFont.getTitleFont()
-        titleView.textColor = .white
-        navigationItem.titleView = titleView
     }
     
     private func setupTableView() {

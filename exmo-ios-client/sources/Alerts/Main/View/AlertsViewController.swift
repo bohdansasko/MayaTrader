@@ -22,7 +22,7 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        titleNavBar = "Alerts"
         setupViews()
     }
     
@@ -52,13 +52,6 @@ extension AlertsViewController {
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
-        
-        navigationItem.title = "Alerts"
-//        let titleView = UILabel()
-//        titleView.text = "Alerts"
-//        titleView.font = UIFont.getTitleFont()
-//        titleView.textColor = .white
-//        navigationItem.titleView = titleView
         
         navigationItem.rightBarButtonItem = currencySettingsBtn
     }

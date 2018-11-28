@@ -76,11 +76,7 @@ class CurrenciesGroupsViewController: DatasourceController, CurrenciesGroupsView
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
 
-        let titleView = UILabel()
-        titleView.text = "Currencies groups"
-        titleView.font = UIFont.getTitleFont()
-        titleView.textColor = .white
-        navigationItem.titleView = titleView
+        setupTitleNavigationBar(text: "Currencies groups")
         
         view.addSubview(horizontalTabBarLine)
         horizontalTabBarLine.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 1)

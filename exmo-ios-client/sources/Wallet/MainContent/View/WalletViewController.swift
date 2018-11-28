@@ -68,11 +68,7 @@ extension WalletViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
         
-        let titleView = UILabel()
-        titleView.text = "Wallet"
-        titleView.font = UIFont.getTitleFont()
-        titleView.textColor = .white
-        navigationItem.titleView = titleView
+        titleNavBar = "Wallet"
         
         navigationItem.rightBarButtonItem = currencySettingsBtn
     }

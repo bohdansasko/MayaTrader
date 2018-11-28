@@ -23,6 +23,12 @@ class ExmoUIViewController: UIViewController {
         imageView.contentMode = .center
         return imageView
     }()
+
+    var titleNavBar: String? {
+        didSet {
+            setupTitle()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +54,14 @@ extension ExmoUIViewController {
         
         view.addSubview(glowImage)
         glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -90, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+    
+    private func setupTitle() {
+        let titleView = UILabel()
+        titleView.text = titleNavBar
+        titleView.font = UIFont.getTitleFont()
+        titleView.textColor = .white
+        navigationItem.titleView = titleView
     }
     
     func updateNavigationBar(shouldHideNavigationBar: Bool) {
