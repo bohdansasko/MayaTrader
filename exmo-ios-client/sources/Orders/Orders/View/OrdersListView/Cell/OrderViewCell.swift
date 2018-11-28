@@ -71,7 +71,7 @@ class OrderViewCell: UITableViewCell {
             }
             
             orderTypeLabel.text = orderData.getOrderActionTypeAsStr()
-            orderTypeLabel.backgroundColor = getOrderActionTypeLabelTextColor(orderType: orderData.orderType)
+            updateStatusBackground()
             
             currencyLabel.text = orderData.getDisplayCurrencyPair()
             amountValueLabel.text = orderData.getAmountAsStr()
@@ -93,5 +93,16 @@ class OrderViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        updateStatusBackground()
+    }
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+        updateStatusBackground()
+    }
+    
+    private func updateStatusBackground() {
+        guard let orderData = order else { return }
+        orderTypeLabel.backgroundColor = getOrderActionTypeLabelTextColor(orderType: orderData.orderType)
     }
 }
