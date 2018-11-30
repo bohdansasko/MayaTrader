@@ -8,15 +8,12 @@
 
 import UIKit
 
-class CreateAlertModuleInitializer: NSObject {
+class CreateAlertModuleInitializer {
+    var viewController: CreateAlertViewController!
 
-    //Connect with object on storyboard
-    @IBOutlet weak var createalertViewController: CreateAlertViewController!
-
-    override func awakeFromNib() {
-
+    init() {
+        viewController = CreateAlertViewController()
         let configurator = CreateAlertModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: createalertViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
-
 }

@@ -32,7 +32,7 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     }
     
     @objc func showViewCreateOrder(_ sender: Any) {
-        print("showViewCreateOrder")
+        output.showFormCreateAlert()
     }
 }
 

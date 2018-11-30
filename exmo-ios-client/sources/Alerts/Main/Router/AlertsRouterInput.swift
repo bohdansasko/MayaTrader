@@ -10,5 +10,6 @@ import Foundation
 import UIKit.UIViewController
 
 protocol AlertsRouterInput {
+    func showVCAddAlert(_ vc: UIViewController)
     func editAlert(view: UIViewController, alert: Alert) 
 }

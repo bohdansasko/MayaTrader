@@ -31,8 +31,8 @@ class CreateAlertModuleConfigurator {
         presenter.interactor = interactor
         viewController.output = presenter
         
-        viewController.displayManager = CreateAlertDisplayManager()
-        viewController.displayManager.output = viewController.output
+//        viewController.displayManager = CreateAlertDisplayManager()
+//        viewController.displayManager.output = viewController.output
     }
 
 }

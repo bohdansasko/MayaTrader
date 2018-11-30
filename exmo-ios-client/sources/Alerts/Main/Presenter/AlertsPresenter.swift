@@ -23,6 +23,10 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
         self.router.editAlert(view: view, alert: alert)
     }
     
+    func showFormCreateAlert() {
+        router.showVCAddAlert(view as! UIViewController)
+    }
+    
     func prepareSegue(viewController: UIViewController, data: Any?) {
         guard let createAlertNavController = viewController as? UINavigationController else {
             print("AlertsPresenter: can't cast view controller in create alert view controller")

@@ -8,8 +8,13 @@
 import UIKit.UIViewController
 
 class AlertsRouter: AlertsRouterInput {
+    func showVCAddAlert(_ vc: UIViewController)  {
+        let moduleInit = CreateAlertModuleInitializer()
+        vc.present(moduleInit.viewController, animated: true, completion: nil)
+    }
+    
     func editAlert(view: UIViewController, alert: Alert)  {
-        print("edit alert = \(alert)")
-//        view.openModule(segueIdentifier: AlertsSegueIdentifiers.AddEditAlert, block: alert)
+        let moduleInit = CreateAlertModuleInitializer()
+        view.present(moduleInit.viewController, animated: true, completion: nil)
     }
 }

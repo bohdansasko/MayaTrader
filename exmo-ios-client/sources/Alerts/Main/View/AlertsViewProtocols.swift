@@ -13,6 +13,7 @@ protocol AlertsViewInput: class {
 
 protocol AlertsViewOutput: class {
     func viewIsReady()
+    func showFormCreateAlert()
     func editAlert(_ alert: Alert)
     func prepareSegue(viewController: UIViewController, data: Any?)
 }

@@ -7,14 +7,15 @@
 //
 
 protocol CreateAlertViewInput: class {
-
-    /**
-        @author TQ0oS
-        Setup initial state of the view
-    */
-
-    func setupInitialState()
     func updateSelectedCurrency(name: String, price: Double)
     func updateSelectedSoundInUI(soundName: String)
     func setAlertItem(alertItem: Alert)
+}
+
+protocol CreateAlertViewOutput {
+    func viewIsReady()
+    func handleTouchOnCancelBtn()
+    func handleTouchAlertBtn(alertModel: Alert, operationType: AlertOperationType)
+    func showSearchViewController(searchType: SearchViewController.SearchType)
+    func setAlertData(alertItem: Alert)
 }
