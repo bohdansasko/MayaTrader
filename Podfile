@@ -10,7 +10,6 @@ target 'exmo-ios-client' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
   pod 'Charts'
-  pod 'LBTAComponents'
+  pod 'LBTAComponents' # TODO: should remove from project
   pod 'RealmSwift'
-  
 end
