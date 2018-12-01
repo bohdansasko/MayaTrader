@@ -6,70 +6,97 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-class CreateAlertInteractor: CreateAlertInteractorInput {
+import UIKit
+
+class CreateAlertInteractor {
 
     weak var output: CreateAlertInteractorOutput!
+    var tickerNetworkWorker: ITickerNetworkWorker!
+    var createAlertNetworkWorker: ICreateAlertNetworkWorker!
+    var timerScheduler: Timer?
+    private var currencyPairCode: String = ""
     
-    private var currencyId: Int = -1
-    private var selectedSoundId: Int = -1
-    
-    private var currenciesContainer: [SearchCurrencyPairModel]
-    private var soundsContainer = [
-        SearchModel(id: 1, name: "Melody1"),
-        SearchModel(id: 2, name: "Melody2"),
-        SearchModel(id: 3, name: "Melody3"),
-        SearchModel(id: 4, name: "Melody4"),
-        SearchModel(id: 5, name: "Melody5"),
-        SearchModel(id: 6, name: "Melody6"),
-        SearchModel(id: 7, name: "Melody7")
-    ]
-    
-    init() {
-        self.currenciesContainer = []
+    private func scheduleUpdateCurrencies() {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CreateOrder, repeats: true) {
+            [weak self] _ in
+            self?.tickerNetworkWorker.load()
+        }
     }
+    
+    private func unscheduleUpdateCurrencies() {
+        if timerScheduler != nil {
+            timerScheduler?.invalidate()
+            timerScheduler = nil
+        }
+    }
+//    func tryCreateAlert(alertModel: Alert) {
+//        AppDelegate.roobikController.createAlert(alertItem: alertModel)
+//        print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
+//    }
+//
+//    func tryUpdateAlert(alertModel: Alert) {
+//        AppDelegate.roobikController.updateAlert(alertItem: alertModel)
+//        print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
+//    }
+}
 
-    func handleSelectedCurrency(currencyId: Int) {
-        self.currenciesContainer = AppDelegate.session.getSearchCurrenciesContainer()
+extension CreateAlertInteractor: CreateAlertInteractorInput {
+    func viewIsReady() {
+        tickerNetworkWorker.delegate = self
+        createAlertNetworkWorker.delegate = self
+    }
+    
+    func viewWillDisappear() {
+        currencyPairCode = ""
+        unscheduleUpdateCurrencies()
+    }
+    
+    func createAlert(_ alertModel: Alert) {
+        print(alertModel)
+        unscheduleUpdateCurrencies()
+        createAlertNetworkWorker.createAlert(alertModel)
+    }
+    
+    func updateAlert(_ alertModel: Alert) {
         
-//        self.currencyId = currencyId
-//        guard let currencyItem = self.currenciesContainer.first(where: {$0.id == currencyId}) else {
-//            print("handleSelectedCurrency: can't find selected currency")
-//            return
-//        }
-//        self.output.updateSelectedCurrency(name: currencyItem.getDisplayName(), price: currencyItem.price)
     }
+    
+    func handleSelectedCurrency(rawName: String) {
+        currencyPairCode = rawName
+        scheduleUpdateCurrencies()
+        tickerNetworkWorker.load()
+    }
+}
 
-    func handleSelectedSound(soundId: Int) {
-        self.selectedSoundId = soundId
-//        guard let soundItem = self.soundsContainer.first(where: {$0.id == soundId}) else {
-//            return
-//        }
-//        self.output.updateSelectedSoundInUI(soundName: soundItem.name)
+// @MARK: ITickerNetworkWorkerDelegate
+extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
+    func onDidLoadTickerSuccess(_ ticker: Ticker?) {
+        guard let ticker = ticker,
+            currencyPairCode.isEmpty == false,
+            let currencyPairModel = ticker.pairs[currencyPairCode] else {
+                output.showAlert(message: "Something went wrong.")
+                return
+        }
+        output.updateSelectedCurrency(currencyPairModel)
     }
     
-    func getCurrenciesContainer() -> [SearchCurrencyPairModel] {
-        return self.currenciesContainer
+    func onDidLoadTickerFails(_ ticker: Ticker?) {
+        print("onDidLoadTickerFails")
+        output.updateSelectedCurrency(nil)
+        output.showAlert(message: "Can't load data. Please try again a little bit later.")
+    }
+}
+
+// @MARK: IOrdersNetworkWorkerDelegate
+extension CreateAlertInteractor: ICreateAlertNetworkWorkerDelegate {
+    func onDidCreateAlertSuccess() {
+        output.onCreateAlertSuccessull()
     }
     
-    func getSoundsContainer() -> [SearchModel] {
-        return self.soundsContainer
-    }
-    
-    func showCurrenciesSearchView() {
-        self.output.showCurrenciesSearchView(data: self.getCurrenciesContainer())
-    }
-    
-    func showSoundsSearchView() {
-        self.output.showSoundsSearchView(data: self.getSoundsContainer())
-    }
-    
-    func tryCreateAlert(alertModel: Alert) {
-        AppDelegate.roobikController.createAlert(alertItem: alertModel)
-        print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
-    }
-    
-    func tryUpdateAlert(alertModel: Alert) {
-        AppDelegate.roobikController.updateAlert(alertItem: alertModel)
-        print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
+    func onDidCreateAlertFail(errorMessage: String) {
+        print(errorMessage)
+        scheduleUpdateCurrencies()
+        output.showAlert(message: errorMessage)
+
     }
 }

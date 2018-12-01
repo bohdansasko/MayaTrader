@@ -7,84 +7,71 @@
 //
 import UIKit
 
-class CreateAlertPresenter: CreateAlertModuleInput, CreateAlertViewOutput, CreateAlertInteractorOutput {
+class CreateAlertPresenter: CreateAlertModuleInput {
     weak var view: CreateAlertViewInput!
     var interactor: CreateAlertInteractorInput!
     var router: CreateAlertRouterInput!
+}
 
+// @MARK: CreateAlertViewOutput
+extension CreateAlertPresenter: CreateAlertViewOutput {
     func viewIsReady() {
-        // do nothing
+        interactor.viewIsReady()
+    }
+    
+    func viewWillDisappear() {
+        interactor.viewWillDisappear()
+    }
+    
+    func handleTouchOnCancelBtn() {
+        router.close(uiViewController: view as? UIViewController)
     }
     
     func handleTouchAlertBtn(alertModel: Alert, operationType: AlertOperationType) {
         switch operationType {
         case .Add:
-            self.interactor.tryCreateAlert(alertModel: alertModel)
+            interactor.createAlert(alertModel)
         case .Update:
-            self.interactor.tryUpdateAlert(alertModel: alertModel)
+            interactor.updateAlert(alertModel)
         default:
             // do nothing
             break
         }
-        self.handleTouchOnCancelBtn()
-    }
-    
-    func handleTouchOnCancelBtn() {
-        self.router.close(uiViewController: view as? UIViewController)
+        handleTouchOnCancelBtn()
     }
     
     func showSearchViewController(searchType: SearchViewController.SearchType) {
-        switch searchType {
-        case .Currencies:
-            self.interactor.showCurrenciesSearchView()
-            break
-        case .Sounds:
-            self.interactor.showSoundsSearchView()
-            break
-        default:
-            break
-        }
-    }
-    
-    func showSearchViewController(searchType: SearchViewController.SearchType, data: [SearchModel]) {
-        switch searchType {
-        case .Currencies:
-            self.router.openCurrencyPairsSearchView(data: data, uiViewController: view as? UIViewController, callbackOnSelectCurrency: {
-                (currencyId) in
-                print("Currency")
-                self.interactor.handleSelectedCurrency(currencyId: currencyId)
-            })
-            break
-        case .Sounds:
-            self.router.openSoundsSearchView(data: data, uiViewController: view as? UIViewController, callbackOnSelectSound: {
-                (soundId) in
-                self.interactor.handleSelectedSound(soundId: soundId)
-            })
-            print("Sound")
-            break
-        default:
-            break
-        }
-    }
-    
-    func showCurrenciesSearchView(data: [SearchCurrencyPairModel]) {
-        self.showSearchViewController(searchType: .Currencies, data: data)
-    }
-    
-    func showSoundsSearchView(data: [SearchModel]) {
-        self.showSearchViewController(searchType: .Sounds, data: data)
-    }
-    
-    func updateSelectedCurrency(name: String, price: Double) {
-        self.view.updateSelectedCurrency(name: name, price: price)
-    }
-    
-    func updateSelectedSoundInUI(soundName: String) {
-        self.view.updateSelectedSoundInUI(soundName: soundName)
+        router.openCurrencyPairsSearchView(view as! UIViewController, moduleOutput: self)
     }
     
     func setAlertData(alertItem: Alert) {
-        self.view.setAlertItem(alertItem: alertItem)
+        view.setAlertItem(alertItem: alertItem)
         print("edit alertItem: \(alertItem.getDataAsText())")
+    }
+}
+
+// @MARK: CreateAlertInteractorOutput
+extension CreateAlertPresenter: CreateAlertInteractorOutput {
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
+        view.updateSelectedCurrency(tickerCurrencyPair)
+    }
+    
+    func closeView() {
+        
+    }
+    
+    func onCreateAlertSuccessull() {
+        
+    }
+    
+    func showAlert(message: String) {
+        
+    }
+}
+
+// @MARK: SearchModuleOutput
+extension CreateAlertPresenter: SearchModuleOutput {
+    func onDidSelectCurrencyPair(rawName: String) {
+        interactor.handleSelectedCurrency(rawName: rawName)
     }
 }

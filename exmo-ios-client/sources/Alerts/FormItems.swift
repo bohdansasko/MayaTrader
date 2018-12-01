@@ -15,7 +15,8 @@ protocol FormItem {
 
 class CurrencyDetailsItem: FormItem {
     var title: String?
-    var value: String?
+    var leftValue: String?
+    var rightValue: String?
     var placeholder: String?
     var uiProperties = CellUIProperties()
     var valueCompletion: ((String?) -> Void)?
@@ -37,7 +38,22 @@ class FloatingNumberFormItem: FormItem {
     init(title: String?, placeholder: String?) {
         self.title = title
         self.placeholder = placeholder
-        uiProperties.height = 70
+        uiProperties.keyboardType = .decimalPad
+    }
+}
+
+class TextFormItem: FormItem {
+    var title: String?
+    var value: String?
+    var placeholder: String?
+    var uiProperties = CellUIProperties()
+    var valueCompletion: ((String?) -> Void)?
+    
+    init(title: String?, placeholder: String?) {
+        self.title = title
+        self.placeholder = placeholder
+        uiProperties.keyboardType = .asciiCapable
+        uiProperties.textMaxLength = 100
     }
 }
 

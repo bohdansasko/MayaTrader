@@ -27,7 +27,9 @@ class CreateAlertModuleConfigurator {
 
         let interactor = CreateAlertInteractor()
         interactor.output = presenter
-
+        interactor.tickerNetworkWorker = TickerNetworkWorker()
+        interactor.createAlertNetworkWorker = VinsoCreateAlertNetworkWorker()
+        
         presenter.interactor = interactor
         viewController.output = presenter
         

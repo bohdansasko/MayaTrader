@@ -67,6 +67,7 @@ extension ExmoSwitchCell: FormUpdatable {
     func update(item: FormItem?) {
         guard let fi = item as? SwitchFormItem,
               let uiProperties = fi.uiProperties as? SwitchCellUIProperties else { return }
+        formItem = fi
         titleLabel.text = fi.title
         titleLabel.textColor = uiProperties.titleColor
         

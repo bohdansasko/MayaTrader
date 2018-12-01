@@ -9,18 +9,17 @@
 import Foundation
 
 protocol CreateAlertInteractorInput {
-    func handleSelectedCurrency(currencyId: Int)
-    func handleSelectedSound(soundId: Int)
-    func showCurrenciesSearchView()
-    func showSoundsSearchView()
-    func tryCreateAlert(alertModel: Alert)
-    func tryUpdateAlert(alertModel: Alert)
+    func viewIsReady()
+    func viewWillDisappear()
+    func createAlert(_ alertModel: Alert)
+    func updateAlert(_ alertModel: Alert)
+    func handleSelectedCurrency(rawName: String)
+    
 }
 
 protocol CreateAlertInteractorOutput: class {
-    func updateSelectedCurrency(name: String, price: Double)
-    func updateSelectedSoundInUI(soundName: String)
-    
-    func showCurrenciesSearchView(data: [SearchCurrencyPairModel])
-    func showSoundsSearchView(data: [SearchModel])
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
+    func closeView()
+    func onCreateAlertSuccessull()
+    func showAlert(message: String)
 }

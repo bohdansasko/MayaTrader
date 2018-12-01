@@ -292,6 +292,6 @@ class SearchCurrencyPairModel : SearchModel {
     }
     
     func getPairPriceAsStr() -> String {
-        return Utils.getFormatedPrice(value: self.price)
+        return Utils.getFormatedPrice(value: self.price, maxFractDigits: 10)
     }
 }

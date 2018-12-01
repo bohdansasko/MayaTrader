@@ -1,14 +1,15 @@
 //
-//  CurrencyDetails.swift
-//  
+//  TextFieldCell.swift
+//  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 12/1/18.
+//  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
 import UIKit
 
-class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
-    var formItem: CurrencyDetailsItem?
+class TextFieldCell: UITableViewCell, TextFormConformity {
+    var formItem: TextFormItem?
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -26,23 +27,7 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
         textInpt.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
         textInpt.attributedPlaceholder = NSAttributedString(string: "",
                                                             attributes: [NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 14)])
-        textInpt.isUserInteractionEnabled = false
         return textInpt
-    }()
-    
-    var rightLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .right
-        label.textColor = .white
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
-        return label
-    }()
-    
-    var arrowImage: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "icInputFieldArrow")
-        imageView.contentMode = .scaleAspectFit
-        return imageView
     }()
     
     let separatorHLineView: UIView = {
@@ -55,6 +40,7 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         backgroundColor = .black
+        selectionStyle = .none
         setupViews()
     }
     
@@ -63,19 +49,18 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
     }
     
     private func setupViews() {
+        let selectedBgView = UIView()
+        selectedBgView.backgroundColor = .clear
+        selectedBackgroundView = selectedBgView
+        
         addSubview(titleLabel)
         titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         
         addSubview(textInput)
+        textInput.delegate = self
         textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         textInput.addTarget(self, action: #selector(onTextDidChange(_:)), for: .editingChanged)
         
-        addSubview(rightLabel)
-        rightLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 50, widthConstant: 0, heightConstant: 0)
-        
-        addSubview(arrowImage)
-        arrowImage.anchor(titleLabel.bottomAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 15, rightConstant: 30, widthConstant: 0, heightConstant: 0)
-
         addSubview(separatorHLineView)
         separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
     }
@@ -85,21 +70,23 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
     }
 }
 
-extension CurrencyDetailsCell: FormUpdatable {
+extension TextFieldCell: FormUpdatable {
     func update(item: FormItem?) {
-        guard let fi = item as? CurrencyDetailsItem else { return }
+        guard let fi = item as? TextFormItem else { return }
         formItem = fi
         titleLabel.text = fi.title
         titleLabel.textColor = fi.uiProperties.titleColor
         textInput.placeholder = fi.placeholder
-        textInput.text = fi.leftValue
         textInput.keyboardType = fi.uiProperties.keyboardType
         textInput.placeholderColor = .white30
-        rightLabel.text = fi.rightValue
-        
-        if textInput.text != nil {
-            textInput.sendActions(for: .valueChanged)
-        }
     }
-    
+}
+
+extension TextFieldCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text,
+            let fi = formItem else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= fi.uiProperties.textMaxLength
+    }
 }

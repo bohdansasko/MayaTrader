@@ -24,39 +24,39 @@ class FormCreateAlert {
     }
     
     private func setupFormItems() {
-        let currencyPairItem = CurrencyDetailsItem(title: "Currency pair", placeholder: "Select currency pair…")
+        let currencyPairItem = CurrencyDetailsItem(title: "CURRENCY PAIR", placeholder: "Select currency pair…")
         currencyPairItem.valueCompletion = {
             [weak self, weak currencyPairItem] value in
             self?.currencyPair = value
-            currencyPairItem?.value = value
+            currencyPairItem?.leftValue = value
         }
         currencyPairItem.uiProperties.cellType = .CurrencyDetails
         
-        let upperBoundItem = FloatingNumberFormItem(title: "Upper Bound", placeholder: "0 USD")
+        let upperBoundItem = FloatingNumberFormItem(title: "UPPER BOUND", placeholder: "0 USD")
         upperBoundItem.valueCompletion = {
             [weak self, weak upperBoundItem] value in
             self?.topBound = value
             upperBoundItem?.value = value
         }
-        upperBoundItem.uiProperties.cellType = .TextField
+        upperBoundItem.uiProperties.cellType = .FloatingNumberTextField
         
-        let bottomBoundItem = FloatingNumberFormItem(title: "Upper Bound", placeholder: "0 USD")
+        let bottomBoundItem = FloatingNumberFormItem(title: "BOTTOM BOUND", placeholder: "0 USD")
         bottomBoundItem.valueCompletion = {
             [weak self, weak bottomBoundItem] value in
             self?.bottomBound = value
             bottomBoundItem?.value = value
         }
-        bottomBoundItem.uiProperties.cellType = .TextField
+        bottomBoundItem.uiProperties.cellType = .FloatingNumberTextField
         
-        let noteItem = FloatingNumberFormItem(title: "Bottom Bound", placeholder: "0 USD")
+        let noteItem = TextFormItem(title: "NOTE", placeholder: "Write reminder note...")
         noteItem.valueCompletion = {
             [weak self, weak noteItem] value in
-            self?.bottomBound = value
+            self?.note = value
             noteItem?.value = value
         }
         noteItem.uiProperties.cellType = .TextField
         
-        let switchItem = SwitchFormItem(title: "Is persistent")
+        let switchItem = SwitchFormItem(title: "IS PERSISTENT")
         switchItem.onChange = {
             [weak self, weak switchItem] value in
             self?.isPersistent = value

@@ -11,6 +11,7 @@ import UIKit
 class CreateAlertViewController: ExmoUIViewController, CreateAlertViewInput {
     var output: CreateAlertViewOutput!
     lazy var form = FormCreateAlert()
+    var cells: [IndexPath : UITableViewCell] = [:]
     var formTableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .clear
@@ -20,7 +21,14 @@ class CreateAlertViewController: ExmoUIViewController, CreateAlertViewInput {
         return tv
     }()
     
-//    var displayManager: CreateAlertDisplayManager!
+    var buttonCancel: UIButton = {
+        let button = UIButton(type: .roundedRect)
+        button.setTitle("Cancel", for: .normal)
+        button.setTitleColor(.orangePink, for: .normal)
+        button.setTitleColor(.orangePink, for: .highlighted)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 18)
+        return button
+    }()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -29,105 +37,67 @@ class CreateAlertViewController: ExmoUIViewController, CreateAlertViewInput {
         view.backgroundColor = .black
         titleNavBar = form.title
         glowImage.removeFromSuperview()
+        
         setupViews()
-//        self.output.viewIsReady()
     }
     
-//    // MARK: CreateAlertViewInput
-//    func setupInitialState() {
-//        self.displayManager.setTableView(formTableView: formTableView)
-//
-//        self.cancelButton.setTitleTextAttributes([
-//                NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
-//                NSAttributedString.Key.foregroundColor: UIColor.orangePink
-//            ],
-//            for: .normal
-//        )
-//        self.cancelButton.setTitleTextAttributes([
-//                NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
-//                NSAttributedString.Key.foregroundColor: UIColor.orangePink
-//            ],
-//            for: .highlighted
-//        )
-//
-//        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-//        self.view.addGestureRecognizer(tap)
-//    }
-//
-    func updateSelectedCurrency(name: String, price: Double) {
-//        self.displayManager.updateSelectedCurrency(name: name, price: price)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        output.viewIsReady()
     }
-//
-    func updateSelectedSoundInUI(soundName: String) {
-//        self.displayManager.updateSoundElement(soundName: soundName)
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewWillDisappear()
     }
-//
+
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
+        let detailsIndexPath = IndexPath(row: 0, section: 0)
+        guard let currencyPair = tickerCurrencyPair,
+              let detailsItem = cells[detailsIndexPath] as? FormUpdatable,
+              let detailsFormItem = form.cellItems[detailsIndexPath.section] as? CurrencyDetailsItem else { return }
+        detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair.code)
+        detailsFormItem.rightValue = Utils.getFormatedPrice(value: currencyPair.buyPrice, maxFractDigits: 10)
+        detailsItem.update(item: detailsFormItem)
+    }
+
     func setAlertItem(alertItem: Alert) {
 //        self.displayManager.setAlertItem(alertItem: alertItem)
     }
-//
-//    @objc private func hideKeyboard() {
-//        self.view.endEditing(true)
-//    }
-//
-//    //
-//    // @MARK: IBActions
-//    //
-//    @IBAction func handleTouchOnCancelBtn(_ sender: Any) {
-//        output.handleTouchOnCancelBtn()
-//    }
+
     
+}
+
+extension CreateAlertViewController {
+    @objc func hideKeyboard() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func onTouchCancelBtn(_ sender: Any) {
+        output.handleTouchOnCancelBtn()
+    }
+}
+
+extension CreateAlertViewController {
     func setupViews() {
         view.addSubview(formTableView)
         formTableView.fillSuperview()
         formTableView.dataSource = self
         formTableView.delegate = self
         FormItemCellType.registerCells(for: formTableView)
+        
+        setupLeftNavigationBarItems()
+        
+        // for hide keyboard on touch background
+        let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+        
         formTableView.reloadData()
     }
-}
-
-extension CreateAlertViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return form.cellItems.count
-    }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: UITableViewCell
-        if let cellType = form.cellItems[indexPath.section].uiProperties.cellType {
-            cell = cellType.dequeueCell(for: tableView, at: indexPath)
-        } else {
-            cell = UITableViewCell()
-        }
-        
-        return cell
-    }
-}
-
-extension CreateAlertViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? FormUpdatable else { return }
-        cell.update(item: form.cellItems[indexPath.section])
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return form.cellItems[indexPath.section].uiProperties.height
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 15
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        debugPrint(indexPath)
+    private func setupLeftNavigationBarItems() {
+        buttonCancel.addTarget(self, action: #selector(onTouchCancelBtn(_:)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonCancel)
     }
 }

@@ -21,7 +21,6 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
     
     var textInput: UITextField = {
         let textInpt = UITextField()
-        textInpt.keyboardType = .decimalPad
         textInpt.textColor = .white
         textInpt.borderStyle = .none
         textInpt.textAlignment = .left
@@ -58,6 +57,7 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
         titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         
         addSubview(textInput)
+        textInput.delegate = self
         textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         textInput.addTarget(self, action: #selector(onTextDidChange(_:)), for: .editingChanged)
         
@@ -73,9 +73,20 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
 extension ExmoFloatingNumberCell: FormUpdatable {
     func update(item: FormItem?) {
         guard let fi = item as? FloatingNumberFormItem else { return }
+        formItem = fi
         titleLabel.text = fi.title
         titleLabel.textColor = fi.uiProperties.titleColor
         textInput.placeholder = fi.placeholder
+        textInput.keyboardType = fi.uiProperties.keyboardType
         textInput.placeholderColor = .white30
+    }
+}
+
+extension ExmoFloatingNumberCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text,
+              let fi = formItem else { return true }
+        let newLength = text.count + string.count - range.length
+        return newLength <= fi.uiProperties.textMaxLength
     }
 }

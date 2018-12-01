@@ -13,6 +13,10 @@ protocol CurrencyDetailsFormConformity {
     var formItem: CurrencyDetailsItem? {get set}
 }
 
+protocol TextFormConformity {
+    var formItem: TextFormItem? {get set}
+}
+
 protocol FloatingNumberFormConformity {
     var formItem: FloatingNumberFormItem? {get set}
 }
@@ -28,10 +32,12 @@ protocol FormUpdatable {
 
 enum FormItemCellType {
     case TextField
+    case FloatingNumberTextField
     case Switcher
     case CurrencyDetails
     
     static func registerCells(for tableView: UITableView) {
+        tableView.register(TextFieldCell.self, forCellReuseIdentifier: String(describing: TextFieldCell.self))
         tableView.register(ExmoFloatingNumberCell.self, forCellReuseIdentifier: String(describing: ExmoFloatingNumberCell.self))
         tableView.register(ExmoSwitchCell.self, forCellReuseIdentifier: String(describing: ExmoSwitchCell.self))
         tableView.register(CurrencyDetailsCell.self, forCellReuseIdentifier: String(describing: CurrencyDetailsCell.self))
@@ -41,6 +47,8 @@ enum FormItemCellType {
     func dequeueCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         switch self {
         case .TextField:
+            return tableView.dequeueReusableCell(withIdentifier: String(describing: TextFieldCell.self), for: indexPath)
+        case .FloatingNumberTextField:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoFloatingNumberCell.self), for: indexPath)
         case .Switcher:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSwitchCell.self), for: indexPath)
@@ -55,6 +63,9 @@ class CellUIProperties {
     var valueTintColor: UIColor = .backgroundColorSelectedCell
     var cellType: FormItemCellType?
     var height: CGFloat = 70.0
+    var spacingBetweenRows: CGFloat = 15
+    var keyboardType: UIKeyboardType = .default
+    var textMaxLength: Int = 20
 }
 
 class SwitchCellUIProperties: CellUIProperties {

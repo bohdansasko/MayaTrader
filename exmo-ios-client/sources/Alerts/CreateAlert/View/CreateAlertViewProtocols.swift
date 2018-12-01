@@ -7,13 +7,13 @@
 //
 
 protocol CreateAlertViewInput: class {
-    func updateSelectedCurrency(name: String, price: Double)
-    func updateSelectedSoundInUI(soundName: String)
+    func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func setAlertItem(alertItem: Alert)
 }
 
 protocol CreateAlertViewOutput {
     func viewIsReady()
+    func viewWillDisappear()
     func handleTouchOnCancelBtn()
     func handleTouchAlertBtn(alertModel: Alert, operationType: AlertOperationType)
     func showSearchViewController(searchType: SearchViewController.SearchType)
