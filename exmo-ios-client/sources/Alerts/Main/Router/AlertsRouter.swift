@@ -10,11 +10,11 @@ import UIKit.UIViewController
 class AlertsRouter: AlertsRouterInput {
     func showVCAddAlert(_ vc: UIViewController)  {
         let moduleInit = CreateAlertModuleInitializer()
-        vc.present(moduleInit.viewController, animated: true, completion: nil)
+        vc.present(UINavigationController(rootViewController: moduleInit.viewController), animated: true, completion: nil)
     }
     
     func editAlert(view: UIViewController, alert: Alert)  {
         let moduleInit = CreateAlertModuleInitializer()
-        view.present(moduleInit.viewController, animated: true, completion: nil)
+        view.present(UINavigationController(rootViewController: moduleInit.viewController), animated: true, completion: nil)
     }
 }
