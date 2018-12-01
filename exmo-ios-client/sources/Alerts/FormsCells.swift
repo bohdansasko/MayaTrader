@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol CurrencyDetailsFormConformity {
+    var formItem: CurrencyDetailsItem? {get set}
+}
+
 protocol FloatingNumberFormConformity {
     var formItem: FloatingNumberFormItem? {get set}
 }
@@ -25,10 +29,12 @@ protocol FormUpdatable {
 enum FormItemCellType {
     case TextField
     case Switcher
+    case CurrencyDetails
     
     static func registerCells(for tableView: UITableView) {
         tableView.register(ExmoFloatingNumberCell.self, forCellReuseIdentifier: String(describing: ExmoFloatingNumberCell.self))
         tableView.register(ExmoSwitchCell.self, forCellReuseIdentifier: String(describing: ExmoSwitchCell.self))
+        tableView.register(CurrencyDetailsCell.self, forCellReuseIdentifier: String(describing: CurrencyDetailsCell.self))
 
     }
     
@@ -38,6 +44,8 @@ enum FormItemCellType {
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoFloatingNumberCell.self), for: indexPath)
         case .Switcher:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSwitchCell.self), for: indexPath)
+        case .CurrencyDetails:
+            return tableView.dequeueReusableCell(withIdentifier: String(describing: CurrencyDetailsCell.self), for: indexPath)
         }
     }
 }
@@ -46,7 +54,7 @@ class CellUIProperties {
     var titleColor: UIColor = .white
     var valueTintColor: UIColor = .backgroundColorSelectedCell
     var cellType: FormItemCellType?
-    var height: CGFloat = 0.0
+    var height: CGFloat = 70.0
 }
 
 class SwitchCellUIProperties: CellUIProperties {

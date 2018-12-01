@@ -24,13 +24,13 @@ class FormCreateAlert {
     }
     
     private func setupFormItems() {
-        let currencyPairItem = FloatingNumberFormItem(title: "Currency pair", placeholder: "Select currency pair…")
+        let currencyPairItem = CurrencyDetailsItem(title: "Currency pair", placeholder: "Select currency pair…")
         currencyPairItem.valueCompletion = {
             [weak self, weak currencyPairItem] value in
             self?.currencyPair = value
             currencyPairItem?.value = value
         }
-        currencyPairItem.uiProperties.cellType = .TextField
+        currencyPairItem.uiProperties.cellType = .CurrencyDetails
         
         let upperBoundItem = FloatingNumberFormItem(title: "Upper Bound", placeholder: "0 USD")
         upperBoundItem.valueCompletion = {

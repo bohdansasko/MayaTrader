@@ -13,6 +13,20 @@ protocol FormItem {
     var uiProperties: CellUIProperties {get set}
 }
 
+class CurrencyDetailsItem: FormItem {
+    var title: String?
+    var value: String?
+    var placeholder: String?
+    var uiProperties = CellUIProperties()
+    var valueCompletion: ((String?) -> Void)?
+    
+    init(title: String?, placeholder: String?) {
+        self.title = title
+        self.placeholder = placeholder
+    }
+}
+
+
 class FloatingNumberFormItem: FormItem {
     var title: String?
     var value: String?

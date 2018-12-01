@@ -60,6 +60,7 @@
 		201DF20021B27D3300158A15 /* CreateAlertForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */; };
 		201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */; };
 		201DF20421B27E9700158A15 /* ExmoSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */; };
+		201DF20721B2909600158A15 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */; };
 		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
 		201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */; };
 		201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */; };
@@ -371,6 +372,7 @@
 		201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertForm.swift; sourceTree = "<group>"; };
 		201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoFloatingNumberCell.swift; sourceTree = "<group>"; };
 		201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSwitchCell.swift; sourceTree = "<group>"; };
+		201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrencyDetailsCell.swift; path = "/Users/tqos/Documents/Projects/home/swift/exmo/ios-client/exmo-ios-client/sources/Alerts/Cells/CurrencyDetailsCell.swift"; sourceTree = "<absolute>"; };
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
 		201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDatabaseProtocol.swift; sourceTree = "<group>"; };
@@ -871,6 +873,16 @@
 				1537E0F9CB55FA531F0CD40A /* Configurator */,
 			);
 			path = MainContent;
+			sourceTree = "<group>";
+		};
+		201DF20521B2907B00158A15 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */,
+				201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */,
+				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		201E281F2199C415000960FD /* Network */ = {
@@ -1711,8 +1723,7 @@
 				201D8076205DC5B400692DEF /* Main */,
 				37B74EDC1A931709BEED1181 /* CreateAlert */,
 				2087F47621B1E0E7009284D0 /* FormsCells.swift */,
-				201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */,
-				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
+				201DF20521B2907B00158A15 /* Cells */,
 				201DF1FD21B27D0F00158A15 /* FormItems.swift */,
 			);
 			path = Alerts;
@@ -2421,6 +2432,7 @@
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
 				20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */,
+				201DF20721B2909600158A15 /* CurrencyDetailsCell.swift in Sources */,
 				20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */,
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersViewController.swift in Sources */,
 				207B1D972173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift in Sources */,
