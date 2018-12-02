@@ -97,8 +97,6 @@ extension CreateOrderViewController: CreateOrderViewInput {
 
 extension CreateOrderViewController {
     func setupViews() {
-        view.backgroundColor = .black
-        
         setupNavigationBar()
         setupSegmentControlView()
         setupCellsLayout()

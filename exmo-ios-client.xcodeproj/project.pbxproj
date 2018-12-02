@@ -380,7 +380,7 @@
 		201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertForm.swift; sourceTree = "<group>"; };
 		201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoFloatingNumberCell.swift; sourceTree = "<group>"; };
 		201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSwitchCell.swift; sourceTree = "<group>"; };
-		201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrencyDetailsCell.swift; path = "/Users/tqos/Documents/Projects/home/swift/exmo/ios-client/exmo-ios-client/sources/Alerts/Cells/CurrencyDetailsCell.swift"; sourceTree = "<absolute>"; };
+		201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrencyDetailsCell.swift; path = "/Users/tqos/Documents/Projects/home/swift/exmo/ios-client/exmo-ios-client/sources/Form/Cells/CurrencyDetailsCell.swift"; sourceTree = "<absolute>"; };
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
 		201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDatabaseProtocol.swift; sourceTree = "<group>"; };

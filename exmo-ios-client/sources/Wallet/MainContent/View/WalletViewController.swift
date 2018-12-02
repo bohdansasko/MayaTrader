@@ -51,8 +51,6 @@ extension WalletViewController: WalletViewInput {
 // MARK: setup initial UI state for view controller
 extension WalletViewController {
     func setupViews() {
-        view.backgroundColor = .black
-        
         currencySettingsBtn.target = self
         currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
         

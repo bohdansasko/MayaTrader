@@ -23,6 +23,8 @@ class ExmoUIViewController: UIViewController {
         imageView.contentMode = .center
         return imageView
     }()
+    
+    var shouldUseGlow = true
 
     var titleNavBar: String? {
         didSet {
@@ -33,6 +35,7 @@ class ExmoUIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = .black
         setupInitialViews()
     }
 
@@ -52,8 +55,10 @@ extension ExmoUIViewController {
         view.addSubview(activityIndicatorView)
         activityIndicatorView.anchorCenterSuperview()
         
-        view.addSubview(glowImage)
-        glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -90, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        if shouldUseGlow {
+            view.addSubview(glowImage)
+            glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -90, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        }
     }
     
     private func setupTitle() {
@@ -65,8 +70,15 @@ extension ExmoUIViewController {
     }
     
     func updateNavigationBar(shouldHideNavigationBar: Bool) {
-        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
+        if !shouldUseGlow {
+            self.navigationController?.navigationBar.barStyle = .black
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            return
+        }
         
+        let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
+
         self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
         self.navigationController?.navigationBar.shadowImage = dummyImage
         self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar

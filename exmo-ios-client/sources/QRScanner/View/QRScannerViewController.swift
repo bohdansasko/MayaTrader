@@ -39,7 +39,6 @@ class QRScannerViewController: UIViewController, QRScannerViewInput {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         prepareCameraToReadQRCode()
     }
 }

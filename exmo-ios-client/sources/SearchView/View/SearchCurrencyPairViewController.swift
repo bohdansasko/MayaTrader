@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+class SearchViewController: ExmoUIViewController {
     enum SearchType {
         case None
         case Currencies
@@ -19,14 +19,6 @@ class SearchViewController: UIViewController {
     
     var tabBar = CurrenciesListTabBar()
     var listView = SearchDatasourceListView()
-    
-    let activityIndicatorView: UIActivityIndicatorView = {
-        let aiv = UIActivityIndicatorView(style: .whiteLarge)
-        aiv.hidesWhenStopped = true
-        aiv.color = .white
-        return aiv
-    }()
-    
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -52,14 +44,9 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController {
     func setupViews() {
-        view.backgroundColor = .black
-        
         setupNavigationBar()
         setupCurrenciesList()
-        
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.anchorCenterSuperview()
-        activityIndicatorView.startAnimating()
+        showLoader()
     }
     
     private func setupNavigationBar() {
@@ -89,7 +76,7 @@ extension SearchViewController: UISearchBarDelegate {
 // MARK: UISearchBarDelegate
 extension SearchViewController: SearchViewInput {
     func updatePairsList(_ pairs: [SearchCurrencyPairModel]) {
-        activityIndicatorView.stopAnimating()
+        hideLoader()
         listView.originalPairs = pairs
         tabBar.filter()
     }

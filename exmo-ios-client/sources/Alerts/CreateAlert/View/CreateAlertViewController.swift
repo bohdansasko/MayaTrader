@@ -32,11 +32,11 @@ class CreateAlertViewController: ExmoUIViewController {
     
     // MARK: Life cycle
     override func viewDidLoad() {
+        shouldUseGlow = false
+        
         super.viewDidLoad()
         
-        view.backgroundColor = .black
         titleNavBar = form.title
-        glowImage.removeFromSuperview()
         
         form.onTouchButtonCreate = {
             [weak self] in
