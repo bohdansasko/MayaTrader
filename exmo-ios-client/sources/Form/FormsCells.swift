@@ -35,13 +35,14 @@ enum FormItemCellType {
     case FloatingNumberTextField
     case Switcher
     case CurrencyDetails
+    case Button
     
     static func registerCells(for tableView: UITableView) {
         tableView.register(TextFieldCell.self, forCellReuseIdentifier: String(describing: TextFieldCell.self))
         tableView.register(ExmoFloatingNumberCell.self, forCellReuseIdentifier: String(describing: ExmoFloatingNumberCell.self))
         tableView.register(ExmoSwitchCell.self, forCellReuseIdentifier: String(describing: ExmoSwitchCell.self))
         tableView.register(CurrencyDetailsCell.self, forCellReuseIdentifier: String(describing: CurrencyDetailsCell.self))
-
+        tableView.register(ButtonCell.self, forCellReuseIdentifier: String(describing: ButtonCell.self))
     }
     
     func dequeueCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -54,6 +55,8 @@ enum FormItemCellType {
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSwitchCell.self), for: indexPath)
         case .CurrencyDetails:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: CurrencyDetailsCell.self), for: indexPath)
+        case .Button:
+            return tableView.dequeueReusableCell(withIdentifier: String(describing: ButtonCell.self), for: indexPath)
         }
     }
 }

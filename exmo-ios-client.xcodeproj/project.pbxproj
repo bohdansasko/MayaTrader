@@ -114,6 +114,7 @@
 		207552962188B1F00011190E /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207552952188B1F00011190E /* NetworkWorker.swift */; };
 		2075612720B2C0DB0063E548 /* AlertsAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */; };
 		207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E221B326D30049B26D /* TextFieldCell.swift */; };
+		207A85E521B349570049B26D /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E421B349570049B26D /* ButtonCell.swift */; };
 		207B1D962173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D862173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift */; };
 		207B1D972173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D872173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift */; };
 		207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D892173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift */; };
@@ -428,6 +429,7 @@
 		207552952188B1F00011190E /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsAPIHelper.swift; sourceTree = "<group>"; };
 		207A85E221B326D30049B26D /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		207A85E421B349570049B26D /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
 		207B1D862173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesModuleInput.swift; sourceTree = "<group>"; };
 		207B1D872173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesPresenter.swift; sourceTree = "<group>"; };
 		207B1D892173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesViewOutput.swift; sourceTree = "<group>"; };
@@ -899,6 +901,7 @@
 				201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */,
 				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
 				207A85E221B326D30049B26D /* TextFieldCell.swift */,
+				207A85E421B349570049B26D /* ButtonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				207930AC21B49ADB005EF54B /* Form */,
 				20B418C6209D019A00B1C636 /* CustomUIControls */,
 				206730E12094D36E008B500D /* Extensions */,
 				2084492B2049311F007CA79C /* CoreData */,
@@ -1093,6 +1097,16 @@
 				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		207930AC21B49ADB005EF54B /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				2087F47621B1E0E7009284D0 /* FormsCells.swift */,
+				201DF1FD21B27D0F00158A15 /* FormItems.swift */,
+				201DF20521B2907B00158A15 /* Cells */,
+			);
+			path = Form;
 			sourceTree = "<group>";
 		};
 		207B1D842173F93F00D2A5DE /* FavouriteCurrencies */ = {
@@ -1742,9 +1756,6 @@
 			children = (
 				201D8076205DC5B400692DEF /* Main */,
 				37B74EDC1A931709BEED1181 /* CreateAlert */,
-				2087F47621B1E0E7009284D0 /* FormsCells.swift */,
-				201DF20521B2907B00158A15 /* Cells */,
-				201DF1FD21B27D0F00158A15 /* FormItems.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -2505,6 +2516,7 @@
 				207B1D9E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift in Sources */,
 				20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */,
 				20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */,
+				207A85E521B349570049B26D /* ButtonCell.swift in Sources */,
 				207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */,
 				74208443D94F8B7E1F98710D /* WatchlistCurrencyChartViewInput.swift in Sources */,
 				CAB081780C816F30AA959325 /* WatchlistCurrencyChartViewOutput.swift in Sources */,

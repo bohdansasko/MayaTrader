@@ -13,6 +13,18 @@ protocol FormItem {
     var uiProperties: CellUIProperties {get set}
 }
 
+class ButtonFormItem: FormItem {
+    var title: String?
+    var uiProperties = CellUIProperties()
+    var onTouch: (() -> Void)?
+    
+    init(title: String?) {
+        self.title = title
+        uiProperties.height = 45
+        uiProperties.spacingBetweenRows = 60
+    }
+}
+
 class CurrencyDetailsItem: FormItem {
     var title: String?
     var leftValue: String?

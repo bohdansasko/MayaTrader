@@ -98,7 +98,7 @@ extension CurrencyDetailsCell: FormUpdatable {
         rightLabel.text = fi.rightValue
         
         if textInput.text != nil {
-            textInput.sendActions(for: .valueChanged)
+            textInput.sendActions(for: .editingChanged)
         }
     }
     
