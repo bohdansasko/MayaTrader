@@ -26,7 +26,7 @@ class CreateOrderViewController: ExmoUIViewController {
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(.orangePink, for: .normal)
         button.setTitleColor(.orangePink, for: .highlighted)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 20)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 18)
         return button
     }()
     

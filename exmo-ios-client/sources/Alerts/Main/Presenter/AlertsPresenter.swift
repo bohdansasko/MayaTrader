@@ -26,21 +26,4 @@ class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutp
     func showFormCreateAlert() {
         router.showVCAddAlert(view as! UIViewController)
     }
-    
-    func prepareSegue(viewController: UIViewController, data: Any?) {
-        guard let createAlertNavController = viewController as? UINavigationController else {
-            print("AlertsPresenter: can't cast view controller in create alert view controller")
-            return
-        }
-        guard let createAlertViewController = createAlertNavController.viewControllers.first as? CreateAlertViewController else {
-            print("AlertsPresenter: can't cast view controller in create alert view controller")
-            return
-        }
-        
-        if let alertItem = data as? Alert {
-            if let createAlertPresenter = createAlertViewController.output as? CreateAlertModuleInput {
-                 createAlertPresenter.setAlertData(alertItem: alertItem)
-            }
-        }
-    }
 }
