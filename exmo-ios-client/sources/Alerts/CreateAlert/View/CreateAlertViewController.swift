@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAlertViewController: ExmoUIViewController, CreateAlertViewInput {
+class CreateAlertViewController: ExmoUIViewController {
     var output: CreateAlertViewOutput!
     lazy var form = FormCreateAlert()
     var cells: [IndexPath : UITableViewCell] = [:]
@@ -38,6 +38,20 @@ class CreateAlertViewController: ExmoUIViewController, CreateAlertViewInput {
         titleNavBar = form.title
         glowImage.removeFromSuperview()
         
+        form.onTouchButtonCreate = {
+            [weak self] in
+            guard let self = self,
+                  let currencyPair = self.form.currencyPair else { return }
+            
+            let rawCurrencyPairName = Utils.getRawCurrencyPairName(name: currencyPair)
+            let maxValue: Double? = self.form.topBound != nil ? Double(self.form.topBound!) : nil
+            let minValue: Double? = self.form.bottomBound != nil ? Double(self.form.bottomBound!) : nil
+            
+            let alert = Alert(id: "", currencyPairName: rawCurrencyPairName, priceAtCreateMoment: 0, note: self.form.note, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
+            print(alert.getDataAsText())
+//            output.createAlert()
+        }
+        form.viewIsReady()
         setupViews()
     }
     
@@ -50,25 +64,22 @@ class CreateAlertViewController: ExmoUIViewController, CreateAlertViewInput {
         super.viewWillAppear(animated)
         output.viewWillDisappear()
     }
+}
 
+// @MARK: CreateAlertViewInput
+extension CreateAlertViewController: CreateAlertViewInput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         let detailsIndexPath = IndexPath(row: 0, section: 0)
         guard let currencyPair = tickerCurrencyPair,
-              let detailsItem = cells[detailsIndexPath] as? FormUpdatable,
-              let detailsFormItem = form.cellItems[detailsIndexPath.section] as? CurrencyDetailsItem else { return }
+            let detailsItem = cells[detailsIndexPath] as? FormUpdatable,
+            let detailsFormItem = form.cellItems[detailsIndexPath.section] as? CurrencyDetailsItem else { return }
         detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair.code)
-        detailsFormItem.rightValue = Utils.getFormatedPrice(value: currencyPair.buyPrice, maxFractDigits: 10)
+        detailsFormItem.rightValue = Utils.getFormatedPrice(value: currencyPair.lastTrade, maxFractDigits: 10)
         detailsItem.update(item: detailsFormItem)
     }
-
-    func setAlertItem(alertItem: Alert) {
-//        self.displayManager.setAlertItem(alertItem: alertItem)
-    }
-
-    
 }
 
-extension CreateAlertViewController {
+extension CreateAlertViewController {    
     @objc func hideKeyboard() {
         self.view.endEditing(true)
     }

@@ -14,12 +14,10 @@ protocol CreateAlertInteractorInput {
     func createAlert(_ alertModel: Alert)
     func updateAlert(_ alertModel: Alert)
     func handleSelectedCurrency(rawName: String)
-    
 }
 
 protocol CreateAlertInteractorOutput: class {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
-    func closeView()
     func onCreateAlertSuccessull()
     func showAlert(message: String)
 }

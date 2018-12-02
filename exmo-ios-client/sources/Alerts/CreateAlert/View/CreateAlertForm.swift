@@ -15,11 +15,14 @@ class FormCreateAlert {
     var bottomBound: String?
     var note: String?
     var isPersistent: Bool = false
-    
+    var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
     
     init() {
-        title = "Create Order"
+        title = "Create alert"
+    }
+    
+    func viewIsReady() {
         setupFormItems()
     }
     
@@ -64,6 +67,10 @@ class FormCreateAlert {
         }
         switchItem.uiProperties.cellType = .Switcher
         
-        cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, noteItem, switchItem]
+        let buttonItem = ButtonFormItem(title: "CREATE")
+        buttonItem.onTouch = onTouchButtonCreate
+        buttonItem.uiProperties.cellType = .Button
+        
+        cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, noteItem, switchItem, buttonItem]
     }
 }

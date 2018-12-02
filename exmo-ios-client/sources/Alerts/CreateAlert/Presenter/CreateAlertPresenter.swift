@@ -43,11 +43,6 @@ extension CreateAlertPresenter: CreateAlertViewOutput {
     func showSearchViewController(searchType: SearchViewController.SearchType) {
         router.openCurrencyPairsSearchView(view as! UIViewController, moduleOutput: self)
     }
-    
-    func setAlertData(alertItem: Alert) {
-        view.setAlertItem(alertItem: alertItem)
-        print("edit alertItem: \(alertItem.getDataAsText())")
-    }
 }
 
 // @MARK: CreateAlertInteractorOutput
@@ -56,12 +51,8 @@ extension CreateAlertPresenter: CreateAlertInteractorOutput {
         view.updateSelectedCurrency(tickerCurrencyPair)
     }
     
-    func closeView() {
-        
-    }
-    
     func onCreateAlertSuccessull() {
-        
+        showAlert(message: "Alert has benn created successfully")
     }
     
     func showAlert(message: String) {
