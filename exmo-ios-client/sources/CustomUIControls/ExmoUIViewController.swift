@@ -23,8 +23,6 @@ class ExmoUIViewController: UIViewController {
         imageView.contentMode = .center
         return imageView
     }()
-    
-    var shouldUseGlow = true
 
     var titleNavBar: String? {
         didSet {
@@ -48,6 +46,10 @@ class ExmoUIViewController: UIViewController {
         super.viewWillDisappear(animated)
         updateNavigationBar(shouldHideNavigationBar: false)
     }
+    
+    func shouldUseGlow() -> Bool {
+        return true
+    }
 }
 
 extension ExmoUIViewController {
@@ -55,7 +57,7 @@ extension ExmoUIViewController {
         view.addSubview(activityIndicatorView)
         activityIndicatorView.anchorCenterSuperview()
         
-        if shouldUseGlow {
+        if shouldUseGlow() {
             view.addSubview(glowImage)
             glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -90, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         }
@@ -68,9 +70,11 @@ extension ExmoUIViewController {
         titleView.textColor = .white
         navigationItem.titleView = titleView
     }
-    
+}
+
+extension ExmoUIViewController {
     func updateNavigationBar(shouldHideNavigationBar: Bool) {
-        if !shouldUseGlow {
+        if !shouldUseGlow() {
             self.navigationController?.navigationBar.barStyle = .black
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -78,7 +82,7 @@ extension ExmoUIViewController {
         }
         
         let dummyImage: UIImage? = shouldHideNavigationBar ? UIImage() : nil
-
+        
         self.navigationController?.navigationBar.setBackgroundImage(dummyImage, for: .default)
         self.navigationController?.navigationBar.shadowImage = dummyImage
         self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar

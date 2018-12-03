@@ -64,6 +64,10 @@ class CreateAlertViewController: ExmoUIViewController {
         super.viewWillAppear(animated)
         output.viewWillDisappear()
     }
+    
+    override func shouldUseGlow() -> Bool {
+        return false
+    }
 }
 
 // @MARK: CreateAlertViewInput
