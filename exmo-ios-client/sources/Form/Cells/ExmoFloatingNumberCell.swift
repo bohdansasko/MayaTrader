@@ -84,9 +84,17 @@ extension ExmoFloatingNumberCell: FormUpdatable {
 
 extension ExmoFloatingNumberCell: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        // check text length
         guard let text = textField.text,
               let fi = formItem else { return true }
         let newLength = text.count + string.count - range.length
-        return newLength <= fi.uiProperties.textMaxLength
+        
+        // check correct input
+        let str = text + string
+        if str.hasPrefix("00")  {
+            return false
+        }
+        
+        return str.isValidDoubleValue() && newLength <= fi.uiProperties.textMaxLength
     }
 }

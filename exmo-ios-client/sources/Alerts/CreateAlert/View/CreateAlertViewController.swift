@@ -32,8 +32,6 @@ class CreateAlertViewController: ExmoUIViewController {
     
     // MARK: Life cycle
     override func viewDidLoad() {
-        shouldUseGlow = false
-        
         super.viewDidLoad()
         
         titleNavBar = form.title
@@ -42,6 +40,10 @@ class CreateAlertViewController: ExmoUIViewController {
             [weak self] in
             guard let self = self,
                   let currencyPair = self.form.currencyPair else { return }
+            if !self.form.isValid() {
+                print("form doesn't validate")
+                return
+            }
             
             let rawCurrencyPairName = Utils.getRawCurrencyPairName(name: currencyPair)
             let maxValue: Double? = self.form.topBound != nil ? Double(self.form.topBound!) : nil

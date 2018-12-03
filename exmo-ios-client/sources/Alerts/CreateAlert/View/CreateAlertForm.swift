@@ -26,8 +26,20 @@ class FormCreateAlert {
         setupFormItems()
     }
     
+    func isValid() -> Bool {
+        for item in cellItems {
+            if let vItem = item as? FormItemValidate {
+                if !vItem.isValidate() {
+                    return false
+                }
+            }
+        }
+        
+        return true
+    }
+    
     private func setupFormItems() {
-        let currencyPairItem = CurrencyDetailsItem(title: "CURRENCY PAIR", placeholder: "Select currency pair…")
+        let currencyPairItem = CurrencyDetailsItem(title: "CURRENCY PAIR", placeholder: "Select currency pair…", isMandatory: true)
         currencyPairItem.valueCompletion = {
             [weak self, weak currencyPairItem] value in
             self?.currencyPair = value
