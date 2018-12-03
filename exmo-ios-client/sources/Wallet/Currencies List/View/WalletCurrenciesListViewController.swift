@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WalletCurrenciesListViewController: UIViewController {
+class WalletCurrenciesListViewController: ExmoUIViewController {
     var output: WalletCurrenciesListViewOutput!
 
     var tabBar: CurrenciesListTabBar = {
@@ -21,18 +21,10 @@ class WalletCurrenciesListViewController: UIViewController {
         return dm
     }()
     
-    let activityIndicatorView: UIActivityIndicatorView = {
-        let aiv = UIActivityIndicatorView(style: .whiteLarge)
-        aiv.hidesWhenStopped = true
-        aiv.color = .white
-        return aiv
-    }()
-    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .black
         setupViews()
         output.viewIsReady()
     }
@@ -59,10 +51,7 @@ extension WalletCurrenciesListViewController {
     func setupViews() {
         setupNavigationBar()
         setupCurrenciesList()
-        
-        view.addSubview(activityIndicatorView)
-        activityIndicatorView.anchorCenterSuperview()
-        activityIndicatorView.startAnimating()
+        showLoader()
 //        if AppDelegate.isIPhone(model: .X) {
 //            self.layoutConstraintHeaderHeight.constant = 95
 //        }
@@ -87,7 +76,7 @@ extension WalletCurrenciesListViewController {
 extension WalletCurrenciesListViewController: WalletCurrenciesListViewInput {
     func updateWallet(_ wallet: ExmoWallet) {
         currenciesListView.wallet = wallet
-        activityIndicatorView.stopAnimating()
+        hideLoader()
     }
 }
 
