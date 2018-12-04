@@ -12,13 +12,13 @@ import UIKit.UISearchBar
 extension UISearchBar {
     func removeGlassIcon() {
         guard let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField else { return }
-        textFieldInsideSearchBar.textColor = .steel
         guard let  glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
         glassIconView.image = nil
     }
     
-    func setInputTextFont(_ font: UIFont) {
+    func setInputTextFont(_ font: UIFont, textColor: UIColor = .white) {
         guard let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField else { return }
         textFieldInsideSearchBar.font = font
+        textFieldInsideSearchBar.textColor = textColor
     }
 }

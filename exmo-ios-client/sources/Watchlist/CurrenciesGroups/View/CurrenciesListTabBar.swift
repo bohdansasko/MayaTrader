@@ -12,6 +12,12 @@ class CurrenciesListTabBar: UIView {
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.backgroundImage = UIImage()
+        searchBar.barStyle = .black
+        searchBar.tintColor = .white
+        searchBar.placeholder = "Search currency..."
+        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .Regular, fontSize: 14))
+        searchBar.barTintColor = .white
         return searchBar
     }()
     
@@ -61,23 +67,14 @@ class CurrenciesListTabBar: UIView {
 extension CurrenciesListTabBar {
     func setupViews() {
         backgroundColor = .black
+        searchBar.removeGlassIcon()
         
         addSubview(glassIconView)
         addSubview(searchBar)
         addSubview(doneBtn)
         addSubview(separatorHLineView)
         
-        setupSearchBar()
         setupConstraints()
-    }
-    
-    private func setupSearchBar() {
-        searchBar.backgroundImage = UIImage()
-        searchBar.barStyle = .black
-        searchBar.tintColor = .white
-        searchBar.placeholder = "Search currency..."
-        searchBar.removeGlassIcon()
-        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .Regular, fontSize: 14))
     }
     
     private func setupConstraints() {
