@@ -37,7 +37,6 @@
 		2010154920B02B7800324F22 /* AddAlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010154720B02B7800324F22 /* AddAlertTableViewCell.xib */; };
 		2010154D20B04FD600324F22 /* AlertTableViewCellButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154B20B04FD600324F22 /* AlertTableViewCellButton.swift */; };
 		2010154E20B04FD600324F22 /* AlertTableViewCellButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2010154C20B04FD600324F22 /* AlertTableViewCellButton.xib */; };
-		2010155020B0510A00324F22 /* CreateAlertDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010154F20B0510A00324F22 /* CreateAlertDisplayManager.swift */; };
 		2010155220B05F1100324F22 /* AlertTableViewCellWithTextData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2010155120B05F1100324F22 /* AlertTableViewCellWithTextData.swift */; };
 		2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56E2071464600EFACB7 /* Exo2-Black.ttf */; };
 		2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */; };
@@ -354,7 +353,6 @@
 		2010154720B02B7800324F22 /* AddAlertTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAlertTableViewCell.xib; sourceTree = "<group>"; };
 		2010154B20B04FD600324F22 /* AlertTableViewCellButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellButton.swift; sourceTree = "<group>"; };
 		2010154C20B04FD600324F22 /* AlertTableViewCellButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCellButton.xib; sourceTree = "<group>"; };
-		2010154F20B0510A00324F22 /* CreateAlertDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertDisplayManager.swift; sourceTree = "<group>"; };
 		2010155120B05F1100324F22 /* AlertTableViewCellWithTextData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCellWithTextData.swift; sourceTree = "<group>"; };
 		2013E56E2071464600EFACB7 /* Exo2-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Black.ttf"; sourceTree = "<group>"; };
 		2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-BlackItalic.ttf"; sourceTree = "<group>"; };
@@ -1554,7 +1552,6 @@
 				201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */,
 				6070BC376D8AC4F1A5006B4B /* CreateAlertViewProtocols.swift */,
 				D7083115E233EBE369D8B337 /* CreateAlertViewController.swift */,
-				2010154F20B0510A00324F22 /* CreateAlertDisplayManager.swift */,
 				200E691921B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift */,
 			);
 			path = View;
@@ -2488,7 +2485,6 @@
 				20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */,
 				20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */,
 				207552962188B1F00011190E /* NetworkWorker.swift in Sources */,
-				2010155020B0510A00324F22 /* CreateAlertDisplayManager.swift in Sources */,
 				2010154820B02B7800324F22 /* AddAlertTableViewCell.swift in Sources */,
 				20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */,
 				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,

@@ -58,3 +58,42 @@ enum OrderActionType: String {
     case Buy = "Buy"
     case Sell = "Sell"
 }
+
+struct ModelOrderViewCell {
+    private var textContainer: [String:String]
+    var isTextInputEnabled = true
+    
+    init(headerText: String, placeholderText: String, currencyName: String = "", rightText: String = "") {
+        self.textContainer = [String:String]()
+        self.textContainer["headerText"] = headerText
+        self.textContainer["placeholderText"] = placeholderText
+        self.textContainer["currencyName"] = currencyName
+        self.textContainer["rightText"] = rightText
+    }
+    
+    init(headerText: String = "") {
+        self.init(headerText: headerText, placeholderText: "")
+    }
+    
+    func getHeaderText() -> String {
+        return textContainer["headerText"] ?? ""
+    }
+    
+    func getPlaceholderText() -> String {
+        return textContainer["placeholderText"] ?? ""
+    }
+    
+    func getCurrencyName() -> String {
+        return textContainer["currencyName"] ?? ""
+    }
+    
+    func getRightText() -> String {
+        return textContainer["rightText"] ?? ""
+    }
+}
+
+enum AlertOperationType {
+    case Add
+    case Update
+    case None
+}
