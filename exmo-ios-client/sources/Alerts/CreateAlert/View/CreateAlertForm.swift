@@ -28,10 +28,9 @@ class FormCreateAlert {
     
     func isValid() -> Bool {
         for item in cellItems {
-            if let vItem = item as? FormItemValidate {
-                if !vItem.isValidate() {
-                    return false
-                }
+            let vItem = item as FormItemValidate
+            if !vItem.isValidate() {
+                return false
             }
         }
         

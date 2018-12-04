@@ -19,7 +19,7 @@ class Utils {
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = ","
         formatter.decimalSeparator = "."
-        formatter.maximumFractionDigits = maxFractDigits
+        formatter.maximumFractionDigits = value > 0.0001 ? 4 : maxFractDigits
         if let formattedPrice = formatter.string(for: value) {
             return formattedPrice
         }
