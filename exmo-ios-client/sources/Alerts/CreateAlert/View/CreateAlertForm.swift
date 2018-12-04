@@ -43,10 +43,11 @@ class FormCreateAlert {
             [weak self, weak currencyPairItem] value in
             self?.currencyPair = value
             currencyPairItem?.leftValue = value
+            self?.updateCurrenciesPlaceholders()
         }
         currencyPairItem.uiProperties.cellType = .CurrencyDetails
         
-        let upperBoundItem = FloatingNumberFormItem(title: "UPPER BOUND", placeholder: "0 USD")
+        let upperBoundItem = FloatingNumberFormItem(title: "UPPER BOUND", placeholder1: "0", placeholder2: " USD")
         upperBoundItem.valueCompletion = {
             [weak self, weak upperBoundItem] value in
             self?.topBound = value
@@ -54,7 +55,7 @@ class FormCreateAlert {
         }
         upperBoundItem.uiProperties.cellType = .FloatingNumberTextField
         
-        let bottomBoundItem = FloatingNumberFormItem(title: "BOTTOM BOUND", placeholder: "0 USD")
+        let bottomBoundItem = FloatingNumberFormItem(title: "BOTTOM BOUND", placeholder1: "0", placeholder2: " USD")
         bottomBoundItem.valueCompletion = {
             [weak self, weak bottomBoundItem] value in
             self?.bottomBound = value
@@ -83,5 +84,16 @@ class FormCreateAlert {
         buttonItem.uiProperties.cellType = .Button
         
         cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, noteItem, switchItem, buttonItem]
+    }
+    
+    private func updateCurrenciesPlaceholders() {
+        guard let splitCurrencyPair = currencyPair?.split(separator: "/"), splitCurrencyPair.count > 1 else { return }
+        let currency = splitCurrencyPair[1]
+        cellItems.forEach({
+            item in
+            guard let floatingItem = item as? FloatingNumberFormItem else { return }
+            floatingItem.placeholder2 = " " + currency
+            
+        })
     }
 }

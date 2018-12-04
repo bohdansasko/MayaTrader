@@ -66,13 +66,15 @@ class FloatingNumberFormItem: FormItem {
     var isMandatory: Bool
     var title: String?
     var value: String?
-    var placeholder: String?
+    var placeholder1: String?
+    var placeholder2: String?
     var uiProperties = CellUIProperties()
     var valueCompletion: ((String?) -> Void)?
     
-    init(title: String?, placeholder: String?) {
+    init(title: String?, placeholder1: String?, placeholder2: String?) {
         self.title = title
-        self.placeholder = placeholder
+        self.placeholder1 = placeholder1
+        self.placeholder2 = placeholder2
         uiProperties.keyboardType = .decimalPad
         isMandatory = false
     }

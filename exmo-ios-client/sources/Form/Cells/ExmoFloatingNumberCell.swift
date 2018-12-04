@@ -74,9 +74,10 @@ extension ExmoFloatingNumberCell: FormUpdatable {
     func update(item: FormItem?) {
         guard let fi = item as? FloatingNumberFormItem else { return }
         formItem = fi
+        
         titleLabel.text = fi.title
         titleLabel.textColor = fi.uiProperties.titleColor
-        textInput.placeholder = fi.placeholder
+        textInput.placeholder = fi.placeholder1?.appending(fi.placeholder2 ?? "")
         textInput.keyboardType = fi.uiProperties.keyboardType
         textInput.placeholderColor = .white30
     }

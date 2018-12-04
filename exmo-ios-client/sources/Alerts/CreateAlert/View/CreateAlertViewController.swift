@@ -82,6 +82,11 @@ extension CreateAlertViewController: CreateAlertViewInput {
         detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair.code)
         detailsFormItem.rightValue = Utils.getFormatedPrice(value: currencyPair.lastTrade, maxFractDigits: 10)
         detailsItem.update(item: detailsFormItem)
+        
+        for (_, cell) in cells {
+            guard let floatingCell = cell as? ExmoFloatingNumberCell else { continue }
+            floatingCell.update(item: floatingCell.formItem)
+        }
     }
 }
 
