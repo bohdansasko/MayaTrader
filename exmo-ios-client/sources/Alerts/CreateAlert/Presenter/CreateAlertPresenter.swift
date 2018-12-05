@@ -7,10 +7,17 @@
 //
 import UIKit
 
-class CreateAlertPresenter: CreateAlertModuleInput {
+class CreateAlertPresenter {
     weak var view: CreateAlertViewInput!
     var interactor: CreateAlertInteractorInput!
     var router: CreateAlertRouterInput!
+}
+
+// @MARK: CreateAlertModuleInput
+extension CreateAlertPresenter: CreateAlertModuleInput {
+    func setEditAlert(_ alert: Alert) {
+        view.setEditAlert(alert)
+    }
 }
 
 // @MARK: CreateAlertViewOutput

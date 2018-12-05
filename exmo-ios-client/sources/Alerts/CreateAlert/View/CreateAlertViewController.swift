@@ -30,6 +30,8 @@ class CreateAlertViewController: ExmoUIViewController {
         return button
     }()
     
+    var editAlert: Alert?
+    
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +55,15 @@ class CreateAlertViewController: ExmoUIViewController {
             print(alert.getDataAsText())
 //            output.createAlert()
         }
+        
+        if let alert = editAlert {
+            form.currencyPair = alert.currencyCode == nil ? nil : Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode!)
+            form.topBound = alert.topBoundary == nil ? nil : String(alert.topBoundary!)
+            form.bottomBound = alert.bottomBoundary == nil ? nil : String(alert.bottomBoundary!)
+            form.note = alert.note
+            form.isPersistent = alert.isPersistentNotification
+        }
+        
         form.viewIsReady()
         setupViews()
     }
@@ -87,6 +98,10 @@ extension CreateAlertViewController: CreateAlertViewInput {
             guard let floatingCell = cell as? ExmoFloatingNumberCell else { continue }
             floatingCell.update(item: floatingCell.formItem)
         }
+    }
+    
+    func setEditAlert(_ alert: Alert) {
+        editAlert = alert
     }
 }
 

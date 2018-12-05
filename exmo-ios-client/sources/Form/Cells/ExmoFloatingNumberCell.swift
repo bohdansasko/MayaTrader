@@ -77,6 +77,7 @@ extension ExmoFloatingNumberCell: FormUpdatable {
         
         titleLabel.text = fi.title
         titleLabel.textColor = fi.uiProperties.titleColor
+        textInput.text = fi.value
         textInput.placeholder = fi.placeholder1?.appending(fi.placeholder2 ?? "")
         textInput.keyboardType = fi.uiProperties.keyboardType
         textInput.placeholderColor = .white30

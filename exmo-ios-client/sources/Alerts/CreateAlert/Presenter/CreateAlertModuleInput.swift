@@ -7,5 +7,5 @@
 //
 
 protocol CreateAlertModuleInput: class {
-    // do nothing
+    func setEditAlert(_ alert: Alert)
 }

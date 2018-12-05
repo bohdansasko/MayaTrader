@@ -15,6 +15,8 @@ class AlertsRouter: AlertsRouterInput {
     
     func editAlert(view: UIViewController, alert: Alert)  {
         let moduleInit = CreateAlertModuleInitializer()
+        guard let mInput = moduleInit.viewController.output as? CreateAlertModuleInput else { return }
+        mInput.setEditAlert(alert)
         view.present(UINavigationController(rootViewController: moduleInit.viewController), animated: true, completion: nil)
     }
 }

@@ -45,6 +45,7 @@ class FormCreateAlert {
             currencyPairItem?.leftValue = value
             self?.updateCurrenciesPlaceholders()
         }
+        currencyPairItem.leftValue = currencyPair
         currencyPairItem.uiProperties.cellType = .CurrencyDetails
         
         let upperBoundItem = FloatingNumberFormItem(title: "UPPER BOUND", placeholder1: "0", placeholder2: " USD")
@@ -53,6 +54,7 @@ class FormCreateAlert {
             self?.topBound = value
             upperBoundItem?.value = value
         }
+        upperBoundItem.value = topBound
         upperBoundItem.uiProperties.cellType = .FloatingNumberTextField
         
         let bottomBoundItem = FloatingNumberFormItem(title: "BOTTOM BOUND", placeholder1: "0", placeholder2: " USD")
@@ -61,6 +63,7 @@ class FormCreateAlert {
             self?.bottomBound = value
             bottomBoundItem?.value = value
         }
+        bottomBoundItem.value = bottomBound
         bottomBoundItem.uiProperties.cellType = .FloatingNumberTextField
         
         let noteItem = TextFormItem(title: "NOTE", placeholder: "Write reminder note...")
@@ -69,6 +72,7 @@ class FormCreateAlert {
             self?.note = value
             noteItem?.value = value
         }
+        noteItem.value = note
         noteItem.uiProperties.cellType = .TextField
         
         let switchItem = SwitchFormItem(title: "IS PERSISTENT")
@@ -77,9 +81,10 @@ class FormCreateAlert {
             self?.isPersistent = value
             switchItem?.value = value
         }
+        switchItem.value = isPersistent
         switchItem.uiProperties.cellType = .Switcher
         
-        let buttonItem = ButtonFormItem(title: "CREATE")
+        let buttonItem = ButtonFormItem(title: currencyPair == nil ? "CREATE" : "UPDATE")
         buttonItem.onTouch = onTouchButtonCreate
         buttonItem.uiProperties.cellType = .Button
         
