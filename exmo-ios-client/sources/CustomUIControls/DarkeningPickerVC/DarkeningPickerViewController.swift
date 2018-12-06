@@ -27,36 +27,36 @@ class DarkeningPickerViewManager {
     var callbackOnSelectAction: IntInVoidOutClosure?
     
     init(frameRect: CGRect, model: DarkeningPickerViewModel) {
-        self.mainWindow = UIApplication.shared.keyWindow
+        mainWindow = UIApplication.shared.keyWindow
         self.frameRect = frameRect
-        self.headerString = model.header
-        self.dataSource = model.dataSouce
+        headerString = model.header
+        dataSource = model.dataSouce
     }
     
     func showPickerViewWithDarkening(_ withSelectedIndex: Int = -1) {
         guard let darkeningViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DarkeningPickerViewController") as? DarkeningPickerViewController else {
             return
         }
-        darkeningViewController.prepareDataForShow(headerString: self.headerString, dataSource: self.dataSource, selectedRowWhenViewDidLoad: withSelectedIndex)
+        darkeningViewController.prepareDataForShow(headerString: headerString, dataSource: dataSource, selectedRowWhenViewDidLoad: withSelectedIndex)
         darkeningViewController.pickerViewManager = self
         
-        self.newTopWindow = UIWindow(frame: self.frameRect)
-        self.newTopWindow?.rootViewController = darkeningViewController
-        self.newTopWindow?.windowLevel = UIWindow.Level.statusBar + 1
-        self.newTopWindow?.makeKeyAndVisible()
+        newTopWindow = UIWindow(frame: frameRect)
+        newTopWindow?.rootViewController = darkeningViewController
+        newTopWindow?.windowLevel = UIWindow.Level.statusBar + 1
+        newTopWindow?.makeKeyAndVisible()
     }
     
     func setCallbackOnSelectAction(callback: IntInVoidOutClosure?) {
-        self.callbackOnSelectAction = callback
+        callbackOnSelectAction = callback
     }
     
     func close(selectedIndex: Int) {
         if selectedIndex > -1 {
-            self.callbackOnSelectAction?(selectedIndex)
+            callbackOnSelectAction?(selectedIndex)
         }
-        self.newTopWindow?.isHidden = true
-        self.newTopWindow = nil
-        self.mainWindow?.makeKeyAndVisible()
+        newTopWindow?.isHidden = true
+        newTopWindow = nil
+        mainWindow?.makeKeyAndVisible()
     }
 }
 
@@ -73,30 +73,35 @@ class DarkeningPickerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.textField = UITextField(frame: CGRect.zero)
-        self.view.addSubview(self.textField)
+        textField = UITextField(frame: CGRect.zero)
+        view.addSubview(textField)
         
-        self.setupPickerView()
+        setupPickerView()
         
-        self.view.backgroundColor = UIColor.black.withAlphaComponent(0.74)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.74)
         
         var selectRow = 0;
         if selectedRowWhenViewDidLoad != -1 {
-            selectRow = self.selectedRowWhenViewDidLoad
+            selectRow = selectedRowWhenViewDidLoad
         } else if !dataSource.isEmpty {
             selectRow = dataSource.count % 2 == 1
                     ? dataSource.count/2
                     : dataSource.count/2 - 1
         }
-        self.pickerView.selectRow(selectRow, inComponent: 0, animated: false)
-        self.textField.becomeFirstResponder()
+        pickerView.selectRow(selectRow, inComponent: 0, animated: false)
+        textField.becomeFirstResponder()
         
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.onTouchView))
-        self.view.addGestureRecognizer(tapRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(onTouchView))
+        view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        pickerView.backgroundColor = .black
     }
     
     @objc func onTouchView(_ sender : Any) {
-        self.closeView(selectedIndex: -1)
+        closeView(selectedIndex: -1)
     }
 
     override func didReceiveMemoryWarning() {
@@ -115,7 +120,7 @@ class DarkeningPickerViewController: UIViewController {
         pickerView.backgroundColor = .black
         pickerView.dataSource = self
         pickerView.delegate = self
-        self.pickerView.translatesAutoresizingMaskIntoConstraints = false
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
         
         let toolbar = UIToolbar()
         toolbar.isTranslucent = false
@@ -129,7 +134,7 @@ class DarkeningPickerViewController: UIViewController {
         let buttonDown = UIBarButtonItem(image: #imageLiteral(resourceName: "icArrowDown"), style: .plain, target: self, action: #selector(pickerViewButtonDownPressed(sender:)))
         
         let labelOrderBy = UILabel(frame: CGRect(x: 0, y: 0, width: 80, height: 22))
-        labelOrderBy.text = self.headerString
+        labelOrderBy.text = headerString
         labelOrderBy.textColor = UIColor.white
         labelOrderBy.textAlignment = .left
         labelOrderBy.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 17)
@@ -156,8 +161,8 @@ class DarkeningPickerViewController: UIViewController {
         toolbar.setItems([buttonUp, buttonDown, buttonOrderBy, buttonFlexible, buttonDone], animated: false)
         toolbar.sizeToFit()
         
-        self.textField.inputAccessoryView = toolbar
-        self.textField.inputView = pickerView
+        textField.inputAccessoryView = toolbar
+        textField.inputView = pickerView
     }
     
     //
@@ -183,11 +188,11 @@ class DarkeningPickerViewController: UIViewController {
     }
     
     @IBAction func pickerViewButtonDonePressed(sender: Any) {
-        self.closeView(selectedIndex: self.getSelectedRowInPickerView())
+        closeView(selectedIndex: getSelectedRowInPickerView())
     }
     
     func closeView(selectedIndex: Int) {
-        self.textField.resignFirstResponder()
+        textField.resignFirstResponder()
         UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {}, completion: {
             _ in
             self.pickerViewManager.close(selectedIndex: selectedIndex)
@@ -225,6 +230,6 @@ extension DarkeningPickerViewController: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return self.dataSource.count
+        return dataSource.count
     }
 }
