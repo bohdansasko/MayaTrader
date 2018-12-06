@@ -19,11 +19,15 @@ class FormCreateAlert {
     var cellItems = [FormItem]()
     
     init() {
-        title = "Create alert"
+        // do nothing
     }
     
     func viewIsReady() {
         setupFormItems()
+    }
+    
+    func refreshTitle() {
+        title = currencyPair == nil ? "Create alert" : "Update alert"
     }
     
     func isValid() -> Bool {

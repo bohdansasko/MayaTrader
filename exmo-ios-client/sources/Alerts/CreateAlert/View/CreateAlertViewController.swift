@@ -36,6 +36,14 @@ class CreateAlertViewController: ExmoUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let alert = editAlert {
+            form.currencyPair = alert.currencyCode == nil ? nil : Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode!)
+            form.topBound = alert.topBoundary == nil ? nil : String(alert.topBoundary!)
+            form.bottomBound = alert.bottomBoundary == nil ? nil : String(alert.bottomBoundary!)
+            form.note = alert.note
+            form.isPersistent = alert.isPersistentNotification
+        }
+        form.refreshTitle()
         titleNavBar = form.title
         
         form.onTouchButtonCreate = {
@@ -54,14 +62,6 @@ class CreateAlertViewController: ExmoUIViewController {
             let alert = Alert(id: "", currencyPairName: rawCurrencyPairName, priceAtCreateMoment: 0, note: self.form.note, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
             print(alert.getDataAsText())
 //            output.createAlert()
-        }
-        
-        if let alert = editAlert {
-            form.currencyPair = alert.currencyCode == nil ? nil : Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode!)
-            form.topBound = alert.topBoundary == nil ? nil : String(alert.topBoundary!)
-            form.bottomBound = alert.bottomBoundary == nil ? nil : String(alert.bottomBoundary!)
-            form.note = alert.note
-            form.isPersistent = alert.isPersistentNotification
         }
         
         form.viewIsReady()
