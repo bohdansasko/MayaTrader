@@ -37,8 +37,8 @@ class MainTabBarController: UITabBarController {
     
     func updateIndicatorPosition(index: Int) {
         let count = 5
-        let width = CGFloat(self.tabBar.frame.width) / CGFloat(count)
-        let posX = width * CGFloat(index) + CGFloat(width/2)
+        let itemWidth = CGFloat(self.tabBar.frame.width) / CGFloat(count)
+        let posX = itemWidth * CGFloat(index) + CGFloat(itemWidth/2)
         selectedTabIndicatorImage.center.x = CGFloat(posX)
     }
 }
@@ -53,7 +53,7 @@ extension MainTabBarController {
     private func setupTabBar() {
         tabBar.barTintColor = .black
         tabBar.isTranslucent = false
-        
+        tabBar.itemPositioning = .centered
         addSelectedTabIndicator()
         updateIndicatorPosition(index: 0)
     }
