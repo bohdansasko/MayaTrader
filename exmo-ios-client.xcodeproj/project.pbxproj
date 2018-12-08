@@ -143,9 +143,12 @@
 		20A5B88920AE239100EC2A4D /* Alerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88820AE239100EC2A4D /* Alerts.storyboard */; };
 		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
 		20A5B88D20AE241400EC2A4D /* MoreOptions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */; };
+		20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */; };
+		20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */; };
+		20A9044F21BA4B7A00718A53 /* FormCreateOrderLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044E21BA4B7A00718A53 /* FormCreateOrderLimit.swift */; };
+		20A9045221BA4C1300718A53 /* FormCreateOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9045121BA4C1300718A53 /* FormCreateOrder.swift */; };
 		20B1628D21AAD5770087AEE7 /* OrdersNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1628C21AAD5770087AEE7 /* OrdersNetworkWorker.swift */; };
 		20B1628F21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1628E21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift */; };
-		20B1629121AAD6750087AEE7 /* CreateLimitView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1629021AAD6750087AEE7 /* CreateLimitView+Layout.swift */; };
 		20B1629321AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */; };
 		20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */; };
 		20B42B3320F47C5000C1F56C /* SwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */; };
@@ -161,7 +164,6 @@
 		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
 		20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */; };
 		20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */; };
-		20CCBDB5206396560099D144 /* CreateOrderCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CCBDB4206396560099D144 /* CreateOrderCells.swift */; };
 		20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */; };
 		20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */; };
 		20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */; };
@@ -456,9 +458,12 @@
 		20A5B88820AE239100EC2A4D /* Alerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alerts.storyboard; sourceTree = "<group>"; };
 		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
 		20A5B88C20AE241400EC2A4D /* MoreOptions.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MoreOptions.storyboard; sourceTree = "<group>"; };
+		20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnSum.swift; sourceTree = "<group>"; };
+		20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnAmount.swift; sourceTree = "<group>"; };
+		20A9044E21BA4B7A00718A53 /* FormCreateOrderLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderLimit.swift; sourceTree = "<group>"; };
+		20A9045121BA4C1300718A53 /* FormCreateOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrder.swift; sourceTree = "<group>"; };
 		20B1628C21AAD5770087AEE7 /* OrdersNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersNetworkWorker.swift; sourceTree = "<group>"; };
 		20B1628E21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersNetworkWorkerProtocols.swift; sourceTree = "<group>"; };
-		20B1629021AAD6750087AEE7 /* CreateLimitView+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateLimitView+Layout.swift"; sourceTree = "<group>"; };
 		20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateLimitView+Datasource+Delegate.swift"; sourceTree = "<group>"; };
 		20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherTableViewCell.swift; sourceTree = "<group>"; };
 		20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitcherTableViewCell.xib; sourceTree = "<group>"; };
@@ -474,7 +479,6 @@
 		20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiHandler.swift; sourceTree = "<group>"; };
 		20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
-		20CCBDB4206396560099D144 /* CreateOrderCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderCells.swift; sourceTree = "<group>"; };
 		20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListCell.swift; sourceTree = "<group>"; };
 		20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkProtocols.swift; sourceTree = "<group>"; };
 		20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNetworkWorker.swift; sourceTree = "<group>"; };
@@ -1300,6 +1304,17 @@
 			path = sources;
 			sourceTree = "<group>";
 		};
+		20A9045021BA4BF800718A53 /* CreateOrderForms */ = {
+			isa = PBXGroup;
+			children = (
+				20A9045121BA4C1300718A53 /* FormCreateOrder.swift */,
+				20A9044E21BA4B7A00718A53 /* FormCreateOrderLimit.swift */,
+				20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */,
+				20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */,
+			);
+			path = CreateOrderForms;
+			sourceTree = "<group>";
+		};
 		20B1628B21AAD56D0087AEE7 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -1326,9 +1341,7 @@
 		20B9CC99219A3492004AC3B2 /* Layouts */ = {
 			isa = PBXGroup;
 			children = (
-				20CCBDB4206396560099D144 /* CreateOrderCells.swift */,
 				20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */,
-				20B1629021AAD6750087AEE7 /* CreateLimitView+Layout.swift */,
 				20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */,
 			);
 			path = Layouts;
@@ -1504,6 +1517,7 @@
 				20B9CC99219A3492004AC3B2 /* Layouts */,
 				D63977E4ED0ACEE06254D7CC /* CreateOrderViewProtocols.swift */,
 				BFE6209D848493B699B132F6 /* CreateOrderViewController.swift */,
+				20A9045021BA4BF800718A53 /* CreateOrderForms */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2303,12 +2317,12 @@
 				206BD9522074297400ADC91C /* MainTabBarController.swift in Sources */,
 				20600A2120532831004D7F45 /* WalletCurrencyEntity+CoreDataClass.swift in Sources */,
 				20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */,
+				20A9044F21BA4B7A00718A53 /* FormCreateOrderLimit.swift in Sources */,
 				204CC7DB21B93478002057CA /* Session.swift in Sources */,
 				73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */,
 				207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */,
 				20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */,
 				20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */,
-				20CCBDB5206396560099D144 /* CreateOrderCells.swift in Sources */,
 				206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */,
 				201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */,
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
@@ -2384,6 +2398,7 @@
 				44C5D2B416D47E19F636B03C /* MenuRouterProtocols.swift in Sources */,
 				23027C32759874645F1BFC61 /* MenuRouter.swift in Sources */,
 				7EC9484FD743CFD4022B349F /* MenuConfigurator.swift in Sources */,
+				20A9045221BA4C1300718A53 /* FormCreateOrder.swift in Sources */,
 				BC73413875E7DA458E9010FA /* MenuInitializer.swift in Sources */,
 				20600A252053291C004D7F45 /* WalletTransactionHistoryEntity+CoreDataClass.swift in Sources */,
 				204F234F21AC84AD0023890E /* AlertsNetworkWorker.swift in Sources */,
@@ -2467,6 +2482,7 @@
 				B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */,
 				201DF20721B2909600158A15 /* CurrencyDetailsCell.swift in Sources */,
 				20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */,
+				20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */,
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersViewController.swift in Sources */,
 				200E691A21B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift in Sources */,
 				207B1D972173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift in Sources */,
@@ -2524,7 +2540,6 @@
 				5A2AFB98DDCEF332BD76F334 /* WatchlistCurrencyChartViewController.swift in Sources */,
 				2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */,
 				20369A5121972438001D6628 /* MainTabBarPresenterProtocols.swift in Sources */,
-				20B1629121AAD6750087AEE7 /* CreateLimitView+Layout.swift in Sources */,
 				88F374AA6AB2C96E9516D8AB /* WatchlistCurrencyChartModuleInput.swift in Sources */,
 				EABF76B025CEFE0E8375F4D1 /* WatchlistCurrencyChartPresenter.swift in Sources */,
 				BA0F381B769424B4E72E2954 /* WatchlistCurrencyChartInteractorInput.swift in Sources */,
@@ -2541,6 +2556,7 @@
 				81D6C5A005CDED67BB51198D /* SearchCurrencyPairPresenter.swift in Sources */,
 				201DF1FE21B27D0F00158A15 /* FormItems.swift in Sources */,
 				2FFE2B3AA119EA553FD16233 /* SearchCurrencyPairInteractorProtocols.swift in Sources */,
+				20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */,
 				DD63D0024D67C51BFB1C988F /* SearchCurrencyPairInteractor.swift in Sources */,
 				643F1A05DF8DE97B34F64435 /* SearchCurrencyPairRouterInput.swift in Sources */,
 				5AE00036F58513F97F1994D1 /* SearchCurrencyPairRouter.swift in Sources */,

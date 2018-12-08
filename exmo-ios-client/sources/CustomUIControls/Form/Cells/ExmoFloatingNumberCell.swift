@@ -9,7 +9,22 @@
 import UIKit
 
 class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
-    var formItem: FloatingNumberFormItem?
+    var formItem: FloatingNumberFormItem? {
+        didSet {
+            formItem?.valueChanged = {
+                [weak self] strValue in
+                self?.textInput.text = strValue
+                self?.textInput.sendActions(for: .editingChanged)
+            }
+            
+            formItem?.refreshPlaceholder = {
+                [weak self] in
+                guard let fi = self?.formItem else { return }
+                self?.textInput.placeholder = fi.placeholder1?.appending(fi.placeholder2 ?? "")
+                self?.textInput.placeholderColor = .white30
+            }
+        }
+    }
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -39,7 +54,7 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = .black
+        backgroundColor = nil
         selectionStyle = .none
         setupViews()
     }

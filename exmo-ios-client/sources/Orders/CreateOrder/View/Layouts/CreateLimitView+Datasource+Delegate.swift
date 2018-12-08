@@ -15,11 +15,11 @@ extension CreateOrderLimitView: UITableViewDataSource  {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return numberOfRowsInTab()
+        return form.tabs[layoutType.rawValue].cellItems.count
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        return form.tabs[layoutType.rawValue].cellItems[section].uiProperties.spacingBetweenRows
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -29,28 +29,37 @@ extension CreateOrderLimitView: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.section+1 == numberOfRowsInTab() ? 45 : 70
+        return form.tabs[layoutType.rawValue].cellItems[indexPath.section].uiProperties.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if cells[indexPath] != nil {
-            return cells[indexPath]! ?? UITableViewCell()
+        if let cell = cells[indexPath] {
+            return cell
         }
-        switch (layoutType) {
-        case .Limit: cells[indexPath] = getLimitCell(cellForRowAt: indexPath)
-        case .InstantOnAmount: cells[indexPath] = getInstantOnAmountCell(cellForRowAt: indexPath)
-        case .InstantOnSum: cells[indexPath] = getInstantOnSumCell(cellForRowAt: indexPath)
+        
+        var cell: UITableViewCell
+        if let cellType = form.tabs[layoutType.rawValue].cellItems[indexPath.section].uiProperties.cellType {
+            cell = cellType.dequeueCell(for: tableView, at: indexPath)
+            cells[indexPath] = cell
+        } else {
+            cell = UITableViewCell()
         }
-        return cells[indexPath]!!
+        
+        return cell
     }
 }
 
 // @MARK: UITableViewDelegate
 extension CreateOrderLimitView: UITableViewDelegate  {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let cell = cell as? FormUpdatable else { return }
+        cell.update(item: form.tabs[layoutType.rawValue].cellItems[indexPath.section])
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if indexPath.section == getSelectCurrencyIndexCell() {
+        if form.tabs[layoutType.rawValue].cellItems[indexPath.section].uiProperties.cellType == .CurrencyDetails {
             output.openCurrencySearchVC()
         }
     }

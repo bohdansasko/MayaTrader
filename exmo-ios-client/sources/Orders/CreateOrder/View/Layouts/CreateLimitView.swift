@@ -10,24 +10,20 @@
 import Foundation
 import UIKit
 
+enum OrderBy {
+    case Market
+    case CurrencyExchange
+}
+
 enum CreateOrderDisplayType : Int {
     case Limit = 0
     case InstantOnAmount = 1
     case InstantOnSum = 2
 }
 
-class CreateOrderLimitView: UIView {
-    enum CellType: Int {
-        case CurrencyPair
-        case Amount
-        case Price
-        case Total
-        case Commision
-        case OrderType
-        case ButtonCreate
-    }
-    
+class CreateOrderLimitView: UIView {    
     weak var parentVC: ExmoUIViewController!
+    lazy var form = FormCreateOrder()
     
     var orderType: OrderActionType = .Sell {
         didSet {
@@ -35,8 +31,7 @@ class CreateOrderLimitView: UIView {
                 updateSelectedCurrency(name: "", price: 0)
                 return
             }
-            let price = orderType == .Buy ? currency.buyPrice : currency.sellPrice
-            updateSelectedCurrency(name: currency.code, price: price)
+            updateSelectedCurrency(name: currency.code, price: currency.lastTrade)
         }
     }
     
@@ -45,17 +40,13 @@ class CreateOrderLimitView: UIView {
         didSet {
             print("did set selectedCurrency")
             guard let currency = selectedCurrency else {
+                print("currency == nil")
                 updateSelectedCurrency(name: "", price: 0)
                 return
             }
-            let price = orderType == .Buy ? currency.buyPrice : currency.sellPrice
-            updateSelectedCurrency(name: currency.code, price: price)
+            updateSelectedCurrency(name: currency.code, price: currency.lastTrade)
         }
     }
-    let kCellId = "kCellId"
-    let kCellIdMoreVariants = "kCellIdMoreVariants"
-    let kCellButtonId = "CellButton"
-    let kCellUISwitcherId = "kCellUISwitcher"
     
     var layoutType: CreateOrderDisplayType = .Limit {
         didSet {
@@ -75,20 +66,18 @@ class CreateOrderLimitView: UIView {
         return tv
     }()
     
-    var cells: [IndexPath: ExmoTableViewCell?] = [:]
+    var cells: [IndexPath: UITableViewCell] = [:]
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        form.viewIsReady()
         
         addSubview(tableView)
         tableView.fillSuperview()
         tableView.dataSource = self
         tableView.delegate = self
-        
-        tableView.register(CellInputField.self, forCellReuseIdentifier: kCellId)
-        tableView.register(CellMoreVariantsField.self, forCellReuseIdentifier: kCellIdMoreVariants)
-        tableView.register(CellButton.self, forCellReuseIdentifier: kCellButtonId)
-        tableView.register(CellUISwitcher.self, forCellReuseIdentifier: kCellUISwitcherId)
+        FormItemCellType.registerCells(for: tableView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -102,11 +91,10 @@ extension CreateOrderLimitView {
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
-        fillFields(number: 0)
-        guard let cell = tableView.cellForRow(at: IndexPath(row: getSelectCurrencyIndexCell(), section: 0)) as? CellMoreVariantsField else { return }
-        
-        var model = ModelOrderViewCell(headerText: "Currency pair", placeholderText: "Select currency pair...", currencyName: name, rightText: String(price))
-        model.isTextInputEnabled = false
-        cell.model = model
+        guard let cell = cells[IndexPath(row: 0, section: 0)] as? CurrencyDetailsCell else { return }
+        let formItem = cell.formItem
+        formItem?.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: name)
+        formItem?.rightValue = Utils.getFormatedPrice(value: price, maxFractDigits: 9)
+        cell.update(item: formItem)
     }
 }

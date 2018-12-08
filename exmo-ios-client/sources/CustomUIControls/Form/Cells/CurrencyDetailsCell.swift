@@ -54,7 +54,7 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        backgroundColor = .black
+        backgroundColor = nil
         setupViews()
     }
     
@@ -81,7 +81,7 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
     }
     
     @objc func onTextDidChange(_ textField: UITextField) {
-        formItem?.valueCompletion?(textField.text)
+        formItem?.valueCompletion?(textField.text, rightLabel.text)
     }
 }
 

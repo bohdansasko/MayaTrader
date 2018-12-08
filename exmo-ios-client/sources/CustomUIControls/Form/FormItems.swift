@@ -43,7 +43,7 @@ class CurrencyDetailsItem: FormItem {
     var rightValue: String?
     var placeholder: String?
     var uiProperties = CellUIProperties()
-    var valueCompletion: ((String?) -> Void)?
+    var valueCompletion: ((String?, String?) -> Void)?
     var isMandatory: Bool
     
     init(title: String?, placeholder: String?, isMandatory: Bool) {
@@ -70,6 +70,8 @@ class FloatingNumberFormItem: FormItem {
     var placeholder2: String?
     var uiProperties = CellUIProperties()
     var valueCompletion: ((String?) -> Void)?
+    var valueChanged: ((String?) -> Void)?
+    var refreshPlaceholder: (() -> Void)?
     
     init(title: String?, placeholder1: String?, placeholder2: String?) {
         self.title = title

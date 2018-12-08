@@ -42,11 +42,11 @@ class FormCreateAlert {
     }
     
     private func setupFormItems() {
-        let currencyPairItem = CurrencyDetailsItem(title: "CURRENCY PAIR", placeholder: "Select currency pair…", isMandatory: true)
+        let currencyPairItem = CurrencyDetailsItem(title: "Currency pair", placeholder: "Select currency pair…", isMandatory: true)
         currencyPairItem.valueCompletion = {
-            [weak self, weak currencyPairItem] value in
-            self?.currencyPair = value
-            currencyPairItem?.leftValue = value
+            [weak self, weak currencyPairItem] leftValue, rightValue in
+            self?.currencyPair = leftValue
+            currencyPairItem?.leftValue = leftValue
             self?.updateCurrenciesPlaceholders()
         }
         currencyPairItem.leftValue = currencyPair
