@@ -11,14 +11,17 @@ import Foundation
 class FormCreateOrderOnSum: FormTabCreateOrder {
     var title: String?
     var currencyPair: String?
-    var forAmount: String?
+    var amount: String?
     var strPrice: String?
-    var orderType: String?
+    var orderType: OrderCreateType = .MarketBuy
     var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
     
     init() {
         title = "On sum"
+    }
+    
+    func viewIsReady() {
         setupFormItems()
     }
     
@@ -53,7 +56,7 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
         
         forAmountItem.valueCompletion = {
             [weak self, weak forAmountItem, weak amountWillBeItem] value in
-            self?.forAmount = value
+            self?.amount = value
             forAmountItem?.value = value
             self?.updateTotalFormItem(totalItem: amountWillBeItem)
         }
@@ -61,7 +64,7 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
         let switchItem = SwitchFormItem(title: "Order type")
         switchItem.onChange = {
             [weak self, weak switchItem] value in
-            self?.orderType = value.description
+            self?.orderType = value == false ? .MarketBuy : .MarketSell
             switchItem?.value = value
         }
         switchItem.uiProperties.cellType = .Switcher
@@ -74,7 +77,7 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
     }
     
     private func updateTotalFormItem(totalItem: FloatingNumberFormItem?) {
-        guard let amount = Double(self.forAmount ?? ""),
+        guard let amount = Double(self.amount ?? ""),
             let price = Double(self.strPrice ?? "") else {
                 totalItem?.valueChanged?(nil)
                 return

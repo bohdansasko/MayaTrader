@@ -11,7 +11,7 @@ import Foundation
 protocol FormTabCreateOrder {
     var title: String? { get set }
     var currencyPair: String? { get set }
-    var orderType: String? { get set }
+    var orderType: OrderCreateType { get set }
     var onTouchButtonCreate: VoidClosure? { get set }
     var cellItems: [FormItem]  { get set }
 }
@@ -21,12 +21,15 @@ class FormCreateOrderLimit: FormTabCreateOrder {
     var currencyPair: String?
     var amount: String?
     var price: String?
-    var orderType: String?
+    var orderType: OrderCreateType = .Buy
     var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
     
     init() {
         title = "Limit"
+    }
+    
+    func viewIsReady() {
         setupFormItems()
     }
     
@@ -75,7 +78,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         let switchItem = SwitchFormItem(title: "Order type")
         switchItem.onChange = {
             [weak self, weak switchItem] value in
-            self?.orderType = value.description
+            self?.orderType = value == false ? .Buy : .Sell
             switchItem?.value = value
         }
         switchItem.uiProperties.cellType = .Switcher

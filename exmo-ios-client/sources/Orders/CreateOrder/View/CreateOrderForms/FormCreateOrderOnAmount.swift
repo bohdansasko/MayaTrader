@@ -13,12 +13,15 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
     var currencyPair: String?
     var strPrice: String?
     var amount: String?
-    var orderType: String?
+    var orderType: OrderCreateType = .MarketBuyTotal
     var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
     
     init() {
         title = "On amount"
+    }
+    
+    func viewIsReady() {
         setupFormItems()
     }
     
@@ -61,7 +64,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         let switchItem = SwitchFormItem(title: "Order type")
         switchItem.onChange = {
             [weak self, weak switchItem] value in
-            self?.orderType = value.description
+            self?.orderType = value == false ? .MarketBuyTotal : .MarketSellTotal
             switchItem?.value = value
         }
         switchItem.uiProperties.cellType = .Switcher

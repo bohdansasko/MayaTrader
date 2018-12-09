@@ -35,7 +35,6 @@ struct CurrencySettings {
 
 // @MARK: OrderCreateType
 enum OrderCreateType: String {
-    case None = "None"
     case Buy = "buy"
     case Sell = "sell"
     case MarketBuy = "market_buy"
@@ -115,7 +114,7 @@ struct OrderModel: Mappable {
     var quantity: Double
     var amount: Double
     var id: Int64
-    var createType: OrderCreateType = .None
+    var createType: OrderCreateType = .MarketBuyTotal
     
     init() {
         orderType = .None
@@ -170,8 +169,6 @@ struct OrderModel: Mappable {
              .MarketSell,
              .MarketSellTotal:
             self.orderType = .Sell
-        case .None:
-            self.orderType = .None
         }
     }
     
