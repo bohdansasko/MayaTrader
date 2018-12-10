@@ -68,6 +68,11 @@ class CreateOrderViewController: ExmoUIViewController {
     @IBAction func handleTouchOnCancelButton(_ sender: Any) {
         output.handleTouchOnCancelButton()
     }
+    
+    override func setTouchEnabled(_ isTouchEnabled: Bool) {
+        super.setTouchEnabled(isTouchEnabled)
+        segmentControlView.isUserInteractionEnabled = isTouchEnabled
+    }
 }
 
 // MARK: CreateOrderViewInput
@@ -123,6 +128,7 @@ extension CreateOrderViewController {
         segmentControlView.anchor(titleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
         segmentControlView.anchorCenterXToSuperview()
     }
+
 }
 
 // @MARK: navigation bar

@@ -96,6 +96,7 @@ extension ExmoFloatingNumberCell: FormUpdatable {
         textInput.placeholder = fi.placeholder1?.appending(fi.placeholder2 ?? "")
         textInput.keyboardType = fi.uiProperties.keyboardType
         textInput.placeholderColor = .white30
+        textInput.isUserInteractionEnabled = fi.uiProperties.isUserInteractionEnabled
     }
 }
 

@@ -69,6 +69,7 @@ class CellUIProperties {
     var spacingBetweenRows: CGFloat = 15
     var keyboardType: UIKeyboardType = .default
     var textMaxLength: Int = 20
+    var isUserInteractionEnabled = true
 }
 
 class SwitchCellUIProperties: CellUIProperties {

@@ -22,7 +22,7 @@ class ButtonFormItem: FormItem {
     var title: String?
     var uiProperties = CellUIProperties()
     var onTouch: (() -> Void)?
-    
+    var onChangeTouchState: ((Bool) -> Void)?
     var isMandatory: Bool
     
     init(title: String?) {

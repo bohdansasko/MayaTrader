@@ -14,6 +14,8 @@ protocol FormTabCreateOrder {
     var orderType: OrderCreateType { get set }
     var onTouchButtonCreate: VoidClosure? { get set }
     var cellItems: [FormItem]  { get set }
+    
+    func setTouchEnabled(_ isTouchEnabled: Bool)
 }
 
 class FormCreateOrderLimit: FormTabCreateOrder {
@@ -31,6 +33,11 @@ class FormCreateOrderLimit: FormTabCreateOrder {
     
     func viewIsReady() {
         setupFormItems()
+    }
+    
+    func setTouchEnabled(_ isTouchEnabled: Bool) {
+        guard let cellButton = cellItems.last as? ButtonFormItem else { return }
+        cellButton.onChangeTouchState?(isTouchEnabled)
     }
     
     func isValid() -> Bool {
@@ -66,6 +73,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
             [weak totalItem] value in
             totalItem?.value = value
         }
+        totalItem.uiProperties.isUserInteractionEnabled = false
         totalItem.uiProperties.cellType = .FloatingNumberTextField
 
         let commisionItem = FloatingNumberFormItem(title: "Commision", placeholder1: "0", placeholder2: " USD")
@@ -73,6 +81,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
             [weak commisionItem] value in
             commisionItem?.value = value
         }
+        commisionItem.uiProperties.isUserInteractionEnabled = false
         commisionItem.uiProperties.cellType = .FloatingNumberTextField
         
         let switchItem = SwitchFormItem(title: "Order type")

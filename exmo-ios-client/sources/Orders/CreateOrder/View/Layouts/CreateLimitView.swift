@@ -21,7 +21,8 @@ enum CreateOrderDisplayType : Int {
     case InstantOnSum = 2
 }
 
-class CreateOrderLimitView: UIView {    
+class CreateOrderLimitView: UIView {
+    weak var output: CreateOrderViewOutput!
     weak var parentVC: ExmoUIViewController!
     lazy var form = FormCreateOrder()
     
@@ -34,8 +35,7 @@ class CreateOrderLimitView: UIView {
             updateSelectedCurrency(name: currency.code, price: currency.lastTrade)
         }
     }
-    
-    weak var output: CreateOrderViewOutput!
+
     var selectedCurrency: TickerCurrencyModel? {
         didSet {
             print("did set selectedCurrency")
@@ -54,6 +54,10 @@ class CreateOrderLimitView: UIView {
             orderType = .Sell
             selectedCurrency = nil
             updateLayout(layoutType)
+            
+            parentVC.hideLoader()
+            parentVC.setTouchEnabled(true)
+            form.setTouchEnabled(true)
         }
     }
     
@@ -71,6 +75,7 @@ class CreateOrderLimitView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        form.delegate = self
         form.viewIsReady()
         
         addSubview(tableView)
@@ -96,5 +101,14 @@ extension CreateOrderLimitView {
         formItem?.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: name)
         formItem?.rightValue = Utils.getFormatedPrice(value: price, maxFractDigits: 9)
         cell.update(item: formItem)
+    }
+}
+
+extension CreateOrderLimitView: FormCreateOrderDelegate {
+    func createOrder(_ order: OrderModel) {
+        parentVC.showLoader()
+        parentVC.setTouchEnabled(false)
+        form.setTouchEnabled(false)
+        output.createOrder(orderModel: order)
     }
 }

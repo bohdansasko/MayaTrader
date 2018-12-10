@@ -9,7 +9,14 @@
 import UIKit
 
 class ButtonCell: UITableViewCell {
-    var formItem: ButtonFormItem?
+    var formItem: ButtonFormItem? {
+        didSet {
+            formItem?.onChangeTouchState = {
+                [weak self] isTouchEnabled in
+                self?.button.isUserInteractionEnabled = isTouchEnabled
+            }
+        }
+    }
     
     var button: UIButton = {
         let btn = UIButton(type: .system)

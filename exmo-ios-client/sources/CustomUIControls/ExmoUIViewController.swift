@@ -50,6 +50,10 @@ class ExmoUIViewController: UIViewController {
     func shouldUseGlow() -> Bool {
         return true
     }
+    
+    func setTouchEnabled(_ isTouchEnabled: Bool) {
+        // do nothing
+    }
 }
 
 extension ExmoUIViewController {

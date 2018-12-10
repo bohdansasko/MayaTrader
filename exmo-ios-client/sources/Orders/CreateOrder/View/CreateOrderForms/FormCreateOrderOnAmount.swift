@@ -25,6 +25,11 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         setupFormItems()
     }
     
+    func setTouchEnabled(_ isTouchEnabled: Bool) {
+        guard let cellButton = cellItems.last as? ButtonFormItem else { return }
+        cellButton.onChangeTouchState?(isTouchEnabled)
+    }
+
     func isValid() -> Bool {
         for item in cellItems {
             let vItem = item as FormItemValidate
@@ -52,6 +57,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         amountItem.uiProperties.cellType = .FloatingNumberTextField
         
         let totalItem = FloatingNumberFormItem(title: "Total", placeholder1: "0", placeholder2: " USD")
+        totalItem.uiProperties.isUserInteractionEnabled = false
         totalItem.uiProperties.cellType = .FloatingNumberTextField
         
         amountItem.valueCompletion = {

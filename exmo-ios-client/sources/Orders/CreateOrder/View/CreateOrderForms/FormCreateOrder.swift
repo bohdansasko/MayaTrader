@@ -8,9 +8,14 @@
 
 import Foundation
 
+protocol FormCreateOrderDelegate: class {
+    func createOrder(_ order: OrderModel)
+}
+
 class FormCreateOrder {
     var title: String?
     var tabs = [FormTabCreateOrder]()
+    weak var delegate: FormCreateOrderDelegate!
     
     init() {
         title = "Create order"
@@ -20,15 +25,8 @@ class FormCreateOrder {
         setupFormItems()
     }
     
-    func isValid() -> Bool {
-//        for item in cellItems {
-//            let vItem = item as FormItemValidate
-//            if !vItem.isValidate() {
-//                return false
-//            }
-//        }
-        
-        return true
+    func setTouchEnabled(_ isTouchEnabled: Bool) {
+        tabs.forEach( { $0.setTouchEnabled(isTouchEnabled) })
     }
     
     private func setupFormItems() {
@@ -45,6 +43,7 @@ class FormCreateOrder {
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
             let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: price, quantity: 0, amount: amount)
             print(order)
+            self?.delegate.createOrder(order)
         }
         formLimit.viewIsReady()
         
@@ -60,6 +59,7 @@ class FormCreateOrder {
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
             let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: 0, amount: amount)
             print(order)
+            self?.delegate.createOrder(order)
         }
         formOnAmount.viewIsReady()
         
@@ -75,6 +75,7 @@ class FormCreateOrder {
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
             let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: 0, amount: amount)
             print(order)
+            self?.delegate.createOrder(order)
         }
         formOnSum.viewIsReady()
         
