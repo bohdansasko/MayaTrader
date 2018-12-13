@@ -82,12 +82,19 @@ class AlertViewCell: ExmoTableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    override func setupViews() {
+        super.setupViews()
+        
+        backgroundColor = nil
+        
+        setupLeftViews()
+        setupRightViews()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

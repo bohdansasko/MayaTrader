@@ -9,14 +9,7 @@
 
 import UIKit
 
-extension AlertViewCell {
-    func setupViews() {
-        backgroundColor = nil
-        
-        setupLeftViews()
-        setupRightViews()
-    }
-    
+extension AlertViewCell {    
     func setupLeftViews() {
         addSubview(labelTimeCreate)
         labelTimeCreate.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 0)

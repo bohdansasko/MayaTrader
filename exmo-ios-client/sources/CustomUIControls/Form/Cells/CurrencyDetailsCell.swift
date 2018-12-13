@@ -45,12 +45,6 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
         return imageView
     }()
     
-    let separatorHLineView: UIView = {
-        let lineView = UIView()
-        lineView.backgroundColor = .dark
-        return lineView
-    }()
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -62,7 +56,9 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
         fatalError("Don't have implementation")
     }
     
-    private func setupViews() {
+    override func setupViews() {
+        super.setupViews()
+        
         addSubview(titleLabel)
         titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         
@@ -75,9 +71,6 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
         
         addSubview(arrowImage)
         arrowImage.anchor(titleLabel.bottomAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 15, rightConstant: 30, widthConstant: 0, heightConstant: 0)
-
-        addSubview(separatorHLineView)
-        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
     }
     
     @objc func onTextDidChange(_ textField: UITextField) {

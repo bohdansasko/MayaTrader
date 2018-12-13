@@ -43,28 +43,27 @@ class SearchDatasourceListCell: ExmoTableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-}
 
-extension SearchDatasourceListCell {
-    func setupViews() {
+    override func setupViews() {
+        super.setupViews()
         setupBackgroundColor()
         setupUILayout()
     }
-    
-    private func setupBackgroundColor() {
+}
+
+extension SearchDatasourceListCell {    
+    func setupBackgroundColor() {
         backgroundColor = .black
         contentView.backgroundColor = .black
         backgroundView?.backgroundColor = .black
     }
     
-    private func setupUILayout() {
+    func setupUILayout() {
         addSubview(currencyNameLabel)
         currencyNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 15, leftConstant: 30, bottomConstant: 33, rightConstant: 0, widthConstant: 100, heightConstant: 0)
         
