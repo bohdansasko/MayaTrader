@@ -8,7 +8,7 @@
 
 import LBTAComponents
 
-protocol CellDelegate {
+protocol CellDelegate: class {
     func didTouchCell(datasourceItem: Any?)
 }
 

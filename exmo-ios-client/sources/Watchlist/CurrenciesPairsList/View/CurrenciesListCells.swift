@@ -6,12 +6,37 @@
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
-import LBTAComponents
+import UIKit
 
-//
+class ExmoCollectionCell: UICollectionViewCell {
+    var datasourceItem: Any?
+    weak var delegate: CellDelegate?
+    
+    let separatorLineView: UIView = {
+        let lineView = UIView()
+        lineView.backgroundColor = UIColor(white: 0, alpha: 0.5)
+        lineView.isHidden = true
+        return lineView
+    }()
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupViews() {
+        clipsToBounds = true
+        addSubview(separatorLineView)
+        separatorLineView.anchor(nil, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0.5)
+    }
+}
+
 // MARK: CurrenciesListHeaderCell
-//
-class CurrenciesListHeaderCell: DatasourceCell {
+class CurrenciesListHeaderCell: ExmoCollectionCell {
     var favouriteLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
@@ -24,7 +49,7 @@ class CurrenciesListHeaderCell: DatasourceCell {
     var pairTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .white
         label.text = "Pair"
         return label
@@ -33,7 +58,7 @@ class CurrenciesListHeaderCell: DatasourceCell {
     var buyTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .white
         label.text = "Buy"
         return label
@@ -42,7 +67,7 @@ class CurrenciesListHeaderCell: DatasourceCell {
     var sellTextLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .white
         label.text = "Sell"
         return label
@@ -125,10 +150,9 @@ class CurrenciesListHeaderCell: DatasourceCell {
     }
 }
 
-//
+
 // MARK: CurrenciesListCell
-//
-class CurrenciesListCell: DatasourceCell {
+class CurrenciesListCell: ExmoCollectionCell {
     var addRemoveFromFavouritesListButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOff").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -139,7 +163,7 @@ class CurrenciesListCell: DatasourceCell {
     var pairNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .white
         return label
     }()
@@ -147,7 +171,7 @@ class CurrenciesListCell: DatasourceCell {
     var buyValueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .white
         return label
     }()
@@ -155,7 +179,7 @@ class CurrenciesListCell: DatasourceCell {
     var sellValueLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
-        label.textAlignment = .center
+        label.textAlignment = .left
         label.textColor = .white
         return label
     }()
@@ -202,7 +226,7 @@ class CurrenciesListCell: DatasourceCell {
     @objc func onTouchFavBtn(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         
-        guard let cellDelegate = controller as? CellDelegate else { return }
+        guard let cellDelegate = delegate else { return }
         guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
         currencyModel.isFavourite = sender.isSelected
         cellDelegate.didTouchCell(datasourceItem: currencyModel)

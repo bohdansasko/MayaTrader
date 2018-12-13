@@ -86,6 +86,9 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
                 self.networkWorker.load()
             }
         }
+        if !self.currencyGroupName.isEmpty {
+            self.networkWorker.load()
+        }
     }
     
     private func stopScheduleUpdateCurrencies() {

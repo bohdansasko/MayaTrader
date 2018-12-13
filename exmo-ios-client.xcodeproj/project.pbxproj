@@ -66,6 +66,7 @@
 		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
 		201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */; };
 		201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */; };
+		2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */; };
 		20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */; };
 		202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */; };
 		202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */; };
@@ -383,6 +384,7 @@
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
 		201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDatabaseProtocol.swift; sourceTree = "<group>"; };
+		2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrenciesListView.swift; sourceTree = "<group>"; };
 		20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkWorker.swift; sourceTree = "<group>"; };
 		202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatDisplayManager.swift; sourceTree = "<group>"; };
@@ -1480,6 +1482,7 @@
 			isa = PBXGroup;
 			children = (
 				20345011217B644400D2E831 /* CurrenciesListViewController.swift */,
+				2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */,
 				20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */,
 			);
 			path = View;
@@ -2327,6 +2330,7 @@
 				201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */,
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
 				466BE515F58F0A76E05A0A0A /* LoginModuleProtocols.swift in Sources */,
+				2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */,
 				207B1D962173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift in Sources */,
 				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
 				2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */,

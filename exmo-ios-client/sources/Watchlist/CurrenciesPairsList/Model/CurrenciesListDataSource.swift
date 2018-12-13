@@ -8,7 +8,38 @@
 
 import LBTAComponents
 
-class CurrenciesListDataSource: Datasource {
+
+class TableDatasource {
+    func cellClass(_ indexPath: IndexPath) -> ExmoCollectionCell.Type? {
+        return nil
+    }
+    
+    func headerClass(_ indexPath: IndexPath) -> ExmoCollectionCell.Type? {
+        return nil
+    }
+
+    func cellClasses() -> [ExmoCollectionCell.Type] {
+        return []
+    }
+    
+    func numberOfItems(_ section: Int) -> Int {
+        return 0
+    }
+    
+    func headerItem(_ section: Int) -> Any? {
+        return nil
+    }
+    
+    func item(_ indexPath: IndexPath) -> Any? {
+        return nil
+    }
+    
+    func headerClasses() -> [ExmoCollectionCell.Type] {
+        return []
+    }
+}
+
+class CurrenciesListDataSource: TableDatasource {
     var items: [WatchlistCurrencyModel]
     var tempItems: [WatchlistCurrencyModel] = []
     private var isInSearchingMode = false
@@ -20,19 +51,28 @@ class CurrenciesListDataSource: Datasource {
         self.updateItemsIndexis()
     }
     
-    override func cellClasses() -> [DatasourceCell.Type] {
+    override func cellClass(_ indexPath: IndexPath) -> ExmoCollectionCell.Type? {
+        return cellClasses()[indexPath.section]
+    }
+    
+    override func headerClass(_ indexPath: IndexPath) -> ExmoCollectionCell.Type? {
+        let classes = headerClasses()
+        return indexPath.section < classes.count ? classes[indexPath.section] : nil
+    }
+    
+    override func cellClasses() -> [ExmoCollectionCell.Type] {
         return [CurrenciesListCell.self]
     }
     
     override func numberOfItems(_ section: Int) -> Int {
         return items.count
     }
-    
+
     override func item(_ indexPath: IndexPath) -> Any? {
         return items[indexPath.item]
     }
     
-    override func headerClasses() -> [DatasourceCell.Type]? {
+    override func headerClasses() -> [ExmoCollectionCell.Type] {
         return [CurrenciesListHeaderCell.self]
     }
     

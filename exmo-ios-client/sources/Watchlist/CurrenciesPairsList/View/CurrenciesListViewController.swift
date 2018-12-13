@@ -18,80 +18,65 @@ protocol CurrenciesListViewControllerOutput: class {
     func handleTouchFavBtn(datasourceItem: Any?)
 }
 
-class CurrenciesListViewController: DatasourceController, CurrenciesListViewControllerInput {
+class CurrenciesListViewController: ExmoUIViewController {
     var output: CurrenciesListViewControllerOutput!
+    
     var tabBar: CurrenciesListTabBar = {
         let tabBar = CurrenciesListTabBar()
         return tabBar
     }()
     
+    var listView: TickerCurrenciesListView = {
+        let lv = TickerCurrenciesListView()
+        return lv
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        output.viewIsReady()
         
-        prepareCollectionView()
+        output.viewIsReady()
         setupNavigationBar()
         
-        activityIndicatorView.style = .whiteLarge
-        activityIndicatorView.startAnimating()
+        showLoader()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         output.viewWillDisappear()
     }
-    
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: 45)
-    }
-
-    private func prepareCollectionView() {
-        layout?.sectionHeadersPinToVisibleBounds = true
-        collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        collectionView.scrollIndicatorInsets = collectionView.contentInset
-    }
 
     private func setupNavigationBar() {
-        tabBar = CurrenciesListTabBar(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 95))
         tabBar.callbackOnTouchDoneBtn = {
             [weak self] in
             self?.dismiss(animated: true, completion: nil)
         }
         tabBar.searchBar.delegate = self
         view.addSubview(tabBar)
-    }
-    
-    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
-        datasource = CurrenciesListDataSource(items: items)
-        tabBar.filter()
-        if activityIndicatorView.isAnimating {
-            activityIndicatorView.stopAnimating()
-        }
+        tabBar.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: AppDelegate.isIPhone(model: .X) ? 90 : 65)
+        
+        view.addSubview(listView)
+        listView.parentVC = self
+        listView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: AppDelegate.isIPhone(model: .X) ? 90 : 65, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
 }
 
-// MARK: UICollectionViewLayout
-extension CurrenciesListViewController {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: view.frame.width, height: 35)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+// MARK: CurrenciesListViewControllerInput
+extension CurrenciesListViewController: CurrenciesListViewControllerInput {
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
+        listView.datasource = CurrenciesListDataSource(items: items)
+        tabBar.filter()
+        hideLoader()
     }
 }
 
 // MARK: UISearchBarDelegate
 extension CurrenciesListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        guard let ds = datasource as? CurrenciesListDataSource else { return }
-        ds.filterBy(text: searchText)
-        collectionView.reloadData()
+        listView.filterBy(text: searchText)
     }
 }
 
-// MARK: UISearchBarDelegate
+// MARK: CellDelegate
 extension CurrenciesListViewController: CellDelegate {
     func didTouchCell(datasourceItem: Any?) {
         output.handleTouchFavBtn(datasourceItem: datasourceItem)
