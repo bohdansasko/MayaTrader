@@ -22,7 +22,7 @@ class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistCell {
     
     func setContent(data: WatchlistCurrencyModel) {
         self.currencyPairNameLabel.text = data.getDisplayCurrencyPairName()
-        self.currencyPairPriceLabel.text = data.getPriceAsStr()
+        self.currencyPairPriceLabel.text = data.getBuyAsStr()
 //        self.currencyPairIndicatorLabel.text = data.getChangesAsStr()
         self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getChanges())
         self.currencyIcon.image = UIImage(named: data.getIconImageName())?.withRenderingMode(.alwaysOriginal)

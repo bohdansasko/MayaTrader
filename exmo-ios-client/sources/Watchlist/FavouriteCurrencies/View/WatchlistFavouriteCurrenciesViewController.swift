@@ -25,7 +25,7 @@ extension DatasourceController {
 class WatchlistFavouriteCurrenciesViewController: DatasourceController, WatchlistFavouriteCurrenciesViewInput, CellDelegate {
 
     var output: WatchlistFavouriteCurrenciesViewOutput!
-    let spaceFromLeftOrRight: CGFloat = 20
+    let spaceFromLeftOrRight: CGFloat = 10
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -58,8 +58,8 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
     // @MARK: setup collection
     //
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let spaceBetweenCols: CGFloat = 15
-        return CGSize(width: (view.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/2, height: 80)
+        let spaceBetweenCols: CGFloat = 10
+        return CGSize(width: (view.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/2, height: 115)
     }
     
     func didTouchCell(datasourceItem: Any?) {
@@ -78,7 +78,7 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
 //
 extension WatchlistFavouriteCurrenciesViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 15
+        return 10
     }
 }
 

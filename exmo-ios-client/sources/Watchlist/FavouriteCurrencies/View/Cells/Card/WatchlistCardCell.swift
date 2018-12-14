@@ -19,19 +19,27 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
         return label
     }()
 
-    var pairPriceLabel: UILabel = {
+    var pairBuyPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 14)
-        label.textAlignment = .center
-        label.textColor = .dark2
+        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
+        label.textAlignment = .left
+        label.textColor = .dodgerBlue
+        return label
+    }()
+    
+    var pairSellPriceLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
+        label.textAlignment = .left
+        label.textColor = .orangePink
         return label
     }()
 
     var pairVolumeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
-        label.textAlignment = .right
-        label.textColor = .greenBlue
+        label.textAlignment = .left
+        label.textColor = .dark2
         return label
     }()
 
@@ -41,13 +49,6 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
         label.textAlignment = .left
         label.textColor = .greenBlue
         return label
-    }()
-    
-    var verticalLineSeparatorImage: UIView = {
-        let view = UIView()
-        view.backgroundColor = .dark1
-        view.frame = CGRect(x: 0, y: 0, width: 1, height: 15)
-        return view
     }()
     
     var backgroundButton: UIButton = {
@@ -62,12 +63,12 @@ class WatchlistCardCell: DatasourceCell, WatchlistCell {
             guard let cm = datasourceItem as? WatchlistCurrencyModel else { return }
             
             pairNameLabel.text = cm.getDisplayCurrencyPairName()
-            pairPriceLabel.text = cm.getPriceAsStr()
-            pairVolumeLabel.text = Utils.getFormatedPrice(value: cm.volume)
-            currencyChangesLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: cm.getChanges())
+            pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
+            pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
+            pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.volume)
+            currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.getChanges())
             
-            pairVolumeLabel.textColor = Utils.getChangesColor(value: cm.getChanges())
-            currencyChangesLabel.textColor = pairVolumeLabel.textColor
+            currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.getChanges())
         }
     }
     
@@ -88,9 +89,9 @@ extension WatchlistCardCell {
         
         addSubview(backgroundButton)
         addSubview(pairNameLabel)
-        addSubview(pairPriceLabel)
+        addSubview(pairBuyPriceLabel)
+        addSubview(pairSellPriceLabel)
         addSubview(pairVolumeLabel)
-        addSubview(verticalLineSeparatorImage)
         addSubview(currencyChangesLabel)
     }
     
@@ -104,16 +105,15 @@ extension WatchlistCardCell {
     func setupConstraints() {
         backgroundButton.fillSuperview()
         
-        pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 20)
-        pairPriceLabel.anchor(pairNameLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
+        pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
         
-        verticalLineSeparatorImage.anchorCenterXToSuperview()
-        verticalLineSeparatorImage.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        verticalLineSeparatorImage.heightAnchor.constraint(equalToConstant: 15).isActive = true
-        verticalLineSeparatorImage.topAnchor.constraint(equalTo: pairPriceLabel.bottomAnchor, constant: 6).isActive = true
+        pairBuyPriceLabel.anchor(pairNameLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
         
-        pairVolumeLabel.anchor(verticalLineSeparatorImage.topAnchor, left: pairNameLabel.leftAnchor, bottom: self.bottomAnchor, right: verticalLineSeparatorImage.leftAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 10, rightConstant: 10, widthConstant: 0, heightConstant: 15)
-        currencyChangesLabel.anchor(verticalLineSeparatorImage.topAnchor, left: verticalLineSeparatorImage.rightAnchor, bottom: self.bottomAnchor, right: pairNameLabel.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 10, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        pairSellPriceLabel.anchor(pairBuyPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
+        
+        currencyChangesLabel.anchor(pairSellPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
+        
+        pairVolumeLabel.anchor(currencyChangesLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
     }
 }
 

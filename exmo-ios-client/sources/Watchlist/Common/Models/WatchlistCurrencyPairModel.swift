@@ -14,6 +14,7 @@ class WatchlistCurrencyModel: Object {
     @objc dynamic var index: Int = 0
     @objc dynamic var pairName: String = ""
     @objc dynamic var buyPrice: Double = 0.0
+    @objc dynamic var sellPrice: Double = 0.0
     @objc dynamic var timeUpdataInSecFrom1970: Double = 0.0
     @objc dynamic var lastTrade: Double = 0.0
     @objc dynamic var volume: Double = 0.0
@@ -26,6 +27,7 @@ class WatchlistCurrencyModel: Object {
         self.index = index
         self.pairName = currencyCode
         buyPrice = tickerCurrencyModel.buyPrice
+        sellPrice = tickerCurrencyModel.sellPrice
         timeUpdataInSecFrom1970 = tickerCurrencyModel.timestamp
         lastTrade = tickerCurrencyModel.lastTrade
         volume = tickerCurrencyModel.volume
@@ -53,8 +55,12 @@ class WatchlistCurrencyModel: Object {
         return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.pairName)
     }
     
-    func getPriceAsStr() -> String {
+    func getBuyAsStr() -> String {
         return Utils.getFormatedPrice(value: buyPrice, maxFractDigits: 10)
+    }
+    
+    func getSellAsStr() -> String {
+        return Utils.getFormatedPrice(value: sellPrice, maxFractDigits: 10)
     }
     
     func getChanges() -> Double {
