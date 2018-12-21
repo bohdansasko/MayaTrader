@@ -30,8 +30,8 @@ extension MenuInteractor {
     }
 
     func logout() {
-        dbManager.delete(data: dbManager.object(type: ExmoUser.self, key: "")!)
         Defaults.setUserLoggedIn(false)
+        dbManager.clearAllData()
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
     }
 }
