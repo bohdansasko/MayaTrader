@@ -62,7 +62,6 @@
 		201DF20021B27D3300158A15 /* CreateAlertForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */; };
 		201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */; };
 		201DF20421B27E9700158A15 /* ExmoSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */; };
-		201DF20721B2909600158A15 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */; };
 		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
 		201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */; };
 		201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */; };
@@ -205,6 +204,7 @@
 		3312774E49DBE19CE9306BFA /* OrdersInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690AC79502EACAFD95348EC2 /* OrdersInitializer.swift */; };
 		33FA275589ADB6723CEB02A2 /* WalletInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */; };
 		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
+		366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */; };
 		36712029F198CF69683FFA1B /* MenuCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */; };
 		3671205D06A10EADE42FAF7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F8856A6004AC2CC405B /* User.swift */; };
 		3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2E24600DAE35483C9D /* Color+Extension.swift */; };
@@ -380,7 +380,6 @@
 		201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertForm.swift; sourceTree = "<group>"; };
 		201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoFloatingNumberCell.swift; sourceTree = "<group>"; };
 		201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSwitchCell.swift; sourceTree = "<group>"; };
-		201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CurrencyDetailsCell.swift; path = "/Users/tqos/Documents/Projects/home/swift/exmo/ios-client/exmo-ios-client/sources/CustomUIControls/Form/Cells/CurrencyDetailsCell.swift"; sourceTree = "<absolute>"; };
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
 		201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDatabaseProtocol.swift; sourceTree = "<group>"; };
@@ -520,6 +519,7 @@
 		32BC3DFE94094F9C19C047E2 /* WalletCurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
 		3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractor.swift; sourceTree = "<group>"; };
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
+		366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsCell.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableMenuView.swift; sourceTree = "<group>"; };
 		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		367129AC2A73866F875D22DE /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
@@ -900,10 +900,10 @@
 			isa = PBXGroup;
 			children = (
 				201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */,
-				201DF20621B2909600158A15 /* CurrencyDetailsCell.swift */,
 				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
 				207A85E221B326D30049B26D /* TextFieldCell.swift */,
 				207A85E421B349570049B26D /* ButtonCell.swift */,
+				366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2484,7 +2484,6 @@
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
 				20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */,
-				201DF20721B2909600158A15 /* CurrencyDetailsCell.swift in Sources */,
 				20463D8A20E6A16300086B51 /* OrderByTableViewCell.swift in Sources */,
 				20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */,
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersViewController.swift in Sources */,
@@ -2579,6 +2578,7 @@
 				969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */,
 				F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */,
 				76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */,
+				366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

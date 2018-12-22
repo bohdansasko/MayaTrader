@@ -29,8 +29,8 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
         interactor.setCurrencyGroupName(segueBlock.groupModel!.name)
     }
     
-    func handleTouchFavBtn(datasourceItem: Any?) {
-        interactor.cacheFavCurrencyPair(datasourceItem: datasourceItem)
+    func handleTouchFavBtn(datasourceItem: Any?, isSelected: Bool) {
+        interactor.cacheFavCurrencyPair(datasourceItem: datasourceItem, isSelected: isSelected)
     }
     
     func viewWillDisappear() {

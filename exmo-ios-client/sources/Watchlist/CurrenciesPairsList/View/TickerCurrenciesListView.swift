@@ -94,9 +94,9 @@ extension TickerCurrenciesListView: UICollectionViewDataSource {
 // @MARK: UICollectionViewDelegateFlowLayout
 extension TickerCurrenciesListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let cell = cell as? ExmoCollectionCell else { return }
+        guard let cell = cell as? CurrenciesListCell else { return }
         cell.datasourceItem = datasource?.item(indexPath)
-        cell.delegate = parentVC
+        cell.favDelegate = parentVC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

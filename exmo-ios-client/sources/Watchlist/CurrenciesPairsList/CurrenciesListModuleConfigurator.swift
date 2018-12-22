@@ -29,5 +29,6 @@ class CurrenciesListModuleConfigurator {
         interactor.output = presenter
         interactor.networkWorker = TickerNetworkWorker()
         interactor.filterGroupController = ExmoFilterGroupController()
+        interactor.dbManager = RealmDatabaseManager()
     }
 }

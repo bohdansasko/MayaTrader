@@ -15,7 +15,7 @@ protocol CurrenciesListViewControllerInput: class {
 protocol CurrenciesListViewControllerOutput: class {
     func viewIsReady()
     func viewWillDisappear()
-    func handleTouchFavBtn(datasourceItem: Any?)
+    func handleTouchFavBtn(datasourceItem: Any?, isSelected: Bool)
 }
 
 class CurrenciesListViewController: ExmoUIViewController {
@@ -77,8 +77,8 @@ extension CurrenciesListViewController: UISearchBarDelegate {
 }
 
 // MARK: CellDelegate
-extension CurrenciesListViewController: CellDelegate {
-    func didTouchCell(datasourceItem: Any?) {
-        output.handleTouchFavBtn(datasourceItem: datasourceItem)
+extension CurrenciesListViewController: FavCellDelegate {
+    func didTouchCell(datasourceItem: Any?, isSelected: Bool) {
+        output.handleTouchFavBtn(datasourceItem: datasourceItem, isSelected: isSelected)
     }
 }

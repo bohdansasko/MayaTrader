@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol FavCellDelegate: class {
+    func didTouchCell(datasourceItem: Any?, isSelected: Bool)
+}
+
 class ExmoCollectionCell: UICollectionViewCell {
     var datasourceItem: Any?
     weak var delegate: CellDelegate?
@@ -192,7 +196,9 @@ class CurrenciesListCell: ExmoCollectionCell {
         label.text = "+4.2 %"
         return label
     }()
-    
+
+    weak var favDelegate: FavCellDelegate?
+
     override var datasourceItem: Any? {
         didSet {
             guard let d = datasourceItem as? WatchlistCurrencyModel else { return }
@@ -225,11 +231,7 @@ class CurrenciesListCell: ExmoCollectionCell {
     
     @objc func onTouchFavBtn(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        
-        guard let cellDelegate = delegate else { return }
-        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
-        currencyModel.isFavourite = sender.isSelected
-        cellDelegate.didTouchCell(datasourceItem: currencyModel)
+        favDelegate?.didTouchCell(datasourceItem: datasourceItem, isSelected: sender.isSelected)
     }
     
     private func setupConstraints() {

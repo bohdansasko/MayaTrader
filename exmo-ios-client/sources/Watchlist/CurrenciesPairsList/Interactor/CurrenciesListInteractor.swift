@@ -8,8 +8,6 @@
 
 import Alamofire
 import SwiftyJSON
-import RealmSwift
-import Realm
 
 //
 // MARK: groups filter
@@ -35,15 +33,18 @@ class ExmoFilterGroupController: IFilterGroupController {
 }
 
 //
-// MARK: CurrenciesListInteractorInput/CurrenciesListInteractorOutput
+// MARK: CurrenciesListInteractorInput
 //
 protocol CurrenciesListInteractorInput: class {
     func viewIsReady()
     func viewWillDisappear()
     func setCurrencyGroupName(_ currencyGroupName: String)
-    func cacheFavCurrencyPair(datasourceItem: Any?)
+    func cacheFavCurrencyPair(datasourceItem: Any?, isSelected: Bool)
 }
 
+//
+// MARK: CurrenciesListInteractorOutput
+//
 protocol CurrenciesListInteractorOutput: class {
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel])
 }
@@ -55,19 +56,10 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     var networkWorker: ITickerNetworkWorker!
     var filterGroupController: IFilterGroupController!
     var currencyGroupName: String = ""
-    let config = Realm.Configuration(
-        schemaVersion: 2,
-        migrationBlock: { migration, oldSchemaVersion in
-            if (oldSchemaVersion < 1) {
-            }
-    })
-    
-    // Now that we've told Realm how to handle the schema change, opening the file
-    // will automatically perform the migration
-    lazy var realm = try! Realm()
+
+    var dbManager: OperationsDatabaseProtocol!
     
     func viewIsReady() {
-        Realm.Configuration.defaultConfiguration = config
         networkWorker.delegate = self
         
         loadCurrenciesFromCache()
@@ -116,27 +108,29 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     private func loadCurrenciesFromCache() {
-        let objects = realm.objects(WatchlistCurrencyModel.self).filter({ $0.isFavourite })
+        guard let objects = dbManager.objects(type: WatchlistCurrencyModel.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else {
+            return
+        }
         favouriteCurrenciesPairs = Array(objects)
         favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
     }
     
-    func cacheFavCurrencyPair(datasourceItem: Any?) {
+    func cacheFavCurrencyPair(datasourceItem: Any?, isSelected: Bool) {
         guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
+        dbManager.performTransaction {
+            currencyModel.isFavourite = isSelected
+        }
+
         let isInFavList = favouriteCurrenciesPairs.contains(where: { $0.pairName == currencyModel.pairName })
         if !isInFavList && currencyModel.isFavourite {
            favouriteCurrenciesPairs.append(currencyModel)
         } else {
             favouriteCurrenciesPairs.removeAll(where: { $0.pairName == currencyModel.pairName })
         }
-        
-        try! realm.write {
-            if currencyModel.isFavourite {
-                realm.add(currencyModel)
-            } else {
-                realm.add(currencyModel, update: true)
-            }
-            print("successful cached \(currencyModel)")
+
+        dbManager.performTransaction {
+            self.dbManager.add(data: currencyModel, update: !currencyModel.isFavourite)
+            print("successful cached \(currencyModel.getDisplayCurrencyPairName())")
         }
     }
 }
