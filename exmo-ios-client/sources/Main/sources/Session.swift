@@ -14,7 +14,7 @@ class Session {
         case Roobik
     }
     
-    private var user: ExmoUser! // use local info or exmo info
+    private var user: ExmoUserObject! // use local info or exmo info
     
     lazy private var openedOrders = Orders()
     lazy private var canceledOrders = Orders()
@@ -24,7 +24,7 @@ class Session {
     private var alerts: [Alert] = []
 
     init() {
-        self.user = ExmoUser()
+        self.user = ExmoUserObject()
         initHardcode()
     }
 
@@ -59,7 +59,7 @@ extension Session {
     
     func exmoLogout() {
         
-        self.user = ExmoUser()
+        self.user = ExmoUserObject()
         
         self.openedOrders.clear()
         self.canceledOrders.clear()
@@ -68,7 +68,7 @@ extension Session {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
     }
     
-    func setUserModel(userData: ExmoUser, shouldSaveUserInCache: Bool) {
+    func setUserModel(userData: ExmoUserObject, shouldSaveUserInCache: Bool) {
         self.user = userData
         
 //        let userInfoFromCache = AppDelegate.cacheController.getUser()
@@ -87,10 +87,10 @@ extension Session {
     
     func isExmoAccountExists() -> Bool {
         return false
-//        return self.user.getIsLoginedAsExmoUser()
+//        return self.user.getIsLoginedAsExmoUserObject()
     }
     
-    func getUser() -> ExmoUser {
+    func getUser() -> ExmoUserObject {
         return self.user
     }
 }

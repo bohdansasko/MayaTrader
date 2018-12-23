@@ -17,7 +17,7 @@ class MainTabBarInteractor {
 extension MainTabBarInteractor: MainTabBarInteractorInput {
     func login() {
         networkWorker.delegate = self
-        guard let user = dbManager.object(type: ExmoUser.self, key: ""),
+        guard let user = dbManager.object(type: ExmoUserObject.self, key: ""),
               let qr = user.qr else {
             print("Can't load QR Code from cache")
             return
@@ -29,7 +29,7 @@ extension MainTabBarInteractor: MainTabBarInteractorInput {
 
 // @MARK: ILoginNetworkWorkerDelegate
 extension MainTabBarInteractor: ILoginNetworkWorkerDelegate {
-    func onDidLoadUserSuccessful(user: ExmoUser) {
+    func onDidLoadUserSuccessful(user: ExmoUserObject) {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     

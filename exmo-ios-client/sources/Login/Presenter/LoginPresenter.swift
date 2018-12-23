@@ -21,7 +21,7 @@ extension LoginPresenter: LoginModuleInput {
 
 // @MARK: LoginModuleOutput
 extension LoginPresenter: LoginModuleOutput {
-    func setLoginData(loginModel: ExmoQRModel?) {
+    func setLoginData(loginModel: ExmoQRObject?) {
         view.setLoginData(loginModel: loginModel)
     }
 }
@@ -32,7 +32,7 @@ extension LoginPresenter: LoginViewOutput {
         self.interactor.viewIsReady()
     }
 
-    func loadUserInfo(loginModel: ExmoQRModel) {
+    func loadUserInfo(loginModel: ExmoQRObject) {
         interactor.loadUserInfo(loginModel: loginModel)
     }
 

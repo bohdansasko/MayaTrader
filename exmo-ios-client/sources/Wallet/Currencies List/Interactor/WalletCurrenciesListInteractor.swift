@@ -25,7 +25,7 @@ extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
         walletNetworkWorker.load()
     }
     
-    func saveToCache(wallet: ExmoWallet) {
+    func saveToCache(wallet: ExmoWalletObject) {
         print("wallet was saved to cache")
         dbManager.performTransaction {
             wallet.refreshOnFavDislikeBalances()
@@ -37,8 +37,8 @@ extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
 
 // @MARK: IWalletNetworkWorkerDelegate
 extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
-    func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
-        guard let cachedWallet = dbManager.object(type: ExmoUser.self, key: "")?.wallet else {
+    func onDidLoadWalletSuccessful(_ w: ExmoWalletObject) {
+        guard let cachedWallet = dbManager.object(type: ExmoUserObject.self, key: "")?.wallet else {
             return
         }
         dbManager.performTransaction {
@@ -54,7 +54,7 @@ extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
     }
     
     func onDidLoadWalletFail(messageError: String?) {
-        output.onDidLoadWallet(ExmoWallet())
+        output.onDidLoadWallet(ExmoWalletObject())
         print(messageError ?? "Undefined error")
     }
 }

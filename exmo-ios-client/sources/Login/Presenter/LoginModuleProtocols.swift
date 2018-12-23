@@ -12,5 +12,5 @@ protocol LoginModuleInput: class {
 
 
 protocol LoginModuleOutput: class {
-     func setLoginData(loginModel: ExmoQRModel?)
+     func setLoginData(loginModel: ExmoQRObject?)
 }

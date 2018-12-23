@@ -7,9 +7,9 @@ import Foundation
 import UIKit
 
 class WalletSegueBlock: SegueBlock {
-    private(set) var wallet: ExmoWallet!
+    private(set) var wallet: ExmoWalletObject!
     
-    init(dataModel: ExmoWallet?) {
+    init(dataModel: ExmoWalletObject?) {
         wallet = dataModel
     }
 }
@@ -24,7 +24,7 @@ class WalletTableCurrenciesView: UIView {
         return tv;
     }()
     
-    var wallet = ExmoWallet() {
+    var wallet = ExmoWalletObject() {
         didSet {
             tableView.reloadData()
         }

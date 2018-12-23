@@ -9,12 +9,12 @@
 import Foundation
 
 protocol ILoginNetworkWorkerDelegate: class {
-    func onDidLoadUserSuccessful(user: ExmoUser)
+    func onDidLoadUserSuccessful(user: ExmoUserObject)
     func onDidLoadUserFail(errorMessage: String?)
 }
 
 protocol ILoginNetworkWorker {
     var delegate: ILoginNetworkWorkerDelegate! { get set }
     
-    func loadUserInfo(loginModel: ExmoQRModel)
+    func loadUserInfo(loginModel: ExmoQRObject)
 }

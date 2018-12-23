@@ -74,7 +74,7 @@ extension WalletCurrenciesListViewController {
 
 // @MARK: WalletCurrenciesListViewInput
 extension WalletCurrenciesListViewController: WalletCurrenciesListViewInput {
-    func updateWallet(_ wallet: ExmoWallet) {
+    func updateWallet(_ wallet: ExmoWalletObject) {
         currenciesListView.wallet = wallet
         hideLoader()
     }

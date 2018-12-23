@@ -42,10 +42,10 @@ struct Ticker: Mappable {
     }
 }
 
-class ExmoUser: Object, Mappable {
+class ExmoUserObject: Object, Mappable {
     @objc dynamic var uid = 0
-    @objc dynamic var qr: ExmoQRModel?
-    @objc dynamic var wallet: ExmoWallet?
+    @objc dynamic var qr: ExmoQRObject?
+    @objc dynamic var wallet: ExmoWalletObject?
 
     required init() {
         super.init()
@@ -70,7 +70,7 @@ class ExmoUser: Object, Mappable {
     func mapping(map: Map) {
         uid <- map["uid"]
         
-        if let w = ExmoWallet(JSON: map.JSON) {
+        if let w = ExmoWalletObject(JSON: map.JSON) {
             wallet = w
         }
     }
@@ -80,7 +80,7 @@ class ExmoUser: Object, Mappable {
     }
 }
 
-class ExmoWalletCurrencyModel: Object {
+class ExmoWalletObjectCurrencyObject: Object {
     @objc dynamic var code: String = ""
     @objc dynamic var balance: Double = 0
     @objc dynamic var orderId: Int = 0
@@ -100,7 +100,7 @@ class ExmoWalletCurrencyModel: Object {
     }
 }
 
-extension ExmoWalletCurrencyModel: NSItemProviderWriting {
+extension ExmoWalletObjectCurrencyObject: NSItemProviderWriting {
     public static var writableTypeIdentifiersForItemProvider: [String] {
         return [] // something here
     }
@@ -111,7 +111,7 @@ extension ExmoWalletCurrencyModel: NSItemProviderWriting {
 }
 
 
-class ExmoQRModel: Object {
+class ExmoQRObject: Object {
     @objc dynamic var id = 0
     @objc dynamic var exmoIdentifier: String = ""
     @objc dynamic var key: String = ""
@@ -148,7 +148,7 @@ class ExmoQRModel: Object {
     }
 }
 
-class ExmoWalletTransactionHistory: Object {
+class ExmoWalletObjectTransactionHistoryObject: Object {
     @objc dynamic var amount: Double = 0
     @objc dynamic var date: Date?
     @objc dynamic var orderId: Int64 = 0
@@ -159,14 +159,14 @@ class ExmoWalletTransactionHistory: Object {
     @objc dynamic var type: String = ""
 }
 
-class ExmoWallet: Object, Mappable {
+class ExmoWalletObject: Object, Mappable {
     @objc dynamic var id = 0
     var amountBTC: Double = 0
     var amountUSD: Double = 0
     
-    var balances = List<ExmoWalletCurrencyModel>()
-    var favBalances: [ExmoWalletCurrencyModel] = []
-    var dislikedBalances: [ExmoWalletCurrencyModel] = []
+    var balances = List<ExmoWalletObjectCurrencyObject>()
+    var favBalances: [ExmoWalletObjectCurrencyObject] = []
+    var dislikedBalances: [ExmoWalletObjectCurrencyObject] = []
     
     required convenience init?(map: Map) {
         self.init()
@@ -183,7 +183,7 @@ class ExmoWallet: Object, Mappable {
             guard let balance = Double(value),
                 let reservedValue = reserved[key],
                   let countInOrders = Double(reservedValue) else { return }
-            let currency = ExmoWalletCurrencyModel(code: key, balance: balance, countInOrders: countInOrders)
+            let currency = ExmoWalletObjectCurrencyObject(code: key, balance: balance, countInOrders: countInOrders)
             self.balances.append(currency)
         }
     }
@@ -197,7 +197,7 @@ class ExmoWallet: Object, Mappable {
     }
 }
 
-extension ExmoWallet {
+extension ExmoWalletObject {
     func refreshOnFavDislikeBalances() {
         balances.removeAll()
         
@@ -224,7 +224,7 @@ extension ExmoWallet {
         return favBalances.count != balances.count ? 2 : 1
     }
     
-    func filter(_ closure: (ExmoWalletCurrencyModel) -> Bool) -> [ExmoWalletCurrencyModel] {
+    func filter(_ closure: (ExmoWalletObjectCurrencyObject) -> Bool) -> [ExmoWalletObjectCurrencyObject] {
         return balances.filter(closure)
     }
     
@@ -258,7 +258,7 @@ extension ExmoWallet {
         refresh()
     }
     
-    func getCurrency(index: Int) -> ExmoWalletCurrencyModel {
+    func getCurrency(index: Int) -> ExmoWalletObjectCurrencyObject {
         return balances[index]
     }
 }

@@ -17,7 +17,7 @@ class WalletInteractor: WalletInteractorInput {
     var tickerNetworkWorker: ITickerNetworkWorker!
     var dbManager: OperationsDatabaseProtocol!
     
-    var walletModel: ExmoWallet?
+    var walletModel: ExmoWalletObject?
     var ticker: Ticker? {
         didSet {
             tryUpdateWallet()
@@ -33,7 +33,7 @@ class WalletInteractor: WalletInteractorInput {
         if Defaults.isUserLoggedIn() {
             loadWallet()
         } else {
-            output.onDidLoadWallet(ExmoWallet())
+            output.onDidLoadWallet(ExmoWalletObject())
         }
     }
     
@@ -66,8 +66,8 @@ extension WalletInteractor {
 
 // @MARK: IWalletNetworkWorkerDelegate
 extension WalletInteractor: IWalletNetworkWorkerDelegate {
-    func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
-        guard let cachedWallet = dbManager.object(type: ExmoWallet.self, key: "") else {
+    func onDidLoadWalletSuccessful(_ w: ExmoWalletObject) {
+        guard let cachedWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
             return
         }
         cachedWallet.balances.forEach({

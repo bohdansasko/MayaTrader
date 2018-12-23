@@ -42,7 +42,7 @@ extension WalletViewController: WalletViewInput {
         currencySettingsBtn.isEnabled = isTouchEnabled
     }
     
-    func updateWallet(_ wallet: ExmoWallet) {
+    func updateWallet(_ wallet: ExmoWalletObject) {
         balanceView.wallet = wallet
         tableCurrenciesView.wallet = wallet
     }

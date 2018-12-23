@@ -10,7 +10,7 @@ import Foundation
 
 protocol LoginInteractorInput {
     func viewIsReady()
-    func loadUserInfo(loginModel: ExmoQRModel)
+    func loadUserInfo(loginModel: ExmoQRObject)
 }
 
 protocol LoginInteractorOutput: class {

@@ -11,9 +11,9 @@ import Foundation
 protocol WalletCurrenciesListInteractorInput {
     func viewIsReady()
     func viewDidAppear()
-    func saveToCache(wallet: ExmoWallet)
+    func saveToCache(wallet: ExmoWalletObject)
 }
 
 protocol WalletCurrenciesListInteractorOutput: class {
-    func onDidLoadWallet(_ wallet: ExmoWallet)
+    func onDidLoadWallet(_ wallet: ExmoWalletObject)
 }

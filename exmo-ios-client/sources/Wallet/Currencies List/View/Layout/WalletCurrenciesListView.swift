@@ -21,12 +21,12 @@ class WalletCurrenciesListView: UIView {
         return tv
     }()
     
-    var wallet: ExmoWallet? {
+    var wallet: ExmoWalletObject? {
         didSet {
             refreshCurrenciesList()
         }
     }
-    private var currencies: [Int: [ExmoWalletCurrencyModel]] = [:]
+    private var currencies: [Int: [ExmoWalletObjectCurrencyObject]] = [:]
     private let cellId = "cellId"
     private var isSearching = false
     

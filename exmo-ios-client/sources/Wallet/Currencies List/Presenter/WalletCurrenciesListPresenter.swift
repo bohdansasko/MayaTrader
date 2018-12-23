@@ -16,7 +16,7 @@ class WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput, WalletCurr
 
 // @MARK: WalletCurrenciesListModuleInput
 extension WalletCurrenciesListPresenter {
-    func configure(wallet: ExmoWallet) {
+    func configure(wallet: ExmoWalletObject) {
         view.updateWallet(wallet)
     }
 }
@@ -32,7 +32,7 @@ extension WalletCurrenciesListPresenter {
         interactor.viewDidAppear()
     }
     
-    func viewWillDisappear(wallet: ExmoWallet) {
+    func viewWillDisappear(wallet: ExmoWalletObject) {
         interactor.saveToCache(wallet: wallet)
     }
     
@@ -44,7 +44,7 @@ extension WalletCurrenciesListPresenter {
 
 // @MARK: WalletCurrenciesListInteractorOutput
 extension WalletCurrenciesListPresenter {
-    func onDidLoadWallet(_ wallet: ExmoWallet) {
+    func onDidLoadWallet(_ wallet: ExmoWalletObject) {
         view.updateWallet(wallet)
     }
 }

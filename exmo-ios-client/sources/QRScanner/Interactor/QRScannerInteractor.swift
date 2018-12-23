@@ -20,7 +20,7 @@ class QRScannerInteractor: QRScannerInteractorInput {
                 return
             }
             
-            let qrModel = ExmoQRModel(qrParsedStr: qrDataAsString)
+            let qrModel = ExmoQRObject(qrParsedStr: qrDataAsString)
             if qrModel.isValidate() {
                 output.setLoginData(loginModel: qrModel)
             } else {

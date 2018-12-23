@@ -39,7 +39,7 @@ extension QRScannerPresenter {
 
 // @MARK: QRScannerInteractorOutput
 extension QRScannerPresenter {
-    func setLoginData(loginModel: ExmoQRModel?) {
+    func setLoginData(loginModel: ExmoQRObject?) {
         loginPresenter.setLoginData(loginModel: loginModel)
         closeViewController()
     }

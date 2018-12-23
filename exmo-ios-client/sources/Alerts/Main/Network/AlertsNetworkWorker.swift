@@ -56,7 +56,7 @@ class VinsoAlertsNetworkWorker : IAlertsNetworkWorker {
                 delegate.onDidLoadAlertsHistoryFail(messageError: "Undefined error")
                 return
             }
-//            guard let wallet = ExmoWallet(JSONString: json.description) else { return }
+//            guard let wallet = ExmoWalletObject(JSONString: json.description) else { return }
 //            delegate.onDidLoadAlertsHistorySuccessful(wallet)
         case .failure(let error):
             delegate.onDidLoadAlertsHistoryFail(messageError: "Alerts error: \(error.localizedDescription)")

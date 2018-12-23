@@ -62,7 +62,7 @@ class User: Mappable {
         return uid
     }
 
-    func getIsLoginedAsExmoUser() -> Bool {
+    func getIsLoginedAsExmoUserObject() -> Bool {
         return self.qrModel?.isValidate() ?? false
     }
 
