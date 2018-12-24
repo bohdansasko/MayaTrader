@@ -96,7 +96,7 @@ class WalletCurrencyCell: UITableViewCell {
             self.backgroundColor = (index + 1) % 2 == 0 ? .dark : .clear
         }
     }
-    var currencyModel: ExmoWalletObjectCurrencyObject? {
+    var currencyModel: ExmoWalletCurrency? {
         didSet {
             guard let currencyModel = currencyModel else { return }
             balanceLabel.text = Utils.getFormatedPrice(value: currencyModel.balance)

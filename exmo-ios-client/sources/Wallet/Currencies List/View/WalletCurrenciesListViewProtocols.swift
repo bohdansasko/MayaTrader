@@ -9,12 +9,12 @@
 import UIKit.UITableView
 
 protocol WalletCurrenciesListViewInput: class {
-    func updateWallet(_ wallet: ExmoWalletObject)
+    func updateWallet(_ wallet: ExmoWallet)
 }
 
 protocol WalletCurrenciesListViewOutput {
     func viewIsReady()
     func viewDidAppear()
-    func viewWillDisappear(wallet: ExmoWalletObject)
+    func viewWillDisappear(wallet: ExmoWallet)
     func handleTouchCloseVC()
 }

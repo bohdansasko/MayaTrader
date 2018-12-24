@@ -17,7 +17,7 @@ class WalletInteractor: WalletInteractorInput {
     var tickerNetworkWorker: ITickerNetworkWorker!
     var dbManager: OperationsDatabaseProtocol!
     
-    var walletModel: ExmoWalletObject?
+    var walletModel: ExmoWallet?
     var ticker: Ticker? {
         didSet {
             tryUpdateWallet()
@@ -33,7 +33,7 @@ class WalletInteractor: WalletInteractorInput {
         if Defaults.isUserLoggedIn() {
             loadWallet()
         } else {
-            output.onDidLoadWallet(ExmoWalletObject())
+            output.onDidLoadWallet(ExmoWallet(id: 0, amountBTC: 0, amountUSD: 0, balances: [], favBalances: [], dislikedBalances: []))
         }
     }
     
@@ -56,18 +56,20 @@ extension WalletInteractor {
         if dbManager.isInWriteTransaction() {
             return
         }
-        guard let wm = walletModel, let _ = ticker else {
+        calculateBalance()
+        guard var wm = walletModel, let _ = ticker else {
             return
         }
-        calculateBalance()
+        wm.refresh()
         output.onDidLoadWallet(wm)
     }
 }
 
 // @MARK: IWalletNetworkWorkerDelegate
 extension WalletInteractor: IWalletNetworkWorkerDelegate {
-    func onDidLoadWalletSuccessful(_ w: ExmoWalletObject) {
+    func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
         guard let cachedWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
+            print("can't read object ExmoWalletObject from db")
             return
         }
         cachedWallet.balances.forEach({
@@ -78,11 +80,7 @@ extension WalletInteractor: IWalletNetworkWorkerDelegate {
                 cachedCurrency.countInOrders = iCurrency.countInOrders
             }
         })
-        dbManager.performTransaction {
-            [unowned self] in
-            cachedWallet.refresh()
-            self.walletModel = cachedWallet
-        }
+        self.walletModel = ExmoWallet(managedObject: cachedWallet)
         tryUpdateWallet()
     }
     
@@ -103,9 +101,11 @@ extension WalletInteractor: ITickerNetworkWorkerDelegate {
 
 extension WalletInteractor {
     func calculateBalance() {
-        guard let wm = walletModel,
+        guard var wm = walletModel,
               let tickerPairs = ticker?.pairs
-        else { return }
+        else {
+            return
+        }
         
         var amountBTC: Double = 0
         var amountUSD: Double = 0
@@ -121,8 +121,8 @@ extension WalletInteractor {
                 }
             }
         }
-        
-        wm.amountBTC = amountBTC
-        wm.amountUSD = amountUSD
+
+        walletModel?.amountBTC = amountBTC
+        walletModel?.amountUSD = amountUSD
     }
 }

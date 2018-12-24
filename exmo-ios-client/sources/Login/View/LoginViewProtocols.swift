@@ -7,14 +7,14 @@
 //
 
 protocol LoginViewInput: class {
-    func setLoginData(loginModel: ExmoQRObject?)
+    func setLoginData(loginModel: ExmoQR?)
     func login()
     func showAlert(title: String, message: String)
 }
 
 protocol LoginViewOutput {
     func viewIsReady()
-    func loadUserInfo(loginModel: ExmoQRObject)
+    func loadUserInfo(loginModel: ExmoQR)
     func handleTouchOnScanQRButton()
     func closeViewController()
 }

@@ -21,12 +21,8 @@ class WalletCurrenciesListView: UIView {
         return tv
     }()
     
-    var wallet: ExmoWalletObject? {
-        didSet {
-            refreshCurrenciesList()
-        }
-    }
-    private var currencies: [Int: [ExmoWalletObjectCurrencyObject]] = [:]
+    var wallet: ExmoWallet?
+    private var currencies: [Int: [ExmoWalletCurrency]] = [:]
     private let cellId = "cellId"
     private var isSearching = false
     
@@ -34,10 +30,24 @@ class WalletCurrenciesListView: UIView {
         super.init(frame: frame)
         
         setupTableView()
+        let longPressedRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed(sender:)))
+        longPressedRecognizer.minimumPressDuration = 0.0
+        tableView.addGestureRecognizer(longPressedRecognizer)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+
+    @objc func onLongPressed(sender: UILongPressGestureRecognizer) {
+        print(sender.state)
+        if sender.state == .began {
+            let touchPoint = sender.location(in: self)
+            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
+                print("have touched \(indexPath)")
+            }
+        }
+
     }
 }
 
@@ -59,11 +69,11 @@ extension WalletCurrenciesListView {
             currencies[0] = wallet?.filter({ $0.code.contains(text.uppercased()) }) ?? []
             tableView.reloadData()
         } else {
-            refreshCurrenciesList()
+            invalidate()
         }
     }
     
-    private func refreshCurrenciesList() {
+    func invalidate() {
         guard let w = wallet else { return }
         
         var index = 0
@@ -120,13 +130,13 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
         wclCell.currency = currency
         wclCell.onSwitchValueCallback = {
             [weak self] currency in
-            guard let self = self, let w = self.wallet else { return }
-            w.setFavourite(currencyCode: currency.code, isFavourite: currency.isFavourite)
-            self.refreshCurrenciesList()
+            self?.wallet?.setFavourite(currencyCode: currency.code, isFavourite: currency.isFavourite)
+            self?.invalidate()
         }
     }
 
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        print("can move row at")
         return isSearching ? false : true
     }
     

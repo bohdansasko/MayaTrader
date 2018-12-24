@@ -7,9 +7,9 @@ import Foundation
 import UIKit
 
 class WalletSegueBlock: SegueBlock {
-    private(set) var wallet: ExmoWalletObject!
+    private(set) var wallet: ExmoWallet!
     
-    init(dataModel: ExmoWalletObject?) {
+    init(dataModel: ExmoWallet?) {
         wallet = dataModel
     }
 }
@@ -24,7 +24,7 @@ class WalletTableCurrenciesView: UIView {
         return tv;
     }()
     
-    var wallet = ExmoWalletObject() {
+    var wallet: ExmoWallet? {
         didSet {
             tableView.reloadData()
         }
@@ -58,7 +58,7 @@ class WalletTableCurrenciesView: UIView {
 
 extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return wallet.favBalances.count
+        return wallet?.favBalances.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -77,7 +77,7 @@ extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let cell = cell as! WalletCurrencyCell
         cell.index = indexPath.row
-        cell.currencyModel = wallet.favBalances[indexPath.row]
+        cell.currencyModel = wallet?.favBalances[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

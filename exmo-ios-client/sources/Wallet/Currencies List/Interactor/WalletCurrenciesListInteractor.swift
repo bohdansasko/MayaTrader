@@ -25,19 +25,16 @@ extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
         walletNetworkWorker.load()
     }
     
-    func saveToCache(wallet: ExmoWalletObject) {
+    func saveToCache(wallet: ExmoWallet) {
         print("wallet was saved to cache")
-        dbManager.performTransaction {
-            wallet.refreshOnFavDislikeBalances()
-        }
         print(wallet.favBalances)
-        dbManager.add(data: wallet, update: true)
+        dbManager.add(data: wallet.managedObject(), update: true)
     }
 }
 
 // @MARK: IWalletNetworkWorkerDelegate
 extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
-    func onDidLoadWalletSuccessful(_ w: ExmoWalletObject) {
+    func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
         guard let cachedWallet = dbManager.object(type: ExmoUserObject.self, key: "")?.wallet else {
             return
         }
@@ -49,12 +46,14 @@ extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
                 currency.orderId = cachedCurrency.orderId
             })
         }
-        w.refresh()
-        output.onDidLoadWallet(w)
+
+        var mutableWallet = w
+        mutableWallet.refresh()
+        output.onDidLoadWallet(mutableWallet)
     }
     
     func onDidLoadWalletFail(messageError: String?) {
-        output.onDidLoadWallet(ExmoWalletObject())
+        output.onDidLoadWallet(ExmoWallet(id: 0, amountBTC: 0, amountUSD: 0, balances: [], favBalances: [], dislikedBalances: []))
         print(messageError ?? "Undefined error")
     }
 }

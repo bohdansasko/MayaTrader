@@ -10,7 +10,7 @@ import UIKit.UITableView
 
 protocol WalletViewInput: class {
     func setTouchEnabled(isTouchEnabled: Bool)
-    func updateWallet(_ wallet: ExmoWalletObject)
+    func updateWallet(_ wallet: ExmoWallet)
 }
 
 protocol WalletViewOutput {

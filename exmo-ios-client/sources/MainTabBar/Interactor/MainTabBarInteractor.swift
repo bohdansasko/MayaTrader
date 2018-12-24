@@ -23,13 +23,13 @@ extension MainTabBarInteractor: MainTabBarInteractorInput {
             return
         }
         
-        networkWorker.loadUserInfo(loginModel: qr)
+        networkWorker.loadUserInfo(loginModel: ExmoQR(managedObject: qr))
     }
 }
 
 // @MARK: ILoginNetworkWorkerDelegate
 extension MainTabBarInteractor: ILoginNetworkWorkerDelegate {
-    func onDidLoadUserSuccessful(user: ExmoUserObject) {
+    func onDidLoadUserSuccessful(user: ExmoUser) {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
     

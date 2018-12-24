@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class ExmoWalletObjectNetworkWorker : IWalletNetworkWorker {
+class ExmoWalletNetworkWorker : IWalletNetworkWorker {
     weak var delegate: IWalletNetworkWorkerDelegate!
     
     func load() {
@@ -30,7 +30,7 @@ class ExmoWalletObjectNetworkWorker : IWalletNetworkWorker {
                     return
                 }
                 let json = try JSON(data: data)
-                guard let wallet = ExmoWalletObject(JSONString: json.description) else { return }
+                guard let wallet = ExmoWallet(JSONString: json.description) else { return }
                 delegate.onDidLoadWalletSuccessful(wallet)
             } catch {
                 delegate.onDidLoadWalletFail(messageError: nil)

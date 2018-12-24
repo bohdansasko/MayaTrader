@@ -7,5 +7,5 @@
 //
 
 protocol WalletCurrenciesListModuleInput: class {
-    func configure(wallet: ExmoWalletObject)
+    func configure(wallet: ExmoWallet)
 }

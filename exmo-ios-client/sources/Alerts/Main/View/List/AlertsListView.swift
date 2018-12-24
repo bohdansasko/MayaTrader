@@ -79,9 +79,9 @@ class AlertsListView: UIView {
         dataProvider.updateAlert(alertItem: alertItem)
         let index = dataProvider.getIndexById(alertId: alertItem.id)
 
-        if let uiCell = getCellItem(elementIndex: index) {
+//        if let uiCell = getCellItem(elementIndex: index) {
 //            uiCell.setStatus(status: alertItem.status)
-        }
+//        }
 
         if index > -1 && index < cellActions.count {
             if let actionContainer = cellActions[index] {

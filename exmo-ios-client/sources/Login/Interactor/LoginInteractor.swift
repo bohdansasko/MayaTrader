@@ -22,7 +22,7 @@ extension LoginInteractor: LoginInteractorInput {
         networkWorker.delegate = self
     }
     
-    func loadUserInfo(loginModel: ExmoQRObject) {
+    func loadUserInfo(loginModel: ExmoQR) {
         if !loginModel.isValidate() {
             output.showAlert(title: "Login", message: "QR doesn't validate")
             return
@@ -33,8 +33,8 @@ extension LoginInteractor: LoginInteractorInput {
 
 // @MARK: ILoginNetworkWorkerDelegate
 extension LoginInteractor: ILoginNetworkWorkerDelegate {
-    func onDidLoadUserSuccessful(user: ExmoUserObject) {
-        dbManager.add(data: user, update: true)
+    func onDidLoadUserSuccessful(user: ExmoUser) {
+        dbManager.add(data: user.managedObject(), update: true)
         Defaults.setUserLoggedIn(true)
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
         output.closeViewController()

@@ -14,6 +14,6 @@ protocol QRScannerInteractorInput {
 }
 
 protocol QRScannerInteractorOutput: class {
-    func setLoginData(loginModel: ExmoQRObject?)
+    func setLoginData(loginModel: ExmoQR?)
     func showAlert(title: String, message: String, shouldCloseViewController: Bool)
 }

@@ -80,7 +80,7 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
         return view
     }()
     
-    var currency: ExmoWalletObjectCurrencyObject? {
+    var currency: ExmoWalletCurrency? {
         didSet {
             guard let c = currency else { return }
             currencyNameLabel.text = c.code
@@ -89,7 +89,7 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
         }
     }
 
-    var onSwitchValueCallback: ((_ currency: ExmoWalletObjectCurrencyObject) -> Void)?
+    var onSwitchValueCallback: ((_ currency: ExmoWalletCurrency) -> Void)?
     
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

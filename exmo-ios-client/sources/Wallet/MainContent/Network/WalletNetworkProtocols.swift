@@ -9,7 +9,7 @@
 import Alamofire
 
 protocol IWalletNetworkWorkerDelegate: class {
-    func onDidLoadWalletSuccessful(_ w: ExmoWalletObject)
+    func onDidLoadWalletSuccessful(_ w: ExmoWallet)
     func onDidLoadWalletFail(messageError: String?)
 }
 

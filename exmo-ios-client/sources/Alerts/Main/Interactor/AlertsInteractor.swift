@@ -20,7 +20,7 @@ extension AlertsInteractor: AlertsInteractorInput {
 }
 
 extension AlertsInteractor: IAlertsNetworkWorkerDelegate {
-    func onDidLoadAlertsHistorySuccessful(_ w: ExmoWalletObject) {
+    func onDidLoadAlertsHistorySuccessful(_ w: ExmoWallet) {
         print("loaded alerts history")
     }
     

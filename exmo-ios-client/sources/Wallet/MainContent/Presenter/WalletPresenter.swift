@@ -30,7 +30,7 @@ extension WalletPresenter: WalletViewOutput {
 
 // @MARK: WalletViewOutput
 extension WalletPresenter: WalletInteractorOutput {
-    func onDidLoadWallet(_ wallet: ExmoWalletObject) {
+    func onDidLoadWallet(_ wallet: ExmoWallet) {
         view.updateWallet(wallet)
     }
 }

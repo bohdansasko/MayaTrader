@@ -37,10 +37,15 @@ class WalletCurrenciesListViewController: ExmoUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        guard let w = currenciesListView.wallet else { return }
+        guard var w = currenciesListView.wallet else { return }
+        w.refreshOnFavDislikeBalances()
         output.viewWillDisappear(wallet: w)
     }
-    
+
+    override func shouldUseGlow() -> Bool {
+        return false
+    }
+
     @objc func closeView() {
         output.handleTouchCloseVC()
     }
@@ -74,8 +79,9 @@ extension WalletCurrenciesListViewController {
 
 // @MARK: WalletCurrenciesListViewInput
 extension WalletCurrenciesListViewController: WalletCurrenciesListViewInput {
-    func updateWallet(_ wallet: ExmoWalletObject) {
+    func updateWallet(_ wallet: ExmoWallet) {
         currenciesListView.wallet = wallet
+        currenciesListView.invalidate()
         hideLoader()
     }
 }

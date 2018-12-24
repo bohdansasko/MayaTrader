@@ -7,7 +7,7 @@
 //
 import UIKit.UIViewController
 
-class WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput, WalletCurrenciesListViewOutput, WalletCurrenciesListInteractorOutput {
+class WalletCurrenciesListPresenter {
 
     weak var view: WalletCurrenciesListViewInput!
     var interactor: WalletCurrenciesListInteractorInput!
@@ -15,15 +15,15 @@ class WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput, WalletCurr
 }
 
 // @MARK: WalletCurrenciesListModuleInput
-extension WalletCurrenciesListPresenter {
-    func configure(wallet: ExmoWalletObject) {
+extension WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput {
+    func configure(wallet: ExmoWallet) {
         view.updateWallet(wallet)
     }
 }
 
 
 // @MARK: WalletCurrenciesListViewOutput
-extension WalletCurrenciesListPresenter {
+extension WalletCurrenciesListPresenter: WalletCurrenciesListViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
     }
@@ -32,7 +32,7 @@ extension WalletCurrenciesListPresenter {
         interactor.viewDidAppear()
     }
     
-    func viewWillDisappear(wallet: ExmoWalletObject) {
+    func viewWillDisappear(wallet: ExmoWallet) {
         interactor.saveToCache(wallet: wallet)
     }
     
@@ -43,8 +43,8 @@ extension WalletCurrenciesListPresenter {
 
 
 // @MARK: WalletCurrenciesListInteractorOutput
-extension WalletCurrenciesListPresenter {
-    func onDidLoadWallet(_ wallet: ExmoWalletObject) {
+extension WalletCurrenciesListPresenter: WalletCurrenciesListInteractorOutput {
+    func onDidLoadWallet(_ wallet: ExmoWallet) {
         view.updateWallet(wallet)
     }
 }
