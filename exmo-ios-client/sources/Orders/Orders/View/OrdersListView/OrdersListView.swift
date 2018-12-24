@@ -37,7 +37,9 @@ class OrdersListView: UIView {
     var dataProvider: Orders!
     var tableViewCells: [Int64 : IndexPath] = [:]
     var displayOrderType: Orders.DisplayType = .None {
-        didSet { showDataBySegment(displayOrderType: displayOrderType) }
+        didSet {
+            showDataBySegment(displayOrderType: displayOrderType)
+        }
     }
     let kCellId = "OrderCell"
     var shouldUseActions: Bool = false

@@ -63,6 +63,8 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewIsReady()
+
+        segmentControlView.sendActions(for: .valueChanged)
     }
     
     private func onSelectedDeleteAction(actionIndex: Int) {
@@ -97,9 +99,6 @@ extension OrdersViewController {
         
         view.addSubview(ordersListView)
         ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        output.onDidSelectTab(.Open)
-        ordersListView.showDataBySegment(displayOrderType: .Open)
     }
     
     private func setupSegmentControlView() {
@@ -147,12 +146,15 @@ extension OrdersViewController {
 // MARK: OrdersViewInput
 extension OrdersViewController {
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+        let previousDT = ordersListView.displayOrderType
         if loadedOrders.isEmpty {
             ordersListView.openedOrders = Orders()
             ordersListView.canceledOrders = Orders()
             ordersListView.dealsOrders = Orders()
+            ordersListView.displayOrderType = previousDT
             return
         }
+
         for (orderType, orders) in loadedOrders {
             switch orderType {
             case .Open    : ordersListView.openedOrders = orders
@@ -161,6 +163,7 @@ extension OrdersViewController {
             default: break
             }
         }
+        ordersListView.displayOrderType = previousDT
     }
     
     func orderCanceled(id: Int64) {
