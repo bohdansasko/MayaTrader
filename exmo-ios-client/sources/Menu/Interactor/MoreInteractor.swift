@@ -30,6 +30,7 @@ extension MenuInteractor {
     }
 
     func logout() {
+        ExmoApiRequestBuilder.shared.clearAuthorizationData()
         Defaults.setUserLoggedIn(false)
         dbManager.clearAllData()
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)

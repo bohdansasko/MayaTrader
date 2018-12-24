@@ -40,6 +40,7 @@ protocol ExmoPublicApiRequests {
 }
 
 protocol ExmoAuthenticationApiRequests {
+    func clearAuthorizationData()
     func setAuthorizationData(apiKey: String, secretKey: String)
     func getAuthenticatedRequest(postDictionary: [String: Any], method: String) -> URLRequest
     func getUserInfoRequest() -> URLRequest
@@ -97,6 +98,10 @@ extension ExmoApiRequestBuilder {
 
 // @MARK: Authenticated API methods
 extension ExmoApiRequestBuilder {
+    func clearAuthorizationData() {
+        setAuthorizationData(apiKey: "", secretKey: "")
+    }
+    
     func setAuthorizationData(apiKey: String, secretKey: String) {
         ConnectionConfig.API_KEY = apiKey
         ConnectionConfig.API_SECRET = secretKey
