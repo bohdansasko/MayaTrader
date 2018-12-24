@@ -65,11 +65,6 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         output.viewIsReady()
     }
     
-    deinit {
-        AppDelegate.notificationController.removeObserver(self)
-    }
-
-    
     private func onSelectedDeleteAction(actionIndex: Int) {
         print("onSelectedDeleteAction: \(actionIndex)")
 
@@ -152,6 +147,12 @@ extension OrdersViewController {
 // MARK: OrdersViewInput
 extension OrdersViewController {
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+        if loadedOrders.isEmpty {
+            ordersListView.openedOrders = Orders()
+            ordersListView.canceledOrders = Orders()
+            ordersListView.dealsOrders = Orders()
+            return
+        }
         for (orderType, orders) in loadedOrders {
             switch orderType {
             case .Open    : ordersListView.openedOrders = orders

@@ -12,15 +12,28 @@ class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     weak var output: OrdersInteractorOutput!
     var loadedOrders: [Orders.DisplayType : Orders] = [:]
     var networkWorker: IOrdersListNetworkWorker!
+    var openedOrderType: Orders.DisplayType = .Open
 }
 
 // @MARK: OrdersInteractorInput
 extension OrdersInteractor: OrdersInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
+
+        if Defaults.isUserLoggedIn() {
+            loadOrderByType(openedOrderType)
+        } else {
+            onUserSignOut()
+        }
     }
     
     func loadOrderByType(_ orderType: Orders.DisplayType) {
+        if !Defaults.isUserLoggedIn() {
+            onUserSignOut()
+            return
+        }
+        
+        openedOrderType = orderType
         switch orderType {
         case .Open: networkWorker.loadOpenOrders()
         case .Canceled: networkWorker.loadCanceledOrders()
@@ -37,7 +50,11 @@ extension OrdersInteractor: OrdersInteractorInput {
 // MARK: load orders and display them
 extension OrdersInteractor {
     func onUserSignOut() {
-        output.onDidLoadOrders(loadedOrders: [:])
+        var loadedOrders = [Orders.DisplayType : Orders]()
+        loadedOrders[.Open] = Orders()
+        loadedOrders[.Canceled] = Orders()
+        loadedOrders[.Deals] = Orders()
+        output.onDidLoadOrders(loadedOrders: loadedOrders)
     }
 }
 
