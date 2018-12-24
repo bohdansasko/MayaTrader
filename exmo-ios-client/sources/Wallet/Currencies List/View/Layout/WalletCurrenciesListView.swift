@@ -30,24 +30,10 @@ class WalletCurrenciesListView: UIView {
         super.init(frame: frame)
         
         setupTableView()
-        let longPressedRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(onLongPressed(sender:)))
-        longPressedRecognizer.minimumPressDuration = 0.0
-        tableView.addGestureRecognizer(longPressedRecognizer)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-
-    @objc func onLongPressed(sender: UILongPressGestureRecognizer) {
-        print(sender.state)
-        if sender.state == .began {
-            let touchPoint = sender.location(in: self)
-            if let indexPath = tableView.indexPathForRow(at: touchPoint) {
-                print("have touched \(indexPath)")
-            }
-        }
-
     }
 }
 
