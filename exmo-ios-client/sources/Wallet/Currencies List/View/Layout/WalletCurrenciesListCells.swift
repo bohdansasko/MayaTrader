@@ -27,8 +27,8 @@ class WalletCurrenciesListTableHeaderCell: UITableViewHeaderFooterView {
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
-        contentView.backgroundColor = UIColor(r: 3, g: 1, b: 10)
-        
+        contentView.backgroundColor = .black
+
         addSubview(titleLabel)
         titleLabel.anchor(topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
     }
