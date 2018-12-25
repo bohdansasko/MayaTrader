@@ -8,7 +8,6 @@
 import AVFoundation
 
 protocol QRScannerViewInput: class {
-    func setupInitialState()
     func showAlert(title: String, message: String, shouldCloseViewController: Bool)
 }
 

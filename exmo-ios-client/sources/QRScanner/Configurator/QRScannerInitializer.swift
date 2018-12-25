@@ -8,12 +8,10 @@
 
 import UIKit
 
-class QRScannerModuleInitializer: NSObject {
-
-    //Connect with object on storyboard
+class QRScannerModuleInitializer {
     lazy var qrScannerViewController = QRScannerViewController()
 
-    override func awakeFromNib() {
+    init() {
         let configurator = QRScannerModuleConfigurator()
         configurator.configureModuleForViewInput(qrViewInput: qrScannerViewController)
     }
