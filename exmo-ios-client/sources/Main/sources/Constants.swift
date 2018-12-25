@@ -55,8 +55,8 @@ enum TableCellIdentifiers: String {
 
 enum OrderActionType: String {
     case None
-    case Buy = "Buy"
-    case Sell = "Sell"
+    case Buy = "buy"
+    case Sell = "sell"
 }
 
 struct ModelOrderViewCell {
