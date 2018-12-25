@@ -204,7 +204,7 @@ class CurrenciesListCell: ExmoCollectionCell {
             guard let d = datasourceItem as? WatchlistCurrencyModel else { return }
             pairNameLabel.text = d.getDisplayCurrencyPairName()
             buyValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 9)
-            sellValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 9)
+            sellValueLabel.text = Utils.getFormatedPrice(value: d.sellPrice, maxFractDigits: 9)
             currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.getChanges())
             currencyChangesValueLabel.textColor = d.getChanges() < 0 ? .orangePink : .greenBlue
             
