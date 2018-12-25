@@ -48,7 +48,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.textColor = .white
         textField.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
         textField.keyboardType = .asciiCapable
-        textField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
+//        textField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
         return textField
     }()
     
@@ -69,7 +69,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.textColor = .white
         textField.keyboardType = .asciiCapable
         textField.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
-        textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
+//        textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
         return textField
     }()
     
@@ -198,17 +198,17 @@ extension LoginViewController {
             apiKeyField.text = loginModel.key
             secretKeyField.text = loginModel.secret
         }
+        login()
     }
     
     func login() {
-        showLoader()
         guard let key = apiKeyField.text, let secret = secretKeyField.text else {
             print("Fields is empty!")
             return
         }
         
+        showLoader()
         updateButtonsEnableState(isTouchEnabled: false)
-        
         let qrModel = ExmoQR(exmoIdentifier: DefaultStringValues.ExmoId.rawValue, key: key, secret: secret)
         output.loadUserInfo(loginModel: qrModel)
     }
