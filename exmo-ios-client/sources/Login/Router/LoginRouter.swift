@@ -18,6 +18,6 @@ class LoginRouter: LoginRouterInput {
     }
     
     func closeViewController(_ vc: UIViewController) {
-        vc.popViewController()
+        vc.close()
     }
 }
