@@ -9,8 +9,7 @@
 import UIKit
 import LBTAComponents
 
-class WatchlistCardCell: DatasourceCell, WatchlistCell {
-
+class WatchlistCardCell: DatasourceCell {
     var pairNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 15)

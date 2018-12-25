@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-struct TickerCurrencyModel: Mappable {
+struct TickerCurrencyModel {
     var code: String = ""
     private(set) var buyPrice: Double = 0.0
     private(set) var sellPrice: Double = 0.0
@@ -20,8 +20,18 @@ struct TickerCurrencyModel: Mappable {
     private(set) var volume: Double = 0.0
     private(set) var volumeCurrency: Double = 0.0
     private(set) var timestamp: Double = 0.0
+    private(set) var closeBuyPrice: Double = 0.0
     var isFavourite: Bool = false
     
+    func getChanges() -> Double {
+        if closeBuyPrice == 0.0 {
+            return 0.0
+        }
+        return (buyPrice - closeBuyPrice)/closeBuyPrice * 100
+    }
+}
+
+extension TickerCurrencyModel: Mappable {
     init?(map: Map) {
         // do nothing
     }
@@ -41,5 +51,12 @@ struct TickerCurrencyModel: Mappable {
         volume <- (map["vol"], transform)
         volumeCurrency <- (map["vol_curr"], transform)
         timestamp <- map["updated"]
+        
+        if let price = map["close_buy_price"].currentValue as? Double {
+            closeBuyPrice = price
+        } else {
+            closeBuyPrice <- (map["close_buy_price"], transform)
+        }
     }
 }
+

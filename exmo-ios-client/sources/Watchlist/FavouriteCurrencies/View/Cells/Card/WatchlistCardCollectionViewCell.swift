@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistCell {
+class WatchlistCardCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var currencyPairNameLabel: UILabel!
     @IBOutlet weak var currencyPairPriceLabel: UILabel!
     @IBOutlet weak var currencyPairIndicatorLabel: UILabel!
@@ -23,8 +23,6 @@ class WatchlistCardCollectionViewCell: UICollectionViewCell, WatchlistCell {
     func setContent(data: WatchlistCurrencyModel) {
         self.currencyPairNameLabel.text = data.getDisplayCurrencyPairName()
         self.currencyPairPriceLabel.text = data.getBuyAsStr()
-//        self.currencyPairIndicatorLabel.text = data.getChangesAsStr()
-        self.currencyPairIndicatorLabel.textColor = self.getIndicatorColor(priceIndicator: data.getChanges())
         self.currencyIcon.image = UIImage(named: data.getIconImageName())?.withRenderingMode(.alwaysOriginal)
     }
 }

@@ -206,7 +206,7 @@ class CurrenciesListCell: ExmoCollectionCell {
             buyValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 9)
             sellValueLabel.text = Utils.getFormatedPrice(value: d.sellPrice, maxFractDigits: 9)
             currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.getChanges())
-            currencyChangesValueLabel.textColor = d.getChanges() < 0 ? .orangePink : .greenBlue
+            currencyChangesValueLabel.textColor = Utils.getChangesColor(value: d.getChanges())
             
             backgroundColor = d.index % 2 == 1 ? .dark : .clear
             addRemoveFromFavouritesListButton.isSelected = d.isFavourite

@@ -127,7 +127,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
         } else {
             favouriteCurrenciesPairs.removeAll(where: { $0.pairName == currencyModel.pairName })
         }
-
+ 
         dbManager.performTransaction {
             self.dbManager.add(data: currencyModel, update: !currencyModel.isFavourite)
             print("successful cached \(currencyModel.getDisplayCurrencyPairName())")
@@ -156,11 +156,11 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
             }
         }
         
-        let items: [WatchlistCurrencyModel] = tickerContainer.compactMap({(arg0) in
+        var items: [WatchlistCurrencyModel] = tickerContainer.compactMap({(arg0) in
             let (currencyPairCode, model) = arg0
             return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
         })
-        
+        items.sort(by: { $0.getChanges() > $1.getChanges() })
         output.onDidLoadCurrenciesPairs(items: items)
     }
     

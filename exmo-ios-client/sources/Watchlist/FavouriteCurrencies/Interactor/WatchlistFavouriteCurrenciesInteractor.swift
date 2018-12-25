@@ -37,13 +37,13 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
             [weak self] _ in
             self?.networkWorker.load()
         }
+        networkWorker.load()
     }
     
     private func loadCurrenciesFromCache() {
         guard let objects = dbManager.objects(type: WatchlistCurrencyModel.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else { return }
         favouriteCurrenciesPairs = Array(objects)
         favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
-        output.didLoadCurrencies(items: favouriteCurrenciesPairs)
     }
     
     private func parseTicker(json: JSON) {

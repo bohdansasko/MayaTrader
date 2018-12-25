@@ -8,13 +8,3 @@
 
 import Foundation
 import UIKit.UIColor
-
-protocol WatchlistCell {
-    func getIndicatorColor(priceIndicator: Double) -> UIColor
-}
-
-extension WatchlistCell {
-    func getIndicatorColor(priceIndicator: Double) -> UIColor {
-        return priceIndicator > 0 ? .greenBlue : .orangePink
-    }
-}
