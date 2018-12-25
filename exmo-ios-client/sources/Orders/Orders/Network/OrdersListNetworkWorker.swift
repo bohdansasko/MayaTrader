@@ -27,7 +27,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
             guard let self = self else { return }
             switch response.result {
             case .success(_):
-                self.delegate?.onDidLoadSuccessOpenOrders(orders: self.parseResponseIntoModel(response))
+                self.delegate?.onDidLoadSuccessOpenOrders(orders: self.parseResponseIntoModel(response, .Open))
             case .failure(_):
                 self.delegate?.onDidLoadFailsOpenOrders(orders: Orders())
             }
@@ -41,7 +41,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
             guard let self = self else { return }
             switch response.result {
             case .success(_):
-                self.delegate?.onDidLoadSuccessCanceledOrders(orders: self.parseResponseIntoModel(response))
+                self.delegate?.onDidLoadSuccessCanceledOrders(orders: self.parseResponseIntoModel(response, .Canceled))
             case .failure(_):
                 self.delegate?.onDidLoadFailsCanceledOrders(orders: Orders())
             }
@@ -78,7 +78,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
                 guard let self = self else { return }
                 switch response.result {
                 case .success(_):
-                    self.delegate?.onDidLoadSuccessDeals(orders: self.parseResponseIntoModel(response))
+                    self.delegate?.onDidLoadSuccessDeals(orders: self.parseResponseIntoModel(response, .Deals))
                 case .failure(_):
                     self.delegate?.onDidLoadFailsDeals(orders: Orders())
                 }
@@ -109,11 +109,11 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         }
     }
 
-    private func parseResponseIntoModel(_ response: DataResponse<Any>) -> Orders {
+    private func parseResponseIntoModel(_ response: DataResponse<Any>, _ displayOrderType: Orders.DisplayType) -> Orders {
         do {
             guard let d = response.data else { return Orders() }
             let json = try JSON(data: d)
-            return Orders(json: json)
+            return Orders(json: json, displayType: displayOrderType)
         } catch {
             return Orders()
         }

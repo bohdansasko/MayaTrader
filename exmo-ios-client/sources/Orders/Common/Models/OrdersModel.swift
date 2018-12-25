@@ -19,17 +19,24 @@ class Orders {
     }
     
     private var orders: [OrderModel]
+    private(set) var displayType: DisplayType = .None
     
     init() {
         self.orders = []
     }
     
-    convenience init(json: JSON) {
+    convenience init(json: JSON, displayType: DisplayType = .None) {
         self.init()
+        self.displayType = displayType
         self.parseJSON(json: json)
     }
     
     private func parseJSON(json: JSON) {
+        if displayType == .None {
+            print("order display type == none")
+            return
+        }
+        
         if let ordersArray = json.array {
             for jsonOrder in ordersArray {
                 if let map = jsonOrder.dictionaryObject {
@@ -39,16 +46,36 @@ class Orders {
                     self.orders.append(order)
                 }
             }
+            return
         }
 
         if let ordersDictionary = json.dictionary {
             for (_, orders) in ordersDictionary {
                 for order in orders.arrayValue {
-                    guard let map = order.dictionary else {
+                    guard let map = order.dictionary, !map.isEmpty else {
                         continue
                     }
-                
-                    let model = OrderModel(id: (map["order_id"]?.int64Value)!, orderType: .Sell, currencyPair: (map["pair"]?.stringValue)!, createdDate: Date(timeIntervalSince1970: (map["created"]?.doubleValue)! ), price: (map["price"]?.doubleValue)!, quantity: (map["quantity"]?.doubleValue)!, amount: (map["amount"]?.doubleValue)!)
+                    
+                    let idKey = displayType == .Deals ? "trade_id" : "order_id"
+                    let orderTypeKey = displayType == .Canceled ? "order_type" : "type"
+                    
+                    guard let id = map[idKey]?.int64Value,
+                          let date = map["date"]?.doubleValue,
+                          let pair = map["pair"]?.stringValue,
+                          let price = map["price"]?.doubleValue,
+                          let quantity = map["quantity"]?.doubleValue,
+                          let amount = map["amount"]?.doubleValue,
+                          let orderType: OrderActionType = map[orderTypeKey]?.stringValue == OrderActionType.Sell.rawValue
+                            ? OrderActionType.Sell
+                            : map[orderTypeKey]?.stringValue == OrderActionType.Buy.rawValue
+                                ? OrderActionType.Buy
+                                : OrderActionType.None,
+                        orderType != .None
+                    else {
+                        continue
+                    }
+                    
+                    let model = OrderModel(id: id, orderType: orderType, currencyPair: pair, createdDate: Date(timeIntervalSince1970: date), price: price, quantity: quantity, amount: amount)
                     self.orders.append(model)
                 }
             }
