@@ -9,13 +9,12 @@ import UIKit
 
 class LoginRouter: LoginRouterInput {
     func showQRScannerVC(segueBlock: QRScannerSegueBlock) {
-        let scannerInit = QRScannerModuleInitializer()
-        scannerInit.awakeFromNib()
-        if let qrPresenter = scannerInit.qrScannerViewController.outputProtocol as? QRScannerModuleInput {
+        let scannerModule = QRScannerModuleInitializer()
+        if let qrPresenter = scannerModule.qrScannerViewController.outputProtocol as? QRScannerModuleInput {
             qrPresenter.setLoginPresenter(presenter: segueBlock.outputPresenter)
         }
         
-        segueBlock.sourceVC.present(scannerInit.qrScannerViewController, animated: true, completion: nil)
+        segueBlock.sourceVC.present(UINavigationController(rootViewController: scannerModule.qrScannerViewController), animated: false, completion: nil)
     }
     
     func closeViewController(_ vc: UIViewController) {

@@ -11,16 +11,10 @@ class MenuRouter: MenuRouterInput {
     weak var output: MenuRouterOutput!
     
     func showViewController(sourceVC: UIViewController, touchedCellType: MenuCellType) {
-        var nextViewController: UIViewController!
         switch touchedCellType {
         case .Login:
             let loginInit = LoginModuleInitializer()
-            nextViewController = loginInit.viewController
-            
-            sourceVC.navigationController?.setToolbarHidden(true, animated: false)
-            sourceVC.navigationController?.setNavigationBarHidden(true, animated: false)
-            
-            sourceVC.navigationController?.pushViewController(nextViewController, animated: true)
+            sourceVC.present(loginInit.viewController, animated: true)
         case .Logout:
             output.userLogout()
         default:
