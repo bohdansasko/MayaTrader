@@ -120,25 +120,44 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     func saveToCache() {
-        guard let objects = dbManager.objects(type: WatchlistCurrencyObject.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else {
-            return
+        let cachedObjects = dbManager.objects(type: WatchlistCurrencyObject.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil))
+        let cfr = favouriteCurrenciesPairs.filter{ !$0.tickerPair.isFavourite }
+        let isCachedCurrenciesExists = !(cachedObjects?.isEmpty ?? true)
+
+        if cfr.count > 0 && isCachedCurrenciesExists {
+            var outdateObjects = [WatchlistCurrencyObject]()
+            cachedObjects?.forEach({
+                curr in
+                let item = cfr.first(where: { $0.tickerPair.code == curr.pairName })
+                if item != nil {
+                    outdateObjects.append(curr)
+                }
+            })
+
+            if outdateObjects.count > 0 {
+                dbManager.delete(data: outdateObjects)
+            }
         }
-        
-        let cfr = convertToDBArray(currencies: favouriteCurrenciesPairs.filter{ !$0.tickerPair.isFavourite } )
-        let cfa = favouriteCurrenciesPairs.filter{ $0.tickerPair.isFavourite }
-//        if cfr.count > 0 {
-//            dbManager.delete(data: cfr)
-//        }
+
+        let cfa = favouriteCurrenciesPairs.filter{
+            fvPair in
+            if !isCachedCurrenciesExists {
+                return fvPair.tickerPair.isFavourite
+            }
+            return fvPair.tickerPair.isFavourite && cachedObjects?.firstIndex(where: { $0.pairName == fvPair.tickerPair.code }) == nil
+        }
+
         if cfa.count > 0 {
-            dbManager.add(data: convertToDBArray(currencies: cfa), update: true)
+            dbManager.add(data: convertToDBArray(currencies: cfa), update: false)
         }
     }
     
     func cacheFavCurrencyPair(datasourceItem: Any?, isSelected: Bool) {
-        guard let currencyModel = datasourceItem as? WatchlistCurrency else {
+        guard var currencyModel = datasourceItem as? WatchlistCurrency else {
             return
         }
-        
+        currencyModel.tickerPair.isFavourite = isSelected
+
         let itemIndex = favouriteCurrenciesPairs.firstIndex(where: { $0.tickerPair.code == currencyModel.tickerPair.code })
         if itemIndex == nil && isSelected {
             favouriteCurrenciesPairs.append(currencyModel)
@@ -188,8 +207,8 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
 }
 
 extension CurrenciesListInteractor {
-    func convertToDBArray(currencies: [WatchlistCurrency]) -> Array<WatchlistCurrencyObject> {
-        var objects = Array<WatchlistCurrencyObject>()
+    func convertToDBArray(currencies: [WatchlistCurrency]) -> [WatchlistCurrencyObject] {
+        var objects = [WatchlistCurrencyObject]()
         currencies.forEach({ objects.append($0.managedObject()) })
         return objects
     }
