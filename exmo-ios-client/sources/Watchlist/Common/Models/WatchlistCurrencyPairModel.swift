@@ -19,7 +19,9 @@ class WatchlistCurrencyModel: Object {
     @objc dynamic var lastTrade: Double = 0.0
     @objc dynamic var volume: Double = 0.0
     @objc dynamic var volumeCurrency: Double = 0.0
+    @objc dynamic var closeBuyPrice: Double = 0.0
     @objc dynamic var isFavourite = false
+    private var changes: Double = 0.0
     
     init(index: Int, currencyCode: String, tickerCurrencyModel: TickerCurrencyModel) {
         super.init()
@@ -33,6 +35,8 @@ class WatchlistCurrencyModel: Object {
         volume = tickerCurrencyModel.volume
         volumeCurrency = tickerCurrencyModel.volumeCurrency
         isFavourite = tickerCurrencyModel.isFavourite
+        closeBuyPrice = tickerCurrencyModel.closeBuyPrice
+        changes = tickerCurrencyModel.getChanges()
     }
     
     required init() {
@@ -64,7 +68,7 @@ class WatchlistCurrencyModel: Object {
     }
     
     func getChanges() -> Double {
-        return Utils.getPairChangesInPercentage(currentValue: lastTrade, prevValue: buyPrice)
+        return changes
     }
 
     func getIconImageName() -> String {

@@ -37,7 +37,7 @@ extension TickerNetworkWorker {
         do {
             guard let responseData = response.data else { return nil }
             let json = try JSON(data: responseData)
-            return Ticker(JSON: json.dictionaryValue)
+            return Ticker(JSON: json["data"]["ticker"].dictionaryValue)
         } catch {
             return nil
         }

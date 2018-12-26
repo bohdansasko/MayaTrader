@@ -88,7 +88,10 @@ extension ExmoApiRequestBuilder {
     }
     
     func getTickerRequest() -> URLRequest {
-        return getPublicRequest(method: MethodId.Ticker.rawValue)
+        let apiUrl = URL(string: "https://exmo.com/ctrl/ticker")!
+        var request = URLRequest(url: apiUrl)
+        request.httpMethod = HTTPMethod.post.rawValue
+        return request
     }
     
     func getCurrencyPairSettingsRequest() -> URLRequest {
