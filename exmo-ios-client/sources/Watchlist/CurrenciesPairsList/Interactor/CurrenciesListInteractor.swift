@@ -104,7 +104,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
                 self.currencyGroupName = self.currencyGroupName + currency + ","
             }
         } else if currencyGroupName == "Fiat" {
-            self.currencyGroupName = "EUR,USD,RUB,XRP,UAH,PLN,TRY"
+            self.currencyGroupName = "EUR,USD,RUB,UAH,PLN,TRY"
         } else {
             self.currencyGroupName = currencyGroupName
         }
