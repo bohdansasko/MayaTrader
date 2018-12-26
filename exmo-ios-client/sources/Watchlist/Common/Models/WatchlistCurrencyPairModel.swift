@@ -15,7 +15,7 @@ class WatchlistCurrencyObject: Object {
     @objc dynamic var pairName: String = ""
     @objc dynamic var buyPrice: Double = 0.0
     @objc dynamic var sellPrice: Double = 0.0
-    @objc dynamic var timeUpdataInSecFrom1970: Double = 0.0
+    @objc dynamic var timestamp: Double = 0.0
     @objc dynamic var lastTrade: Double = 0.0
     @objc dynamic var volume: Double = 0.0
     @objc dynamic var volumeCurrency: Double = 0.0
@@ -29,7 +29,7 @@ class WatchlistCurrencyObject: Object {
         self.pairName = currencyCode
         buyPrice = tickerCurrencyModel.buyPrice
         sellPrice = tickerCurrencyModel.sellPrice
-        timeUpdataInSecFrom1970 = tickerCurrencyModel.timestamp
+        timestamp = tickerCurrencyModel.timestamp
         lastTrade = tickerCurrencyModel.lastTrade
         volume = tickerCurrencyModel.volume
         volumeCurrency = tickerCurrencyModel.volumeCurrency
@@ -93,7 +93,7 @@ extension WatchlistCurrency {
 extension WatchlistCurrency: Persistable {
     init(managedObject: WatchlistCurrencyObject) {
         self.index = managedObject.index
-        self.tickerPair = TickerCurrencyModel(code: managedObject.pairName, buyPrice: managedObject.buyPrice, sellPrice: managedObject.sellPrice, lastTrade: managedObject.lastTrade, high: 0, low: 0, average: 0, volume: managedObject.volume, volumeCurrency: managedObject.volumeCurrency, timestamp: managedObject.timeUpdataInSecFrom1970, closeBuyPrice: managedObject.closeBuyPrice, isFavourite: managedObject.isFavourite)
+        self.tickerPair = TickerCurrencyModel(code: managedObject.pairName, buyPrice: managedObject.buyPrice, sellPrice: managedObject.sellPrice, lastTrade: managedObject.lastTrade, high: 0, low: 0, average: 0, volume: managedObject.volume, volumeCurrency: managedObject.volumeCurrency, timestamp: managedObject.timestamp, closeBuyPrice: managedObject.closeBuyPrice, isFavourite: managedObject.isFavourite)
     }
     
     func managedObject() -> WatchlistCurrencyObject {
