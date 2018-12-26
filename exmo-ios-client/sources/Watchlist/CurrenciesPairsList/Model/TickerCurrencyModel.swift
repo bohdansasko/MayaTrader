@@ -11,16 +11,16 @@ import ObjectMapper
 
 struct TickerCurrencyModel {
     var code: String = ""
-    private(set) var buyPrice: Double = 0.0
-    private(set) var sellPrice: Double = 0.0
-    private(set) var lastTrade: Double = 0.0
-    private(set) var high: Double = 0.0
-    private(set) var low: Double = 0.0
-    private(set) var average: Double = 0.0
-    private(set) var volume: Double = 0.0
-    private(set) var volumeCurrency: Double = 0.0
-    private(set) var timestamp: Double = 0.0
-    private(set) var closeBuyPrice: Double = 0.0
+    var buyPrice: Double = 0.0
+    var sellPrice: Double = 0.0
+    var lastTrade: Double = 0.0
+    var high: Double = 0.0
+    var low: Double = 0.0
+    var average: Double = 0.0
+    var volume: Double = 0.0
+    var volumeCurrency: Double = 0.0
+    var timestamp: Double = 0.0
+    var closeBuyPrice: Double = 0.0
     var isFavourite: Bool = false
     
     func getChanges() -> Double {
@@ -28,6 +28,26 @@ struct TickerCurrencyModel {
             return 0.0
         }
         return (buyPrice - closeBuyPrice)/closeBuyPrice * 100
+    }
+    
+    init(   code: String, buyPrice: Double, sellPrice: Double,
+            lastTrade: Double, high: Double,
+            low: Double, average: Double,
+            volume: Double, volumeCurrency: Double,
+            timestamp: Double, closeBuyPrice: Double, isFavourite: Bool
+    ) {
+        self.code = code
+        self.buyPrice = buyPrice
+        self.sellPrice = sellPrice
+        self.lastTrade = lastTrade
+        self.high = lastTrade
+        self.low = low
+        self.average = average
+        self.volume = volume
+        self.volumeCurrency = volumeCurrency
+        self.timestamp = timestamp
+        self.closeBuyPrice = closeBuyPrice
+        self.isFavourite = isFavourite
     }
 }
 

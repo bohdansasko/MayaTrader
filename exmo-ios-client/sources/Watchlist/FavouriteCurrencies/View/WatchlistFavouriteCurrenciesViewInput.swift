@@ -14,5 +14,5 @@ protocol WatchlistFavouriteCurrenciesViewInput: class {
     */
 
     func setupInitialState()
-    func presentFavouriteCurrencies(items: [WatchlistCurrencyModel])
+    func presentFavouriteCurrencies(items: [WatchlistCurrency])
 }

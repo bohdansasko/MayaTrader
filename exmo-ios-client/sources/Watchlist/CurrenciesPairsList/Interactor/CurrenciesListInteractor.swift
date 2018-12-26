@@ -8,6 +8,7 @@
 
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 //
 // MARK: groups filter
@@ -24,7 +25,7 @@ class ExmoFilterGroupController: IFilterGroupController {
         }
         let groups = currencyGroupName.split(separator: ",")
         for group in groups {
-            if (currencyCode.contains(group)) {
+            if group == currenciesContainer[0] || group == currenciesContainer[1] {
                 return true
             }
         }
@@ -46,12 +47,13 @@ protocol CurrenciesListInteractorInput: class {
 // MARK: CurrenciesListInteractorOutput
 //
 protocol CurrenciesListInteractorOutput: class {
-    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel])
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrency])
 }
 
 class CurrenciesListInteractor: CurrenciesListInteractorInput {
     weak var output: CurrenciesListInteractorOutput!
-    var favouriteCurrenciesPairs: [WatchlistCurrencyModel] = []
+    var favouriteCurrenciesPairs: [WatchlistCurrency] = []
+    var favObjectPairs: [WatchlistCurrency] = []
     var timerScheduler: Timer?
     var networkWorker: ITickerNetworkWorker!
     var filterGroupController: IFilterGroupController!
@@ -67,6 +69,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     func viewWillDisappear() {
+        saveToCache()
         stopScheduleUpdateCurrencies()
     }
     
@@ -108,29 +111,43 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     private func loadCurrenciesFromCache() {
-        guard let objects = dbManager.objects(type: WatchlistCurrencyModel.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else {
+        guard let objects = dbManager.objects(type: WatchlistCurrencyObject.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else {
             return
         }
-        favouriteCurrenciesPairs = Array(objects)
-        favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.pairName < $1.pairName })
+        favObjectPairs = convertToArray(currencies: objects)
+        favouriteCurrenciesPairs = favObjectPairs
+        favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.tickerPair.code < $1.tickerPair.code })
+    }
+    
+    func saveToCache() {
+        guard let objects = dbManager.objects(type: WatchlistCurrencyObject.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else {
+            return
+        }
+        
+        let cfr = convertToDBArray(currencies: favouriteCurrenciesPairs.filter{ !$0.tickerPair.isFavourite } )
+        let cfa = favouriteCurrenciesPairs.filter{ $0.tickerPair.isFavourite }
+//        if cfr.count > 0 {
+//            dbManager.delete(data: cfr)
+//        }
+        if cfa.count > 0 {
+            dbManager.add(data: convertToDBArray(currencies: cfa), update: true)
+        }
     }
     
     func cacheFavCurrencyPair(datasourceItem: Any?, isSelected: Bool) {
-        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
-        dbManager.performTransaction {
-            currencyModel.isFavourite = isSelected
+        guard let currencyModel = datasourceItem as? WatchlistCurrency else {
+            return
         }
-
-        let isInFavList = favouriteCurrenciesPairs.contains(where: { $0.pairName == currencyModel.pairName })
-        if !isInFavList && currencyModel.isFavourite {
-           favouriteCurrenciesPairs.append(currencyModel)
-        } else {
-            favouriteCurrenciesPairs.removeAll(where: { $0.pairName == currencyModel.pairName })
-        }
- 
-        dbManager.performTransaction {
-            self.dbManager.add(data: currencyModel, update: !currencyModel.isFavourite)
-            print("successful cached \(currencyModel.getDisplayCurrencyPairName())")
+        
+        let itemIndex = favouriteCurrenciesPairs.firstIndex(where: { $0.tickerPair.code == currencyModel.tickerPair.code })
+        if itemIndex == nil && isSelected {
+            favouriteCurrenciesPairs.append(currencyModel)
+        } else if let itemIdx = itemIndex {
+            if let _ = favObjectPairs.firstIndex(where: { $0.tickerPair.code == currencyModel.tickerPair.code }) {
+                favouriteCurrenciesPairs[itemIdx].tickerPair.isFavourite = isSelected
+            } else {
+                favouriteCurrenciesPairs.remove(at: itemIdx)
+            }
         }
     }
 }
@@ -151,21 +168,38 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
         
         for index in (0..<favouriteCurrenciesPairs.count) {
             let favModel = favouriteCurrenciesPairs[index]
-            if favModel.isFavourite && tickerContainer.contains(where: { $0.key == favModel.pairName }) {
-                tickerContainer[favModel.pairName]!.isFavourite = true
+            if favModel.tickerPair.isFavourite && tickerContainer.contains(where: { $0.key == favModel.tickerPair.code }) {
+                tickerContainer[favModel.tickerPair.code]!.isFavourite = true
             }
         }
         
-        var items: [WatchlistCurrencyModel] = tickerContainer.compactMap({(arg0) in
+        var items: [WatchlistCurrency] = tickerContainer.compactMap({(arg0) in
             let (currencyPairCode, model) = arg0
-            return WatchlistCurrencyModel(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
+            return WatchlistCurrency(index: 1, currencyCode: currencyPairCode, tickerCurrencyModel: model)
         })
-        items.sort(by: { $0.getChanges() > $1.getChanges() })
+        items.sort(by: { $0.tickerPair.getChanges() > $1.tickerPair.getChanges() })
         output.onDidLoadCurrenciesPairs(items: items)
     }
     
     func onDidLoadTickerFails(_ ticker: Ticker?) {
         print("onDidLoadTickerFails")
         
+    }
+}
+
+extension CurrenciesListInteractor {
+    func convertToDBArray(currencies: [WatchlistCurrency]) -> Array<WatchlistCurrencyObject> {
+        var objects = Array<WatchlistCurrencyObject>()
+        currencies.forEach({ objects.append($0.managedObject()) })
+        return objects
+    }
+    
+    func convertToArray(currencies: Results<WatchlistCurrencyObject>) -> [WatchlistCurrency] {
+        var objects = [WatchlistCurrency]()
+        currencies.forEach({
+            currency in
+            objects.append(WatchlistCurrency(managedObject: currency))
+        })
+        return objects
     }
 }

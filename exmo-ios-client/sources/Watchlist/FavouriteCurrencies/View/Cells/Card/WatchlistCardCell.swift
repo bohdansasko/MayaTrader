@@ -59,15 +59,15 @@ class WatchlistCardCell: DatasourceCell {
 
     override var datasourceItem: Any? {
         didSet {
-            guard let cm = datasourceItem as? WatchlistCurrencyModel else { return }
+            guard let cm = datasourceItem as? WatchlistCurrency else { return }
             
             pairNameLabel.text = cm.getDisplayCurrencyPairName()
             pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
             pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
-            pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.volume)
-            currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.getChanges())
+            pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
+            currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
             
-            currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.getChanges())
+            currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
         }
     }
     

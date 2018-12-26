@@ -17,5 +17,5 @@ protocol WatchlistFavouriteCurrenciesViewOutput {
     func viewWillAppear()
     func viewWillDisappear()
     func showCurrenciesListVC()
-    func handleTouchCell(watchlistCurrencyModel: WatchlistCurrencyModel)
+    func handleTouchCell(watchlistCurrencyModel: WatchlistCurrency)
 }

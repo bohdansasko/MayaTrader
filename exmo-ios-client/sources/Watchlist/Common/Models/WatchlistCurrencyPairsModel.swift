@@ -11,9 +11,9 @@ import UIKit.UIImage
 import LBTAComponents
 
 class WatchlistFavouriteDataSource: Datasource {
-    var items: [WatchlistCurrencyModel]
+    var items: [WatchlistCurrency]
     
-    init(items: [WatchlistCurrencyModel]) {
+    init(items: [WatchlistCurrency]) {
         self.items = items
     }
     
@@ -37,7 +37,7 @@ extension WatchlistFavouriteDataSource {
         }
     }
     
-    func getCurrencyPairBy(index: Int) -> WatchlistCurrencyModel {
+    func getCurrencyPairBy(index: Int) -> WatchlistCurrency {
         return items[index]
     }
     

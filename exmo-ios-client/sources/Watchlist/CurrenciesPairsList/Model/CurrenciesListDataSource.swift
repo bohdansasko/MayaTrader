@@ -40,11 +40,11 @@ class TableDatasource {
 }
 
 class CurrenciesListDataSource: TableDatasource {
-    var items: [WatchlistCurrencyModel]
-    var tempItems: [WatchlistCurrencyModel] = []
+    var items: [WatchlistCurrency]
+    var tempItems: [WatchlistCurrency] = []
     private var isInSearchingMode = false
     
-    init(items: [WatchlistCurrencyModel]) {
+    init(items: [WatchlistCurrency]) {
         self.items = items
         super.init()
         
@@ -87,7 +87,7 @@ class CurrenciesListDataSource: TableDatasource {
         }
         
         if isInSearchingMode {
-            items = tempItems.filter({ $0.pairName.contains(textInUpperCase) })
+            items = tempItems.filter({ $0.tickerPair.code.contains(textInUpperCase) })
             updateItemsIndexis()
         } else {
             items = tempItems

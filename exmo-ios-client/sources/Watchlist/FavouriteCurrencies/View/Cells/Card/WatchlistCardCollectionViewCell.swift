@@ -20,7 +20,7 @@ class WatchlistCardCollectionViewCell: UICollectionViewCell {
         self.layer.cornerRadius = 5.0
     }
     
-    func setContent(data: WatchlistCurrencyModel) {
+    func setContent(data: WatchlistCurrency) {
         self.currencyPairNameLabel.text = data.getDisplayCurrencyPairName()
         self.currencyPairPriceLabel.text = data.getBuyAsStr()
         self.currencyIcon.image = UIImage(named: data.getIconImageName())?.withRenderingMode(.alwaysOriginal)

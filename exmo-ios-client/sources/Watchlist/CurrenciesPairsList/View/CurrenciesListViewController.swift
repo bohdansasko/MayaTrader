@@ -9,7 +9,7 @@
 import LBTAComponents
 
 protocol CurrenciesListViewControllerInput: class {
-    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel])
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrency])
 }
 
 protocol CurrenciesListViewControllerOutput: class {
@@ -62,7 +62,7 @@ class CurrenciesListViewController: ExmoUIViewController {
 
 // MARK: CurrenciesListViewControllerInput
 extension CurrenciesListViewController: CurrenciesListViewControllerInput {
-    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
         listView.datasource = CurrenciesListDataSource(items: items)
         tabBar.filter()
         hideLoader()

@@ -63,12 +63,12 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
     }
     
     func didTouchCell(datasourceItem: Any?) {
-        guard let currencyModel = datasourceItem as? WatchlistCurrencyModel else { return }
-        print("Touched \(currencyModel.pairName)")
+        guard let currencyModel = datasourceItem as? WatchlistCurrency else { return }
+        print("Touched \(currencyModel.tickerPair.code)")
         output.handleTouchCell(watchlistCurrencyModel: currencyModel)
     }
     
-    func presentFavouriteCurrencies(items: [WatchlistCurrencyModel]) {
+    func presentFavouriteCurrencies(items: [WatchlistCurrency]) {
         datasource = WatchlistFavouriteDataSource(items: items)
     }
 }

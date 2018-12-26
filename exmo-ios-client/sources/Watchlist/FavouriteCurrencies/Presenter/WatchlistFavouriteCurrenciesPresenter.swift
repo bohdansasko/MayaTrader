@@ -29,11 +29,11 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
         router.showCurrenciesListVC(senderVC: view as! UIViewController)
     }
     
-    func handleTouchCell(watchlistCurrencyModel: WatchlistCurrencyModel) {
-        router.showChartVC(senderVC: view as! UIViewController, currencyPairName: watchlistCurrencyModel.pairName)
+    func handleTouchCell(watchlistCurrencyModel: WatchlistCurrency) {
+        router.showChartVC(senderVC: view as! UIViewController, currencyPairName: watchlistCurrencyModel.tickerPair.code)
     }
     
-    func didLoadCurrencies(items: [WatchlistCurrencyModel]) {
+    func didLoadCurrencies(items: [WatchlistCurrency]) {
         view.presentFavouriteCurrencies(items: items)
     }
 }

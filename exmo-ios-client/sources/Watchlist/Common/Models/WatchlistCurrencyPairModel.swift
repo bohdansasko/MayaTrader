@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrencyModel.swift
+//  WatchlistCurrency.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 7/26/18.
@@ -10,7 +10,7 @@ import Foundation
 import Realm
 import RealmSwift
 
-class WatchlistCurrencyModel: Object {
+class WatchlistCurrencyObject: Object {
     @objc dynamic var index: Int = 0
     @objc dynamic var pairName: String = ""
     @objc dynamic var buyPrice: Double = 0.0
@@ -25,7 +25,6 @@ class WatchlistCurrencyModel: Object {
     
     init(index: Int, currencyCode: String, tickerCurrencyModel: TickerCurrencyModel) {
         super.init()
-        
         self.index = index
         self.pairName = currencyCode
         buyPrice = tickerCurrencyModel.buyPrice
@@ -54,31 +53,50 @@ class WatchlistCurrencyModel: Object {
     override static func primaryKey() -> String? {
         return "pairName"
     }
+}
+
+struct WatchlistCurrency {
+    var index: Int
+    var tickerPair: TickerCurrencyModel
     
+    init(index: Int, currencyCode: String, tickerCurrencyModel: TickerCurrencyModel) {
+        self.index = index
+        self.tickerPair = tickerCurrencyModel
+    }
+}
+
+extension WatchlistCurrency {
     func getDisplayCurrencyPairName() -> String {
-        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: self.pairName)
+        return Utils.getDisplayCurrencyPair(rawCurrencyPairName: tickerPair.code)
     }
     
     func getBuyAsStr() -> String {
-        return Utils.getFormatedPrice(value: buyPrice, maxFractDigits: 10)
+        return Utils.getFormatedPrice(value: tickerPair.buyPrice, maxFractDigits: 10)
     }
     
     func getSellAsStr() -> String {
-        return Utils.getFormatedPrice(value: sellPrice, maxFractDigits: 10)
+        return Utils.getFormatedPrice(value: tickerPair.sellPrice, maxFractDigits: 10)
     }
     
-    func getChanges() -> Double {
-        return changes
-    }
-
     func getIconImageName() -> String {
-        let pairComponents = self.pairName.components(separatedBy: "_")
+        let pairComponents = tickerPair.code.components(separatedBy: "_")
         if pairComponents.isEmpty {
-            return pairName.lowercased()
+            return tickerPair.code.lowercased()
         }
-
+        
         let currencyShortName = pairComponents[0].lowercased()
         let iconName = "ic_crypto_" + currencyShortName
         return iconName
+    }
+}
+
+extension WatchlistCurrency: Persistable {
+    init(managedObject: WatchlistCurrencyObject) {
+        self.index = managedObject.index
+        self.tickerPair = TickerCurrencyModel(code: managedObject.pairName, buyPrice: managedObject.buyPrice, sellPrice: managedObject.sellPrice, lastTrade: managedObject.lastTrade, high: 0, low: 0, average: 0, volume: managedObject.volume, volumeCurrency: managedObject.volumeCurrency, timestamp: managedObject.timeUpdataInSecFrom1970, closeBuyPrice: managedObject.closeBuyPrice, isFavourite: managedObject.isFavourite)
+    }
+    
+    func managedObject() -> WatchlistCurrencyObject {
+        return WatchlistCurrencyObject(index: index, currencyCode: tickerPair.code, tickerCurrencyModel: tickerPair)
     }
 }

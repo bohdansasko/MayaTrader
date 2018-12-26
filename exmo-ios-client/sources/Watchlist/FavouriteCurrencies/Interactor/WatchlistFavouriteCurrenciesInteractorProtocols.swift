@@ -15,5 +15,5 @@ protocol WatchlistFavouriteCurrenciesInteractorInput {
 }
 
 protocol WatchlistFavouriteCurrenciesInteractorOutput: class {
-    func didLoadCurrencies(items: [WatchlistCurrencyModel])
+    func didLoadCurrencies(items: [WatchlistCurrency])
 }

@@ -201,15 +201,15 @@ class CurrenciesListCell: ExmoCollectionCell {
 
     override var datasourceItem: Any? {
         didSet {
-            guard let d = datasourceItem as? WatchlistCurrencyModel else { return }
+            guard let d = datasourceItem as? WatchlistCurrency else { return }
             pairNameLabel.text = d.getDisplayCurrencyPairName()
-            buyValueLabel.text = Utils.getFormatedPrice(value: d.buyPrice, maxFractDigits: 9)
-            sellValueLabel.text = Utils.getFormatedPrice(value: d.sellPrice, maxFractDigits: 9)
-            currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.getChanges())
-            currencyChangesValueLabel.textColor = Utils.getChangesColor(value: d.getChanges())
+            buyValueLabel.text = Utils.getFormatedPrice(value: d.tickerPair.buyPrice, maxFractDigits: 9)
+            sellValueLabel.text = Utils.getFormatedPrice(value: d.tickerPair.sellPrice, maxFractDigits: 9)
+            currencyChangesValueLabel.text = Utils.getFormatedCurrencyPairChanges(changesValue: d.tickerPair.getChanges())
+            currencyChangesValueLabel.textColor = Utils.getChangesColor(value: d.tickerPair.getChanges())
             
             backgroundColor = d.index % 2 == 1 ? .dark : .clear
-            addRemoveFromFavouritesListButton.isSelected = d.isFavourite
+            addRemoveFromFavouritesListButton.isSelected = d.tickerPair.isFavourite
         }
     }
     

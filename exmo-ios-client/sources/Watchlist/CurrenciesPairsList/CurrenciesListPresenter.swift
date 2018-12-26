@@ -20,7 +20,7 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
         interactor.viewIsReady()
     }
     
-    func onDidLoadCurrenciesPairs(items: [WatchlistCurrencyModel]) {
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
         view.onDidLoadCurrenciesPairs(items: items)
     }
     

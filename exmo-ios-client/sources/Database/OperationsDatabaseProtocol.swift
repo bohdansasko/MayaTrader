@@ -13,6 +13,7 @@ protocol OperationsDatabaseProtocol {
     func objects<T: Object>(type: T.Type, predicate: NSPredicate?) -> Results<T>?
     func add<T: Object>(data: [T], update: Bool)
     func add<T: Object>(data: T, update: Bool)
+    func delete<T: Object>(data: [T])
     func delete<T: Object>(data: T)
     func clearAllData()
     func performTransaction(closure: @escaping () -> Void)
