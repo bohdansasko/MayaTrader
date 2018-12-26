@@ -29,7 +29,19 @@ class TickerCurrenciesListView: UIView {
     
     weak var parentVC: CurrenciesListViewController!
     
-    var collectionView: UICollectionView!
+    var collectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.sectionHeadersPinToVisibleBounds = true
+
+        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: flowLayout)
+        collectionView.allowsSelection = false
+        collectionView.keyboardDismissMode = .onDrag
+        collectionView.backgroundColor = .clear
+        collectionView.delaysContentTouches = false
+
+        return collectionView
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,16 +55,8 @@ class TickerCurrenciesListView: UIView {
     }
     
     private func setupCollectionView() {
-        let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.sectionHeadersPinToVisibleBounds = true
-        
-        collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: flowLayout)
         addSubview(collectionView)
         collectionView.fillSuperview()
-        collectionView.allowsSelection = false
-        collectionView.backgroundColor = .clear
-        collectionView.delaysContentTouches = false
         collectionView.dataSource = self
         collectionView.delegate = self
     }

@@ -34,15 +34,31 @@ class CurrenciesListViewController: ExmoUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        output.viewIsReady()
-        setupNavigationBar()
-        
+        setupViews()
         showLoader()
+        output.viewIsReady()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         output.viewWillDisappear()
+    }
+
+    @objc func hideKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+// @MARK: setup views
+extension CurrenciesListViewController {
+    func setupViews() {
+        setupNavigationBar()
+        setupTapRecognizer()
+    }
+
+    private func setupTapRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
     }
 
     private func setupNavigationBar() {
@@ -53,14 +69,13 @@ class CurrenciesListViewController: ExmoUIViewController {
         tabBar.searchBar.delegate = self
         view.addSubview(tabBar)
         tabBar.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: AppDelegate.isIPhone(model: .X) ? 90 : 65)
-        
+
         view.addSubview(listView)
         listView.parentVC = self
         listView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: AppDelegate.isIPhone(model: .X) ? 90 : 65, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
 }
 
-// MARK: CurrenciesListViewControllerInput
 extension CurrenciesListViewController: CurrenciesListViewControllerInput {
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
         listView.datasource = CurrenciesListDataSource(items: items)
