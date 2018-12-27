@@ -61,13 +61,15 @@ extension WalletCurrenciesListView {
     
     func invalidate() {
         guard let w = wallet else { return }
+
+        currencies.removeAll()
         
         var index = 0
         if w.favBalances.count > 0 {
             currencies[index] = w.favBalances
             index = index + 1
         }
-        
+
         if w.dislikedBalances.count > 0 {
             currencies[index] = w.dislikedBalances
         }
@@ -130,11 +132,26 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
         guard let sourceItem = currencies[sourceIndexPath.section]?[sourceIndexPath.item] else {
             return
         }
-        sourceItem.isFavourite = currencies.count == 2 && destinationIndexPath.section == 0
+        if sourceIndexPath.section != destinationIndexPath.section {
+            sourceItem.isFavourite = currencies.count == 2 && destinationIndexPath.section == 0
+        }
+        
         currencies[sourceIndexPath.section]?.remove(at: sourceIndexPath.item)
         currencies[destinationIndexPath.section]?.insert(sourceItem, at: destinationIndexPath.item)
-        
         sourceItem.orderId = destinationIndexPath.row
+        
+        if let c = currencies[0]?.count {
+            if c == 0 {
+                currencies[0] = currencies[1]
+                currencies.removeValue(forKey: 1)
+            }
+        }
+        
+        if let c = currencies[1]?.count {
+            if c == 0 {
+                currencies.removeValue(forKey: 1)
+            }
+        }
         
         syncWalletWithCurrencies()
         tableView.reloadData()
@@ -178,6 +195,13 @@ extension WalletCurrenciesListView: UITableViewDragDelegate {
         let dragItem = UIDragItem(itemProvider: itemProvider)
         dragItem.localObject = item
         return [dragItem]
+    }
+    
+    func tableView(_ tableView: UITableView, targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath, toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+            return sourceIndexPath
+        }
+        return proposedDestinationIndexPath
     }
 }
 
