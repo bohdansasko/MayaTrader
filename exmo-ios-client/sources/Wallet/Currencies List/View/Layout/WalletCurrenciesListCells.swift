@@ -56,7 +56,16 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
         label.text = "9600.235"
         return label
     }()
-    
+
+    var inOrdersLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 12)
+        label.textAlignment = .left
+        label.textColor = .dark2
+        label.text = "0"
+        return label
+    }()
+
     var actionButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setBackgroundImage(UIImage(named: "icWalletAssign"), for: .normal)
@@ -84,7 +93,8 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
         didSet {
             guard let c = currency else { return }
             currencyNameLabel.text = c.code
-            amountCurrencyLabel.text = Utils.getFormatedPrice(value: c.balance, maxFractDigits: 10)
+            amountCurrencyLabel.text = "Balance: " + Utils.getFormatedPrice(value: c.balance, maxFractDigits: 10)
+            inOrdersLabel.text = "In Orders: " + String(Int(c.countInOrders))
             actionButton.isSelected = c.isFavourite
         }
     }
@@ -119,13 +129,16 @@ extension WalletCurrenciesListTableViewCell {
         actionButton.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 30, bottomConstant: 20, rightConstant: 0, widthConstant: 25, heightConstant: 25)
         
         addSubview(currencyNameLabel)
-        currencyNameLabel.anchor(self.topAnchor, left: actionButton.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 15, leftConstant: 20, bottomConstant: 33, rightConstant: 0, widthConstant: 100, heightConstant: 0)
-        
-        addSubview(amountCurrencyLabel)
-        amountCurrencyLabel.anchor(currencyNameLabel.bottomAnchor, left: currencyNameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 11, rightConstant: 85, widthConstant: 0, heightConstant: 0)
-        
+        currencyNameLabel.anchor(self.topAnchor, left: actionButton.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 10, leftConstant: 20, bottomConstant: 33, rightConstant: 0, widthConstant: 100, heightConstant: 0)
+
+        let bottomStackView = UIStackView(arrangedSubviews: [amountCurrencyLabel, inOrdersLabel])
+        addSubview(bottomStackView)
+        bottomStackView.axis = .vertical
+        bottomStackView.alignment = .leading
+        bottomStackView.anchor(currencyNameLabel.bottomAnchor, left: currencyNameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 6, rightConstant: 85, widthConstant: 0, heightConstant: 0)
+
         addSubview(burgerImage)
-        burgerImage.anchor(actionButton.topAnchor, left: amountCurrencyLabel.rightAnchor, bottom: actionButton.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        burgerImage.anchor(actionButton.topAnchor, left: bottomStackView.rightAnchor, bottom: actionButton.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 20, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
         
         addSubview(bottomSeparatorLine)
         bottomSeparatorLine.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
