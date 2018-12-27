@@ -24,6 +24,8 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
         loadCurrenciesFromCache()
         if favouriteCurrenciesPairs.count > 0 {
             scheduleUpdateCurrencies()
+        } else {
+            output.didLoadCurrencies(items: favouriteCurrenciesPairs)
         }
     }
     
@@ -42,6 +44,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
     
     private func loadCurrenciesFromCache() {
         guard let objects = dbManager.objects(type: WatchlistCurrencyObject.self, predicate: NSPredicate(format: "isFavourite == true", argumentArray: nil)) else {
+            favouriteCurrenciesPairs = []
             return
         }
         favouriteCurrenciesPairs = convertToArray(currencies: objects)
