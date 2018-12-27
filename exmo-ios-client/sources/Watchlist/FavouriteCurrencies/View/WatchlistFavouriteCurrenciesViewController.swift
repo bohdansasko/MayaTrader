@@ -26,20 +26,23 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
 
     var output: WatchlistFavouriteCurrenciesViewOutput!
     let spaceFromLeftOrRight: CGFloat = 10
-    
+    fileprivate var longPressGesture: UILongPressGestureRecognizer!
+
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         output.viewIsReady()
         setupInitialState()
+
+        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
+        collectionView.addGestureRecognizer(longPressGesture)
     }
     
     // MARK: WatchlistFavouriteCurrenciesViewInput
     func setupInitialState() {
         collectionView.backgroundColor = .black
         collectionView.contentInset = UIEdgeInsets(top: 25, left: spaceFromLeftOrRight, bottom: 0, right: spaceFromLeftOrRight)
-        
         setupNavigationBar()
     }
     
@@ -53,10 +56,26 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
         super.viewWillDisappear(animated)
         output.viewWillDisappear()
     }
-    
-    //
+
+    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
+        guard let collectionView = collectionView else { return }
+
+        switch(gesture.state) {
+        case .began:
+            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
+                break
+            }
+            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
+        case .changed:
+            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
+        case .ended:
+            collectionView.endInteractiveMovement()
+        default:
+            collectionView.cancelInteractiveMovement()
+        }
+    }
+
     // @MARK: setup collection
-    //
     override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let spaceBetweenCols: CGFloat = 10
         return CGSize(width: (view.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/2, height: 115)
@@ -69,22 +88,33 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
     }
     
     func presentFavouriteCurrencies(items: [WatchlistCurrency]) {
+        print("collectionView.isDragging = \(collectionView.isDragging)")
         datasource = WatchlistFavouriteDataSource(items: items)
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        guard let ds = datasource as? WatchlistFavouriteDataSource else {
+            return
+        }
+        print("s index = \(ds.items[sourceIndexPath.item].index), dindex = \(ds.items[destinationIndexPath.item].index)")
+        guard let temp = ds.item(destinationIndexPath) as? WatchlistCurrency else { return }
+        ds.items[destinationIndexPath.item] = ds.items[sourceIndexPath.item]
+        ds.items[sourceIndexPath.item] = temp
+        print("s index = \(ds.items[sourceIndexPath.item].index), dindex = \(ds.items[destinationIndexPath.item].index)")
     }
 }
 
-//
-// @MARK: 
-//
 extension WatchlistFavouriteCurrenciesViewController {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 10
     }
 }
 
-//
 // @MARK: navigation bar
-//
 extension WatchlistFavouriteCurrenciesViewController {
     func setupNavigationBar() {
         setupTitleNavigationBar(text: "Watchlist")

@@ -48,7 +48,7 @@ class WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIntera
             return
         }
         favouriteCurrenciesPairs = convertToArray(currencies: objects)
-        favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.tickerPair.code < $1.tickerPair.code })
+        favouriteCurrenciesPairs = favouriteCurrenciesPairs.sorted(by: { $0.index < $1.index })
     }
     
     private func parseTicker(json: JSON) {

@@ -124,11 +124,14 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
     }
 
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        print("can move row at")
         return isSearching ? false : true
     }
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if sourceIndexPath.section >= currencies.count {
+            return;
+        }
+
         guard let sourceItem = currencies[sourceIndexPath.section]?[sourceIndexPath.item] else {
             return
         }
