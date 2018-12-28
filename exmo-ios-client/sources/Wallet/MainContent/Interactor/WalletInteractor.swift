@@ -101,7 +101,7 @@ extension WalletInteractor: ITickerNetworkWorkerDelegate {
 
 extension WalletInteractor {
     func calculateBalance() {
-        guard var wm = walletModel,
+        guard let wm = walletModel,
               let tickerPairs = ticker?.pairs
         else {
             return

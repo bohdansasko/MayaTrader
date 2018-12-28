@@ -14,12 +14,16 @@ class Utils {
         // do nothing
     }
     
-    static func getFormatedPrice(value: Double, maxFractDigits: Int = 4) -> String {
+    static func getFormatedPrice(value: Double, maxFractDigits: Int = 4, isForce: Bool = false) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.groupingSeparator = ","
         formatter.decimalSeparator = "."
-        formatter.maximumFractionDigits = value > 0.0001 ? 4 : maxFractDigits
+        formatter.maximumFractionDigits = isForce
+                ? maxFractDigits
+                : value > 0.0001
+                        ? 4
+                        : maxFractDigits
         if let formattedPrice = formatter.string(for: value) {
             return formattedPrice
         }
@@ -35,7 +39,7 @@ class Utils {
     }
     
     static func getFormatedCurrencyPairChanges(changesValue: Double) -> String {
-        return Utils.getSign(value: changesValue) + Utils.getFormatedPrice(value: abs(changesValue), maxFractDigits: 2) + "%"
+        return Utils.getSign(value: changesValue) + Utils.getFormatedPrice(value: abs(changesValue), maxFractDigits: 2, isForce: true) + "%"
     }
     
     static func getSign(value: Double) -> String {
