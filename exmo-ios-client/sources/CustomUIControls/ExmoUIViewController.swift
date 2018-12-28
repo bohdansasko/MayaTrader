@@ -104,12 +104,20 @@ extension ExmoUIViewController {
 
 extension ExmoUIViewController {
     func showLoader() {
-        activityIndicatorView.isHidden = false
-        activityIndicatorView.startAnimating()
+        if !isLoaderShowing() {
+            activityIndicatorView.isHidden = false
+            activityIndicatorView.startAnimating()
+        }
     }
     
     func hideLoader() {
-        activityIndicatorView.isHidden = true
-        activityIndicatorView.stopAnimating()
+        if isLoaderShowing() {
+            activityIndicatorView.isHidden = true
+            activityIndicatorView.stopAnimating()
+        }
+    }
+
+    func isLoaderShowing() -> Bool {
+        return activityIndicatorView.isHidden == false
     }
 }
