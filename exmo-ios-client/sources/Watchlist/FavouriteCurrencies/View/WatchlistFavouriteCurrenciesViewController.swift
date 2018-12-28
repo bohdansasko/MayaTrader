@@ -23,7 +23,7 @@ extension DatasourceController {
 }
 
 // @MARK: WatchlistFavouriteCurrenciesViewController
-class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController, WatchlistFavouriteCurrenciesViewInput, CellDelegate {
+class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController {
     var output: WatchlistFavouriteCurrenciesViewOutput!
 
     var listView: WatchlistListView = WatchlistListView()
@@ -32,18 +32,8 @@ class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController, Watchlis
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupInitialState()
+        setupViews()
         output.viewIsReady()
-    }
-    
-    func setupInitialState() {
-        setupNavigationBar()
-
-        view.addSubview(listView)
-        listView.frame = self.view.bounds
-        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        listView.presenter = output
-        listView.datasource = WatchlistCardsDataSource(items: [])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,13 +47,14 @@ class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController, Watchlis
         output.viewWillDisappear()
     }
 
-    // @MARK: setup collection
-    func didTouchCell(datasourceItem: Any?) {
-        guard let currencyModel = datasourceItem as? WatchlistCurrency else { return }
-        print("Touched \(currencyModel.tickerPair.code)")
-        output.handleTouchCell(watchlistCurrencyModel: currencyModel)
+    // MARK: Touch handlers
+    @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {
+        output.showCurrenciesListVC()
     }
-    
+}
+
+// @MARK: Setup navigation bar
+extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenciesViewInput {
     func presentFavouriteCurrencies(items: [WatchlistCurrency]) {
         print("update currencies")
         guard let ds = listView.datasource as? WatchlistCardsDataSource else {
@@ -88,18 +79,27 @@ class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController, Watchlis
             })
         }
     }
-
-
 }
-
-// @MARK: navigation bar
 extension WatchlistFavouriteCurrenciesViewController {
-    func setupNavigationBar() {
+    func setupViews() {
+        setupNavigationBar()
+        setupListView()
+    }
+
+    private func setupListView() {
+        view.addSubview(listView)
+        listView.frame = self.view.bounds
+        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.presenter = output
+        listView.datasource = WatchlistCardsDataSource(items: [])
+    }
+
+    private func setupNavigationBar() {
         titleNavBar = "Watchlist"
         setupLeftNavigationBarItems()
     }
-    
-    func setupNavigationBarColor() {
+
+    private func setupNavigationBarColor() {
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.isTranslucent = false
     }
@@ -111,15 +111,5 @@ extension WatchlistFavouriteCurrenciesViewController {
         let addCurrencyBarItem = UIBarButtonItem(customView: addCurrencyPairsBtn)
         navigationItem.rightBarButtonItem = addCurrencyBarItem
     }
-    
-    @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {
-        output.showCurrenciesListVC()
-    }
 
-}
-
-extension WatchlistFavouriteCurrenciesViewController: CurrenciesListViewControllerInput {
-    func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
-
-    }
 }
