@@ -101,3 +101,28 @@ class CurrenciesListDataSource: TableDatasource {
         }
     }
 }
+
+class WatchlistCardsDataSource: TableDatasource {
+    var items: [WatchlistCurrency]
+
+    init(items: [WatchlistCurrency]) {
+        self.items = items
+        super.init()
+    }
+
+    override func cellClass(_ indexPath: IndexPath) -> ExmoCollectionCell.Type? {
+        return cellClasses()[indexPath.section]
+    }
+
+    override func cellClasses() -> [ExmoCollectionCell.Type] {
+        return [WatchlistCardCell.self]
+    }
+
+    override func numberOfItems(_ section: Int) -> Int {
+        return items.count
+    }
+
+    override func item(_ indexPath: IndexPath) -> Any? {
+        return items[indexPath.item]
+    }
+}

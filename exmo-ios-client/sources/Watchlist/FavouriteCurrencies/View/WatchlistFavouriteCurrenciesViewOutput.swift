@@ -6,16 +6,11 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-protocol WatchlistFavouriteCurrenciesViewOutput {
-
-    /**
-        @author TQ0oS
-        Notify presenter that view is ready
-    */
-
+protocol WatchlistFavouriteCurrenciesViewOutput: class {
     func viewIsReady()
     func viewWillAppear()
     func viewWillDisappear()
     func showCurrenciesListVC()
     func handleTouchCell(watchlistCurrencyModel: WatchlistCurrency)
+    func itemsOrderUpdated(_ items: [WatchlistCurrency])
 }

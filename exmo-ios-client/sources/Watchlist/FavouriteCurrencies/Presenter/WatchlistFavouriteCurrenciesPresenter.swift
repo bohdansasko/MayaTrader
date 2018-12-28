@@ -36,4 +36,8 @@ class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleI
     func didLoadCurrencies(items: [WatchlistCurrency]) {
         view.presentFavouriteCurrencies(items: items)
     }
+
+    func itemsOrderUpdated(_ items: [WatchlistCurrency]) {
+        interactor.updateItems(items)
+    }
 }

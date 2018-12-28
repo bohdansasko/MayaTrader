@@ -12,6 +12,7 @@ protocol WatchlistFavouriteCurrenciesInteractorInput {
     func viewIsReady()
     func viewWillAppear()
     func viewWillDisappear()
+    func updateItems(_ items: [WatchlistCurrency])
 }
 
 protocol WatchlistFavouriteCurrenciesInteractorOutput: class {

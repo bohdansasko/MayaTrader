@@ -22,28 +22,28 @@ extension DatasourceController {
     }
 }
 
-class WatchlistFavouriteCurrenciesViewController: DatasourceController, WatchlistFavouriteCurrenciesViewInput, CellDelegate {
-
+// @MARK: WatchlistFavouriteCurrenciesViewController
+class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController, WatchlistFavouriteCurrenciesViewInput, CellDelegate {
     var output: WatchlistFavouriteCurrenciesViewOutput!
-    let spaceFromLeftOrRight: CGFloat = 10
-    fileprivate var longPressGesture: UILongPressGestureRecognizer!
+
+    var listView: WatchlistListView = WatchlistListView()
 
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        output.viewIsReady()
-        setupInitialState()
 
-        longPressGesture = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongGesture(gesture:)))
-        collectionView.addGestureRecognizer(longPressGesture)
+        setupInitialState()
+        output.viewIsReady()
     }
     
-    // MARK: WatchlistFavouriteCurrenciesViewInput
     func setupInitialState() {
-        collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 25, left: spaceFromLeftOrRight, bottom: 0, right: spaceFromLeftOrRight)
         setupNavigationBar()
+
+        view.addSubview(listView)
+        listView.frame = self.view.bounds
+        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.presenter = output
+        listView.datasource = WatchlistCardsDataSource(items: [])
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,30 +57,7 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
         output.viewWillDisappear()
     }
 
-    @objc func handleLongGesture(gesture: UILongPressGestureRecognizer) {
-        guard let collectionView = collectionView else { return }
-
-        switch(gesture.state) {
-        case .began:
-            guard let selectedIndexPath = collectionView.indexPathForItem(at: gesture.location(in: collectionView)) else {
-                break
-            }
-            collectionView.beginInteractiveMovementForItem(at: selectedIndexPath)
-        case .changed:
-            collectionView.updateInteractiveMovementTargetPosition(gesture.location(in: gesture.view!))
-        case .ended:
-            collectionView.endInteractiveMovement()
-        default:
-            collectionView.cancelInteractiveMovement()
-        }
-    }
-
     // @MARK: setup collection
-    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let spaceBetweenCols: CGFloat = 10
-        return CGSize(width: (view.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/2, height: 115)
-    }
-    
     func didTouchCell(datasourceItem: Any?) {
         guard let currencyModel = datasourceItem as? WatchlistCurrency else { return }
         print("Touched \(currencyModel.tickerPair.code)")
@@ -88,36 +65,37 @@ class WatchlistFavouriteCurrenciesViewController: DatasourceController, Watchlis
     }
     
     func presentFavouriteCurrencies(items: [WatchlistCurrency]) {
-        print("collectionView.isDragging = \(collectionView.isDragging)")
-        datasource = WatchlistFavouriteDataSource(items: items)
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canMoveItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        guard let ds = datasource as? WatchlistFavouriteDataSource else {
+        print("update currencies")
+        guard let ds = listView.datasource as? WatchlistCardsDataSource else {
             return
         }
-        print("s index = \(ds.items[sourceIndexPath.item].index), dindex = \(ds.items[destinationIndexPath.item].index)")
-        guard let temp = ds.item(destinationIndexPath) as? WatchlistCurrency else { return }
-        ds.items[destinationIndexPath.item] = ds.items[sourceIndexPath.item]
-        ds.items[sourceIndexPath.item] = temp
-        print("s index = \(ds.items[sourceIndexPath.item].index), dindex = \(ds.items[destinationIndexPath.item].index)")
-    }
-}
+        hideLoader()
 
-extension WatchlistFavouriteCurrenciesViewController {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        let shouldReloadData = ds.items.count != items.count
+        ds.items = items
+
+        if shouldReloadData {
+            listView.collectionView.reloadData()
+        } else {
+            listView.collectionView.visibleCells.forEach({
+                collectionCell in
+                guard let dsCell = collectionCell as? ExmoCollectionCell,
+                      var dsItem = dsCell.datasourceItem as? WatchlistCurrency,
+                      let item = ds.item(IndexPath(item: dsItem.index, section: 0)) as? WatchlistCurrency else {
+                    return
+                }
+                dsItem.tickerPair = item.tickerPair
+            })
+        }
     }
+
+
 }
 
 // @MARK: navigation bar
 extension WatchlistFavouriteCurrenciesViewController {
     func setupNavigationBar() {
-        setupTitleNavigationBar(text: "Watchlist")
+        titleNavBar = "Watchlist"
         setupLeftNavigationBarItems()
     }
     
@@ -136,5 +114,12 @@ extension WatchlistFavouriteCurrenciesViewController {
     
     @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {
         output.showCurrenciesListVC()
+    }
+
+}
+
+extension WatchlistFavouriteCurrenciesViewController: CurrenciesListViewControllerInput {
+    func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
+
     }
 }

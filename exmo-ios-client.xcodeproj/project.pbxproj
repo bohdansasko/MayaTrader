@@ -68,9 +68,7 @@
 		2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */; };
 		20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */; };
 		202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */; };
-		202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */; };
 		202F48F6206A157D0080423E /* WatchlistCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistCardCell.swift */; };
-		202F48F8206A16640080423E /* WatchlistCurrencyPairsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */; };
 		20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20345011217B644400D2E831 /* CurrenciesListViewController.swift */; };
 		20369A4421972149001D6628 /* MainTabBarInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4321972149001D6628 /* MainTabBarInteractor.swift */; };
 		20369A4621972159001D6628 /* MainTabBarPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4521972159001D6628 /* MainTabBarPresenter.swift */; };
@@ -159,7 +157,6 @@
 		20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5A20557ECD00973F2F /* Alert.swift */; };
 		20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */; };
 		20CA0FD6206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */; };
-		20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */; };
 		20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */; };
 		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
 		20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */; };
@@ -211,6 +208,7 @@
 		367123499097564DF365D13F /* ChartNetworkWorkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */; };
 		3671270AD41B65A3E7C2B26D /* WalletTableCurrenciesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */; };
 		3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */; };
+		36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367120B1111B487C3177C51D /* WatchlistListView.swift */; };
 		36712819605402E3BB398CBA /* ErrorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ErrorModels.swift */; };
 		36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Font+Extension.swift */; };
 		36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129AC2A73866F875D22DE /* ExmoChartData.swift */; };
@@ -386,9 +384,7 @@
 		2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrenciesListView.swift; sourceTree = "<group>"; };
 		20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkWorker.swift; sourceTree = "<group>"; };
-		202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistFlatDisplayManager.swift; sourceTree = "<group>"; };
 		202F48F5206A157D0080423E /* WatchlistCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCell.swift; sourceTree = "<group>"; };
-		202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairsModel.swift; sourceTree = "<group>"; };
 		20345011217B644400D2E831 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		20369A4321972149001D6628 /* MainTabBarInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarInteractor.swift; sourceTree = "<group>"; };
 		20369A4521972159001D6628 /* MainTabBarPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarPresenter.swift; sourceTree = "<group>"; };
@@ -475,7 +471,6 @@
 		20BEDC5A20557ECD00973F2F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProtocols.swift; sourceTree = "<group>"; };
 		20CA0FD5206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCollectionViewCell.swift; sourceTree = "<group>"; };
-		20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardsDisplayManager.swift; sourceTree = "<group>"; };
 		20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRLoginModel.swift; path = Models/QRLoginModel.swift; sourceTree = "<group>"; };
 		20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiHandler.swift; sourceTree = "<group>"; };
 		20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
@@ -520,6 +515,7 @@
 		3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractor.swift; sourceTree = "<group>"; };
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
 		366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsCell.swift; sourceTree = "<group>"; };
+		367120B1111B487C3177C51D /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableMenuView.swift; sourceTree = "<group>"; };
 		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		367129AC2A73866F875D22DE /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
@@ -938,6 +934,7 @@
 				3DDB3E27DAEC8977E4D43CE0 /* CurrenciesGroups */,
 				48EFA6894840F77841C1ED3F /* CurrencyPairChart */,
 				20DE8847217CDE9900BA5CF3 /* CurrenciesPairsList */,
+				367120B1111B487C3177C51D /* WatchlistListView.swift */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -954,8 +951,6 @@
 		202F48F1206A14560080423E /* View */ = {
 			isa = PBXGroup;
 			children = (
-				202F48F3206A148F0080423E /* WatchlistFlatDisplayManager.swift */,
-				20CA0FD7206E40B000222966 /* WatchlistCardsDisplayManager.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -963,7 +958,6 @@
 		202F48F2206A145C0080423E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				202F48F7206A16640080423E /* WatchlistCurrencyPairsModel.swift */,
 				209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */,
 			);
 			path = Models;
@@ -2351,7 +2345,6 @@
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
 				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
-				202F48F8206A16640080423E /* WatchlistCurrencyPairsModel.swift in Sources */,
 				2084491720492B87007CA79C /* WalletCurrencyModel.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
 				20600A2920532949004D7F45 /* UserEntity+CoreDataClass.swift in Sources */,
@@ -2410,7 +2403,6 @@
 				B49D5CFB9505A49D6256530A /* WalletViewController.swift in Sources */,
 				9B83E5D76255DC1CF427CA5E /* WalletModuleInput.swift in Sources */,
 				20B9CC9B219A34B9004AC3B2 /* CreateLimitView.swift in Sources */,
-				202F48F4206A148F0080423E /* WatchlistFlatDisplayManager.swift in Sources */,
 				20CE7EB321A19CAB00EC14FA /* Structures.swift in Sources */,
 				20369A482197223C001D6628 /* MainTabBarModuleInitializer.swift in Sources */,
 				F403E921F12C165CC3DA3F52 /* WalletPresenter.swift in Sources */,
@@ -2508,7 +2500,6 @@
 				20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */,
 				207552962188B1F00011190E /* NetworkWorker.swift in Sources */,
 				2010154820B02B7800324F22 /* AddAlertTableViewCell.swift in Sources */,
-				20CA0FD8206E40B000222966 /* WatchlistCardsDisplayManager.swift in Sources */,
 				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewProtocols.swift in Sources */,
 				20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */,
@@ -2579,6 +2570,7 @@
 				F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */,
 				76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */,
 				366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */,
+				36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

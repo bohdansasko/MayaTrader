@@ -9,7 +9,7 @@
 import UIKit
 import LBTAComponents
 
-class WatchlistCardCell: DatasourceCell {
+class WatchlistCardCell: ExmoCollectionCell {
     var pairNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 15)
@@ -49,13 +49,12 @@ class WatchlistCardCell: DatasourceCell {
         label.textColor = .greenBlue
         return label
     }()
-    
-    var backgroundButton: UIButton = {
-        let btn = UIButton(type: .system)
-        return btn
-    }()
-    
-    var callbackOnTouchCell: VoidClosure?
+
+    override var isHighlighted: Bool {
+        didSet {
+            contentView.backgroundColor = isHighlighted ? UIColor.white.withAlphaComponent(0.1) : .clear
+        }
+    }
 
     override var datasourceItem: Any? {
         didSet {
@@ -76,7 +75,6 @@ class WatchlistCardCell: DatasourceCell {
         
         setupUI()
         setupConstraints()
-        setupTouchBackgroundListeners()
     }
 }
 
@@ -86,24 +84,14 @@ extension WatchlistCardCell {
         layer.masksToBounds = true
         backgroundColor = .dark
         
-        addSubview(backgroundButton)
         addSubview(pairNameLabel)
         addSubview(pairBuyPriceLabel)
         addSubview(pairSellPriceLabel)
         addSubview(pairVolumeLabel)
         addSubview(currencyChangesLabel)
     }
-    
-    func setupTouchBackgroundListeners() {
-        backgroundButton.addTarget(self, action: #selector(handleTouchUpInside(_:)), for: .touchUpInside)
-        backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchUpOutside)
-        backgroundButton.addTarget(self, action: #selector(setNormalBackground(_:)), for: .touchCancel)
-        backgroundButton.addTarget(self, action: #selector(setHighlightedBackground(_:)), for: .touchDown)
-    }
-    
+
     func setupConstraints() {
-        backgroundButton.fillSuperview()
-        
         pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
         
         pairBuyPriceLabel.anchor(pairNameLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
@@ -113,22 +101,5 @@ extension WatchlistCardCell {
         currencyChangesLabel.anchor(pairSellPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
         
         pairVolumeLabel.anchor(currencyChangesLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
-    }
-}
-
-extension WatchlistCardCell {
-    @objc func handleTouchUpInside(_ sender: Any) {
-        setNormalBackground(sender)
-
-        guard let cellDelegate = controller as? CellDelegate else { return }
-        cellDelegate.didTouchCell(datasourceItem: datasourceItem)
-    }
-    
-    @objc func setNormalBackground(_ sender: Any) {
-        backgroundButton.backgroundColor = UIColor.clear
-    }
-    
-    @objc func setHighlightedBackground(_ sender: Any) {
-        backgroundButton.backgroundColor = UIColor.white.withAlphaComponent(0.1)
     }
 }
