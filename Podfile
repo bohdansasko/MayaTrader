@@ -12,4 +12,5 @@ target 'exmo-ios-client' do
   pod 'Charts'
   pod 'LBTAComponents' # TODO: should remove from project
   pod 'RealmSwift'
+  pod 'SmileLock', '~> 3.0'
 end

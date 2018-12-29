@@ -13,6 +13,7 @@ PODS:
   - Realm/Headers (3.12.0)
   - RealmSwift (3.12.0):
     - Realm (= 3.12.0)
+  - SmileLock (3.0.5)
   - SwiftWebSocket (2.7.0)
   - SwiftyJSON (4.2.0)
 
@@ -24,6 +25,7 @@ DEPENDENCIES:
   - LBTAComponents
   - ObjectMapper (~> 3.1)
   - RealmSwift
+  - SmileLock (~> 3.0)
   - SwiftWebSocket
   - SwiftyJSON
 
@@ -37,6 +39,7 @@ SPEC REPOS:
     - ObjectMapper
     - Realm
     - RealmSwift
+    - SmileLock
     - SwiftWebSocket
     - SwiftyJSON
 
@@ -49,9 +52,10 @@ SPEC CHECKSUMS:
   ObjectMapper: 5311bd50ca732930959e7ca1a2de43ab823a5ced
   Realm: cdaef23c4ddb36ab1ddffed23f5a7f3332fc5585
   RealmSwift: 5576324033f0aa5ef1e0a839a3da2281dff47a7f
+  SmileLock: 8f57ad4626cd23a8e1e01230521ede7761b38b0c
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: a8b2c5758937f8c065cbbb0ddc99c540a4cd5609
+PODFILE CHECKSUM: 54a083c9471ec5a86a7b74251721cb349bb4ae01
 
 COCOAPODS: 1.6.0.beta.2
