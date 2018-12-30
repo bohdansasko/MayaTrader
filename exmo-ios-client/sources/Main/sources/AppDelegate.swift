@@ -37,9 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = mainTabBar.tabBarController
         window?.windowLevel = UIWindow.Level.normal
         window?.makeKeyAndVisible()
-        
+
         UITextField.appearance().keyboardAppearance = .dark
-        
+
+        StoreReviewHelper.incrementAppOpenedCount()
+        StoreReviewHelper.checkAndAskForReview()
+
         return true
     }
 

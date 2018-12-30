@@ -5,6 +5,7 @@
 //  Created by TQ0oS on 27/02/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
+
 import UIKit
 
 class MenuRouter: MenuRouterInput {
@@ -34,7 +35,10 @@ class MenuRouter: MenuRouterInput {
             if !openLinkOnSupportGroups(.Facebook) {
                 onFailOpenSocialGroups(.TelegramApp)
             }
-        case .RateUs: break;
+
+        case .RateUs:
+            StoreReviewHelper.resetAppOpenedCount()
+            StoreReviewHelper.requestReview()
         case .ShareApp: break;
         case .AppVersion: break;
 

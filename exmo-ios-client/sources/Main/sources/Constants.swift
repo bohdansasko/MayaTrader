@@ -24,10 +24,19 @@ class Defaults {
     static func setUserLoggedIn(_ state: Bool) {
         return UserDefaults.standard.set(state, forKey: UserDefaultsKeys.isLoggedIn.rawValue)
     }
+
+    static func getCountOpenedApp() -> Int {
+        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.APP_OPENED_COUNT.rawValue)
+    }
+
+    static func setCountAppOpened(_ count: Int) {
+        UserDefaults.standard.set(count, forKey: UserDefaultsKeys.APP_OPENED_COUNT.rawValue)
+    }
 }
 
 enum UserDefaultsKeys: String {
     case isLoggedIn
+    case APP_OPENED_COUNT
 }
 
 enum DefaultStringValues: String {
