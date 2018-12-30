@@ -33,6 +33,7 @@ extension WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIn
     }
 
     func viewWillDisappear() {
+        print("interactor: viewWillDisappear")
         stopScheduleUpdateCurrencies()
         saveFavCurrenciesToCache()
     }
@@ -40,6 +41,15 @@ extension WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIn
     func updateItems(_ items: [WatchlistCurrency]) {
         favPairs = items
         saveFavCurrenciesToCache()
+    }
+
+    func removeFavCurrency(_ currency: WatchlistCurrency) {
+        // dbManager.delete(data: currency.managedObject())
+        favPairs.remove(at: currency.index)
+        for index in (0..<favPairs.count) {
+            favPairs[index].index = index
+        }
+        output.didLoadCurrencies(items: favPairs)
     }
 }
 

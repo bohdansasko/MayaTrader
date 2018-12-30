@@ -64,6 +64,14 @@ class WatchlistListView: UIView {
             collectionView.cancelInteractiveMovement()
         }
     }
+
+    func removeItem(byIndex: Int) {
+        guard let ds = datasource as? WatchlistCardsDataSource else {
+            return
+        }
+        ds.items.remove(at: byIndex)
+        collectionView.deleteItems(at: [IndexPath(row: byIndex, section: 0)])
+    }
 }
 
 // @MARK: setup ui
@@ -129,6 +137,7 @@ extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? WatchlistCardCell else { return }
         cell.datasourceItem = datasource?.item(indexPath)
+        cell.delegate = self
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -146,5 +155,15 @@ extension WatchlistListView: UICollectionViewDelegateFlowLayout {
             return
         }
         presenter.handleTouchCell(watchlistCurrencyModel: currency)
+    }
+}
+
+// @MARK: UICollectionViewDelegateFlowLayout
+extension WatchlistListView: CellDelegate {
+    func didTouchCell(datasourceItem: Any?) {
+        guard let currency = datasourceItem as? WatchlistCurrency else {
+            return
+        }
+        presenter.onTouchFavButton(currency: currency)
     }
 }

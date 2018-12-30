@@ -13,8 +13,10 @@ protocol WatchlistFavouriteCurrenciesInteractorInput {
     func viewWillAppear()
     func viewWillDisappear()
     func updateItems(_ items: [WatchlistCurrency])
+    func removeFavCurrency(_ currency: WatchlistCurrency)
 }
 
 protocol WatchlistFavouriteCurrenciesInteractorOutput: class {
     func didLoadCurrencies(items: [WatchlistCurrency])
+    func didRemoveCurrency(_ currency: WatchlistCurrency)
 }

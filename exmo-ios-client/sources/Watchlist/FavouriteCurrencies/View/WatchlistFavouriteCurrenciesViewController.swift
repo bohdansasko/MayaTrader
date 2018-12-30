@@ -79,7 +79,12 @@ extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenci
             })
         }
     }
+
+    func removeItem(currency: WatchlistCurrency) {
+        listView.removeItem(byIndex: currency.index)
+    }
 }
+
 extension WatchlistFavouriteCurrenciesViewController {
     func setupViews() {
         setupNavigationBar()

@@ -18,6 +18,14 @@ class WatchlistCardCell: ExmoCollectionCell {
         return label
     }()
 
+    var favButton: UIButton = {
+        let btn = UIButton(type: .custom)
+        btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOff").withRenderingMode(.alwaysOriginal), for: .normal)
+        btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOn").withRenderingMode(.alwaysOriginal), for: .selected)
+        btn.isSelected = true
+        return btn
+    }()
+
     var pairBuyPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
@@ -65,8 +73,8 @@ class WatchlistCardCell: ExmoCollectionCell {
             pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
             pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
             currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
-            
             currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
+            favButton.isSelected = cm.tickerPair.isFavourite
         }
     }
     
@@ -85,6 +93,7 @@ extension WatchlistCardCell {
         backgroundColor = .dark
         
         addSubview(pairNameLabel)
+
         addSubview(pairBuyPriceLabel)
         addSubview(pairSellPriceLabel)
         addSubview(pairVolumeLabel)
@@ -101,5 +110,25 @@ extension WatchlistCardCell {
         currencyChangesLabel.anchor(pairSellPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
         
         pairVolumeLabel.anchor(currencyChangesLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
+
+        addSubview(favButton)
+        favButton.addTarget(self, action: #selector(onTouchFavBtn(_:)), for: .touchUpInside)
+        favButton.anchor(
+                self.topAnchor,
+                left: nil,
+                bottom: nil,
+                right: self.rightAnchor,
+                topConstant: 10,
+                leftConstant: 0,
+                bottomConstant: 0,
+                rightConstant: 10,
+                widthConstant: 20,
+                heightConstant: 20
+        )
+    }
+
+    @objc func onTouchFavBtn(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        delegate?.didTouchCell(datasourceItem: datasourceItem)
     }
 }

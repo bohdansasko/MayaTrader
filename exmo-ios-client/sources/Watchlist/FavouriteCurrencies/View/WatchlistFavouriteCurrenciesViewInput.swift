@@ -8,4 +8,5 @@
 
 protocol WatchlistFavouriteCurrenciesViewInput: class {
     func presentFavouriteCurrencies(items: [WatchlistCurrency])
+    func removeItem(currency: WatchlistCurrency)
 }

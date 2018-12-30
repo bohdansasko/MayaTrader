@@ -13,4 +13,5 @@ protocol WatchlistFavouriteCurrenciesViewOutput: class {
     func showCurrenciesListVC()
     func handleTouchCell(watchlistCurrencyModel: WatchlistCurrency)
     func itemsOrderUpdated(_ items: [WatchlistCurrency])
+    func onTouchFavButton(currency: WatchlistCurrency)
 }
