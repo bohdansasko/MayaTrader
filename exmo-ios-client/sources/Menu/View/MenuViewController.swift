@@ -42,6 +42,16 @@ extension TableMenuViewController {
     private func setupTableView() {
         view.addSubview(tableMenuView)
         tableMenuView.viewOutput = self.output
-        tableMenuView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        tableMenuView.anchor(view.layoutMarginsGuide.topAnchor,
+                left: view.leftAnchor,
+                bottom: view.layoutMarginsGuide.bottomAnchor,
+                right: view.rightAnchor,
+                topConstant: 0,
+                leftConstant: 0,
+                bottomConstant: 0,
+                rightConstant: 0,
+                widthConstant: 0,
+                heightConstant: 0
+        )
     }
 }

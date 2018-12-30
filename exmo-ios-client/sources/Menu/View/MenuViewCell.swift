@@ -20,7 +20,7 @@ class TableMenuViewCell: ExmoTableViewCell {
     
     var iconImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .center
         return imageView
     }()
     
@@ -47,16 +47,11 @@ class TableMenuViewCell: ExmoTableViewCell {
         imageView.image = UIImage(named: "icInputFieldArrow")
         return imageView
     }()
-    
-    var bottomSeparatorLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .dark1
-        return view
-    }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
+        separatorLineView.isHidden = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,16 +71,13 @@ extension TableMenuViewCell {
         iconImage.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 30, bottomConstant: 20, rightConstant: 0, widthConstant: 0, heightConstant: 0)
         
         addSubview(titleLabel)
-        titleLabel.anchor(self.topAnchor, left: iconImage.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 24, leftConstant: 20, bottomConstant: 24, rightConstant: 0, widthConstant: 160, heightConstant: 0)
+        titleLabel.anchor(self.topAnchor, left: iconImage.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 10, leftConstant: 20, bottomConstant: 10, rightConstant: 0, widthConstant: 160, heightConstant: 0)
         
         addSubview(infoLabel)
-        infoLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 20, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        infoLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 10, rightConstant: 30, widthConstant: 0, heightConstant: 0)
         
         addSubview(disclosureImage)
-        disclosureImage.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 20, rightConstant: 30, widthConstant: 0, heightConstant: 0)
-
-        addSubview(bottomSeparatorLine)
-        bottomSeparatorLine.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
+        disclosureImage.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
     }
     
     func updateRightView() {

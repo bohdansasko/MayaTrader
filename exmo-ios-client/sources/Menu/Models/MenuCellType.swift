@@ -6,52 +6,133 @@
 import Foundation
 import UIKit
 
+enum MenuSectionType: Int {
+    case Authorization
+    case Purchase
+    case Security
+    case ContactWithUs
+    case About
+
+    var header: String? {
+        switch self {
+        case .Authorization: return "Authorization"
+        case .Purchase: return "Purchases"
+        case .Security: return "Security"
+        case .ContactWithUs: return "Contact with us"
+        case .About: return "About"
+        }
+    }
+
+    static func getGuestUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
+        return [
+        .Authorization : [
+            .Login,
+        ],
+        .Purchase : [
+            .ProFeatures,
+            .Advertisement,
+        ],
+        .Security : [
+            .Passcode,
+            .TouchId,
+        ],
+        .ContactWithUs : [
+            .Facebook,
+            .Telegram,
+        ],
+        .About : [
+            .RateUs,
+            .ShareApp,
+            .AppVersion
+        ]]
+    }
+
+    static func getLoginedUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
+        return [
+        .Authorization : [
+            .Logout
+        ],
+        .Purchase : [
+            .ProFeatures,
+            .Advertisement,
+        ],
+        .Security : [
+            .Passcode,
+            .TouchId,
+        ],
+        .ContactWithUs : [
+            .Facebook,
+            .Telegram,
+        ],
+        .About : [
+            .RateUs,
+            .ShareApp,
+            .AppVersion
+        ]]
+    }
+}
+
 enum MenuCellType {
     case None
+
     case Login
     case Logout
-    case News
-    case Chat
+
+    case ProFeatures
+    case Advertisement
+
+    case Passcode
+    case TouchId
+
+    case Telegram
+    case Facebook
+
+    case RateUs
+    case ShareApp
     case AppVersion
 
     
     var title: String? {
         switch self {
         case .None: return ""
-        case .News: return "News"
-        case .Chat: return "Chat"
-        case .AppVersion: return "App version"
+
         case .Login: return "Login"
         case .Logout: return "Logout"
+
+        case .ProFeatures: return "Pro features"
+        case .Advertisement: return "Advertisement"
+
+        case .TouchId: return "Touch ID"
+        case .Passcode: return "Passcode"
+
+        case .Telegram: return "Telegram"
+        case .Facebook: return "Facebook"
+
+        case .RateUs: return "Rate us"
+        case .ShareApp: return "Share app"
+        case .AppVersion: return "App version"
         }
     }
     
     var icon: UIImage? {
         switch self {
         case .None: return nil
-        case .News: return UIImage(named: "icMenuNews")
-        case .Chat: return UIImage(named: "icMenuChat")
-        case .AppVersion: return UIImage(named: "icMenuAppversion")
+
         case .Login: return UIImage(named: "icMenuLogin")
         case .Logout: return UIImage(named: "icMenuLogout")
+
+        case .ProFeatures: return UIImage(named: "icMenuChat")
+        case .Advertisement: return UIImage(named: "icMenuNews")
+
+        case .TouchId: return UIImage(named: "icMenuChat")
+        case .Passcode: return UIImage(named: "icMenuNews")
+
+        case .Telegram: return UIImage(named: "icMenuChat")
+        case .Facebook: return UIImage(named: "icMenuChat")
+
+        case .RateUs: return UIImage(named: "icMenuAppversion")
+        case .ShareApp: return UIImage(named: "icMenuAppversion")
+        case .AppVersion: return UIImage(named: "icMenuAppversion")
         }
-    }
-    
-    static func getGuestUserCellsLayout() -> [IndexPath: MenuCellType] {
-        return [
-            IndexPath(row: 0, section: 0) : .Login,
-            IndexPath(row: 1, section: 0) : .News,
-            IndexPath(row: 2, section: 0) : .Chat,
-            IndexPath(row: 3, section: 0) : .AppVersion
-        ]
-    }
-    
-    static func getLoginedUserCellsLayout() -> [IndexPath: MenuCellType] {
-        return [
-            IndexPath(row: 0, section: 0) : .News,
-            IndexPath(row: 1, section: 0) : .Chat,
-            IndexPath(row: 2, section: 0) : .AppVersion,
-            IndexPath(row: 3, section: 0) : .Logout
-        ]
     }
 }
