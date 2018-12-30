@@ -37,6 +37,7 @@ class Defaults {
 enum UserDefaultsKeys: String {
     case isLoggedIn
     case APP_OPENED_COUNT
+    case AppStoreLink = "https://www.telegram.me/exmo_official"
 }
 
 enum DefaultStringValues: String {

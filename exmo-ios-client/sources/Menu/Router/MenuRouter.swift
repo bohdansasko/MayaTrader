@@ -39,9 +39,12 @@ class MenuRouter: MenuRouterInput {
         case .RateUs:
             StoreReviewHelper.resetAppOpenedCount()
             StoreReviewHelper.requestReview()
-        case .ShareApp: break;
-        case .AppVersion: break;
-
+        case .ShareApp:
+            if let link = NSURL(string: UserDefaultsKeys.AppStoreLink.rawValue) {
+                let objectsToShare = [link] as [Any]
+                let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+                sourceVC.present(activityVC, animated: true, completion: nil)
+            }
         default:
             break
         }
