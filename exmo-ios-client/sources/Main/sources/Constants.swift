@@ -9,9 +9,9 @@ typealias VoidClosure = () -> Void
 typealias IntInVoidOutClosure = (Int) -> Void
 
 enum LinkOnSupportGroups: String {
-    case TelegramWebsite = "https://www.telegram.me/exmo_official"
-    case TelegramApp = "tg://resolve?domain=exmo_official"
-    case Facebook = "https://www.facebook.com/groups/540646336080261"
+    case TelegramWebsite = "https://www.telegram.me/exmobile"
+    case TelegramApp = "tg://resolve?domain=exmobile"
+    case Facebook = "https://www.facebook.com/groups/exmobile"
 }
 
 class Defaults {
