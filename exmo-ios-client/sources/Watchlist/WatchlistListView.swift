@@ -26,7 +26,7 @@ class WatchlistListView: UIView {
     }
 
     weak var presenter: WatchlistFavouriteCurrenciesViewOutput!
-    let spaceFromLeftOrRight: CGFloat = 10
+    let spaceFromLeftOrRight: CGFloat = 0
 
     var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -143,8 +143,11 @@ extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let spaceBetweenCols: CGFloat = 10
-        return CGSize(width: (self.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/2, height: 115)
+        let countItems = round(self.frame.width/160)
+        let spaceBetweenCols: CGFloat = (countItems-1) * 10
+        let width = (self.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/countItems
+        print("watchlist cell width = \(width)")
+        return CGSize(width: width, height: 115)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
