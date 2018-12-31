@@ -38,7 +38,7 @@ class WatchlistCardCell: ExmoCollectionCell {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
         label.textAlignment = .left
-        label.textColor = .orangePink
+        label.textColor = UIColor(red: 193.0/255, green: 45.0/255, blue: 102.0/255, alpha: 1)
         return label
     }()
 
