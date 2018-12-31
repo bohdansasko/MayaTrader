@@ -69,8 +69,8 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
     }
     
     func viewWillDisappear() {
-        saveToCache()
         stopScheduleUpdateCurrencies()
+        saveToCache()
     }
     
     private func scheduleUpdateCurrencies() {
@@ -139,7 +139,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
             }
         }
 
-        let cfa = favouriteCurrenciesPairs.filter{
+        var cfa = favouriteCurrenciesPairs.filter {
             fvPair in
             if !isCachedCurrenciesExists {
                 return fvPair.tickerPair.isFavourite
@@ -148,7 +148,7 @@ class CurrenciesListInteractor: CurrenciesListInteractorInput {
         }
 
         if cfa.count > 0 {
-            dbManager.add(data: convertToDBArray(currencies: cfa), update: false)
+            dbManager.add(data: convertToDBArray(currencies: &cfa, startIndex: favouriteCurrenciesPairs.count), update: false)
         }
     }
     
@@ -207,9 +207,12 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
 }
 
 extension CurrenciesListInteractor {
-    func convertToDBArray(currencies: [WatchlistCurrency]) -> [WatchlistCurrencyObject] {
+    func convertToDBArray(currencies: inout [WatchlistCurrency], startIndex: Int) -> [WatchlistCurrencyObject] {
         var objects = [WatchlistCurrencyObject]()
-        currencies.forEach({ objects.append($0.managedObject()) })
+        for pairIndex in (0..<currencies.count) {
+            currencies[pairIndex].index = startIndex + pairIndex
+            objects.append(currencies[pairIndex].managedObject())
+        }
         return objects
     }
     

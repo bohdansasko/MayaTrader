@@ -124,10 +124,12 @@ extension WatchlistListView: UICollectionViewDataSource {
             print("can't cast to WatchlistCardsDataSource")
             return
         }
-
+        print("sourceIndexPath = \(sourceIndexPath), destinationIndexPath = \(destinationIndexPath)")
         let item = ds.items.remove(at: sourceIndexPath.item)
         ds.items.insert(item, at: destinationIndexPath.item)
-
+        for index in (0..<ds.items.count) {
+            ds.items[index].index = index
+        }
         presenter.itemsOrderUpdated(ds.items)
     }
 }

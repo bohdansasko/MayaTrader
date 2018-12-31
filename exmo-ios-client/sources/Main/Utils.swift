@@ -53,8 +53,8 @@ class Utils {
         return value > 0.0
                 ? .greenBlue
                 : value < 0.0
-                    ? .orangePink :
-                    .white
+                    ? .orangePink
+                    : .white
     }
     
     static func getCurrencyIconName(currencyShortName: String) -> String {

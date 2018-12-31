@@ -61,18 +61,23 @@ extension WatchlistFavouriteCurrenciesInteractor: ITickerNetworkWorkerDelegate {
 
         var tickerContainer: [String : WatchlistCurrency] = [:]
 
-        tickerPairs.forEach({
-            (currencyPairCode, currencyModel) in
-            let isFavCurrencyPair = favPairs.contains(where: { $0.tickerPair.code == currencyPairCode })
-            if isFavCurrencyPair == true {
-                tickerContainer[currencyPairCode] = WatchlistCurrency(index: 0, currencyCode: currencyPairCode, tickerCurrencyModel: currencyModel)
+        for (pairCode, tickerPair) in tickerPairs {
+            let isFavCurrencyPair = favPairs.contains(where: { $0.tickerPair.code == pairCode })
+            if isFavCurrencyPair {
+                tickerContainer[pairCode] = WatchlistCurrency(index: 0, currencyCode: pairCode, tickerCurrencyModel: tickerPair)
             }
-        })
+
+            if tickerContainer.count == favPairs.count {
+                break
+            }
+        }
 
         for favCurrencyIndex in (0..<favPairs.count) {
             let model = favPairs[favCurrencyIndex]
-            favPairs[favCurrencyIndex] = tickerContainer[model.tickerPair.code]!
-            favPairs[favCurrencyIndex].tickerPair.isFavourite = model.tickerPair.isFavourite
+            if let tickerModel = tickerContainer[model.tickerPair.code]?.tickerPair {
+                favPairs[favCurrencyIndex].tickerPair = tickerModel
+                favPairs[favCurrencyIndex].tickerPair.isFavourite = true
+            }
         }
 
         output.didLoadCurrencies(items: favPairs)
@@ -92,13 +97,14 @@ extension WatchlistFavouriteCurrenciesInteractor {
         }
         favPairs = convertToArray(currencies: objects)
         favPairs.sort(by: { $0.index < $1.index })
+        favPairs.forEach({ print("code = \($0.tickerPair.code), index = \($0.index)") })
     }
 
     func saveFavCurrenciesToCache() {
         print("saveFavCurrenciesToCache")
-        for pairIndex in (0..<favPairs.count) {
-            favPairs[pairIndex].index = pairIndex
-        }
+//        for pairIndex in (0..<favPairs.count) {
+//            favPairs[pairIndex].index = pairIndex
+//        }
         dbManager.add(data: convertToDBArray(currencies: favPairs), update: true)
     }
 }
@@ -127,21 +133,19 @@ extension WatchlistFavouriteCurrenciesInteractor {
         print("Loaded ticker for Watchlist")
 
         var tickerContainer: [String: WatchlistCurrency] = [:]
-        var currencyIndex = 0
 
         json["data"]["ticker"].dictionaryValue.forEach({
-            (currencyPairCode, currencyDescriptionInJSON) in
-            let isFavCurrencyPair = favPairs.contains(where: { $0.tickerPair.code == currencyPairCode })
+            (pairCode, currencyDescriptionInJSON) in
+            let isFavCurrencyPair = favPairs.contains(where: { $0.tickerPair.code == pairCode })
             guard let model = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description), isFavCurrencyPair == true else {
                 return
             }
-            tickerContainer[currencyPairCode] = WatchlistCurrency(index: currencyIndex, currencyCode: currencyPairCode, tickerCurrencyModel: model)
-            currencyIndex = currencyIndex + 1
+            tickerContainer[pairCode] = WatchlistCurrency(index: 0, currencyCode: pairCode, tickerCurrencyModel: model)
         })
 
         for favCurrencyIndex in (0..<favPairs.count) {
             let model = favPairs[favCurrencyIndex]
-            favPairs[favCurrencyIndex] = tickerContainer[model.tickerPair.code]!
+            favPairs[favCurrencyIndex].tickerPair = tickerContainer[model.tickerPair.code]!.tickerPair
             favPairs[favCurrencyIndex].tickerPair.isFavourite = model.tickerPair.isFavourite
         }
 
@@ -152,7 +156,7 @@ extension WatchlistFavouriteCurrenciesInteractor {
         var objects = [WatchlistCurrencyObject]()
         currencies.forEach({ objects.append($0.managedObject()) })
         print("convertToDBArray")
-        objects.forEach({ print($0.pairName) })
+        objects.forEach({ print("code = \($0.pairName), index = \($0.index)") })
         return objects
     }
     

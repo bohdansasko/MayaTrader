@@ -123,6 +123,6 @@ class WatchlistCardsDataSource: TableDatasource {
     }
 
     override func item(_ indexPath: IndexPath) -> Any? {
-        return items[indexPath.item]
+        return indexPath.item < items.count ? items[indexPath.item] : nil
     }
 }
