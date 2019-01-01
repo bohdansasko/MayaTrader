@@ -84,8 +84,8 @@ extension TableMenuView: UITableViewDelegate  {
         return 20
     }
 
-    public func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        return 5
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 30
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -114,6 +114,10 @@ extension TableMenuView: UITableViewDelegate  {
         )
 
         return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
