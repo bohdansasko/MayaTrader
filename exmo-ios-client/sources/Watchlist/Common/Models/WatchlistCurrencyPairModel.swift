@@ -10,6 +10,10 @@ import Foundation
 import Realm
 import RealmSwift
 
+class WatchlistObject: Object {
+    let pairs = List<WatchlistCurrencyObject>()
+}
+
 class WatchlistCurrencyObject: Object {
     @objc dynamic var index: Int = 0
     @objc dynamic var pairName: String = ""

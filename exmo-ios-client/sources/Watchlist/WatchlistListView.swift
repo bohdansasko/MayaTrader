@@ -65,12 +65,13 @@ class WatchlistListView: UIView {
         }
     }
 
-    func removeItem(byIndex: Int) {
-        guard let ds = datasource as? WatchlistCardsDataSource else {
+    func removeItem(_ currency: WatchlistCurrency) {
+        guard let ds = datasource as? WatchlistCardsDataSource,
+              let index = ds.items.firstIndex(where: { $0.tickerPair.code == currency.tickerPair.code }) else {
             return
         }
-        ds.items.remove(at: byIndex)
-        collectionView.deleteItems(at: [IndexPath(row: byIndex, section: 0)])
+        ds.items.remove(at: index)
+        collectionView.deleteItems(at: [IndexPath(row: index, section: 0)])
     }
 }
 

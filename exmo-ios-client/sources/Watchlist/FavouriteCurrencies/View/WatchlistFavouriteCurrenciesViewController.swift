@@ -68,20 +68,22 @@ extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenci
         if shouldReloadData {
             listView.collectionView.reloadData()
         } else {
+            var index: Int = 0
             listView.collectionView.visibleCells.forEach({
                 collectionCell in
                 guard let dsCell = collectionCell as? ExmoCollectionCell,
                       var dsItem = dsCell.datasourceItem as? WatchlistCurrency,
-                      let item = ds.item(IndexPath(item: dsItem.index, section: 0)) as? WatchlistCurrency else {
+                      let item = ds.item(IndexPath(item: index, section: 0)) as? WatchlistCurrency else {
                     return
                 }
                 dsItem.tickerPair = item.tickerPair
+                index += 1
             })
         }
     }
 
     func removeItem(currency: WatchlistCurrency) {
-        listView.removeItem(byIndex: currency.index)
+        listView.removeItem(currency)
     }
 }
 

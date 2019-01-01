@@ -44,8 +44,16 @@ extension WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIn
     }
 
     func removeFavCurrency(_ currency: WatchlistCurrency) {
-        // dbManager.delete(data: currency.managedObject())
-        favPairs.remove(at: currency.index)
+        guard let index = favPairs.firstIndex(where: { $0.tickerPair.code == currency.tickerPair.code }) else {
+            return
+        }
+        if let wobjForRemove = dbManager.object(type: WatchlistObject.self, key: "") {
+            let objects: [WatchlistCurrencyObject] = wobjForRemove.pairs.filter({ $0.pairName == currency.tickerPair.code })
+            if objects.count > 0 {
+                favPairs.remove(at: index)
+                dbManager.delete(data: objects)
+            }
+        }
         for index in (0..<favPairs.count) {
             favPairs[index].index = index
         }
@@ -91,20 +99,17 @@ extension WatchlistFavouriteCurrenciesInteractor: ITickerNetworkWorkerDelegate {
 // @MARK: work with database
 extension WatchlistFavouriteCurrenciesInteractor {
     func loadCurrenciesFromCache() {
-        guard let objects = dbManager.objects(type: WatchlistCurrencyObject.self, predicate: nil) else {
+        guard let object = dbManager.object(type: WatchlistObject.self, key: "") else {
             favPairs = []
             return
         }
-        favPairs = convertToArray(currencies: objects)
+        favPairs = convertToArray(currencies: object.pairs)
         favPairs.sort(by: { $0.index < $1.index })
-        favPairs.forEach({ print("code = \($0.tickerPair.code), index = \($0.index)") })
+        favPairs.forEach({ print("code = \($0.tickerPair.code)") })
     }
 
     func saveFavCurrenciesToCache() {
         print("saveFavCurrenciesToCache")
-//        for pairIndex in (0..<favPairs.count) {
-//            favPairs[pairIndex].index = pairIndex
-//        }
         dbManager.add(data: convertToDBArray(currencies: favPairs), update: true)
     }
 }
@@ -160,7 +165,7 @@ extension WatchlistFavouriteCurrenciesInteractor {
         return objects
     }
     
-    func convertToArray(currencies: Results<WatchlistCurrencyObject>) -> [WatchlistCurrency] {
+    func convertToArray(currencies: List<WatchlistCurrencyObject>) -> [WatchlistCurrency] {
         var objects = [WatchlistCurrency]()
         currencies.forEach({
             currency in

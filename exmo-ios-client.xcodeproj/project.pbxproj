@@ -211,8 +211,10 @@
 		36712802066CE6031A5D90E5 /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */; };
 		36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367120B1111B487C3177C51D /* WatchlistListView.swift */; };
 		36712819605402E3BB398CBA /* ErrorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ErrorModels.swift */; };
+		3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */; };
 		36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Font+Extension.swift */; };
 		36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129AC2A73866F875D22DE /* ExmoChartData.swift */; };
+		36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */; };
 		36712E4C4C5245EF136945B7 /* TableMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */; };
 		3C137E9B40C2BD707086FEF6 /* WalletCurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BC3DFE94094F9C19C047E2 /* WalletCurrenciesListInteractorProtocols.swift */; };
 		3C40522FD523C9ABB1477573 /* WalletRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ECA500CFCF983CB3537DF /* WalletRouterInput.swift */; };
@@ -517,12 +519,14 @@
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
 		366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsCell.swift; sourceTree = "<group>"; };
 		367120B1111B487C3177C51D /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
+		367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableMenuView.swift; sourceTree = "<group>"; };
 		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		367129AC2A73866F875D22DE /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCellType.swift; sourceTree = "<group>"; };
 		36712B2B3338633190FB399E /* Font+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		36712B2E24600DAE35483C9D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFilterGroupController.swift; sourceTree = "<group>"; };
 		36712DDE57C5587FC6B6609F /* ErrorModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModels.swift; sourceTree = "<group>"; };
 		36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartNetworkWorkers.swift; sourceTree = "<group>"; };
 		36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
@@ -1498,6 +1502,8 @@
 			isa = PBXGroup;
 			children = (
 				20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */,
+				367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */,
+				36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2577,6 +2583,8 @@
 				366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */,
 				36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */,
 				36712802066CE6031A5D90E5 /* StoreReviewHelper.swift in Sources */,
+				36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */,
+				3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2718,6 +2726,7 @@
 			baseConfigurationReference = 67729B16DBBF7E9BF5484BD2 /* Pods-exmo-ios-client.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -2743,6 +2752,7 @@
 			baseConfigurationReference = 47961902D919297FE6270467 /* Pods-exmo-ios-client.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
