@@ -13,11 +13,41 @@ class MainTabBarController: UITabBarController {
     
     var selectedTabIndicatorImage: UIImageView!
     var containerInitial: [NSObject] = []
+    var isApplicationWasInForeground = true
+    var isPasscodeActive = false
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        
         setupViews()
+    }
+    
+    @objc func onApplicationEnterForeground() {
+        print("onApplicationEnterForeground")
+        isApplicationWasInForeground = true
+    }
+    
+    @objc func onApplicationDidBecomeActive() {
+        print("onApplicationDidBecomeActive")
+        if !isPasscodeActive && isApplicationWasInForeground && Defaults.isPasscodeActive() {
+            print("show PasswordModuleConfigurator")
+            isPasscodeActive = true
+            let module = PasswordModuleConfigurator()
+            module.passcodeVC.onClose = {
+                [weak self] in
+                self?.isPasscodeActive = false
+            }
+            present(module.navigationVC, animated: true, completion: nil)
+        }
+        
+        isApplicationWasInForeground = false
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -7,17 +7,15 @@ import Foundation
 import UIKit
 
 enum MenuSectionType: Int {
-    case Authorization
+    case Account
     case Purchase
-    case Security
     case ContactWithUs
     case About
 
     var header: String? {
         switch self {
-        case .Authorization: return "Authorization"
+        case .Account: return "Account"
         case .Purchase: return "Purchases"
-        case .Security: return "Security"
         case .ContactWithUs: return "Contact with us"
         case .About: return "About"
         }
@@ -25,16 +23,13 @@ enum MenuSectionType: Int {
 
     static func getGuestUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
         return [
-        .Authorization : [
+        .Account : [
             .Login,
+            .Security
         ],
         .Purchase : [
             .ProFeatures,
             .Advertisement,
-        ],
-        .Security : [
-            .Passcode,
-            .TouchId,
         ],
         .ContactWithUs : [
             .Facebook,
@@ -49,16 +44,13 @@ enum MenuSectionType: Int {
 
     static func getLoginedUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
         return [
-        .Authorization : [
-            .Logout
+        .Account : [
+            .Logout,
+            .Security
         ],
         .Purchase : [
             .ProFeatures,
             .Advertisement,
-        ],
-        .Security : [
-            .Passcode,
-            .TouchId,
         ],
         .ContactWithUs : [
             .Facebook,
@@ -81,8 +73,7 @@ enum MenuCellType {
     case ProFeatures
     case Advertisement
 
-    case Passcode
-    case TouchId
+    case Security
 
     case Telegram
     case Facebook
@@ -100,10 +91,9 @@ enum MenuCellType {
         case .Logout: return "Logout"
 
         case .ProFeatures: return "Pro features"
-        case .Advertisement: return "Advertisement"
+        case .Advertisement: return "Remove Ads"
 
-        case .TouchId: return "Touch ID"
-        case .Passcode: return "Passcode"
+        case .Security: return "Security"
 
         case .Telegram: return "Telegram"
         case .Facebook: return "Facebook"
@@ -121,11 +111,10 @@ enum MenuCellType {
         case .Login: return UIImage(named: "icMenuLogin")
         case .Logout: return UIImage(named: "icMenuLogout")
 
-        case .ProFeatures: return UIImage(named: "icMenuChat")
-        case .Advertisement: return UIImage(named: "icMenuNews")
+        case .ProFeatures: return UIImage(named: "icProFeatures")
+        case .Advertisement: return UIImage(named: "icAds")
 
-        case .TouchId: return UIImage(named: "icMenuChat")
-        case .Passcode: return UIImage(named: "icMenuNews")
+        case .Security: return UIImage(named: "icMenuChat")
 
         case .Telegram: return UIImage(named: "icMenuChat")
         case .Facebook: return UIImage(named: "icMenuChat")

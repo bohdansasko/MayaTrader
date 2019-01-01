@@ -32,12 +32,25 @@ class Defaults {
     static func setCountAppOpened(_ count: Int) {
         UserDefaults.standard.set(count, forKey: UserDefaultsKeys.APP_OPENED_COUNT.rawValue)
     }
+    
+    static func savePasscode(_ passcode: String) {
+        UserDefaults.standard.set(passcode, forKey: UserDefaultsKeys.PASSCODE.rawValue)
+    }
+    
+    static func getPasscode() -> String {
+        return UserDefaults.standard.string(forKey: UserDefaultsKeys.PASSCODE.rawValue) ?? ""
+    }
+    
+    static func isPasscodeActive() -> Bool {
+        return !getPasscode().isEmpty
+    }
 }
 
 enum UserDefaultsKeys: String {
     case isLoggedIn
     case APP_OPENED_COUNT
     case AppStoreLink = "https://www.telegram.me/exmo_official"
+    case PASSCODE
 }
 
 enum DefaultStringValues: String {

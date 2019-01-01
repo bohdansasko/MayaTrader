@@ -108,6 +108,7 @@
 		206A3B6B2175522400C25E95 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6A2175522400C25E95 /* Cells.swift */; };
 		206A3B6E2175527B00C25E95 /* CurrenciesGroupsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6D2175527B00C25E95 /* CurrenciesGroupsDatasource.swift */; };
 		206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */; };
+		206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */; };
 		206BD9522074297400ADC91C /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206BD9512074297400ADC91C /* MainTabBarController.swift */; };
 		207552962188B1F00011190E /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207552952188B1F00011190E /* NetworkWorker.swift */; };
 		2075612720B2C0DB0063E548 /* AlertsAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */; };
@@ -425,6 +426,7 @@
 		206A3B6A2175522400C25E95 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		206A3B6D2175527B00C25E95 /* CurrenciesGroupsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsDatasource.swift; sourceTree = "<group>"; };
 		206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListTabBar.swift; sourceTree = "<group>"; };
+		206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		206BD9512074297400ADC91C /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		207552952188B1F00011190E /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsAPIHelper.swift; sourceTree = "<group>"; };
@@ -1062,6 +1064,7 @@
 				9E01C470C3E1B77012FC4051 /* QRScanner */,
 				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
 				36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */,
+				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -2422,6 +2425,7 @@
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				33FA275589ADB6723CEB02A2 /* WalletInteractorProtocols.swift in Sources */,
 				20D7A7C32113B37300D84399 /* RoobikApiHandler.swift in Sources */,
+				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
 				A6421BE76AB236312D8A7FB3 /* WalletInteractor.swift in Sources */,
 				3C40522FD523C9ABB1477573 /* WalletRouterInput.swift in Sources */,
 				2C0D8C2083A0CF7F71803DFF /* WalletRouter.swift in Sources */,

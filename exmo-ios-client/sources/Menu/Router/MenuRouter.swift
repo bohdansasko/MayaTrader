@@ -22,8 +22,8 @@ class MenuRouter: MenuRouterInput {
         case .ProFeatures: break;
         case .Advertisement: break;
 
-        case .Passcode: break;
-        case .TouchId: break;
+        case .Security:
+            sourceVC.present(PasswordModuleConfigurator().navigationVC, animated: true)
 
         case .Telegram:
             if !openLinkOnSupportGroups(.TelegramApp) {
@@ -49,19 +49,21 @@ class MenuRouter: MenuRouterInput {
             break
         }
     }
+}
 
-    private func onFailOpenSocialGroups(_ link: LinkOnSupportGroups) {
+extension MenuRouter {
+    func onFailOpenSocialGroups(_ link: LinkOnSupportGroups) {
         switch link {
         case .TelegramApp, .TelegramWebsite: print("can't open telegram.")
         case .Facebook: print("can't open facebook. install it, please")
         }
     }
-
-    private func openLinkOnSupportGroups(_ link: LinkOnSupportGroups) -> Bool {
+    
+    func openLinkOnSupportGroups(_ link: LinkOnSupportGroups) -> Bool {
         guard let socialURL = URL(string: link.rawValue) else {
             return false
         }
-
+        
         if UIApplication.shared.canOpenURL(socialURL) {
             UIApplication.shared.open(socialURL)
             return true
