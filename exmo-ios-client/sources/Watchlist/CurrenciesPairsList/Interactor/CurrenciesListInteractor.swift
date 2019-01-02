@@ -99,6 +99,9 @@ extension CurrenciesListInteractor {
         guard let wobj = dbManager.object(type: WatchlistObject.self, key: "") else {
             let obj = WatchlistObject()
             var favPairs = cachedPairs.filter({ $0.tickerPair.isFavourite })
+            for index in (0..<favPairs.count) {
+                favPairs[index].index = index
+            }
             obj.pairs.append(objectsIn: convertToDBArray(currencies: &favPairs).elements)
             dbManager.add(data: obj, update: false)
             return
@@ -109,14 +112,22 @@ extension CurrenciesListInteractor {
 
         // remove unused pairs from db
         var removePairsIds = [String]()
-        for indexPair in (0..<wobjPairs.count) {
+        var pairsForRemove = [WatchlistCurrency]()
+
+        let countObjPairs = wobjPairs.count
+        for indexPair in (0..<countObjPairs) {
             let isCachedCurrency = wobjPairs.first(where: { $0.tickerPair.code == cachedPairs[indexPair].tickerPair.code }) != nil
             if !cachedPairs[indexPair].tickerPair.isFavourite && isCachedCurrency {
                 print("remove \(cachedPairs[indexPair].tickerPair.code)")
                 removePairsIds.append(cachedPairs[indexPair].tickerPair.code)
-                wobjPairs.remove(at: indexPair)
+                pairsForRemove.append(cachedPairs[indexPair])
             }
         }
+
+        wobjPairs.removeAll(where: {
+            c in
+            return pairsForRemove.contains(where: { $0.tickerPair.code == c.tickerPair.code })
+        })
 
         if !removePairsIds.isEmpty {
             if let wobjForRemove = dbManager.object(type: WatchlistObject.self, key: "") {
@@ -132,11 +143,22 @@ extension CurrenciesListInteractor {
         var newPairs = self.cachedPairs.filter({
             cachedCurr in
             cachedCurr.tickerPair.isFavourite
-                    && wobjPairs.first(where: { $0.tickerPair.code == cachedCurr.tickerPair.code }) == nil
+         && wobjPairs.first(where: { $0.tickerPair.code == cachedCurr.tickerPair.code }) == nil
         })
 
         if newPairs.count > 0 {
             newPairs.forEach({ print("append \($0.tickerPair.code)") })
+
+            dbManager.performTransaction {
+                for index in (0..<wobj.pairs.count) {
+                    wobj.pairs[index].index = index
+                }
+            }
+
+            for index in (0..<newPairs.count) {
+                newPairs[index].index = index + wobj.pairs.count
+            }
+
             let rlmNewPairs = self.convertToDBArray(currencies: &newPairs)
             dbManager.performTransaction {
                 wobj.pairs.append(objectsIn: rlmNewPairs)
