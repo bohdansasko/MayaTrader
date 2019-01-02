@@ -20,13 +20,12 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
         button.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         return button
     }()
-
-    var barCodeFrameView: UIView = {
-        let vw = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        vw.layer.borderColor = UIColor.red.cgColor
-        vw.layer.borderWidth = 5
-        vw.backgroundColor = .yellow
-        return vw
+    
+    let frameImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icqrFrame")
+        imageView.contentMode = .scaleAspectFit
+        return imageView
     }()
     
     override func viewDidLoad() {
@@ -37,9 +36,8 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
         setupCloseButton()
          prepareCameraToReadQRCode()
         
-        view.addSubview(barCodeFrameView)
-        barCodeFrameView.anchorCenterSuperview()
-        view.bringSubviewToFront(barCodeFrameView)
+        view.addSubview(frameImageView)
+        frameImageView.anchorCenterSuperview()
         
         outputProtocol.viewIsReady()
     }
