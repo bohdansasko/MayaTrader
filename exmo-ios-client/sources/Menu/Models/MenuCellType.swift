@@ -114,7 +114,7 @@ enum MenuCellType {
         case .ProFeatures: return UIImage(named: "icProFeatures")
         case .Advertisement: return UIImage(named: "icAds")
 
-        case .Security: return UIImage(named: "icPasscode")
+        case .Security: return UIImage(named: "icTouchId")
 
         case .Telegram: return UIImage(named: "icTelegram")
         case .Facebook: return UIImage(named: "icFacebook")
