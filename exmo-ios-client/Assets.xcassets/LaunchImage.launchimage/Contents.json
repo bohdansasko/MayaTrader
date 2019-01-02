@@ -48,7 +48,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "960 x 640.png",
+      "filename" : "640 x 960-1.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"
@@ -88,14 +88,14 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "960 x 640-1.png",
+      "filename" : "640 x 960.png",
       "extent" : "full-screen",
       "scale" : "2x"
     },
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "640px h 1136px.png",
+      "filename" : "640 x 1136-1.png",
       "extent" : "full-screen",
       "subtype" : "retina4",
       "scale" : "2x"
