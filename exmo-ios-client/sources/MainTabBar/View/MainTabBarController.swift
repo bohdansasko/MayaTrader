@@ -11,7 +11,6 @@ import UIKit
 class MainTabBarController: UITabBarController {
     var output: MainTabBarViewOutput!
     
-    var selectedTabIndicatorImage: UIImageView!
     var containerInitial: [NSObject] = []
     var isApplicationWasInForeground = true
     var isPasscodeActive = false
@@ -23,17 +22,32 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        
+        setupNotificationListeners()
         setupViews()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output.viewIsReady()
+    }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+}
+
+extension MainTabBarController {
+    func setupNotificationListeners() {
+        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+
     @objc func onApplicationEnterForeground() {
         print("onApplicationEnterForeground")
         isApplicationWasInForeground = true
     }
-    
+
     @objc func onApplicationDidBecomeActive() {
         print("onApplicationDidBecomeActive")
         if !isPasscodeActive && isApplicationWasInForeground && Defaults.isPasscodeActive() {
@@ -46,34 +60,11 @@ class MainTabBarController: UITabBarController {
             }
             present(module.navigationVC, animated: true, completion: nil)
         }
-        
+
         isApplicationWasInForeground = false
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        output.viewIsReady()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        guard let index = tabBar.items?.index(of: item) else { return }
-        updateIndicatorPosition(index: index)
-    }
-    
-    func updateIndicatorPosition(index: Int) {
-        let count = 5
-        let itemWidth = CGFloat(self.tabBar.frame.width) / CGFloat(count)
-        let posX = itemWidth * CGFloat(index) + CGFloat(itemWidth/2)
-        selectedTabIndicatorImage.center.x = CGFloat(posX)
     }
 }
 
-// @MARK: setup UI
 extension MainTabBarController {
     func setupViews() {
         setupTabBarItems()
@@ -84,8 +75,6 @@ extension MainTabBarController {
         tabBar.barTintColor = .black
         tabBar.isTranslucent = false
         tabBar.itemPositioning = .centered
-        addSelectedTabIndicator()
-        updateIndicatorPosition(index: 0)
     }
     
     private func setupTabBarItems() {
@@ -115,15 +104,6 @@ extension MainTabBarController {
             watchlistTabBarItem.image = UIImage(named: iconNameNormalState)
             watchlistTabBarItem.selectedImage = UIImage(named: "\(iconNameNormalState)Selected")
         }
-    }
-    
-    private func addSelectedTabIndicator() {
-        selectedTabIndicatorImage = UIImageView(image: #imageLiteral(resourceName: "icTabbarSelected"))
-        selectedTabIndicatorImage.translatesAutoresizingMaskIntoConstraints = true
-        let icOffset: CGFloat = AppDelegate.isIPhone(model: .X) ? 22 : 10
-        selectedTabIndicatorImage.center = CGPoint(x: 0, y: self.tabBar.bounds.maxY - icOffset)
-        selectedTabIndicatorImage.autoresizingMask = [UIView.AutoresizingMask.flexibleLeftMargin, UIView.AutoresizingMask.flexibleRightMargin, UIView.AutoresizingMask.flexibleTopMargin, UIView.AutoresizingMask.flexibleBottomMargin]
-        self.tabBar.addSubview(selectedTabIndicatorImage)
     }
 }
 
