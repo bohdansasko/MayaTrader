@@ -114,13 +114,13 @@ enum MenuCellType {
         case .ProFeatures: return UIImage(named: "icProFeatures")
         case .Advertisement: return UIImage(named: "icAds")
 
-        case .Security: return UIImage(named: "icMenuChat")
+        case .Security: return UIImage(named: "icPasscode")
 
-        case .Telegram: return UIImage(named: "icMenuChat")
-        case .Facebook: return UIImage(named: "icMenuChat")
+        case .Telegram: return UIImage(named: "icTelegram")
+        case .Facebook: return UIImage(named: "icFacebook")
 
-        case .RateUs: return UIImage(named: "icMenuAppversion")
-        case .ShareApp: return UIImage(named: "icMenuAppversion")
+        case .RateUs: return UIImage(named: "icStar")
+        case .ShareApp: return UIImage(named: "icShare")
         case .AppVersion: return UIImage(named: "icMenuAppversion")
         }
     }
