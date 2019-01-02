@@ -27,7 +27,7 @@ class PasscodeViewController: ExmoUIViewController {
             switch self {
             case .Lock: return "To enable the Passcode please choose a 4-digit code"
             case .ConfirmLock: return "Please confirm your 4-digit code"
-            case .Unlock: return "Enter passcode for unlock app"
+            case .Unlock: return "Enter passcode for EXMobile"
             }
         }
     }
@@ -190,8 +190,13 @@ private extension PasscodeViewController {
         if passcodeState == .ConfirmLock {
             print("*️⃣ success! passcode = \(enteredPasscodeForLock)")
             Defaults.savePasscode(enteredPasscodeForLock!)
+            showAlert(title: "Passcode enabled!", message: "Now your passcode lock will be asked every time when you open EXMobile", closure: {
+                [weak self] in
+                self?.dismiss(animated: true, completion: nil)
+            })
+        } else {
+            dismiss(animated: true, completion: nil)
         }
-        dismiss(animated: true, completion: nil)
     }
     
     func validationFail() {

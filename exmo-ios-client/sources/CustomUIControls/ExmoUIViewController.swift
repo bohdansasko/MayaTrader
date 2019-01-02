@@ -54,6 +54,17 @@ class ExmoUIViewController: UIViewController {
     func setTouchEnabled(_ isTouchEnabled: Bool) {
         // do nothing
     }
+    
+    func showAlert(title: String, message: String, closure: VoidClosure?) {
+        hideLoader()
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            action in
+            closure?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension ExmoUIViewController {
