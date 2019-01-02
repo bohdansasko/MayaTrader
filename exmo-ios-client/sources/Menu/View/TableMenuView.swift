@@ -58,6 +58,18 @@ class TableMenuView: UIView {
             ? MenuSectionType.getLoginedUserCellsLayout()
             : MenuSectionType.getGuestUserCellsLayout()
     }
+    
+    func reloadCell(type: MenuCellType) {
+        var indexPath = IndexPath(row: 0, section: 0)
+        for (section, cells) in cellsTypeContainer {
+            if let rowIndex = cells.firstIndex(where: { $0 == type } ) {
+                indexPath = IndexPath(row: rowIndex, section: section.rawValue)
+            }
+        }
+        
+        print("reload cell at \(indexPath)")
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
 }
 
 // @MARK: UITableViewDataSource
@@ -131,6 +143,16 @@ extension TableMenuView: UITableViewDelegate  {
               let cellType = cellsTypeContainer[sectionType]?[indexPath.row] else {
             return
         }
+        
+        if cellType == .Security {
+            menuCell.selectionStyle = .none
+            menuCell.lockButton.isSelected = Defaults.isPasscodeActive()
+            menuCell.onTouchSecurity = {
+                [weak self] in
+                self?.viewOutput.didTouchCell(type: .Security)
+            }
+        }
+        
         menuCell.cellType = cellType
     }
 
@@ -139,6 +161,9 @@ extension TableMenuView: UITableViewDelegate  {
         print("\(indexPath)")
         guard let sectionType = MenuSectionType(rawValue: indexPath.section),
               let cellType = cellsTypeContainer[sectionType]?[indexPath.row] else {
+            return
+        }
+        if cellType == .Security {
             return
         }
         viewOutput.didTouchCell(type: cellType)

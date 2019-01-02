@@ -21,7 +21,13 @@ extension MenuPresenter {
     }
     
     func didTouchCell(type: MenuCellType) {
-        router.showViewController(sourceVC: view as! UIViewController, touchedCellType: type)
+        if Defaults.isPasscodeActive() {
+            Defaults.resetPasscode()
+            view.updateCell(type: type)
+            view.showAlert("Your passcode has disabled.")
+        } else {
+            router.showViewController(sourceVC: view as! UIViewController, touchedCellType: type)
+        }
     }
 }
 

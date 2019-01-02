@@ -37,7 +37,11 @@ class Defaults {
     static func savePasscode(_ passcode: String) {
         UserDefaults.standard.set(passcode, forKey: UserDefaultsKeys.PASSCODE.rawValue)
     }
-    
+
+    static func resetPasscode() {
+        savePasscode("")
+    }
+
     static func getPasscode() -> String {
         return UserDefaults.standard.string(forKey: UserDefaultsKeys.PASSCODE.rawValue) ?? ""
     }

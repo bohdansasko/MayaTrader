@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableMenuViewController: ExmoUIViewController, TableMenuViewInput {
+class TableMenuViewController: ExmoUIViewController {
     var output: TableMenuViewOutput!
 
     var tableMenuView: TableMenuView = {
@@ -23,12 +23,25 @@ class TableMenuViewController: ExmoUIViewController, TableMenuViewInput {
         setupViews()
         output.viewIsReady()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateCell(type: .Security)
+    }
 }
 
 // MARK: TableMenuViewInput
-extension TableMenuViewController {
+extension TableMenuViewController: TableMenuViewInput {
     func updateLayoutView(isLoggedUser: Bool) {
         tableMenuView.isLoggedUser = isLoggedUser
+    }
+    
+    func updateCell(type: MenuCellType) {
+        tableMenuView.reloadCell(type: type)
+    }
+    
+    func showAlert(_ msg: String) {
+        showAlert(title: "Security", message: msg, closure: nil)
     }
 }
 

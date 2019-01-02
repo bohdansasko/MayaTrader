@@ -18,6 +18,8 @@ class TableMenuViewCell: ExmoTableViewCell {
         }
     }
     
+    var onTouchSecurity: VoidClosure?
+    
     var iconImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .center
@@ -39,6 +41,7 @@ class TableMenuViewCell: ExmoTableViewCell {
         label.textColor = .dark1
         return label
     }()
+
     
     var disclosureImage: UIImageView = {
         let imageView = UIImageView()
@@ -46,6 +49,13 @@ class TableMenuViewCell: ExmoTableViewCell {
         imageView.contentMode = .scaleAspectFit
         imageView.image = UIImage(named: "icInputFieldArrow")
         return imageView
+    }()
+    
+    var lockButton: UIButton = {
+        var btn = UIButton(type: .custom)
+        btn.setImage(UIImage(named: "icPasscodeUnlock"), for: .normal)
+        btn.setImage(UIImage(named: "icPasscodeLock"), for: .selected)
+        return btn
     }()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -78,6 +88,15 @@ extension TableMenuViewCell {
         
         addSubview(disclosureImage)
         disclosureImage.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        
+        addSubview(lockButton)
+        lockButton.isHidden = true
+        lockButton.addTarget(self, action: #selector(onTouchSecurityButton), for: .touchUpInside)
+        lockButton.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+    }
+    
+    @objc func onTouchSecurityButton() {
+        onTouchSecurity?()
     }
     
     func updateRightView() {
@@ -85,12 +104,20 @@ extension TableMenuViewCell {
         case .AppVersion:
             infoLabel.isHidden = false
             disclosureImage.isHidden = true
+            lockButton.isHidden = true
         case .Logout:
             infoLabel.isHidden = true
             disclosureImage.isHidden = true
+            lockButton.isHidden = true
+        case .Security:
+            disclosureImage.isHidden = true
+            let highlightedImageName = lockButton.isSelected ? "icPasscodeLock" : "icPasscodeUnlock"
+            lockButton.setImage(UIImage(named: highlightedImageName), for: .normal)
+            lockButton.isHidden = false
         default:
             infoLabel.isHidden = true
             disclosureImage.isHidden = false
+            lockButton.isHidden = true
         }
     }
 }
