@@ -41,10 +41,10 @@ class ExmoUIViewController: UIViewController {
         super.viewWillAppear(animated)
         updateNavigationBar(shouldHideNavigationBar: true)
     }
-
+    
     override func viewDidDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        updateNavigationBar(shouldHideNavigationBar: false)
+        super.viewDidDisappear(animated)
+//        updateNavigationBar(shouldHideNavigationBar: false)
     }
     
     func shouldUseGlow() -> Bool {
