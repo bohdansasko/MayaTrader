@@ -32,10 +32,11 @@ class MenuRouter: MenuRouterInput {
                 }
             }
         case .Facebook:
-            if !openLinkOnSupportGroups(.Facebook) {
-                onFailOpenSocialGroups(.TelegramApp)
+            if !openLinkOnSupportGroups(.FacebookApp) {
+                if !openLinkOnSupportGroups(.FacebookWebsite) {
+                    onFailOpenSocialGroups(.FacebookWebsite)
+                }
             }
-
         case .RateUs:
             StoreReviewHelper.resetAppOpenedCount()
             StoreReviewHelper.requestReview()
@@ -55,7 +56,7 @@ extension MenuRouter {
     func onFailOpenSocialGroups(_ link: LinkOnSupportGroups) {
         switch link {
         case .TelegramApp, .TelegramWebsite: print("can't open telegram.")
-        case .Facebook: print("can't open facebook. install it, please")
+        case .FacebookApp, .FacebookWebsite: print("can't open facebook. install it, please")
         }
     }
     

@@ -11,7 +11,8 @@ typealias IntInVoidOutClosure = (Int) -> Void
 enum LinkOnSupportGroups: String {
     case TelegramWebsite = "https://www.telegram.me/exmobile"
     case TelegramApp = "tg://resolve?domain=exmobile"
-    case Facebook = "https://www.facebook.com/groups/exmobile"
+    case FacebookWebsite = "https://www.facebook.com/groups/exmobile"
+    case FacebookApp = "fb://profile/508928876181291"
 }
 
 class Defaults {
