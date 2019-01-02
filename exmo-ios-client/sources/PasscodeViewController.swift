@@ -45,11 +45,6 @@ class PasscodeViewController: ExmoUIViewController {
         return button
     }()
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        onClose?()
-    }
-    
     var descriptionLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -75,6 +70,11 @@ class PasscodeViewController: ExmoUIViewController {
         print("*️⃣ active passcode = \(Defaults.getPasscode())")
         passcodeState = Defaults.isPasscodeActive() ? .Unlock : .Lock
         setupViews()
+    }
+        
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        onClose?()
     }
     
     @objc func onTouchButtonClose(_ sender : UIButton) {
