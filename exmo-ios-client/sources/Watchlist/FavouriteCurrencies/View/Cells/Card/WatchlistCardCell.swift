@@ -63,26 +63,27 @@ class WatchlistCardCell: ExmoCollectionCell {
             contentView.backgroundColor = isHighlighted ? UIColor.white.withAlphaComponent(0.1) : .clear
         }
     }
-
-    override var datasourceItem: Any? {
-        didSet {
-            guard let cm = datasourceItem as? WatchlistCurrency else { return }
-            
-            pairNameLabel.text = cm.getDisplayCurrencyPairName()
-            pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
-            pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
-            pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
-            currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
-            currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
-            favButton.isSelected = cm.tickerPair.isFavourite
-        }
-    }
     
     override func setupViews() {
         super.setupViews()
         
         setupUI()
         setupConstraints()
+    }
+
+    override func invalidate() {
+        super.invalidate()
+
+        guard let cm = datasourceItem as? WatchlistCurrency else { return }
+
+        print("WatchlistCardCell => invalidate: \(cm.getDisplayCurrencyPairName())")
+        pairNameLabel.text = cm.getDisplayCurrencyPairName()
+        pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
+        pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
+        pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
+        currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
+        currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
+        favButton.isSelected = cm.tickerPair.isFavourite
     }
 }
 

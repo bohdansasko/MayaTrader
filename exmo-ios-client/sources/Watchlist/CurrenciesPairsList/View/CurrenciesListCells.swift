@@ -13,7 +13,11 @@ protocol FavCellDelegate: class {
 }
 
 class ExmoCollectionCell: UICollectionViewCell {
-    var datasourceItem: Any?
+    var datasourceItem: Any? {
+        didSet {
+            invalidate()
+        }
+    }
     weak var delegate: CellDelegate?
     
     let separatorLineView: UIView = {
@@ -31,7 +35,11 @@ class ExmoCollectionCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    func invalidate() {
+        // do nothing
+    }
+
     func setupViews() {
         clipsToBounds = true
         addSubview(separatorLineView)

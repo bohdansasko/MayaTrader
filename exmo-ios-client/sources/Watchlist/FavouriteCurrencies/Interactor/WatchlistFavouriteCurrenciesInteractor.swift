@@ -28,6 +28,7 @@ extension WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIn
         if favPairs.count > 0 {
             scheduleUpdateCurrencies()
         } else {
+            print("Watchlist: didLoadCurrencies \(favPairs)")
             output.didLoadCurrencies(items: favPairs)
         }
     }
@@ -117,6 +118,7 @@ extension WatchlistFavouriteCurrenciesInteractor {
 // @MARK: work with timer
 extension WatchlistFavouriteCurrenciesInteractor {
     func scheduleUpdateCurrencies() {
+        print("Watchlist: scheduleUpdateCurrencies")
         timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.Watchlist, repeats: true) {
             [weak self] _ in
             self?.networkWorker.load()
