@@ -13,4 +13,6 @@ target 'exmo-ios-client' do
   pod 'LBTAComponents' # TODO: should remove from project
   pod 'RealmSwift'
   pod 'SmileLock', '~> 3.0'
+  pod 'Firebase/Core'
+  pod 'Firebase/AdMob'
 end

@@ -56,6 +56,7 @@
 		2013E58F2071464700EFACB7 /* Exo2-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E57D2071464600EFACB7 /* Exo2-SemiBoldItalic.ttf */; };
 		2013E5902071464700EFACB7 /* Exo2-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E57E2071464600EFACB7 /* Exo2-Thin.ttf */; };
 		2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E57F2071464600EFACB7 /* Exo2-ThinItalic.ttf */; };
+		201CA89A21DEA170008E124C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 201CA89921DEA170008E124C /* GoogleService-Info.plist */; };
 		201D8079205DC62800692DEF /* WalletCurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D8078205DC62800692DEF /* WalletCurrenciesListCells.swift */; };
 		201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */; };
 		201DF1FE21B27D0F00158A15 /* FormItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF1FD21B27D0F00158A15 /* FormItems.swift */; };
@@ -376,6 +377,7 @@
 		2013E57D2071464600EFACB7 /* Exo2-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		2013E57E2071464600EFACB7 /* Exo2-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Thin.ttf"; sourceTree = "<group>"; };
 		2013E57F2071464600EFACB7 /* Exo2-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-ThinItalic.ttf"; sourceTree = "<group>"; };
+		201CA89921DEA170008E124C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		201D8078205DC62800692DEF /* WalletCurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListCells.swift; sourceTree = "<group>"; };
 		201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListView.swift; sourceTree = "<group>"; };
 		201DF1FD21B27D0F00158A15 /* FormItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItems.swift; sourceTree = "<group>"; };
@@ -784,6 +786,7 @@
 				20001D72203B8D1200B6966F /* Assets.xcassets */,
 				20001D6F203B8D1200B6966F /* exmo_ios_client.xcdatamodeld */,
 				20001D77203B8D1200B6966F /* Info.plist */,
+				201CA89921DEA170008E124C /* GoogleService-Info.plist */,
 			);
 			path = "exmo-ios-client";
 			sourceTree = "<group>";
@@ -870,6 +873,21 @@
 				2013E57F2071464600EFACB7 /* Exo2-ThinItalic.ttf */,
 			);
 			path = "Exo-font";
+			sourceTree = "<group>";
+		};
+		201CA89B21DEC92C008E124C /* Ads */ = {
+			isa = PBXGroup;
+			children = (
+				201CA89C21DEC934008E124C /* Native */,
+			);
+			path = Ads;
+			sourceTree = "<group>";
+		};
+		201CA89C21DEC934008E124C /* Native */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Native;
 			sourceTree = "<group>";
 		};
 		201D8076205DC5B400692DEF /* Main */ = {
@@ -1048,6 +1066,7 @@
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				201CA89B21DEC92C008E124C /* Ads */,
 				20B418C6209D019A00B1C636 /* CustomUIControls */,
 				206730E12094D36E008B500D /* Extensions */,
 				2084492B2049311F007CA79C /* CoreData */,
@@ -2233,6 +2252,7 @@
 				20DBA24520B43518007BA0AF /* WatchlistCardCollectionViewCell.xib in Resources */,
 				2013E5902071464700EFACB7 /* Exo2-Thin.ttf in Resources */,
 				205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */,
+				201CA89A21DEA170008E124C /* GoogleService-Info.plist in Resources */,
 				2013E58F2071464700EFACB7 /* Exo2-SemiBoldItalic.ttf in Resources */,
 				2013E58B2071464700EFACB7 /* Exo2-Medium.ttf in Resources */,
 				2010154E20B04FD600324F22 /* AlertTableViewCellButton.xib in Resources */,
@@ -2272,6 +2292,7 @@
 				"${PODS_ROOT}/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -2279,11 +2300,13 @@
 				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -2291,6 +2314,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2740,7 +2764,7 @@
 				INFOPLIST_FILE = "exmo-ios-client/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Roobik.exmo-ios-client";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exmobile.vinso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "EXMobile-dev";
 				SWIFT_INCLUDE_PATHS = "";
@@ -2766,7 +2790,7 @@
 				INFOPLIST_FILE = "exmo-ios-client/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Roobik.exmo-ios-client";
+				PRODUCT_BUNDLE_IDENTIFIER = com.exmobile.vinso;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "EXMobile-distribution";
 				SWIFT_INCLUDE_PATHS = "";

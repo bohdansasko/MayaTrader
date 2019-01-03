@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>796778736971-ptr6m9elcc4q6n19c3mrap01bjmt3ug7.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.796778736971-ptr6m9elcc4q6n19c3mrap01bjmt3ug7</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDLFFmmAR5R9cN__EaIdHYxMyMIn_FNx-0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>796778736971</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.exmobile.vinso</string>
+	<key>PROJECT_ID</key>
+	<string>exmobile-bec56</string>
+	<key>STORAGE_BUCKET</key>
+	<string>exmobile-bec56.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:796778736971:ios:03aee23fb56063b8</string>
+	<key>DATABASE_URL</key>
+	<string>https://exmobile-bec56.firebaseio.com</string>
+	<key>ADMOB_APP_ID</key>
+	<string>ca-app-pub-9903068252909457~7770217616</string>
+</dict>
+</plist>

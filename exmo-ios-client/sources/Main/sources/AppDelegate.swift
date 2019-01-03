@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import Fabric
 import Crashlytics
+import Firebase
 
 enum IPhoneModel: Int {
     case None = 0
@@ -29,20 +30,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        Fabric.with([Crashlytics.self])
-
-        let mainTabBar = MainTabBarModuleInitializer()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = mainTabBar.tabBarController
-        window?.windowLevel = UIWindow.Level.normal
-        window?.makeKeyAndVisible()
-
-        UITextField.appearance().keyboardAppearance = .dark
-
-        StoreReviewHelper.incrementAppOpenedCount()
-        StoreReviewHelper.checkAndAskForReview()
-
+        Fabric.with([Crashlytics.self])
+        
+        setupAdMob()
+        setupWindow()
+        callStoreReview()
+        
         return true
     }
 
@@ -68,6 +62,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         AppDelegate.dbController.saveContext()
+    }
+}
+
+extension AppDelegate {
+    func setupWindow() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = MainTabBarModuleInitializer().tabBarController
+        window?.windowLevel = UIWindow.Level.normal
+        window?.makeKeyAndVisible()
+        
+        UITextField.appearance().keyboardAppearance = .dark
+    }
+    
+    func setupAdMob() {
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
+        
+        // Use Firebase library to configure APIs
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-9903068252909457~7770217616")
+    }
+    
+    func callStoreReview() {
+        StoreReviewHelper.incrementAppOpenedCount()
+        StoreReviewHelper.checkAndAskForReview()
     }
 }
 
