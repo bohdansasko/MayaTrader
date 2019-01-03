@@ -23,10 +23,10 @@ class CandleBarChartShortInfoView : UIView {
     var model: ChartCandleModel? = nil {
         didSet {
             if let model = self.model {
-                labelOpen.text = Utils.getFormatedPrice(value: model.open)
-                labelClosed.text = Utils.getFormatedPrice(value: model.close)
-                labelHigh.text = Utils.getFormatedPrice(value: model.high)
-                labelLow.text = Utils.getFormatedPrice(value: model.low)
+                labelOpen.text = Utils.getFormatedPrice(value: model.open, maxFractDigits: 10)
+                labelClosed.text = Utils.getFormatedPrice(value: model.close, maxFractDigits: 10)
+                labelHigh.text = Utils.getFormatedPrice(value: model.high, maxFractDigits: 10)
+                labelLow.text = Utils.getFormatedPrice(value: model.low, maxFractDigits: 10)
                 
                 volumeValue = model.volume
                 date = Date(timeIntervalSince1970: model.timeSince1970InSec)
