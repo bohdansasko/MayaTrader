@@ -25,9 +25,9 @@ class PasscodeViewController: ExmoUIViewController {
         
         var description: String? {
             switch self {
-            case .Lock: return "To enable the Passcode please choose a 4-digit code"
+            case .Lock: return "To enable the Security please choose a 4-digit code"
             case .ConfirmLock: return "Please confirm your 4-digit code"
-            case .Unlock: return "Enter passcode for EXMobile"
+            case .Unlock: return "Enter EXMobile passcode"
             }
         }
     }
@@ -71,7 +71,15 @@ class PasscodeViewController: ExmoUIViewController {
         passcodeState = Defaults.isPasscodeActive() ? .Unlock : .Lock
         setupViews()
     }
-        
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if passcodeState == .Unlock {
+            passwordContainerView.touchAuthentication()
+        }
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         onClose?()
@@ -84,7 +92,7 @@ class PasscodeViewController: ExmoUIViewController {
 
 extension PasscodeViewController {
     func setupViews() {
-        titleNavBar = "Passcode"
+        titleNavBar = "Security"
         view.backgroundColor = .black
         
         buttonClose.isHidden = passcodeState == .Unlock
@@ -188,9 +196,9 @@ private extension PasscodeViewController {
     
     func validationSuccess() {
         if passcodeState == .ConfirmLock {
-            print("*️⃣ success! passcode = \(enteredPasscodeForLock)")
+            print("*️⃣ success! passcode = \(enteredPasscodeForLock ?? "")")
             Defaults.savePasscode(enteredPasscodeForLock!)
-            showAlert(title: "Passcode enabled!", message: "Now your passcode lock will be asked every time when you open EXMobile", closure: {
+            showAlert(title: "Security enabled!", message: "Now your passcode lock will be asked every time when you open EXMobile", closure: {
                 [weak self] in
                 self?.dismiss(animated: true, completion: nil)
             })
