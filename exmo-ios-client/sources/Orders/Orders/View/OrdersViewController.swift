@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     fileprivate enum OrderAdditionalAction : Int {
@@ -18,6 +19,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     // MARK: Outlets
     var output: OrdersViewOutput!
     var currentViewController: UIViewController?
+    var bannerView: GADBannerView!
     
     var pickerViewManager: DarkeningPickerViewManager!
     var ordersListView: OrdersListView = {
@@ -58,6 +60,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         super.viewDidLoad()
         
         setupViews()
+        bannerView.load(GADRequest())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -91,6 +94,7 @@ extension OrdersViewController {
     func setupViews() {
         setupNavigationBar()
         setupSegmentControlView()
+        setupBannerView()
         
         pickerViewManager.setCallbackOnSelectAction(callback: {
             [weak self] actionIndex in
@@ -122,6 +126,18 @@ extension OrdersViewController {
         buttonSpacer.width = 20
         
         navigationItem.rightBarButtonItems = [buttonSpacer, navButtonDeleteOrders, navButtonDeleteAddOrder]
+    }
+    
+    func setupBannerView() {
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView.delegate = self
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+    }
+    
+    func addBannerToView(_ bannerView: GADBannerView) {
+        view.addSubview(bannerView)
+        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
 }
 
@@ -168,5 +184,29 @@ extension OrdersViewController {
     
     func orderCanceled(id: Int64) {
         ordersListView.orderWasCanceled(id: id)
+    }
+}
+
+// @MARK: GADBannerViewDelegate
+extension OrdersViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("Orders: adViewDidReceiveAd")
+        if let _ = bannerView.superview {
+            bannerView.alpha = 0
+            UIView.animate(withDuration: 1) {
+                bannerView.alpha = 1
+                self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -54).isActive = true
+            }
+        } else {
+            addBannerToView(bannerView)
+        }
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
+        UIView.animate(withDuration: 1) {
+            bannerView.alpha = 0
+            self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+        }
     }
 }
