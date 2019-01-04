@@ -62,6 +62,7 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
         } else if isSelected {
             cachedPairs.append(currencyModel)
         }
+        output.updateFavPairs(items: cachedPairs)
     }
 }
 

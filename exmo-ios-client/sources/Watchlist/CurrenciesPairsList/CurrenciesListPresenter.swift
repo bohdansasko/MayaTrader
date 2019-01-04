@@ -23,7 +23,11 @@ class CurrenciesListPresenter: CurrenciesListModuleInput, CurrenciesListViewCont
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
         view.onDidLoadCurrenciesPairs(items: items)
     }
-    
+
+    func updateFavPairs(items: [WatchlistCurrency]) {
+        view.updateFavPairs(items: items)
+    }
+
     func setSegueBlock(_ segueBlock: SegueBlock) {
         guard let segueBlock = segueBlock as? CurrenciesGroupsGroupSegueBlock else { return }
         interactor.setCurrencyGroupName(segueBlock.groupModel!.name)

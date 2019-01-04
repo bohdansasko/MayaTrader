@@ -10,6 +10,7 @@ import LBTAComponents
 
 protocol CurrenciesListViewControllerInput: class {
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency])
+    func updateFavPairs(items: [WatchlistCurrency])
 }
 
 protocol CurrenciesListViewControllerOutput: class {
@@ -81,6 +82,18 @@ extension CurrenciesListViewController: CurrenciesListViewControllerInput {
         listView.datasource = CurrenciesListDataSource(items: items)
         tabBar.filter()
         hideLoader()
+    }
+
+    func updateFavPairs(items: [WatchlistCurrency]) {
+        guard let ds = listView.datasource as? CurrenciesListDataSource else {
+            return
+        }
+        for favItem in items {
+            guard let index = ds.items.firstIndex(where: { $0.tickerPair.code == favItem.tickerPair.code }) else {
+                continue
+            }
+            ds.items[index].tickerPair.isFavourite = favItem.tickerPair.isFavourite
+        }
     }
 }
 

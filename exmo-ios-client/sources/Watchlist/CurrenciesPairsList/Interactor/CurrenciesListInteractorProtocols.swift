@@ -14,5 +14,6 @@ protocol CurrenciesListInteractorInput: class {
 
 
 protocol CurrenciesListInteractorOutput: class {
+    func updateFavPairs(items: [WatchlistCurrency])
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency])
 }
