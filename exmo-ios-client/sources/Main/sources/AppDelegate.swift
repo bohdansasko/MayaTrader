@@ -80,7 +80,15 @@ extension AppDelegate {
         FirebaseApp.configure()
         
         // Use Firebase library to configure APIs
-        GADMobileAds.configure(withApplicationID: "ca-app-pub-9903068252909457~7770217616")
+        if let url = Bundle.main.url(forResource: AdvertisingValues.CONFIG_NAME.rawValue, withExtension: AdvertisingValues.CONFIG_EXT.rawValue),
+            let myDict = NSDictionary(contentsOf: url) as? [String:Any] {
+            guard let adsAppId = myDict[AdvertisingValues.AD_UNIT_ID_FOR_BANNER_TEST.rawValue] as? String else {
+                return
+            }
+            GADMobileAds.configure(withApplicationID: adsAppId)
+            print("GADMobileAds.configure(withApplicationID: \(adsAppId)")
+        }
+        
     }
     
     func callStoreReview() {

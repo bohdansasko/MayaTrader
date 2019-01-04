@@ -58,6 +58,13 @@ enum UserDefaultsKeys: String {
     case PASSCODE
 }
 
+enum AdvertisingValues: String {
+    case CONFIG_NAME = "GoogleService-Info"
+    case CONFIG_EXT = "plist"
+    case AD_UNIT_ID_FOR_BANNER_TEST
+    case ADMOB_APP_ID
+}
+
 enum DefaultStringValues: String {
     case LastLoginedUID
     case ExmoId = "EXMO"
