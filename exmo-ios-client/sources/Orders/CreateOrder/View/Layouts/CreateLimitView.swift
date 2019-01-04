@@ -67,6 +67,7 @@ class CreateOrderLimitView: UIView {
         tv.separatorStyle = .none
         tv.tableFooterView = UIView()
         tv.delaysContentTouches = false
+        tv.keyboardDismissMode = .onDrag
         return tv
     }()
     
