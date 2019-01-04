@@ -97,7 +97,7 @@ extension WatchlistFavouriteCurrenciesViewController: GADBannerViewDelegate {
             bannerView.alpha = 0
             UIView.animate(withDuration: 1) {
                 bannerView.alpha = 1
-                self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -54).isActive = true
+                self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
             }
         } else {
             addBannerToView(bannerView)

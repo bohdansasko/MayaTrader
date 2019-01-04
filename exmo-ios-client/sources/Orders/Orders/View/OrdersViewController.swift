@@ -195,7 +195,7 @@ extension OrdersViewController: GADBannerViewDelegate {
             bannerView.alpha = 0
             UIView.animate(withDuration: 1) {
                 bannerView.alpha = 1
-                self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -54).isActive = true
+                self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
             }
         } else {
             addBannerToView(bannerView)
