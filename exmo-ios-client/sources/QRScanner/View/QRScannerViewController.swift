@@ -23,7 +23,7 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
     
     let frameImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "icqrFrame")
+        imageView.image = UIImage(named: "icQRFrame")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
