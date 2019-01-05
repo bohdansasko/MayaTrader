@@ -13,7 +13,8 @@ import ObjectMapper
 import CommonCrypto
 
 struct ConnectionConfig {
-    static let API_URL = "https://api.exmo.com/v1/"
+    static let SITE_URL = "exmo.me"
+    static let API_URL = "https://api.\(SITE_URL)/v1/"
     static var API_KEY = "your_key"
     static var API_SECRET = "your_secret"
     static var NONCE = "Nonce"
@@ -88,7 +89,7 @@ extension ExmoApiRequestBuilder {
     }
     
     func getTickerRequest() -> URLRequest {
-        let apiUrl = URL(string: "https://exmo.com/ctrl/ticker")!
+        let apiUrl = URL(string: "https://\(ConnectionConfig.SITE_URL)/ctrl/ticker")!
         var request = URLRequest(url: apiUrl)
         request.httpMethod = HTTPMethod.post.rawValue
         return request
