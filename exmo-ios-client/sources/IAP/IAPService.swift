@@ -36,7 +36,7 @@ class IAPService: NSObject {
 
 extension IAPService: SKProductsRequestDelegate {
     func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
-        products = products
+        products = response.products
         print("response.products.count = \(response.products.count)")
         response.invalidProductIdentifiers.forEach({ print($0) })
         response.products.forEach({ print($0.localizedTitle) })
