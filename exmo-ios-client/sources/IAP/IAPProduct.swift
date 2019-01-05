@@ -9,7 +9,7 @@
 import Foundation
 
 enum IAPProduct: String {
-    case MegaPack = "com.exmobile.vinso.megapack"
-    case Light = "com.exmobile.vinso.light"
-    case Pro   = "com.exmobile.vinso.pro"
+    case Advertisements = "com.exmobile.vinso.advertisements"
+    case LightApp = "com.exmobile.vinso.light"
+    case ProApp   = "com.exmobile.vinso.pro"
 }
