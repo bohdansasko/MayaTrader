@@ -21,7 +21,7 @@ extension MenuPresenter {
     }
     
     func didTouchCell(type: MenuCellType) {
-        if Defaults.isPasscodeActive() {
+        if type == .Security && Defaults.isPasscodeActive() {
             Defaults.resetPasscode()
             view.updateCell(type: type)
             view.showAlert("Your passcode has disabled.")
