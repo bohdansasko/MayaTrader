@@ -153,6 +153,9 @@
 		20B42B3220F47C5000C1F56C /* SwitcherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */; };
 		20B42B3320F47C5000C1F56C /* SwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */; };
 		20B9CC9B219A34B9004AC3B2 /* CreateLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */; };
+		20BCE4E221E00FE2003669EA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BCE4E121E00FE2003669EA /* StoreKit.framework */; };
+		20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCE4E421E03DEF003669EA /* IAPProduct.swift */; };
+		20BCE4E721E03E92003669EA /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCE4E621E03E92003669EA /* IAPService.swift */; };
 		20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertViewCell.swift */; };
 		20BEDC5520557BB200973F2F /* AlertsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5420557BB200973F2F /* AlertsListView.swift */; };
 		20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5820557E2F00973F2F /* AlertsModel.swift */; };
@@ -472,6 +475,9 @@
 		20B42B3020F47C5000C1F56C /* SwitcherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitcherTableViewCell.swift; sourceTree = "<group>"; };
 		20B42B3120F47C5000C1F56C /* SwitcherTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitcherTableViewCell.xib; sourceTree = "<group>"; };
 		20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLimitView.swift; sourceTree = "<group>"; };
+		20BCE4E121E00FE2003669EA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		20BCE4E421E03DEF003669EA /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
+		20BCE4E621E03E92003669EA /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
 		20BEDC52205579FA00973F2F /* AlertViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewCell.swift; sourceTree = "<group>"; };
 		20BEDC5420557BB200973F2F /* AlertsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsListView.swift; sourceTree = "<group>"; };
 		20BEDC5820557E2F00973F2F /* AlertsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsModel.swift; sourceTree = "<group>"; };
@@ -641,6 +647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BFE8D54C0C155EE1340889F /* Pods_exmo_ios_client.framework in Frameworks */,
+				20BCE4E221E00FE2003669EA /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,6 +1073,7 @@
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				20BCE4E321E03DDE003669EA /* IAP */,
 				201CA89B21DEC92C008E124C /* Ads */,
 				20B418C6209D019A00B1C636 /* CustomUIControls */,
 				206730E12094D36E008B500D /* Extensions */,
@@ -1371,6 +1379,15 @@
 				20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */,
 			);
 			path = Layouts;
+			sourceTree = "<group>";
+		};
+		20BCE4E321E03DDE003669EA /* IAP */ = {
+			isa = PBXGroup;
+			children = (
+				20BCE4E421E03DEF003669EA /* IAPProduct.swift */,
+				20BCE4E621E03E92003669EA /* IAPService.swift */,
+			);
+			path = IAP;
 			sourceTree = "<group>";
 		};
 		20BEDC5720557CBA00973F2F /* Models */ = {
@@ -2028,6 +2045,7 @@
 		C6509EEAFE1A3E3EACFA0368 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				20BCE4E121E00FE2003669EA /* StoreKit.framework */,
 				15CC61B17F960DAE93B2F1FD /* Pods_exmo_ios_client.framework */,
 			);
 			name = Frameworks;
@@ -2199,6 +2217,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -2592,6 +2615,7 @@
 				20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */,
 				DD63D0024D67C51BFB1C988F /* SearchCurrencyPairInteractor.swift in Sources */,
 				643F1A05DF8DE97B34F64435 /* SearchCurrencyPairRouterInput.swift in Sources */,
+				20BCE4E721E03E92003669EA /* IAPService.swift in Sources */,
 				5AE00036F58513F97F1994D1 /* SearchCurrencyPairRouter.swift in Sources */,
 				7BF15DD1D6D4872F7399A413 /* SearchCurrencyPairConfigurator.swift in Sources */,
 				AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */,
@@ -2612,6 +2636,7 @@
 				36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */,
 				36712802066CE6031A5D90E5 /* StoreReviewHelper.swift in Sources */,
 				36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */,
+				20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */,
 				3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
