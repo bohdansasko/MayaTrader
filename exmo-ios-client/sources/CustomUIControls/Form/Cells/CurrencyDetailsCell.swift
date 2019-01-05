@@ -58,7 +58,9 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
     
     override func setupViews() {
         super.setupViews()
-        
+
+        separatorLineView.isHidden = false
+
         addSubview(titleLabel)
         titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
         

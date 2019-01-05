@@ -12,7 +12,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
     var title: String?
     var currencyPair: String?
     var strPrice: String?
-    var amount: String?
+    var quantity: String?
     var orderType: OrderCreateType = .MarketBuyTotal
     var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
@@ -62,7 +62,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         
         amountItem.valueCompletion = {
             [weak self, weak amountItem, weak totalItem] value in
-            self?.amount = value
+            self?.quantity = value
             amountItem?.value = value
             self?.updateTotalFormItem(totalItem: totalItem)
         }
@@ -83,13 +83,13 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
     }
     
     private func updateTotalFormItem(totalItem: FloatingNumberFormItem?) {
-        guard let amount = Double(self.amount ?? ""),
+        guard let quantity = Double(self.quantity ?? ""),
               let price = Double(self.strPrice ?? "") else {
                 totalItem?.valueChanged?(nil)
                 return
         }
         
-        let totalValue = amount * price
+        let totalValue = quantity * price
         totalItem?.valueChanged?(Utils.getFormatedPrice(value: totalValue, maxFractDigits: 9))
     }
     

@@ -35,13 +35,13 @@ class FormCreateOrder {
             [weak self, weak formLimit] in
             guard let currencyPair = formLimit?.currencyPair,
                 let price = Double(formLimit?.price ?? ""),
-                let amount = Double(formLimit?.amount ?? ""),
+                let quantity = Double(formLimit?.quantity ?? ""),
                 let orderType = formLimit?.orderType,
                 formLimit?.isValid() == true else {
                     return
             }
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
-            let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: price, quantity: 0, amount: amount)
+            let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: price, quantity: quantity, amount: 0)
             print(order)
             self?.delegate.createOrder(order)
         }
@@ -51,13 +51,13 @@ class FormCreateOrder {
         formOnAmount.onTouchButtonCreate = {
             [weak self, weak formOnAmount] in
             guard let currencyPair = formOnAmount?.currencyPair,
-                let amount = Double(formOnAmount?.amount ?? ""),
+                let quantity = Double(formOnAmount?.quantity ?? ""),
                 let orderType = formOnAmount?.orderType,
                 formOnAmount?.isValid() == true else {
                     return
             }
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
-            let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: 0, amount: amount)
+            let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: quantity, amount: 0)
             print(order)
             self?.delegate.createOrder(order)
         }
@@ -67,13 +67,13 @@ class FormCreateOrder {
         formOnSum.onTouchButtonCreate = {
             [weak self, weak formOnSum] in
             guard let currencyPair = formOnSum?.currencyPair,
-                let amount = Double(formOnSum?.amount ?? ""),
+                let quantity = Double(formOnSum?.quantity ?? ""),
                 let orderType = formOnSum?.orderType,
                 formOnSum?.isValid() == true else {
                     return
             }
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
-            let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: 0, amount: amount)
+            let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: quantity, amount: 0)
             print(order)
             self?.delegate.createOrder(order)
         }

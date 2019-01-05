@@ -21,7 +21,7 @@ protocol FormTabCreateOrder {
 class FormCreateOrderLimit: FormTabCreateOrder {
     var title: String?
     var currencyPair: String?
-    var amount: String?
+    var quantity: String?
     var price: String?
     var orderType: OrderCreateType = .Buy
     var onTouchButtonCreate: VoidClosure?
@@ -98,7 +98,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         
         amountItem.valueCompletion = {
             [weak self, weak amountItem, weak totalItem, weak commisionItem] value in
-            self?.amount = value
+            self?.quantity = value
             amountItem?.value = value
             self?.updateTotalAndComission(totalItem: totalItem, commisionItem: commisionItem)
         }
@@ -114,7 +114,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
     }
     
     private func updateTotalAndComission(totalItem: FloatingNumberFormItem?, commisionItem: FloatingNumberFormItem?) {
-        guard let amount = Double(self.amount ?? ""),
+        guard let quantity = Double(self.quantity ?? ""),
             let price = Double(self.price ?? "") else {
                 totalItem?.valueChanged?(nil)
                 commisionItem?.valueChanged?(nil)
@@ -122,7 +122,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         }
         
         let exmoCommisionInPercentage = 2.0/100
-        let totalValue = amount * price
+        let totalValue = quantity * price
         let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
         
         totalItem?.valueChanged?(Utils.getFormatedPrice(value: totalValue, maxFractDigits: 9))
