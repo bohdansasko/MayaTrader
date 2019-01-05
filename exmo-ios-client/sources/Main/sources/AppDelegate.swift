@@ -73,6 +73,7 @@ extension AppDelegate {
         window?.makeKeyAndVisible()
         
         UITextField.appearance().keyboardAppearance = .dark
+        UIApplication.shared.setStatusBarHidden(false, with: .fade)
     }
     
     func setupAdMob() {
