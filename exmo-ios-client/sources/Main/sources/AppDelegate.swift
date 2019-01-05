@@ -30,9 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        Fabric.with([Crashlytics.self])
-        
+        setupFabric()
         setupAdMob()
         setupWindow()
         callStoreReview()
@@ -76,6 +74,10 @@ extension AppDelegate {
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
     }
     
+    func setupFabric() {
+        Fabric.with([Crashlytics.self])
+    }
+
     func setupAdMob() {
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
