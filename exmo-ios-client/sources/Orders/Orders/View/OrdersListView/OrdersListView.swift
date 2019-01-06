@@ -32,7 +32,10 @@ class OrdersListView: UIView {
         aiv.color = .white
         return aiv
     }()
-    
+
+    var showTutorialAddOrder: VoidClosure?
+    var hideTutorialAddOrder: VoidClosure?
+
     weak var presenter: OrdersViewOutput!
     var dataProvider: Orders!
     var tableViewCells: [Int64 : IndexPath] = [:]
@@ -223,10 +226,11 @@ extension OrdersListView {
 // @MARK: placeholder
 extension OrdersListView {
     func showPlaceholderNoData() {
-        placeholderNoData.isHidden = false
+        placeholderNoData.isHidden = displayOrderType == .Open
         switch displayOrderType {
         case .Open:
-            placeholderNoData.text = "You haven't open orders right now"
+            showTutorialAddOrder?()
+            placeholderNoData.text = nil
         case .Canceled:
             placeholderNoData.text = "You haven't canceled orders right now"
         case .Deals:
@@ -237,5 +241,6 @@ extension OrdersListView {
     
     func removePlaceholderNoData() {
         placeholderNoData.isHidden = true
+        hideTutorialAddOrder?()
     }
 }

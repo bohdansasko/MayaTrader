@@ -151,6 +151,8 @@ extension ExmoUIViewController {
             tutorialImgView.image = UIImage(named: tutorialImg!)
             tutorialImgView.anchorCenterXToSuperview()
             tutorialImgView.anchorCenterYToSuperview(constant: -60)
+
+            view.sendSubviewToBack(tutorialImgView)
         }
     }
 
