@@ -87,3 +87,53 @@ extension CurrenciesListTabBar {
         separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 1)
     }
 }
+
+
+// @MARK: SearchTabBar
+class SearchTabBar: UIView {
+    let searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.returnKeyType = UIReturnKeyType.done
+        searchBar.backgroundImage = UIImage()
+        searchBar.barStyle = .blackTranslucent
+        searchBar.tintColor = .white
+        searchBar.barTintColor = .white
+        searchBar.placeholder = "Search currency..."
+        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .Regular, fontSize: 14))
+        return searchBar
+    }()
+
+    let glassIconView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "icWalletSearch")
+        return imageView
+    }()
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setupViews()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("doesn't have implementation")
+    }
+
+    func filter() {
+        guard let searchBarDelegate = searchBar.delegate, let text = searchBar.text else { return }
+        searchBarDelegate.searchBar!(searchBar, textDidChange: text)
+    }
+}
+
+extension SearchTabBar {
+    func setupViews() {
+        backgroundColor = .black
+        searchBar.removeGlassIcon()
+
+        addSubview(glassIconView)
+        glassIconView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 0, leftConstant: 0, bottomConstant: 5, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+
+        addSubview(searchBar)
+        searchBar.anchor(nil, left: glassIconView.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: -30, bottomConstant: -10, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+    }
+}

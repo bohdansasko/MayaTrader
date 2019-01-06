@@ -9,6 +9,7 @@
 import LBTAComponents
 
 protocol CurrenciesListViewControllerInput: class {
+    func setTitle(_ title: String?)
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency])
     func updateFavPairs(items: [WatchlistCurrency])
 }
@@ -21,20 +22,15 @@ protocol CurrenciesListViewControllerOutput: class {
 
 class CurrenciesListViewController: ExmoUIViewController {
     var output: CurrenciesListViewControllerOutput!
-    
-    var tabBar: CurrenciesListTabBar = {
-        let tabBar = CurrenciesListTabBar()
-        return tabBar
-    }()
-    
-    var listView: TickerCurrenciesListView = {
-        let lv = TickerCurrenciesListView()
-        return lv
-    }()
-    
+
+    lazy var tabBar: SearchTabBar = SearchTabBar()
+    var barTitle: String?
+    lazy var listView = TickerCurrenciesListView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        titleNavBar = barTitle
         setupViews()
         showLoader()
         output.viewIsReady()
@@ -48,12 +44,18 @@ class CurrenciesListViewController: ExmoUIViewController {
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
+
+    override func shouldUseGlow() -> Bool {
+        return false
+    }
 }
 
 // @MARK: setup views
 extension CurrenciesListViewController {
     func setupViews() {
-        setupNavigationBar()
+        setupSearchBar()
+        setupDoneButton()
+        setupListView()
         setupTapRecognizer()
     }
 
@@ -62,22 +64,37 @@ extension CurrenciesListViewController {
         view.addGestureRecognizer(tapGesture)
     }
 
-    private func setupNavigationBar() {
-        tabBar.callbackOnTouchDoneBtn = {
-            [weak self] in
-            self?.dismiss(animated: true, completion: nil)
-        }
-        tabBar.searchBar.delegate = self
+    private func setupSearchBar() {
         view.addSubview(tabBar)
-        tabBar.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: AppDelegate.isIPhone(model: .X) ? 90 : 65)
+        tabBar.searchBar.delegate = self
+        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 30)
+    }
 
+    func setupDoneButton() {
+        let doneBtn = UIButton(type: .system)
+        doneBtn.setTitle("Done", for: .normal)
+        doneBtn.titleLabel?.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 18)
+        doneBtn.addTarget(self, action: #selector(onTouchDoneBtn(_:)), for: .touchUpInside)
+        let doneBarItem = UIBarButtonItem(customView: doneBtn)
+        navigationItem.rightBarButtonItem = doneBarItem
+    }
+
+    @objc func onTouchDoneBtn(_ sender: UIButton) {
+        navigationController?.popToRootViewController(animated: true)
+    }
+
+    private func setupListView() {
         view.addSubview(listView)
         listView.parentVC = self
-        listView.anchor(view.topAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: AppDelegate.isIPhone(model: .X) ? 90 : 65, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.anchor(tabBar.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
 }
 
 extension CurrenciesListViewController: CurrenciesListViewControllerInput {
+    func setTitle(_ title: String?) {
+        barTitle = title
+    }
+
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency]) {
         listView.datasource = CurrenciesListDataSource(items: items)
         tabBar.filter()
@@ -101,6 +118,12 @@ extension CurrenciesListViewController: CurrenciesListViewControllerInput {
 extension CurrenciesListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         listView.filterBy(text: searchText)
+    }
+
+    public func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard let searchBarText = searchBar.text else { return true }
+        let newLength = searchBarText.count + text.count - range.length
+        return newLength <= 20
     }
 }
 

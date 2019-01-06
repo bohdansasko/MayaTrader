@@ -32,6 +32,7 @@ class CurrenciesGroupsRouter: CurrenciesGroupsRouterInput {
         guard let moduleInput = config.viewController.output as? CurrenciesListModuleInput else { return }
         let segueBlock = CurrenciesGroupsGroupSegueBlock(dataModel: listGroupModel)
         moduleInput.setSegueBlock(segueBlock)
-        vc.present(config.viewController, animated: true, completion: nil)
+        config.viewController.hidesBottomBarWhenPushed = true
+        vc.navigationController?.pushViewController(config.viewController, animated: true)
     }
 }
