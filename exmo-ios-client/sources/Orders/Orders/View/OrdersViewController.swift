@@ -122,10 +122,17 @@ extension OrdersViewController {
         
         let navButtonDeleteOrders = UIBarButtonItem(customView: buttonDeleteOrders)
         let navButtonDeleteAddOrder = UIBarButtonItem(customView: buttonAddOrder)
-        let buttonSpacer = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        buttonSpacer.width = 20
-        
-        navigationItem.rightBarButtonItems = [buttonSpacer, navButtonDeleteOrders, navButtonDeleteAddOrder]
+
+        let rightShift = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        rightShift.width = 20
+
+        let spaceBetweenButtons = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        spaceBetweenButtons.width = 12
+
+        navigationItem.rightBarButtonItems = [rightShift,
+                                              navButtonDeleteOrders,
+                                              spaceBetweenButtons,
+                                              navButtonDeleteAddOrder]
     }
     
     func setupBannerView() {

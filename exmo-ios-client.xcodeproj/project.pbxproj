@@ -216,6 +216,7 @@
 		36712802066CE6031A5D90E5 /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */; };
 		36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367120B1111B487C3177C51D /* WatchlistListView.swift */; };
 		36712819605402E3BB398CBA /* ErrorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ErrorModels.swift */; };
+		36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */; };
 		3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */; };
 		36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Font+Extension.swift */; };
 		36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129AC2A73866F875D22DE /* ExmoChartData.swift */; };
@@ -534,6 +535,7 @@
 		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		367129AC2A73866F875D22DE /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCellType.swift; sourceTree = "<group>"; };
+		36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoSegmentCell.swift; sourceTree = "<group>"; };
 		36712B2B3338633190FB399E /* Font+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		36712B2E24600DAE35483C9D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFilterGroupController.swift; sourceTree = "<group>"; };
@@ -933,6 +935,7 @@
 				207A85E221B326D30049B26D /* TextFieldCell.swift */,
 				207A85E421B349570049B26D /* ButtonCell.swift */,
 				366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */,
+				36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2638,6 +2641,7 @@
 				36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */,
 				20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */,
 				3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */,
+				36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

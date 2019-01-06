@@ -76,48 +76,48 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         totalItem.uiProperties.isUserInteractionEnabled = false
         totalItem.uiProperties.cellType = .FloatingNumberTextField
 
-        let commisionItem = FloatingNumberFormItem(title: "Commision", placeholder1: "0", placeholder2: " USD")
-        commisionItem.valueCompletion = {
-            [weak commisionItem] value in
-            commisionItem?.value = value
+        let commissionItem = FloatingNumberFormItem(title: "Commission", placeholder1: "0", placeholder2: " USD")
+        commissionItem.valueCompletion = {
+            [weak commissionItem] value in
+            commissionItem?.value = value
         }
-        commisionItem.uiProperties.isUserInteractionEnabled = false
-        commisionItem.uiProperties.cellType = .FloatingNumberTextField
+        commissionItem.uiProperties.isUserInteractionEnabled = false
+        commissionItem.uiProperties.cellType = .FloatingNumberTextField
         
-        let switchItem = SwitchFormItem(title: "Order type")
-        switchItem.onChange = {
-            [weak self, weak switchItem] value in
-            self?.orderType = value == false ? .Buy : .Sell
-            switchItem?.value = value
+        let segmentItem = SegmentFormItem(title: "Order type", sections: ["Buy", "Sell"])
+        segmentItem.onChange = {
+            [weak self, weak segmentItem] selectedIndex in
+            self?.orderType = selectedIndex == 0 ? .Buy : .Sell
+            segmentItem?.value = selectedIndex
         }
-        switchItem.uiProperties.cellType = .Switcher
+        segmentItem.uiProperties.cellType = .Segment
         
         let buttonItem = ButtonFormItem(title: "CREATE")
         buttonItem.onTouch = onTouchButtonCreate
         buttonItem.uiProperties.cellType = .Button
         
         amountItem.valueCompletion = {
-            [weak self, weak amountItem, weak totalItem, weak commisionItem] value in
+            [weak self, weak amountItem, weak totalItem, weak commissionItem] value in
             self?.quantity = value
             amountItem?.value = value
-            self?.updateTotalAndComission(totalItem: totalItem, commisionItem: commisionItem)
+            self?.updateTotalAndComission(totalItem: totalItem, commissionItem: commissionItem)
         }
         
         priceItem.valueCompletion = {
-            [weak self, weak priceItem, weak totalItem, weak commisionItem] value in
+            [weak self, weak priceItem, weak totalItem, weak commissionItem] value in
             self?.price = value
             priceItem?.value = value
-            self?.updateTotalAndComission(totalItem: totalItem, commisionItem: commisionItem)
+            self?.updateTotalAndComission(totalItem: totalItem, commissionItem: commissionItem)
         }
         
-        cellItems = [currencyPairItem, amountItem, priceItem, totalItem, commisionItem, switchItem, buttonItem]
+        cellItems = [currencyPairItem, amountItem, priceItem, totalItem, commissionItem, segmentItem, buttonItem]
     }
     
-    private func updateTotalAndComission(totalItem: FloatingNumberFormItem?, commisionItem: FloatingNumberFormItem?) {
+    private func updateTotalAndComission(totalItem: FloatingNumberFormItem?, commissionItem: FloatingNumberFormItem?) {
         guard let quantity = Double(self.quantity ?? ""),
             let price = Double(self.price ?? "") else {
                 totalItem?.valueChanged?(nil)
-                commisionItem?.valueChanged?(nil)
+                commissionItem?.valueChanged?(nil)
                 return
         }
         
@@ -126,7 +126,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         let comissionValue = (exmoCommisionInPercentage * totalValue)/100.0
         
         totalItem?.valueChanged?(Utils.getFormatedPrice(value: totalValue, maxFractDigits: 9))
-        commisionItem?.valueChanged?(Utils.getFormatedPrice(value: comissionValue, maxFractDigits: 9))
+        commissionItem?.valueChanged?(Utils.getFormatedPrice(value: comissionValue, maxFractDigits: 9))
     }
     
     private func updateCurrenciesPlaceholders() {

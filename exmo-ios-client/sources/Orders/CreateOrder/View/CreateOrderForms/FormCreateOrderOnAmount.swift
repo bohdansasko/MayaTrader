@@ -66,20 +66,20 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
             amountItem?.value = value
             self?.updateTotalFormItem(totalItem: totalItem)
         }
-        
-        let switchItem = SwitchFormItem(title: "Order type")
-        switchItem.onChange = {
-            [weak self, weak switchItem] value in
-            self?.orderType = value == false ? .MarketBuyTotal : .MarketSellTotal
-            switchItem?.value = value
+
+        let segmentItem = SegmentFormItem(title: "Order type", sections: ["Buy", "Sell"])
+        segmentItem.onChange = {
+            [weak self, weak segmentItem] selectedIndex in
+            self?.orderType = selectedIndex == 0 ? .MarketBuyTotal : .MarketSellTotal
+            segmentItem?.value = selectedIndex
         }
-        switchItem.uiProperties.cellType = .Switcher
+        segmentItem.uiProperties.cellType = .Segment
         
         let buttonItem = ButtonFormItem(title: "CREATE")
         buttonItem.onTouch = onTouchButtonCreate
         buttonItem.uiProperties.cellType = .Button
         
-        cellItems = [currencyPairItem, amountItem, totalItem, switchItem, buttonItem]
+        cellItems = [currencyPairItem, amountItem, totalItem, segmentItem, buttonItem]
     }
     
     private func updateTotalFormItem(totalItem: FloatingNumberFormItem?) {

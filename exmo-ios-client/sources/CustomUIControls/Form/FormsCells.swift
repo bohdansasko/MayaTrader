@@ -25,6 +25,10 @@ protocol SwitchFormConformity {
     var formItem: SwitchFormItem? {get set}
 }
 
+protocol SegmentFormConformity {
+    var formItem: SegmentFormItem? {get set}
+}
+
 protocol FormUpdatable {
     func update(item: FormItem?)
 }
@@ -34,15 +38,22 @@ enum FormItemCellType {
     case TextField
     case FloatingNumberTextField
     case Switcher
+    case Segment
     case CurrencyDetails
     case Button
     
     static func registerCells(for tableView: UITableView) {
-        tableView.register(TextFieldCell.self, forCellReuseIdentifier: String(describing: TextFieldCell.self))
-        tableView.register(ExmoFloatingNumberCell.self, forCellReuseIdentifier: String(describing: ExmoFloatingNumberCell.self))
-        tableView.register(ExmoSwitchCell.self, forCellReuseIdentifier: String(describing: ExmoSwitchCell.self))
-        tableView.register(CurrencyDetailsCell.self, forCellReuseIdentifier: String(describing: CurrencyDetailsCell.self))
-        tableView.register(ButtonCell.self, forCellReuseIdentifier: String(describing: ButtonCell.self))
+        let classes = [
+            TextFieldCell.self,
+            ExmoFloatingNumberCell.self,
+            ExmoSwitchCell.self,
+            ExmoSegmentCell.self,
+            CurrencyDetailsCell.self,
+            ButtonCell.self
+        ]
+        classes.forEach({
+            tableView.register($0, forCellReuseIdentifier: String(describing: $0))
+        })
     }
     
     func dequeueCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -53,6 +64,8 @@ enum FormItemCellType {
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoFloatingNumberCell.self), for: indexPath)
         case .Switcher:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSwitchCell.self), for: indexPath)
+        case .Segment:
+            return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSegmentCell.self), for: indexPath)
         case .CurrencyDetails:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: CurrencyDetailsCell.self), for: indexPath)
         case .Button:

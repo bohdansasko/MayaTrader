@@ -137,3 +137,27 @@ class SwitchFormItem: FormItem {
         return true
     }
 }
+
+class SegmentFormItem: FormItem {
+    typealias OnChange = ((Int) -> Void)?
+
+    var title: String?
+    var value: Int = 0
+    var sections: [String]
+    var uiProperties: CellUIProperties
+    var onChange: OnChange
+
+    var isMandatory: Bool
+
+    init(title: String?, sections: [String]) {
+        self.title = title
+        self.sections = sections
+        uiProperties = SwitchCellUIProperties()
+        uiProperties.height = 80
+        isMandatory = true
+    }
+
+    func isValidate() -> Bool {
+        return true
+    }
+}
