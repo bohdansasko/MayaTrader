@@ -92,6 +92,11 @@ extension MainTabBarController {
             UINavigationController(rootViewController: menuInitializer.viewController)
         ]
 
+        let titleAttributes: [NSAttributedString.Key: Any] = [
+            NSAttributedString.Key.font : UIFont.getExo2Font(fontType: .Regular, fontSize: 18)
+        ]
+        viewControllers?.forEach({ $0.navigationController?.navigationBar.titleTextAttributes = titleAttributes })
+
         let iconsNamesWithIndices = [
             0: "icTabbarWatchlist",
             1: "icTabbarOrders",
