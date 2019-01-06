@@ -18,8 +18,6 @@ class TableMenuViewCell: ExmoTableViewCell {
         }
     }
     
-    var onTouchSecurity: VoidClosure?
-    
     var iconImage: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .center
@@ -55,6 +53,7 @@ class TableMenuViewCell: ExmoTableViewCell {
         var btn = UIButton(type: .custom)
         btn.setImage(UIImage(named: "icPasscodeUnlock"), for: .normal)
         btn.setImage(UIImage(named: "icPasscodeLock"), for: .selected)
+        btn.isUserInteractionEnabled = false
         return btn
     }()
 
@@ -91,12 +90,7 @@ extension TableMenuViewCell {
         
         addSubview(lockButton)
         lockButton.isHidden = true
-        lockButton.addTarget(self, action: #selector(onTouchSecurityButton), for: .touchUpInside)
         lockButton.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
-    }
-    
-    @objc func onTouchSecurityButton() {
-        onTouchSecurity?()
     }
     
     func updateRightView() {

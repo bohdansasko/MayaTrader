@@ -145,12 +145,7 @@ extension TableMenuView: UITableViewDelegate  {
         }
         
         if cellType == .Security {
-            menuCell.selectionStyle = .none
             menuCell.lockButton.isSelected = Defaults.isPasscodeActive()
-            menuCell.onTouchSecurity = {
-                [weak self] in
-                self?.viewOutput.didTouchCell(type: .Security)
-            }
         }
         
         menuCell.cellType = cellType
@@ -161,9 +156,6 @@ extension TableMenuView: UITableViewDelegate  {
         print("\(indexPath)")
         guard let sectionType = MenuSectionType(rawValue: indexPath.section),
               let cellType = cellsTypeContainer[sectionType]?[indexPath.row] else {
-            return
-        }
-        if cellType == .Security {
             return
         }
         viewOutput.didTouchCell(type: cellType)
