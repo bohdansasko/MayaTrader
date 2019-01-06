@@ -24,6 +24,15 @@ class ExmoUIViewController: UIViewController {
         return imageView
     }()
 
+    let tutorialImgView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFit
+        imgView.image = UIImage(named: "imgTutorialWatchlist")
+        return imgView
+    }()
+
+    var tutorialImg: String?
+
     var titleNavBar: String? {
         didSet {
             setupTitle()
@@ -113,6 +122,7 @@ extension ExmoUIViewController {
     }
 }
 
+// @MARK: manage loader view
 extension ExmoUIViewController {
     func showLoader() {
         if !isLoaderShowing() {
@@ -130,5 +140,23 @@ extension ExmoUIViewController {
 
     func isLoaderShowing() -> Bool {
         return activityIndicatorView.isHidden == false
+    }
+}
+
+// @MARK: Tutorial image
+extension ExmoUIViewController {
+    func showTutorialImg() {
+        if tutorialImgView.superview == nil && tutorialImg != nil {
+            view.addSubview(tutorialImgView)
+            tutorialImgView.image = UIImage(named: tutorialImg!)
+            tutorialImgView.anchorCenterXToSuperview()
+            tutorialImgView.anchorCenterYToSuperview(constant: -60)
+        }
+    }
+
+    func hideTutorialImg() {
+        if tutorialImgView.superview != nil {
+            tutorialImgView.removeFromSuperview()
+        }
     }
 }

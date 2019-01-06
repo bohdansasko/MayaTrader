@@ -34,6 +34,7 @@ class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tutorialImg = "imgTutorialWatchlist"
         setupViews()
         output.viewIsReady()
         bannerView.load(GADRequest())
@@ -63,6 +64,12 @@ extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenci
             return
         }
         hideLoader()
+
+        if items.isEmpty {
+            showTutorialImg()
+        } else {
+            hideTutorialImg()
+        }
 
         let shouldReloadData = ds.items.count != items.count
         ds.items = items
