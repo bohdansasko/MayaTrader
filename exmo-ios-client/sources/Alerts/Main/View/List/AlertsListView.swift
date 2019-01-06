@@ -19,12 +19,8 @@ class AlertsListView: UIView {
     var cells: [AlertViewCell] = []
     var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
 
-    private var placeholderNoData: PlaceholderNoDataView = {
-        let view = PlaceholderNoDataView()
-        view.text = "You haven't alerts right now"
-        view.isHidden = true
-        return view
-    }()
+    var showTutorialImg: VoidClosure?
+    var hideTutorialImg: VoidClosure?
     
     var tableView: UITableView = {
         let tv = UITableView()
@@ -60,7 +56,6 @@ class AlertsListView: UIView {
     }
     
     func updateInfo() {
-        dataProvider.setAlerts(alerts: AppDelegate.session.getAlerts())
         tableView.reloadData()
         checkOnRequirePlaceHolder()
     }
@@ -136,9 +131,9 @@ class AlertsListView: UIView {
     
     private func checkOnRequirePlaceHolder() {
         if (dataProvider.isEmpty()) {
-            placeholderNoData.isHidden = false
+            showTutorialImg?()
         } else {
-            placeholderNoData.isHidden = true
+            hideTutorialImg?()
         }
     }
     
@@ -172,13 +167,4 @@ class AlertsListView: UIView {
         
         return newStatus
     }
-}
-
-extension AlertsListView {
-    //    private func setupPlaceholderNoData() {
-    //        view.addSubview(placeholderNoData)
-    //        let topOffset: CGFloat = AppDelegate.isIPhone(model: .Five) ? 35 : 90
-    //        placeholderNoData.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-    //    }
-    //
 }

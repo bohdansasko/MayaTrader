@@ -42,14 +42,10 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
 // MARK: setup initial UI state for view controller
 extension AlertsViewController {
     func setupViews() {
-        btnCreateAlert.target = self
-        btnCreateAlert.action = #selector(showViewCreateOrder(_ :))
-        
-        view.addSubview(listView)
-        
+        tutorialImg = "imgTutorialAlert"
+
         setupNavigationBar()
-        setupConstraints()
-        
+        setupListView()
         setupBannerView()
     }
     
@@ -57,12 +53,24 @@ extension AlertsViewController {
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
-        
+
+        btnCreateAlert.target = self
+        btnCreateAlert.action = #selector(showViewCreateOrder(_ :))
         navigationItem.rightBarButtonItem = btnCreateAlert
     }
     
-    private func setupConstraints() {
+    private func setupListView() {
+        view.addSubview(listView)
         listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.showTutorialImg = {
+            [weak self] in
+            self?.showTutorialImg()
+        }
+        listView.hideTutorialImg = {
+            [weak self] in
+            self?.hideTutorialImg()
+        }
+        listView.updateInfo()
     }
     
     func setupBannerView() {
