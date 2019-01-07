@@ -1,5 +1,5 @@
 //
-//  WatchlistFavouriteCurrenciesViewController.swift
+//  WatchlistViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -23,9 +23,9 @@ extension DatasourceController {
     }
 }
 
-// @MARK: WatchlistFavouriteCurrenciesViewController
-class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController {
-    var output: WatchlistFavouriteCurrenciesViewOutput!
+// @MARK: WatchlistViewController
+class WatchlistViewController: ExmoUIViewController {
+    var output: WatchlistViewOutput!
 
     var listView: WatchlistListView = WatchlistListView()
     var bannerView: GADBannerView!
@@ -63,7 +63,7 @@ class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController {
     }
 }
 
-extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenciesViewInput {
+extension WatchlistViewController: WatchlistViewInput {
     func presentFavouriteCurrencies(items: [WatchlistCurrency]) {
         print("update currencies")
         guard let ds = listView.datasource as? WatchlistCardsDataSource else {
@@ -103,7 +103,7 @@ extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenci
 }
 
 // @MARK: GADBannerViewDelegate
-extension WatchlistFavouriteCurrenciesViewController: GADBannerViewDelegate {
+extension WatchlistViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceiveAd")
         if let _ = bannerView.superview {
@@ -127,7 +127,7 @@ extension WatchlistFavouriteCurrenciesViewController: GADBannerViewDelegate {
 }
 
 // @MARK: setup views
-extension WatchlistFavouriteCurrenciesViewController {
+extension WatchlistViewController {
     func setupViews() {
         setupBannerView()
         setupNavigationBar()

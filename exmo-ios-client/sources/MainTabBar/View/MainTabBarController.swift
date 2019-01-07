@@ -78,7 +78,7 @@ extension MainTabBarController {
     }
     
     private func setupTabBarItems() {
-        let watchlistInitializer = WatchlistFavouriteCurrenciesModuleInitializer()
+        let watchlistInitializer = WatchlistModuleInitializer()
         let orderInitializer = OrdersModuleInitializer()
         let walletInitializer = WalletModuleInitializer()
         let alertsInitializer = AlertsModuleInitializer()

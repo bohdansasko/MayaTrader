@@ -115,17 +115,17 @@
 		2075612720B2C0DB0063E548 /* AlertsAPIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */; };
 		207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E221B326D30049B26D /* TextFieldCell.swift */; };
 		207A85E521B349570049B26D /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E421B349570049B26D /* ButtonCell.swift */; };
-		207B1D962173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D862173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift */; };
-		207B1D972173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D872173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift */; };
-		207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D892173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift */; };
-		207B1D992173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8A2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift */; };
-		207B1D9A2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewInput.swift */; };
-		207B1D9B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8D2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift */; };
-		207B1D9C2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInitializer.swift */; };
-		207B1D9D2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D902173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractor.swift */; };
-		207B1D9E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D912173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift */; };
-		207B1DA02173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D942173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift */; };
-		207B1DA12173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D952173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift */; };
+		207B1D962173F93F00D2A5DE /* WatchlistModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D862173F93F00D2A5DE /* WatchlistModuleInput.swift */; };
+		207B1D972173F93F00D2A5DE /* WatchlistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D872173F93F00D2A5DE /* WatchlistPresenter.swift */; };
+		207B1D982173F93F00D2A5DE /* WatchlistViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D892173F93F00D2A5DE /* WatchlistViewOutput.swift */; };
+		207B1D992173F93F00D2A5DE /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8A2173F93F00D2A5DE /* WatchlistViewController.swift */; };
+		207B1D9A2173F93F00D2A5DE /* WatchlistViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8B2173F93F00D2A5DE /* WatchlistViewInput.swift */; };
+		207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8D2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift */; };
+		207B1D9C2173F93F00D2A5DE /* WatchlistModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8E2173F93F00D2A5DE /* WatchlistModuleInitializer.swift */; };
+		207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D902173F93F00D2A5DE /* WatchlistInteractor.swift */; };
+		207B1D9E2173F93F00D2A5DE /* WatchlistInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D912173F93F00D2A5DE /* WatchlistInteractorProtocols.swift */; };
+		207B1DA02173F93F00D2A5DE /* WatchlistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D942173F93F00D2A5DE /* WatchlistRouter.swift */; };
+		207B1DA12173F93F00D2A5DE /* WatchlistRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D952173F93F00D2A5DE /* WatchlistRouterInput.swift */; };
 		207E24FF2061B85B00030023 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersListView.swift */; };
 		207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderViewCell.swift */; };
 		207E25042061C3FD00030023 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25032061C3FD00030023 /* OrderModel.swift */; };
@@ -438,17 +438,17 @@
 		2075612620B2C0DB0063E548 /* AlertsAPIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsAPIHelper.swift; sourceTree = "<group>"; };
 		207A85E221B326D30049B26D /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		207A85E421B349570049B26D /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
-		207B1D862173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesModuleInput.swift; sourceTree = "<group>"; };
-		207B1D872173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesPresenter.swift; sourceTree = "<group>"; };
-		207B1D892173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesViewOutput.swift; sourceTree = "<group>"; };
-		207B1D8A2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesViewController.swift; sourceTree = "<group>"; };
-		207B1D8B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesViewInput.swift; sourceTree = "<group>"; };
-		207B1D8D2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesModuleConfigurator.swift; sourceTree = "<group>"; };
-		207B1D8E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesModuleInitializer.swift; sourceTree = "<group>"; };
-		207B1D902173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesInteractor.swift; sourceTree = "<group>"; };
-		207B1D912173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesInteractorProtocols.swift; sourceTree = "<group>"; };
-		207B1D942173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesRouter.swift; sourceTree = "<group>"; };
-		207B1D952173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistFavouriteCurrenciesRouterInput.swift; sourceTree = "<group>"; };
+		207B1D862173F93F00D2A5DE /* WatchlistModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleInput.swift; sourceTree = "<group>"; };
+		207B1D872173F93F00D2A5DE /* WatchlistPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistPresenter.swift; sourceTree = "<group>"; };
+		207B1D892173F93F00D2A5DE /* WatchlistViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewOutput.swift; sourceTree = "<group>"; };
+		207B1D8A2173F93F00D2A5DE /* WatchlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
+		207B1D8B2173F93F00D2A5DE /* WatchlistViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewInput.swift; sourceTree = "<group>"; };
+		207B1D8D2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleConfigurator.swift; sourceTree = "<group>"; };
+		207B1D8E2173F93F00D2A5DE /* WatchlistModuleInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleInitializer.swift; sourceTree = "<group>"; };
+		207B1D902173F93F00D2A5DE /* WatchlistInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractor.swift; sourceTree = "<group>"; };
+		207B1D912173F93F00D2A5DE /* WatchlistInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractorProtocols.swift; sourceTree = "<group>"; };
+		207B1D942173F93F00D2A5DE /* WatchlistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouter.swift; sourceTree = "<group>"; };
+		207B1D952173F93F00D2A5DE /* WatchlistRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouterInput.swift; sourceTree = "<group>"; };
 		207E24FE2061B85B00030023 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 		207E25002061BD3B00030023 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
 		207E25032061C3FD00030023 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
@@ -966,7 +966,7 @@
 				204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */,
 				207552952188B1F00011190E /* NetworkWorker.swift */,
 				202F48F0206A144D0080423E /* Common */,
-				207B1D842173F93F00D2A5DE /* FavouriteCurrencies */,
+				207B1D842173F93F00D2A5DE /* Main */,
 				3DDB3E27DAEC8977E4D43CE0 /* CurrenciesGroups */,
 				48EFA6894840F77841C1ED3F /* CurrencyPairChart */,
 				20DE8847217CDE9900BA5CF3 /* CurrenciesPairsList */,
@@ -1152,7 +1152,7 @@
 			path = Form;
 			sourceTree = "<group>";
 		};
-		207B1D842173F93F00D2A5DE /* FavouriteCurrencies */ = {
+		207B1D842173F93F00D2A5DE /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				207B1D882173F93F00D2A5DE /* View */,
@@ -1161,15 +1161,15 @@
 				207B1D8F2173F93F00D2A5DE /* Interactor */,
 				207B1D8C2173F93F00D2A5DE /* Configurator */,
 			);
-			name = FavouriteCurrencies;
-			path = "exmo-ios-client/sources/Watchlist/FavouriteCurrencies";
+			name = Main;
+			path = "exmo-ios-client/sources/Watchlist/Main";
 			sourceTree = SOURCE_ROOT;
 		};
 		207B1D852173F93F00D2A5DE /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				207B1D862173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift */,
-				207B1D872173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift */,
+				207B1D862173F93F00D2A5DE /* WatchlistModuleInput.swift */,
+				207B1D872173F93F00D2A5DE /* WatchlistPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -1178,9 +1178,9 @@
 			isa = PBXGroup;
 			children = (
 				20DBA23D20B3FEB4007BA0AF /* Cells */,
-				207B1D892173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift */,
-				207B1D8A2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift */,
-				207B1D8B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewInput.swift */,
+				207B1D892173F93F00D2A5DE /* WatchlistViewOutput.swift */,
+				207B1D8A2173F93F00D2A5DE /* WatchlistViewController.swift */,
+				207B1D8B2173F93F00D2A5DE /* WatchlistViewInput.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1188,8 +1188,8 @@
 		207B1D8C2173F93F00D2A5DE /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				207B1D8D2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift */,
-				207B1D8E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInitializer.swift */,
+				207B1D8D2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift */,
+				207B1D8E2173F93F00D2A5DE /* WatchlistModuleInitializer.swift */,
 			);
 			path = Configurator;
 			sourceTree = "<group>";
@@ -1197,8 +1197,8 @@
 		207B1D8F2173F93F00D2A5DE /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				207B1D902173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractor.swift */,
-				207B1D912173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift */,
+				207B1D902173F93F00D2A5DE /* WatchlistInteractor.swift */,
+				207B1D912173F93F00D2A5DE /* WatchlistInteractorProtocols.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -1206,8 +1206,8 @@
 		207B1D932173F93F00D2A5DE /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				207B1D942173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift */,
-				207B1D952173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift */,
+				207B1D942173F93F00D2A5DE /* WatchlistRouter.swift */,
+				207B1D952173F93F00D2A5DE /* WatchlistRouterInput.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -2389,14 +2389,14 @@
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
 				466BE515F58F0A76E05A0A0A /* LoginModuleProtocols.swift in Sources */,
 				2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */,
-				207B1D962173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInput.swift in Sources */,
+				207B1D962173F93F00D2A5DE /* WatchlistModuleInput.swift in Sources */,
 				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
 				2003B5582048BEC100BD205F /* CoreDataManager.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorProtocols.swift in Sources */,
 				20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */,
-				207B1D9C2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleInitializer.swift in Sources */,
+				207B1D9C2173F93F00D2A5DE /* WatchlistModuleInitializer.swift in Sources */,
 				20600A2A20532949004D7F45 /* UserEntity+CoreDataProperties.swift in Sources */,
-				207B1D9A2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewInput.swift in Sources */,
+				207B1D9A2173F93F00D2A5DE /* WatchlistViewInput.swift in Sources */,
 				20600A262053291C004D7F45 /* WalletTransactionHistoryEntity+CoreDataProperties.swift in Sources */,
 				20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */,
 				201D8079205DC62800692DEF /* WalletCurrenciesListCells.swift in Sources */,
@@ -2420,7 +2420,7 @@
 				201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,
-				207B1D9B2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesModuleConfigurator.swift in Sources */,
+				207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */,
 				203B8A8220AF2DB6004EF229 /* UITouchableNibView.swift in Sources */,
 				2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */,
 				20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */,
@@ -2481,7 +2481,7 @@
 				2C0D8C2083A0CF7F71803DFF /* WalletRouter.swift in Sources */,
 				2CCE0A760898715BD2600A3B /* WalletConfigurator.swift in Sources */,
 				F6F2F9970B445D6E7ACC036E /* WalletInitializer.swift in Sources */,
-				207B1D9D2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractor.swift in Sources */,
+				207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* WalletTableCurrenciesView.swift in Sources */,
 				204CC7D821B93478002057CA /* Constants.swift in Sources */,
 				36712E4C4C5245EF136945B7 /* TableMenuView.swift in Sources */,
@@ -2513,7 +2513,7 @@
 				01236729B7F200EE9462975B /* AlertsConfigurator.swift in Sources */,
 				1099C4E67FC05CDE75CFB34B /* AlertsInitializer.swift in Sources */,
 				20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */,
-				207B1DA12173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouterInput.swift in Sources */,
+				207B1DA12173F93F00D2A5DE /* WatchlistRouterInput.swift in Sources */,
 				B0730230BD605FB87BC67104 /* WalletCurrenciesListViewProtocols.swift in Sources */,
 				6476491CD5C14319332F295E /* WalletCurrenciesListViewController.swift in Sources */,
 				B2F7ED06C557E004C0B1A474 /* WalletCurrenciesListModuleInput.swift in Sources */,
@@ -2545,7 +2545,7 @@
 				20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */,
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersViewController.swift in Sources */,
 				200E691A21B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift in Sources */,
-				207B1D972173F93F00D2A5DE /* WatchlistFavouriteCurrenciesPresenter.swift in Sources */,
+				207B1D972173F93F00D2A5DE /* WatchlistPresenter.swift in Sources */,
 				3241679EBA193DF44DAB5E19 /* OrdersModuleInput.swift in Sources */,
 				820D8F305E45D621689112C1 /* OrdersPresenter.swift in Sources */,
 				3C8FD995246C02311C6868DA /* OrdersInteractorInput.swift in Sources */,
@@ -2557,7 +2557,7 @@
 				3312774E49DBE19CE9306BFA /* OrdersInitializer.swift in Sources */,
 				20CA0FD6206E3DCD00222966 /* WatchlistCardCollectionViewCell.swift in Sources */,
 				20F08D0820A8E21300B782FF /* UITouchableViewWithIndicator.swift in Sources */,
-				207B1DA02173F93F00D2A5DE /* WatchlistFavouriteCurrenciesRouter.swift in Sources */,
+				207B1DA02173F93F00D2A5DE /* WatchlistRouter.swift in Sources */,
 				20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */,
 				208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */,
 				200E691C21B2CB0F008C49B6 /* VinsoCreateAlertNetworkWorker.swift in Sources */,
@@ -2584,15 +2584,15 @@
 				D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */,
 				20369A4D219723FB001D6628 /* MainTabBarInteractorProtocols.swift in Sources */,
 				9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */,
-				207B1D992173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewController.swift in Sources */,
+				207B1D992173F93F00D2A5DE /* WatchlistViewController.swift in Sources */,
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
 				200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */,
 				20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */,
-				207B1D9E2173F93F00D2A5DE /* WatchlistFavouriteCurrenciesInteractorProtocols.swift in Sources */,
+				207B1D9E2173F93F00D2A5DE /* WatchlistInteractorProtocols.swift in Sources */,
 				20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */,
 				20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */,
 				207A85E521B349570049B26D /* ButtonCell.swift in Sources */,
-				207B1D982173F93F00D2A5DE /* WatchlistFavouriteCurrenciesViewOutput.swift in Sources */,
+				207B1D982173F93F00D2A5DE /* WatchlistViewOutput.swift in Sources */,
 				74208443D94F8B7E1F98710D /* WatchlistCurrencyChartViewInput.swift in Sources */,
 				CAB081780C816F30AA959325 /* WatchlistCurrencyChartViewOutput.swift in Sources */,
 				20369A4A2197232E001D6628 /* MainTabBarProtocols.swift in Sources */,

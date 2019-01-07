@@ -1,5 +1,5 @@
 //
-//  WatchlistFavouriteCurrenciesRouter.swift
+//  WatchlistRouter.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -8,7 +8,7 @@
 
 import UIKit.UIViewController
 
-class WatchlistFavouriteCurrenciesRouter: WatchlistFavouriteCurrenciesRouterInput {
+class WatchlistRouter: WatchlistRouterInput {
 
     func showCurrenciesListVC(senderVC: UIViewController) {
         let initializer = CurrenciesGroupsModuleInitializer()

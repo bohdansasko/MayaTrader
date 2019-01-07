@@ -25,7 +25,7 @@ class WatchlistListView: UIView {
         }
     }
 
-    weak var presenter: WatchlistFavouriteCurrenciesViewOutput!
+    weak var presenter: WatchlistViewOutput!
     let spaceFromLeftOrRight: CGFloat = 0
 
     var collectionView: UICollectionView = {

@@ -1,5 +1,5 @@
 //
-//  WatchlistFavouriteCurrenciesPresenter.swift
+//  WatchlistPresenter.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -7,13 +7,13 @@
 //
 import UIKit.UIViewController
 
-class WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesModuleInput {
-    weak var view: WatchlistFavouriteCurrenciesViewInput!
-    var interactor: WatchlistFavouriteCurrenciesInteractorInput!
-    var router: WatchlistFavouriteCurrenciesRouterInput!
+class WatchlistPresenter: WatchlistModuleInput {
+    weak var view: WatchlistViewInput!
+    var interactor: WatchlistInteractorInput!
+    var router: WatchlistRouterInput!
 }
 
-extension WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesViewOutput {
+extension WatchlistPresenter: WatchlistViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
     }
@@ -43,7 +43,7 @@ extension WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesVie
     }
 }
 
-extension WatchlistFavouriteCurrenciesPresenter: WatchlistFavouriteCurrenciesInteractorOutput {
+extension WatchlistPresenter: WatchlistInteractorOutput {
     func didLoadCurrencies(items: [WatchlistCurrency]) {
         view.presentFavouriteCurrencies(items: items)
     }

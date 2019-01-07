@@ -1,5 +1,5 @@
 //
-//  WatchlistFavouriteCurrenciesInteractor.swift
+//  WatchlistInteractor.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -9,16 +9,16 @@ import RealmSwift
 import Alamofire
 import SwiftyJSON
 
-class WatchlistFavouriteCurrenciesInteractor {
-    weak var output: WatchlistFavouriteCurrenciesInteractorOutput!
+class WatchlistInteractor {
+    weak var output: WatchlistInteractorOutput!
     var timerScheduler: Timer?
     var networkWorker: TickerNetworkWorker!
     var dbManager: OperationsDatabaseProtocol!
     var favPairs: [WatchlistCurrency] = []
 }
 
-// @MARK: WatchlistFavouriteCurrenciesInteractor
-extension WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesInteractorInput {
+// @MARK: WatchlistInteractor
+extension WatchlistInteractor: WatchlistInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
     }
@@ -63,7 +63,7 @@ extension WatchlistFavouriteCurrenciesInteractor: WatchlistFavouriteCurrenciesIn
 }
 
 // @MARK: ITickerNetworkWorkerDelegate
-extension WatchlistFavouriteCurrenciesInteractor: ITickerNetworkWorkerDelegate {
+extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
         print("onDidLoadTickerSuccess")
         guard let tickerPairs = ticker?.pairs else { return }
@@ -98,7 +98,7 @@ extension WatchlistFavouriteCurrenciesInteractor: ITickerNetworkWorkerDelegate {
 }
 
 // @MARK: work with database
-extension WatchlistFavouriteCurrenciesInteractor {
+extension WatchlistInteractor {
     func loadCurrenciesFromCache() {
         guard let object = dbManager.object(type: WatchlistObject.self, key: "") else {
             favPairs = []
@@ -116,7 +116,7 @@ extension WatchlistFavouriteCurrenciesInteractor {
 }
 
 // @MARK: work with timer
-extension WatchlistFavouriteCurrenciesInteractor {
+extension WatchlistInteractor {
     func scheduleUpdateCurrencies() {
         print("Watchlist: scheduleUpdateCurrencies")
         timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.Watchlist, repeats: true) {
@@ -135,7 +135,7 @@ extension WatchlistFavouriteCurrenciesInteractor {
 }
 
 // MARK: helps methods
-extension WatchlistFavouriteCurrenciesInteractor {
+extension WatchlistInteractor {
     func parseTicker(json: JSON) {
         print("Loaded ticker for Watchlist")
 

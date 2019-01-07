@@ -1,5 +1,5 @@
 //
-//  WatchlistFavouriteCurrenciesModuleConfigurator.swift
+//  WatchlistModuleConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 27/03/2018.
@@ -8,24 +8,24 @@
 
 import UIKit
 
-class WatchlistFavouriteCurrenciesModuleConfigurator {
+class WatchlistModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? WatchlistFavouriteCurrenciesViewController {
+        if let viewController = viewInput as? WatchlistViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: WatchlistFavouriteCurrenciesViewController) {
+    private func configure(viewController: WatchlistViewController) {
 
-        let router = WatchlistFavouriteCurrenciesRouter()
+        let router = WatchlistRouter()
 
-        let presenter = WatchlistFavouriteCurrenciesPresenter()
+        let presenter = WatchlistPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = WatchlistFavouriteCurrenciesInteractor()
+        let interactor = WatchlistInteractor()
         interactor.output = presenter
         interactor.networkWorker = TickerNetworkWorker()
         interactor.dbManager = RealmDatabaseManager()

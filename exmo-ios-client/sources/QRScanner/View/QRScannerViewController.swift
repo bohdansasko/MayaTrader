@@ -34,7 +34,7 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
         titleNavBar = "QR"
         
         setupCloseButton()
-         prepareCameraToReadQRCode()
+        prepareCameraToReadQRCode()
         
         view.addSubview(frameImageView)
         frameImageView.anchorCenterSuperview()
