@@ -14,16 +14,16 @@ class WalletViewController: ExmoUIViewController {
     }()
     
     var balanceView = WalletBalanceView()
-    var tableCurrenciesView = WalletTableCurrenciesView()
+    var listView = WalletTableCurrenciesView()
     
     var output: WalletViewOutput!
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        output.viewDidLoad()
+
         setupViews()
+        output.viewDidLoad()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -44,36 +44,32 @@ extension WalletViewController: WalletViewInput {
     
     func updateWallet(_ wallet: ExmoWallet) {
         balanceView.wallet = wallet
-        tableCurrenciesView.wallet = wallet
+        listView.wallet = wallet
     }
 }
 
 // MARK: setup initial UI state for view controller
 extension WalletViewController {
     func setupViews() {
-        currencySettingsBtn.target = self
-        currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
-        
-        view.addSubview(balanceView)
-        view.addSubview(tableCurrenciesView)
-        
         setupNavigationBar()
-        setupConstraints()
+
+        view.addSubview(balanceView)
+        view.addSubview(listView)
+
+        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: listView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+
     }
     
     private func setupNavigationBar() {
+        titleNavBar = "Wallet"
+
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
-        
-        titleNavBar = "Wallet"
-        
+
+        currencySettingsBtn.target = self
+        currencySettingsBtn.action = #selector(openCurrenciesManager(_ :))
         navigationItem.rightBarButtonItem = currencySettingsBtn
-    }
-    
-    private func setupConstraints() {
-        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: tableCurrenciesView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        
-        tableCurrenciesView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
 }

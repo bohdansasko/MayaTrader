@@ -26,15 +26,23 @@ class WalletTableCurrenciesView: UIView {
     
     var wallet: ExmoWallet? {
         didSet {
+            showPlaceholderIfRequired()
             tableView.reloadData()
         }
     }
-    
+
+    var tutorialImg: TutorialImage = {
+        let img = TutorialImage()
+        img.imageName = "imgTutorialWallet"
+        return img
+    }()
+
     let currencyCellId = "currencyCell"
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        setupTutorialImg()
         setupTableView()
     }
     
@@ -42,7 +50,12 @@ class WalletTableCurrenciesView: UIView {
         super.init(coder: aDecoder)
         fatalError("Doesn't have implementation")
     }
-    
+
+    func setupTutorialImg() {
+        self.addSubview(tutorialImg)
+        tutorialImg.anchorCenterSuperview()
+    }
+
     func setupTableView() {
         addSubview(tableView)
         tableView.delegate = self
@@ -53,6 +66,14 @@ class WalletTableCurrenciesView: UIView {
     
     func getWalletModelAsSegueBlock() -> SegueBlock? {
         return WalletSegueBlock(dataModel: wallet)
+    }
+
+    func showPlaceholderIfRequired() {
+        guard let w = wallet, w.favBalances.isEmpty == false else {
+            tutorialImg.show()
+            return
+        }
+        tutorialImg.hide()
     }
 }
 

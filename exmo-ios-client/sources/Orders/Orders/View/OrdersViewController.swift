@@ -56,7 +56,6 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tutorialImg = "imgTutorialOrder"
         setupViews()
         bannerView.load(GADRequest())
     }
@@ -101,14 +100,6 @@ extension OrdersViewController {
         
         view.addSubview(ordersListView)
         ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        ordersListView.showTutorialAddOrder = {
-            [weak self] in
-            self?.showTutorialImg()
-        }
-        ordersListView.hideTutorialAddOrder = {
-            [weak self] in
-            self?.hideTutorialImg()
-        }
     }
     
     private func setupSegmentControlView() {

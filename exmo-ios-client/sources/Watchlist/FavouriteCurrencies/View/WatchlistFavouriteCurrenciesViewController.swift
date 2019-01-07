@@ -29,13 +29,19 @@ class WatchlistFavouriteCurrenciesViewController: ExmoUIViewController {
 
     var listView: WatchlistListView = WatchlistListView()
     var bannerView: GADBannerView!
-    
+    var tutorialImg: TutorialImage = {
+        let img = TutorialImage()
+        img.imageName = "imgTutorialWatchlist"
+        img.offsetByY = -60
+        return img
+    }()
+
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tutorialImg = "imgTutorialWatchlist"
         setupViews()
+
         output.viewIsReady()
         bannerView.load(GADRequest())
     }
@@ -66,9 +72,9 @@ extension WatchlistFavouriteCurrenciesViewController: WatchlistFavouriteCurrenci
         hideLoader()
 
         if items.isEmpty {
-            showTutorialImg()
+            tutorialImg.show()
         } else {
-            hideTutorialImg()
+            tutorialImg.hide()
         }
 
         let shouldReloadData = ds.items.count != items.count
@@ -126,8 +132,14 @@ extension WatchlistFavouriteCurrenciesViewController {
         setupBannerView()
         setupNavigationBar()
         setupListView()
+        setupTutorialImg()
     }
-    
+
+    func setupTutorialImg() {
+        view.addSubview(tutorialImg)
+        tutorialImg.anchorCenterSuperview()
+    }
+
     func setupBannerView() {
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         bannerView.delegate = self

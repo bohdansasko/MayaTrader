@@ -19,9 +19,13 @@ class AlertsListView: UIView {
     var cells: [AlertViewCell] = []
     var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
 
-    var showTutorialImg: VoidClosure?
-    var hideTutorialImg: VoidClosure?
-    
+    var tutorialImg: TutorialImage = {
+        let img = TutorialImage()
+        img.imageName = "imgTutorialAlert"
+        img.offsetByY = -60
+        return img
+    }()
+
     var tableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .clear
@@ -38,7 +42,8 @@ class AlertsListView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        setupTutorialImg()
         setupTableView()
         dataProvider = AlertsModel()
     }
@@ -47,6 +52,11 @@ class AlertsListView: UIView {
         super.init(coder: aDecoder)
     }
     
+    func setupTutorialImg() {
+        self.addSubview(tutorialImg)
+        tutorialImg.anchorCenterSuperview()
+    }
+
     func setupTableView() {
         addSubview(tableView)
         tableView.fillSuperview()
@@ -131,9 +141,9 @@ class AlertsListView: UIView {
     
     private func checkOnRequirePlaceHolder() {
         if (dataProvider.isEmpty()) {
-            showTutorialImg?()
+            tutorialImg.show()
         } else {
-            hideTutorialImg?()
+            tutorialImg.hide()
         }
     }
     

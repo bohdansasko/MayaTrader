@@ -33,8 +33,12 @@ class OrdersListView: UIView {
         return aiv
     }()
 
-    var showTutorialAddOrder: VoidClosure?
-    var hideTutorialAddOrder: VoidClosure?
+    var tutorialImg: TutorialImage = {
+        let img = TutorialImage()
+        img.imageName = "imgTutorialOrder"
+        img.offsetByY = -60
+        return img
+    }()
 
     weak var presenter: OrdersViewOutput!
     var dataProvider: Orders!
@@ -100,13 +104,19 @@ extension OrdersListView {
     }
     
     func setupViews() {
+        setupTutorialImg()
         setupTableView()
         setupPlaceholderNoData()
         
         addSubview(activityIndicatorView)
         activityIndicatorView.anchorCenterSuperview()
     }
-    
+
+    func setupTutorialImg() {
+        self.addSubview(tutorialImg)
+        tutorialImg.anchorCenterSuperview()
+    }
+
     private func setupPlaceholderNoData() {
         self.addSubview(placeholderNoData)
         let topOffset: CGFloat = AppDelegate.isIPhone(model: .Five) ? -5 : 50
@@ -229,7 +239,7 @@ extension OrdersListView {
         placeholderNoData.isHidden = displayOrderType == .Open
         switch displayOrderType {
         case .Open:
-            showTutorialAddOrder?()
+            tutorialImg.show()
             placeholderNoData.text = nil
         case .Canceled:
             placeholderNoData.text = "You haven't canceled orders right now"
@@ -241,6 +251,6 @@ extension OrdersListView {
     
     func removePlaceholderNoData() {
         placeholderNoData.isHidden = true
-        hideTutorialAddOrder?()
+        tutorialImg.hide()
     }
 }

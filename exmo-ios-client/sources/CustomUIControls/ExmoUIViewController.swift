@@ -8,6 +8,31 @@
 
 import UIKit
 
+class TutorialImage: UIView {
+    var imageName: String?
+    var offsetByY: CGFloat = 0
+
+    let tutorialImgView: UIImageView = {
+        let imgView = UIImageView()
+        imgView.contentMode = .scaleAspectFit
+        return imgView
+    }()
+
+    func show() {
+        if tutorialImgView.superview == nil && imageName != nil {
+            addSubview(tutorialImgView)
+            tutorialImgView.image = UIImage(named: imageName!)
+            tutorialImgView.anchorCenterXToSuperview()
+            tutorialImgView.anchorCenterYToSuperview(constant: offsetByY)
+        }
+        tutorialImgView.isHidden = false
+    }
+
+    func hide() {
+        tutorialImgView.isHidden = true
+    }
+}
+
 class ExmoUIViewController: UIViewController {
     let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
@@ -23,15 +48,6 @@ class ExmoUIViewController: UIViewController {
         imageView.contentMode = .center
         return imageView
     }()
-
-    let tutorialImgView: UIImageView = {
-        let imgView = UIImageView()
-        imgView.contentMode = .scaleAspectFit
-        imgView.image = UIImage(named: "imgTutorialWatchlist")
-        return imgView
-    }()
-
-    var tutorialImg: String?
 
     var titleNavBar: String? {
         didSet {
@@ -140,25 +156,5 @@ extension ExmoUIViewController {
 
     func isLoaderShowing() -> Bool {
         return activityIndicatorView.isHidden == false
-    }
-}
-
-// @MARK: Tutorial image
-extension ExmoUIViewController {
-    func showTutorialImg() {
-        if tutorialImgView.superview == nil && tutorialImg != nil {
-            view.addSubview(tutorialImgView)
-            tutorialImgView.image = UIImage(named: tutorialImg!)
-            tutorialImgView.anchorCenterXToSuperview()
-            tutorialImgView.anchorCenterYToSuperview(constant: -60)
-
-            view.sendSubviewToBack(tutorialImgView)
-        }
-    }
-
-    func hideTutorialImg() {
-        if tutorialImgView.superview != nil {
-            tutorialImgView.removeFromSuperview()
-        }
     }
 }

@@ -20,7 +20,7 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
                                target: nil,
                                action: nil)
     }()
-    
+
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +42,6 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
 // MARK: setup initial UI state for view controller
 extension AlertsViewController {
     func setupViews() {
-        tutorialImg = "imgTutorialAlert"
-
         setupNavigationBar()
         setupListView()
         setupBannerView()
@@ -62,14 +60,6 @@ extension AlertsViewController {
     private func setupListView() {
         view.addSubview(listView)
         listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        listView.showTutorialImg = {
-            [weak self] in
-            self?.showTutorialImg()
-        }
-        listView.hideTutorialImg = {
-            [weak self] in
-            self?.hideTutorialImg()
-        }
         listView.updateInfo()
     }
     
