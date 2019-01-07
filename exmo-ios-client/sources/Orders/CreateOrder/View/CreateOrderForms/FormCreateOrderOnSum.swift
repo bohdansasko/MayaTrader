@@ -29,6 +29,14 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
         guard let cellButton = cellItems.last as? ButtonFormItem else { return }
         cellButton.onChangeTouchState?(isTouchEnabled)
     }
+
+    func clearFields() {
+        cellItems.forEach({ $0.clear() })
+        currencyPair = nil
+        quantity = nil
+        strPrice = nil
+        orderType = .MarketBuy
+    }
     
     func isValid() -> Bool {
         for item in cellItems {

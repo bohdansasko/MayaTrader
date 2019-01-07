@@ -196,7 +196,7 @@ struct OrderModel: Mappable {
     }
     
     func getAmountAsStr() -> String {
-        return String(self.amount)
+        return Utils.getFormatedPrice(value: amount)
     }
     
     func getOrderActionTypeAsStr() -> String {

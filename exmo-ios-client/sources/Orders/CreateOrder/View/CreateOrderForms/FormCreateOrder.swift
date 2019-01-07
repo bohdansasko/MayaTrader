@@ -81,4 +81,8 @@ class FormCreateOrder {
         
         tabs = [formLimit, formOnAmount, formOnSum]
     }
+
+    func clearForm() {
+        tabs.forEach({ $0.clearFields() })
+    }
 }

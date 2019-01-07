@@ -30,6 +30,14 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         cellButton.onChangeTouchState?(isTouchEnabled)
     }
 
+    func clearFields() {
+        cellItems.forEach({ $0.clear() })
+        currencyPair = nil
+        strPrice = nil
+        quantity = nil
+        orderType = .MarketBuyTotal
+    }
+
     func isValid() -> Bool {
         for item in cellItems {
             let vItem = item as FormItemValidate

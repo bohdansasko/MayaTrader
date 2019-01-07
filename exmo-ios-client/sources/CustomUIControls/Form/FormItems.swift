@@ -11,6 +11,7 @@ import Foundation
 protocol FormItemValidate {
     var isMandatory: Bool {get set}
     func isValidate() -> Bool
+    func clear()
 }
 
 protocol FormItem: FormItemValidate {
@@ -35,6 +36,10 @@ class ButtonFormItem: FormItem {
     func isValidate() -> Bool {
         return true
     }
+
+    func clear() {
+        // do nothing
+    }
 }
 
 class CurrencyDetailsItem: FormItem {
@@ -58,6 +63,11 @@ class CurrencyDetailsItem: FormItem {
         }
         
         return leftValue?.isEmpty == false
+    }
+
+    func clear() {
+        leftValue = nil
+        rightValue = nil
     }
 }
 
@@ -88,6 +98,10 @@ class FloatingNumberFormItem: FormItem {
         
         return value?.isEmpty == false
     }
+
+    func clear() {
+        value = nil
+    }
 }
 
 class TextFormItem: FormItem {
@@ -114,6 +128,10 @@ class TextFormItem: FormItem {
         
         return true
     }
+
+    func clear() {
+        value = nil
+    }
 }
 
 class SwitchFormItem: FormItem {
@@ -135,6 +153,10 @@ class SwitchFormItem: FormItem {
     
     func isValidate() -> Bool {
         return true
+    }
+
+    func clear() {
+        value = false
     }
 }
 
@@ -159,5 +181,9 @@ class SegmentFormItem: FormItem {
 
     func isValidate() -> Bool {
         return true
+    }
+
+    func clear() {
+        value = 0
     }
 }

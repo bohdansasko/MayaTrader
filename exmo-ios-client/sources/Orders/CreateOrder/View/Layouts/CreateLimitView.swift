@@ -51,7 +51,7 @@ class CreateOrderLimitView: UIView {
     var layoutType: CreateOrderDisplayType = .Limit {
         didSet {
             cells.removeAll()
-            orderType = .Sell
+            orderType = .Buy
             selectedCurrency = nil
             updateLayout(layoutType)
             
@@ -92,6 +92,7 @@ class CreateOrderLimitView: UIView {
 
 extension CreateOrderLimitView {
     func updateLayout(_ layoutType: CreateOrderDisplayType) {
+        form.clearForm()
         tableView.reloadData()
     }
     

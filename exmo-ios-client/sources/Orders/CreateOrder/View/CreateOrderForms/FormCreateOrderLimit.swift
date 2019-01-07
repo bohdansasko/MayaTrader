@@ -16,6 +16,7 @@ protocol FormTabCreateOrder {
     var cellItems: [FormItem]  { get set }
     
     func setTouchEnabled(_ isTouchEnabled: Bool)
+    func clearFields()
 }
 
 class FormCreateOrderLimit: FormTabCreateOrder {
@@ -39,7 +40,15 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         guard let cellButton = cellItems.last as? ButtonFormItem else { return }
         cellButton.onChangeTouchState?(isTouchEnabled)
     }
-    
+
+        func clearFields() {
+        cellItems.forEach({ $0.clear() })
+        currencyPair = nil
+        quantity = nil
+        price = nil
+        orderType = .Buy
+    }
+
     func isValid() -> Bool {
         for item in cellItems {
             let vItem = item as FormItemValidate
