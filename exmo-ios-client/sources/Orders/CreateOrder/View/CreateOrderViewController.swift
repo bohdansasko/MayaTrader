@@ -87,6 +87,7 @@ extension CreateOrderViewController: CreateOrderViewInput {
     
     func showAlert(message: String) {
         hideLoader()
+        cellsLayoutView.setTouchEnabled(true)
         showOkAlert(title: "Create order", message: message, onTapOkButton: nil)
     }
     

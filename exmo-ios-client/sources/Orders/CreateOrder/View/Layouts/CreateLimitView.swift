@@ -56,8 +56,7 @@ class CreateOrderLimitView: UIView {
             updateLayout(layoutType)
             
             parentVC.hideLoader()
-            parentVC.setTouchEnabled(true)
-            form.setTouchEnabled(true)
+            setTouchEnabled(true)
         }
     }
     
@@ -108,8 +107,12 @@ extension CreateOrderLimitView {
 extension CreateOrderLimitView: FormCreateOrderDelegate {
     func createOrder(_ order: OrderModel) {
         parentVC.showLoader()
-        parentVC.setTouchEnabled(false)
-        form.setTouchEnabled(false)
+        setTouchEnabled(false)
         output.createOrder(orderModel: order)
+    }
+
+    func setTouchEnabled(_ isEnabled: Bool) {
+        parentVC.setTouchEnabled(isEnabled)
+        form.setTouchEnabled(isEnabled)
     }
 }
