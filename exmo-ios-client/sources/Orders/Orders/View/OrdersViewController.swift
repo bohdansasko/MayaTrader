@@ -58,11 +58,11 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
 
         setupViews()
         bannerView.load(GADRequest())
+        output.viewIsReady()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        output.viewIsReady()
 
         segmentControlView.sendActions(for: .valueChanged)
     }

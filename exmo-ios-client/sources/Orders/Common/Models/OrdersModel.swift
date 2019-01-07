@@ -50,17 +50,18 @@ class Orders {
         }
 
         if let ordersDictionary = json.dictionary {
+            let idKey = displayType == .Deals ? "trade_id" : "order_id"
+            let orderTypeKey = displayType == .Canceled ? "order_type" : "type"
+            let dateKey = displayType == .Open ? "created" : "date"
+
             for (_, orders) in ordersDictionary {
                 for order in orders.arrayValue {
                     guard let map = order.dictionary, !map.isEmpty else {
                         continue
                     }
-                    
-                    let idKey = displayType == .Deals ? "trade_id" : "order_id"
-                    let orderTypeKey = displayType == .Canceled ? "order_type" : "type"
-                    
+
                     guard let id = map[idKey]?.int64Value,
-                          let date = map["date"]?.doubleValue,
+                          let date = map[dateKey]?.doubleValue,
                           let pair = map["pair"]?.stringValue,
                           let price = map["price"]?.doubleValue,
                           let quantity = map["quantity"]?.doubleValue,
