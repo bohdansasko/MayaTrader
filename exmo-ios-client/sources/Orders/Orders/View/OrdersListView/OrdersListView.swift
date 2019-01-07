@@ -161,6 +161,12 @@ extension OrdersListView {
         }
     }
 
+    func cancelOrderAt(indexPath: IndexPath) {
+        self.activityIndicatorView.startAnimating()
+        let id = dataProvider.getOrderBy(index: indexPath.section).id
+        presenter.cancelOrder(id: id)
+    }
+
     func deleteAllOrdersOnBuy() {
         print("delete all orders on buy")
         deleteAllOrdersOn(deleteOrderType: .Buy)
@@ -179,21 +185,8 @@ extension OrdersListView {
         
         let ordersOnBuy = openedOrders.getOrders().filter({ $0.orderType == deleteOrderType })
         for order in ordersOnBuy {
-            let id = order.id
-            guard let indexPath = tableViewCells[id] else {
-                continue
-            }
-            let shouldDeleteSection = displayOrderType == .Open
-            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: indexPath.section) {
-                openedOrders.removeItem(byIndex: indexPath.section)
-                if shouldDeleteSection {
-                    dataProvider.removeItem(byIndex: indexPath.section)
-                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
-                }
-            }
+            presenter.cancelOrder(id: order.id)
         }
-        
-        checkOnRequirePlaceHolder()
     }
     
     func deleteAllOrders() {
@@ -205,20 +198,8 @@ extension OrdersListView {
         }
         
         for order in openedOrders.getOrders() {
-            let id = order.id
-            if AppDelegate.session.cancelOpenOrder(id: id, byIndex: -1) {
-                // do nothing
-            }
+            presenter.cancelOrder(id: order.id)
         }
-        
-        if displayOrderType == .Open {
-            AppDelegate.session.getOpenOrders().clear()
-            dataProvider.clear()
-            openedOrders.clear()
-            tableView.reloadData()
-        }
-        
-        checkOnRequirePlaceHolder()
     }
     
     func orderWasCanceled(id: Int64) {
