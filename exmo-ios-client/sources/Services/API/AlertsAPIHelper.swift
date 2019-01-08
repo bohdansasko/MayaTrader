@@ -34,24 +34,20 @@ class AlertsApiRequestBuilder {
             "request_type" : ServerMessage.AlertsHistory.rawValue,
         ]
     }
-    
-    //
-    // @MARK: private methods
-    //
+
     static private func getAlertMessage(requestType: ServerMessage, alert: Alert) -> JSON {
-        var jsonData: JSON = [
+        let upperBound = alert.topBoundary == nil ? JSON.null : JSON(String(alert.topBoundary!))
+        let bottomBound = alert.bottomBoundary == nil ? JSON.null : JSON(String(alert.bottomBoundary!))
+        return [
             "request_type": requestType.rawValue,
             "currency" : alert.currencyCode,
             "price_at_create_moment" : String(alert.priceAtCreateMoment),
             "alert_status": alert.status.rawValue,
             "timestamp" : Date().timeIntervalSince1970,
-            "is_persistent" : alert.isPersistentNotification
+            "is_persistent" : alert.isPersistentNotification,
+            "upper_bound": upperBound,
+            "bottom_bound": bottomBound,
+            "description": alert.description ?? ""
         ]
-
-        jsonData["upper_bound"] = JSON(String(alert.topBoundary ?? ""))
-        jsonData["bottom_bound"] =  JSON(String(alert.bottomBoundary ?? ""))
-        jsonData["description"] =  JSON(alert.description ?? "")
-        
-        return jsonData
     }
 }
