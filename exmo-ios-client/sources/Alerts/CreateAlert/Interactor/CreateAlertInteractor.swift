@@ -28,15 +28,6 @@ class CreateAlertInteractor {
             timerScheduler = nil
         }
     }
-//    func tryCreateAlert(alertModel: Alert) {
-//        AppDelegate.vinsoAPI.createAlert(alertItem: alertModel)
-//        print("handleTouchButtonCreate[Add]: " + alertModel.getDataAsText())
-//    }
-//
-//    func tryUpdateAlert(alertModel: Alert) {
-//        AppDelegate.vinsoAPI.updateAlert(alertItem: alertModel)
-//        print("handleTouchButtonCreate[Update]: " + alertModel.getDataAsText())
-//    }
 }
 
 extension CreateAlertInteractor: CreateAlertInteractorInput {
