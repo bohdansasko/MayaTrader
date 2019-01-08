@@ -36,6 +36,11 @@ class AlertsModuleConfigurator {
         viewController.listView.viewOutput = viewController.output
         viewController.listView.view = viewController
 
+        let pickerViewLayout = DarkeningPickerViewModel(
+                header: "Delete Alerts",
+                dataSouce: ["Active", "Inactive", "All"]
+        )
+        viewController.pickerViewManager = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, model: pickerViewLayout)
     }
 
 }

@@ -20,7 +20,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     var output: OrdersViewOutput!
     var currentViewController: UIViewController?
     var bannerView: GADBannerView!
-    
+
     var pickerViewManager: DarkeningPickerViewManager!
     lazy var ordersListView = OrdersListView()
     
@@ -51,7 +51,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         )
         return sc
     }()
-    
+
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,13 +60,13 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         bannerView.load(GADRequest())
         output.viewIsReady()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         segmentControlView.sendActions(for: .valueChanged)
     }
-    
+
     private func onSelectedDeleteAction(actionIndex: Int) {
         print("onSelectedDeleteAction: \(actionIndex)")
 
@@ -92,53 +92,45 @@ extension OrdersViewController {
         setupNavigationBar()
         setupSegmentControlView()
         setupBannerView()
-        
+
         pickerViewManager.setCallbackOnSelectAction(callback: {
             [weak self] actionIndex in
             self?.onSelectedDeleteAction(actionIndex: actionIndex)
         })
-        
+
         view.addSubview(ordersListView)
         ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
-    
+
     private func setupSegmentControlView() {
         view.addSubview(segmentControlView)
         segmentControlView.addTarget(self, action: #selector(onSegmentChanged(_:)), for: .valueChanged)
         segmentControlView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
     }
-    
+
     private func setupNavigationBar() {
         titleNavBar = "Orders"
         setupRightBarButtons()
     }
-    
+
     private func setupRightBarButtons() {
         buttonDeleteOrders.addTarget(self, action: #selector(OrdersViewController.onTouchButtonDelete(_:)), for: .touchUpInside)
         buttonAddOrder.addTarget(self, action: #selector(OrdersViewController.onTouchButtonAddOrder(_:)), for: .touchUpInside)
-        
+
         let navButtonDeleteOrders = UIBarButtonItem(customView: buttonDeleteOrders)
-        let navButtonDeleteAddOrder = UIBarButtonItem(customView: buttonAddOrder)
+        let navButtonAddOrder = UIBarButtonItem(customView: buttonAddOrder)
 
-        let rightShift = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        rightShift.width = 20
-
-        let spaceBetweenButtons = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        spaceBetweenButtons.width = 12
-
-        navigationItem.rightBarButtonItems = [rightShift,
-                                              navButtonDeleteOrders,
-                                              spaceBetweenButtons,
-                                              navButtonDeleteAddOrder]
+        navigationItem.leftBarButtonItems =  [navButtonDeleteOrders]
+        navigationItem.rightBarButtonItems = [navButtonAddOrder]
     }
-    
+
     func setupBannerView() {
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         bannerView.delegate = self
         bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
         bannerView.rootViewController = self
     }
-    
+
     func addBannerToView(_ bannerView: GADBannerView) {
         view.addSubview(bannerView)
         bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
@@ -152,11 +144,11 @@ extension OrdersViewController {
         ordersListView.displayOrderType = displayOrderType
         output.onDidSelectTab(displayOrderType)
     }
-    
+
     @objc func onTouchButtonDelete(_ sender: Any) {
         pickerViewManager.showPickerViewWithDarkening()
     }
-    
+
     @objc func onTouchButtonAddOrder(_ sender: Any) {
         output.onTouchButtonAddOrder()
     }

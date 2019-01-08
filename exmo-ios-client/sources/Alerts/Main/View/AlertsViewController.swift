@@ -10,15 +10,29 @@ import UIKit
 import GoogleMobileAds
 
 class AlertsViewController: ExmoUIViewController {
+    enum DeleteAction: Int {
+        case All = 0
+        case Active
+        case Inactive
+    }
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     var bannerView: GADBannerView!
-    
+    var pickerViewManager: DarkeningPickerViewManager!
+
     var btnCreateAlert: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(named: "icNavbarPlus"),
                                style: .done,
                                target: nil,
                                action: nil)
+    }()
+
+    var buttonDeleteAlers: UIButton = {
+        let image = UIImage(named: "icNavbarTrash")?.withRenderingMode(.alwaysOriginal)
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(image, for: .normal)
+        button.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        return button
     }()
 
     // MARK: Life cycle
@@ -37,6 +51,22 @@ class AlertsViewController: ExmoUIViewController {
     
     @objc func showViewCreateOrder(_ sender: Any) {
         output.showFormCreateAlert()
+    }
+
+    @objc func onTouchButtonDelete(_ sender: Any) {
+        pickerViewManager.showPickerViewWithDarkening()
+    }
+
+    private func onSelectedDeleteAction(actionIndex: Int) {
+        print("onSelectedDeleteAction: \(actionIndex)")
+
+        switch (actionIndex) {
+        case DeleteAction.All.rawValue: print("Alerts => delete all")
+        case DeleteAction.Active.rawValue: print("Alerts => delete Active")
+        case DeleteAction.Inactive.rawValue: print("Alerts => delete Inactive")
+        default: print("Alerts => selected index out of range")
+            break
+        }
     }
 }
 
@@ -58,6 +88,12 @@ extension AlertsViewController: AlertsViewInput {
 extension AlertsViewController {
     func setupViews() {
         setupNavigationBar()
+
+        pickerViewManager.setCallbackOnSelectAction(callback: {
+            [weak self] actionIndex in
+            self?.onSelectedDeleteAction(actionIndex: actionIndex)
+        })
+
         setupListView()
         setupBannerView()
     }
@@ -66,6 +102,10 @@ extension AlertsViewController {
         navigationController?.navigationBar.barTintColor = .black
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
+
+        buttonDeleteAlers.addTarget(self, action: #selector(onTouchButtonDelete(_:)), for: .touchUpInside)
+        let navButtonDeleteAlers = UIBarButtonItem(customView: buttonDeleteAlers)
+        navigationItem.leftBarButtonItem = navButtonDeleteAlers
 
         btnCreateAlert.target = self
         btnCreateAlert.action = #selector(showViewCreateOrder(_ :))
