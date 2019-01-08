@@ -72,7 +72,7 @@ extension ExmoSwitchCell: FormUpdatable {
         formItem = fi
         titleLabel.text = fi.title
         titleLabel.textColor = uiProperties.titleColor
-
+        uiSwitch.isOn = fi.value
         uiSwitch.onTintColor = uiProperties.stateOnTintColor
         uiSwitch.tintColor = uiProperties.stateOffTintColor
         uiSwitch.layer.cornerRadius = uiSwitch.frame.height/2

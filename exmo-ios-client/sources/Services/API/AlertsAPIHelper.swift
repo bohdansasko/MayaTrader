@@ -47,16 +47,10 @@ class AlertsApiRequestBuilder {
             "timestamp" : Date().timeIntervalSince1970,
             "is_persistent" : alert.isPersistentNotification
         ]
-        
-        if let value = alert.topBoundary {
-            jsonData["upper_bound"] = JSON(String(value))
-        }
-        if let value = alert.bottomBoundary {
-            jsonData["bottom_bound"] =  JSON(String(value))
-        }
-        if let value = alert.description {
-            jsonData["description"] =  JSON(String(value))
-        }
+
+        jsonData["upper_bound"] = JSON(String(alert.topBoundary ?? ""))
+        jsonData["bottom_bound"] =  JSON(String(alert.bottomBoundary ?? ""))
+        jsonData["description"] =  JSON(alert.description ?? "")
         
         return jsonData
     }

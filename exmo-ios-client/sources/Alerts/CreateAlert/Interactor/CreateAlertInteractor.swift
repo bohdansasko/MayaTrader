@@ -12,7 +12,6 @@ class CreateAlertInteractor {
 
     weak var output: CreateAlertInteractorOutput!
     var tickerNetworkWorker: ITickerNetworkWorker!
-    var createAlertNetworkWorker: ICreateAlertNetworkWorker!
     var timerScheduler: Timer?
     private var currencyPairCode: String = ""
     
@@ -31,19 +30,19 @@ class CreateAlertInteractor {
     }
 //    func tryCreateAlert(alertModel: Alert) {
 //        AppDelegate.vinsoAPI.createAlert(alertItem: alertModel)
-//        print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
+//        print("handleTouchButtonCreate[Add]: " + alertModel.getDataAsText())
 //    }
 //
 //    func tryUpdateAlert(alertModel: Alert) {
 //        AppDelegate.vinsoAPI.updateAlert(alertItem: alertModel)
-//        print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
+//        print("handleTouchButtonCreate[Update]: " + alertModel.getDataAsText())
 //    }
 }
 
 extension CreateAlertInteractor: CreateAlertInteractorInput {
     func viewIsReady() {
         tickerNetworkWorker.delegate = self
-        createAlertNetworkWorker.delegate = self
+        AppDelegate.vinsoAPI.alertsDelegate = self
     }
     
     func viewWillDisappear() {
@@ -88,15 +87,14 @@ extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
 }
 
 // @MARK: IOrdersNetworkWorkerDelegate
-extension CreateAlertInteractor: ICreateAlertNetworkWorkerDelegate {
-    func onDidCreateAlertSuccess() {
-        output.onCreateAlertSuccessull()
+extension CreateAlertInteractor: AlertsAPIResponseDelegate {
+    func onDidCreateAlertSuccessful() {
+        output.onCreateAlertSuccessful()
     }
     
     func onDidCreateAlertFail(errorMessage: String) {
         print(errorMessage)
         scheduleUpdateCurrencies()
         output.showAlert(message: errorMessage)
-
     }
 }

@@ -36,15 +36,31 @@ protocol VinsoAPIConnectionDelegate: class {
 
 protocol AlertsAPIResponseDelegate: class {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert])
+    func onDidCreateAlertSuccessful()
     func onDidUpdateAlertSuccessful(_ alert: Alert)
     func onDidDeleteAlertSuccessful(withId id: Int)
+}
+
+extension AlertsAPIResponseDelegate {
+    func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) {
+
+    }
+    func onDidCreateAlertSuccessful() {
+
+    }
+    func onDidUpdateAlertSuccessful(_ alert: Alert) {
+
+    }
+    func onDidDeleteAlertSuccessful(withId id: Int) {
+
+    }
 }
 
 class VinsoAPI {
     static var shared = VinsoAPI()
 
     private var socketManager: SocketManager!
-    private let ServerURL = "ws://192.168.0.102:45667"
+    private let ServerURL = "ws://193.228.52.26:45667"
 
     weak var connectionDelegate: VinsoAPIConnectionDelegate?
     weak var alertsDelegate: AlertsAPIResponseDelegate?
@@ -171,19 +187,14 @@ extension VinsoAPI {
                 alerts.append(alert)
             }
         }
+        alerts.sort(by: { $0.dateCreated > $1.dateCreated })
         alertsDelegate?.onDidLoadAlertsHistorySuccessful(alerts)
     }
 
     private func handleResponseCreateAlert(json: JSON) {
-//        guard var alertServerMap = self.getDictionaryFromJSON(json: json) else {
-//            return
-//        }
-//
-//        alertServerMap["status"] = 1
-//        let alert = Alert(JSON: alertServerMap)
-//        if let alertObj = alert {
-//            AppDelegate.session.appendAlert(alert: alertObj)
-//        }
+        if let _ = Alert(JSONString: json.description) {
+            alertsDelegate?.onDidCreateAlertSuccessful()
+        }
     }
     
     private func handleResponseUpdateAlert(json: JSON) {

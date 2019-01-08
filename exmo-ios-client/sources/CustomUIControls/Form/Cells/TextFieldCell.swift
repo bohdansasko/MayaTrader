@@ -76,6 +76,7 @@ extension TextFieldCell: FormUpdatable {
         formItem = fi
         titleLabel.text = fi.title
         titleLabel.textColor = fi.uiProperties.titleColor
+        textInput.text = fi.value
         textInput.placeholder = fi.placeholder
         textInput.keyboardType = fi.uiProperties.keyboardType
         textInput.placeholderColor = .white30

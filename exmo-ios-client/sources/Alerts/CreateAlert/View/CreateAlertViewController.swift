@@ -11,6 +11,7 @@ import UIKit
 class CreateAlertViewController: ExmoUIViewController {
     var output: CreateAlertViewOutput!
     lazy var form = FormCreateAlert()
+    var selectedPair: TickerCurrencyModel?
     var cells: [IndexPath : UITableViewCell] = [:]
     var formTableView: UITableView = {
         let tv = UITableView()
@@ -52,7 +53,7 @@ class CreateAlertViewController: ExmoUIViewController {
             guard let self = self,
                   let currencyPair = self.form.currencyPair else { return }
             if !self.form.isValid() {
-                print("form doesn't validate")
+                self.showAlert(message: "form doesn't validate")
                 return
             }
             
@@ -60,8 +61,9 @@ class CreateAlertViewController: ExmoUIViewController {
             let maxValue: Double? = self.form.topBound != nil ? Double(self.form.topBound!) : nil
             let minValue: Double? = self.form.bottomBound != nil ? Double(self.form.bottomBound!) : nil
             
-            let alert = Alert(id: self.editAlert?.id ?? 0, currencyPairName: rawCurrencyPairName, priceAtCreateMoment: 0, description: self.form.description, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
-            self.output.handleTouchAlertBtn(alertModel: alert, operationType: self.editAlert == nil ? .Add : .Update)
+            let alert = Alert(id: self.editAlert?.id ?? 0, currencyPairName: rawCurrencyPairName, priceAtCreateMoment: self.selectedPair?.lastTrade ?? 0, description: self.form.description, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
+            self.showLoader()
+            self.output.handleTouchButtonCreate(alertModel: alert, operationType: self.editAlert == nil ? .Add : .Update)
         }
         
         form.viewIsReady()
@@ -93,7 +95,8 @@ extension CreateAlertViewController: CreateAlertViewInput {
         detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair.code)
         detailsFormItem.rightValue = Utils.getFormatedPrice(value: currencyPair.lastTrade, maxFractDigits: 10)
         detailsItem.update(item: detailsFormItem)
-        
+
+        selectedPair = tickerCurrencyPair
         for (_, cell) in cells {
             guard let floatingCell = cell as? ExmoFloatingNumberCell else { continue }
             floatingCell.update(item: floatingCell.formItem)
@@ -102,6 +105,17 @@ extension CreateAlertViewController: CreateAlertViewInput {
     
     func setEditAlert(_ alert: Alert) {
         editAlert = alert
+    }
+
+    func alertCreated() {
+        hideLoader()
+        self.form.clear()
+        self.formTableView.reloadData()
+        showAlert(title: titleNavBar!, message: "Alert has been created successfully", closure: nil)
+    }
+
+    func showAlert(message: String) {
+        showOkAlert(title: titleNavBar!, message: message, onTapOkButton: nil)
     }
 }
 

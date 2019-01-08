@@ -34,17 +34,11 @@ extension CreateAlertPresenter: CreateAlertViewOutput {
         router.close(uiViewController: view as? UIViewController)
     }
     
-    func handleTouchAlertBtn(alertModel: Alert, operationType: AlertOperationType) {
+    func handleTouchButtonCreate(alertModel: Alert, operationType: AlertOperationType) {
         switch operationType {
-        case .Add:
-            interactor.createAlert(alertModel)
-        case .Update:
-            interactor.updateAlert(alertModel)
-        default:
-            // do nothing
-            break
+        case .Add: interactor.createAlert(alertModel)
+        case .Update: interactor.updateAlert(alertModel)
         }
-        handleTouchOnCancelBtn()
     }
     
     func showSearchViewController(searchType: SearchViewController.SearchType) {
@@ -58,12 +52,12 @@ extension CreateAlertPresenter: CreateAlertInteractorOutput {
         view.updateSelectedCurrency(tickerCurrencyPair)
     }
     
-    func onCreateAlertSuccessull() {
-        showAlert(message: "Alert has benn created successfully")
+    func onCreateAlertSuccessful() {
+        view.alertCreated()
     }
-    
+
     func showAlert(message: String) {
-        
+        view.showAlert(message: message)
     }
 }
 

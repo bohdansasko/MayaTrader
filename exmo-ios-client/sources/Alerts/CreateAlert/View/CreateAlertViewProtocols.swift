@@ -9,12 +9,14 @@
 protocol CreateAlertViewInput: class {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func setEditAlert(_ alert: Alert)
+    func alertCreated()
+    func showAlert(message: String)
 }
 
 protocol CreateAlertViewOutput {
     func viewIsReady()
     func viewWillDisappear()
     func handleTouchOnCancelBtn()
-    func handleTouchAlertBtn(alertModel: Alert, operationType: AlertOperationType)
+    func handleTouchButtonCreate(alertModel: Alert, operationType: AlertOperationType)
     func showSearchViewController(searchType: SearchViewController.SearchType)
 }

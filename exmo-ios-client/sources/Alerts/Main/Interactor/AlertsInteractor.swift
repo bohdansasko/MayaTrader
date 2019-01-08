@@ -15,18 +15,10 @@ class AlertsInteractor  {
 extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
         AppDelegate.vinsoAPI.connectionDelegate = self
-        AppDelegate.vinsoAPI.alertsDelegate = self
-
-        let alerts = [
-            Alert(id: 0, currencyPairName: "BTC_USD", priceAtCreateMoment: 3800, description: "Fucking people @GKarlin", topBoundary: 4000, bottomBoundary: 3700, isPersistentNotification: true),
-            Alert(id: 0, currencyPairName: "XRP_USD", priceAtCreateMoment: 0.35, description: "People fucked @GKarlin", topBoundary: 0.5, bottomBoundary: 0.3, isPersistentNotification: false)
-        ]
-        alerts.forEach({
-            AppDelegate.vinsoAPI.createAlert(alert: $0)
-        })
     }
 
     func viewDidAppear() {
+        AppDelegate.vinsoAPI.alertsDelegate = self
         if AppDelegate.vinsoAPI.isConnectionOpen() {
             onConnectionOpened()
         } else {

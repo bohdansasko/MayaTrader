@@ -105,4 +105,13 @@ class FormCreateAlert {
             
         })
     }
+
+    func clear() {
+        cellItems.forEach({ $0.clear() })
+        topBound = nil
+        bottomBound = nil
+        description = nil
+        isPersistent = false
+
+    }
 }
