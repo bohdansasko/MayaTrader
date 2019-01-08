@@ -30,12 +30,12 @@ class CreateAlertInteractor {
         }
     }
 //    func tryCreateAlert(alertModel: Alert) {
-//        AppDelegate.roobikController.createAlert(alertItem: alertModel)
+//        AppDelegate.vinsoAPI.createAlert(alertItem: alertModel)
 //        print("handleTouchAlertBtn[Add]: " + alertModel.getDataAsText())
 //    }
 //
 //    func tryUpdateAlert(alertModel: Alert) {
-//        AppDelegate.roobikController.updateAlert(alertItem: alertModel)
+//        AppDelegate.vinsoAPI.updateAlert(alertItem: alertModel)
 //        print("handleTouchAlertBtn[Update]: " + alertModel.getDataAsText())
 //    }
 }
@@ -54,11 +54,11 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     func createAlert(_ alertModel: Alert) {
         print(alertModel)
         unscheduleUpdateCurrencies()
-        createAlertNetworkWorker.createAlert(alertModel)
+        AppDelegate.vinsoAPI.createAlert(alert: alertModel)
     }
     
     func updateAlert(_ alertModel: Alert) {
-        
+        AppDelegate.vinsoAPI.updateAlert(alertModel)
     }
     
     func handleSelectedCurrency(rawName: String) {

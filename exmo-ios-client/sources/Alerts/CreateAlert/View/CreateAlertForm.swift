@@ -13,7 +13,7 @@ class FormCreateAlert {
     var currencyPair: String?
     var topBound: String?
     var bottomBound: String?
-    var note: String?
+    var description: String?
     var isPersistent: Bool = false
     var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
@@ -70,14 +70,14 @@ class FormCreateAlert {
         bottomBoundItem.value = bottomBound
         bottomBoundItem.uiProperties.cellType = .FloatingNumberTextField
         
-        let noteItem = TextFormItem(title: "NOTE", placeholder: "Write reminder note...")
-        noteItem.valueCompletion = {
-            [weak self, weak noteItem] value in
-            self?.note = value
-            noteItem?.value = value
+        let descriptionItem = TextFormItem(title: "NOTE", placeholder: "Write reminder note...")
+        descriptionItem.valueCompletion = {
+            [weak self, weak descriptionItem] value in
+            self?.description = value
+            descriptionItem?.value = value
         }
-        noteItem.value = note
-        noteItem.uiProperties.cellType = .TextField
+        descriptionItem.value = description
+        descriptionItem.uiProperties.cellType = .TextField
         
         let switchItem = SwitchFormItem(title: "IS PERSISTENT")
         switchItem.onChange = {
@@ -92,7 +92,7 @@ class FormCreateAlert {
         buttonItem.onTouch = onTouchButtonCreate
         buttonItem.uiProperties.cellType = .Button
         
-        cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, noteItem, switchItem, buttonItem]
+        cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, descriptionItem, switchItem, buttonItem]
     }
     
     private func updateCurrenciesPlaceholders() {

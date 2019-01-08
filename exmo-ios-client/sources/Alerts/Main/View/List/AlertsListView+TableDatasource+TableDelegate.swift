@@ -12,7 +12,7 @@ import UIKit
 // @MARK: UITableViewDataSource
 extension AlertsListView: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return dataProvider.getCountMenuItems()
+        return alerts.getCountMenuItems()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,7 +25,7 @@ extension AlertsListView: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let alert = dataProvider.getCellItem(byRow: indexPath.section) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.section) else {
             print("cellForRowAt: item doesn't exists")
             return
         }
@@ -55,7 +55,7 @@ extension AlertsListView: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        guard let alertModel = dataProvider.getCellItem(byRow: indexPath.row) else {
+        guard let alertModel = alerts.getCellItem(byRow: indexPath.row) else {
             print("didSelectRowAt: item doesn't exists")
             return
         }
@@ -71,10 +71,10 @@ extension AlertsListView: UITableViewDelegate  {
             self?.handleStateAction(elementIndex: indexPath.section)
             completionHandler(true)
         })
-        stateAction.backgroundColor = dataProvider.getStatus(forItem: indexPath.section) == .Active
+        stateAction.backgroundColor = alerts.getStatus(forItem: indexPath.section) == .Active
             ? UIColor.steel
             : UIColor.greenBlue
-        stateAction.image = dataProvider.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
+        stateAction.image = alerts.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
         
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             [weak self] _, _, completionHandler in

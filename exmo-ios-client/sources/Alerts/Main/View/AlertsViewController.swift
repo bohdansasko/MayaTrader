@@ -9,7 +9,7 @@
 import UIKit
 import GoogleMobileAds
 
-class AlertsViewController: ExmoUIViewController, AlertsViewInput {
+class AlertsViewController: ExmoUIViewController {
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     var bannerView: GADBannerView!
@@ -26,12 +26,13 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
         super.viewDidLoad()
         titleNavBar = "Alerts"
         setupViews()
+        output.viewIsReady()
         bannerView.load(GADRequest())
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        output.viewIsReady()
+        output.viewDidAppear()
     }
     
     @objc func showViewCreateOrder(_ sender: Any) {
@@ -39,6 +40,20 @@ class AlertsViewController: ExmoUIViewController, AlertsViewInput {
     }
 }
 
+extension AlertsViewController: AlertsViewInput {
+    func update(_ alerts: [Alert]) {
+        listView.alerts.set(alerts)
+        listView.invalidate()
+    }
+
+    func updateAlert(_ alert: Alert) {
+        listView.updateAlert(alertItem: alert)
+    }
+
+    func deleteAlert(withId id: Int) {
+        listView.deleteById(alertId: id)
+    }
+}
 // MARK: setup initial UI state for view controller
 extension AlertsViewController {
     func setupViews() {
@@ -60,7 +75,6 @@ extension AlertsViewController {
     private func setupListView() {
         view.addSubview(listView)
         listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        listView.updateInfo()
     }
     
     func setupBannerView() {

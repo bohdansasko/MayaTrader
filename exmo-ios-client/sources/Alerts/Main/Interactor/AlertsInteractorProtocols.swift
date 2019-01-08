@@ -10,8 +10,14 @@ import Foundation
 
 protocol AlertsInteractorInput {
     func viewIsReady()
+    func viewDidAppear()
+
+    func updateAlertState(_ alert: Alert)
+    func deleteAlert(withId id: Int)
 }
 
 protocol AlertsInteractorOutput: class {
-    // do nothing
+    func onDidLoadAlertsHistory(_ alerts: [Alert])
+    func updateAlertSuccessful(_ alert: Alert)
+    func deleteAlertSuccessful(withId id: Int)
 }

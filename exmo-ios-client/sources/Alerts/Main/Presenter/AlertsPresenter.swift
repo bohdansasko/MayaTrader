@@ -8,22 +8,49 @@
 
 import UIKit.UITableView
 
-class AlertsPresenter: AlertsModuleInput, AlertsViewOutput, AlertsInteractorOutput {
-
+class AlertsPresenter {
     weak var view: AlertsViewInput!
     var interactor: AlertsInteractorInput!
     var router: AlertsRouterInput!
+}
 
+extension AlertsPresenter: AlertsViewOutput {
     func viewIsReady() {
        interactor.viewIsReady()
     }
     
-    func editAlert(_ alert: Alert) {
-        let view = self.view as! UIViewController
-        self.router.editAlert(view: view, alert: alert)
+    func viewDidAppear() {
+        interactor.viewDidAppear()
     }
-    
+
     func showFormCreateAlert() {
         router.showVCAddAlert(view as! UIViewController)
+    }
+
+    func editAlert(_ alert: Alert) {
+        let view = self.view as! UIViewController
+        router.editAlert(view: view, alert: alert)
+    }
+
+    func updateAlertState(_ alert: Alert) {
+        interactor.updateAlertState(alert)
+    }
+
+    func deleteAlert(withId id: Int) {
+        interactor.deleteAlert(withId: id)
+    }
+}
+
+extension AlertsPresenter: AlertsInteractorOutput {
+    func onDidLoadAlertsHistory(_ alerts: [Alert]) {
+        view.update(alerts)
+    }
+
+    func updateAlertSuccessful(_ alert: Alert) {
+        view.updateAlert(alert)
+    }
+
+    func deleteAlertSuccessful(withId id: Int) {
+        view.deleteAlert(withId: id)
     }
 }

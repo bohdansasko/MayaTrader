@@ -38,10 +38,10 @@ class CreateAlertViewController: ExmoUIViewController {
         super.viewDidLoad()
         
         if let alert = editAlert {
-            form.currencyPair = alert.currencyCode == nil ? nil : Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode!)
+            form.currencyPair = Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode)
             form.topBound = alert.topBoundary == nil ? nil : String(alert.topBoundary!)
             form.bottomBound = alert.bottomBoundary == nil ? nil : String(alert.bottomBoundary!)
-            form.note = alert.note
+            form.description = alert.description
             form.isPersistent = alert.isPersistentNotification
         }
         form.refreshTitle()
@@ -60,9 +60,8 @@ class CreateAlertViewController: ExmoUIViewController {
             let maxValue: Double? = self.form.topBound != nil ? Double(self.form.topBound!) : nil
             let minValue: Double? = self.form.bottomBound != nil ? Double(self.form.bottomBound!) : nil
             
-            let alert = Alert(id: "", currencyPairName: rawCurrencyPairName, priceAtCreateMoment: 0, note: self.form.note, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
-            print(alert.getDataAsText())
-//            output.createAlert()
+            let alert = Alert(id: self.editAlert?.id ?? 0, currencyPairName: rawCurrencyPairName, priceAtCreateMoment: 0, description: self.form.description, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
+            self.output.handleTouchAlertBtn(alertModel: alert, operationType: self.editAlert == nil ? .Add : .Update)
         }
         
         form.viewIsReady()

@@ -27,12 +27,12 @@ class AlertsModuleConfigurator {
 
         let interactor = AlertsInteractor()
         interactor.output = presenter
-        interactor.alertsNetworkWorker = VinsoAlertsNetworkWorker()
         
         presenter.interactor = interactor
         viewController.output = presenter
         
         viewController.listView = AlertsListView()
+        viewController.listView.presenter = presenter
         viewController.listView.viewOutput = viewController.output
         viewController.listView.view = viewController
 

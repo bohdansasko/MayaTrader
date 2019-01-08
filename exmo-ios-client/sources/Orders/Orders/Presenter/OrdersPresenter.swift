@@ -27,8 +27,8 @@ extension OrdersPresenter: OrdersViewOutput {
         router.showAddOrderVC(view as! UIViewController)
     }
     
-    func cancelOrder(id: Int64) {
-        interactor.cancelOrder(id: id)
+    func cancelOrder(ids: [Int64]) {
+        interactor.cancelOrder(ids: ids)
     }
 }
 
@@ -38,7 +38,7 @@ extension OrdersPresenter: OrdersInteractorOutput {
         view.updateOrders(loadedOrders: loadedOrders)
     }
     
-    func orderCanceled(id: Int64) {
-        view.orderCanceled(id: id)
+    func orderCanceled(ids: [Int64]) {
+        view.orderCanceled(ids: ids)
     }
 }

@@ -53,17 +53,15 @@ class Session {
 // MARK: Account
 //
 extension Session {
-    func roobikLogin() {
-        AppDelegate.roobikController.signIn()
+    func vinsoLogin() {
+        AppDelegate.vinsoAPI.login()
     }
     
     func exmoLogout() {
-        
-        self.user = ExmoUser()
-        
-        self.openedOrders.clear()
-        self.canceledOrders.clear()
-        self.dealsOrders.clear()
+        user = ExmoUser()
+        openedOrders.clear()
+        canceledOrders.clear()
+        dealsOrders.clear()
         
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
     }
@@ -244,8 +242,8 @@ extension Session {
 //        AppDelegate.notificationController.postBroadcastMessage(name: .UpdateAlert, data: ["alertData": alertItem])
     }
     
-    func deleteAlert(alertId: String) {
-        AppDelegate.roobikController.deleteAlert(alertId: alertId)
+    func deleteAlert(alertId: Int) {
+        // do nothing
     }
     
     func appendAlerts(alerts: [Alert]) {

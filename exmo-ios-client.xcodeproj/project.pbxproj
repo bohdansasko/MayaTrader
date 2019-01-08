@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		01236729B7F200EE9462975B /* AlertsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */; };
 		01734E1F7D82963B9E334BA8 /* WalletCurrenciesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6158DF690BEAC86B7282D00 /* WalletCurrenciesListInteractor.swift */; };
-		038EE6FEA6EA37D5F343A6F3 /* AlertsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25B2AFC0C72670C6BE2684D /* AlertsModuleInput.swift */; };
 		05EC9F79ECD8EEF51EAA9651 /* OrdersRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 451C3BC63709B451766F4376 /* OrdersRouterInput.swift */; };
 		07691C6DE9BBF53E13AFBA96 /* SearchCurrencyPairViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8BE3CACEB7580F7E0E0138A /* SearchCurrencyPairViewProtocols.swift */; };
 		0A003E3DEAF08E8A47511C4B /* CreateAlertViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6070BC376D8AC4F1A5006B4B /* CreateAlertViewProtocols.swift */; };
@@ -609,7 +608,6 @@
 		B9CAD9ABA92E4B5D8C9BA66C /* OrdersInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersInteractor.swift; sourceTree = "<group>"; };
 		BBD10044E6852271EF22E838 /* WalletConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletConfigurator.swift; sourceTree = "<group>"; };
 		BFE6209D848493B699B132F6 /* CreateOrderViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderViewController.swift; sourceTree = "<group>"; };
-		C25B2AFC0C72670C6BE2684D /* AlertsModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsModuleInput.swift; sourceTree = "<group>"; };
 		C43709B1EFC615E75A9BE61F /* WalletCurrenciesListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListRouter.swift; sourceTree = "<group>"; };
 		C437A7929205B0B131B0F3EC /* CreateAlertInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractorProtocols.swift; sourceTree = "<group>"; };
 		C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
@@ -1764,7 +1762,6 @@
 		4C2B03257F4B0A4F0D4A17C7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				C25B2AFC0C72670C6BE2684D /* AlertsModuleInput.swift */,
 				91FEE97F75DF6C190754891B /* AlertsPresenter.swift */,
 			);
 			path = Presenter;
@@ -2500,7 +2497,6 @@
 				8F0AEFDE9AEF6C58DC4F078D /* AlertsViewProtocols.swift in Sources */,
 				206730E32094D427008B500D /* UITextField+Extension.swift in Sources */,
 				EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */,
-				038EE6FEA6EA37D5F343A6F3 /* AlertsModuleInput.swift in Sources */,
 				C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */,
 				201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsAPIHelper.swift in Sources */,

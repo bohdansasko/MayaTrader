@@ -11,10 +11,10 @@ import Foundation
 protocol OrdersInteractorInput {
     func viewIsReady()
     func loadOrderByType(_ orderType: Orders.DisplayType)
-    func cancelOrder(id: Int64)
+    func cancelOrder(ids: [Int64])
 }
 
 protocol OrdersInteractorOutput: class {
     func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders])
-    func orderCanceled(id: Int64)
+    func orderCanceled(ids: [Int64])
 }

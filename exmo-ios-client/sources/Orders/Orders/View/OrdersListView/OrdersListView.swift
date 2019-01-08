@@ -164,7 +164,7 @@ extension OrdersListView {
     func cancelOrderAt(indexPath: IndexPath) {
         self.activityIndicatorView.startAnimating()
         let id = dataProvider.getOrderBy(index: indexPath.section).id
-        presenter.cancelOrder(id: id)
+        presenter.cancelOrder(ids: [id])
     }
 
     func deleteAllOrdersOnBuy() {
@@ -182,11 +182,10 @@ extension OrdersListView {
             print("deleteOrders: openedOrders == nil")
             return
         }
-        
-        let ordersOnBuy = openedOrders.getOrders().filter({ $0.orderType == deleteOrderType })
-        for order in ordersOnBuy {
-            presenter.cancelOrder(id: order.id)
-        }
+
+        var ids: [Int64] = []
+        let _ = openedOrders.getOrders().filter({ $0.orderType == deleteOrderType }).forEach({ ids.append($0.id) })
+        presenter.cancelOrder(ids: ids)
     }
     
     func deleteAllOrders() {
@@ -196,20 +195,21 @@ extension OrdersListView {
             print("deleteAllOrders: openedOrders == nil")
             return
         }
-        
-        for order in openedOrders.getOrders() {
-            presenter.cancelOrder(id: order.id)
-        }
+        var ids: [Int64] = []
+        openedOrders.getOrders().forEach({ ids.append($0.id) })
+        presenter.cancelOrder(ids: ids)
     }
     
-    func orderWasCanceled(id: Int64) {
-        guard let indexPath = tableViewCells[id] else {
-            print("orderWasCanceled: can't find cell for remove")
-            return
+    func orderWasCanceled(ids: [Int64]) {
+        for id in ids {
+            guard let indexPath = tableViewCells[id] else {
+                print("orderWasCanceled: can't find cell for remove")
+                return
+            }
+            dataProvider.removeItem(byIndex: indexPath.section)
+            tableViewCells.removeValue(forKey: id)
+            tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
         }
-        dataProvider.removeItem(byIndex: indexPath.section)
-        tableViewCells.removeValue(forKey: id)
-        tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
         checkOnRequirePlaceHolder()
     }
 }

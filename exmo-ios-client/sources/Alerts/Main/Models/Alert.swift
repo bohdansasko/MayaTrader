@@ -10,28 +10,26 @@ import Foundation
 import ObjectMapper
 
 enum AlertStatus: Int {
-    case None
-    case Active
-    case Inactive
+    case Active = 0
+    case Inactive = 1
 }
 
 class Alert: SegueBlock, Mappable {
-    var id: String = ""
-    var currencyCode: String! = ""
-    var priceAtCreateMoment: Double! = 0.0
-    var topBoundary: Double? = 0.0
-    var bottomBoundary: Double? = 0.0
-    var status = AlertStatus.Inactive
-    var dateCreated: Date! = Date()
-    var note: String? = nil
+    var id: Int = 0
+    var currencyCode: String = ""
+    var priceAtCreateMoment: Double = 0.0
+    var topBoundary: Double?
+    var bottomBoundary: Double?
+    var status = AlertStatus.Active
+    var dateCreated: Date = Date()
+    var description: String?
     var isPersistentNotification: Bool = false
-    var isApproved: Bool = false
     
-    init(id: String, currencyPairName: String!, priceAtCreateMoment: Double!, note: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .Active, isPersistentNotification: Bool) {
+    init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, description: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .Active, isPersistentNotification: Bool) {
         self.id = id
         self.currencyCode = currencyPairName
         self.priceAtCreateMoment = priceAtCreateMoment
-        self.note = note
+        self.description = description
         self.topBoundary = topBoundary
         self.bottomBoundary = bottomBoundary
         self.status = status
@@ -44,43 +42,47 @@ class Alert: SegueBlock, Mappable {
     }
     
     func mapping(map: Map) {
-        self.id               <- map["server_alert_id"]
-        self.currencyCode <- map["currency"]
-        self.priceAtCreateMoment <- map["priceAtCreateMoment"]
-        self.topBoundary      <- map["upper_bound"]
-        self.bottomBoundary   <- map["bottom_bound"]
-        self.status           <- map["status"]
-        self.dateCreated      <- (map["timestamp"], DateTransform())
-        self.note             <- map["description"]
-        self.isPersistentNotification <- map["isPersistent"]
-        self.isApproved       <- map["approved"]
+        let transform = TransformOf<Double, String>(
+            fromJSON: { $0 == nil ? nil : Double($0!) },
+            toJSON: { $0 == nil ? nil : String($0!) }
+        )
+        
+        id                  <- map["alert_id"]
+        currencyCode        <- map["currency"]
+        priceAtCreateMoment <- (map["price_at_create_moment"], transform)
+        topBoundary      <- (map["upper_bound"], transform)
+        bottomBoundary   <- (map["bottom_bound"], transform)
+        status           <- map["alert_status"]
+        dateCreated      <- (map["timestamp"], DateTransform())
+        description             <- map["description"]
+        isPersistentNotification <- map["is_persistent"]
     }
     
     func getDataAsText() -> String {
         return    "id: \(id)\n"
-                + "currencyPairName: \(currencyCode!)\n"
-                + "priceAtCreateMoment: \(priceAtCreateMoment!)\n"
+                + "currencyPairName: \(currencyCode)\n"
+                + "priceAtCreateMoment: \(priceAtCreateMoment)\n"
                 + "topBoundary: \(topBoundary ?? -1)\n"
                 + "bottomBoundary: \(bottomBoundary ?? -1)\n"
                 + "status: \(status)\n"
                 + "dateCreated: \(dateCreated.debugDescription)\n"
                 + "isPersistentNotification: \(isPersistentNotification)\n"
-                + "note: \(note ?? "empty")\n"
+                + "description: \(description ?? "empty")\n"
     }
 
     func updateData(newData: Alert) {
-        self.currencyCode = newData.currencyCode
-        self.priceAtCreateMoment = newData.priceAtCreateMoment
-        self.note = newData.note
-        self.topBoundary = newData.topBoundary
-        self.bottomBoundary = newData.bottomBoundary
-        self.status = newData.status
-        self.isPersistentNotification = newData.isPersistentNotification
+        currencyCode = newData.currencyCode
+        priceAtCreateMoment = newData.priceAtCreateMoment
+        description = newData.description
+        topBoundary = newData.topBoundary
+        bottomBoundary = newData.bottomBoundary
+        status = newData.status
+        isPersistentNotification = newData.isPersistentNotification
     }
     
     func formatedDate() -> String {
         let dataFormat = DateFormatter()
         dataFormat.dateFormat = "dd.MM.yyyy HH:mm"
-        return dataFormat.string(from: self.dateCreated)
+        return dataFormat.string(from: dateCreated)
     }
 }

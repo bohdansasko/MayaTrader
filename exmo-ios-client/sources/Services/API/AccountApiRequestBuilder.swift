@@ -33,11 +33,14 @@ class AccountApiRequestBuilder {
         ]
     }
     
-    static func buildLoginRequest(login: String, password: String, exchangeDomain: DomainType) -> JSON {
+    static func buildLoginRequest() -> JSON {
+        guard let udid = UIDevice.current.identifierForVendor?.uuidString else {
+            return JSON()
+        }
+        
         return [
-            "login": login,
-            "password": password,
-            "exchangeDomain": exchangeDomain.rawValue
+            "request_type": 2,
+            "udid": udid,
         ]
     }
 }

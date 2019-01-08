@@ -123,7 +123,7 @@ class NotificationController {
 extension AppDelegate {
     static let session = Session()
     static let exmoController = ExmoAccountController()
-    static let roobikController = RoobikApiHandler()
+    static let vinsoAPI = VinsoAPI.shared
     static let notificationController = NotificationController()
     static let dbController = CoreDataManager()
     static var cacheController = CacheManager()

@@ -1,5 +1,5 @@
 //
-//  RoobikApiHandler.swift
+//  VinsoAPI.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 2/25/18.
@@ -8,130 +8,110 @@
 
 import Foundation
 import SwiftyJSON
+import ObjectMapper
 
-class RoobikApiHandler {
-    static var shared = RoobikApiHandler()
+fileprivate enum ResponseCode {
+    static let Succeed = 200
+    static let Error = 0
+}
 
-    //
-    // @MARK: variables
-    //
-    private var socketAPI: SocketApiHandler!
-    private var sessionKey: String?
+enum ServerMessage: Int {
+    case Bad = -1
+    case Connect = 0
+    case Registration = 1
+    case Authorization = 2
+    case ConfirmRegistration = 3
+    case CreateAlert = 4
+    case UpdateAlert = 5
+    case DeleteAlert = 6
+    case FireAlert = 7
+    case ResetUser = 9
+    case AlertsHistory = 10
+}
 
-    //
-    // @MARK: common methods
-    //
-    init() {
-        self.socketAPI = SocketApiHandler(serverURL: ConnectionConfig.ServerURL.rawValue)
-        self.socketAPI.callbackOnOpen = {
-            print("socket is open")
+protocol VinsoAPIConnectionDelegate: class {
+    func onConnectionOpened()
+    func onLogined()
+}
+
+protocol AlertsAPIResponseDelegate: class {
+    func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert])
+    func onDidUpdateAlertSuccessful(_ alert: Alert)
+    func onDidDeleteAlertSuccessful(withId id: Int)
+}
+
+class VinsoAPI {
+    static var shared = VinsoAPI()
+
+    private var socketManager: SocketManager!
+    private let ServerURL = "ws://192.168.0.102:45667"
+
+    weak var connectionDelegate: VinsoAPIConnectionDelegate?
+    weak var alertsDelegate: AlertsAPIResponseDelegate?
+
+    private init() {
+        initSocket()
+        connect()
+    }
+
+    func initSocket() {
+        socketManager = SocketManager(serverURL: ServerURL)
+        socketManager.callbackOnOpen = {
+            self.connectionDelegate?.onConnectionOpened()
         }
-        self.socketAPI.callbackOnMessage = { serverMessage in
-            guard let message = serverMessage as? String else {
-                print("socket message: got wrong message")
-                return
-            }
-            print("socket message: \(message)")
-
-            let json = JSON(parseJSON: message)
-
-            let responseCode = json["response_code"].int
-            if responseCode == ResponseCode.Error {
-                print("responseCode == ResponseCode.Error")
-                return
-            }
-            self.parseJSON(json: json)
+        socketManager.callbackOnMessage = { data in
+            self.handleMessage(data)
         }
-        self.socketAPI.callbackOnClose = { code, reason, clean in
-            print("socket is closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
+    }
+
+    func isConnectionOpen() -> Bool {
+        return socketManager.isOpen()
+    }
+    
+    func connect() {
+        socketManager.connect(message: getJSONMessage(messageType: .Connect))
+    }
+    
+    func handleMessage(_ data: Any) {
+        guard let message = data as? String else {
+            print("socket => can't cast data to String")
+            return
+        }
+        print("socket => received message: \(message)")
+        
+        let json = JSON(parseJSON: message)
+        let responseCode = json["status"].int
+        if responseCode != ResponseCode.Succeed {
+            print("socket => responseCode != ResponseCode.Succeed")
+            return
+        }
+        parseJSON(json: json)
+    }
+
+    func parseJSON(json: JSON) {
+        guard let requestId = json["request_type"].int, let requestType = ServerMessage(rawValue: requestId) else {
+            print("parseJSON => request_type out of range. request_type = \(json["request_type"].int ?? -999)")
+            return
         }
         
-        self.socketAPI.callbackOnError = { error in
-            print("socket error: \(error)")
-        }
-
-        let message: JSON = [
-            "commandType" : 1,
-            "uuid" : "Denys123",
-            "api_key" : "111",
-            "api_secret" : "111"
-        ]
-        self.socketAPI.connect(message: message)
-    }
-
-    func loadAllRequiredSessionInfo() {
-        self.loadAlerts()
-    }
-
-    fileprivate func parseJSON(json: JSON) {
-        let messageTopic = json["topic"].int
-        var messageType = AlertsMessageType.None.rawValue
-
-        if json["type"] != JSON.null {
-            messageType = json["type"].int!
-        }
-
-        switch messageTopic {
-        case ServerMessageType.Authorization.rawValue:
-            self.sessionKey = json["session_key"].string
-            self.loadAllRequiredSessionInfo()
-
-            print("socket message[connection_id]: \(self.sessionKey!)")
-            print("login succeed")
-            break
-        case ServerMessageType.Alerts.rawValue:
-            switch messageType {
-            case AlertsMessageType.History.rawValue:
-                self.handleResponseUpdateAlerts(json: json)
-                break
-            case AlertsMessageType.Create.rawValue:
-                self.handleResponseAppendAlert(json: json)
-                break
-            case AlertsMessageType.Update.rawValue:
-                self.handleResponseUpdateAlert(json: json)
-                break
-            case AlertsMessageType.Delete.rawValue:
-                self.handleResponseDeleteAlert(json: json)
-                break
-            default:
-                break
-            }
-            break
-        case ServerMessageType.Orders.rawValue:
-            switch messageType {
-            case OrdersMessageType.Create.rawValue:
-                self.handleResponseCreateOrders(json: json)
-                break
-            case OrdersMessageType.Cancel.rawValue:
-                self.handleResponseCancelOrders(json: json)
-                break
-            case OrdersMessageType.Deals.rawValue:
-                self.handleResponseDealsOrders(json: json)
-                // do nothing
-                break
-            default:
-                break
-            }
-            break
+        switch requestType {
+        case ServerMessage.Authorization:
+            connectionDelegate?.onLogined()
+            print("Vinso: login succeed")
+        case ServerMessage.AlertsHistory: handleResponseAlertsLoaded(json: json)
+        case ServerMessage.CreateAlert: handleResponseCreateAlert(json: json)
+        case ServerMessage.UpdateAlert: handleResponseUpdateAlert(json: json)
+        case ServerMessage.DeleteAlert: handleResponseDeleteAlert(json: json)
+        case ServerMessage.FireAlert: handleResponseFireAlert(json: json)
         default:
             break
         }
     }
 
-    private func getJSONMessage(type: MessageType, actionTypeRawValue: Int, data: JSON = JSON()) -> JSON {
-        var json: JSON = [
-            "request_id" : "test_request",
-            "uuid" : "Denys123",
-            "topic": type.rawValue,
-            "type" : actionTypeRawValue,
-            "data" : data
+    private func getJSONMessage(messageType: ServerMessage) -> JSON {
+        return [
+            "request_type" : messageType.rawValue,
         ]
-
-        if self.sessionKey != nil {
-            json["session_key"] = JSON(self.sessionKey!)
-        }
-
-        return json
     }
     
     fileprivate func getDictionaryFromJSON(json: JSON) -> [String: Any]? {
@@ -141,201 +121,87 @@ class RoobikApiHandler {
         }
         return alertServerMap
     }
-    
-    fileprivate func getArrayFromJSON(json: JSON) -> [JSON]? {
-        guard let array = json["data"].array else {
-            print("can't parse json data")
-            return nil
-        }
-        return array
-    }
 }
 
-//
-// @MARK: enums
-//
-extension RoobikApiHandler {
-    fileprivate enum ResponseCode {
-        static let Succeed = 200
-        static let Error = 0
-    }
-
-    fileprivate enum MessageType: Int {
-        case Topic = 0
-        case AccountTopic = 4
-    }
-
-    fileprivate enum AlertsMessageType: Int {
-        case None = -1
-        case Create = 0
-        case Update = 1
-        case Delete = 2
-        case History = 3
-    }
-
-    fileprivate enum OrdersMessageType: Int {
-        case Create = 0
-        case Cancel = 1
-        case Deals = 2
-    }
-
-    fileprivate enum ConnectionConfig: String {
-        case ServerURL = "ws://193.228.52.26:3000/"
-    }
-
-    fileprivate enum ServerMessageType: Int {
-        case Alerts = 0
-        case Orders = 1
-        case Authorization = 4
-    }
-}
-
-//
 // @MARK: login
-//
-extension RoobikApiHandler {
-    func signIn() {
-        let jsonMsg = AccountApiRequestBuilder.buildLoginRequest(login: "denys", password: "denys", exchangeDomain: .Roobik)
-        let msg = getJSONMessage(type: .AccountTopic,
-                actionTypeRawValue: AccountApiRequestBuilder.ProcedureType.SignIn.rawValue,
-                data: jsonMsg)
-        self.socketAPI.sendMessage(message: msg)
-    }
-
-    func signUp() {
-        let jsonMsg = AccountApiRequestBuilder.buildSignUpRequest(email: "test@mail.com", firstName: "den1", lastName: "ys", login: "bodka", password: "bodka", exchangeDomain: .Roobik)
-        let msg = getJSONMessage(type: .Topic,
-                actionTypeRawValue: AccountApiRequestBuilder.ProcedureType.SignIn.rawValue,
-                data: jsonMsg)
-        self.socketAPI.sendMessage(message: msg)
+extension VinsoAPI {
+    func login() {
+        let msg = AccountApiRequestBuilder.buildLoginRequest()
+        socketManager.sendMessage(message: msg)
     }
 }
 
-//
-// @MARK: orders
-//
-extension RoobikApiHandler {
-    //
-    // @MARK: orders requests
-    //
-    fileprivate func loadOrders() {
+// @MARK: manage alerts
+extension VinsoAPI {
+    func loadAlerts() {
         print("load alerts")
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: OrdersMessageType.Deals.rawValue)
-        self.socketAPI.sendMessage(message: msg)
+        socketManager.sendMessage(message: AlertsApiRequestBuilder.getJSONForAlertsHistory())
     }
     
-    func createOrder(order: OrderModel) {
-        // do nothing
-    }
-    
-    func cancelOrder(order: OrderModel) {
-        // do nothing
+    func createAlert(alert: Alert) {
+        print("create alert")
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
+        socketManager.sendMessage(message: jsonMsg)
     }
 
-    //
-    // @MARK: handle alert response
-    //
-    private func handleResponseCreateOrders(json: JSON) {
-        // do nothing
+    func updateAlert(_ alert: Alert) {
+        print("update alert")
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForUpdateAlert(alert: alert)
+        socketManager.sendMessage(message: jsonMsg)
     }
-    
-    private func handleResponseCancelOrders(json: JSON) {
-        // do nothing
-    }
-    
-    private func handleResponseDealsOrders(json: JSON) {
-        // do nothing
+
+    func deleteAlert(withId id: Int) {
+        print("delete alert \(id)")
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlert(withId: id)
+        socketManager.sendMessage(message: jsonMsg)
     }
 }
 
-//
-// @MARK: alerts
-//
-extension RoobikApiHandler {
-    private func getAlertFromJSON(json: JSON) -> Alert? {
-        guard let alertServerMap = getDictionaryFromJSON(json: json) else {
-            return nil
-        }
-        return Alert(JSON: alertServerMap)
-    }
-
-    //
-    // @MARK: alerts requests
-    //
-    private func loadAlerts() {
-        print("load alerts")
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.History.rawValue)
-        self.socketAPI.sendMessage(message: msg)
-    }
-    
-    func createAlert(alertItem: Alert) {
-        let alertJSONData = AlertsApiRequestBuilder.prepareJSONForCreateAlert(alertItem: alertItem)
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Create.rawValue, data: alertJSONData)
-
-        self.socketAPI.sendMessage(message: msg)
-    }
-
-    func updateAlert(alertItem: Alert) {
-        let alertJSONData = AlertsApiRequestBuilder.prepareJSONForUpdateAlert(alertItem: alertItem)
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Update.rawValue, data: alertJSONData)
-
-        self.socketAPI.sendMessage(message: msg)
-    }
-
-    func deleteAlert(alertId: String) {
-        let alertJSONData = AlertsApiRequestBuilder.prepareJSONForDeleteAlert(alertId: alertId)
-        let msg = getJSONMessage(type: .Topic, actionTypeRawValue: AlertsMessageType.Delete.rawValue, data: alertJSONData)
-
-        self.socketAPI.sendMessage(message: msg)
-    }
-
-    //
-    // @MARK: handle alert response
-    //
-    private func handleResponseAppendAlert(json: JSON) {
-        guard var alertServerMap = self.getDictionaryFromJSON(json: json) else {
-            return
-        }
-
-        alertServerMap["status"] = 1
-        let alert = Alert(JSON: alertServerMap)
-        if let alertObj = alert {
-            AppDelegate.session.appendAlert(alertItem: alertObj)
-        }
-    }
-
-    private func handleResponseUpdateAlert(json: JSON) {
-        let alert = getAlertFromJSON(json: json)
-        if let alertObj = alert {
-            AppDelegate.session.updateAlert(alertItem: alertObj)
-        }
-    }
-
-    private func handleResponseUpdateAlerts(json: JSON) {
-        guard let jsonAlertsContainer = getArrayFromJSON(json: json) else {
-            print("can't parse json data")
+// @MARK: handle alerts responses
+extension VinsoAPI {
+    private func handleResponseAlertsLoaded(json: JSON) {
+        guard let jsonAlerts = json["history_alerts"].array else {
+            print("handleResponseAlertsLoaded => can't parse json data")
             return
         }
 
         var alerts: [Alert] = []
-        for jsonAlertItem in jsonAlertsContainer {
-            let alert = Alert(JSONString: jsonAlertItem.rawString()!)
-            if let alertObj = alert {
-                alerts.append(alertObj)
-                print(alertObj.getDataAsText())
+        for jsonAlert in jsonAlerts {
+            if let alert = Alert(JSONString: jsonAlert.description) {
+                alerts.append(alert)
             }
         }
-
-        AppDelegate.session.appendAlerts(alerts: alerts)
+        alertsDelegate?.onDidLoadAlertsHistorySuccessful(alerts)
     }
 
-    private func handleResponseDeleteAlert(json: JSON) {
-        guard var alertServerMap = self.getDictionaryFromJSON(json: json) else {
+    private func handleResponseCreateAlert(json: JSON) {
+//        guard var alertServerMap = self.getDictionaryFromJSON(json: json) else {
+//            return
+//        }
+//
+//        alertServerMap["status"] = 1
+//        let alert = Alert(JSON: alertServerMap)
+//        if let alertObj = alert {
+//            AppDelegate.session.appendAlert(alert: alertObj)
+//        }
+    }
+    
+    private func handleResponseUpdateAlert(json: JSON) {
+        guard let alert = Alert(JSONString: json.description)else {
             return
         }
-        let alertIdFromJson = alertServerMap["server_alert_id"] as? String
-        if let alertId = alertIdFromJson {
-            AppDelegate.session.deleteAlert(alertId: alertId)
+        alertsDelegate?.onDidUpdateAlertSuccessful(alert)
+    }
+    
+    private func handleResponseFireAlert(json: JSON) {
+        // do nothing
+    }
+    
+    private func handleResponseDeleteAlert(json: JSON) {
+        guard let alertDict = json.dictionary,
+              let id = alertDict["deleted_alerts_id"]?.array?.first?.int else {
+            return
         }
+        alertsDelegate?.onDidDeleteAlertSuccessful(withId: id)
     }
 }

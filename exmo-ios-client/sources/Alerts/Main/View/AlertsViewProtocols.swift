@@ -8,11 +8,19 @@
 import UIKit.UIViewController
 
 protocol AlertsViewInput: class {
-    // do nothing
+    func update(_ alerts: [Alert])
+
+    func updateAlert(_ alert: Alert)
+    func deleteAlert(withId id: Int)
 }
 
 protocol AlertsViewOutput: class {
     func viewIsReady()
+    func viewDidAppear()
+
     func showFormCreateAlert()
+
     func editAlert(_ alert: Alert)
+    func updateAlertState(_ alert: Alert)
+    func deleteAlert(withId id: Int)
 }

@@ -1,5 +1,5 @@
 //
-//  SocketApiHandler.swift
+//  SocketManager.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 2/25/18.
@@ -10,70 +10,74 @@ import Foundation
 import SwiftWebSocket
 import SwiftyJSON
 
-class SocketApiHandler {
+class SocketManager {
     private var socket: WebSocket!
 
-    //
-    // @MARK: callbacks
-    //
-    var callbackOnOpen: VoidClosure? = nil
-    var callbackOnClose: ((_ code : Int, _ reason : String, _ wasClean : Bool) -> Void)? = nil
-    var callbackOnMessage: ((_ data : Any) -> Void)? = nil
-    var callbackOnError: ((_ error : Error) -> Void)? = nil
+    var callbackOnOpen: VoidClosure?
+    var callbackOnClose: ((_ code : Int, _ reason : String, _ wasClean : Bool) -> Void)?
+    var callbackOnMessage: ((_ data : Any) -> Void)?
+    var callbackOnError: ((_ error : Error) -> Void)?
 
-    //
-    // @MARK: common methods
-    //
     init(serverURL: String) {
-        self.socket = WebSocket(serverURL)
-        self.setSocketEvents()
+        socket = WebSocket(serverURL)
+        setSocketEvents()
     }
 
     deinit {
-        self.disconnect()
+        disconnect()
     }
 
-    //
-    // @MARK: public methods
-    //
+    func isOpen() -> Bool {
+        return socket.readyState == .open
+    }
+
+    func isConnecting() -> Bool {
+        return socket.readyState == .connecting
+    }
+}
+
+extension SocketManager {
     func connect(message: JSON) {
-        self.socket.open()
+        socket.open()
         sendMessage(message: message)
     }
-
+    
     func disconnect() {
-        self.socket.close()
+        socket.close()
     }
-
-    private func setSocketEvents() {
-        self.socket.event.open = {
-            print("socket connected")
-            self.callbackOnOpen?()
-        }
-
-        self.socket.event.close = { code, reason, clean in
-            print("socket close")
-            self.callbackOnClose?(code, reason, clean)
-        }
-
-        self.socket.event.error = { error in
-            print("socket error: \(error)")
-            self.callbackOnError?(error)
-        }
-
-        self.socket.event.message = { message in
-            self.callbackOnMessage?(message)
-        }
-    }
-
+    
     func sendMessage(message: JSON) {
         guard let msg = message.rawString() else {
             return
         }
-
+        
         if !msg.isEmpty {
             print("send message to server: " + msg)
             socket.send(text: msg)
+        }
+    }
+}
+
+
+extension SocketManager {
+    func setSocketEvents() {
+        socket.event.open = {
+            print("socket connected")
+            self.callbackOnOpen?()
+        }
+        
+        socket.event.close = { code, reason, clean in
+            print("socket has closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
+            self.callbackOnClose?(code, reason, clean)
+        }
+        
+        socket.event.error = { error in
+            print("socket error: \(error)")
+            self.callbackOnError?(error)
+        }
+        
+        socket.event.message = { message in
+            self.callbackOnMessage?(message)
         }
     }
 }

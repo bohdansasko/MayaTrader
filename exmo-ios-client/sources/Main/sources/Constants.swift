@@ -56,6 +56,7 @@ enum UserDefaultsKeys: String {
     case APP_OPENED_COUNT
     case AppStoreLink = "https://www.telegram.me/exmo_official"
     case PASSCODE
+    case VinsoServer = "192.168.0.102:45667"
 }
 
 enum AdvertisingValues: String {

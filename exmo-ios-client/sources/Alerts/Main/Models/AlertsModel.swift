@@ -14,7 +14,7 @@ class AlertsModel {
 //        Alert(id: "2", currencyPairName: "BTC_EUR", priceAtCreateMoment: 6000, note: "Nothing", topBoundary: 6900.965, bottomBoundary: 3670.89641, status: .Inactive, isPersistentNotification: false)
     ]
     
-    func setAlerts(alerts: [Alert]) {
+    func set(_ alerts: [Alert]) {
         self.alertsItems = alerts
     }
     
@@ -33,7 +33,7 @@ class AlertsModel {
     func getStatus(forItem row: Int) -> AlertStatus {
         return self.isValidIndex(index: row)
                     ? self.alertsItems[row].status
-                    : .None
+                    : .Active
     }
     
     func getCountMenuItems() -> Int {
@@ -48,12 +48,12 @@ class AlertsModel {
         self.alertsItems.insert(alertItem, at: 0)
     }
 
-    func getIndexById(alertId: String) -> Int {
+    func getIndexById(alertId: Int) -> Int {
         let index = self.alertsItems.index(where: { $0.id == alertId })
         return index ?? -1
     }
     
-    func removeItem(byId id: String) {
+    func removeItem(byId id: Int) {
         let index = self.getIndexById(alertId: id)
         if self.isValidIndex(index: index) {
             self.alertsItems.remove(at: index)

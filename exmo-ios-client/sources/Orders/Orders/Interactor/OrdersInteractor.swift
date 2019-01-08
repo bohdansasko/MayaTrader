@@ -12,6 +12,9 @@ class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     weak var output: OrdersInteractorOutput!
     var loadedOrders: [Orders.DisplayType : Orders] = [:]
     var networkWorker: IOrdersListNetworkWorker!
+
+    var pendingOrdersForCancel: [Int64] = []
+    var canceledOrders: [Int64] = []
 }
 
 // @MARK: OrdersInteractorInput
@@ -34,8 +37,11 @@ extension OrdersInteractor: OrdersInteractorInput {
         }
     }
     
-    func cancelOrder(id: Int64) {
-        networkWorker.cancelOrder(id: id)
+    func cancelOrder(ids: [Int64]) {
+        pendingOrdersForCancel = ids
+        for id in ids {
+            networkWorker.cancelOrder(id: id)
+        }
     }
 }
 
@@ -86,7 +92,12 @@ extension OrdersInteractor {
 // @MARK: Cancel order
 extension OrdersInteractor {
     func onDidCancelOrderSuccess(id: Int64) {
-        output.orderCanceled(id: id)
+        canceledOrders.append(id)
+        if pendingOrdersForCancel.count == canceledOrders.count {
+            output.orderCanceled(ids: canceledOrders)
+            pendingOrdersForCancel = []
+            canceledOrders = []
+        }
     }
     
     func onDidCancelOrderFail(errorDescription: String) {

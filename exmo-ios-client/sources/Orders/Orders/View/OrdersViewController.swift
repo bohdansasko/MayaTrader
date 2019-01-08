@@ -186,8 +186,8 @@ extension OrdersViewController {
         ordersListView.displayOrderType = previousDT
     }
     
-    func orderCanceled(id: Int64) {
-        ordersListView.orderWasCanceled(id: id)
+    func orderCanceled(ids: [Int64]) {
+        ordersListView.orderWasCanceled(ids: ids)
     }
 }
 

@@ -10,61 +10,52 @@ import Foundation
 import SwiftyJSON
 
 class AlertsApiRequestBuilder {
-    //
-    // @MARK: public methods
-    //
-    static func prepareJSONForCreateAlert(alertItem: Alert) -> JSON {
-        let alertJSONData = getAlertMessage(
-            upper_bound : alertItem.topBoundary!,
-            bottom_bound: alertItem.bottomBoundary!,
-            currency    : alertItem.currencyCode,
-            description : alertItem.note == nil ? "" : alertItem.note!,
-            priceAtCreateMoment: alertItem.priceAtCreateMoment,
-            isPersistent: alertItem.isPersistentNotification
-        )
+    static func getJSONForCreateAlert(alert: Alert) -> JSON {
+        return getAlertMessage(requestType: .CreateAlert, alert: alert)
+    }
+
+    static func getJSONForUpdateAlert(alert: Alert) -> JSON {
+        var alertJSONData = getAlertMessage(requestType: .UpdateAlert, alert: alert)
+        alertJSONData["alert_id"] = JSON(alert.id)
+        alertJSONData["alert_status"] = JSON(alert.status.rawValue)
         
         return alertJSONData
     }
     
-    static func prepareJSONForUpdateAlert(alertItem: Alert) -> JSON {
-        var alertJSONData = getAlertMessage(
-            upper_bound : alertItem.topBoundary!,
-            bottom_bound: alertItem.bottomBoundary!,
-            currency    : alertItem.currencyCode,
-            description : alertItem.note == nil ? "" : alertItem.note!,
-            priceAtCreateMoment: alertItem.priceAtCreateMoment,
-            isPersistent: alertItem.isPersistentNotification
-        )
-        alertJSONData["server_alert_id"] = JSON(alertItem.id)
-        alertJSONData["status"] = JSON(alertItem.status.rawValue)
-        
-        return alertJSONData
-    }
-    
-    static func prepareJSONForDeleteAlert(alertId: String) -> JSON {        
+    static func getJSONForDeleteAlert(withId id: Int) -> JSON {
         return [
-            "server_alert_id" : alertId
+            "request_type" : ServerMessage.DeleteAlert.rawValue,
+            "alerts_id" : [id]
+        ]
+    }
+    
+    static func getJSONForAlertsHistory() -> JSON {
+        return [
+            "request_type" : ServerMessage.AlertsHistory.rawValue,
         ]
     }
     
     //
     // @MARK: private methods
     //
-    static private func getAlertMessage(upper_bound: Double, bottom_bound: Double, currency: String, description: String, status: AlertStatus = .None, timestamp: Double = -1.0, last_update: Double = -1.0, server_alert_id: Int = -1, priceAtCreateMoment: Double, isPersistent: Bool) -> JSON {
+    static private func getAlertMessage(requestType: ServerMessage, alert: Alert) -> JSON {
         var jsonData: JSON = [
-            "upper_bound" : upper_bound,
-            "bottom_bound" : bottom_bound,
-            "currency" : currency,
-            "description" : description,
-            "priceAtCreateMoment" : priceAtCreateMoment,
-            "isPersistent" : isPersistent
+            "request_type": requestType.rawValue,
+            "currency" : alert.currencyCode,
+            "price_at_create_moment" : String(alert.priceAtCreateMoment),
+            "alert_status": alert.status.rawValue,
+            "timestamp" : Date().timeIntervalSince1970,
+            "is_persistent" : alert.isPersistentNotification
         ]
         
-        if status != .None {
-            jsonData["status"] = JSON(status.rawValue)
-            jsonData["timestamp"] = JSON(timestamp)
-            jsonData["last_update"] = JSON(last_update)
-            jsonData["server_alert_id"] = JSON(server_alert_id)
+        if let value = alert.topBoundary {
+            jsonData["upper_bound"] = JSON(String(value))
+        }
+        if let value = alert.bottomBoundary {
+            jsonData["bottom_bound"] =  JSON(String(value))
+        }
+        if let value = alert.description {
+            jsonData["description"] =  JSON(String(value))
         }
         
         return jsonData

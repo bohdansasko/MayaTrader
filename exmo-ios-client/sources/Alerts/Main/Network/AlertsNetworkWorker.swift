@@ -12,7 +12,6 @@ import Foundation
 import Alamofire
 import ObjectMapper
 
-
 protocol IVinsoAlertsApiRequestBuilder {
     static func getAlertsHistoryRequest() -> URLRequest
     static func getCreateAlertRequest() -> URLRequest
@@ -39,7 +38,7 @@ class VinsoAlertsApiRequestBuilder: IVinsoAlertsApiRequestBuilder {
 
 class VinsoAlertsNetworkWorker : IAlertsNetworkWorker {
     weak var delegate: IAlertsNetworkWorkerDelegate!
-    
+
     func loadHistory() {
         let request = VinsoAlertsApiRequestBuilder.getAlertsHistoryRequest()
         Alamofire.request(request).responseJSON {
