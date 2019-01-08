@@ -14,7 +14,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
     
     var backgroundImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.image = UIImage(named: "bgLoginOpacity")
         return imageView
     }()
