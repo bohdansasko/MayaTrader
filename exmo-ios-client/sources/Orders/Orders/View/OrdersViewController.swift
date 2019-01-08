@@ -20,6 +20,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     var output: OrdersViewOutput!
     var currentViewController: UIViewController?
     var bannerView: GADBannerView!
+    var isCancellingOrdersActive = false
 
     var pickerViewManager: DarkeningPickerViewManager!
     lazy var ordersListView = OrdersListView()
@@ -69,7 +70,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
 
     private func onSelectedDeleteAction(actionIndex: Int) {
         print("onSelectedDeleteAction: \(actionIndex)")
-
+        isCancellingOrdersActive = true
         switch (actionIndex) {
         case OrderAdditionalAction.DeleteAll.rawValue:
             ordersListView.deleteAllOrders()
@@ -140,6 +141,9 @@ extension OrdersViewController {
 // MARK: buttons handlers
 extension OrdersViewController {
     @objc func onSegmentChanged(_ sender: Any) {
+        if isCancellingOrdersActive {
+            return
+        }
         let displayOrderType = Orders.DisplayType(rawValue: segmentControlView.selectedSegmentIndex)!
         ordersListView.displayOrderType = displayOrderType
         output.onDidSelectTab(displayOrderType)
@@ -180,6 +184,8 @@ extension OrdersViewController {
     
     func orderCanceled(ids: [Int64]) {
         ordersListView.orderWasCanceled(ids: ids)
+        isCancellingOrdersActive = false
+        segmentControlView.sendActions(for: .valueChanged)
     }
 }
 

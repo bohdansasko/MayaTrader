@@ -203,13 +203,18 @@ extension OrdersListView {
     func orderWasCanceled(ids: [Int64]) {
         for id in ids {
             guard let indexPath = tableViewCells[id] else {
-                print("orderWasCanceled: can't find cell for remove")
-                return
+                print("OrdersListView => orderWasCanceled: can't find cell with id \(id) for remove from \(tableViewCells)")
+                continue
             }
             dataProvider.removeItem(byIndex: indexPath.section)
             tableViewCells.removeValue(forKey: id)
-            tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
         }
+
+        print("OrdersListView => orderWasCanceled: \(tableViewCells)")
+
+        print("orderWasCanceled => reload data")
+        tableView.reloadData()
+
         checkOnRequirePlaceHolder()
     }
 }

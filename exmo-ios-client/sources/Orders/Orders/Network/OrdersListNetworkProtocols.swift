@@ -19,6 +19,7 @@ protocol IOrdersListNetworkWorkerDelegate: class {
     func onDidLoadFailsDeals(orders: Orders)
     
     func onDidCancelOrderSuccess(id: Int64)
+    func onDidCancelOrdersSuccess(ids: [Int64])
     func onDidCancelOrderFail(errorDescription: String)
 }
 
@@ -31,4 +32,5 @@ protocol IOrdersListNetworkWorker {
     func loadDeals()
     
     func cancelOrder(id: Int64)
+    func cancelOrders(ids: [Int64])
 }

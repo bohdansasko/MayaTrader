@@ -86,26 +86,57 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         }
         
     }
-    
+
+    var ordersForCancel: [Int64] = []
+    var cancelledOrdersSuccess: [Int64] = []
+    var cancelledOrdersFail: [Int64] = []
+    var countOrdersForCancel: Int = 0
+
     func cancelOrder(id: Int64) {
         let request = ExmoApiRequestBuilder.shared.getCancelOrderRequest(id: id)
         Alamofire.request(request).responseJSON {
             [weak self] jsonResponse in
+            guard let self = self else {
+                print("should handle this bad situation")
+                return
+            }
+
             switch (jsonResponse.result) {
             case .success(let data):
                 guard let exmoResponseResult = Mapper<ExmoResponseResult>().map(JSONObject: data) else {
-                    self?.delegate?.onDidCancelOrderFail(errorDescription: "Error: can't get order result")
+                    self.delegate?.onDidCancelOrderFail(errorDescription: "Error: can't get order result")
                     return
                 }
                 
                 if exmoResponseResult.result {
-                    self?.delegate?.onDidCancelOrderSuccess(id: id)
+                    self.cancelledOrdersSuccess.append(id)
+                    self.cancelOrders(ids: self.ordersForCancel)
                 } else {
-                    self?.delegate?.onDidCancelOrderFail(errorDescription: exmoResponseResult.error ?? "Undefined error")
+//                    self.cancelledOrdersFail.append(id)
+                    self.delegate?.onDidCancelOrderFail(errorDescription: exmoResponseResult.error ?? "Undefined error")
                 }
             case .failure(let error):
-                self?.delegate?.onDidCancelOrderFail(errorDescription: "Undefined error\(error)")
+//                self.cancelledOrdersFail.append(id)
+                self.delegate?.onDidCancelOrderFail(errorDescription: "Undefined error\(error)")
             }
+
+            if self.cancelledOrdersSuccess.count == self.countOrdersForCancel {
+                self.delegate?.onDidCancelOrdersSuccess(ids: self.cancelledOrdersSuccess)
+                self.ordersForCancel = []
+                self.cancelledOrdersSuccess = []
+            }
+        }
+    }
+
+    func cancelOrders(ids: [Int64]) {
+        if ordersForCancel.isEmpty && !ids.isEmpty {
+            countOrdersForCancel = ids.count
+            ordersForCancel.append(contentsOf: ids)
+        }
+
+        if let firstId = ordersForCancel.first {
+            ordersForCancel.removeFirst()
+            cancelOrder(id: firstId)
         }
     }
 

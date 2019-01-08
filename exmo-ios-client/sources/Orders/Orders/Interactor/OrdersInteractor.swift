@@ -12,9 +12,6 @@ class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     weak var output: OrdersInteractorOutput!
     var loadedOrders: [Orders.DisplayType : Orders] = [:]
     var networkWorker: IOrdersListNetworkWorker!
-
-    var pendingOrdersForCancel: [Int64] = []
-    var canceledOrders: [Int64] = []
 }
 
 // @MARK: OrdersInteractorInput
@@ -28,7 +25,8 @@ extension OrdersInteractor: OrdersInteractorInput {
             onUserSignOut()
             return
         }
-        
+        print("loadOrderByType => \(orderType)")
+
         switch orderType {
         case .Open: networkWorker.loadOpenOrders()
         case .Canceled: networkWorker.loadCanceledOrders()
@@ -38,10 +36,7 @@ extension OrdersInteractor: OrdersInteractorInput {
     }
     
     func cancelOrder(ids: [Int64]) {
-        pendingOrdersForCancel = ids
-        for id in ids {
-            networkWorker.cancelOrder(id: id)
-        }
+        networkWorker.cancelOrders(ids: ids)
     }
 }
 
@@ -59,6 +54,7 @@ extension OrdersInteractor {
 // @MARK: Load Open orders
 extension OrdersInteractor {
     func onDidLoadSuccessOpenOrders(orders: Orders) {
+        print("OrdersInteractor => onDidLoadSuccessOpenOrders")
         output.onDidLoadOrders(loadedOrders: [.Open : orders])
     }
     
@@ -92,12 +88,13 @@ extension OrdersInteractor {
 // @MARK: Cancel order
 extension OrdersInteractor {
     func onDidCancelOrderSuccess(id: Int64) {
-        canceledOrders.append(id)
-        if pendingOrdersForCancel.count == canceledOrders.count {
-            output.orderCanceled(ids: canceledOrders)
-            pendingOrdersForCancel = []
-            canceledOrders = []
-        }
+        print("OrdersInteractor => has cancelled order \(id)")
+        output.orderCanceled(ids: [id])
+    }
+
+    func onDidCancelOrdersSuccess(ids: [Int64]) {
+        print("OrdersInteractor => has cancelled orders \(ids)")
+        output.orderCanceled(ids: ids)
     }
     
     func onDidCancelOrderFail(errorDescription: String) {
