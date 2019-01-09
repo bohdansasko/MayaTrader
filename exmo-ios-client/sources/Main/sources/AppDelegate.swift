@@ -11,6 +11,7 @@ import CoreData
 import Fabric
 import Crashlytics
 import Firebase
+import UserNotifications
 
 enum IPhoneModel: Int {
     case None = 0
@@ -34,7 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAdMob()
         setupWindow()
         callStoreReview()
-        
+        registerForRemoteNotifications()
+
         return true
     }
 
@@ -62,6 +64,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
         AppDelegate.dbController.saveContext()
+    }
+}
+
+// @MARK: handle registering APNs
+extension AppDelegate {
+    func registerForRemoteNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
+            print("APNs => granted = \(granted), error = \(error?.localizedDescription ?? "")")
+        })
+
+        UIApplication.shared.registerForRemoteNotifications()
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map({ String(format: "%02.2hhx", $0) }).joined()
+        print("APNs => device token = \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("APNs => error = \(error)")
     }
 }
 
