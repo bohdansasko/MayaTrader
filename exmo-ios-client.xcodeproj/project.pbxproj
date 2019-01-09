@@ -171,7 +171,6 @@
 		20CE7EB321A19CAB00EC14FA /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB221A19CAB00EC14FA /* Structures.swift */; };
 		20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB421A19CF700EC14FA /* TickerNetworkProtocols.swift */; };
 		20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */; };
-		20D7A7C32113B37300D84399 /* VinsoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7A7C22113B37300D84399 /* VinsoAPI.swift */; };
 		20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuViewCell.swift */; };
 		20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */; };
 		20DBA23F20B43348007BA0AF /* WatchlistTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */; };
@@ -208,7 +207,10 @@
 		366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */; };
 		36712029F198CF69683FFA1B /* MenuCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */; };
 		3671205D06A10EADE42FAF7C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F8856A6004AC2CC405B /* User.swift */; };
+		3671209C676947D8EA9F25E0 /* VinsoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */; };
+		367121BC7FF51CEFB18FC1F6 /* VinsoAPI+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123472D6E898C5F3B2FA0 /* VinsoAPI+Alerts.swift */; };
 		3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2E24600DAE35483C9D /* Color+Extension.swift */; };
+		367122D0DF0064443BDC5003 /* VinsoAPI+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */; };
 		367123499097564DF365D13F /* ChartNetworkWorkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */; };
 		3671235C4933D570BEA98C52 /* AlertsAPIResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */; };
 		3671270AD41B65A3E7C2B26D /* WalletTableCurrenciesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */; };
@@ -497,7 +499,6 @@
 		20CE7EB221A19CAB00EC14FA /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		20CE7EB421A19CF700EC14FA /* TickerNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNetworkProtocols.swift; sourceTree = "<group>"; };
 		20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
-		20D7A7C22113B37300D84399 /* VinsoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPI.swift; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrdersListView+UITableView_Delegate+DataSource.swift"; sourceTree = "<group>"; };
 		20DBA23E20B43348007BA0AF /* WatchlistTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistTableViewCell.swift; sourceTree = "<group>"; };
@@ -534,6 +535,7 @@
 		3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPIConstants.swift; sourceTree = "<group>"; };
 		367120B1111B487C3177C51D /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
 		367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
+		367123472D6E898C5F3B2FA0 /* VinsoAPI+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Alerts.swift"; sourceTree = "<group>"; };
 		367123CC34179C4F53E597DE /* VinsoAPIConnectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPIConnectionDelegate.swift; sourceTree = "<group>"; };
 		367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsAPIResponseDelegate.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableMenuView.swift; sourceTree = "<group>"; };
@@ -545,7 +547,9 @@
 		36712B2E24600DAE35483C9D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFilterGroupController.swift; sourceTree = "<group>"; };
 		36712DDE57C5587FC6B6609F /* ErrorModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModels.swift; sourceTree = "<group>"; };
+		36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPI.swift; sourceTree = "<group>"; };
 		36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartNetworkWorkers.swift; sourceTree = "<group>"; };
+		36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Connection.swift"; sourceTree = "<group>"; };
 		36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableCurrenciesView.swift; sourceTree = "<group>"; };
 		36712F8856A6004AC2CC405B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -1441,7 +1445,6 @@
 		20CAFED32042AE6400C7DEA5 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				20D7A7C22113B37300D84399 /* VinsoAPI.swift */,
 				20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */,
 				20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */,
 				2075612620B2C0DB0063E548 /* AlertsApiRequestBuilder.swift */,
@@ -1449,6 +1452,7 @@
 				3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */,
 				367123CC34179C4F53E597DE /* VinsoAPIConnectionDelegate.swift */,
 				367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */,
+				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1655,6 +1659,16 @@
 				367129AC2A73866F875D22DE /* ExmoChartData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		36712ED85CCE80904AD3B7E6 /* VinsoAPI */ = {
+			isa = PBXGroup;
+			children = (
+				36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */,
+				367123472D6E898C5F3B2FA0 /* VinsoAPI+Alerts.swift */,
+				36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */,
+			);
+			path = VinsoAPI;
 			sourceTree = "<group>";
 		};
 		3725B2EAD114F1CD68D0287C /* Presenter */ = {
@@ -2480,7 +2494,6 @@
 				20600A1F20532831004D7F45 /* WalletEntity+CoreDataClass.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				33FA275589ADB6723CEB02A2 /* WalletInteractorProtocols.swift in Sources */,
-				20D7A7C32113B37300D84399 /* VinsoAPI.swift in Sources */,
 				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
 				A6421BE76AB236312D8A7FB3 /* WalletInteractor.swift in Sources */,
 				3C40522FD523C9ABB1477573 /* WalletRouterInput.swift in Sources */,
@@ -2650,6 +2663,9 @@
 				36712BA9A115B28819E97B70 /* VinsoAPIConstants.swift in Sources */,
 				3671298637DF050AFCA49657 /* VinsoAPIConnectionDelegate.swift in Sources */,
 				3671235C4933D570BEA98C52 /* AlertsAPIResponseDelegate.swift in Sources */,
+				3671209C676947D8EA9F25E0 /* VinsoAPI.swift in Sources */,
+				367121BC7FF51CEFB18FC1F6 /* VinsoAPI+Alerts.swift in Sources */,
+				367122D0DF0064443BDC5003 /* VinsoAPI+Connection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
