@@ -15,14 +15,14 @@ class AlertsInteractor  {
 extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
         AppDelegate.vinsoAPI.connectionDelegate = self
+        AppDelegate.vinsoAPI.addAlertsObserver(self)
     }
 
-    func viewDidAppear() {
-        AppDelegate.vinsoAPI.alertsDelegate = self
-        if AppDelegate.vinsoAPI.isConnectionOpen() {
-            onConnectionOpened()
+func viewDidAppear() {
+        if AppDelegate.vinsoAPI.isLogined {
+            loadAlerts()
         } else {
-            AppDelegate.vinsoAPI.connect()
+            AppDelegate.vinsoAPI.establishConnect()
         }
     }
 
@@ -46,14 +46,13 @@ extension AlertsInteractor: IAlertsNetworkWorkerDelegate {
 }
 
 extension AlertsInteractor: VinsoAPIConnectionDelegate {
-    func onConnectionOpened() {
-        print("AlertsInteractor => onConnectionOpened")
-        AppDelegate.vinsoAPI.login()
-    }
-    
-    func onLogined() {
-        print("AlertsInteractor => onLogined")
+    func loadAlerts() {
+        print("AlertsInteractor => loadAlerts")
         AppDelegate.vinsoAPI.loadAlerts()
+    }
+
+    func onConnectionRefused() {
+        output.onDidLoadAlertsHistory([])
     }
 }
 

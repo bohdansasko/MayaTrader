@@ -31,7 +31,14 @@ enum ServerMessage: Int {
 
 protocol VinsoAPIConnectionDelegate: class {
     func onConnectionOpened()
-    func onLogined()
+    func onDidLogin()
+    func onConnectionRefused()
+}
+
+extension VinsoAPIConnectionDelegate {
+    func onConnectionOpened() {}
+    func onConnectionRefused() {}
+    func onDidLogin() {}
 }
 
 protocol AlertsAPIResponseDelegate: class {
@@ -42,38 +49,53 @@ protocol AlertsAPIResponseDelegate: class {
 }
 
 extension AlertsAPIResponseDelegate {
-    func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) {
+    func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) { }
+    func onDidCreateAlertSuccessful() { }
+    func onDidUpdateAlertSuccessful(_ alert: Alert) { }
+    func onDidDeleteAlertSuccessful(withId id: Int) { }
+}
 
-    }
-    func onDidCreateAlertSuccessful() {
+enum ServerURLList: String {
+    case global = "ws://193.228.52.26:45667"
+    case local = "ws://192.168.0.102:45667"
+}
 
-    }
-    func onDidUpdateAlertSuccessful(_ alert: Alert) {
-
-    }
-    func onDidDeleteAlertSuccessful(withId id: Int) {
-
-    }
+struct AlertsObservation {
+    weak var observer: AlertsAPIResponseDelegate?
 }
 
 class VinsoAPI {
     static var shared = VinsoAPI()
 
     private var socketManager: SocketManager!
-    private let ServerURL = "ws://193.228.52.26:45667"
+    private let ServerURL = ServerURLList.global.rawValue
 
     weak var connectionDelegate: VinsoAPIConnectionDelegate?
-    weak var alertsDelegate: AlertsAPIResponseDelegate?
+    var alertsObservers = [ObjectIdentifier : AlertsObservation]()
+    private(set) var isLogined = false {
+        didSet {
+            connectionDelegate?.onDidLogin()
+        }
+    }
 
     private init() {
         initSocket()
-        connect()
     }
 
     func initSocket() {
         socketManager = SocketManager(serverURL: ServerURL)
         socketManager.callbackOnOpen = {
-            self.connectionDelegate?.onConnectionOpened()
+            [weak self] in
+            self?.connectionDelegate?.onConnectionOpened()
+            self?.login()
+        }
+        socketManager.callbackOnClose = {
+            [weak self] _, _, _ in
+            self?.isLogined = false
+        }
+        socketManager.callbackOnError = {
+            [weak self] _ in
+            self?.isLogined = false
         }
         socketManager.callbackOnMessage = { data in
             self.handleMessage(data)
@@ -83,11 +105,7 @@ class VinsoAPI {
     func isConnectionOpen() -> Bool {
         return socketManager.isOpen()
     }
-    
-    func connect() {
-        socketManager.connect(message: getJSONMessage(messageType: .Connect))
-    }
-    
+
     func handleMessage(_ data: Any) {
         guard let message = data as? String else {
             print("socket => can't cast data to String")
@@ -112,7 +130,8 @@ class VinsoAPI {
         
         switch requestType {
         case ServerMessage.Authorization:
-            connectionDelegate?.onLogined()
+            isLogined = true
+            connectionDelegate?.onDidLogin()
             print("Vinso: login succeed")
         case ServerMessage.AlertsHistory: handleResponseAlertsLoaded(json: json)
         case ServerMessage.CreateAlert: handleResponseCreateAlert(json: json)
@@ -139,10 +158,20 @@ class VinsoAPI {
     }
 }
 
-// @MARK: login
 extension VinsoAPI {
+    func establishConnect() {
+        print("\(String(describing: self)) => establish connect")
+        socketManager.connect(message: AccountApiRequestBuilder.buildConnectRequest())
+    }
+
+    func disconnect() {
+        print("\(String(describing: self)) => disconnect")
+        socketManager.disconnect()
+    }
+
     func login() {
-        let msg = AccountApiRequestBuilder.buildLoginRequest()
+        print("\(String(describing: self)) => login")
+        let msg = AccountApiRequestBuilder.buildAuthorizationRequest()
         socketManager.sendMessage(message: msg)
     }
 }
@@ -188,12 +217,12 @@ extension VinsoAPI {
             }
         }
         alerts.sort(by: { $0.dateCreated > $1.dateCreated })
-        alertsDelegate?.onDidLoadAlertsHistorySuccessful(alerts)
+        alertsObservers.forEach({ $0.value.observer?.onDidLoadAlertsHistorySuccessful(alerts) })
     }
 
     private func handleResponseCreateAlert(json: JSON) {
         if let _ = Alert(JSONString: json.description) {
-            alertsDelegate?.onDidCreateAlertSuccessful()
+            alertsObservers.forEach({ $0.value.observer?.onDidCreateAlertSuccessful() })
         }
     }
     
@@ -201,7 +230,7 @@ extension VinsoAPI {
         guard let alert = Alert(JSONString: json.description)else {
             return
         }
-        alertsDelegate?.onDidUpdateAlertSuccessful(alert)
+        alertsObservers.forEach({ $0.value.observer?.onDidUpdateAlertSuccessful(alert) })
     }
     
     private func handleResponseFireAlert(json: JSON) {
@@ -213,6 +242,18 @@ extension VinsoAPI {
               let id = alertDict["deleted_alerts_id"]?.array?.first?.int else {
             return
         }
-        alertsDelegate?.onDidDeleteAlertSuccessful(withId: id)
+        alertsObservers.forEach({ $0.value.observer?.onDidDeleteAlertSuccessful(withId: id) })
+    }
+}
+
+extension VinsoAPI {
+    func addAlertsObserver(_ observer: AlertsAPIResponseDelegate) {
+        let id = ObjectIdentifier(observer)
+        alertsObservers[id] = AlertsObservation(observer: observer)
+    }
+
+    func removeAlertsObserver(_ observer: AlertsAPIResponseDelegate) {
+        let id = ObjectIdentifier(observer)
+        alertsObservers.removeValue(forKey: id)
     }
 }

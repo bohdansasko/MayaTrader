@@ -19,5 +19,6 @@ protocol CreateAlertInteractorInput {
 protocol CreateAlertInteractorOutput: class {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func onCreateAlertSuccessful()
+    func updateAlertDidSuccessful()
     func showAlert(message: String)
 }

@@ -27,7 +27,7 @@ extension MainTabBarPresenter: MainTabBarInteractorOutput {
 // @MARK: MainTabBarViewOutput
 extension MainTabBarPresenter: MainTabBarViewOutput {
     func viewIsReady() {
-        interactor.login()
+        // do nothing
     }
     
 }

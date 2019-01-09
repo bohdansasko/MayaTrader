@@ -56,6 +56,10 @@ extension CreateAlertPresenter: CreateAlertInteractorOutput {
         view.alertCreated()
     }
 
+    func updateAlertDidSuccessful() {
+        view.alertUpdated()
+    }
+
     func showAlert(message: String) {
         view.showAlert(message: message)
     }

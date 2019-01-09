@@ -28,8 +28,7 @@ extension OrderViewCell {
         addSubview(imageSeparator)
         imageSeparator.anchor(self.topAnchor, left: labelTimeCreateOrder.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 10, heightConstant: 0)
     }
-    
-    
+
     func setupRightViews() {
         let contentView = UIView()
         addSubview(contentView)
@@ -65,7 +64,9 @@ extension OrderViewCell {
         rightColumnStackView.alignment = .leading
         rightColumnStackView.anchor(contentView.topAnchor, left: nil, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 0)
     }
-    
+}
+
+extension OrderViewCell {
     func getOrderActionTypeLabelTextColor(orderType: OrderActionType) -> UIColor {
         switch orderType {
         case .Buy: return .dodgerBlue
@@ -73,7 +74,7 @@ extension OrderViewCell {
         default: return UIColor.black
         }
     }
-    
+
     static func getTitleLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
@@ -82,7 +83,7 @@ extension OrderViewCell {
         label.textColor = .steel
         return label
     }
-    
+
     static func getValueLabel() -> UILabel {
         let label = UILabel()
         label.text = "0"

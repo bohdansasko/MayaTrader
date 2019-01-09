@@ -33,12 +33,13 @@ class CreateAlertInteractor {
 extension CreateAlertInteractor: CreateAlertInteractorInput {
     func viewIsReady() {
         tickerNetworkWorker.delegate = self
-        AppDelegate.vinsoAPI.alertsDelegate = self
+        AppDelegate.vinsoAPI.addAlertsObserver(self)
     }
     
     func viewWillDisappear() {
         currencyPairCode = ""
         unscheduleUpdateCurrencies()
+        AppDelegate.vinsoAPI.removeAlertsObserver(self)
     }
     
     func createAlert(_ alertModel: Alert) {
@@ -87,5 +88,9 @@ extension CreateAlertInteractor: AlertsAPIResponseDelegate {
         print(errorMessage)
         scheduleUpdateCurrencies()
         output.showAlert(message: errorMessage)
+    }
+
+    func onDidUpdateAlertSuccessful(_ alert: Alert) {
+        output.updateAlertDidSuccessful()
     }
 }

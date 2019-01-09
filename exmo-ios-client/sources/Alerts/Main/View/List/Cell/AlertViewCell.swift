@@ -60,26 +60,18 @@ class AlertViewCell: ExmoTableViewCell {
     var labelBottomBound: UILabel = {
         return OrderViewCell.getValueLabel()
     }()
-    
+
+    var descriptionLabel: UILabel = {
+        let label = OrderViewCell.getTitleLabel(text: "")
+        return label
+    }()
+
     var item: Alert? {
         didSet {
-            guard let item = item else { return }
-            labelTimeCreate.text = item.formatedDate()
-            if AppDelegate.isIPhone(model: .Five) {
-                labelTimeCreate.widthAnchor.constraint(equalToConstant: 70).isActive = true
-            }
-
-            labelAlertStatus.text = getTextStatusValue(status: item.status)
-            updateAlertStatusBackground()
-
-            currencyLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: item.currencyCode)
-            priceValueLabel.text = Utils.getFormatedPrice(value: item.priceAtCreateMoment)
-            
-            labelTopBound.text = item.topBoundary != nil ? Utils.getFormatedPrice(value: item.topBoundary!, maxFractDigits: 9) : "-"
-            labelBottomBound.text = item.bottomBoundary != nil ? Utils.getFormatedPrice(value: item.bottomBoundary!, maxFractDigits: 9) : "-"
+            onItemDidSet()
         }
     }
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
@@ -95,6 +87,7 @@ class AlertViewCell: ExmoTableViewCell {
         
         setupLeftViews()
         setupRightViews()
+        setupDescriptionLabel()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -106,20 +99,38 @@ class AlertViewCell: ExmoTableViewCell {
         super.setHighlighted(highlighted, animated: animated)
         updateAlertStatusBackground()
     }
-    
-    private func updateAlertStatusBackground() {
+}
+
+extension AlertViewCell {
+    func onItemDidSet() {
+        guard let item = item else { return }
+        labelTimeCreate.text = item.formatedDate()
+        if AppDelegate.isIPhone(model: .Five) {
+            labelTimeCreate.widthAnchor.constraint(equalToConstant: 70).isActive = true
+        }
+
+        labelAlertStatus.text = getTextStatusValue(status: item.status)
+        updateAlertStatusBackground()
+
+        currencyLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: item.currencyCode)
+        priceValueLabel.text = Utils.getFormatedPrice(value: item.priceAtCreateMoment)
+
+        labelTopBound.text = item.topBoundary != nil ? Utils.getFormatedPrice(value: item.topBoundary!, maxFractDigits: 9) : "-"
+        labelBottomBound.text = item.bottomBoundary != nil ? Utils.getFormatedPrice(value: item.bottomBoundary!, maxFractDigits: 9) : "-"
+        descriptionLabel.text = item.description ?? "Write your note..."
+    }
+
+    func updateAlertStatusBackground() {
         guard let item = item else { return }
         labelAlertStatus.backgroundColor = item.status == AlertStatus.Active ? .greenBlue : .steel
     }
-    
-    private func getTextStatusValue(status: AlertStatus) -> String {
+
+    func getTextStatusValue(status: AlertStatus) -> String {
         switch status {
         case .Active:
             return "Active"
         case .Inactive:
             return "Inactive"
-        default:
-            return ""
         }
     }
 }

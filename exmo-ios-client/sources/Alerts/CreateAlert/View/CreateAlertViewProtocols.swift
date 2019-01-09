@@ -10,6 +10,7 @@ protocol CreateAlertViewInput: class {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?)
     func setEditAlert(_ alert: Alert)
     func alertCreated()
+    func alertUpdated()
     func showAlert(message: String)
 }
 

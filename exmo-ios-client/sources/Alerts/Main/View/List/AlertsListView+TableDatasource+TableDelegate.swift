@@ -42,15 +42,19 @@ extension AlertsListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 10 : 30
     }
-    
+
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: tableView.frame)
-        view.backgroundColor = UIColor.black
+        let view = UIView()
+        view.backgroundColor = .black
         return view
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        view.backgroundColor = UIColor.clear
+        view.backgroundColor = .clear
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -19,17 +19,16 @@ extension AlertViewCell {
         labelAlertStatus.anchor(labelTimeCreate.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 5, leftConstant: 30, bottomConstant: 0, rightConstant: 0, widthConstant: 55, heightConstant: 25)
         
         addSubview(imageSeparator)
-        imageSeparator.anchor(self.topAnchor, left: labelTimeCreate.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 10, heightConstant: 0)
+        imageSeparator.anchor(self.topAnchor, left: labelTimeCreate.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 5, leftConstant: 10, bottomConstant: 20, rightConstant: 0, widthConstant: 10, heightConstant: 0)
     }
-    
     
     func setupRightViews() {
         let contentView = UIView()
         addSubview(contentView)
-        contentView.anchor(self.topAnchor, left: imageSeparator.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
-        
-        let spaceBetweenRows: CGFloat = 17.0
-        let topOffset: CGFloat = -2.0
+        contentView.anchor(imageSeparator.topAnchor, left: imageSeparator.rightAnchor, bottom: imageSeparator.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 3, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+
+        let spaceBetweenRows: CGFloat = 10.0
+        let topOffset: CGFloat = -5
         
         // @MARK: left column
         let currencyStackView = UIStackView(arrangedSubviews: [currencyTitleLabel, currencyLabel])
@@ -55,8 +54,22 @@ extension AlertViewCell {
         contentView.addSubview(rightColumnStackView)
         rightColumnStackView.spacing = spaceBetweenRows
         rightColumnStackView.axis = .vertical
-        rightColumnStackView.alignment = .leading
         rightColumnStackView.anchor(contentView.topAnchor, left: nil, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 0)
+    }
+
+    func setupDescriptionLabel() {
+        addSubview(descriptionLabel)
+        descriptionLabel.anchor(
+                imageSeparator.bottomAnchor,
+                left: labelTimeCreate.leftAnchor,
+                bottom: self.bottomAnchor,
+                right: self.rightAnchor,
+                topConstant: 0,
+                leftConstant: 0,
+                bottomConstant: 0,
+                rightConstant: 30,
+                widthConstant: 0,
+                heightConstant: 0)
     }
     
     static func getTitleLabel(text: String) -> UILabel {

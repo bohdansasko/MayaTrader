@@ -54,7 +54,6 @@ class Session {
 //
 extension Session {
     func vinsoLogin() {
-        AppDelegate.vinsoAPI.login()
     }
     
     func exmoLogout() {

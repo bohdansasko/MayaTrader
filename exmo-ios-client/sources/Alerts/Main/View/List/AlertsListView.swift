@@ -86,10 +86,6 @@ class AlertsListView: UIView {
         alerts.updateAlert(alertItem: alertItem)
         let index = alerts.getIndexById(alertId: alertItem.id)
 
-//        if let uiCell = getCellItem(elementIndex: index) {
-//            uiCell.setStatus(status: alertItem.status)
-//        }
-
         if index > -1 && index < cellActions.count {
             if let actionContainer = cellActions[index] {
                 actionContainer[ActionType.State]?.image = alerts.getStatus(forItem: index) == .Active

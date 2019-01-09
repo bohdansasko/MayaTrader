@@ -114,6 +114,11 @@ extension CreateAlertViewController: CreateAlertViewInput {
         showAlert(title: titleNavBar!, message: "Alert has been created successfully", closure: nil)
     }
 
+    func alertUpdated() {
+        hideLoader()
+        showAlert(title: titleNavBar!, message: "Alert has been updated successfully", closure: nil)
+    }
+
     func showAlert(message: String) {
         showOkAlert(title: titleNavBar!, message: message, onTapOkButton: nil)
     }
