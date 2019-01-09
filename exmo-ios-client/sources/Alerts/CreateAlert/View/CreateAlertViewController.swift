@@ -66,10 +66,17 @@ class CreateAlertViewController: ExmoUIViewController {
         }
 
         let rawCurrencyPairName = Utils.getRawCurrencyPairName(name: currencyPair)
-        let maxValue: Double? = form.topBound != nil ? Double(form.topBound!) : nil
-        let minValue: Double? = form.bottomBound != nil ? Double(form.bottomBound!) : nil
-
-        let alert = Alert(id: editAlert?.id ?? 0, currencyPairName: rawCurrencyPairName, priceAtCreateMoment: selectedPair?.lastTrade ?? 0, description: form.description, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: form.isPersistent)
+        let topBound: Double? = form.topBound != nil ? Double(form.topBound!) : nil
+        let bottomBound: Double? = form.bottomBound != nil ? Double(form.bottomBound!) : nil
+        let priceAtCreateMoment = selectedPair?.lastTrade ?? editAlert?.priceAtCreateMoment ?? 0
+        let alert = Alert(
+                id: editAlert?.id ?? 0,
+                currencyPairName: rawCurrencyPairName,
+                priceAtCreateMoment: priceAtCreateMoment,
+                description: form.description,
+                topBoundary: topBound,
+                bottomBoundary: bottomBound,
+                isPersistentNotification: form.isPersistent)
         showLoader()
         output.handleTouchButtonCreate(alertModel: alert, operationType: editAlert == nil ? .Add : .Update)
     }

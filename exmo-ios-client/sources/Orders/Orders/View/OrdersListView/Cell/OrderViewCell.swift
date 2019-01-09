@@ -70,7 +70,7 @@ class OrderViewCell: UITableViewCell {
                 labelTimeCreateOrder.widthAnchor.constraint(equalToConstant: 70).isActive = true
             }
             
-            orderTypeLabel.text = orderData.getOrderActionTypeAsStr()
+            orderTypeLabel.text = orderData.orderType.capsDescription()
             updateStatusBackground()
             
             currencyLabel.text = orderData.getDisplayCurrencyPair()

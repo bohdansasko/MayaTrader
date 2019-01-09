@@ -12,6 +12,15 @@ import ObjectMapper
 enum AlertStatus: Int {
     case Active = 0
     case Inactive = 1
+
+    func description() -> String {
+        switch self {
+        case .Active:
+            return "Active"
+        case .Inactive:
+            return "Inactive"
+        }
+    }
 }
 
 class Alert: SegueBlock, Mappable {

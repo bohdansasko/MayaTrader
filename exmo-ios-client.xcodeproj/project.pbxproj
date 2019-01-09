@@ -799,10 +799,10 @@
 		20001D67203B8D1200B6966F /* exmo-ios-client */ = {
 			isa = PBXGroup;
 			children = (
-				20BCD49721E68C87002EB36B /* exmo-ios-client.entitlements */,
 				2013E56C2071464600EFACB7 /* fonts */,
 				205A7CBD203CCEBD00A2E28A /* sources */,
 				20001D72203B8D1200B6966F /* Assets.xcassets */,
+				20BCD49721E68C87002EB36B /* exmo-ios-client.entitlements */,
 				20001D6F203B8D1200B6966F /* exmo_ios_client.xcdatamodeld */,
 				20001D77203B8D1200B6966F /* Info.plist */,
 				201CA89921DEA170008E124C /* GoogleService-Info.plist */,

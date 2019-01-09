@@ -109,7 +109,7 @@ extension AlertViewCell {
             labelTimeCreate.widthAnchor.constraint(equalToConstant: 70).isActive = true
         }
 
-        labelAlertStatus.text = getTextStatusValue(status: item.status)
+        labelAlertStatus.text = item.status.description()
         updateAlertStatusBackground()
 
         currencyLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: item.currencyCode)
@@ -123,14 +123,5 @@ extension AlertViewCell {
     func updateAlertStatusBackground() {
         guard let item = item else { return }
         labelAlertStatus.backgroundColor = item.status == AlertStatus.Active ? .greenBlue : .steel
-    }
-
-    func getTextStatusValue(status: AlertStatus) -> String {
-        switch status {
-        case .Active:
-            return "Active"
-        case .Inactive:
-            return "Inactive"
-        }
     }
 }

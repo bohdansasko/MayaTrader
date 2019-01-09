@@ -98,6 +98,14 @@ enum OrderActionType: String {
     case None
     case Buy = "buy"
     case Sell = "sell"
+
+    func capsDescription() -> String {
+        switch self {
+        case .Buy: return "BUY"
+        case .Sell: return "SELL"
+        case .None: return "NONE"
+        }
+    }
 }
 
 struct ModelOrderViewCell {

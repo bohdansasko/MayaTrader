@@ -198,12 +198,4 @@ struct OrderModel: Mappable {
     func getAmountAsStr() -> String {
         return Utils.getFormatedPrice(value: amount)
     }
-    
-    func getOrderActionTypeAsStr() -> String {
-        switch self.orderType {
-        case .Buy: return "BUY"
-        case .Sell: return "SELL"
-        case .None: return "Unknown"
-        }
-    }
 }

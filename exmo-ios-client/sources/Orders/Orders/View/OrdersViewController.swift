@@ -18,7 +18,6 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
 
     // MARK: Outlets
     var output: OrdersViewOutput!
-    var currentViewController: UIViewController?
     var bannerView: GADBannerView!
     var isCancellingOrdersActive = false
 
