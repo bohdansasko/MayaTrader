@@ -24,12 +24,12 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         let request = ExmoApiRequestBuilder.shared.getOpenOrdersRequest()
         Alamofire.request(request).responseJSON {
             [weak self] response in
-            guard let self = self else { return }
+            guard let strongSelf = self else { return }
             switch response.result {
             case .success(_):
-                self.delegate?.onDidLoadSuccessOpenOrders(orders: self.parseResponseIntoModel(response, .Open))
+                strongSelf.delegate?.onDidLoadSuccessOpenOrders(orders: strongSelf.parseResponseIntoModel(response, .Open))
             case .failure(_):
-                self.delegate?.onDidLoadFailsOpenOrders(orders: Orders())
+                strongSelf.delegate?.onDidLoadFailsOpenOrders(orders: Orders())
             }
         }
     }
@@ -38,12 +38,12 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         let request = ExmoApiRequestBuilder.shared.getCanceledOrdersRequest(limit: 100, offset: 0)
         Alamofire.request(request).responseJSON {
             [weak self] response in
-            guard let self = self else { return }
+            guard let strongSelf = self else { return }
             switch response.result {
             case .success(_):
-                self.delegate?.onDidLoadSuccessCanceledOrders(orders: self.parseResponseIntoModel(response, .Canceled))
+                strongSelf.delegate?.onDidLoadSuccessCanceledOrders(orders: strongSelf.parseResponseIntoModel(response, .Canceled))
             case .failure(_):
-                self.delegate?.onDidLoadFailsCanceledOrders(orders: Orders())
+                strongSelf.delegate?.onDidLoadFailsCanceledOrders(orders: Orders())
             }
         }
     }
@@ -67,20 +67,19 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         let pairSettingsRequest = ExmoApiRequestBuilder.shared.getCurrencyPairSettingsRequest()
         Alamofire.request(pairSettingsRequest).responseJSON {
             [weak self] response in
+            guard let strongSelf = self else { return }
             
-            guard let self = self else { return }
-            
-            let allCurrencies = self.getAllCurrencies(response: response)
+            let allCurrencies = strongSelf.getAllCurrencies(response: response)
             let request = ExmoApiRequestBuilder.shared.getUserTradesRequest(limit: 100, offset: 0, pairs: allCurrencies)
             
             Alamofire.request(request).responseJSON {
                 [weak self] response in
-                guard let self = self else { return }
+                guard let strongSelf = self else { return }
                 switch response.result {
                 case .success(_):
-                    self.delegate?.onDidLoadSuccessDeals(orders: self.parseResponseIntoModel(response, .Deals))
+                    strongSelf.delegate?.onDidLoadSuccessDeals(orders: strongSelf.parseResponseIntoModel(response, .Deals))
                 case .failure(_):
-                    self.delegate?.onDidLoadFailsDeals(orders: Orders())
+                    strongSelf.delegate?.onDidLoadFailsDeals(orders: Orders())
                 }
             }
         }
@@ -96,7 +95,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         let request = ExmoApiRequestBuilder.shared.getCancelOrderRequest(id: id)
         Alamofire.request(request).responseJSON {
             [weak self] jsonResponse in
-            guard let self = self else {
+            guard let strongSelf = self else {
                 print("should handle this bad situation")
                 return
             }
@@ -104,26 +103,26 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
             switch (jsonResponse.result) {
             case .success(let data):
                 guard let exmoResponseResult = Mapper<ExmoResponseResult>().map(JSONObject: data) else {
-                    self.delegate?.onDidCancelOrderFail(errorDescription: "Error: can't get order result")
+                    strongSelf.delegate?.onDidCancelOrderFail(errorDescription: "Error: can't get order result")
                     return
                 }
                 
                 if exmoResponseResult.result {
-                    self.cancelledOrdersSuccess.append(id)
-                    self.cancelOrders(ids: self.ordersForCancel)
+                    strongSelf.cancelledOrdersSuccess.append(id)
+                    strongSelf.cancelOrders(ids: strongSelf.ordersForCancel)
                 } else {
-//                    self.cancelledOrdersFail.append(id)
-                    self.delegate?.onDidCancelOrderFail(errorDescription: exmoResponseResult.error ?? "Undefined error")
+//                    strongSelf.cancelledOrdersFail.append(id)
+                    strongSelf.delegate?.onDidCancelOrderFail(errorDescription: exmoResponseResult.error ?? "Undefined error")
                 }
             case .failure(let error):
-//                self.cancelledOrdersFail.append(id)
-                self.delegate?.onDidCancelOrderFail(errorDescription: "Undefined error\(error)")
+//                strongSelf.cancelledOrdersFail.append(id)
+                strongSelf.delegate?.onDidCancelOrderFail(errorDescription: "Undefined error\(error)")
             }
 
-            if self.cancelledOrdersSuccess.count == self.countOrdersForCancel {
-                self.delegate?.onDidCancelOrdersSuccess(ids: self.cancelledOrdersSuccess)
-                self.ordersForCancel = []
-                self.cancelledOrdersSuccess = []
+            if strongSelf.cancelledOrdersSuccess.count == strongSelf.countOrdersForCancel {
+                strongSelf.delegate?.onDidCancelOrdersSuccess(ids: strongSelf.cancelledOrdersSuccess)
+                strongSelf.ordersForCancel = []
+                strongSelf.cancelledOrdersSuccess = []
             }
         }
     }

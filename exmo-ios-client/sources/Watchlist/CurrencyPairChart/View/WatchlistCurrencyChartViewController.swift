@@ -144,8 +144,8 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
 
         periodViewController.callbackOnChangePeriod = {
             [weak self] periodAsString in
-            guard let self = self else { return }
-            self.output.loadChartData(currencyPair: self.currencyPair, period: periodAsString)
+            guard let strongSelf = self else { return }
+            strongSelf.output.loadChartData(currencyPair: strongSelf.currencyPair, period: periodAsString)
         }
     }
     

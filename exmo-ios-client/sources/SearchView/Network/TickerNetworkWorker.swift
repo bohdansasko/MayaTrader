@@ -16,13 +16,13 @@ class TickerNetworkWorker: ITickerNetworkWorker {
         let request = ExmoApiRequestBuilder.shared.getTickerRequest()
         Alamofire.request(request).responseJSON {
             [weak self] response in
-            guard let self = self else { return }
+            guard let strongSelf = self else { return }
 
             switch response.result {
             case .success(_):
-                self.delegate?.onDidLoadTickerSuccess(self.parseResponseIntoModel(response))
+                strongSelf.delegate?.onDidLoadTickerSuccess(strongSelf.parseResponseIntoModel(response))
             case .failure(_):
-                self.delegate?.onDidLoadTickerFails(self.parseResponseIntoModel(response))
+                strongSelf.delegate?.onDidLoadTickerFails(strongSelf.parseResponseIntoModel(response))
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  AlertsAPIHelper.swift
+//  AlertsApiRequestBuilder.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 5/21/18.

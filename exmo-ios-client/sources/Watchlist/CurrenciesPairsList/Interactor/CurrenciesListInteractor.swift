@@ -70,14 +70,15 @@ extension CurrenciesListInteractor {
     private func scheduleUpdateCurrencies() {
         timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CurrenciesList, repeats: true) {
             [weak self] _ in
-            guard let self = self else { return }
-        if !self.currencyGroupName.isEmpty {
-        self.networkWorker.load()
+            guard let strongSelf = self else { return }
+            if !strongSelf.currencyGroupName.isEmpty {
+                strongSelf.networkWorker.load()
+            }
         }
+
+        if !currencyGroupName.isEmpty {
+            networkWorker.load()
         }
-        if !self.currencyGroupName.isEmpty {
-        self.networkWorker.load()
-    }
     }
 
     private func stopScheduleUpdateCurrencies() {

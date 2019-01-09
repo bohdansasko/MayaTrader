@@ -10,54 +10,9 @@ import Foundation
 import SwiftyJSON
 import ObjectMapper
 
-fileprivate enum ResponseCode {
-    static let Succeed = 200
-    static let Error = 0
-}
 
-enum ServerMessage: Int {
-    case Bad = -1
-    case Connect = 0
-    case Registration = 1
-    case Authorization = 2
-    case ConfirmRegistration = 3
-    case CreateAlert = 4
-    case UpdateAlert = 5
-    case DeleteAlert = 6
-    case FireAlert = 7
-    case ResetUser = 9
-    case AlertsHistory = 10
-}
-
-protocol VinsoAPIConnectionDelegate: class {
-    func onConnectionOpened()
-    func onDidLogin()
-    func onConnectionRefused()
-}
-
-extension VinsoAPIConnectionDelegate {
-    func onConnectionOpened() {}
-    func onConnectionRefused() {}
-    func onDidLogin() {}
-}
-
-protocol AlertsAPIResponseDelegate: class {
-    func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert])
-    func onDidCreateAlertSuccessful()
-    func onDidUpdateAlertSuccessful(_ alert: Alert)
-    func onDidDeleteAlertSuccessful(withId id: Int)
-}
-
-extension AlertsAPIResponseDelegate {
-    func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) { }
-    func onDidCreateAlertSuccessful() { }
-    func onDidUpdateAlertSuccessful(_ alert: Alert) { }
-    func onDidDeleteAlertSuccessful(withId id: Int) { }
-}
-
-enum ServerURLList: String {
-    case global = "ws://193.228.52.26:45667"
-    case local = "ws://192.168.0.102:45667"
+struct ConnectionObservation {
+    weak var observer: VinsoAPIConnectionDelegate?
 }
 
 struct AlertsObservation {
@@ -70,11 +25,12 @@ class VinsoAPI {
     private var socketManager: SocketManager!
     private let ServerURL = ServerURLList.global.rawValue
 
-    weak var connectionDelegate: VinsoAPIConnectionDelegate?
-    var alertsObservers = [ObjectIdentifier : AlertsObservation]()
+    private var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
+    private var alertsObservers = [ObjectIdentifier : AlertsObservation]()
+
     private(set) var isLogined = false {
         didSet {
-            connectionDelegate?.onDidLogin()
+            connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
         }
     }
 
@@ -86,7 +42,7 @@ class VinsoAPI {
         socketManager = SocketManager(serverURL: ServerURL)
         socketManager.callbackOnOpen = {
             [weak self] in
-            self?.connectionDelegate?.onConnectionOpened()
+            self?.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
             self?.login()
         }
         socketManager.callbackOnClose = {
@@ -114,11 +70,17 @@ class VinsoAPI {
         print("socket => received message: \(message)")
         
         let json = JSON(parseJSON: message)
-        let responseCode = json["status"].int
-        if responseCode != ResponseCode.Succeed {
+        guard let responseCode = json["status"].int,
+              let responseCodeType = VinsoResponseCode(rawValue: responseCode) else {
+            print("socket => fail cast code \(json["status"].int ?? -1) into ResponseCode")
+            return
+        }
+
+        if responseCodeType != VinsoResponseCode.succeed {
             print("socket => responseCode != ResponseCode.Succeed")
             return
         }
+
         parseJSON(json: json)
     }
 
@@ -131,7 +93,7 @@ class VinsoAPI {
         switch requestType {
         case ServerMessage.Authorization:
             isLogined = true
-            connectionDelegate?.onDidLogin()
+            connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
             print("Vinso: login succeed")
         case ServerMessage.AlertsHistory: handleResponseAlertsLoaded(json: json)
         case ServerMessage.CreateAlert: handleResponseCreateAlert(json: json)
@@ -255,5 +217,17 @@ extension VinsoAPI {
     func removeAlertsObserver(_ observer: AlertsAPIResponseDelegate) {
         let id = ObjectIdentifier(observer)
         alertsObservers.removeValue(forKey: id)
+    }
+}
+
+extension VinsoAPI {
+    func addConnectionObserver(_ observer: VinsoAPIConnectionDelegate) {
+        let id = ObjectIdentifier(observer)
+        connectionObservers[id] = ConnectionObservation(observer: observer)
+    }
+
+    func removeConnectionObserver(_ observer: VinsoAPIConnectionDelegate) {
+        let id = ObjectIdentifier(observer)
+        connectionObservers.removeValue(forKey: id)
     }
 }

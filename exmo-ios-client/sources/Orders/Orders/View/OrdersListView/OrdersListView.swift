@@ -154,10 +154,11 @@ extension OrdersListView {
 extension OrdersListView {
     func appendOpenOrder(orderModel: OrderModel) {
         if (displayOrderType == .Open) {
-            openedOrders = AppDelegate.session.getOpenOrders()
-            dataProvider.append(orderModel: orderModel)
-            tableView.insertSections(IndexSet(integer: 0), with: .automatic)
-            checkOnRequirePlaceHolder()
+            print("OrdersListView => empty method - appendOpenOrder")
+//            openedOrders = AppDelegate.session.getOpenOrders()
+//            dataProvider.append(orderModel: orderModel)
+//            tableView.insertSections(IndexSet(integer: 0), with: .automatic)
+//            checkOnRequirePlaceHolder()
         }
     }
 

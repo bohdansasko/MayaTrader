@@ -13,6 +13,7 @@ class CreateAlertViewController: ExmoUIViewController {
     lazy var form = FormCreateAlert()
     var selectedPair: TickerCurrencyModel?
     var cells: [IndexPath : UITableViewCell] = [:]
+
     var formTableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .clear
@@ -50,24 +51,27 @@ class CreateAlertViewController: ExmoUIViewController {
         
         form.onTouchButtonCreate = {
             [weak self] in
-            guard let self = self,
-                  let currencyPair = self.form.currencyPair else { return }
-            if !self.form.isValid() {
-                self.showAlert(message: "form doesn't validate")
-                return
-            }
-            
-            let rawCurrencyPairName = Utils.getRawCurrencyPairName(name: currencyPair)
-            let maxValue: Double? = self.form.topBound != nil ? Double(self.form.topBound!) : nil
-            let minValue: Double? = self.form.bottomBound != nil ? Double(self.form.bottomBound!) : nil
-            
-            let alert = Alert(id: self.editAlert?.id ?? 0, currencyPairName: rawCurrencyPairName, priceAtCreateMoment: self.selectedPair?.lastTrade ?? 0, description: self.form.description, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: self.form.isPersistent)
-            self.showLoader()
-            self.output.handleTouchButtonCreate(alertModel: alert, operationType: self.editAlert == nil ? .Add : .Update)
+            self?.handleTouchButtonCreate()
         }
         
         form.viewIsReady()
         setupViews()
+    }
+
+    func handleTouchButtonCreate() {
+        guard let currencyPair = form.currencyPair else { return }
+        if !form.isValid() {
+            showAlert(message: "Form doesn't validate. Please, try fill all fields.")
+            return
+        }
+
+        let rawCurrencyPairName = Utils.getRawCurrencyPairName(name: currencyPair)
+        let maxValue: Double? = form.topBound != nil ? Double(form.topBound!) : nil
+        let minValue: Double? = form.bottomBound != nil ? Double(form.bottomBound!) : nil
+
+        let alert = Alert(id: editAlert?.id ?? 0, currencyPairName: rawCurrencyPairName, priceAtCreateMoment: selectedPair?.lastTrade ?? 0, description: form.description, topBoundary: maxValue, bottomBoundary: minValue, isPersistentNotification: form.isPersistent)
+        showLoader()
+        output.handleTouchButtonCreate(alertModel: alert, operationType: editAlert == nil ? .Add : .Update)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -109,8 +113,8 @@ extension CreateAlertViewController: CreateAlertViewInput {
 
     func alertCreated() {
         hideLoader()
-        self.form.clear()
-        self.formTableView.reloadData()
+        form.clear()
+        formTableView.reloadData()
         showAlert(title: titleNavBar!, message: "Alert has been created successfully", closure: nil)
     }
 
@@ -126,7 +130,7 @@ extension CreateAlertViewController: CreateAlertViewInput {
 
 extension CreateAlertViewController {    
     @objc func hideKeyboard() {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     @objc func onTouchCancelBtn(_ sender: Any) {

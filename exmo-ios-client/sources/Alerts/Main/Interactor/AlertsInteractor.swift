@@ -10,15 +10,21 @@ import UIKit.UITableView
 
 class AlertsInteractor  {
     weak var output: AlertsInteractorOutput!
+
+    deinit {
+        print("deinit \(String(describing: self))")
+        AppDelegate.vinsoAPI.removeConnectionObserver(self)
+        AppDelegate.vinsoAPI.removeAlertsObserver(self)
+    }
 }
 
 extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
-        AppDelegate.vinsoAPI.connectionDelegate = self
+        AppDelegate.vinsoAPI.addConnectionObserver(self)
         AppDelegate.vinsoAPI.addAlertsObserver(self)
     }
 
-func viewDidAppear() {
+    func viewDidAppear() {
         if AppDelegate.vinsoAPI.isLogined {
             loadAlerts()
         } else {
