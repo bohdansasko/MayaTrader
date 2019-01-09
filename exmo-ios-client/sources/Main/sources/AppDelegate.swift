@@ -123,7 +123,6 @@ class NotificationController {
 // @MARK: static instances
 //
 extension AppDelegate {
-    static let session = Session()
     static let exmoController = ExmoAccountController()
     static let vinsoAPI = VinsoAPI.shared
     static let notificationController = NotificationController()
