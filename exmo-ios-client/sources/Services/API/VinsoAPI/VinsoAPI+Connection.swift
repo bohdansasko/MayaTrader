@@ -25,6 +25,12 @@ extension VinsoAPI {
         let msg = AccountApiRequestBuilder.buildAuthorizationRequest()
         socketManager.sendMessage(message: msg)
     }
+
+    func registerAPNSDeviceToken(_ deviceToken: String) {
+        print("\(String(describing: self)) => registerAPNSDeviceToken \(deviceToken)")
+        let msg = AccountApiRequestBuilder.buildRegisterAPNSDeviceTokenRequest(deviceToken)
+        socketManager.sendMessage(message: msg)
+    }
 }
 
 

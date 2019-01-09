@@ -23,4 +23,11 @@ class AccountApiRequestBuilder {
             "udid": udid,
         ]
     }
+
+    static func buildRegisterAPNSDeviceTokenRequest(_ deviceToken: String) -> JSON {
+        return [
+            "request_type": ServerMessage.RegisterAPNsDeviceToken.rawValue,
+            "apns_token": deviceToken
+        ]
+    }
 }

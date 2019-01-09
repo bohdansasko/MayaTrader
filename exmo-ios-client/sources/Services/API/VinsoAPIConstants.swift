@@ -22,6 +22,7 @@ enum ServerMessage: Int {
     case FireAlert = 7
     case ResetUser = 9
     case AlertsHistory = 10
+    case RegisterAPNsDeviceToken = 11
 }
 
 

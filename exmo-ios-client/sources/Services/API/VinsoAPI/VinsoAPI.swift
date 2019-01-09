@@ -14,7 +14,6 @@ class VinsoAPI {
     static var shared = VinsoAPI()
 
     private(set) var socketManager: SocketManager!
-    private let ServerURL = ServerURLList.global.rawValue
 
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
@@ -30,7 +29,7 @@ class VinsoAPI {
     }
 
     func initSocket() {
-        socketManager = SocketManager(serverURL: ServerURL)
+        socketManager = SocketManager(serverURL: ServerURLList.local.rawValue)
         socketManager.callbackOnOpen = {
             [weak self] in
             self?.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
