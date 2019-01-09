@@ -9,82 +9,80 @@
 import Foundation
 
 class AlertsModel {
-    private var alertsItems: [Alert] = [
+    var items: [Alert] = [
 //        Alert(id: "1", currencyPairName: "BTC_USD", priceAtCreateMoment: 8000, note: "Nothing", topBoundary: 1000, bottomBoundary: 2000, isPersistentNotification: true),
 //        Alert(id: "2", currencyPairName: "BTC_EUR", priceAtCreateMoment: 6000, note: "Nothing", topBoundary: 6900.965, bottomBoundary: 3670.89641, status: .Inactive, isPersistentNotification: false)
     ]
     
-    func set(_ alerts: [Alert]) {
-        self.alertsItems = alerts
-    }
-    
     func removeItem(atRow row: Int) {
-        if self.isValidIndex(index: row) {
-            self.alertsItems.remove(at: row)
+        if isValidIndex(index: row) {
+            items.remove(at: row)
         }
     }
     
     func setState(forItem row: Int, status: AlertStatus) {
-        if self.isValidIndex(index: row) {
-            self.alertsItems[row].status = status
+        if isValidIndex(index: row) {
+            items[row].status = status
         }
     }
     
     func getStatus(forItem row: Int) -> AlertStatus {
-        return self.isValidIndex(index: row)
-                    ? self.alertsItems[row].status
+        return isValidIndex(index: row)
+                    ? items[row].status
                     : .Active
     }
     
     func getCountMenuItems() -> Int {
-        return self.alertsItems.count
+        return items.count
     }
 
     func getCellItem(byRow row: Int) -> Alert? {
-        return self.isValidIndex(index: row) ? self.alertsItems[row] : nil
+        return isValidIndex(index: row) ? items[row] : nil
+    }
+
+    func filter(_ closure: (Alert) -> Bool) -> [Alert] {
+        return items.filter(closure)
     }
     
     func append(alertItem: Alert) {
-        self.alertsItems.insert(alertItem, at: 0)
+        items.insert(alertItem, at: 0)
     }
 
     func getIndexById(alertId: Int) -> Int {
-        let index = self.alertsItems.index(where: { $0.id == alertId })
+        let index = items.index(where: { $0.id == alertId })
         return index ?? -1
     }
     
     func removeItem(byId id: Int) {
-        let index = self.getIndexById(alertId: id)
-        if self.isValidIndex(index: index) {
-            self.alertsItems.remove(at: index)
+        let index = getIndexById(alertId: id)
+        if isValidIndex(index: index) {
+            items.remove(at: index)
         }
     }
 
     func updateAlert(alertItem: Alert) {
-        guard let foundAlert = self.alertsItems.first(where: { $0.id == alertItem.id }) else {
+        guard let foundAlert = items.first(where: { $0.id == alertItem.id }) else {
             return
         }
         foundAlert.updateData(newData: alertItem)
     }
 
     func reverseStatus(index: Int) {
-        if self.isValidIndex(index: index) {
-            switch self.alertsItems[index].status {
+        if isValidIndex(index: index) {
+            switch items[index].status {
             case .Active:
-                self.alertsItems[index].status = .Inactive
+                items[index].status = .Inactive
             case .Inactive:
-                self.alertsItems[index].status = .Active
-            default:
-                break
+                items[index].status = .Active
             }
         }
     }
     
     func isEmpty() -> Bool {
-        return self.alertsItems.isEmpty
+        return items.isEmpty
     }
     
     private func isValidIndex(index: Int) -> Bool {
-        return index > -1 && index < self.alertsItems.count
+        return index > -1 && index < items.count
     }
 }

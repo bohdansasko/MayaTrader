@@ -9,12 +9,13 @@
 import UIKit
 import GoogleMobileAds
 
+enum AlertsDeleteAction: Int {
+    case Active
+    case Inactive
+    case All
+}
+
 class AlertsViewController: ExmoUIViewController {
-    enum DeleteAction: Int {
-        case All = 0
-        case Active
-        case Inactive
-    }
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     var bannerView: GADBannerView!
@@ -57,22 +58,33 @@ class AlertsViewController: ExmoUIViewController {
         pickerViewManager.showPickerViewWithDarkening()
     }
 
-    private func onSelectedDeleteAction(actionIndex: Int) {
-        print("onSelectedDeleteAction: \(actionIndex)")
-
-        switch (actionIndex) {
-        case DeleteAction.All.rawValue: print("Alerts => delete all")
-        case DeleteAction.Active.rawValue: print("Alerts => delete Active")
-        case DeleteAction.Inactive.rawValue: print("Alerts => delete Inactive")
-        default: print("Alerts => selected index out of range")
-            break
+    private func onSelectedAlertsDeleteAction(actionIndex: Int) {
+        print("onSelectedAlertsDeleteAction: \(actionIndex)")
+        guard let action = AlertsDeleteAction(rawValue: actionIndex) else {
+            print("Alerts => selected index out of range")
+            return
         }
+
+        var alertsForRemove = [Alert]()
+        switch (action) {
+        case AlertsDeleteAction.All:
+            alertsForRemove = listView.alerts.items
+            print("Alerts => delete all")
+        case AlertsDeleteAction.Active:
+            alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.Active })
+            print("Alerts => delete Active")
+        case AlertsDeleteAction.Inactive:
+            alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.Inactive })
+            print("Alerts => delete Inactive")
+        }
+
+        output.deleteAlerts(ids: alertsForRemove.map({ $0.id }))
     }
 }
 
 extension AlertsViewController: AlertsViewInput {
     func update(_ alerts: [Alert]) {
-        listView.alerts.set(alerts)
+        listView.alerts.items = alerts
         listView.invalidate()
     }
 
@@ -80,8 +92,8 @@ extension AlertsViewController: AlertsViewInput {
         listView.updateAlert(alertItem: alert)
     }
 
-    func deleteAlert(withId id: Int) {
-        listView.deleteById(alertId: id)
+    func deleteAlerts(withIds ids: [Int]) {
+        listView.deleteAlerts(ids: ids)
     }
 }
 // MARK: setup initial UI state for view controller
@@ -91,7 +103,7 @@ extension AlertsViewController {
 
         pickerViewManager.setCallbackOnSelectAction(callback: {
             [weak self] actionIndex in
-            self?.onSelectedDeleteAction(actionIndex: actionIndex)
+            self?.onSelectedAlertsDeleteAction(actionIndex: actionIndex)
         })
 
         setupListView()

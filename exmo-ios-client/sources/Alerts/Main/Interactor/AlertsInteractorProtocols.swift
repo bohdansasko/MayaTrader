@@ -14,10 +14,11 @@ protocol AlertsInteractorInput {
 
     func updateAlertState(_ alert: Alert)
     func deleteAlert(withId id: Int)
+    func deleteAlerts(ids: [Int])
 }
 
 protocol AlertsInteractorOutput: class {
     func onDidLoadAlertsHistory(_ alerts: [Alert])
     func updateAlertSuccessful(_ alert: Alert)
-    func deleteAlertSuccessful(withId id: Int)
+    func deleteAlertsSuccessful(ids: [Int])
 }

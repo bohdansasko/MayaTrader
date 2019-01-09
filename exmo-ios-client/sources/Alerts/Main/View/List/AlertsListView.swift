@@ -16,10 +16,10 @@ class AlertsListView: UIView {
     }
 
     weak var presenter: AlertsViewOutput!
-
-    var alerts: AlertsModel!
+    lazy var alerts = AlertsModel()
     var cells: [AlertViewCell] = []
     var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
+    let kCellId = "alertCellId"
 
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
@@ -37,45 +37,34 @@ class AlertsListView: UIView {
         return tv
     }()
     
-    weak var viewOutput: AlertsViewOutput!
-    weak var view: AlertsViewInput!
-    
-    let kCellId = "alertCellId"
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         setupTutorialImg()
         setupTableView()
-        alerts = AlertsModel()
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    func setupTutorialImg() {
-        self.addSubview(tutorialImg)
-        tutorialImg.anchorCenterSuperview()
-    }
-
-    func setupTableView() {
-        addSubview(tableView)
-        tableView.fillSuperview()
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(AlertViewCell.self, forCellReuseIdentifier: kCellId)
-    }
-    
     func invalidate() {
         tableView.reloadData()
         checkOnRequirePlaceHolder()
     }
-    
-    func getCountMenuItems() -> Int {
-        return alerts.getCountMenuItems()
+
+    private func checkOnRequirePlaceHolder() {
+        if (alerts.isEmpty()) {
+            tutorialImg.show()
+        } else {
+            tutorialImg.hide()
+        }
     }
-    
+}
+
+// @MARK: append/update/delete cell
+extension AlertsListView {
     func appendAlert(alertItem: Alert) {
         alerts.append(alertItem: alertItem)
         tableView.insertSections(IndexSet(integer: 0), with: .automatic)
@@ -97,13 +86,29 @@ class AlertsListView: UIView {
         tableView.reloadSections(IndexSet(integer: index), with: .automatic)
     }
 
-    func deleteById(alertId: Int) {
-        let index = alerts.getIndexById(alertId: alertId)
-        alerts.removeItem(byId: alertId)
-        tableView.deleteSections(IndexSet(integer: index), with: .automatic)
-        checkOnRequirePlaceHolder()
+    func deleteAlerts(ids: [Int]) {
+        var idxForDelete = [Int]()
+        for alertId in ids {
+            let index = alerts.getIndexById(alertId: alertId)
+            idxForDelete.append(index)
+
+            cellActions.removeValue(forKey: alertId)
+            cells.removeAll(where: { $0.item?.id == alertId })
+        }
+
+        ids.forEach({ alerts.removeItem(byId: $0) })
+
+        tableView.performBatchUpdates({
+            self.tableView.deleteSections(IndexSet(idxForDelete), with: .automatic)
+        }, completion: {
+            _ in
+            self.checkOnRequirePlaceHolder()
+        })
     }
-    
+}
+
+// @MARK: manage cell actions
+extension AlertsListView {
     func handleStateAction(elementIndex: Int) {
         alerts.reverseStatus(index: elementIndex)
         guard let alert = alerts.getCellItem(byRow: elementIndex) else {
@@ -112,13 +117,13 @@ class AlertsListView: UIView {
         }
         presenter.updateAlertState(alert)
     }
-    
+
     func handleEditAction(elementIndex: Int) {
         guard let alertModel = alerts.getCellItem(byRow: elementIndex) else {
             print("handleStateAction: item doesn't exists")
             return
         }
-        viewOutput.editAlert(alertModel)
+        presenter.editAlert(alertModel)
     }
 
     func handleRemoveAction(elementIndex: Int) {
@@ -128,43 +133,20 @@ class AlertsListView: UIView {
         }
         presenter.deleteAlert(withId: alert.id)
     }
-    
-    private func getCellItem(elementIndex: Int) -> AlertViewCell? {
-        return elementIndex > -1 && elementIndex < cells.count ? cells[elementIndex] : nil
+}
+
+// @MARK: setup views
+extension AlertsListView {
+    func setupTutorialImg() {
+        self.addSubview(tutorialImg)
+        tutorialImg.anchorCenterSuperview()
     }
-    
-    private func checkOnRequirePlaceHolder() {
-        if (alerts.isEmpty()) {
-            tutorialImg.show()
-        } else {
-            tutorialImg.hide()
-        }
-    }
-    
-    private func getPauseActiontTitle(status: AlertStatus) -> String {
-        var title = ""
-        
-        switch status {
-        case .Active:
-            title = "Pause"
-        case .Inactive:
-            title = "Resume"
-            break
-        }
-        
-        return title
-    }
-    
-    private func getPauseActionStatus(status: AlertStatus) -> AlertStatus {
-        var newStatus = status
-        switch status {
-        case .Active:
-            newStatus = AlertStatus.Inactive
-        case .Inactive:
-            newStatus = AlertStatus.Active
-            break;
-        }
-        
-        return newStatus
+
+    func setupTableView() {
+        addSubview(tableView)
+        tableView.fillSuperview()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(AlertViewCell.self, forCellReuseIdentifier: kCellId)
     }
 }

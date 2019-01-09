@@ -162,6 +162,12 @@ extension VinsoAPI {
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlert(withId: id)
         socketManager.sendMessage(message: jsonMsg)
     }
+
+    func deleteAlerts(withId ids: [Int]) {
+        print("delete alert \(ids)")
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withId: ids)
+        socketManager.sendMessage(message: jsonMsg)
+    }
 }
 
 // @MARK: handle alerts responses
@@ -201,10 +207,10 @@ extension VinsoAPI {
     
     private func handleResponseDeleteAlert(json: JSON) {
         guard let alertDict = json.dictionary,
-              let id = alertDict["deleted_alerts_id"]?.array?.first?.int else {
+              let ids = alertDict["deleted_alerts_id"]?.array?.map({ $0.intValue }) else {
             return
         }
-        alertsObservers.forEach({ $0.value.observer?.onDidDeleteAlertSuccessful(withId: id) })
+        alertsObservers.forEach({ $0.value.observer?.onDidDeleteAlertsSuccessful(ids: ids) })
     }
 }
 

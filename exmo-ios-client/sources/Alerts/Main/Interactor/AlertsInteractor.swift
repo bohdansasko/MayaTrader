@@ -39,6 +39,12 @@ extension AlertsInteractor: AlertsInteractorInput {
     func deleteAlert(withId id: Int) {
         AppDelegate.vinsoAPI.deleteAlert(withId: id)
     }
+
+    func deleteAlerts(ids: [Int]) {
+        if !ids.isEmpty {
+            AppDelegate.vinsoAPI.deleteAlerts(withId: ids)
+        }
+    }
 }
 
 extension AlertsInteractor: IAlertsNetworkWorkerDelegate {
@@ -72,8 +78,8 @@ extension AlertsInteractor: AlertsAPIResponseDelegate {
         output.updateAlertSuccessful(alert)
     }
 
-    func onDidDeleteAlertSuccessful(withId id: Int) {
-        output.deleteAlertSuccessful(withId: id)
+    func onDidDeleteAlertsSuccessful(ids: [Int]) {
+        output.deleteAlertsSuccessful(ids: ids)
     }
 
 }

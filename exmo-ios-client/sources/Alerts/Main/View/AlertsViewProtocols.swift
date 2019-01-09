@@ -11,7 +11,7 @@ protocol AlertsViewInput: class {
     func update(_ alerts: [Alert])
 
     func updateAlert(_ alert: Alert)
-    func deleteAlert(withId id: Int)
+    func deleteAlerts(withIds ids: [Int])
 }
 
 protocol AlertsViewOutput: class {
@@ -23,4 +23,5 @@ protocol AlertsViewOutput: class {
     func editAlert(_ alert: Alert)
     func updateAlertState(_ alert: Alert)
     func deleteAlert(withId id: Int)
+    func deleteAlerts(ids: [Int])
 }

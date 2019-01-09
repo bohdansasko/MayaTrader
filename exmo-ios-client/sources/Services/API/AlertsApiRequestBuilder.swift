@@ -23,12 +23,16 @@ class AlertsApiRequestBuilder {
     }
     
     static func getJSONForDeleteAlert(withId id: Int) -> JSON {
+        return getJSONForDeleteAlerts(withId: [id])
+    }
+
+    static func getJSONForDeleteAlerts(withId ids: [Int]) -> JSON {
         return [
             "request_type" : ServerMessage.DeleteAlert.rawValue,
-            "alerts_id" : [id]
+            "alerts_id" : ids
         ]
     }
-    
+
     static func getJSONForAlertsHistory() -> JSON {
         return [
             "request_type" : ServerMessage.AlertsHistory.rawValue,

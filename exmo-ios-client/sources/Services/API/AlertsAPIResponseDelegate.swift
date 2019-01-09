@@ -9,12 +9,12 @@ protocol AlertsAPIResponseDelegate: class {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert])
     func onDidCreateAlertSuccessful()
     func onDidUpdateAlertSuccessful(_ alert: Alert)
-    func onDidDeleteAlertSuccessful(withId id: Int)
+    func onDidDeleteAlertsSuccessful(ids: [Int])
 }
 
 extension AlertsAPIResponseDelegate {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) { }
     func onDidCreateAlertSuccessful() { }
     func onDidUpdateAlertSuccessful(_ alert: Alert) { }
-    func onDidDeleteAlertSuccessful(withId id: Int) { }
+    func onDidDeleteAlertsSuccessful(ids: [Int]) { }
 }

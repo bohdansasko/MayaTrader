@@ -40,7 +40,7 @@ extension AlertsListView: UITableViewDataSource  {
 // @MARK: UITableViewDelegate
 extension AlertsListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 10 : 30
+        return 10
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,7 +63,7 @@ extension AlertsListView: UITableViewDelegate  {
             print("didSelectRowAt: item doesn't exists")
             return
         }
-        viewOutput.editAlert(alertModel)
+        presenter.editAlert(alertModel)
     }
     
     @available(iOS 11.0, *)

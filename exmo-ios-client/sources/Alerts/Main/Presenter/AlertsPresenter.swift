@@ -39,6 +39,10 @@ extension AlertsPresenter: AlertsViewOutput {
     func deleteAlert(withId id: Int) {
         interactor.deleteAlert(withId: id)
     }
+
+    func deleteAlerts(ids: [Int]) {
+        interactor.deleteAlerts(ids: ids)
+    }
 }
 
 extension AlertsPresenter: AlertsInteractorOutput {
@@ -50,7 +54,7 @@ extension AlertsPresenter: AlertsInteractorOutput {
         view.updateAlert(alert)
     }
 
-    func deleteAlertSuccessful(withId id: Int) {
-        view.deleteAlert(withId: id)
+    func deleteAlertsSuccessful(ids: [Int]) {
+        view.deleteAlerts(withIds: ids)
     }
 }
