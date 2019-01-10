@@ -20,7 +20,9 @@ class VinsoAPI {
 
     private(set) var isLogined = false {
         didSet {
-            connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
+            if isLogined {
+                connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
+            }
         }
     }
 
@@ -85,8 +87,7 @@ extension VinsoAPI {
         switch requestType {
         case ServerMessage.Authorization:
             isLogined = true
-            connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
-            print("Vinso: login succeed")
+            print("Vinso: Authorization succeed")
         case ServerMessage.AlertsHistory: handleResponseAlertsLoaded(json: json)
         case ServerMessage.CreateAlert: handleResponseCreateAlert(json: json)
         case ServerMessage.UpdateAlert: handleResponseUpdateAlert(json: json)

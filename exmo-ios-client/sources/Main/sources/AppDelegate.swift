@@ -37,6 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         callStoreReview()
         registerForRemoteNotifications()
 
+        AppDelegate.vinsoAPI.addConnectionObserver(self)
+
         return true
     }
 
@@ -68,6 +70,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 // @MARK: handle registering APNs
+extension AppDelegate: VinsoAPIConnectionDelegate  {
+    func onDidLogin() {
+        AppDelegate.vinsoAPI.registerAPNSDeviceToken(Defaults.getAPNSDeviceToken())
+    }
+}
+
+// @MARK: handle registering APNs
 extension AppDelegate {
     func registerForRemoteNotifications() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
@@ -80,7 +89,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map({ String(format: "%02.2hhx", $0) }).joined()
         print("APNs => device token = \(token)")
-        AppDelegate.vinsoAPI.registerAPNSDeviceToken(token)
+        Defaults.saveAPNSDeviceToken(token)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
