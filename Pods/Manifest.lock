@@ -54,6 +54,7 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (5.3.6):
     - GoogleUtilities/Logger
+  - KeychainSwift (13.0.0)
   - LBTAComponents (1.0.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - Fabric
   - Firebase/AdMob
   - Firebase/Core
+  - KeychainSwift (~> 13.0)
   - LBTAComponents
   - ObjectMapper (~> 3.1)
   - RealmSwift
@@ -97,6 +99,7 @@ SPEC REPOS:
     - Google-Mobile-Ads-SDK
     - GoogleAppMeasurement
     - GoogleUtilities
+    - KeychainSwift
     - LBTAComponents
     - nanopb
     - ObjectMapper
@@ -118,6 +121,7 @@ SPEC CHECKSUMS:
   Google-Mobile-Ads-SDK: 5bb4d2cea811842e104a24780caef63b4808e1bd
   GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
+  KeychainSwift: 23d6c16cbc33f20fafa30c3d783241b4b87d998c
   LBTAComponents: c4c8863e0ef6715e378300db148b96a09df656f7
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   ObjectMapper: 5311bd50ca732930959e7ca1a2de43ab823a5ced
@@ -127,6 +131,6 @@ SPEC CHECKSUMS:
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 7d17c44ca40484edfa000ab0609c4b20aa313fcb
+PODFILE CHECKSUM: 8414f787e2a70bad7b47b73ffb130cd7e4aa8954
 
 COCOAPODS: 1.6.0.beta.2

@@ -31,7 +31,9 @@ class VinsoAPI {
     }
 
     func initSocket() {
-        socketManager = SocketManager(serverURL: ServerURLList.local.rawValue)
+        let endpointUrl = APIURLs.global.rawValue
+        print("Init socket with url \(endpointUrl)")
+        socketManager = SocketManager(serverURL: endpointUrl)
         socketManager.callbackOnOpen = {
             [weak self] in
             self?.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })

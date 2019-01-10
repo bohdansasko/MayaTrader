@@ -15,4 +15,5 @@ target 'exmo-ios-client' do
   pod 'SmileLock', '~> 3.0'
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+  pod 'KeychainSwift', '~> 13.0'
 end

@@ -49,16 +49,6 @@ class Defaults {
     static func isPasscodeActive() -> Bool {
         return !getPasscode().isEmpty
     }
-
-    // TODO: should use keychain
-    static func saveAPNSDeviceToken(_ deviceToken: String) {
-        UserDefaults.standard.set(deviceToken, forKey: UserDefaultsKeys.APNS_DEVICE_TOKEN.rawValue)
-    }
-
-    // TODO: should use keychain
-    static func getAPNSDeviceToken() -> String {
-        return UserDefaults.standard.string(forKey: UserDefaultsKeys.APNS_DEVICE_TOKEN.rawValue) ?? ""
-    }
 }
 
 enum UserDefaultsKeys: String {
@@ -66,6 +56,9 @@ enum UserDefaultsKeys: String {
     case APP_OPENED_COUNT
     case AppStoreLink = "https://www.telegram.me/exmo_official"
     case PASSCODE
+}
+
+enum KeychainDefaultKeys: String {
     case APNS_DEVICE_TOKEN
 }
 

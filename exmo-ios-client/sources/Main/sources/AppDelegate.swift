@@ -12,6 +12,7 @@ import Fabric
 import Crashlytics
 import Firebase
 import UserNotifications
+import KeychainSwift
 
 enum IPhoneModel: Int {
     case None = 0
@@ -31,14 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        
+        AppDelegate.vinsoAPI.addConnectionObserver(self)
+        
         setupFabric()
         setupAdMob()
         setupWindow()
-        callStoreReview()
         registerForRemoteNotifications()
-
-        AppDelegate.vinsoAPI.addConnectionObserver(self)
-
+        callStoreReview()
+    
         return true
     }
 
@@ -69,27 +71,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-// @MARK: handle registering APNs
+// @MARK: handle connection to Vinso Server
 extension AppDelegate: VinsoAPIConnectionDelegate  {
     func onDidLogin() {
-        AppDelegate.vinsoAPI.registerAPNSDeviceToken(Defaults.getAPNSDeviceToken())
+        if let apnsDeviceToken = KeychainSwift().get(KeychainDefaultKeys.APNS_DEVICE_TOKEN.rawValue) {
+            AppDelegate.vinsoAPI.registerAPNSDeviceToken(apnsDeviceToken)
+        }
     }
 }
 
 // @MARK: handle registering APNs
 extension AppDelegate {
     func registerForRemoteNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
-            print("APNs => granted = \(granted), error = \(error?.localizedDescription ?? "")")
+        let center = UNUserNotificationCenter.current()
+        center.getNotificationSettings(completionHandler: {
+            settings in
+            switch settings.authorizationStatus {
+            case .authorized:
+                print("Authorized push notifications by user")
+                self.registerPushNotifications()
+            case .denied:
+                print("show user view explaining why it's better to enable")
+                self.registerPushNotifications()
+            case .notDetermined:
+                self.requestPushNotifications(center: center, {
+                    isGranted in
+                    if isGranted {
+                        self.registerPushNotifications()
+                    }
+                    print("User haven't granted app for get APNS")
+                })
+            case .provisional:
+                print("App provisional post push notifications")
+            }
         })
-
+    }
+    
+    func registerPushNotifications() {
         UIApplication.shared.registerForRemoteNotifications()
+    }
+    
+    fileprivate func requestPushNotifications(center: UNUserNotificationCenter, _ result: @escaping (Bool) -> Void) {
+        center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
+            print("APNs => granted = \(granted), error = \(error?.localizedDescription ?? "")")
+            result(granted)
+        })
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map({ String(format: "%02.2hhx", $0) }).joined()
         print("APNs => device token = \(token)")
-        Defaults.saveAPNSDeviceToken(token)
+        KeychainSwift().set(token, forKey: KeychainDefaultKeys.APNS_DEVICE_TOKEN.rawValue)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -159,7 +191,7 @@ extension AppDelegate {
     static let vinsoAPI = VinsoAPI.shared
     static let notificationController = NotificationController()
     static let dbController = CoreDataManager()
-    static var cacheController = CacheManager()
+    static let cacheController = CacheManager()
 }
 
 //
