@@ -8,26 +8,35 @@ import UIKit.UIFont
 
 extension UIFont {
     enum Exo2Color {
-        case Regular
-        case SemiBold
-        case Bold
-        case Medium
+        case regular
+        case semibold
+        case bold
+        case medium
+        
+        func name() -> String {
+            switch self {
+            case .regular: return "Exo2-Regular"
+            case .semibold: return "Exo2-SemiBold"
+            case .bold: return "Exo2-Bold"
+            case .medium: return "Exo2-Medium"
+            }
+        }
     }
 
     static func getExo2Font(fontType: UIFont.Exo2Color, fontSize: CGFloat) -> UIFont {
         switch fontType {
-        case .Regular:
-            return UIFont(name: "Exo2-Regular", size: fontSize)!
-        case .SemiBold:
-            return UIFont(name: "Exo2-SemiBold", size: fontSize)!
-        case .Bold:
-            return UIFont(name: "Exo2-Bold", size: fontSize)!
-        case .Medium:
-            return UIFont(name: "Exo2-Medium", size: fontSize)!
+        case .regular:
+            return UIFont(name: fontType.name(), size: fontSize)!
+        case .semibold:
+            return UIFont(name: fontType.name(), size: fontSize)!
+        case .bold:
+            return UIFont(name: fontType.name(), size: fontSize)!
+        case .medium:
+            return UIFont(name: fontType.name(), size: fontSize)!
         }
     }
     
     static func getTitleFont() -> UIFont {
-        return getExo2Font(fontType: .SemiBold, fontSize: 20)
+        return getExo2Font(fontType: .semibold, fontSize: 20)
     }
 }

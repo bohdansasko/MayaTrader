@@ -75,7 +75,7 @@ class WatchlistListView: UIView {
     }
 }
 
-// @MARK: setup ui
+// MARK: setup ui
 extension WatchlistListView {
     func setupViews() {
         backgroundColor = nil
@@ -99,7 +99,7 @@ extension WatchlistListView {
     }
 }
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension WatchlistListView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return datasource?.numberOfItems(section) ?? 0
@@ -135,7 +135,7 @@ extension WatchlistListView: UICollectionViewDataSource {
     }
 }
 
-// @MARK: UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
 extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? WatchlistCardCell else { return }
@@ -164,7 +164,7 @@ extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// @MARK: UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
 extension WatchlistListView: CellDelegate {
     func didTouchCell(datasourceItem: Any?) {
         guard let currency = datasourceItem as? WatchlistCurrency else {

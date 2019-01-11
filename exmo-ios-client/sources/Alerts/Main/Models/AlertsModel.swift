@@ -11,7 +11,7 @@ import Foundation
 class AlertsModel {
     var items: [Alert] = [
 //        Alert(id: "1", currencyPairName: "BTC_USD", priceAtCreateMoment: 8000, note: "Nothing", topBoundary: 1000, bottomBoundary: 2000, isPersistentNotification: true),
-//        Alert(id: "2", currencyPairName: "BTC_EUR", priceAtCreateMoment: 6000, note: "Nothing", topBoundary: 6900.965, bottomBoundary: 3670.89641, status: .Inactive, isPersistentNotification: false)
+//        Alert(id: "2", currencyPairName: "BTC_EUR", priceAtCreateMoment: 6000, note: "Nothing", topBoundary: 6900.965, bottomBoundary: 3670.89641, status: .inactive, isPersistentNotification: false)
     ]
     
     func removeItem(atRow row: Int) {
@@ -29,7 +29,7 @@ class AlertsModel {
     func getStatus(forItem row: Int) -> AlertStatus {
         return isValidIndex(index: row)
                     ? items[row].status
-                    : .Active
+                    : .active
     }
     
     func getCountMenuItems() -> Int {
@@ -70,10 +70,10 @@ class AlertsModel {
     func reverseStatus(index: Int) {
         if isValidIndex(index: index) {
             switch items[index].status {
-            case .Active:
-                items[index].status = .Inactive
-            case .Inactive:
-                items[index].status = .Active
+            case .active:
+                items[index].status = .inactive
+            case .inactive:
+                items[index].status = .active
             }
         }
     }

@@ -50,7 +50,7 @@ class CurrenciesListViewController: ExmoUIViewController {
     }
 }
 
-// @MARK: setup views
+// MARK: setup views
 extension CurrenciesListViewController {
     func setupViews() {
         setupSearchBar()
@@ -73,7 +73,7 @@ extension CurrenciesListViewController {
     func setupDoneButton() {
         let doneBtn = UIButton(type: .system)
         doneBtn.setTitle("Done", for: .normal)
-        doneBtn.titleLabel?.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 18)
+        doneBtn.titleLabel?.font = UIFont.getExo2Font(fontType: .regular, fontSize: 18)
         doneBtn.addTarget(self, action: #selector(onTouchDoneBtn(_:)), for: .touchUpInside)
         let doneBarItem = UIBarButtonItem(customView: doneBtn)
         navigationItem.rightBarButtonItem = doneBarItem

@@ -15,7 +15,9 @@ class CreateAlertRouter: CreateAlertRouterInput {
 
     func openCurrencyPairsSearchView(_ sourceVC: UIViewController, moduleOutput: SearchModuleOutput!) {
         let destinationModule = SearchModuleInitializer()
-        let moduleInput = destinationModule.viewController.output as! SearchModuleInput
+        guard let moduleInput = destinationModule.viewController.output as? SearchModuleInput else {
+            return
+        }
         moduleInput.setInputModule(output: moduleOutput)
         sourceVC.present(destinationModule.viewController, animated: true, completion: nil)
     }

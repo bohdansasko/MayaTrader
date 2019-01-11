@@ -16,10 +16,7 @@ class WalletCurrenciesListViewController: ExmoUIViewController {
         return tabBar
     }()
     
-    var currenciesListView: WalletCurrenciesListView = {
-        let dm = WalletCurrenciesListView()
-        return dm
-    }()
+    lazy var currenciesListView = WalletCurrenciesListView()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -37,9 +34,9 @@ class WalletCurrenciesListViewController: ExmoUIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        guard var w = currenciesListView.wallet else { return }
-        w.refreshOnFavDislikeBalances()
-        output.viewWillDisappear(wallet: w)
+        guard var wallet = currenciesListView.wallet else { return }
+        wallet.refreshOnFavDislikeBalances()
+        output.viewWillDisappear(wallet: wallet)
     }
 
     override func shouldUseGlow() -> Bool {
@@ -51,7 +48,7 @@ class WalletCurrenciesListViewController: ExmoUIViewController {
     }
 }
 
-// @MARK: setup views
+// MARK: setup views
 extension WalletCurrenciesListViewController {
     func setupViews() {
         setupNavigationBar()
@@ -68,16 +65,34 @@ extension WalletCurrenciesListViewController {
             self?.output.handleTouchCloseVC()
         }
         tabBar.searchBar.delegate = self
-        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 44)
+        tabBar.anchor(view.layoutMarginsGuide.topAnchor,
+                      left: view.leftAnchor,
+                      bottom: nil,
+                      right: view.rightAnchor,
+                      topConstant: 0,
+                      leftConstant: 0,
+                      bottomConstant: 0,
+                      rightConstant: 0,
+                      widthConstant: 0,
+                      heightConstant: 44)
     }
     
     private func setupCurrenciesList() {
         view.addSubview(currenciesListView)
-        currenciesListView.anchor(tabBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        currenciesListView.anchor(tabBar.bottomAnchor,
+                                  left: view.leftAnchor,
+                                  bottom: view.bottomAnchor,
+                                  right: view.rightAnchor,
+                                  topConstant: 10,
+                                  leftConstant: 0,
+                                  bottomConstant: 0,
+                                  rightConstant: 0,
+                                  widthConstant: 0,
+                                  heightConstant: 0)
     }
 }
 
-// @MARK: WalletCurrenciesListViewInput
+// MARK: WalletCurrenciesListViewInput
 extension WalletCurrenciesListViewController: WalletCurrenciesListViewInput {
     func updateWallet(_ wallet: ExmoWallet) {
         currenciesListView.wallet = wallet

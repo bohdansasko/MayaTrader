@@ -10,14 +10,14 @@ import Foundation
 import ObjectMapper
 
 enum AlertStatus: Int {
-    case Active = 0
-    case Inactive = 1
+    case active = 0
+    case inactive = 1
 
     func description() -> String {
         switch self {
-        case .Active:
+        case .active:
             return "Active"
-        case .Inactive:
+        case .inactive:
             return "Inactive"
         }
     }
@@ -29,12 +29,13 @@ class Alert: SegueBlock, Mappable {
     var priceAtCreateMoment: Double = 0.0
     var topBoundary: Double?
     var bottomBoundary: Double?
-    var status = AlertStatus.Active
+    var status = AlertStatus.active
     var dateCreated: Date = Date()
     var description: String?
     var isPersistentNotification: Bool = false
     
-    init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, description: String?, topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .Active, isPersistentNotification: Bool) {
+    init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, description: String?,
+         topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .active, isPersistentNotification: Bool) {
         self.id = id
         self.currencyCode = currencyPairName
         self.priceAtCreateMoment = priceAtCreateMoment

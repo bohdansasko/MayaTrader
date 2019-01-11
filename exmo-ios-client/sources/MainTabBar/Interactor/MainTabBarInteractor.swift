@@ -13,7 +13,7 @@ class MainTabBarInteractor {
     var dbManager: OperationsDatabaseProtocol!
 }
 
-// @MARK: MainTabBarInteractorInput
+// MARK: MainTabBarInteractorInput
 extension MainTabBarInteractor: MainTabBarInteractorInput {
     func login() {
         networkWorker.delegate = self
@@ -27,7 +27,7 @@ extension MainTabBarInteractor: MainTabBarInteractorInput {
     }
 }
 
-// @MARK: ILoginNetworkWorkerDelegate
+// MARK: ILoginNetworkWorkerDelegate
 extension MainTabBarInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserSuccessful(user: ExmoUser) {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)

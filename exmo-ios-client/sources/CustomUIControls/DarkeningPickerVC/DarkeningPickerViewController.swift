@@ -137,7 +137,7 @@ class DarkeningPickerViewController: UIViewController {
         labelOrderBy.text = headerString
         labelOrderBy.textColor = UIColor.white
         labelOrderBy.textAlignment = .left
-        labelOrderBy.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 17)
+        labelOrderBy.font = UIFont.getExo2Font(fontType: .regular, fontSize: 17)
         let buttonOrderBy = UIBarButtonItem(customView: labelOrderBy)
         
         let buttonFlexible = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -146,13 +146,13 @@ class DarkeningPickerViewController: UIViewController {
         let buttonDone = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(pickerViewButtonDonePressed(sender:)))
         buttonDone.tintColor = UIColor.white
         buttonDone.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .semibold, fontSize: 17),
             NSAttributedString.Key.foregroundColor: UIColor(red: 74/255.0, green: 132.0/255, blue: 244/255.0, alpha: 1.0)
             ],
             for: .normal
         )
         buttonDone.setTitleTextAttributes([
-            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .SemiBold, fontSize: 17),
+            NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .semibold, fontSize: 17),
             NSAttributedString.Key.foregroundColor: UIColor(red: 74/255.0, green: 132.0/255, blue: 244/255.0, alpha: 1.0)
             ], for: .selected
         )
@@ -218,7 +218,7 @@ extension DarkeningPickerViewController: UIPickerViewDelegate {
         labelOrderBy.text = dataSource[row]
         labelOrderBy.textAlignment = .center
         labelOrderBy.textColor = UIColor.white
-        labelOrderBy.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 23)
+        labelOrderBy.font = UIFont.getExo2Font(fontType: .regular, fontSize: 23)
         
         return labelOrderBy
     }

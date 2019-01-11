@@ -8,7 +8,7 @@
 
 import UIKit
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension CreateOrderLimitView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -49,7 +49,7 @@ extension CreateOrderLimitView: UITableViewDataSource  {
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension CreateOrderLimitView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? FormUpdatable else { return }

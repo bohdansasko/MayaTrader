@@ -14,31 +14,31 @@ class MenuPresenter: MenuModuleInput, TableMenuViewOutput, MenuInteractorOutput,
     var router: MenuRouterInput!
 }
 
-// @MARK: TableMenuViewOutput
+// MARK: TableMenuViewOutput
 extension MenuPresenter {
     func viewIsReady() {
         interactor.viewIsReady()
     }
     
     func didTouchCell(type: MenuCellType) {
-        if type == .Security && Defaults.isPasscodeActive() {
+        if type == .security && Defaults.isPasscodeActive() {
             Defaults.resetPasscode()
             view.updateCell(type: type)
             view.showAlert("Your passcode has disabled.")
-        } else {
-            router.showViewController(sourceVC: view as! UIViewController, touchedCellType: type)
+        } else if let viewController = view as? UIViewController {
+            router.showViewController(sourceVC: viewController, touchedCellType: type)
         }
     }
 }
 
-// @MARK: MenuInteractorOutput
+// MARK: MenuInteractorOutput
 extension MenuPresenter {
     func onUserLogInOut(isLoggedUser: Bool) {
         view.updateLayoutView(isLoggedUser: isLoggedUser)
     }
 }
 
-// @MARK: MenuRouterOutput
+// MARK: MenuRouterOutput
 extension MenuPresenter {
     func userLogout() {
         interactor.logout()

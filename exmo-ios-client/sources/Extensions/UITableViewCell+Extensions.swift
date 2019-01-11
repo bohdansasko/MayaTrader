@@ -26,7 +26,6 @@ class ExmoTableViewCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
     }
     
     func setupSelectionView() {
@@ -40,7 +39,16 @@ class ExmoTableViewCell: UITableViewCell {
         
         clipsToBounds = true
         addSubview(separatorLineView)
-        separatorLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
+        separatorLineView.anchor(nil,
+                                 left: self.leftAnchor,
+                                 bottom: self.bottomAnchor,
+                                 right: self.rightAnchor,
+                                 topConstant: 0,
+                                 leftConstant: 30,
+                                 bottomConstant: 0,
+                                 rightConstant: 30,
+                                 widthConstant: 0,
+                                 heightConstant: 1)
     }
 
 }

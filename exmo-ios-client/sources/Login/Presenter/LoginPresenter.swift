@@ -14,19 +14,19 @@ class LoginPresenter {
     var router: LoginRouterInput!
 }
 
-// @MARK: LoginModuleInput
+// MARK: LoginModuleInput
 extension LoginPresenter: LoginModuleInput {
     // do nothing
 }
 
-// @MARK: LoginModuleOutput
+// MARK: LoginModuleOutput
 extension LoginPresenter: LoginModuleOutput {
     func setLoginData(loginModel: ExmoQR?) {
         view.setLoginData(loginModel: loginModel)
     }
 }
 
-// @MARK: LoginViewOutput
+// MARK: LoginViewOutput
 extension LoginPresenter: LoginViewOutput {
     func viewIsReady() {
         self.interactor.viewIsReady()
@@ -37,8 +37,10 @@ extension LoginPresenter: LoginViewOutput {
     }
 
     func handleTouchOnScanQRButton() {
-        let qrScannerSegue = QRScannerSegueBlock(sourceVC: view as! UIViewController, outputPresenter: self)
-        router.showQRScannerVC(segueBlock: qrScannerSegue)
+        if let viewController = view as? UIViewController {
+            let qrScannerSegue = QRScannerSegueBlock(sourceVC: viewController, outputPresenter: self)
+            router.showQRScannerVC(segueBlock: qrScannerSegue)
+        }
     }
 
     func showAlert(title: String, message: String) {
@@ -46,9 +48,11 @@ extension LoginPresenter: LoginViewOutput {
     }
 }
 
-// @MARK: LoginInteractorOutput
+// MARK: LoginInteractorOutput
 extension LoginPresenter: LoginInteractorOutput {
     func closeViewController() {
-        router.closeViewController(view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.closeViewController(viewController)
+        }
     }
 }

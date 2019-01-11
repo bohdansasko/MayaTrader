@@ -27,11 +27,15 @@ extension WatchlistPresenter: WatchlistViewOutput {
     }
 
     func showCurrenciesListVC() {
-        router.showCurrenciesListVC(senderVC: view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.showCurrenciesListVC(senderVC: viewController)
+        }
     }
 
     func handleTouchCell(watchlistCurrencyModel: WatchlistCurrency) {
-        router.showChartVC(senderVC: view as! UIViewController, currencyPairName: watchlistCurrencyModel.tickerPair.code)
+        if let viewController = view as? UIViewController {
+            router.showChartVC(senderVC: viewController, currencyPairName: watchlistCurrencyModel.tickerPair.code)
+        }
     }
 
     func itemsOrderUpdated(_ items: [WatchlistCurrency]) {

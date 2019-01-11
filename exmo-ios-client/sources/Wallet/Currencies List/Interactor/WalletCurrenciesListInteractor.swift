@@ -15,7 +15,7 @@ class WalletCurrenciesListInteractor {
     var dbManager: OperationsDatabaseProtocol!
 }
 
-// @MARK: IWalletNetworkWorkerDelegate
+// MARK: IWalletNetworkWorkerDelegate
 extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
     func viewIsReady() {
         walletNetworkWorker.delegate = self
@@ -32,7 +32,7 @@ extension WalletCurrenciesListInteractor: WalletCurrenciesListInteractorInput {
     }
 }
 
-// @MARK: IWalletNetworkWorkerDelegate
+// MARK: IWalletNetworkWorkerDelegate
 extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
     func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
         guard let cachedWallet = dbManager.object(type: ExmoUserObject.self, key: "")?.wallet else {

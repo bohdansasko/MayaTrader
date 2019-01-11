@@ -9,10 +9,10 @@ typealias VoidClosure = () -> Void
 typealias IntInVoidOutClosure = (Int) -> Void
 
 enum LinkOnSupportGroups: String {
-    case TelegramWebsite = "https://www.telegram.me/exmobile"
-    case TelegramApp = "tg://resolve?domain=exmobile"
-    case FacebookWebsite = "https://www.facebook.com/groups/exmobile"
-    case FacebookApp = "fb://profile/508928876181291"
+    case telegramWebsite = "https://www.telegram.me/exmobile"
+    case telegramApp = "tg://resolve?domain=exmobile"
+    case facebookWebsite = "https://www.facebook.com/groups/exmobile"
+    case facebookApp = "fb://profile/508928876181291"
 }
 
 class Defaults {
@@ -27,15 +27,15 @@ class Defaults {
     }
 
     static func getCountOpenedApp() -> Int {
-        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.APP_OPENED_COUNT.rawValue)
+        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.appOpenedCount.rawValue)
     }
 
     static func setCountAppOpened(_ count: Int) {
-        UserDefaults.standard.set(count, forKey: UserDefaultsKeys.APP_OPENED_COUNT.rawValue)
+        UserDefaults.standard.set(count, forKey: UserDefaultsKeys.appOpenedCount.rawValue)
     }
     
     static func savePasscode(_ passcode: String) {
-        UserDefaults.standard.set(passcode, forKey: UserDefaultsKeys.PASSCODE.rawValue)
+        UserDefaults.standard.set(passcode, forKey: UserDefaultsKeys.passcode.rawValue)
     }
 
     static func resetPasscode() {
@@ -43,7 +43,7 @@ class Defaults {
     }
 
     static func getPasscode() -> String {
-        return UserDefaults.standard.string(forKey: UserDefaultsKeys.PASSCODE.rawValue) ?? ""
+        return UserDefaults.standard.string(forKey: UserDefaultsKeys.passcode.rawValue) ?? ""
     }
     
     static func isPasscodeActive() -> Bool {
@@ -53,61 +53,40 @@ class Defaults {
 
 enum UserDefaultsKeys: String {
     case isLoggedIn
-    case APP_OPENED_COUNT
-    case AppStoreLink = "https://www.telegram.me/exmo_official"
-    case PASSCODE
+    case appOpenedCount
+    case appStoreLink = "https://www.telegram.me/exmo_official"
+    case passcode
+    case exmoId = "EXMO"
 }
 
 enum KeychainDefaultKeys: String {
-    case APNS_DEVICE_TOKEN
+    case apnsDeviceToken
 }
 
 enum AdvertisingValues: String {
-    case CONFIG_NAME = "GoogleService-Info"
-    case CONFIG_EXT = "plist"
-    case AD_UNIT_ID_FOR_BANNER_TEST
-    case ADMOB_APP_ID
-}
-
-enum DefaultStringValues: String {
-    case LastLoginedUID
-    case ExmoId = "EXMO"
+    case googleConfigPlist = "GoogleService-Info"
+    case googleConfigExt = "plist"
+    case adUnitIDForBannerTest
+    case admobAppID
 }
 
 struct FrequencyUpdateInSec {
-    static let Watchlist = 10.0
-    static let CurrenciesList = 10.0
-    static let CreateOrder = 15.0
-    static let SearchPair = 10.0
-}
-
-enum EntityNameKeys: String {
-    case UserEntity
-    case WalletEntity
-}
-
-enum UserEntityKeys: String {
-    case exmoIdentifier
-    case uid
-    case key
-    case secret
-    case balances
-}
-
-enum TableCellIdentifiers: String {
-    case WatchlistTableMenuViewCell
+    static let watchlist = 10.0
+    static let currenciesList = 10.0
+    static let createOrder = 15.0
+    static let searchPair = 10.0
 }
 
 enum OrderActionType: String {
-    case None
-    case Buy = "buy"
-    case Sell = "sell"
+    case none
+    case buy = "buy"
+    case sell = "sell"
 
     func capsDescription() -> String {
         switch self {
-        case .Buy: return "BUY"
-        case .Sell: return "SELL"
-        case .None: return "NONE"
+        case .buy: return "BUY"
+        case .sell: return "SELL"
+        case .none: return "NONE"
         }
     }
 }
@@ -146,6 +125,6 @@ struct ModelOrderViewCell {
 }
 
 enum AlertOperationType {
-    case Add
-    case Update
+    case add
+    case update
 }

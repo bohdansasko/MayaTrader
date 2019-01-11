@@ -36,13 +36,16 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
 
     func setCurrencyGroupName(_ currencyGroupName: String) {
         if currencyGroupName == "Altcoins" {
-            let allAvailableCurrencies = ["USD","EUR","RUB","PLN","TRY","UAH","BTC","LTC","DOGE","DASH","ETH","WAVES","ZEC","USDT","XMR","XRP","KICK","ETC","BCH","BTG","EOS","HBZ","BTCZ","DXT","STQ","XLM","MNX","OMG","TRX","ADA","INK","NEO","GAS","ZRX","GNT","GUSD","LSK","XEM"]
+            let allAvailableCurrencies = ["USD","EUR","RUB","PLN","TRY","UAH","BTC","LTC",
+                                          "DOGE","DASH","ETH","WAVES","ZEC","USDT","XMR","XRP","KICK","ETC","BCH","BTG",
+                                          "EOS","HBZ","BTCZ","DXT","STQ","XLM","MNX","OMG","TRX","ADA","INK","NEO","GAS",
+                                          "ZRX","GNT","GUSD","LSK","XEM"]
             let notAvailableGroupCurrencies = ["BTC", "ETH", "XRP", "LTC"]
             for currency in allAvailableCurrencies {
                 if notAvailableGroupCurrencies.contains(where: { $0 == currency }) {
                     continue
                 }
-                self.currencyGroupName = self.currencyGroupName + currency + ","
+                self.currencyGroupName += currency + ","
             }
         } else if currencyGroupName == "Fiat" {
             self.currencyGroupName = "EUR,USD,RUB,UAH,PLN,TRY"
@@ -68,7 +71,7 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
 
 extension CurrenciesListInteractor {
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CurrenciesList, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.currenciesList, repeats: true) {
             [weak self] _ in
             guard let strongSelf = self else { return }
             if !strongSelf.currencyGroupName.isEmpty {
@@ -127,8 +130,8 @@ extension CurrenciesListInteractor {
         }
 
         wobjPairs.removeAll(where: {
-            c in
-            return pairsForRemove.contains(where: { $0.tickerPair.code == c.tickerPair.code })
+            objCurrency in
+            return pairsForRemove.contains(where: { $0.tickerPair.code == objCurrency.tickerPair.code })
         })
 
         if !removePairsIds.isEmpty {

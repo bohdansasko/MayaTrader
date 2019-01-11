@@ -22,7 +22,7 @@ class PlaceholderNoDataView: UIView {
         label.textColor = .white
         label.text = "Text"
         label.numberOfLines = 0
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 20)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 20)
         return label
     }()
     

@@ -14,7 +14,7 @@ class WalletCurrenciesListPresenter {
     var router: WalletCurrenciesListRouterInput!
 }
 
-// @MARK: WalletCurrenciesListModuleInput
+// MARK: WalletCurrenciesListModuleInput
 extension WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput {
     func configure(wallet: ExmoWallet) {
         view.updateWallet(wallet)
@@ -22,7 +22,7 @@ extension WalletCurrenciesListPresenter: WalletCurrenciesListModuleInput {
 }
 
 
-// @MARK: WalletCurrenciesListViewOutput
+// MARK: WalletCurrenciesListViewOutput
 extension WalletCurrenciesListPresenter: WalletCurrenciesListViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
@@ -37,12 +37,14 @@ extension WalletCurrenciesListPresenter: WalletCurrenciesListViewOutput {
     }
     
     func handleTouchCloseVC() {
-        router.closeView(uiViewController: view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.closeView(uiViewController: viewController)
+        }
     }
 }
 
 
-// @MARK: WalletCurrenciesListInteractorOutput
+// MARK: WalletCurrenciesListInteractorOutput
 extension WalletCurrenciesListPresenter: WalletCurrenciesListInteractorOutput {
     func onDidLoadWallet(_ wallet: ExmoWallet) {
         view.updateWallet(wallet)

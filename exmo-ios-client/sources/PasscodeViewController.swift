@@ -19,22 +19,21 @@ class PasswordModuleConfigurator {
 
 class PasscodeViewController: ExmoUIViewController {
     enum PasscodeState {
-        case Lock
-        case ConfirmLock
-        case Unlock
+        case lock
+        case confirmLock
+        case unlock
         
         var description: String? {
             switch self {
-            case .Lock: return "To enable the Security please choose a 4-digit code"
-            case .ConfirmLock: return "Please confirm your 4-digit code"
-            case .Unlock: return "Enter EXMobile passcode"
+            case .lock: return "To enable the Security please choose a 4-digit code"
+            case .confirmLock: return "Please confirm your 4-digit code"
+            case .unlock: return "Enter EXMobile passcode"
             }
         }
     }
     
     var onClose: VoidClosure?
-    
-    var passcodeState = PasscodeState.Lock
+    var passcodeState = PasscodeState.lock
     var enteredPasscodeForLock: String?
     
     var buttonClose: UIButton = {
@@ -51,7 +50,7 @@ class PasscodeViewController: ExmoUIViewController {
         label.textColor = .white
         label.text = "To enable the Passcode please choose a 4-digit code"
         label.numberOfLines = 0
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         return label
     }()
     
@@ -60,7 +59,7 @@ class PasscodeViewController: ExmoUIViewController {
         return stackView
     }()
     
-    //MARK: Property
+    // MARK: Property
     var passwordContainerView: PasswordContainerView!
     let kPasswordDigit = 4
     
@@ -68,14 +67,14 @@ class PasscodeViewController: ExmoUIViewController {
         super.viewDidLoad()
         
         print("*️⃣ active passcode = \(Defaults.getPasscode())")
-        passcodeState = Defaults.isPasscodeActive() ? .Unlock : .Lock
+        passcodeState = Defaults.isPasscodeActive() ? .unlock : .lock
         setupViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if passcodeState == .Unlock {
+        if passcodeState == .unlock {
             passwordContainerView.touchAuthentication()
         }
     }
@@ -85,7 +84,8 @@ class PasscodeViewController: ExmoUIViewController {
         onClose?()
     }
     
-    @objc func onTouchButtonClose(_ sender : UIButton) {
+    @objc
+    func onTouchButtonClose(_ sender: UIButton) {
         close()
     }
 }
@@ -95,7 +95,7 @@ extension PasscodeViewController {
         titleNavBar = "Security"
         view.backgroundColor = .black
         
-        buttonClose.isHidden = passcodeState == .Unlock
+        buttonClose.isHidden = passcodeState == .unlock
         descriptionLabel.text = passcodeState.description
         
         setupCloseButton()
@@ -103,7 +103,17 @@ extension PasscodeViewController {
         setupPasswordView()
         
         view.addSubview(descriptionLabel)
-        descriptionLabel.anchor(view.layoutMarginsGuide.topAnchor, left: passwordStackView.leftAnchor, bottom: passwordStackView.topAnchor, right: passwordStackView.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 25, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        descriptionLabel.anchor(
+            view.layoutMarginsGuide.topAnchor,
+            left: passwordStackView.leftAnchor,
+            bottom: passwordStackView.topAnchor,
+            right: passwordStackView.rightAnchor,
+            topConstant: 0,
+            leftConstant: 0,
+            bottomConstant: 25,
+            rightConstant: 0,
+            widthConstant: 0,
+            heightConstant: 0)
     }
     
     private func setupCloseButton() {
@@ -134,11 +144,11 @@ extension PasscodeViewController {
             $0.borderColor = .lightGray
             $0.circleBackgroundColor = .black
             $0.highlightBackgroundColor = UIColor.white.withAlphaComponent(0.2)
-            $0.labelFont = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 26)
+            $0.labelFont = UIFont.getExo2Font(fontType: .semibold, fontSize: 26)
         }
         
         passwordContainerView.deleteButton.setTitleColor(.white, for: UIControl.State())
-        passwordContainerView.deleteButton.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 16)
+        passwordContainerView.deleteButton.titleLabel?.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 16)
     }
 }
 
@@ -146,26 +156,26 @@ extension PasscodeViewController: PasswordInputCompleteProtocol {
     func passwordInputComplete(_ passwordContainerView: PasswordContainerView, input: String) {
         if validation(input) {
             switch passcodeState {
-            case .Lock:
-                passcodeState = .ConfirmLock
+            case .lock:
+                passcodeState = .confirmLock
                 enteredPasscodeForLock = input
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     self.descriptionLabel.text = self.passcodeState.description
                     passwordContainerView.clearInput()
                 })
-            case .ConfirmLock, .Unlock:
+            case .confirmLock, .unlock:
                 validationSuccess()
             }
         } else {
             switch passcodeState {
-            case .ConfirmLock:
-                passcodeState = .Lock
+            case .confirmLock:
+                passcodeState = .lock
                 enteredPasscodeForLock = nil
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
                     self.descriptionLabel.text = self.passcodeState.description
                     passwordContainerView.clearInput()
                 })
-            case .Unlock:
+            case .unlock:
                 validationFail()
             default: break
             }
@@ -184,24 +194,26 @@ extension PasscodeViewController: PasswordInputCompleteProtocol {
 private extension PasscodeViewController {
     func validation(_ input: String) -> Bool {
         switch passcodeState {
-        case .Lock:
+        case .lock:
             return true
-        case .ConfirmLock:
+        case .confirmLock:
             guard let passcode = enteredPasscodeForLock else { return false }
             return input == passcode
-        case .Unlock:
+        case .unlock:
             return input == Defaults.getPasscode()
         }
     }
     
     func validationSuccess() {
-        if passcodeState == .ConfirmLock {
+        if passcodeState == .confirmLock {
             print("*️⃣ success! passcode = \(enteredPasscodeForLock ?? "")")
             Defaults.savePasscode(enteredPasscodeForLock!)
-            showAlert(title: "Security enabled!", message: "Now your passcode lock will be asked every time when you open EXMobile", closure: {
-                [weak self] in
-                self?.dismiss(animated: true, completion: nil)
-            })
+            showAlert(title: "Security enabled!",
+                      message: "Now your passcode lock will be asked every time when you open EXMobile",
+                      closure: { [weak self] in
+                        self?.dismiss(animated: true, completion: nil)
+                      }
+            )
         } else {
             dismiss(animated: true, completion: nil)
         }

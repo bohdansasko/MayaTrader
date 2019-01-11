@@ -60,18 +60,18 @@ extension WalletCurrenciesListView {
     }
     
     func invalidate() {
-        guard let w = wallet else { return }
+        guard let localWallet = wallet else { return }
 
         currencies.removeAll()
         
         var index = 0
-        if w.favBalances.count > 0 {
-            currencies[index] = w.favBalances
-            index = index + 1
+        if localWallet.favBalances.count > 0 {
+            currencies[index] = localWallet.favBalances
+            index += 1
         }
 
-        if w.dislikedBalances.count > 0 {
-            currencies[index] = w.dislikedBalances
+        if localWallet.dislikedBalances.count > 0 {
+            currencies[index] = localWallet.dislikedBalances
         }
         
         if !isSearching {
@@ -97,7 +97,7 @@ extension WalletCurrenciesListView {
     }
 }
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension WalletCurrenciesListView: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return isSearching ? 1 : currencies.count
@@ -113,8 +113,11 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let currency = currencies[indexPath.section]?[indexPath.item] else { return }
-        let wclCell = cell as! WalletCurrenciesListTableViewCell
+        guard let currency = currencies[indexPath.section]?[indexPath.item],
+              let wclCell = cell as? WalletCurrenciesListTableViewCell else {
+            return
+        }
+        
         wclCell.currency = currency
         wclCell.onSwitchValueCallback = {
             [weak self] currency in
@@ -129,7 +132,7 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         if sourceIndexPath.section >= currencies.count {
-            return;
+            return
         }
 
         guard let sourceItem = currencies[sourceIndexPath.section]?[sourceIndexPath.item] else {
@@ -143,15 +146,15 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
         currencies[destinationIndexPath.section]?.insert(sourceItem, at: destinationIndexPath.item)
         sourceItem.orderId = destinationIndexPath.row
         
-        if let c = currencies[0]?.count {
-            if c == 0 {
+        if let countCurrencies = currencies[0]?.count {
+            if countCurrencies == 0 {
                 currencies[0] = currencies[1]
                 currencies.removeValue(forKey: 1)
             }
         }
         
-        if let c = currencies[1]?.count {
-            if c == 0 {
+        if let countCurrencies = currencies[1]?.count {
+            if countCurrencies == 0 {
                 currencies.removeValue(forKey: 1)
             }
         }
@@ -161,7 +164,7 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension WalletCurrenciesListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var title = ""
@@ -190,7 +193,7 @@ extension WalletCurrenciesListView: UITableViewDelegate  {
     }
 }
 
-// @MARK: UITableViewDragDelegate
+// MARK: UITableViewDragDelegate
 extension WalletCurrenciesListView: UITableViewDragDelegate {
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard let item = currencies[indexPath.section]?[indexPath.row] else { return [] }
@@ -208,7 +211,7 @@ extension WalletCurrenciesListView: UITableViewDragDelegate {
     }
 }
 
-// @MARK: UITableViewDropDelegate
+// MARK: UITableViewDropDelegate
 extension WalletCurrenciesListView: UITableViewDropDelegate {
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
         // do something

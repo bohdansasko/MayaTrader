@@ -7,121 +7,121 @@ import Foundation
 import UIKit
 
 enum MenuSectionType: Int {
-    case Account
-    case Purchase
-    case ContactWithUs
-    case About
+    case account
+    case purchase
+    case contactWithUs
+    case about
 
     var header: String? {
         switch self {
-        case .Account: return "Account"
-        case .Purchase: return "Purchases"
-        case .ContactWithUs: return "Contact with us"
-        case .About: return "About"
+        case .account: return "Account"
+        case .purchase: return "Purchases"
+        case .contactWithUs: return "Contact with us"
+        case .about: return "About"
         }
     }
 
     static func getGuestUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
         return [
-        .Account : [
-            .Login,
-            .Security
+        .account : [
+            .login,
+            .security
         ],
-        .Purchase : [
-            .ProFeatures,
-            .Advertisement,
+        .purchase : [
+            .proFeatures,
+            .advertisement,
         ],
-        .ContactWithUs : [
-            .Facebook,
-            .Telegram,
+        .contactWithUs : [
+            .facebook,
+            .telegram,
         ],
-        .About : [
-            .RateUs,
-            .ShareApp,
-            .AppVersion
+        .about : [
+            .rateUs,
+            .shareApp,
+            .appVersion
         ]]
     }
 
     static func getLoginedUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
         return [
-        .Account : [
-            .Logout,
-            .Security
+        .account : [
+            .logout,
+            .security
         ],
-        .Purchase : [
-            .ProFeatures,
-            .Advertisement,
+        .purchase : [
+            .proFeatures,
+            .advertisement,
         ],
-        .ContactWithUs : [
-            .Facebook,
-            .Telegram,
+        .contactWithUs : [
+            .facebook,
+            .telegram,
         ],
-        .About : [
-            .RateUs,
-            .ShareApp,
-            .AppVersion
+        .about : [
+            .rateUs,
+            .shareApp,
+            .appVersion
         ]]
     }
 }
 
 enum MenuCellType {
-    case None
+    case none
 
-    case Login
-    case Logout
+    case login
+    case logout
 
-    case ProFeatures
-    case Advertisement
+    case proFeatures
+    case advertisement
 
-    case Security
+    case security
 
-    case Telegram
-    case Facebook
+    case telegram
+    case facebook
 
-    case RateUs
-    case ShareApp
-    case AppVersion
+    case rateUs
+    case shareApp
+    case appVersion
 
     
     var title: String? {
         switch self {
-        case .None: return ""
+        case .none: return ""
 
-        case .Login: return "Login"
-        case .Logout: return "Logout"
+        case .login: return "Login"
+        case .logout: return "Logout"
 
-        case .ProFeatures: return "Pro features"
-        case .Advertisement: return "Remove Ads"
+        case .proFeatures: return "Pro features"
+        case .advertisement: return "Remove Ads"
 
-        case .Security: return "Security"
+        case .security: return "Security"
 
-        case .Telegram: return "Telegram"
-        case .Facebook: return "Facebook"
+        case .telegram: return "Telegram"
+        case .facebook: return "Facebook"
 
-        case .RateUs: return "Rate us"
-        case .ShareApp: return "Share app"
-        case .AppVersion: return "App version"
+        case .rateUs: return "Rate us"
+        case .shareApp: return "Share app"
+        case .appVersion: return "App version"
         }
     }
     
     var icon: UIImage? {
         switch self {
-        case .None: return nil
+        case .none: return nil
 
-        case .Login: return UIImage(named: "icMenuLogin")
-        case .Logout: return UIImage(named: "icMenuLogout")
+        case .login: return UIImage(named: "icMenuLogin")
+        case .logout: return UIImage(named: "icMenuLogout")
 
-        case .ProFeatures: return UIImage(named: "icProFeatures")
-        case .Advertisement: return UIImage(named: "icAds")
+        case .proFeatures: return UIImage(named: "icProFeatures")
+        case .advertisement: return UIImage(named: "icAds")
 
-        case .Security: return UIImage(named: "icTouchId")
+        case .security: return UIImage(named: "icTouchId")
 
-        case .Telegram: return UIImage(named: "icTelegram")
-        case .Facebook: return UIImage(named: "icFacebook")
+        case .telegram: return UIImage(named: "icTelegram")
+        case .facebook: return UIImage(named: "icFacebook")
 
-        case .RateUs: return UIImage(named: "icStar")
-        case .ShareApp: return UIImage(named: "icShare")
-        case .AppVersion: return UIImage(named: "icMenuAppversion")
+        case .rateUs: return UIImage(named: "icStar")
+        case .shareApp: return UIImage(named: "icShare")
+        case .appVersion: return UIImage(named: "icMenuAppversion")
         }
     }
 }

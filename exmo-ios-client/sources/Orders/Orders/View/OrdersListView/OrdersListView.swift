@@ -43,7 +43,7 @@ class OrdersListView: UIView {
     weak var presenter: OrdersViewOutput!
     var dataProvider: Orders!
     var tableViewCells: [Int64 : IndexPath] = [:]
-    var displayOrderType: Orders.DisplayType = .None {
+    var displayOrderType: Orders.DisplayType = .none {
         didSet {
             showDataBySegment(displayOrderType: displayOrderType)
         }
@@ -52,13 +52,13 @@ class OrdersListView: UIView {
     var shouldUseActions: Bool = false
     
     var openedOrders: Orders? {
-        didSet { displayOrderType = .Open }
+        didSet { displayOrderType = .open }
     }
     var canceledOrders: Orders? {
-        didSet { displayOrderType = .Canceled }
+        didSet { displayOrderType = .canceled }
     }
     var dealsOrders: Orders? {
-        didSet { displayOrderType = .Deals }
+        didSet { displayOrderType = .deals }
     }
 
     override init(frame: CGRect) {
@@ -82,15 +82,15 @@ class OrdersListView: UIView {
             return
         }
         dataProvider = data
-        shouldUseActions = displayOrderType == .Open
+        shouldUseActions = displayOrderType == .open
         updateTableUI()
     }
 
     // MARK: private methods
     private func getDataBySegmentIndex(displayOrderType: Orders.DisplayType) -> Orders? {
         switch displayOrderType {
-            case .Open: return openedOrders
-            case .Canceled: return canceledOrders
+            case .open: return openedOrders
+            case .canceled: return canceledOrders
             default: return dealsOrders
         }
     }
@@ -119,7 +119,7 @@ extension OrdersListView {
 
     private func setupPlaceholderNoData() {
         self.addSubview(placeholderNoData)
-        let topOffset: CGFloat = AppDelegate.isIPhone(model: .Five) ? -5 : 50
+        let topOffset: CGFloat = AppDelegate.isIPhone(model: .five) ? -5 : 50
         placeholderNoData.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
     }
     
@@ -150,10 +150,10 @@ extension OrdersListView {
     }
 }
 
-// @MARK: help operations for orders
+// MARK: help operations for orders
 extension OrdersListView {
     func appendOpenOrder(orderModel: OrderModel) {
-        if (displayOrderType == .Open) {
+        if (displayOrderType == .open) {
             print("OrdersListView => empty method - appendOpenOrder")
 //            openedOrders = AppDelegate.session.getOpenOrders()
 //            dataProvider.append(orderModel: orderModel)
@@ -170,12 +170,12 @@ extension OrdersListView {
 
     func deleteAllOrdersOnBuy() {
         print("delete all orders on buy")
-        deleteAllOrdersOn(deleteOrderType: .Buy)
+        deleteAllOrdersOn(deleteOrderType: .buy)
     }
 
     func deleteAllOrdersOnSell() {
         print("delete all orders on sell")
-        deleteAllOrdersOn(deleteOrderType: .Sell)
+        deleteAllOrdersOn(deleteOrderType: .sell)
     }
 
     private func deleteAllOrdersOn(deleteOrderType: OrderActionType) {
@@ -220,17 +220,17 @@ extension OrdersListView {
     }
 }
 
-// @MARK: placeholder
+// MARK: placeholder
 extension OrdersListView {
     func showPlaceholderNoData() {
-        placeholderNoData.isHidden = displayOrderType == .Open
+        placeholderNoData.isHidden = displayOrderType == .open
         switch displayOrderType {
-        case .Open:
+        case .open:
             tutorialImg.show()
             placeholderNoData.text = nil
-        case .Canceled:
+        case .canceled:
             placeholderNoData.text = "You haven't canceled orders right now"
-        case .Deals:
+        case .deals:
             placeholderNoData.text = "You haven't deals orders right now"
         default: break
         }

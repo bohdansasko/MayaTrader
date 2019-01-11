@@ -16,7 +16,7 @@ class LoginInteractor  {
     var dbManager: OperationsDatabaseProtocol!
 }
 
-// @MARK: LoginInteractorInput
+// MARK: LoginInteractorInput
 extension LoginInteractor: LoginInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
@@ -31,7 +31,7 @@ extension LoginInteractor: LoginInteractorInput {
     }
 }
 
-// @MARK: ILoginNetworkWorkerDelegate
+// MARK: ILoginNetworkWorkerDelegate
 extension LoginInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserSuccessful(user: ExmoUser) {
         dbManager.add(data: user.managedObject(), update: true)

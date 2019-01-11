@@ -13,7 +13,7 @@ class WalletPresenter: WalletModuleInput {
     var router: WalletRouterInput!
 }
 
-// @MARK: WalletViewOutput
+// MARK: WalletViewOutput
 extension WalletPresenter: WalletViewOutput {
     func viewDidLoad() {
         interactor.viewDidLoad()
@@ -24,11 +24,13 @@ extension WalletPresenter: WalletViewOutput {
     }
     
     func openCurrencyListVC() {
-        router.openCurrencyListVC(sourceVC: view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.openCurrencyListVC(sourceVC: viewController)
+        }
     }
 }
 
-// @MARK: WalletViewOutput
+// MARK: WalletViewOutput
 extension WalletPresenter: WalletInteractorOutput {
     func onDidLoadWallet(_ wallet: ExmoWallet) {
         view.updateWallet(wallet)

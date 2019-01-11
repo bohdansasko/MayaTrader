@@ -13,25 +13,25 @@ import ObjectMapper
 import CommonCrypto
 
 struct ConnectionConfig {
-    static let SITE_URL = "exmo.me"
-    static let API_URL = "https://api.\(SITE_URL)/v1/"
-    static var API_KEY = "your_key"
-    static var API_SECRET = "your_secret"
-    static var NONCE = "Nonce"
+    static let exmoUrl = "exmo.me"
+    static let apiUrl = "https://api.\(exmoUrl)/v1/"
+    static var apiKey = "your_key"
+    static var apiSecret = "your_secret"
+    static var nonce = "Nonce"
 }
 
 enum MethodId: String {
-    case UserInfo = "user_info"
-    case OpenOrders = "user_open_orders"
-    case CancelledOrders = "user_cancelled_orders"
-    case UserTrades = "user_trades"
-    case OrderCreate = "order_create"
-    case OrderCancel = "order_cancel"
-    case Ticker = "ticker"
-    case PairSettings = "pair_settings"
+    case userInfo = "user_info"
+    case openOrders = "user_open_orders"
+    case cancelledOrders = "user_cancelled_orders"
+    case userTrades = "user_trades"
+    case orderCreate = "order_create"
+    case orderCancel = "order_cancel"
+    case ticker = "ticker"
+    case pairSettings = "pair_settings"
 }
 
-// @MARK: public requests
+// MARK: public requests
 protocol ExmoPublicApiRequests {
     func getPublicRequest(method: String) -> URLRequest
     func getTickerRequest() -> URLRequest
@@ -64,10 +64,10 @@ public class ExmoApiRequestBuilder: IApiRequestBuilder {
     
     var nonce: Int {
         get {
-            let value = UserDefaults.standard.integer(forKey: ConnectionConfig.NONCE)
+            let value = UserDefaults.standard.integer(forKey: ConnectionConfig.nonce)
             return value == 0 ? calculateInitialNonce() : value
         }
-        set { UserDefaults.standard.set(newValue, forKey: ConnectionConfig.NONCE) }
+        set { UserDefaults.standard.set(newValue, forKey: ConnectionConfig.nonce) }
     }
     
     private init() {
@@ -75,10 +75,10 @@ public class ExmoApiRequestBuilder: IApiRequestBuilder {
     }
 }
 
-// @MARK: public API methods
+// MARK: public API methods
 extension ExmoApiRequestBuilder {
     func getPublicRequest(method: String) -> URLRequest {
-        let apiUrl = URL(string: ConnectionConfig.API_URL + method)!
+        let apiUrl = URL(string: ConnectionConfig.apiUrl + method)!
         
         var request = URLRequest(url: apiUrl)
         request.httpMethod = HTTPMethod.post.rawValue
@@ -87,26 +87,26 @@ extension ExmoApiRequestBuilder {
     }
     
     func getTickerRequest() -> URLRequest {
-        let apiUrl = URL(string: "https://\(ConnectionConfig.SITE_URL)/ctrl/ticker")!
+        let apiUrl = URL(string: "https://\(ConnectionConfig.exmoUrl)/ctrl/ticker")!
         var request = URLRequest(url: apiUrl)
         request.httpMethod = HTTPMethod.post.rawValue
         return request
     }
     
     func getCurrencyPairSettingsRequest() -> URLRequest {
-        return getPublicRequest(method: MethodId.PairSettings.rawValue)
+        return getPublicRequest(method: MethodId.pairSettings.rawValue)
     }
 }
 
-// @MARK: Authenticated API methods
+// MARK: Authenticated API methods
 extension ExmoApiRequestBuilder {
     func clearAuthorizationData() {
         setAuthorizationData(apiKey: "", secretKey: "")
     }
     
     func setAuthorizationData(apiKey: String, secretKey: String) {
-        ConnectionConfig.API_KEY = apiKey
-        ConnectionConfig.API_SECRET = secretKey
+        ConnectionConfig.apiKey = apiKey
+        ConnectionConfig.apiSecret = secretKey
     }
     
     func getAuthenticatedRequest(postDictionary: [String: Any], method: String) -> URLRequest {
@@ -124,13 +124,13 @@ extension ExmoApiRequestBuilder {
         nonce += 1
         print(post)
         
-        let apiUrl = URL(string: ConnectionConfig.API_URL + method)!
+        let apiUrl = URL(string: ConnectionConfig.apiUrl + method)!
         let requestBodyData = post.data(using: .utf8)
-        let signedPost = hmacForKeyAndData(key: ConnectionConfig.API_SECRET, data: post)
+        let signedPost = hmacForKeyAndData(key: ConnectionConfig.apiSecret, data: post)
         
         var request = URLRequest(url: apiUrl)
         request.httpMethod = HTTPMethod.post.rawValue
-        request.setValue(ConnectionConfig.API_KEY, forHTTPHeaderField: "Key")
+        request.setValue(ConnectionConfig.apiKey, forHTTPHeaderField: "Key")
         request.setValue(signedPost, forHTTPHeaderField: "Sign")
         request.httpBody = requestBodyData
         
@@ -154,8 +154,8 @@ extension ExmoApiRequestBuilder {
         print("CCHmac")
         CCHmac(CCHmacAlgorithm(kCCHmacAlgSHA512), cKey, Int(key.count), cData, Int(data.count), result)
         let hashString =  NSMutableString(capacity: Int(CC_SHA512_DIGEST_LENGTH))
-        for i in 0..<digestLen {
-            hashString.appendFormat("%02x", result[i])
+        for idx in 0..<digestLen {
+            hashString.appendFormat("%02x", result[idx])
         }
         return hashString as String
     }
@@ -163,11 +163,11 @@ extension ExmoApiRequestBuilder {
     func getUserInfoRequest() -> URLRequest {
         let post: [String: Any] = [:]
         
-        return getAuthenticatedRequest(postDictionary: post, method: MethodId.UserInfo.rawValue)
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.userInfo.rawValue)
     }
     
     func getOpenOrdersRequest() -> URLRequest {
-        return getAuthenticatedRequest(postDictionary: [:], method: MethodId.OpenOrders.rawValue)
+        return getAuthenticatedRequest(postDictionary: [:], method: MethodId.openOrders.rawValue)
     }
     
     func getCanceledOrdersRequest(limit: Int, offset: Int) -> URLRequest {
@@ -175,7 +175,7 @@ extension ExmoApiRequestBuilder {
         post["limit"] = limit
         post["offset"] = offset
         
-        return getAuthenticatedRequest(postDictionary: post, method: MethodId.CancelledOrders.rawValue)
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.cancelledOrders.rawValue)
     }
     
     func getUserTradesRequest(limit: Int = 100, offset: Int = 0, pairs: String = "") -> URLRequest {
@@ -184,7 +184,7 @@ extension ExmoApiRequestBuilder {
         post["limit"] = limit
         post["offset"] = offset
         
-        return getAuthenticatedRequest(postDictionary: post, method: MethodId.UserTrades.rawValue)
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.userTrades.rawValue)
     }
     
     func getCreateOrderRequest(pair: String, quantity: Double, price: Double, type: String) -> URLRequest {
@@ -194,14 +194,14 @@ extension ExmoApiRequestBuilder {
         post["price"] = price
         post["type"] = type
         
-        return getAuthenticatedRequest(postDictionary: post, method: MethodId.OrderCreate.rawValue)
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.orderCreate.rawValue)
     }
 
     func getCancelOrderRequest(id: Int64) -> URLRequest {
         var post: [String: Any] = [:]
         post["order_id"] = id
 
-        return getAuthenticatedRequest(postDictionary: post, method: MethodId.OrderCancel.rawValue)
+        return getAuthenticatedRequest(postDictionary: post, method: MethodId.orderCancel.rawValue)
     }
 }
 

@@ -14,7 +14,7 @@ class CreateOrderPresenter  {
     var router: CreateOrderRouterInput!
 }
 
-// @MARK: CreateOrderViewOutput
+// MARK: CreateOrderViewOutput
 extension CreateOrderPresenter: CreateOrderViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
@@ -33,15 +33,19 @@ extension CreateOrderPresenter: CreateOrderViewOutput {
     }
 
     func handleTouchOnCancelButton() {
-        router.closeView(view: view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.closeView(view: viewController)
+        }
     }
 
     func openCurrencySearchVC() {
-        router.openCurrencySearchVC(view as! UIViewController, moduleOutput: self)
+        if let viewController = view as? UIViewController {
+            router.openCurrencySearchVC(viewController, moduleOutput: self)
+        }
     }
 }
 
-// @MARK: CreateOrderInteractorOutput
+// MARK: CreateOrderInteractorOutput
 extension CreateOrderPresenter: CreateOrderInteractorOutput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         self.view.updateSelectedCurrency(tickerCurrencyPair)
@@ -64,7 +68,7 @@ extension CreateOrderPresenter: CreateOrderInteractorOutput {
     }
 }
 
-// @MARK: CreateOrderInteractorOutput
+// MARK: CreateOrderInteractorOutput
 extension CreateOrderPresenter: SearchModuleOutput {
     func onDidSelectCurrencyPair(rawName: String) {
         print("was selected currency with id = \(rawName)")

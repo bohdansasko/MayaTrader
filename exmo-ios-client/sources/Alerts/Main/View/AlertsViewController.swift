@@ -10,9 +10,9 @@ import UIKit
 import GoogleMobileAds
 
 enum AlertsDeleteAction: Int {
-    case Active
-    case Inactive
-    case All
+    case active
+    case inactive
+    case all
 }
 
 class AlertsViewController: ExmoUIViewController {
@@ -67,14 +67,14 @@ class AlertsViewController: ExmoUIViewController {
 
         var alertsForRemove = [Alert]()
         switch (action) {
-        case AlertsDeleteAction.All:
+        case AlertsDeleteAction.all:
             alertsForRemove = listView.alerts.items
             print("Alerts => delete all")
-        case AlertsDeleteAction.Active:
-            alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.Active })
+        case AlertsDeleteAction.active:
+            alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.active })
             print("Alerts => delete Active")
-        case AlertsDeleteAction.Inactive:
-            alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.Inactive })
+        case AlertsDeleteAction.inactive:
+            alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.inactive })
             print("Alerts => delete Inactive")
         }
 
@@ -126,7 +126,11 @@ extension AlertsViewController {
     
     private func setupListView() {
         view.addSubview(listView)
-        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                        bottom: view.bottomAnchor, right: view.rightAnchor,
+                        topConstant: 10, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
     }
     
     func setupBannerView() {
@@ -138,16 +142,20 @@ extension AlertsViewController {
     
     func addBannerToView(_ bannerView: GADBannerView) {
         view.addSubview(bannerView)
-        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor,
+                          bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor,
+                          topConstant: 0, leftConstant: 0,
+                          bottomConstant: 0, rightConstant: 0,
+                          widthConstant: 0, heightConstant: 0)
     }
 
 }
 
-// @MARK: GADBannerViewDelegate
+// MARK: GADBannerViewDelegate
 extension AlertsViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceiveAd")
-        if let _ = bannerView.superview {
+        if bannerView.superview != nil {
             bannerView.alpha = 0
             UIView.animate(withDuration: 1) {
                 bannerView.alpha = 1

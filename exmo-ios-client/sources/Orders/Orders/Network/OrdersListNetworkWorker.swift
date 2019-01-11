@@ -27,7 +27,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
             guard let strongSelf = self else { return }
             switch response.result {
             case .success(_):
-                strongSelf.delegate?.onDidLoadSuccessOpenOrders(orders: strongSelf.parseResponseIntoModel(response, .Open))
+                strongSelf.delegate?.onDidLoadSuccessOpenOrders(orders: strongSelf.parseResponseIntoModel(response, .open))
             case .failure(_):
                 strongSelf.delegate?.onDidLoadFailsOpenOrders(orders: Orders())
             }
@@ -41,7 +41,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
             guard let strongSelf = self else { return }
             switch response.result {
             case .success(_):
-                strongSelf.delegate?.onDidLoadSuccessCanceledOrders(orders: strongSelf.parseResponseIntoModel(response, .Canceled))
+                strongSelf.delegate?.onDidLoadSuccessCanceledOrders(orders: strongSelf.parseResponseIntoModel(response, .canceled))
             case .failure(_):
                 strongSelf.delegate?.onDidLoadFailsCanceledOrders(orders: Orders())
             }
@@ -77,7 +77,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
                 guard let strongSelf = self else { return }
                 switch response.result {
                 case .success(_):
-                    strongSelf.delegate?.onDidLoadSuccessDeals(orders: strongSelf.parseResponseIntoModel(response, .Deals))
+                    strongSelf.delegate?.onDidLoadSuccessDeals(orders: strongSelf.parseResponseIntoModel(response, .deals))
                 case .failure(_):
                     strongSelf.delegate?.onDidLoadFailsDeals(orders: Orders())
                 }
@@ -141,8 +141,8 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
 
     private func parseResponseIntoModel(_ response: DataResponse<Any>, _ displayOrderType: Orders.DisplayType) -> Orders {
         do {
-            guard let d = response.data else { return Orders() }
-            let json = try JSON(data: d)
+            guard let responseData = response.data else { return Orders() }
+            let json = try JSON(data: responseData)
             return Orders(json: json, displayType: displayOrderType)
         } catch {
             return Orders()

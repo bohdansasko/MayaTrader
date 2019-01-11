@@ -11,9 +11,9 @@ import GoogleMobileAds
 
 class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     fileprivate enum OrderAdditionalAction : Int {
-        case DeleteAll
-        case DeleteAllOnBuy
-        case DeleteAllOnSell
+        case deleteAll
+        case deleteAllOnBuy
+        case deleteAllOnSell
     }
 
     // MARK: Outlets
@@ -45,7 +45,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         sc.tintColor = .dodgerBlue
         sc.selectedSegmentIndex = 0
         sc.setTitleTextAttributes([
-                NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 13),
+                NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .regular, fontSize: 13),
             ],
             for: .normal
         )
@@ -71,13 +71,13 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         print("onSelectedDeleteAction: \(actionIndex)")
         isCancellingOrdersActive = true
         switch (actionIndex) {
-        case OrderAdditionalAction.DeleteAll.rawValue:
+        case OrderAdditionalAction.deleteAll.rawValue:
             ordersListView.deleteAllOrders()
             break
-        case OrderAdditionalAction.DeleteAllOnBuy.rawValue:
+        case OrderAdditionalAction.deleteAllOnBuy.rawValue:
             ordersListView.deleteAllOrdersOnBuy()
             break
-        case OrderAdditionalAction.DeleteAllOnSell.rawValue:
+        case OrderAdditionalAction.deleteAllOnSell.rawValue:
             ordersListView.deleteAllOrdersOnSell()
             break
         default:
@@ -86,7 +86,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     }
 }
 
-// @MARK: setup UI
+// MARK: setup UI
 extension OrdersViewController {
     func setupViews() {
         setupNavigationBar()
@@ -172,9 +172,9 @@ extension OrdersViewController {
 
         for (orderType, orders) in loadedOrders {
             switch orderType {
-            case .Open    : ordersListView.openedOrders = orders
-            case .Canceled: ordersListView.canceledOrders = orders
-            case .Deals   : ordersListView.dealsOrders = orders
+            case .open    : ordersListView.openedOrders = orders
+            case .canceled: ordersListView.canceledOrders = orders
+            case .deals   : ordersListView.dealsOrders = orders
             default: break
             }
         }
@@ -188,7 +188,7 @@ extension OrdersViewController {
     }
 }
 
-// @MARK: GADBannerViewDelegate
+// MARK: GADBannerViewDelegate
 extension OrdersViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("Orders: adViewDidReceiveAd")

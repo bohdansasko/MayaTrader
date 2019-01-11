@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 //
-// @MARK: CandleBarChartShortInfoView
+// MARK: CandleBarChartShortInfoView
 //
 class CandleBarChartShortInfoView : UIView {
     @IBOutlet weak var labelOpen : UILabel!
@@ -42,13 +42,13 @@ class CandleBarChartShortInfoView : UIView {
     
     var date: Date? = nil {
         didSet {
-            guard let d = self.date else {
+            guard let lDate = self.date else {
                 return
             }
             
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "dd.MM.yyyy HH:mm:ss a"
-            self.labelDate.text = dateFormatter.string(from: d)
+            self.labelDate.text = dateFormatter.string(from: lDate)
         }
     }
 }

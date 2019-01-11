@@ -15,6 +15,9 @@ extension UIView {
         let components = type(of: self).description().components(separatedBy: ".")
         let nibName = components.last!
         let nib = UINib(nibName: nibName, bundle: bundle)
-        return nib.instantiate(withOwner: self, options: nil).first as! UIView
+        guard let nibView = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
+            return UIView()
+        }
+        return nibView
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 //
-// @MARK: BarChartViewController
+// MARK: BarChartViewController
 //
 
 class ExmoChartViewController {
@@ -74,7 +74,7 @@ class BarChartViewController: ExmoChartViewController {
         chartView.xAxis.gridColor = UIColor.clear
         chartView.rightAxis.zeroLineColor = UIColor.clear
         chartView.rightAxis.gridColor = UIColor.clear
-        chartView.rightAxis.labelFont = UIFont.getExo2Font(fontType: .Medium, fontSize: 10)
+        chartView.rightAxis.labelFont = UIFont.getExo2Font(fontType: .medium, fontSize: 10)
         chartView.rightAxis.labelTextColor = UIColor.white
         chartView.chartDescription?.enabled = false
         

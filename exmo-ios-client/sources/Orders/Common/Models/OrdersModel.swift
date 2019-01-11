@@ -12,27 +12,27 @@ import SwiftyJSON
 class Orders {
     // MARK: user types
     enum DisplayType: Int {
-        case None = -1
-        case Open = 0
-        case Canceled
-        case Deals
+        case none = -1
+        case open = 0
+        case canceled
+        case deals
     }
     
     private var orders: [OrderModel]
-    private(set) var displayType: DisplayType = .None
+    private(set) var displayType: DisplayType = .none
     
     init() {
         self.orders = []
     }
     
-    convenience init(json: JSON, displayType: DisplayType = .None) {
+    convenience init(json: JSON, displayType: DisplayType = .none) {
         self.init()
         self.displayType = displayType
         self.parseJSON(json: json)
     }
     
     private func parseJSON(json: JSON) {
-        if displayType == .None {
+        if displayType == .none {
             print("order display type == none")
             return
         }
@@ -50,9 +50,9 @@ class Orders {
         }
 
         if let ordersDictionary = json.dictionary {
-            let idKey = displayType == .Deals ? "trade_id" : "order_id"
-            let orderTypeKey = displayType == .Canceled ? "order_type" : "type"
-            let dateKey = displayType == .Open ? "created" : "date"
+            let idKey = displayType == .deals ? "trade_id" : "order_id"
+            let orderTypeKey = displayType == .canceled ? "order_type" : "type"
+            let dateKey = displayType == .open ? "created" : "date"
 
             for (_, orders) in ordersDictionary {
                 for order in orders.arrayValue {
@@ -66,12 +66,12 @@ class Orders {
                           let price = map["price"]?.doubleValue,
                           let quantity = map["quantity"]?.doubleValue,
                           let amount = map["amount"]?.doubleValue,
-                          let orderType: OrderActionType = map[orderTypeKey]?.stringValue == OrderActionType.Sell.rawValue
-                            ? OrderActionType.Sell
-                            : map[orderTypeKey]?.stringValue == OrderActionType.Buy.rawValue
-                                ? OrderActionType.Buy
-                                : OrderActionType.None,
-                        orderType != .None
+                          let orderType: OrderActionType = map[orderTypeKey]?.stringValue == OrderActionType.sell.rawValue
+                            ? OrderActionType.sell
+                            : map[orderTypeKey]?.stringValue == OrderActionType.buy.rawValue
+                                ? OrderActionType.buy
+                                : OrderActionType.none,
+                        orderType != .none
                     else {
                         continue
                     }

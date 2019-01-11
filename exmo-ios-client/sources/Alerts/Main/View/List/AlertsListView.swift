@@ -10,9 +10,9 @@ import UIKit
 
 class AlertsListView: UIView {
     enum ActionType {
-        case State
-        case Edit
-        case Delete
+        case state
+        case edit
+        case delete
     }
 
     weak var presenter: AlertsViewOutput!
@@ -63,7 +63,7 @@ class AlertsListView: UIView {
     }
 }
 
-// @MARK: append/update/delete cell
+// MARK: append/update/delete cell
 extension AlertsListView {
     func appendAlert(alertItem: Alert) {
         alerts.append(alertItem: alertItem)
@@ -77,7 +77,7 @@ extension AlertsListView {
 
         if index > -1 && index < cellActions.count {
             if let actionContainer = cellActions[index] {
-                actionContainer[ActionType.State]?.image = alerts.getStatus(forItem: index) == .Active
+                actionContainer[ActionType.state]?.image = alerts.getStatus(forItem: index) == .active
                         ? #imageLiteral(resourceName:"icPause")
                         : #imageLiteral(resourceName:"icPlay")
             }
@@ -107,7 +107,7 @@ extension AlertsListView {
     }
 }
 
-// @MARK: manage cell actions
+// MARK: manage cell actions
 extension AlertsListView {
     func handleStateAction(elementIndex: Int) {
         alerts.reverseStatus(index: elementIndex)
@@ -135,7 +135,7 @@ extension AlertsListView {
     }
 }
 
-// @MARK: setup views
+// MARK: setup views
 extension AlertsListView {
     func setupTutorialImg() {
         self.addSubview(tutorialImg)

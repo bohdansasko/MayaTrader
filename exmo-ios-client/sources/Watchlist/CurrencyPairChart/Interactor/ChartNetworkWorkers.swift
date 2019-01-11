@@ -15,7 +15,7 @@ class DefaultCandleChartNetworkWorker: BaseAPICandleChartNetworkWorker {
     var onHandleResponseSuccesfull: ((Any) -> Void)?
     
     func loadCurrencyPairChartHistory(currencyPair: String, period: String) {
-        Alamofire.request("https://\(ConnectionConfig.SITE_URL)/ctrl/chartMain?type=undefined&period=\(period)&para=\(currencyPair)").responseJSON {
+        Alamofire.request("https://\(ConnectionConfig.exmoUrl)/ctrl/chartMain?type=undefined&period=\(period)&para=\(currencyPair)").responseJSON {
             [weak self] response in
             self?.handleResponse(response: response)
         }
@@ -26,7 +26,7 @@ class ProfessionalCandleChartNetworkWorker: NetworkWorker {
     var onHandleResponseSuccesfull: ((Any) -> Void)? = nil
     
     func loadCurrencyPairChartHistory(currencyPair: String, period: String) {
-        Alamofire.request("https://\(ConnectionConfig.SITE_URL)/ctrl/chart/history?symbol=\(currencyPair)&resolution=D&from=1533848754&to=1536440814").responseJSON {
+        Alamofire.request("https://\(ConnectionConfig.exmoUrl)/ctrl/chart/history?symbol=\(currencyPair)&resolution=D&from=1533848754&to=1536440814").responseJSON {
             [weak self] response in
             self?.handleResponse(response: response)
         }

@@ -15,11 +15,11 @@ import UserNotifications
 import KeychainSwift
 
 enum IPhoneModel: Int {
-    case None = 0
-    case Five
-    case SixOrSevenEight
-    case SixSevenEightPlus
-    case X
+    case none = 0
+    case five
+    case sixOrSevenEight
+    case sixSevenEightPlus
+    case x
 }
 
 @UIApplicationMain
@@ -67,20 +67,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        AppDelegate.dbController.saveContext()
     }
 }
 
-// @MARK: handle connection to Vinso Server
+// MARK: handle connection to Vinso Server
 extension AppDelegate: VinsoAPIConnectionDelegate  {
     func onDidLogin() {
-        if let apnsDeviceToken = KeychainSwift().get(KeychainDefaultKeys.APNS_DEVICE_TOKEN.rawValue) {
+        if let apnsDeviceToken = KeychainSwift().get(KeychainDefaultKeys.apnsDeviceToken.rawValue) {
             AppDelegate.vinsoAPI.registerAPNSDeviceToken(apnsDeviceToken)
         }
     }
 }
 
-// @MARK: handle registering APNs
+// MARK: handle registering APNs
 extension AppDelegate {
     func registerForRemoteNotifications() {
         let center = UNUserNotificationCenter.current()
@@ -121,7 +120,7 @@ extension AppDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map({ String(format: "%02.2hhx", $0) }).joined()
         print("APNs => device token = \(token)")
-        KeychainSwift().set(token, forKey: KeychainDefaultKeys.APNS_DEVICE_TOKEN.rawValue)
+        KeychainSwift().set(token, forKey: KeychainDefaultKeys.apnsDeviceToken.rawValue)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -149,9 +148,9 @@ extension AppDelegate {
         FirebaseApp.configure()
         
         // Use Firebase library to configure APIs
-        if let url = Bundle.main.url(forResource: AdvertisingValues.CONFIG_NAME.rawValue, withExtension: AdvertisingValues.CONFIG_EXT.rawValue),
+        if let url = Bundle.main.url(forResource: AdvertisingValues.googleConfigPlist.rawValue, withExtension: AdvertisingValues.googleConfigExt.rawValue),
             let myDict = NSDictionary(contentsOf: url) as? [String:Any] {
-            guard let adsAppId = myDict[AdvertisingValues.AD_UNIT_ID_FOR_BANNER_TEST.rawValue] as? String else {
+            guard let adsAppId = myDict[AdvertisingValues.adUnitIDForBannerTest.rawValue] as? String else {
                 return
             }
             GADMobileAds.configure(withApplicationID: adsAppId)
@@ -167,7 +166,7 @@ extension AppDelegate {
 }
 
 //
-// @MARK: notification controller
+// MARK: notification controller
 //
 class NotificationController {
     func postBroadcastMessage(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
@@ -184,18 +183,16 @@ class NotificationController {
 }
 
 //
-// @MARK: static instances
+// MARK: static instances
 //
 extension AppDelegate {
     static let exmoController = ExmoAccountController()
     static let vinsoAPI = VinsoAPI.shared
     static let notificationController = NotificationController()
-    static let dbController = CoreDataManager()
-    static let cacheController = CacheManager()
 }
 
 //
-// @MARK: static methods
+// MARK: static methods
 //
 extension AppDelegate {
     static func isIPhone(model: IPhoneModel) -> Bool {
@@ -204,15 +201,15 @@ extension AppDelegate {
     
     static func getIPhoneModel() -> IPhoneModel {
         if UIDevice.current.userInterfaceIdiom != .phone {
-            return .None
+            return .none
         }
 
         switch (UIScreen.main.nativeBounds.height) {
-        case 1136: return .Five
-        case 1334: return .SixOrSevenEight
-        case 2208: return .SixSevenEightPlus
-        case 2436: return .X
-          default: return .None
+        case 1136: return .five
+        case 1334: return .sixOrSevenEight
+        case 2208: return .sixSevenEightPlus
+        case 2436: return .x
+          default: return .none
         }
     }
 }

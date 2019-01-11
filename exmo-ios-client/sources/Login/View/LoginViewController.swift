@@ -36,7 +36,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         label.text = "API Key:"
         label.textColor = .white
         label.textAlignment = .left
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         return label
     }()
     
@@ -46,9 +46,9 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.placeholder = "Enter your API key"
         textField.placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
         textField.textColor = .white
-        textField.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        textField.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         textField.keyboardType = .asciiCapable
-//        textField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
+        textField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
         return textField
     }()
     
@@ -57,7 +57,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         label.text = "Secret Key:"
         label.textColor = .white
         label.textAlignment = .left
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         return label
     }()
 
@@ -68,8 +68,8 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.placeholderColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.3)
         textField.textColor = .white
         textField.keyboardType = .asciiCapable
-        textField.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
-//        textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
+        textField.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
+        textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
         return textField
     }()
     
@@ -83,7 +83,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         let button = UIButton(type: .system)
         button.setTitle("SCAN QR", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         button.titleLabel?.textAlignment = .center
         button.setBackgroundImage(UIImage(named: "icGrayButtonSe"), for: .normal)
         return button
@@ -93,7 +93,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         let button = UIButton(type: .system)
         button.setTitle("SIGN IN", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         button.titleLabel?.textAlignment = .center
         button.setBackgroundImage(UIImage(named: "icBlueButtonSe"), for: .normal)
         return button
@@ -104,7 +104,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         button.setTitle("Skip authorization", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.textAlignment = .center
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 14)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .medium, fontSize: 14)
         return button
     }()
 
@@ -186,7 +186,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
     }
 }
 
-// @MARK: LoginViewInput
+// MARK: LoginViewInput
 extension LoginViewController {
     func setLoginData(loginModel: ExmoQR?) {
         guard let loginModel = loginModel else {
@@ -209,7 +209,7 @@ extension LoginViewController {
         
         showLoader()
         updateButtonsEnableState(isTouchEnabled: false)
-        let qrModel = ExmoQR(exmoIdentifier: DefaultStringValues.ExmoId.rawValue, key: key, secret: secret)
+        let qrModel = ExmoQR(exmoIdentifier: UserDefaultsKeys.exmoId.rawValue, key: key, secret: secret)
         output.loadUserInfo(loginModel: qrModel)
     }
     
@@ -226,7 +226,7 @@ extension LoginViewController {
     }
 }
 
-// @MARK: actions
+// MARK: actions
 extension LoginViewController {
     @objc func onTouchSignInButton(_ sender: Any) {
         login()
@@ -241,7 +241,7 @@ extension LoginViewController {
     }
 }
 
-// @MARK: UITextFieldDelegate
+// MARK: UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         hideKeyboard()

@@ -12,14 +12,15 @@ class WatchlistRouter: WatchlistRouterInput {
 
     func showCurrenciesListVC(senderVC: UIViewController) {
         let initializer = CurrenciesGroupsModuleInitializer()
-        initializer.CurrenciesGroupsViewController = CurrenciesGroupsViewController()
+        initializer.viewController = CurrenciesGroupsViewController()
         initializer.awakeFromNib()
         
-        senderVC.navigationController?.pushViewController(initializer.CurrenciesGroupsViewController, animated: true)
+        senderVC.navigationController?.pushViewController(initializer.viewController, animated: true)
     }
     
     func showChartVC(senderVC: UIViewController, currencyPairName: String) {
-        guard let viewController = UIStoryboard(name: "Watchlist", bundle: nil).instantiateViewController(withIdentifier: "WatchlistCurrencyChartViewController") as? WatchlistCurrencyChartViewController else { return }
+        let mainStoryboard = UIStoryboard(name: "Watchlist", bundle: nil)
+        guard let viewController = mainStoryboard.instantiateViewController(withIdentifier: "WatchlistCurrencyChartViewController") as? WatchlistCurrencyChartViewController else { return }
         
         guard let moduleInput = viewController.output as? WatchlistCurrencyChartModuleInput else { return }
         moduleInput.setChartCurrencyPairName(currencyPairName)

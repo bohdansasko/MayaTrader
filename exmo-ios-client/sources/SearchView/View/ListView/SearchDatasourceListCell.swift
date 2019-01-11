@@ -12,7 +12,7 @@ import UIKit
 class SearchDatasourceListCell: ExmoTableViewCell {
     var currencyNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 14)
         label.textAlignment = .left
         label.text = "XRP/USD"
         label.textColor = .white
@@ -21,7 +21,7 @@ class SearchDatasourceListCell: ExmoTableViewCell {
     
     var amountCurrencyLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .dark2
         label.text = "9600.235"
@@ -65,12 +65,39 @@ extension SearchDatasourceListCell {
     
     func setupUILayout() {
         addSubview(currencyNameLabel)
-        currencyNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 15, leftConstant: 30, bottomConstant: 33, rightConstant: 0, widthConstant: 100, heightConstant: 0)
+        currencyNameLabel.anchor(self.topAnchor,
+                                 left: self.leftAnchor,
+                                 bottom: self.bottomAnchor,
+                                 right: nil,
+                                 topConstant: 15,
+                                 leftConstant: 30,
+                                 bottomConstant: 33,
+                                 rightConstant: 0,
+                                 widthConstant: 100,
+                                 heightConstant: 0)
         
         addSubview(amountCurrencyLabel)
-        amountCurrencyLabel.anchor(currencyNameLabel.bottomAnchor, left: currencyNameLabel.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 11, rightConstant: 85, widthConstant: 0, heightConstant: 0)
+        amountCurrencyLabel.anchor(currencyNameLabel.bottomAnchor,
+                                   left: currencyNameLabel.leftAnchor,
+                                   bottom: self.bottomAnchor,
+                                   right: self.rightAnchor,
+                                   topConstant: 0,
+                                   leftConstant: 0,
+                                   bottomConstant: 11,
+                                   rightConstant: 85,
+                                   widthConstant: 0,
+                                   heightConstant: 0)
         
         addSubview(bottomSeparatorLine)
-        bottomSeparatorLine.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
+        bottomSeparatorLine.anchor(nil,
+                                   left: self.leftAnchor,
+                                   bottom: self.bottomAnchor,
+                                   right: self.rightAnchor,
+                                   topConstant: 0,
+                                   leftConstant: 30,
+                                   bottomConstant: 0,
+                                   rightConstant: 30,
+                                   widthConstant: 0,
+                                   heightConstant: 1)
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 //
-// @MARK: ChartTimePeriodContainer
+// MARK: ChartTimePeriodContainer
 //
 class ChartTimePeriodContainer: UIView {
     enum PeriodType: String {
@@ -85,7 +85,7 @@ class ChartTimePeriodContainer: UIView {
 }
 
 //
-// @MARK: WatchlistCurrencyChartViewController
+// MARK: WatchlistCurrencyChartViewController
 //
 class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurrencyChartViewInput {
     @IBOutlet weak var candleShortInfoView: CandleBarChartShortInfoView!

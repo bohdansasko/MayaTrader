@@ -18,14 +18,14 @@ class SearchPresenter {
     }
 }
 
-// @MARK: SearchInteractorOutput
+// MARK: SearchInteractorOutput
 extension SearchPresenter: SearchModuleInput {
     func setInputModule(output: SearchModuleOutput?) {
         moduleOutput = output
     }
 }
 
-// @MARK: SearchInteractorOutput
+// MARK: SearchInteractorOutput
 extension SearchPresenter: SearchViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
@@ -36,16 +36,18 @@ extension SearchPresenter: SearchViewOutput {
     }
     
     func closeVC() {
-        self.router.closeView(uiViewController: view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.closeView(uiViewController: viewController)
+        }
     }
     
     func onTouchCurrencyPair(rawName: String) {
         moduleOutput?.onDidSelectCurrencyPair(rawName: rawName)
-        self.closeVC()
+        closeVC()
     }
 }
 
-// @MARK: SearchInteractorOutput
+// MARK: SearchInteractorOutput
 extension SearchPresenter: SearchInteractorOutput {
     func onDidLoadCurrenciesPairs(_ pairs: [SearchCurrencyPairModel]) {
         view.updatePairsList(pairs)

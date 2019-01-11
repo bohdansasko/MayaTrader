@@ -11,14 +11,14 @@ import UIKit
 @IBDesignable
 class UITouchableViewWithIndicator: UITouchableNibView {    
     //
-    // @MARK: outlets
+    // MARK: outlets
     //
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var leftLabel: UILabel!
     @IBOutlet weak var rightLabel: UILabel!
     
     //
-    // @MARK: getters and setters
+    // MARK: getters and setters
     //
     @IBInspectable var headerText: String {
         get { return self.headerLabel.text! }

@@ -9,7 +9,7 @@ struct AlertsObservation {
     weak var observer: AlertsAPIResponseDelegate?
 }
 
-// @MARK: manage alerts
+// MARK: manage alerts
 extension VinsoAPI {
     func loadAlerts() {
         print("load alerts")
@@ -41,7 +41,7 @@ extension VinsoAPI {
     }
 }
 
-// @MARK: handle alerts responses
+// MARK: handle alerts responses
 extension VinsoAPI {
     func handleResponseAlertsLoaded(json: JSON) {
         guard let jsonAlerts = json["history_alerts"].array else {

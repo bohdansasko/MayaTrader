@@ -24,12 +24,15 @@ extension AlertsPresenter: AlertsViewOutput {
     }
 
     func showFormCreateAlert() {
-        router.showVCAddAlert(view as! UIViewController)
+        if let ivc = view as? UIViewController {
+            router.showVCAddAlert(ivc)
+        }
     }
 
     func editAlert(_ alert: Alert) {
-        let view = self.view as! UIViewController
-        router.editAlert(view: view, alert: alert)
+        if let ivc = view as? UIViewController {
+            router.editAlert(view: ivc, alert: alert)
+        }
     }
 
     func updateAlertState(_ alert: Alert) {

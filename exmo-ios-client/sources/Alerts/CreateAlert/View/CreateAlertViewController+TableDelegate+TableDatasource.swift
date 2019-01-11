@@ -8,7 +8,7 @@
 
 import UIKit
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension CreateAlertViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return form.cellItems.count
@@ -35,7 +35,7 @@ extension CreateAlertViewController: UITableViewDataSource {
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension CreateAlertViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? FormUpdatable else { return }
@@ -58,7 +58,7 @@ extension CreateAlertViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         if form.cellItems[indexPath.section].uiProperties.cellType == .CurrencyDetails {
-            output.showSearchViewController(searchType: .Currencies)
+            output.showSearchViewController(searchType: .currencies)
         }
     }
 }

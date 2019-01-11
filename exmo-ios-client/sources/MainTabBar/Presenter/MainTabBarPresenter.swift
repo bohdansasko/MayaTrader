@@ -14,17 +14,17 @@ class MainTabBarPresenter {
     
 }
 
-// @MARK: MainTabBarPresenterInput
+// MARK: MainTabBarPresenterInput
 extension MainTabBarPresenter: MainTabBarPresenterInput {
     
 }
 
-// @MARK: MainTabBarPresenterInput
+// MARK: MainTabBarPresenterInput
 extension MainTabBarPresenter: MainTabBarInteractorOutput {
     
 }
 
-// @MARK: MainTabBarViewOutput
+// MARK: MainTabBarViewOutput
 extension MainTabBarPresenter: MainTabBarViewOutput {
     func viewIsReady() {
         // do nothing

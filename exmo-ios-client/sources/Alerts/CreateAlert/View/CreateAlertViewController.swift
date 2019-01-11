@@ -29,7 +29,7 @@ class CreateAlertViewController: ExmoUIViewController {
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(.orangePink, for: .normal)
         button.setTitleColor(.orangePink, for: .highlighted)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 18)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 18)
         return button
     }()
     
@@ -78,7 +78,7 @@ class CreateAlertViewController: ExmoUIViewController {
                 bottomBoundary: bottomBound,
                 isPersistentNotification: form.isPersistent)
         showLoader()
-        output.handleTouchButtonCreate(alertModel: alert, operationType: editAlert == nil ? .Add : .Update)
+        output.handleTouchButtonCreate(alertModel: alert, operationType: editAlert == nil ? .add : .update)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,7 +96,7 @@ class CreateAlertViewController: ExmoUIViewController {
     }
 }
 
-// @MARK: CreateAlertViewInput
+// MARK: CreateAlertViewInput
 extension CreateAlertViewController: CreateAlertViewInput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         let detailsIndexPath = IndexPath(row: 0, section: 0)

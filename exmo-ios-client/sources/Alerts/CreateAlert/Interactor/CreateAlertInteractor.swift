@@ -16,7 +16,7 @@ class CreateAlertInteractor {
     private var currencyPairCode: String = ""
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CreateOrder, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.createOrder, repeats: true) {
             [weak self] _ in
             self?.tickerNetworkWorker.load()
         }
@@ -59,7 +59,7 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     }
 }
 
-// @MARK: ITickerNetworkWorkerDelegate
+// MARK: ITickerNetworkWorkerDelegate
 extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
         guard let ticker = ticker,
@@ -78,7 +78,7 @@ extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
     }
 }
 
-// @MARK: IOrdersNetworkWorkerDelegate
+// MARK: IOrdersNetworkWorkerDelegate
 extension CreateAlertInteractor: AlertsAPIResponseDelegate {
     func onDidCreateAlertSuccessful() {
         output.onCreateAlertSuccessful()

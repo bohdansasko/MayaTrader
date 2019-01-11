@@ -9,13 +9,13 @@
 import LBTAComponents
 
 //
-// @MARK: CurrenciesGroupListHeaderCell
+// MARK: CurrenciesGroupListHeaderCell
 //
 class CurrenciesGroupListHeaderCell: DatasourceCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "ALL PAIRS"
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .dark2
         return label
@@ -36,7 +36,7 @@ class CurrenciesGroupListHeaderCell: DatasourceCell {
 }
 
 //
-// @MARK: CurrenciesGroupListCell
+// MARK: CurrenciesGroupListCell
 //
 class CurrenciesGroupListCell: DatasourceCell {
     
@@ -48,7 +48,7 @@ class CurrenciesGroupListCell: DatasourceCell {
     
     var pairNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 14)
         label.textAlignment = .left
         label.textColor = .white
         return label

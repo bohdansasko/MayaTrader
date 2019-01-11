@@ -37,7 +37,7 @@ extension OrderViewCell {
         let spaceBetweenRows: CGFloat = 17.0
         let topOffset: CGFloat = -2.0
         
-        // @MARK: left column
+        // MARK: left column
         let currencyStackView = UIStackView(arrangedSubviews: [currencyTitleLabel, currencyLabel])
         currencyStackView.axis = .vertical
         
@@ -50,7 +50,7 @@ extension OrderViewCell {
         leftColumnStackView.axis = .vertical
         leftColumnStackView.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: nil, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 0)
         
-        // @MARK: right column
+        // MARK: right column
         let quantityStackView = UIStackView(arrangedSubviews: [quantityTitleLabel, quantityValueLabel])
         quantityStackView.axis = .vertical
         
@@ -69,8 +69,8 @@ extension OrderViewCell {
 extension OrderViewCell {
     func getOrderActionTypeLabelTextColor(orderType: OrderActionType) -> UIColor {
         switch orderType {
-        case .Buy: return .dodgerBlue
-        case .Sell: return UIColor(red: 131.0/255, green: 132.0/255, blue: 150.0/255, alpha: 1.0)
+        case .buy: return .dodgerBlue
+        case .sell: return UIColor(red: 131.0/255, green: 132.0/255, blue: 150.0/255, alpha: 1.0)
         default: return UIColor.black
         }
     }
@@ -78,7 +78,7 @@ extension OrderViewCell {
     static func getTitleLabel(text: String) -> UILabel {
         let label = UILabel()
         label.text = text
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 13)
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 13)
         label.textAlignment = .left
         label.textColor = .steel
         return label
@@ -87,7 +87,7 @@ extension OrderViewCell {
     static func getValueLabel() -> UILabel {
         let label = UILabel()
         label.text = "0"
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 14)
         label.textAlignment = .left
         label.textColor = .white
         return label

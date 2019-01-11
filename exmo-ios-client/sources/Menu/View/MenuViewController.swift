@@ -26,7 +26,7 @@ class TableMenuViewController: ExmoUIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateCell(type: .Security)
+        updateCell(type: .security)
     }
 }
 
@@ -45,7 +45,7 @@ extension TableMenuViewController: TableMenuViewInput {
     }
 }
 
-// @MARK: setup UI
+// MARK: setup UI
 extension TableMenuViewController {
     func setupViews() {
         titleNavBar = "Menu"

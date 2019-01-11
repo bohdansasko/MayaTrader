@@ -65,7 +65,7 @@ extension WalletInteractor {
     }
 }
 
-// @MARK: IWalletNetworkWorkerDelegate
+// MARK: IWalletNetworkWorkerDelegate
 extension WalletInteractor: IWalletNetworkWorkerDelegate {
     func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
         guard let cachedWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
@@ -114,10 +114,10 @@ extension WalletInteractor {
             if currency.balance > 0 {
                 print(currency.code)
                 if let btcTicker = tickerPairs[currency.code + "_BTC"] {
-                    amountBTC = amountBTC + (currency.balance * btcTicker.buyPrice)
+                    amountBTC += (currency.balance * btcTicker.buyPrice)
                 }
                 if let usdTicker = tickerPairs[currency.code + "_USD"] {
-                    amountUSD = amountUSD + (currency.balance * usdTicker.buyPrice)
+                    amountUSD += (currency.balance * usdTicker.buyPrice)
                 }
             }
         }

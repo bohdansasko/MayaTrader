@@ -13,7 +13,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
     var currencyPair: String?
     var strPrice: String?
     var quantity: String?
-    var orderType: OrderCreateType = .MarketBuyTotal
+    var orderType: OrderCreateType = .marketBuyTotal
     var onTouchButtonCreate: VoidClosure?
     var cellItems = [FormItem]()
     
@@ -35,7 +35,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         currencyPair = nil
         strPrice = nil
         quantity = nil
-        orderType = .MarketBuyTotal
+        orderType = .marketBuyTotal
     }
 
     func isValid() -> Bool {
@@ -78,7 +78,7 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
         let segmentItem = SegmentFormItem(title: "Order type", sections: ["Buy", "Sell"])
         segmentItem.onChange = {
             [weak self, weak segmentItem] selectedIndex in
-            self?.orderType = selectedIndex == 0 ? .MarketBuyTotal : .MarketSellTotal
+            self?.orderType = selectedIndex == 0 ? .marketBuyTotal : .marketSellTotal
             segmentItem?.value = selectedIndex
         }
         segmentItem.uiProperties.cellType = .Segment

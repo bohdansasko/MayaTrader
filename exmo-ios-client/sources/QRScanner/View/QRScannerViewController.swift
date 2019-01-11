@@ -67,7 +67,7 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
     }
 }
 
-// @MARK: QRScannerViewInput
+// MARK: QRScannerViewInput
 extension QRScannerViewController {
     func showAlert(title: String, message: String, shouldCloseViewController: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -81,7 +81,7 @@ extension QRScannerViewController {
     }
 }
 
-// @MARK: setup views
+// MARK: setup views
 extension QRScannerViewController {
     func setupCloseButton() {
         buttonClose.addTarget(self, action: #selector(onTouchButtonClose(_:)), for: .touchUpInside)
@@ -124,7 +124,7 @@ extension QRScannerViewController {
     }
 }
 
-// @MARK: AVCaptureMetadataOutputObjectsDelegate
+// MARK: AVCaptureMetadataOutputObjectsDelegate
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
     func metadataOutput(_ avCaptureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         outputProtocol.tryFetchKeyAndSecret(metadataObjects: metadataObjects)

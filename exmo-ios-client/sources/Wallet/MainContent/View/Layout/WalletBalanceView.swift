@@ -12,7 +12,7 @@ class WalletBalanceView: UIView {
     var btcTextLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 12)
         label.textColor = .steel
         label.text = "BTC"
         return label
@@ -21,7 +21,7 @@ class WalletBalanceView: UIView {
     var btcValueLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 24)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 24)
         label.textColor = .dodgerBlue
         label.text = "\u{20BF} 0.0"
         return label
@@ -30,7 +30,7 @@ class WalletBalanceView: UIView {
     var usdTextLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 12)
         label.textColor = .steel
         label.text = "USD"
         return label
@@ -39,7 +39,7 @@ class WalletBalanceView: UIView {
     var usdValueLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .right
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 24)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 24)
         label.textColor = .dodgerBlue
         label.text = "$ 0.0"
         return label
@@ -54,9 +54,9 @@ class WalletBalanceView: UIView {
     
     var wallet: ExmoWallet? {
         didSet {
-            guard let w = wallet else { return }
-            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: w.amountBTC))"
-            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: w.amountUSD))"
+            guard let lWallet = wallet else { return }
+            btcValueLabel.text = "\u{20BF} \(Utils.getFormatedPrice(value: lWallet.amountBTC))"
+            usdValueLabel.text = "$ \(Utils.getFormatedPrice(value: lWallet.amountUSD))"
         }
     }
     

@@ -9,11 +9,11 @@
 import UIKit
 
 class TableMenuViewCell: ExmoTableViewCell {
-    var cellType: MenuCellType = .None {
+    var cellType: MenuCellType = .none {
         didSet {
             iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
             titleLabel.text = cellType.title
-            selectionStyle = cellType == .AppVersion ? .none : .gray
+            selectionStyle = cellType == .appVersion ? .none : .gray
             updateRightView()
         }
     }
@@ -26,7 +26,7 @@ class TableMenuViewCell: ExmoTableViewCell {
     
     var titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 14)
         label.textColor = .white
         return label
     }()
@@ -35,7 +35,7 @@ class TableMenuViewCell: ExmoTableViewCell {
         let label = UILabel()
         label.isHidden = true
         label.text = "1.0"
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 14)
         label.textColor = .dark1
         return label
     }()
@@ -77,33 +77,53 @@ extension TableMenuViewCell {
         self.backgroundColor = .clear
         
         addSubview(iconImage)
-        iconImage.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 30, bottomConstant: 20, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        iconImage.anchor(self.topAnchor, left: self.leftAnchor,
+                         bottom: self.bottomAnchor, right: nil,
+                         topConstant: 20, leftConstant: 30,
+                         bottomConstant: 20, rightConstant: 0,
+                         widthConstant: 0, heightConstant: 0)
         
         addSubview(titleLabel)
-        titleLabel.anchor(self.topAnchor, left: iconImage.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 10, leftConstant: 20, bottomConstant: 10, rightConstant: 0, widthConstant: 160, heightConstant: 0)
+        titleLabel.anchor(self.topAnchor, left: iconImage.rightAnchor,
+                          bottom: self.bottomAnchor, right: nil,
+                          topConstant: 10, leftConstant: 20,
+                          bottomConstant: 10, rightConstant: 0,
+                          widthConstant: 160, heightConstant: 0)
         
         addSubview(infoLabel)
-        infoLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 10, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        infoLabel.anchor(self.topAnchor, left: nil,
+                         bottom: self.bottomAnchor, right: self.rightAnchor,
+                         topConstant: 10, leftConstant: 0,
+                         bottomConstant: 10, rightConstant: 30,
+                         widthConstant: 0, heightConstant: 0)
         
         addSubview(disclosureImage)
-        disclosureImage.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        disclosureImage.anchor(self.topAnchor, left: nil,
+                               bottom: self.bottomAnchor, right: self.rightAnchor,
+                               topConstant: 0, leftConstant: 0,
+                               bottomConstant: 0, rightConstant: 30,
+                               widthConstant: 0, heightConstant: 0)
         
         addSubview(lockButton)
         lockButton.isHidden = true
-        lockButton.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        lockButton.anchor(self.topAnchor, left: nil,
+                          bottom: self.bottomAnchor, right: self.rightAnchor,
+                          topConstant: 0, leftConstant: 0,
+                          bottomConstant: 0, rightConstant: 30,
+                          widthConstant: 0, heightConstant: 0)
     }
     
     func updateRightView() {
         switch cellType {
-        case .AppVersion:
+        case .appVersion:
             infoLabel.isHidden = false
             disclosureImage.isHidden = true
             lockButton.isHidden = true
-        case .Logout:
+        case .logout:
             infoLabel.isHidden = true
             disclosureImage.isHidden = true
             lockButton.isHidden = true
-        case .Security:
+        case .security:
             disclosureImage.isHidden = true
             let highlightedImageName = lockButton.isSelected ? "icPasscodeLock" : "icPasscodeUnlock"
             lockButton.setImage(UIImage(named: highlightedImageName), for: .normal)

@@ -16,7 +16,7 @@ class CreateOrderInteractor {
     private var currencyPairCode: String = ""
     
     private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.CreateOrder, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.createOrder, repeats: true) {
             [weak self] _ in
             self?.networkWorker.load()
         }
@@ -30,7 +30,7 @@ class CreateOrderInteractor {
     }
 }
 
-// @MARK: CreateOrderInteractorInput
+// MARK: CreateOrderInteractorInput
 extension CreateOrderInteractor: CreateOrderInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
@@ -55,7 +55,7 @@ extension CreateOrderInteractor: CreateOrderInteractorInput {
     }
 }
 
-// @MARK: ITickerNetworkWorkerDelegate
+// MARK: ITickerNetworkWorkerDelegate
 extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
         guard let ticker = ticker,
@@ -74,7 +74,7 @@ extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
     }
 }
 
-// @MARK: IOrdersNetworkWorkerDelegate
+// MARK: IOrdersNetworkWorkerDelegate
 extension CreateOrderInteractor: IOrdersNetworkWorkerDelegate {
     func onDidCreateOrderSuccess() {
         output.onCreateOrderSuccessull()

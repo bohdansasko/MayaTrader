@@ -41,7 +41,7 @@ class AddAlertTableViewCell: AlertTableViewCellWithTextData {
     }
     
     //
-    // @MARK: getters
+    // MARK: getters
     //
     override func getDoubleValue() -> Double {
         guard let text = self.inputField.text else {

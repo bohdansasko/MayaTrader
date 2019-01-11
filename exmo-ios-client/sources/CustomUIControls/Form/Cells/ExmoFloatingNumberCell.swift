@@ -30,7 +30,7 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .white
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 14)
         return label
     }()
     
@@ -39,9 +39,9 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
         textInpt.textColor = .white
         textInpt.borderStyle = .none
         textInpt.textAlignment = .left
-        textInpt.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 14)
+        textInpt.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         textInpt.attributedPlaceholder = NSAttributedString(string: "",
-                                                            attributes: [NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 14)])
+                                                            attributes: [NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .regular, fontSize: 14)])
         return textInpt
     }()
     

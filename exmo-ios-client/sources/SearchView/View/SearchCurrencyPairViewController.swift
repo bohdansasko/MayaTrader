@@ -10,9 +10,9 @@ import UIKit
 
 class SearchViewController: ExmoUIViewController {
     enum SearchType {
-        case None
-        case Currencies
-        case Sounds
+        case none
+        case currencies
+        case sounds
     }
     
     var output: SearchViewOutput!
@@ -60,13 +60,21 @@ extension SearchViewController {
             self?.output.closeVC()
         }
         tabBar.searchBar.delegate = self
-        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 44)
+        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                      bottom: nil, right: view.rightAnchor,
+                      topConstant: 0, leftConstant: 0,
+                      bottomConstant: 0, rightConstant: 0,
+                      widthConstant: 0, heightConstant: 44)
     }
     
     private func setupCurrenciesList() {
         view.addSubview(listView)
         listView.output = output
-        listView.anchor(tabBar.bottomAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.anchor(tabBar.bottomAnchor, left: view.leftAnchor,
+                        bottom: view.bottomAnchor, right: view.rightAnchor,
+                        topConstant: 10, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
     }
 }
 

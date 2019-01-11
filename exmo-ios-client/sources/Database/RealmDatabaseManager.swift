@@ -16,7 +16,9 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
     func objects<T>(type: T.Type, predicate: NSPredicate? = nil) -> Results<T>? where T : Object {
         if !isRealmAccessible() { return nil }
         
-        let realm = try! Realm()
+        guard let realm = try? Realm() else {
+            return nil
+        }
         realm.refresh()
         
         return predicate == nil ? realm.objects(type) : realm.objects(type).filter(predicate!)
@@ -25,8 +27,11 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
     func add<T>(data: [T], update: Bool = true) where T : Object {
         if !isRealmAccessible() { return }
         
-        let realm = try! Realm()
+        guard let realm = try? Realm() else {
+            return
+        }
         realm.refresh()
+        
         if realm.isInWriteTransaction {
             realm.add(data, update: update)
         } else {
@@ -43,7 +48,9 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
     func delete<T>(data: [T]) where T : Object {
         if !isRealmAccessible() { return }
         
-        let realm = try! Realm()
+        guard let realm = try? Realm() else {
+            return
+        }
         realm.refresh()
         try? realm.write {
             realm.delete(data)
@@ -57,7 +64,9 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
     func clearAllData() {
         if !isRealmAccessible() { return }
         
-        let realm = try! Realm()
+        guard let realm = try? Realm() else {
+            return
+        }
         realm.refresh()
         try? realm.write {
             realm.deleteAll()
@@ -67,7 +76,9 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
     func performTransaction(closure: @escaping () -> Void) {
         if !isRealmAccessible() { return }
         
-        let realm = try! Realm()
+        guard let realm = try? Realm() else {
+            return
+        }
         realm.refresh()
         
         try? realm.write {
@@ -78,7 +89,9 @@ class RealmDatabaseManager: OperationsDatabaseProtocol {
     func isInWriteTransaction() -> Bool {
         if !isRealmAccessible() { return false }
         
-        let realm = try! Realm()
+        guard let realm = try? Realm() else {
+            return false
+        }
         realm.refresh()
         
         return realm.isInWriteTransaction

@@ -10,7 +10,7 @@ import Foundation
 
 extension Data {
     func getJsonFromData() -> NSDictionary? {
-        if let json = try! JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? NSDictionary {
+        if let json = try? JSONSerialization.jsonObject(with: self, options: .mutableContainers) as? NSDictionary {
             return json
         } else {
             return nil

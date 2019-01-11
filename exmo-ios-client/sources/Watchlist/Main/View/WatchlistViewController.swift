@@ -23,7 +23,7 @@ extension DatasourceController {
     }
 }
 
-// @MARK: WatchlistViewController
+// MARK: WatchlistViewController
 class WatchlistViewController: ExmoUIViewController {
     var output: WatchlistViewOutput!
 
@@ -102,7 +102,7 @@ extension WatchlistViewController: WatchlistViewInput {
     }
 }
 
-// @MARK: GADBannerViewDelegate
+// MARK: GADBannerViewDelegate
 extension WatchlistViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         print("adViewDidReceiveAd")
@@ -126,7 +126,7 @@ extension WatchlistViewController: GADBannerViewDelegate {
     }
 }
 
-// @MARK: setup views
+// MARK: setup views
 extension WatchlistViewController {
     func setupViews() {
         setupBannerView()
@@ -149,13 +149,25 @@ extension WatchlistViewController {
     
     func addBannerToView(_ bannerView: GADBannerView) {
         view.addSubview(bannerView)
-        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        bannerView.anchor(nil,
+                          left: view.layoutMarginsGuide.leftAnchor,
+                          bottom: view.layoutMarginsGuide.bottomAnchor,
+                          right: view.layoutMarginsGuide.rightAnchor,
+                          topConstant: 0, leftConstant: 0,
+                          bottomConstant: 0, rightConstant: 0,
+                          widthConstant: 0, heightConstant: 0)
     }
 
     private func setupListView() {
         view.addSubview(listView)
         listView.frame = self.view.bounds
-        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.anchor(view.layoutMarginsGuide.topAnchor,
+                        left: view.layoutMarginsGuide.leftAnchor,
+                        bottom: view.layoutMarginsGuide.bottomAnchor,
+                        right: view.layoutMarginsGuide.rightAnchor,
+                        topConstant: 0, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
         listView.presenter = output
         listView.datasource = WatchlistCardsDataSource(items: [])
     }

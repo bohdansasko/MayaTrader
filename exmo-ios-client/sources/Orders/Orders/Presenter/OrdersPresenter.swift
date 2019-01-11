@@ -13,7 +13,7 @@ class OrdersPresenter: OrdersModuleInput {
     var router: OrdersRouterInput!
 }
 
-// @MARK: OrdersViewOutput
+// MARK: OrdersViewOutput
 extension OrdersPresenter: OrdersViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
@@ -24,7 +24,9 @@ extension OrdersPresenter: OrdersViewOutput {
     }
     
     func onTouchButtonAddOrder() {
-        router.showAddOrderVC(view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.showAddOrderVC(viewController)
+        }
     }
     
     func cancelOrder(ids: [Int64]) {
@@ -32,7 +34,7 @@ extension OrdersPresenter: OrdersViewOutput {
     }
 }
 
-// @MARK: OrdersInteractorOutput
+// MARK: OrdersInteractorOutput
 extension OrdersPresenter: OrdersInteractorOutput {
     func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders]) {
         view.updateOrders(loadedOrders: loadedOrders)

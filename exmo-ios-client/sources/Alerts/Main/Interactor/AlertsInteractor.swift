@@ -47,16 +47,6 @@ extension AlertsInteractor: AlertsInteractorInput {
     }
 }
 
-extension AlertsInteractor: IAlertsNetworkWorkerDelegate {
-    func onDidLoadAlertsHistorySuccessful(_ w: ExmoWallet) {
-        print("AlertsInteractor => loaded alerts history")
-    }
-
-    func onDidLoadAlertsHistoryFail(messageError: String) {
-        print(messageError)
-    }
-}
-
 extension AlertsInteractor: VinsoAPIConnectionDelegate {
     func loadAlerts() {
         print("AlertsInteractor => loadAlerts")

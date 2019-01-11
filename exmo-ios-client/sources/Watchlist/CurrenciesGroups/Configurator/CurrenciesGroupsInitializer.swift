@@ -11,12 +11,12 @@ import UIKit
 class CurrenciesGroupsModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    var CurrenciesGroupsViewController: CurrenciesGroupsViewController!
+    var viewController: CurrenciesGroupsViewController!
 
     override func awakeFromNib() {
 
         let configurator = CurrenciesGroupsModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: CurrenciesGroupsViewController)
+        configurator.configureModuleForViewInput(viewInput: viewController)
     }
 
 }

@@ -20,7 +20,7 @@ class UITouchableNibView: NibView {
     var callbackOnTouch: VoidClosure? = nil
     
     //
-    // @MARK: inherited methods
+    // MARK: inherited methods
     //
     override init(frame: CGRect) {
         super.init(frame: frame)

@@ -18,7 +18,7 @@ class AlertViewCell: ExmoTableViewCell {
     }()
     var labelAlertStatus: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 13)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 13)
         label.textAlignment = .center
         label.textColor = .white
         label.layer.masksToBounds = true
@@ -105,7 +105,7 @@ extension AlertViewCell {
     func onItemDidSet() {
         guard let item = item else { return }
         labelTimeCreate.text = item.formatedDate()
-        if AppDelegate.isIPhone(model: .Five) {
+        if AppDelegate.isIPhone(model: .five) {
             labelTimeCreate.widthAnchor.constraint(equalToConstant: 70).isActive = true
         }
 
@@ -126,6 +126,6 @@ extension AlertViewCell {
 
     func updateAlertStatusBackground() {
         guard let item = item else { return }
-        labelAlertStatus.backgroundColor = item.status == AlertStatus.Active ? .greenBlue : .steel
+        labelAlertStatus.backgroundColor = item.status == AlertStatus.active ? .greenBlue : .steel
     }
 }

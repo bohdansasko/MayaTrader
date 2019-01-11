@@ -51,7 +51,7 @@ class ExmoCollectionCell: UICollectionViewCell {
 class CurrenciesListHeaderCell: ExmoCollectionCell {
     var favouriteLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         label.textAlignment = .center
         label.textColor = .white
         label.text = "Fav."
@@ -60,7 +60,7 @@ class CurrenciesListHeaderCell: ExmoCollectionCell {
     
     var pairTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .white
         label.text = "Pair"
@@ -69,7 +69,7 @@ class CurrenciesListHeaderCell: ExmoCollectionCell {
     
     var buyTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .white
         label.text = "Buy"
@@ -78,7 +78,7 @@ class CurrenciesListHeaderCell: ExmoCollectionCell {
     
     var sellTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .white
         label.text = "Sell"
@@ -87,7 +87,7 @@ class CurrenciesListHeaderCell: ExmoCollectionCell {
     
     var currencyChangesTextLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
         label.textAlignment = .center
         label.textColor = .white
         label.text = "Changes"
@@ -174,7 +174,7 @@ class CurrenciesListCell: ExmoCollectionCell {
     
     var pairNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 11)
         label.textAlignment = .left
         label.textColor = .white
         return label
@@ -182,7 +182,7 @@ class CurrenciesListCell: ExmoCollectionCell {
     
     var buyValueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 11)
         label.textAlignment = .left
         label.textColor = .white
         return label
@@ -190,7 +190,7 @@ class CurrenciesListCell: ExmoCollectionCell {
     
     var sellValueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 11)
         label.textAlignment = .left
         label.textColor = .white
         return label
@@ -198,7 +198,7 @@ class CurrenciesListCell: ExmoCollectionCell {
     
     var currencyChangesValueLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Medium, fontSize: 11)
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 11)
         label.textAlignment = .center
         label.textColor = .greenBlue
         label.text = "+4.2 %"

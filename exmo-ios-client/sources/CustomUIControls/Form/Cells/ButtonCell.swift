@@ -23,7 +23,7 @@ class ButtonCell: UITableViewCell {
         btn.setBackgroundImage(UIImage(named: "icWidthButtonBlue"), for: .normal)
         btn.contentMode = .scaleAspectFit
         btn.setTitleColor(.white, for: .normal)
-        btn.titleLabel?.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
+        btn.titleLabel?.font = UIFont.getExo2Font(fontType: .bold, fontSize: 14)
         return btn
     }()
     

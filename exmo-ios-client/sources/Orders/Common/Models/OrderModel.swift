@@ -33,17 +33,17 @@ struct CurrencySettings {
     }
 }
 
-// @MARK: OrderCreateType
+// MARK: OrderCreateType
 enum OrderCreateType: String {
-    case Buy = "buy"
-    case Sell = "sell"
-    case MarketBuy = "market_buy"
-    case MarketSell = "market_sell"
-    case MarketBuyTotal = "market_buy_total"
-    case MarketSellTotal = "market_sell_total"
+    case buy = "buy"
+    case sell = "sell"
+    case marketBuy = "market_buy"
+    case marketSell = "market_sell"
+    case marketBuyTotal = "market_buy_total"
+    case marketSellTotal = "market_sell_total"
 }
 
-// @MARK: OrderSettings
+// MARK: OrderSettings
 struct OrderSettings : Mappable {
     var currencyPair: String
     var minQuantity: Double
@@ -79,7 +79,7 @@ struct OrderSettings : Mappable {
     }
 }
 
-// @MARK: TransformOrderType
+// MARK: TransformOrderType
 class TransformOrderType : TransformType {
     typealias Object = OrderActionType
     typealias JSON = String
@@ -91,9 +91,9 @@ class TransformOrderType : TransformType {
         
         switch strValue {
         case "buy":
-            return OrderActionType.Buy
+            return OrderActionType.buy
         case "sell":
-            return OrderActionType.Sell
+            return OrderActionType.sell
         default:
             return nil
         }
@@ -105,7 +105,7 @@ class TransformOrderType : TransformType {
 }
 
 
-// @MARK: OrderModel
+// MARK: OrderModel
 struct OrderModel: Mappable {
     var orderType: OrderActionType
     var currencyPair: String
@@ -114,10 +114,10 @@ struct OrderModel: Mappable {
     var quantity: Double
     var amount: Double
     var id: Int64
-    var createType: OrderCreateType = .MarketBuyTotal
+    var createType: OrderCreateType = .marketBuyTotal
     
     init() {
-        orderType = .None
+        orderType = .none
         currencyPair = ""
         createdDate = Date()
         price = 0.0
@@ -161,14 +161,14 @@ struct OrderModel: Mappable {
         self.createdDate = Date()
         
         switch self.createType {
-        case .Buy,
-             .MarketBuy,
-             .MarketBuyTotal:
-            self.orderType = .Buy
-        case .Sell,
-             .MarketSell,
-             .MarketSellTotal:
-            self.orderType = .Sell
+        case .buy,
+             .marketBuy,
+             .marketBuyTotal:
+            self.orderType = .buy
+        case .sell,
+             .marketSell,
+             .marketSellTotal:
+            self.orderType = .sell
         }
     }
     

@@ -15,7 +15,7 @@ class ExmoSwitchCell: UITableViewCell, SwitchFormConformity {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .white
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 14)
         return label
     }()
     

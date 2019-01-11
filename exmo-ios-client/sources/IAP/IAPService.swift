@@ -17,9 +17,9 @@ class IAPService: NSObject {
     var paymentQueue = SKPaymentQueue.default()
     
     func loadProducts() {
-        let products: Set = [IAPProduct.LightApp.rawValue,
-                             IAPProduct.ProApp.rawValue,
-                             IAPProduct.Advertisements.rawValue]
+        let products: Set = [IAPProduct.liteApp.rawValue,
+                             IAPProduct.proApp.rawValue,
+                             IAPProduct.advertisements.rawValue]
         let request = SKProductsRequest(productIdentifiers: products)
         request.delegate = self
         request.start()

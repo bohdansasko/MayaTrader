@@ -138,7 +138,7 @@ extension ExmoUIViewController {
     }
 }
 
-// @MARK: manage loader view
+// MARK: manage loader view
 extension ExmoUIViewController {
     func showLoader() {
         if !isLoaderShowing() {

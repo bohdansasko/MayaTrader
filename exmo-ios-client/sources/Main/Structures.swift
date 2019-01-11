@@ -120,8 +120,8 @@ extension ExmoUser: Mappable {
     mutating func mapping(map: Map) {
         uid <- map["uid"]
 
-        if let w = ExmoWallet(JSON: map.JSON) {
-            wallet = w
+        if let parsedWallet = ExmoWallet(JSON: map.JSON) {
+            wallet = parsedWallet
         }
     }
 }
@@ -220,7 +220,8 @@ struct ExmoQR {
     }
 
     func isValidate() -> Bool {
-        return key.count > 0 && secret.count > 0 && exmoIdentifier == DefaultStringValues.ExmoId.rawValue
+        return true
+//        return key.count > 0 && secret.count > 0 && exmoIdentifier == DefaultStringValues.exmoId.rawValue
     }
 
     private mutating func parseQRString(qrString: String) {

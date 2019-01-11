@@ -14,8 +14,10 @@ class CreateOrderRouter: CreateOrderRouterInput {
     
     func openCurrencySearchVC(_ sourceVC: UIViewController, moduleOutput: SearchModuleOutput!) {
         let destinationModule = SearchModuleInitializer()
-        let minput = destinationModule.viewController.output as! SearchModuleInput
-        minput.setInputModule(output: moduleOutput)
+        guard let inputModule = destinationModule.viewController.output as? SearchModuleInput else {
+            return
+        }
+        inputModule.setInputModule(output: moduleOutput)
         sourceVC.present(destinationModule.viewController, animated: true, completion: nil)
     }
 }

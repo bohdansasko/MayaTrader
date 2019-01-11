@@ -26,7 +26,7 @@ class CreateOrderViewController: ExmoUIViewController {
         button.setTitle("Cancel", for: .normal)
         button.setTitleColor(.orangePink, for: .normal)
         button.setTitleColor(.orangePink, for: .highlighted)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 18)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 18)
         return button
     }()
     
@@ -34,7 +34,7 @@ class CreateOrderViewController: ExmoUIViewController {
         let sc = UISegmentedControl(items: ["Limit", "On amount", "On sum"])
         sc.tintColor = .dodgerBlue
         sc.setTitleTextAttributes([
-                    NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Regular, fontSize: 13),
+                    NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .regular, fontSize: 13),
               ],
               for: .normal
         )
@@ -56,7 +56,7 @@ class CreateOrderViewController: ExmoUIViewController {
     }
     
     @objc func onSegmentChanged(_ sender: Any) {
-        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .Limit
+        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .limit
         cellsLayoutView.layoutType = layoutType
         output.onTabChanged()
     }
@@ -94,7 +94,7 @@ extension CreateOrderViewController: CreateOrderViewInput {
     func onCreateOrderSuccessull() {
         hideLoader()
         
-        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .Limit
+        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .limit
         cellsLayoutView.layoutType = layoutType
         
         showOkAlert(title: "Create order", message: "Order has been created successfully", onTapOkButton: nil)
@@ -120,19 +120,27 @@ extension CreateOrderViewController {
         view.addSubview(cellsLayoutView)
         cellsLayoutView.output = output
         cellsLayoutView.parentVC = self
-        cellsLayoutView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        cellsLayoutView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor,
+                               bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor,
+                               topConstant: 10, leftConstant: 0,
+                               bottomConstant: 0, rightConstant: 0,
+                               widthConstant: 0, heightConstant: 0)
     }
     
     private func setupSegmentControlView() {
         view.addSubview(segmentControlView)
         segmentControlView.addTarget(self, action: #selector(onSegmentChanged(_:)), for: .valueChanged)
-        segmentControlView.anchor(titleLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
+        segmentControlView.anchor(titleLabel.bottomAnchor, left: view.leftAnchor,
+                                  bottom: nil, right: view.rightAnchor,
+                                  topConstant: 15, leftConstant: 30,
+                                  bottomConstant: 0, rightConstant: 30,
+                                  widthConstant: 0, heightConstant: 30)
         segmentControlView.anchorCenterXToSuperview()
     }
 
 }
 
-// @MARK: navigation bar
+// MARK: navigation bar
 extension CreateOrderViewController {
     func setupNavigationBar() {
         setupTitleNavigationBar()
@@ -141,12 +149,20 @@ extension CreateOrderViewController {
     
     private func setupTitleNavigationBar() {
         view.addSubview(titleLabel)
-        titleLabel.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        titleLabel.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                          bottom: nil, right: view.rightAnchor,
+                          topConstant: 0, leftConstant: 30,
+                          bottomConstant: 0, rightConstant: 30,
+                          widthConstant: 0, heightConstant: 0)
     }
     
     private func setupLeftNavigationBarItems() {
         view.addSubview(buttonCancel)
-        buttonCancel.anchor(view.layoutMarginsGuide.topAnchor, left: nil, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 30, widthConstant: 70, heightConstant: 25)
+        buttonCancel.anchor(view.layoutMarginsGuide.topAnchor, left: nil,
+                            bottom: nil, right: view.rightAnchor,
+                            topConstant: 0, leftConstant: 0,
+                            bottomConstant: 0, rightConstant: 30,
+                            widthConstant: 70, heightConstant: 25)
     }
     
     @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {

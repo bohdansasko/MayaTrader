@@ -12,7 +12,7 @@ class ExmoSegmentCell: UITableViewCell, SegmentFormConformity {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = .white
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 14)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 14)
         return label
     }()
 
@@ -45,12 +45,12 @@ class ExmoSegmentCell: UITableViewCell, SegmentFormConformity {
         let selectedColor = sender.selectedSegmentIndex == 0 ? UIColor.greenBlue : UIColor.orangePink
 
         sender.setTitleTextAttributes(
-                [ NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Bold, fontSize: 12),
+                [ NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .bold, fontSize: 12),
                   NSAttributedString.Key.foregroundColor: normalColor ],
                 for: .normal
         )
         sender.setTitleTextAttributes(
-                [ NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .Bold, fontSize: 12),
+                [ NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .bold, fontSize: 12),
                   NSAttributedString.Key.foregroundColor: selectedColor ],
                 for: .selected
         )

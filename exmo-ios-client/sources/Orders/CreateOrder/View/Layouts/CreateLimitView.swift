@@ -11,14 +11,14 @@ import Foundation
 import UIKit
 
 enum OrderBy {
-    case Market
-    case CurrencyExchange
+    case market
+    case currencyExchange
 }
 
 enum CreateOrderDisplayType : Int {
-    case Limit = 0
-    case InstantOnAmount = 1
-    case InstantOnSum = 2
+    case limit = 0
+    case instantOnAmount = 1
+    case instantOnSum = 2
 }
 
 class CreateOrderLimitView: UIView {
@@ -26,7 +26,7 @@ class CreateOrderLimitView: UIView {
     weak var parentVC: ExmoUIViewController!
     lazy var form = FormCreateOrder()
     
-    var orderType: OrderActionType = .Sell {
+    var orderType: OrderActionType = .sell {
         didSet {
             guard let currency = selectedCurrency else {
                 updateSelectedCurrency(name: "", price: 0)
@@ -48,10 +48,10 @@ class CreateOrderLimitView: UIView {
         }
     }
     
-    var layoutType: CreateOrderDisplayType = .Limit {
+    var layoutType: CreateOrderDisplayType = .limit {
         didSet {
             cells.removeAll()
-            orderType = .Buy
+            orderType = .buy
             selectedCurrency = nil
             updateLayout(layoutType)
             

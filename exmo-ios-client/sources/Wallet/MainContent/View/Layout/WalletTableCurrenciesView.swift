@@ -69,7 +69,7 @@ class WalletTableCurrenciesView: UIView {
     }
 
     func showPlaceholderIfRequired() {
-        guard let w = wallet, w.favBalances.isEmpty == false else {
+        guard let lWallet = wallet, lWallet.favBalances.isEmpty == false else {
             tutorialImg.show()
             return
         }
@@ -96,9 +96,11 @@ extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let cell = cell as! WalletCurrencyCell
-        cell.index = indexPath.row
-        cell.currencyModel = wallet?.favBalances[indexPath.row]
+        guard let walletCell = cell as? WalletCurrencyCell else {
+            return
+        }
+        walletCell.index = indexPath.row
+        walletCell.currencyModel = wallet?.favBalances[indexPath.row]
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

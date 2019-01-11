@@ -8,7 +8,7 @@
 
 import UIKit
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension OrdersListView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -19,7 +19,7 @@ extension OrdersListView: UITableViewDataSource  {
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension OrdersListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return section == 0 ? 10 : 30
@@ -46,7 +46,9 @@ extension OrdersListView: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let order = dataProvider.getOrderBy(index: indexPath.section)
-        let orderCell = cell as! OrderViewCell
+        guard let orderCell = cell as? OrderViewCell else {
+            return
+        }
         orderCell.order = order
         tableViewCells[order.id] = indexPath
     }

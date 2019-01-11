@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 //
-// @MARK: CandleStickChartViewController
+// MARK: CandleStickChartViewController
 //
 class CandleStickChartViewController: ExmoChartViewController {
     @IBOutlet weak var chartView: CandleStickChartView!
@@ -52,7 +52,7 @@ class CandleStickChartViewController: ExmoChartViewController {
         chartView.leftAxis.enabled = false
         
         chartView.rightAxis.gridColor = UIColor.dark1
-        chartView.rightAxis.labelFont = UIFont.getExo2Font(fontType: .Medium, fontSize: 10)
+        chartView.rightAxis.labelFont = UIFont.getExo2Font(fontType: .medium, fontSize: 10)
         chartView.rightAxis.labelTextColor = UIColor.white
         chartView.rightAxis.axisMinimum = chartView.leftAxis.axisMinimum
         chartView.rightAxis.resetCustomAxisMin()
@@ -62,13 +62,13 @@ class CandleStickChartViewController: ExmoChartViewController {
     }
     
     private func getCandleChartData() -> CandleChartData {
-        let yVals1 = (0..<self.chartData.candles.count).map { (i) -> CandleChartDataEntry in
-            let candleModel = self.chartData.candles[i]
+        let yVals1 = (0..<self.chartData.candles.count).map { (idx) -> CandleChartDataEntry in
+            let candleModel = self.chartData.candles[idx]
             let open = candleModel.open
             let high = candleModel.high
             let low = candleModel.low
             let close = candleModel.close
-            return CandleChartDataEntry(x: Double(i), shadowH: high, shadowL: low, open: open, close: close)
+            return CandleChartDataEntry(x: Double(idx), shadowH: high, shadowL: low, open: open, close: close)
         }
         
         let set1 = CandleChartDataSet(values: yVals1, label: "Data Set")
@@ -106,7 +106,7 @@ extension CandleStickChartViewController : IAxisValueFormatter {
     }
 }
 //
-// @MARK: Delegate
+// MARK: Delegate
 //
 extension CandleStickChartViewController : ChartViewDelegate {
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {

@@ -15,14 +15,14 @@ class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerIn
     var loginPresenter: LoginModuleOutput!
 }
 
-// @MARK: QRScannerModuleInput
+// MARK: QRScannerModuleInput
 extension QRScannerPresenter {
     func setLoginPresenter(presenter: LoginModuleOutput) {
         loginPresenter = presenter
     }
 }
 
-// @MARK: QRScannerViewOutput
+// MARK: QRScannerViewOutput
 extension QRScannerPresenter {
     func viewIsReady() {
         // do nothing
@@ -33,11 +33,13 @@ extension QRScannerPresenter {
     }
     
     func closeViewController() {
-        router.closeViewController(view as! UIViewController)
+        if let localView = view as? UIViewController {
+            router.closeViewController(localView)
+        }
     }
 }
 
-// @MARK: QRScannerInteractorOutput
+// MARK: QRScannerInteractorOutput
 extension QRScannerPresenter {
     func setLoginData(loginModel: ExmoQR?) {
         loginPresenter.setLoginData(loginModel: loginModel)

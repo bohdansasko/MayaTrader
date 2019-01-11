@@ -17,7 +17,7 @@ class WatchlistInteractor {
     var favPairs: [WatchlistCurrency] = []
 }
 
-// @MARK: WatchlistInteractor
+// MARK: WatchlistInteractor
 extension WatchlistInteractor: WatchlistInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
@@ -62,7 +62,7 @@ extension WatchlistInteractor: WatchlistInteractorInput {
     }
 }
 
-// @MARK: ITickerNetworkWorkerDelegate
+// MARK: ITickerNetworkWorkerDelegate
 extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
         print("onDidLoadTickerSuccess")
@@ -97,7 +97,7 @@ extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
     }
 }
 
-// @MARK: work with database
+// MARK: work with database
 extension WatchlistInteractor {
     func loadCurrenciesFromCache() {
         guard let object = dbManager.object(type: WatchlistObject.self, key: "") else {
@@ -115,11 +115,11 @@ extension WatchlistInteractor {
     }
 }
 
-// @MARK: work with timer
+// MARK: work with timer
 extension WatchlistInteractor {
     func scheduleUpdateCurrencies() {
         print("Watchlist: scheduleUpdateCurrencies")
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.Watchlist, repeats: true) {
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.watchlist, repeats: true) {
             [weak self] _ in
             self?.networkWorker.load()
         }

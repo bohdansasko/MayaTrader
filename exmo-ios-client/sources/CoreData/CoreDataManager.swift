@@ -58,3 +58,15 @@ class CoreDataManager {
         return persistentContainer.viewContext
     }
 }
+
+//enum PlistKey {
+//    case API_URL
+//    case CONNECTION_PROTOCOL
+//    
+//    func value() -> String {
+//        switch self {
+//        case .API_URL: return "api_url"
+//        case .API_URL: return "CONNECTION_PROTOCOL"
+//        }
+//    }
+//}

@@ -93,7 +93,7 @@ extension MainTabBarController {
         ]
 
         let titleAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.font : UIFont.getExo2Font(fontType: .Regular, fontSize: 18)
+            NSAttributedString.Key.font : UIFont.getExo2Font(fontType: .regular, fontSize: 18)
         ]
         viewControllers?.forEach({ $0.navigationController?.navigationBar.titleTextAttributes = titleAttributes })
 
@@ -112,7 +112,7 @@ extension MainTabBarController {
     }
 }
 
-// @MARK: MainTabBarInput
+// MARK: MainTabBarInput
 extension MainTabBarController: MainTabBarViewInput {
     // do nothing
 }

@@ -16,7 +16,7 @@ class TableMenuView: UIView {
             updateViewLayout()
         }
     }
-    private var cellsTypeContainer: [MenuSectionType : [MenuCellType]] = [:] {
+    private var cellsTypeContainer: [MenuSectionType: [MenuCellType]] = [:] {
         didSet {
             tableView.reloadData()
         }
@@ -49,7 +49,11 @@ class TableMenuView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
-        tableView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        tableView.anchor(self.topAnchor, left: self.leftAnchor,
+                         bottom: self.bottomAnchor, right: rightAnchor,
+                         topConstant: 0, leftConstant: 0,
+                         bottomConstant: 0, rightConstant: 0,
+                         widthConstant: 0, heightConstant: 0)
         tableView.register(TableMenuViewCell.self, forCellReuseIdentifier: cellId)
     }
 
@@ -72,7 +76,7 @@ class TableMenuView: UIView {
     }
 }
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension TableMenuView: UITableViewDataSource  {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return cellsTypeContainer.count
@@ -90,7 +94,7 @@ extension TableMenuView: UITableViewDataSource  {
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension TableMenuView: UITableViewDelegate  {
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 20
@@ -112,7 +116,7 @@ extension TableMenuView: UITableViewDelegate  {
         label.text = sectionType.header
         label.textColor = .white
         label.textAlignment = .left
-        label.font = UIFont.getExo2Font(fontType: .Regular, fontSize: 13)
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 13)
         label.anchor(headerView.topAnchor,
                 left: headerView.leftAnchor,
                 bottom: headerView.bottomAnchor,
@@ -138,16 +142,15 @@ extension TableMenuView: UITableViewDelegate  {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let menuCell = cell as! TableMenuViewCell
-        guard let sectionType = MenuSectionType(rawValue: indexPath.section),
+        guard let menuCell = cell as? TableMenuViewCell,
+              let sectionType = MenuSectionType(rawValue: indexPath.section),
               let cellType = cellsTypeContainer[sectionType]?[indexPath.row] else {
             return
         }
         
-        if cellType == .Security {
+        if cellType == .security {
             menuCell.lockButton.isSelected = Defaults.isPasscodeActive()
         }
-        
         menuCell.cellType = cellType
     }
 

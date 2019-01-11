@@ -13,35 +13,35 @@ class MenuRouter: MenuRouterInput {
     
     func showViewController(sourceVC: UIViewController, touchedCellType: MenuCellType) {
         switch touchedCellType {
-        case .Login:
+        case .login:
             let loginInit = LoginModuleInitializer()
             sourceVC.present(loginInit.viewController, animated: true)
-        case .Logout:
+        case .logout:
             output.userLogout()
 
-        case .ProFeatures: break;
-        case .Advertisement: break;
+        case .proFeatures: break;
+        case .advertisement: break;
 
-        case .Security:
+        case .security:
             sourceVC.present(PasswordModuleConfigurator().navigationVC, animated: true)
 
-        case .Telegram:
-            if !openLinkOnSupportGroups(.TelegramApp) {
-                if !openLinkOnSupportGroups(.TelegramWebsite) {
-                    onFailOpenSocialGroups(.TelegramWebsite)
+        case .telegram:
+            if !openLinkOnSupportGroups(.telegramApp) {
+                if !openLinkOnSupportGroups(.telegramWebsite) {
+                    onFailOpenSocialGroups(.telegramWebsite)
                 }
             }
-        case .Facebook:
-            if !openLinkOnSupportGroups(.FacebookApp) {
-                if !openLinkOnSupportGroups(.FacebookWebsite) {
-                    onFailOpenSocialGroups(.FacebookWebsite)
+        case .facebook:
+            if !openLinkOnSupportGroups(.facebookApp) {
+                if !openLinkOnSupportGroups(.facebookWebsite) {
+                    onFailOpenSocialGroups(.facebookWebsite)
                 }
             }
-        case .RateUs:
+        case .rateUs:
             StoreReviewHelper.resetAppOpenedCount()
             StoreReviewHelper.requestReview()
-        case .ShareApp:
-            if let link = NSURL(string: UserDefaultsKeys.AppStoreLink.rawValue) {
+        case .shareApp:
+            if let link = NSURL(string: UserDefaultsKeys.appStoreLink.rawValue) {
                 let objectsToShare = [link] as [Any]
                 let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
                 sourceVC.present(activityVC, animated: true, completion: nil)
@@ -55,8 +55,8 @@ class MenuRouter: MenuRouterInput {
 extension MenuRouter {
     func onFailOpenSocialGroups(_ link: LinkOnSupportGroups) {
         switch link {
-        case .TelegramApp, .TelegramWebsite: print("can't open telegram.")
-        case .FacebookApp, .FacebookWebsite: print("can't open facebook. install it, please")
+        case .telegramApp, .telegramWebsite: print("can't open telegram.")
+        case .facebookApp, .facebookWebsite: print("can't open facebook. install it, please")
         }
     }
     

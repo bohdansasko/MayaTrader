@@ -13,14 +13,14 @@ class CreateAlertPresenter {
     var router: CreateAlertRouterInput!
 }
 
-// @MARK: CreateAlertModuleInput
+// MARK: CreateAlertModuleInput
 extension CreateAlertPresenter: CreateAlertModuleInput {
     func setEditAlert(_ alert: Alert) {
         view.setEditAlert(alert)
     }
 }
 
-// @MARK: CreateAlertViewOutput
+// MARK: CreateAlertViewOutput
 extension CreateAlertPresenter: CreateAlertViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
@@ -36,17 +36,19 @@ extension CreateAlertPresenter: CreateAlertViewOutput {
     
     func handleTouchButtonCreate(alertModel: Alert, operationType: AlertOperationType) {
         switch operationType {
-        case .Add: interactor.createAlert(alertModel)
-        case .Update: interactor.updateAlert(alertModel)
+        case .add: interactor.createAlert(alertModel)
+        case .update: interactor.updateAlert(alertModel)
         }
     }
     
     func showSearchViewController(searchType: SearchViewController.SearchType) {
-        router.openCurrencyPairsSearchView(view as! UIViewController, moduleOutput: self)
+        if let view = view as? UIViewController {
+            router.openCurrencyPairsSearchView(view, moduleOutput: self)
+        }
     }
 }
 
-// @MARK: CreateAlertInteractorOutput
+// MARK: CreateAlertInteractorOutput
 extension CreateAlertPresenter: CreateAlertInteractorOutput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         view.updateSelectedCurrency(tickerCurrencyPair)
@@ -65,7 +67,7 @@ extension CreateAlertPresenter: CreateAlertInteractorOutput {
     }
 }
 
-// @MARK: SearchModuleOutput
+// MARK: SearchModuleOutput
 extension CreateAlertPresenter: SearchModuleOutput {
     func onDidSelectCurrencyPair(rawName: String) {
         interactor.handleSelectedCurrency(rawName: rawName)

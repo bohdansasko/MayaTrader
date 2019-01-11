@@ -12,7 +12,7 @@ import LBTAComponents
 class WatchlistCardCell: ExmoCollectionCell {
     var pairNameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 15)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 15)
         label.textAlignment = .center
         label.textColor = .white
         return label
@@ -28,7 +28,7 @@ class WatchlistCardCell: ExmoCollectionCell {
 
     var pairBuyPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .dodgerBlue
         return label
@@ -36,7 +36,7 @@ class WatchlistCardCell: ExmoCollectionCell {
     
     var pairSellPriceLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = UIColor(red: 193.0/255, green: 45.0/255, blue: 102.0/255, alpha: 1)
         return label
@@ -44,7 +44,7 @@ class WatchlistCardCell: ExmoCollectionCell {
 
     var pairVolumeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .dark2
         return label
@@ -52,7 +52,7 @@ class WatchlistCardCell: ExmoCollectionCell {
 
     var currencyChangesLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .SemiBold, fontSize: 12)
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
         label.textColor = .greenBlue
         return label
@@ -102,15 +102,34 @@ extension WatchlistCardCell {
     }
 
     func setupConstraints() {
-        pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 10, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
+        pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor,
+                             bottom: nil, right: self.rightAnchor,
+                             topConstant: 10, leftConstant: 10,
+                             bottomConstant: 0, rightConstant: 10,
+                             widthConstant: 0, heightConstant: 15)
         
-        pairBuyPriceLabel.anchor(pairNameLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 15)
+        pairBuyPriceLabel.anchor(pairNameLabel.bottomAnchor, left: pairNameLabel.leftAnchor,
+                                 bottom: nil, right: pairNameLabel.rightAnchor,
+                                 topConstant: 5, leftConstant: 5, bottomConstant: 0,
+                                 rightConstant: 10, widthConstant: 0, heightConstant: 15)
         
-        pairSellPriceLabel.anchor(pairBuyPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
+        pairSellPriceLabel.anchor(pairBuyPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor,
+                                  bottom: nil, right: pairNameLabel.rightAnchor,
+                                  topConstant: 5, leftConstant: 5,
+                                  bottomConstant: 0, rightConstant: 5,
+                                  widthConstant: 0, heightConstant: 15)
         
-        currencyChangesLabel.anchor(pairSellPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
+        currencyChangesLabel.anchor(pairSellPriceLabel.bottomAnchor, left: pairNameLabel.leftAnchor,
+                                    bottom: nil, right: pairNameLabel.rightAnchor,
+                                    topConstant: 5, leftConstant: 5,
+                                    bottomConstant: 0, rightConstant: 5,
+                                    widthConstant: 0, heightConstant: 15)
         
-        pairVolumeLabel.anchor(currencyChangesLabel.bottomAnchor, left: pairNameLabel.leftAnchor, bottom: nil, right: pairNameLabel.rightAnchor, topConstant: 5, leftConstant: 5, bottomConstant: 0, rightConstant: 5, widthConstant: 0, heightConstant: 15)
+        pairVolumeLabel.anchor(currencyChangesLabel.bottomAnchor, left: pairNameLabel.leftAnchor,
+                               bottom: nil, right: pairNameLabel.rightAnchor,
+                               topConstant: 5, leftConstant: 5,
+                               bottomConstant: 0, rightConstant: 5,
+                               widthConstant: 0, heightConstant: 15)
 
         addSubview(favButton)
         favButton.addTarget(self, action: #selector(onTouchFavBtn(_:)), for: .touchUpInside)

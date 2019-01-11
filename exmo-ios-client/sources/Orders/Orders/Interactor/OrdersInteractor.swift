@@ -14,7 +14,7 @@ class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     var networkWorker: IOrdersListNetworkWorker!
 }
 
-// @MARK: OrdersInteractorInput
+// MARK: OrdersInteractorInput
 extension OrdersInteractor: OrdersInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
@@ -28,10 +28,10 @@ extension OrdersInteractor: OrdersInteractorInput {
         print("loadOrderByType => \(orderType)")
 
         switch orderType {
-        case .Open: networkWorker.loadOpenOrders()
-        case .Canceled: networkWorker.loadCanceledOrders()
-        case .Deals: networkWorker.loadDeals()
-        case .None: break
+        case .open: networkWorker.loadOpenOrders()
+        case .canceled: networkWorker.loadCanceledOrders()
+        case .deals: networkWorker.loadDeals()
+        case .none: break
         }
     }
     
@@ -44,18 +44,18 @@ extension OrdersInteractor: OrdersInteractorInput {
 extension OrdersInteractor {
     func onUserSignOut() {
         var loadedOrders = [Orders.DisplayType : Orders]()
-        loadedOrders[.Open] = Orders()
-        loadedOrders[.Canceled] = Orders()
-        loadedOrders[.Deals] = Orders()
+        loadedOrders[.open] = Orders()
+        loadedOrders[.canceled] = Orders()
+        loadedOrders[.deals] = Orders()
         output.onDidLoadOrders(loadedOrders: loadedOrders)
     }
 }
 
-// @MARK: Load Open orders
+// MARK: Load Open orders
 extension OrdersInteractor {
     func onDidLoadSuccessOpenOrders(orders: Orders) {
         print("OrdersInteractor => onDidLoadSuccessOpenOrders")
-        output.onDidLoadOrders(loadedOrders: [.Open : orders])
+        output.onDidLoadOrders(loadedOrders: [.open : orders])
     }
     
     func onDidLoadFailsOpenOrders(orders: Orders) {
@@ -63,10 +63,10 @@ extension OrdersInteractor {
     }
 }
 
-// @MARK: Load Canceled orders
+// MARK: Load Canceled orders
 extension OrdersInteractor {
     func onDidLoadSuccessCanceledOrders(orders: Orders) {
-        output.onDidLoadOrders(loadedOrders: [.Canceled : orders])
+        output.onDidLoadOrders(loadedOrders: [.canceled : orders])
     }
     
     func onDidLoadFailsCanceledOrders(orders: Orders) {
@@ -74,10 +74,10 @@ extension OrdersInteractor {
     }
 }
 
-// @MARK: Load deals
+// MARK: Load deals
 extension OrdersInteractor {
     func onDidLoadSuccessDeals(orders: Orders) {
-        output.onDidLoadOrders(loadedOrders: [.Deals : orders])
+        output.onDidLoadOrders(loadedOrders: [.deals : orders])
     }
     
     func onDidLoadFailsDeals(orders: Orders) {
@@ -85,7 +85,7 @@ extension OrdersInteractor {
     }
 }
 
-// @MARK: Cancel order
+// MARK: Cancel order
 extension OrdersInteractor {
     func onDidCancelOrderSuccess(id: Int64) {
         print("OrdersInteractor => has cancelled order \(id)")

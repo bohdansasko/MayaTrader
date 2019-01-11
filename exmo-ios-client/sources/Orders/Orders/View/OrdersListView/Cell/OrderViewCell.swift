@@ -18,7 +18,7 @@ class OrderViewCell: UITableViewCell {
     }()
     var orderTypeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .Bold, fontSize: 13)
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 13)
         label.textAlignment = .center
         label.textColor = .white
         label.layer.masksToBounds = true
@@ -66,7 +66,7 @@ class OrderViewCell: UITableViewCell {
             guard let orderData = order else { return }
             
             labelTimeCreateOrder.text = orderData.getDateCreatedAsStr()
-            if AppDelegate.isIPhone(model: .Five) {
+            if AppDelegate.isIPhone(model: .five) {
                 labelTimeCreateOrder.widthAnchor.constraint(equalToConstant: 70).isActive = true
             }
             

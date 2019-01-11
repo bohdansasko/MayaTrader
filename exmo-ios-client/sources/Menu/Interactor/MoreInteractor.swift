@@ -17,7 +17,7 @@ class MenuInteractor: MenuInteractorInput {
     }
 }
 
-// @MARK: MenuInteractorInput
+// MARK: MenuInteractorInput
 extension MenuInteractor {
     func viewIsReady() {
         subscribeOnEvents()
@@ -37,7 +37,7 @@ extension MenuInteractor {
     }
 }
 
-// @MARK: MenuInteractorInput
+// MARK: MenuInteractorInput
 extension MenuInteractor {
     private func subscribeOnEvents() {
         AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignIn), name: .UserSignIn)

@@ -68,7 +68,7 @@ class TickerCurrenciesListView: UIView {
     }
 }
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension TickerCurrenciesListView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return datasource?.numberOfItems(section) ?? 0
@@ -95,7 +95,7 @@ extension TickerCurrenciesListView: UICollectionViewDataSource {
     }
 }
 
-// @MARK: UICollectionViewDelegateFlowLayout
+// MARK: UICollectionViewDelegateFlowLayout
 extension TickerCurrenciesListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? CurrenciesListCell else { return }

@@ -9,7 +9,7 @@
 
 import UIKit
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension AlertsListView: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
         return alerts.getCountMenuItems()
@@ -25,19 +25,17 @@ extension AlertsListView: UITableViewDataSource  {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let alert = alerts.getCellItem(byRow: indexPath.section) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.section),
+              let alertCell = cell as? AlertViewCell else {
             print("cellForRowAt: item doesn't exists")
             return
         }
-        
-        let cell = cell as! AlertViewCell
-        cell.item = alert
-        
-        cells.append(cell)
+        alertCell.item = alert
+        cells.append(alertCell)
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension AlertsListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 10
@@ -75,10 +73,10 @@ extension AlertsListView: UITableViewDelegate  {
             self?.handleStateAction(elementIndex: indexPath.section)
             completionHandler(true)
         })
-        stateAction.backgroundColor = alerts.getStatus(forItem: indexPath.section) == .Active
+        stateAction.backgroundColor = alerts.getStatus(forItem: indexPath.section) == .active
             ? UIColor.steel
             : UIColor.greenBlue
-        stateAction.image = alerts.getStatus(forItem: indexPath.section) == .Active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
+        stateAction.image = alerts.getStatus(forItem: indexPath.section) == .active ? #imageLiteral(resourceName: "icPause") : #imageLiteral(resourceName: "icPlay")
         
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             [weak self] _, _, completionHandler in
@@ -99,9 +97,9 @@ extension AlertsListView: UITableViewDelegate  {
         removeAction.image = #imageLiteral(resourceName: "icNavbarTrash")
         
         cellActions[indexPath.section] = [
-            ActionType.Delete : removeAction,
-            ActionType.Edit   : editAction,
-            ActionType.State  : stateAction
+            ActionType.delete : removeAction,
+            ActionType.edit   : editAction,
+            ActionType.state  : stateAction
         ]
         
         let config = UISwipeActionsConfiguration(actions: [removeAction, editAction, stateAction])

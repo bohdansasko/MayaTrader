@@ -69,20 +69,22 @@ extension SearchDatasourceListView {
     }
 }
 
-// @MARK: UITableViewDataSource
+// MARK: UITableViewDataSource
 extension SearchDatasourceListView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pairs.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: kCellId) as! SearchDatasourceListCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: kCellId) as? SearchDatasourceListCell else {
+            return UITableViewCell()
+        }
         cell.model = pairs[indexPath.item]
         return cell
     }
 }
 
-// @MARK: UITableViewDelegate
+// MARK: UITableViewDelegate
 extension SearchDatasourceListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
