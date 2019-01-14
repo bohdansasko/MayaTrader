@@ -70,6 +70,7 @@ PODS:
   - SmileLock (3.0.5)
   - SwiftWebSocket (2.7.0)
   - SwiftyJSON (4.2.0)
+  - SwiftyStoreKit (0.14.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
@@ -85,6 +86,7 @@ DEPENDENCIES:
   - SmileLock (~> 3.0)
   - SwiftWebSocket
   - SwiftyJSON
+  - SwiftyStoreKit
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -108,6 +110,7 @@ SPEC REPOS:
     - SmileLock
     - SwiftWebSocket
     - SwiftyJSON
+    - SwiftyStoreKit
 
 SPEC CHECKSUMS:
   Alamofire: 3ec537f71edc9804815215393ae2b1a8ea33a844
@@ -130,7 +133,8 @@ SPEC CHECKSUMS:
   SmileLock: 8f57ad4626cd23a8e1e01230521ede7761b38b0c
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+  SwiftyStoreKit: a5cdece4327f3943eb72fa81aebe3aa6684b5eab
 
-PODFILE CHECKSUM: 92b92e08eb208c038c895fc346180e49d8a3c542
+PODFILE CHECKSUM: 9c9f278737f1c7e8c99e31709b436b1f69e797aa
 
 COCOAPODS: 1.6.0.beta.2

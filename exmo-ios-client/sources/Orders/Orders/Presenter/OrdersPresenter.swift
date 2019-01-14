@@ -18,6 +18,10 @@ extension OrdersPresenter: OrdersViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
     }
+
+    func viewWillAppear() {
+        interactor.viewWillAppear()
+    }
     
     func onDidSelectTab(_ orderTab: Orders.DisplayType) {
         interactor.loadOrderByType(orderTab)
@@ -43,4 +47,9 @@ extension OrdersPresenter: OrdersInteractorOutput {
     func orderCanceled(ids: [Int64]) {
         view.orderCanceled(ids: ids)
     }
+
+    func setAdsVisible(_ isVisible: Bool) {
+        view.setAdsVisible(isVisible)
+    }
+
 }

@@ -3,17 +3,31 @@ platform :ios, '11.0'
 
 target 'exmo-ios-client' do
   use_frameworks!
+  
+  # Crashlytics
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'SwiftWebSocket'
+
+  # JSON to Object and vice-versa
   pod 'ObjectMapper', '~> 3.1'
-  pod 'Alamofire', '~> 4.7'
   pod 'SwiftyJSON'
-  pod 'Charts'
-  pod 'LBTAComponents' # TODO: should remove from project
-  pod 'RealmSwift'
-  pod 'SmileLock', '~> 3.0'
+  
+  # Connection with Internet
+  pod 'Alamofire', '~> 4.7'
+  pod 'SwiftWebSocket'
+  pod 'SwiftyStoreKit'
+  
+  # Admob
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
+
+  # Security
+  pod 'SmileLock', '~> 3.0'
   pod 'KeychainSwift', '~> 13.0'
+  
+  pod 'RealmSwift'
+  pod 'Charts'
+
+  pod 'LBTAComponents' # TODO: should remove from project
+  
 end
