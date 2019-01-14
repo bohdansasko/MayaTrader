@@ -13,15 +13,14 @@ class AlertsInteractor  {
 
     deinit {
         print("deinit \(String(describing: self))")
-        AppDelegate.vinsoAPI.removeConnectionObserver(self)
-        AppDelegate.vinsoAPI.removeAlertsObserver(self)
+        unsubscribeEvents()
     }
 }
 
 extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
-        AppDelegate.vinsoAPI.addConnectionObserver(self)
-        AppDelegate.vinsoAPI.addAlertsObserver(self)
+        subscribeOnVinsoAPIEvents()
+        subscribeOnIAPEvents()
     }
 
     func viewDidAppear() {
@@ -30,6 +29,9 @@ extension AlertsInteractor: AlertsInteractorInput {
         } else {
             AppDelegate.vinsoAPI.establishConnect()
         }
+
+        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
+        output.setAdsVisible(shouldShowAds)
     }
 
     func updateAlertState(_ alert: Alert) {
@@ -71,5 +73,108 @@ extension AlertsInteractor: AlertsAPIResponseDelegate {
     func onDidDeleteAlertsSuccessful(ids: [Int]) {
         output.deleteAlertsSuccessful(ids: ids)
     }
+}
 
+extension AlertsInteractor {
+    func subscribeOnVinsoAPIEvents() {
+        AppDelegate.vinsoAPI.addConnectionObserver(self)
+        AppDelegate.vinsoAPI.addAlertsObserver(self)
+    }
+
+    func subscribeOnIAPEvents() {
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductPurchased(_ :)),
+                name: IAPServiceNotification.purchased.name)
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductExpired(_ :)),
+                name: IAPServiceNotification.expired.name)
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductNotPurchased(_ :)),
+                name: IAPServiceNotification.notPurchased.name)
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductPurchaseSuccess(_ :)),
+                name: IAPServiceNotification.purchaseSuccess.name)
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductPurchaseError(_ :)),
+                name: IAPServiceNotification.purchaseError.name)
+    }
+
+    func unsubscribeEvents() {
+        AppDelegate.vinsoAPI.removeConnectionObserver(self)
+        AppDelegate.vinsoAPI.removeAlertsObserver(self)
+        AppDelegate.notificationController.removeObserver(self)
+    }
+}
+
+extension AlertsInteractor {
+    @objc
+    func onProductPurchased(_ notification: Notification) {
+        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
+            print("\(String(describing: self)) => can't convert notification container to IAPProduct")
+            return
+        }
+        print("\(String(describing: self)) => notification IAPProduct is \(product.rawValue)")
+        onProductActive(product)
+    }
+    
+    @objc
+    func onProductExpired(_ notification: Notification) {
+        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
+            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
+            return
+        }
+        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
+        onProductInactive(product)
+    }
+    
+    @objc
+    func onProductNotPurchased(_ notification: Notification) {
+        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
+            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
+            return
+        }
+        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
+        onProductInactive(product)
+    }
+
+    @objc
+    func onProductPurchaseSuccess(_ notification: Notification) {
+        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
+            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
+            return
+        }
+        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
+        onProductActive(product)
+    }
+
+    @objc
+    func onProductPurchaseError(_ notification: Notification) {
+        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
+            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
+            return
+        }
+        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
+        onProductInactive(product)
+    }
+
+    private func onProductActive(_ product: IAPProduct) {
+        switch product {
+        case .advertisements: output.setAdsVisible(false)
+        case .litePackage: break
+        case .proPackage: break
+        }
+    }
+
+    private func onProductInactive(_ product: IAPProduct) {
+        switch product {
+        case .advertisements: output.setAdsVisible(true)
+        case .litePackage: break
+        case .proPackage: break
+        }
+    }
 }

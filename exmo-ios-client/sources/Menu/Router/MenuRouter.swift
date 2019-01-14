@@ -18,13 +18,19 @@ class MenuRouter: MenuRouterInput {
             sourceVC.present(loginInit.viewController, animated: true)
         case .logout:
             output.userLogout()
-
-        case .proFeatures: break;
-        case .advertisement: break;
-
         case .security:
             sourceVC.present(PasswordModuleConfigurator().navigationVC, animated: true)
 
+        case .proFeatures:
+            IAPService.shared.verifySubscription(.advertisements)
+            let iapInitializer = IAPModuleInitializer()
+            sourceVC.present(iapInitializer.viewController, animated: true)
+        case .advertisement:
+            IAPService.shared.purchase(product: .advertisements)
+
+        case .restorePurchases:
+            IAPService.shared.restorePurchases()
+            
         case .telegram:
             if !openLinkOnSupportGroups(.telegramApp) {
                 if !openLinkOnSupportGroups(.telegramWebsite) {
@@ -37,6 +43,7 @@ class MenuRouter: MenuRouterInput {
                     onFailOpenSocialGroups(.facebookWebsite)
                 }
             }
+
         case .rateUs:
             StoreReviewHelper.resetAppOpenedCount()
             StoreReviewHelper.requestReview()

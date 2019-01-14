@@ -30,6 +30,7 @@ enum MenuSectionType: Int {
         .purchase : [
             .proFeatures,
             .advertisement,
+            .restorePurchases
         ],
         .contactWithUs : [
             .facebook,
@@ -51,6 +52,7 @@ enum MenuSectionType: Int {
         .purchase : [
             .proFeatures,
             .advertisement,
+            .restorePurchases
         ],
         .contactWithUs : [
             .facebook,
@@ -72,6 +74,7 @@ enum MenuCellType {
 
     case proFeatures
     case advertisement
+    case restorePurchases
 
     case security
 
@@ -92,7 +95,8 @@ enum MenuCellType {
 
         case .proFeatures: return "Pro features"
         case .advertisement: return "Remove Ads"
-
+        case .restorePurchases: return "Restore Purchases"
+            
         case .security: return "Security"
 
         case .telegram: return "Telegram"
@@ -113,7 +117,8 @@ enum MenuCellType {
 
         case .proFeatures: return UIImage(named: "icProFeatures")
         case .advertisement: return UIImage(named: "icAds")
-
+        case .restorePurchases: return UIImage(named: "icProFeatures")
+            
         case .security: return UIImage(named: "icTouchId")
 
         case .telegram: return UIImage(named: "icTelegram")

@@ -21,4 +21,6 @@ protocol AlertsInteractorOutput: class {
     func onDidLoadAlertsHistory(_ alerts: [Alert])
     func updateAlertSuccessful(_ alert: Alert)
     func deleteAlertsSuccessful(ids: [Int])
+
+    func setAdsVisible(_ isVisible: Bool)
 }

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import GoogleMobileAds
 
 enum AlertsDeleteAction: Int {
     case active
@@ -18,7 +17,6 @@ enum AlertsDeleteAction: Int {
 class AlertsViewController: ExmoUIViewController {
     var output: AlertsViewOutput!
     var listView: AlertsListView!
-    var bannerView: GADBannerView!
     var pickerViewManager: DarkeningPickerViewManager!
 
     var btnCreateAlert: UIBarButtonItem = {
@@ -42,7 +40,6 @@ class AlertsViewController: ExmoUIViewController {
         titleNavBar = "Alerts"
         setupViews()
         output.viewIsReady()
-        bannerView.load(GADRequest())
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -95,7 +92,22 @@ extension AlertsViewController: AlertsViewInput {
     func deleteAlerts(withIds ids: [Int]) {
         listView.deleteAlerts(ids: ids)
     }
+
+    func setAdsVisible(_ isVisible: Bool) {
+        print("Alerts: \(#function), visible = \(isVisible)")
+        if isVisible {
+            showAdsView(completion: {
+                self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
+            })
+        } else {
+            hideAdsView(completion: {
+                self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+            })
+
+        }
+    }
 }
+
 // MARK: setup initial UI state for view controller
 extension AlertsViewController {
     func setupViews() {
@@ -131,46 +143,5 @@ extension AlertsViewController {
                         topConstant: 10, leftConstant: 0,
                         bottomConstant: 0, rightConstant: 0,
                         widthConstant: 0, heightConstant: 0)
-    }
-    
-    func setupBannerView() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        bannerView.delegate = self
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-    }
-    
-    func addBannerToView(_ bannerView: GADBannerView) {
-        view.addSubview(bannerView)
-        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor,
-                          bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor,
-                          topConstant: 0, leftConstant: 0,
-                          bottomConstant: 0, rightConstant: 0,
-                          widthConstant: 0, heightConstant: 0)
-    }
-
-}
-
-// MARK: GADBannerViewDelegate
-extension AlertsViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
-        if bannerView.superview != nil {
-            bannerView.alpha = 0
-            UIView.animate(withDuration: 1) {
-                bannerView.alpha = 1
-                self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
-            }
-        } else {
-            addBannerToView(bannerView)
-        }
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print(error)
-        UIView.animate(withDuration: 1) {
-            bannerView.alpha = 0
-            self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
-        }
     }
 }

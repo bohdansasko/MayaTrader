@@ -9,4 +9,5 @@
 protocol WatchlistViewInput: class {
     func presentFavouriteCurrencies(items: [WatchlistCurrency])
     func removeItem(currency: WatchlistCurrency)
+    func setAdsVisible(_ isVisible: Bool)
 }

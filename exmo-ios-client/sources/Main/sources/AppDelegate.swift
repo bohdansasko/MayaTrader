@@ -34,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         AppDelegate.vinsoAPI.addConnectionObserver(self)
-        
+        IAPService.shared.completeTransactions()
+
         setupFabric()
         setupAdMob()
         setupWindow()
@@ -107,7 +108,9 @@ extension AppDelegate {
     }
     
     func registerPushNotifications() {
-        UIApplication.shared.registerForRemoteNotifications()
+        DispatchQueue.main.async {
+            UIApplication.shared.registerForRemoteNotifications()
+        }
     }
     
     fileprivate func requestPushNotifications(center: UNUserNotificationCenter, _ result: @escaping (Bool) -> Void) {
@@ -188,7 +191,7 @@ class NotificationController {
 extension AppDelegate {
     static let exmoController = ExmoAccountController()
     static let vinsoAPI = VinsoAPI.shared
-    static let notificationController = NotificationController()
+    static let notificationController = NotificationController() // TODO: rename on NotifyService
 }
 
 //

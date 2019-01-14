@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class TutorialImage: UIView {
     var imageName: String?
     var offsetByY: CGFloat = 0
-
+    
     let tutorialImgView: UIImageView = {
         let imgView = UIImageView()
         imgView.contentMode = .scaleAspectFit
         return imgView
     }()
+    
 
     func show() {
         if tutorialImgView.superview == nil && imageName != nil {
@@ -54,6 +56,8 @@ class ExmoUIViewController: UIViewController {
             setupTitle()
         }
     }
+    
+    var bannerView: GADBannerView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,5 +160,67 @@ extension ExmoUIViewController {
 
     func isLoaderShowing() -> Bool {
         return activityIndicatorView.isHidden == false
+    }
+}
+
+extension ExmoUIViewController {
+    func loadAds() {
+        bannerView.load(GADRequest())
+    }
+    
+    func setupBannerView() {
+        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
+        bannerView.delegate = self
+        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.rootViewController = self
+    }
+    
+    func addBannerToView(_ bannerView: GADBannerView) {
+        view.addSubview(bannerView)
+        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor,
+                          bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor,
+                          topConstant: 0, leftConstant: 0,
+                          bottomConstant: 0, rightConstant: 0,
+                          widthConstant: 0, heightConstant: 0)
+    }
+    
+
+    func showAdsView(completion: VoidClosure? = nil) {
+        if bannerView.superview == nil {
+            print("bannerView doesn't have parent view")
+            loadAds()
+            completion?()
+            return
+        }
+
+        bannerView.alpha = 0
+        UIView.animate(withDuration: 1) {
+            self.bannerView.alpha = 1
+            completion?()
+        }
+    }
+    
+    func hideAdsView(completion: VoidClosure? = nil) {
+        UIView.animate(withDuration: 1) {
+            self.bannerView.alpha = 0
+            completion?()
+        }
+    }
+}
+
+// MARK: GADBannerViewDelegate
+extension ExmoUIViewController: GADBannerViewDelegate {
+    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        print("adViewDidReceiveAd")
+        if bannerView.superview != nil {
+            showAdsView()
+        } else {
+            addBannerToView(bannerView)
+        }
+    }
+    
+    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
+        print(error)
+        hideAdsView()
     }
 }

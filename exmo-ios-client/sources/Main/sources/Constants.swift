@@ -57,6 +57,7 @@ enum UserDefaultsKeys: String {
     case appStoreLink = "https://www.telegram.me/exmo_official"
     case passcode
     case exmoId = "EXMO"
+    case iapAdvertisement
 }
 
 enum KeychainDefaultKeys: String {

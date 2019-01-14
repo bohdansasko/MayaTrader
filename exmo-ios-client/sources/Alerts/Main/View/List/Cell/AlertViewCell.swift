@@ -113,10 +113,10 @@ extension AlertViewCell {
         updateAlertStatusBackground()
 
         currencyLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: item.currencyCode)
-        priceValueLabel.text = Utils.getFormatedPrice(value: item.priceAtCreateMoment)
+        priceValueLabel.text = Utils.getFormatedPrice(value: item.priceAtCreateMoment, maxFractDigits: 10)
 
-        labelTopBound.text = item.topBoundary != nil ? Utils.getFormatedPrice(value: item.topBoundary!, maxFractDigits: 9) : "-"
-        labelBottomBound.text = item.bottomBoundary != nil ? Utils.getFormatedPrice(value: item.bottomBoundary!, maxFractDigits: 9) : "-"
+        labelTopBound.text = item.topBoundary != nil ? Utils.getFormatedPrice(value: item.topBoundary!, maxFractDigits: 10) : "-"
+        labelBottomBound.text = item.bottomBoundary != nil ? Utils.getFormatedPrice(value: item.bottomBoundary!, maxFractDigits: 10) : "-"
 
         let description = item.description == nil || (item.description?.isEmpty ?? true)
                 ? "Write your note..."

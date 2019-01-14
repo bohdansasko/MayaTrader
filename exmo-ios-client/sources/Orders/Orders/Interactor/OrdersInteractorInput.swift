@@ -10,6 +10,7 @@ import Foundation
 
 protocol OrdersInteractorInput {
     func viewIsReady()
+    func viewWillAppear()
     func loadOrderByType(_ orderType: Orders.DisplayType)
     func cancelOrder(ids: [Int64])
 }
@@ -17,4 +18,5 @@ protocol OrdersInteractorInput {
 protocol OrdersInteractorOutput: class {
     func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders])
     func orderCanceled(ids: [Int64])
+    func setAdsVisible(_ isVisible: Bool)
 }

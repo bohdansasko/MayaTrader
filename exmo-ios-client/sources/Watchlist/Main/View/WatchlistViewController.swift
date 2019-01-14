@@ -28,7 +28,6 @@ class WatchlistViewController: ExmoUIViewController {
     var output: WatchlistViewOutput!
 
     var listView: WatchlistListView = WatchlistListView()
-    var bannerView: GADBannerView!
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
         img.imageName = "imgTutorialWatchlist"
@@ -39,11 +38,8 @@ class WatchlistViewController: ExmoUIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
-
         output.viewIsReady()
-        bannerView.load(GADRequest())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,28 +96,17 @@ extension WatchlistViewController: WatchlistViewInput {
     func removeItem(currency: WatchlistCurrency) {
         listView.removeItem(currency)
     }
-}
 
-// MARK: GADBannerViewDelegate
-extension WatchlistViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("adViewDidReceiveAd")
-        if let _ = bannerView.superview {
-            bannerView.alpha = 0
-            UIView.animate(withDuration: 1) {
-                bannerView.alpha = 1
+    func setAdsVisible(_ isVisible: Bool) {
+        print("Watchlist: \(#function), isVisible = \(isVisible)")
+        if isVisible {
+            showAdsView(completion: {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
-            }
+            })
         } else {
-            addBannerToView(bannerView)
-        }
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print(error)
-        UIView.animate(withDuration: 1) {
-            bannerView.alpha = 0
-            self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+            hideAdsView(completion: {
+                self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+            })
         }
     }
 }
@@ -129,33 +114,15 @@ extension WatchlistViewController: GADBannerViewDelegate {
 // MARK: setup views
 extension WatchlistViewController {
     func setupViews() {
-        setupBannerView()
         setupNavigationBar()
         setupListView()
         setupTutorialImg()
+        setupBannerView()
     }
 
     func setupTutorialImg() {
         view.addSubview(tutorialImg)
         tutorialImg.anchorCenterSuperview()
-    }
-
-    func setupBannerView() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        bannerView.delegate = self
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-    }
-    
-    func addBannerToView(_ bannerView: GADBannerView) {
-        view.addSubview(bannerView)
-        bannerView.anchor(nil,
-                          left: view.layoutMarginsGuide.leftAnchor,
-                          bottom: view.layoutMarginsGuide.bottomAnchor,
-                          right: view.layoutMarginsGuide.rightAnchor,
-                          topConstant: 0, leftConstant: 0,
-                          bottomConstant: 0, rightConstant: 0,
-                          widthConstant: 0, heightConstant: 0)
     }
 
     private func setupListView() {

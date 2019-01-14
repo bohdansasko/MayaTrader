@@ -30,7 +30,12 @@ class MainTabBarController: UITabBarController {
         super.viewWillAppear(animated)
         output.viewIsReady()
     }
-    
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        IAPService.shared.verifyPurchase(product: .advertisements)
+    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -108,6 +113,14 @@ extension MainTabBarController {
             guard let watchlistTabBarItem = tabBar.items?[iconIndex] else { continue }
             watchlistTabBarItem.image = UIImage(named: iconNameNormalState)
             watchlistTabBarItem.selectedImage = UIImage(named: "\(iconNameNormalState)Selected")
+        }
+
+        for viewController in viewControllers ?? [] {
+            if let navigationVC = viewController as? UINavigationController, let rootVC = navigationVC.viewControllers.first {
+                let _ = rootVC.view
+            } else {
+                let _ = viewController.view
+            }
         }
     }
 }

@@ -18,7 +18,6 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
 
     // MARK: Outlets
     var output: OrdersViewOutput!
-    var bannerView: GADBannerView!
     var isCancellingOrdersActive = false
 
     var pickerViewManager: DarkeningPickerViewManager!
@@ -57,13 +56,13 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
         super.viewDidLoad()
 
         setupViews()
-        bannerView.load(GADRequest())
         output.viewIsReady()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        output.viewWillAppear()
         segmentControlView.sendActions(for: .valueChanged)
     }
 
@@ -123,23 +122,12 @@ extension OrdersViewController {
         navigationItem.leftBarButtonItems =  [navButtonDeleteOrders]
         navigationItem.rightBarButtonItems = [navButtonAddOrder]
     }
-
-    func setupBannerView() {
-        bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
-        bannerView.delegate = self
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
-        bannerView.rootViewController = self
-    }
-
-    func addBannerToView(_ bannerView: GADBannerView) {
-        view.addSubview(bannerView)
-        bannerView.anchor(nil, left: view.layoutMarginsGuide.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-    }
 }
 
 // MARK: buttons handlers
 extension OrdersViewController {
     @objc func onSegmentChanged(_ sender: Any) {
+        print("Orders: \(#function)")
         if isCancellingOrdersActive {
             return
         }
@@ -161,6 +149,7 @@ extension OrdersViewController {
 // MARK: OrdersViewInput
 extension OrdersViewController {
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+        print("Orders: \(#function)")
         let previousDT = ordersListView.displayOrderType
         if loadedOrders.isEmpty {
             ordersListView.openedOrders = Orders()
@@ -182,32 +171,23 @@ extension OrdersViewController {
     }
     
     func orderCanceled(ids: [Int64]) {
+        print("Orders: \(#function)")
         ordersListView.orderWasCanceled(ids: ids)
         isCancellingOrdersActive = false
         segmentControlView.sendActions(for: .valueChanged)
     }
-}
 
-// MARK: GADBannerViewDelegate
-extension OrdersViewController: GADBannerViewDelegate {
-    func adViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("Orders: adViewDidReceiveAd")
-        if let _ = bannerView.superview {
-            bannerView.alpha = 0
-            UIView.animate(withDuration: 1) {
-                bannerView.alpha = 1
+    func setAdsVisible(_ isVisible: Bool) {
+        print("Orders: \(#function), visible = \(isVisible)")
+        if isVisible {
+            showAdsView(completion: {
                 self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
-            }
+            })
         } else {
-            addBannerToView(bannerView)
-        }
-    }
-    
-    func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print(error)
-        UIView.animate(withDuration: 1) {
-            bannerView.alpha = 0
-            self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+            print("Orders: \(#function)")
+            hideAdsView(completion: {
+                self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
+            })
         }
     }
 }

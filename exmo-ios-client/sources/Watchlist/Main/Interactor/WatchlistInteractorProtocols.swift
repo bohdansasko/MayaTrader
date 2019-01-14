@@ -19,4 +19,6 @@ protocol WatchlistInteractorInput {
 protocol WatchlistInteractorOutput: class {
     func didLoadCurrencies(items: [WatchlistCurrency])
     func didRemoveCurrency(_ currency: WatchlistCurrency)
+
+    func setAdsVisible(_ isVisible: Bool)
 }
