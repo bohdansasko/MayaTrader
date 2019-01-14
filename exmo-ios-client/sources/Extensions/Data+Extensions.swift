@@ -22,14 +22,4 @@ extension Notification.Name {
     static let UserSignIn = Notification.Name("UserSignIn")
     static let UserFailSignIn = Notification.Name("UserFailSignIn")
     static let UserSignOut = Notification.Name("UserSignOut")
-    
-    static let AppendAlert = Notification.Name("AppendAlert")
-    static let UpdateAlert = Notification.Name("UpdateAlert")
-    static let DeleteAlert = Notification.Name("DeleteAlert")
-    
-    static let LoadTickerSuccess = Notification.Name("LoadTickerSuccess")
-    static let LoadTickerFailed = Notification.Name("LoadTickerFailed")
-    
-    static let LoadCurrencySettingsSuccess = Notification.Name("LoadCurrencySettingsSuccess")
-    static let LoadCurrencySettingsFailed = Notification.Name("LoadCurrencySettingsFailed")
 }
