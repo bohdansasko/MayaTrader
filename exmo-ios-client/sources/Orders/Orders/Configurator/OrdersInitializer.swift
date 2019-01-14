@@ -8,8 +8,8 @@
 
 import UIKit
 
-class OrdersModuleInitializer {
-    var viewController: OrdersViewController!
+class OrdersModuleInitializer: ModuleInitializer {
+    var viewController: UIViewController!
 
     init() {
         viewController = OrdersViewController()

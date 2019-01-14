@@ -8,8 +8,9 @@
 
 import UIKit
 
-class AlertsModuleInitializer {
-    var viewController: AlertsViewController!
+class AlertsModuleInitializer : ModuleInitializer {
+    var viewController: UIViewController!
+    
     init() {
         viewController = AlertsViewController()
         let configurator = AlertsModuleConfigurator()

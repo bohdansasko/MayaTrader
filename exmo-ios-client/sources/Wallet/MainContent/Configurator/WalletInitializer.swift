@@ -8,8 +8,8 @@
 
 import UIKit
 
-class WalletModuleInitializer {
-    var viewController: WalletViewController!
+class WalletModuleInitializer: ModuleInitializer {
+    var viewController: UIViewController!
     
     init() {
         viewController = WalletViewController()

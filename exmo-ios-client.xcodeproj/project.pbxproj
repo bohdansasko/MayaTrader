@@ -20,8 +20,6 @@
 		1A9B269CD2910DC038EC9F06 /* CreateAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD09F9110D86C9AA252D600 /* CreateAlertPresenter.swift */; };
 		20001D73203B8D1200B6966F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20001D72203B8D1200B6966F /* Assets.xcassets */; };
 		2003B5562048B8DE00BD205F /* WalletTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5552048B8DE00BD205F /* WalletTableCells.swift */; };
-		2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5662048C43300BD205F /* UserCoreDataEngine.swift */; };
-		2003B5692048C78600BD205F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5682048C78600BD205F /* DataService.swift */; };
 		200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CA489211C9CF300BB0E9B /* Utils.swift */; };
 		200E691821B2C660008C49B6 /* CreateAlertNetworkWorkerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200E691721B2C660008C49B6 /* CreateAlertNetworkWorkerProtocols.swift */; };
 		200E691A21B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200E691921B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift */; };
@@ -109,7 +107,6 @@
 		207E25062061C41000030023 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25052061C41000030023 /* OrdersModel.swift */; };
 		207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5B21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift */; };
 		207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */; };
-		2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */; };
 		2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087F47621B1E0E7009284D0 /* FormsCells.swift */; };
 		208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */; };
 		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
@@ -160,6 +157,7 @@
 		20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */; };
 		20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9AFF21ED399600B586CB /* String+Extension.swift */; };
 		20FE9B0221ED3AA900B586CB /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */; };
+		20FE9B0421ED41FE00B586CB /* ModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */; };
 		21221A6706D679626A565871 /* CurrenciesGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D30D8ED181E94C98784518 /* CurrenciesGroupsViewController.swift */; };
 		23027C32759874645F1BFC61 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MenuRouter.swift */; };
 		277A456383C3A0A97085C757 /* WatchlistCurrencyChartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37F6B3A1917E7C23C54A7C /* WatchlistCurrencyChartRouter.swift */; };
@@ -318,8 +316,6 @@
 		20001D72203B8D1200B6966F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20001D77203B8D1200B6966F /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
 		2003B5552048B8DE00BD205F /* WalletTableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableCells.swift; sourceTree = "<group>"; };
-		2003B5662048C43300BD205F /* UserCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCoreDataEngine.swift; sourceTree = "<group>"; };
-		2003B5682048C78600BD205F /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		200CA489211C9CF300BB0E9B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		200E691721B2C660008C49B6 /* CreateAlertNetworkWorkerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertNetworkWorkerProtocols.swift; sourceTree = "<group>"; };
 		200E691921B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateAlertViewController+TableDelegate+TableDatasource.swift"; sourceTree = "<group>"; };
@@ -408,7 +404,6 @@
 		207E25052061C41000030023 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		207EBE5B21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertViewCell+SetupViews.swift"; sourceTree = "<group>"; };
 		207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertsListView+TableDatasource+TableDelegate.swift"; sourceTree = "<group>"; };
-		2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCoreDataEngine.swift; sourceTree = "<group>"; };
 		2087F47621B1E0E7009284D0 /* FormsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsCells.swift; sourceTree = "<group>"; };
 		208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkProtocols.swift; sourceTree = "<group>"; };
 		209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
@@ -460,6 +455,7 @@
 		20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+SetupViews.swift"; sourceTree = "<group>"; };
 		20FE9AFF21ED399600B586CB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
+		20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleInitializer.swift; sourceTree = "<group>"; };
 		212EB049FA4DA3807B82E5D8 /* Pods-exmo-ios-client.release(production) .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(production) .xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(production) .xcconfig"; sourceTree = "<group>"; };
 		21BB62089BA8D5D64E222050 /* OrdersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersPresenter.swift; sourceTree = "<group>"; };
 		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
@@ -759,16 +755,6 @@
 			path = "exmo-ios-client";
 			sourceTree = "<group>";
 		};
-		2003B5652048C42400BD205F /* DataManagers */ = {
-			isa = PBXGroup;
-			children = (
-				2003B5682048C78600BD205F /* DataService.swift */,
-				2003B5662048C43300BD205F /* UserCoreDataEngine.swift */,
-				2084491920492DF0007CA79C /* WalletCoreDataEngine.swift */,
-			);
-			path = DataManagers;
-			sourceTree = "<group>";
-		};
 		200E691621B2C634008C49B6 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -995,6 +981,7 @@
 				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
 				36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */,
 				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
+				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -1275,7 +1262,6 @@
 			isa = PBXGroup;
 			children = (
 				20CAFED32042AE6400C7DEA5 /* API */,
-				2003B5652048C42400BD205F /* DataManagers */,
 				36712DDE57C5587FC6B6609F /* ErrorModels.swift */,
 			);
 			path = Services;
@@ -2269,7 +2255,6 @@
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,
 				207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */,
-				2084491A20492DF0007CA79C /* WalletCoreDataEngine.swift in Sources */,
 				20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */,
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
@@ -2278,9 +2263,7 @@
 				204F7F7B215B5DAE00014017 /* CandleBarChartShortInfoView.swift in Sources */,
 				20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */,
 				20B1629321AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift in Sources */,
-				2003B5692048C78600BD205F /* DataService.swift in Sources */,
 				FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */,
-				2003B5672048C43300BD205F /* UserCoreDataEngine.swift in Sources */,
 				920278E6318EFE15D1B07821 /* QRScannerInteractorProtocols.swift in Sources */,
 				C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */,
 				C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */,
@@ -2354,6 +2337,7 @@
 				B0730230BD605FB87BC67104 /* WalletCurrenciesListViewProtocols.swift in Sources */,
 				6476491CD5C14319332F295E /* WalletCurrenciesListViewController.swift in Sources */,
 				B2F7ED06C557E004C0B1A474 /* WalletCurrenciesListModuleInput.swift in Sources */,
+				20FE9B0421ED41FE00B586CB /* ModuleInitializer.swift in Sources */,
 				62592E5D896769F5F2739F44 /* WalletCurrenciesListPresenter.swift in Sources */,
 				3C137E9B40C2BD707086FEF6 /* WalletCurrenciesListInteractorProtocols.swift in Sources */,
 				205AA983209DE3BD00148649 /* DarkeningPickerViewController.swift in Sources */,

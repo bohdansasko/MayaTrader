@@ -8,8 +8,8 @@
 
 import UIKit
 
-class WatchlistModuleInitializer {
-    var viewController: WatchlistViewController
+class WatchlistModuleInitializer: ModuleInitializer {
+    var viewController: UIViewController!
 
     init() {
         viewController = WatchlistViewController()

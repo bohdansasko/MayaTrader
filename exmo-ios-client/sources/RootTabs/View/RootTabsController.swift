@@ -16,13 +16,13 @@ class RootTabsController: UITabBarController {
     var isPasscodeActive = false
     
     deinit {
-        NotificationCenter.default.removeObserver(self)
+        unsubscribeNotifications()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupNotificationListeners()
+        subscribeOnNotifications()
         setupViews()
     }
 
@@ -33,7 +33,6 @@ class RootTabsController: UITabBarController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-//        IAPService.shared.verifyPurchase(product: .advertisements)
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,9 +42,13 @@ class RootTabsController: UITabBarController {
 }
 
 extension RootTabsController {
-    func setupNotificationListeners() {
+    func subscribeOnNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(onApplicationEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onApplicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+    }
+    
+    func unsubscribeNotifications() {
+        NotificationCenter.default.removeObserver(self)
     }
 
     @objc func onApplicationEnterForeground() {
@@ -83,38 +86,42 @@ extension RootTabsController {
     }
     
     private func setupTabBarItems() {
-        let watchlistInitializer = WatchlistModuleInitializer()
-        let orderInitializer = OrdersModuleInitializer()
-        let walletInitializer = WalletModuleInitializer()
-        let alertsInitializer = AlertsModuleInitializer()
-        let menuInitializer = MenuModuleInitializer()
-        
-        viewControllers = [
-            UINavigationController(rootViewController: watchlistInitializer.viewController),
-            UINavigationController(rootViewController: orderInitializer.viewController),
-            UINavigationController(rootViewController: walletInitializer.viewController),
-            UINavigationController(rootViewController: alertsInitializer.viewController),
-            UINavigationController(rootViewController: menuInitializer.viewController)
+        let modules: [ModuleInitializer] = [
+            WatchlistModuleInitializer(),
+            OrdersModuleInitializer(),
+            WalletModuleInitializer(),
+            AlertsModuleInitializer(),
+            MenuModuleInitializer()
         ]
-
+        
         let titleAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.font : UIFont.getExo2Font(fontType: .regular, fontSize: 18)
         ]
-        viewControllers?.forEach({ $0.navigationController?.navigationBar.titleTextAttributes = titleAttributes })
 
-        let iconsNamesWithIndices = [
-            0: "icTabbarWatchlist",
-            1: "icTabbarOrders",
-            2: "icTabbarWallet",
-            3: "icTabbarAlerts",
-            4: "icTabbarMenu"
+        viewControllers = modules.map({
+            module in
+            let navCtrl = UINavigationController(rootViewController: module.viewController)
+            navCtrl.navigationBar.titleTextAttributes = titleAttributes
+            return navCtrl
+        })
+
+        // MARK: setup tab bar icons
+        let tabBarIcons = [
+            "icTabbarWatchlist",
+            "icTabbarOrders",
+            "icTabbarWallet",
+            "icTabbarAlerts",
+            "icTabbarMenu"
         ]
-        for (iconIndex, iconNameNormalState) in iconsNamesWithIndices {
+        
+        for iconIndex in (0..<tabBarIcons.count) {
+            let iconNameNormalState = tabBarIcons[iconIndex]
             guard let watchlistTabBarItem = tabBar.items?[iconIndex] else { continue }
             watchlistTabBarItem.image = UIImage(named: iconNameNormalState)
             watchlistTabBarItem.selectedImage = UIImage(named: "\(iconNameNormalState)Selected")
         }
 
+        // MARK: preload navigation controllers
         for viewController in viewControllers ?? [] {
             if let navigationVC = viewController as? UINavigationController, let rootVC = navigationVC.viewControllers.first {
                 let _ = rootVC.view

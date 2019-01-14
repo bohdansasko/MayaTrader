@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MenuModuleInitializer {
-    var viewController: TableMenuViewController!
+class MenuModuleInitializer: ModuleInitializer {
+    var viewController: UIViewController!
 
     init() {
         viewController = TableMenuViewController()
