@@ -1,5 +1,5 @@
 //
-//  MainTabBarModuleInitializer.swift
+//  RootTabsModuleInitializer.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 11/10/18.
@@ -8,19 +8,19 @@
 
 import Foundation
 
-class MainTabBarModuleInitializer {
-    var tabBarController: MainTabBarController!
+class RootTabsModuleInitializer {
+    var tabBarController: RootTabsController!
     
     init() {
-        tabBarController = MainTabBarController()
+        tabBarController = RootTabsController()
         configure()
     }
     
     private func configure() {
-        let presenter = MainTabBarPresenter()
+        let presenter = RootTabsPresenter()
         tabBarController.output = presenter
         
-        let interactor = MainTabBarInteractor()
+        let interactor = RootTabsInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoLoginNetworkWorker()
         interactor.dbManager = RealmDatabaseManager()

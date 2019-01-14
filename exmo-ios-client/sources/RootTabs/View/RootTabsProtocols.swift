@@ -1,5 +1,5 @@
 //
-//  MainTabBarPresenterProtocols.swift
+//  RootTabsProtocols.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 11/10/18.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-protocol MainTabBarPresenterInput {
+protocol RootTabsViewInput: class {
     
 }
 
-protocol MainTabBarPresenterOutput {
-    
+protocol RootTabsViewOutput {
+    func viewIsReady()
 }

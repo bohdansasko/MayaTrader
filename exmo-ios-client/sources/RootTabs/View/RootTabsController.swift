@@ -1,5 +1,5 @@
 //
-//  MainTabBarController.swift
+//  RootTabsController.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 4/4/18.
@@ -8,8 +8,8 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
-    var output: MainTabBarViewOutput!
+class RootTabsController: UITabBarController {
+    var output: RootTabsViewOutput!
     
     var containerInitial: [NSObject] = []
     var isApplicationWasInForeground = true
@@ -42,7 +42,7 @@ class MainTabBarController: UITabBarController {
     }
 }
 
-extension MainTabBarController {
+extension RootTabsController {
     func setupNotificationListeners() {
         NotificationCenter.default.addObserver(self, selector: #selector(onApplicationEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onApplicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
@@ -70,7 +70,7 @@ extension MainTabBarController {
     }
 }
 
-extension MainTabBarController {
+extension RootTabsController {
     func setupViews() {
         setupTabBarItems()
         setupTabBar()
@@ -125,7 +125,7 @@ extension MainTabBarController {
     }
 }
 
-// MARK: MainTabBarInput
-extension MainTabBarController: MainTabBarViewInput {
+// MARK: RootTabsInput
+extension RootTabsController: RootTabsViewInput {
     // do nothing
 }

@@ -7,14 +7,14 @@ import Alamofire
 import SwiftyJSON
 import Realm
 
-class MainTabBarInteractor {
-    weak var output: MainTabBarInteractorOutput!
+class RootTabsInteractor {
+    weak var output: RootTabsInteractorOutput!
     var networkWorker: ILoginNetworkWorker!
     var dbManager: OperationsDatabaseProtocol!
 }
 
-// MARK: MainTabBarInteractorInput
-extension MainTabBarInteractor: MainTabBarInteractorInput {
+// MARK: RootTabsInteractorInput
+extension RootTabsInteractor: RootTabsInteractorInput {
     func login() {
         networkWorker.delegate = self
         guard let user = dbManager.object(type: ExmoUserObject.self, key: ""),
@@ -28,7 +28,7 @@ extension MainTabBarInteractor: MainTabBarInteractorInput {
 }
 
 // MARK: ILoginNetworkWorkerDelegate
-extension MainTabBarInteractor: ILoginNetworkWorkerDelegate {
+extension RootTabsInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserSuccessful(user: ExmoUser) {
         AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
     }
