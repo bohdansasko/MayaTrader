@@ -11,6 +11,26 @@ import SwiftyJSON
 import ObjectMapper
 
 class VinsoAPI {
+    enum ConnectionNotification: String, NotificationName {
+        case connectedSuccess
+        case connectionError
+        
+        case authorizationSuccess
+        case authorizationError
+    }
+    
+    enum AlertsNotification: String, NotificationName {
+        case loadedHistorySuccess
+        case createdAlertSuccess
+        case updatedAlertSuccess
+        case deletedAlertSuccess
+        
+        case loadedHistoryError
+        case createdAlertError
+        case updatedAlertError
+        case deletedAlertError
+    }
+
     static var shared = VinsoAPI()
 
     private(set) var socketManager: SocketManager!
