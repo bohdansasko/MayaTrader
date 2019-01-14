@@ -106,6 +106,7 @@
 		20600A2A20532949004D7F45 /* UserEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2820532949004D7F45 /* UserEntity+CoreDataProperties.swift */; };
 		20600A2D2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */; };
 		20600A2E2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */; };
+		206221E721E8FC1A004603F3 /* IAPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206221E621E8FC1A004603F3 /* IAPViewController.swift */; };
 		206730E32094D427008B500D /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206730E22094D427008B500D /* UITextField+Extension.swift */; };
 		206A3B6B2175522400C25E95 /* Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6A2175522400C25E95 /* Cells.swift */; };
 		206A3B6E2175527B00C25E95 /* CurrenciesGroupsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6D2175527B00C25E95 /* CurrenciesGroupsDatasource.swift */; };
@@ -439,6 +440,7 @@
 		20600A2820532949004D7F45 /* UserEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		20600A2B2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		20600A2C2053298F004D7F45 /* WatchlistCurrencyPairEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WatchlistCurrencyPairEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		206221E621E8FC1A004603F3 /* IAPViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPViewController.swift; sourceTree = "<group>"; };
 		206730E22094D427008B500D /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		206A3B6A2175522400C25E95 /* Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cells.swift; sourceTree = "<group>"; };
 		206A3B6D2175527B00C25E95 /* CurrenciesGroupsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsDatasource.swift; sourceTree = "<group>"; };
@@ -912,21 +914,6 @@
 			path = "Exo-font";
 			sourceTree = "<group>";
 		};
-		201CA89B21DEC92C008E124C /* Ads */ = {
-			isa = PBXGroup;
-			children = (
-				201CA89C21DEC934008E124C /* Native */,
-			);
-			path = Ads;
-			sourceTree = "<group>";
-		};
-		201CA89C21DEC934008E124C /* Native */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Native;
-			sourceTree = "<group>";
-		};
 		201D8076205DC5B400692DEF /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -1105,7 +1092,6 @@
 			isa = PBXGroup;
 			children = (
 				20BCE4E321E03DDE003669EA /* IAP */,
-				201CA89B21DEC92C008E124C /* Ads */,
 				20B418C6209D019A00B1C636 /* CustomUIControls */,
 				206730E12094D36E008B500D /* Extensions */,
 				2084492B2049311F007CA79C /* CoreData */,
@@ -1417,6 +1403,7 @@
 			children = (
 				20BCE4E421E03DEF003669EA /* IAPProduct.swift */,
 				20BCE4E621E03E92003669EA /* IAPService.swift */,
+				206221E621E8FC1A004603F3 /* IAPViewController.swift */,
 			);
 			path = IAP;
 			sourceTree = "<group>";
@@ -2360,7 +2347,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "#if which swiftlint >/dev/null; then\n#swiftlint\n#else\n#echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
 		};
 		20CE4313218D093F00F04739 /* Run Script(Fabric) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2398,6 +2385,7 @@
 				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -2413,6 +2401,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2672,6 +2661,7 @@
 				20369A5121972438001D6628 /* MainTabBarPresenterProtocols.swift in Sources */,
 				88F374AA6AB2C96E9516D8AB /* WatchlistCurrencyChartModuleInput.swift in Sources */,
 				EABF76B025CEFE0E8375F4D1 /* WatchlistCurrencyChartPresenter.swift in Sources */,
+				206221E721E8FC1A004603F3 /* IAPViewController.swift in Sources */,
 				BA0F381B769424B4E72E2954 /* WatchlistCurrencyChartInteractorInput.swift in Sources */,
 				3F27375CB9F5EEFF05D5EE92 /* WatchlistCurrencyChartInteractorOutput.swift in Sources */,
 				6918BD5EEF3545BE430BA457 /* WatchlistCurrencyChartInteractor.swift in Sources */,
