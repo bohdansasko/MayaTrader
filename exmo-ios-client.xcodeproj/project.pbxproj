@@ -158,6 +158,7 @@
 		20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* WalletBalanceView.swift */; };
 		20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */; };
 		20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */; };
+		20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9AFF21ED399600B586CB /* String+Extension.swift */; };
 		21221A6706D679626A565871 /* CurrenciesGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D30D8ED181E94C98784518 /* CurrenciesGroupsViewController.swift */; };
 		23027C32759874645F1BFC61 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MenuRouter.swift */; };
 		277A456383C3A0A97085C757 /* WatchlistCurrencyChartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37F6B3A1917E7C23C54A7C /* WatchlistCurrencyChartRouter.swift */; };
@@ -456,6 +457,7 @@
 		20E80093207A283B00E1AC6C /* WalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBalanceView.swift; sourceTree = "<group>"; };
 		20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+SetupViews.swift"; sourceTree = "<group>"; };
+		20FE9AFF21ED399600B586CB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		212EB049FA4DA3807B82E5D8 /* Pods-exmo-ios-client.release(production) .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(production) .xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(production) .xcconfig"; sourceTree = "<group>"; };
 		21BB62089BA8D5D64E222050 /* OrdersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersPresenter.swift; sourceTree = "<group>"; };
 		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
@@ -1034,6 +1036,7 @@
 				36712B2B3338633190FB399E /* Font+Extension.swift */,
 				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
 				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
+				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2232,6 +2235,7 @@
 				73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */,
 				207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */,
 				20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */,
+				20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */,
 				206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */,
 				201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */,
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,

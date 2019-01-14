@@ -125,6 +125,6 @@ extension ExmoFloatingNumberCell: UITextFieldDelegate {
             return false
         }
         
-        return str.isValidDoubleValue() && newLength <= fi.uiProperties.textMaxLength
+        return str.isDoubleValid() && newLength <= fi.uiProperties.textMaxLength
     }
 }
