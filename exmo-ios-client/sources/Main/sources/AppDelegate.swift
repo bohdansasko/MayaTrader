@@ -168,9 +168,7 @@ extension AppDelegate {
     }
 }
 
-//
 // MARK: notification controller
-//
 class NotificationController {
     func postBroadcastMessage(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
         NotificationCenter.default.post(name: name, object: nil, userInfo: data)
@@ -185,18 +183,14 @@ class NotificationController {
     }
 }
 
-//
 // MARK: static instances
-//
 extension AppDelegate {
     static let exmoController = ExmoAccountController()
     static let vinsoAPI = VinsoAPI.shared
     static let notificationController = NotificationController() // TODO: rename on NotifyService
 }
 
-//
 // MARK: static methods
-//
 extension AppDelegate {
     static func isIPhone(model: IPhoneModel) -> Bool {
         return getIPhoneModel() == model

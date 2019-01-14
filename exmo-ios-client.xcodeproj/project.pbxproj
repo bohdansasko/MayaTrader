@@ -159,6 +159,7 @@
 		20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */; };
 		20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */; };
 		20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9AFF21ED399600B586CB /* String+Extension.swift */; };
+		20FE9B0221ED3AA900B586CB /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */; };
 		21221A6706D679626A565871 /* CurrenciesGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D30D8ED181E94C98784518 /* CurrenciesGroupsViewController.swift */; };
 		23027C32759874645F1BFC61 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MenuRouter.swift */; };
 		277A456383C3A0A97085C757 /* WatchlistCurrencyChartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37F6B3A1917E7C23C54A7C /* WatchlistCurrencyChartRouter.swift */; };
@@ -458,6 +459,7 @@
 		20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+SetupViews.swift"; sourceTree = "<group>"; };
 		20FE9AFF21ED399600B586CB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		212EB049FA4DA3807B82E5D8 /* Pods-exmo-ios-client.release(production) .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(production) .xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(production) .xcconfig"; sourceTree = "<group>"; };
 		21BB62089BA8D5D64E222050 /* OrdersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersPresenter.swift; sourceTree = "<group>"; };
 		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
@@ -1037,6 +1039,7 @@
 				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
 				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
 				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
+				20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2290,6 +2293,7 @@
 				92437E8E2F40D002B32DD853 /* MenuViewProtocols.swift in Sources */,
 				689D40539A221A92BDAD8126 /* MenuViewController.swift in Sources */,
 				FB1AE3135C76C793467E1F74 /* MenuModuleInput.swift in Sources */,
+				20FE9B0221ED3AA900B586CB /* Notification+Extension.swift in Sources */,
 				7C80BE19C44E3D1F07DE5B2D /* MenuPresenter.swift in Sources */,
 				0F98487E92B6C785E714D43F /* MenuInteractorProtocols.swift in Sources */,
 				20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */,

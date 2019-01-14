@@ -85,23 +85,23 @@ extension AlertsInteractor {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductPurchased(_ :)),
-                name: IAPServiceNotification.purchased.name)
+                name: IAPService.Notification.purchased.name)
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductExpired(_ :)),
-                name: IAPServiceNotification.expired.name)
+                name: IAPService.Notification.expired.name)
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductNotPurchased(_ :)),
-                name: IAPServiceNotification.notPurchased.name)
+                name: IAPService.Notification.notPurchased.name)
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductPurchaseSuccess(_ :)),
-                name: IAPServiceNotification.purchaseSuccess.name)
+                name: IAPService.Notification.purchaseSuccess.name)
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductPurchaseError(_ :)),
-                name: IAPServiceNotification.purchaseError.name)
+                name: IAPService.Notification.purchaseError.name)
     }
 
     func unsubscribeEvents() {

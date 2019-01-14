@@ -10,6 +10,17 @@ import StoreKit
 import SwiftyStoreKit
 
 class IAPService: NSObject {
+    enum Notification: String, NotificationName {
+        case completeTransaction
+        
+        case purchaseSuccess
+        case purchaseError
+        
+        case purchased
+        case expired
+        case notPurchased
+    }
+
     private override init() { /* do nothing */ }
     static let shared = IAPService()
 
@@ -190,32 +201,9 @@ extension IAPService {
         }
     }
 
-    private func sendNotification(_ notificationType: IAPServiceNotification, data: [AnyHashable: Any]) {
+    private func sendNotification(_ notificationType: IAPService.Notification, data: [AnyHashable: Any]) {
         DispatchQueue.main.async {
             AppDelegate.notificationController.postBroadcastMessage(name: notificationType.name, data: data)
         }
     }
-}
-
-protocol NotificationName {
-    var name: Notification.Name { get }
-}
-
-extension RawRepresentable where RawValue == String, Self: NotificationName {
-    var name: Notification.Name {
-        get {
-            return Notification.Name(rawValue: self.rawValue)
-        }
-    }
-}
-
-enum IAPServiceNotification: String, NotificationName {
-    case completeTransaction
-    
-    case purchaseSuccess
-    case purchaseError
-    
-    case purchased
-    case expired
-    case notPurchased
 }
