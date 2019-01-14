@@ -35,7 +35,11 @@ class ButtonCell: UITableViewCell {
         
         addSubview(button)
         button.addTarget(self, action: #selector(onTouchButton(_:)), for: .touchUpInside)
-        button.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        button.anchor(self.topAnchor, left: self.leftAnchor,
+                      bottom: self.bottomAnchor, right: self.rightAnchor,
+                      topConstant: 0, leftConstant: 30,
+                      bottomConstant: 0, rightConstant: 30,
+                      widthConstant: 0, heightConstant: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -57,7 +57,7 @@ extension CreateAlertViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if form.cellItems[indexPath.section].uiProperties.cellType == .CurrencyDetails {
+        if form.cellItems[indexPath.section].uiProperties.cellType == .currencyDetails {
             output.showSearchViewController(searchType: .currencies)
         }
     }

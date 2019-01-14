@@ -87,14 +87,14 @@ extension VinsoAPI {
         }
 
         switch requestType {
-        case ServerMessage.Authorization:
+        case ServerMessage.authorization:
             isLogined = true
             print("Vinso: Authorization succeed")
-        case ServerMessage.AlertsHistory: handleResponseAlertsLoaded(json: json)
-        case ServerMessage.CreateAlert: handleResponseCreateAlert(json: json)
-        case ServerMessage.UpdateAlert: handleResponseUpdateAlert(json: json)
-        case ServerMessage.DeleteAlert: handleResponseDeleteAlert(json: json)
-        case ServerMessage.FireAlert: handleResponseFireAlert(json: json)
+        case ServerMessage.alertsHistory: handleResponseAlertsLoaded(json: json)
+        case ServerMessage.createAlert: handleResponseCreateAlert(json: json)
+        case ServerMessage.updateAlert: handleResponseUpdateAlert(json: json)
+        case ServerMessage.deleteAlert: handleResponseDeleteAlert(json: json)
+        case ServerMessage.fireAlert: handleResponseFireAlert(json: json)
         default:
             break
         }

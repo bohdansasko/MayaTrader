@@ -56,8 +56,16 @@ extension WalletViewController {
         view.addSubview(balanceView)
         view.addSubview(listView)
 
-        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: listView.topAnchor, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
-        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, topConstant: 128, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                           bottom: listView.topAnchor, right: view.rightAnchor,
+                           topConstant: 0, leftConstant: 0,
+                           bottomConstant: 0, rightConstant: 0,
+                           widthConstant: 0, heightConstant: 0)
+        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                        bottom: view.bottomAnchor, right: view.rightAnchor,
+                        topConstant: 128, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
 
     }
     

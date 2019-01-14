@@ -14,10 +14,10 @@ import Charts
 //
 class ChartTimePeriodContainer: UIView {
     enum PeriodType: String {
-        case Year = "year"
-        case Month = "month"
-        case Week = "week"
-        case Day = "day"
+        case year = "year"
+        case month = "month"
+        case week = "week"
+        case day = "day"
     }
     
     @IBOutlet weak var currentPeriodViewIndicator: UIView!
@@ -46,13 +46,13 @@ class ChartTimePeriodContainer: UIView {
 
     func emitTouch(periodType: PeriodType) {
         switch (periodType) {
-        case PeriodType.Year:
+        case PeriodType.year:
             handleTouchOnPeriodBtn(btnOneYear)
-        case PeriodType.Month:
+        case PeriodType.month:
             handleTouchOnPeriodBtn(btnOneMonth)
-        case PeriodType.Week:
+        case PeriodType.week:
             handleTouchOnPeriodBtn(btnOneWeek)
-        case PeriodType.Day:
+        case PeriodType.day:
             handleTouchOnPeriodBtn(btnOneDay)
         }
     }
@@ -64,19 +64,19 @@ class ChartTimePeriodContainer: UIView {
         case btnOneYear:
             print("touch on year")
             indicatorLeadingConstraint.constant = btnOneYear.frame.origin.x + 30
-            callbackOnChangePeriod?(PeriodType.Year.rawValue)
+            callbackOnChangePeriod?(PeriodType.year.rawValue)
         case btnOneMonth:
             print("touch on month")
             indicatorLeadingConstraint.constant = btnOneMonth.frame.origin.x + 30
-            callbackOnChangePeriod?(PeriodType.Month.rawValue)
+            callbackOnChangePeriod?(PeriodType.month.rawValue)
         case btnOneWeek:
             print("touch on week")
             indicatorLeadingConstraint.constant = btnOneWeek.frame.origin.x + 30
-            callbackOnChangePeriod?(PeriodType.Week.rawValue)
+            callbackOnChangePeriod?(PeriodType.week.rawValue)
         case btnOneDay:
             print("touch on day")
             indicatorLeadingConstraint.constant = btnOneDay.frame.origin.x + 30
-            callbackOnChangePeriod?(PeriodType.Day.rawValue)
+            callbackOnChangePeriod?(PeriodType.day.rawValue)
         default:
             break
         }
@@ -114,7 +114,7 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         navigationController?.navigationBar.tintColor = .white
         
         prepareCharts()
-        periodViewController.emitTouch(periodType: .Week)
+        periodViewController.emitTouch(periodType: .week)
     }
     
     private func prepareCharts() {

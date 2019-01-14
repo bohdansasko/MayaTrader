@@ -79,7 +79,11 @@ class CurrenciesGroupsViewController: DatasourceController, CurrenciesGroupsView
         setupTitleNavigationBar(text: "Currencies groups")
         
         view.addSubview(horizontalTabBarLine)
-        horizontalTabBarLine.anchor(view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 1)
+        horizontalTabBarLine.anchor(view.topAnchor, left: view.leftAnchor,
+                                    bottom: nil, right: view.rightAnchor,
+                                    topConstant: 0, leftConstant: 0,
+                                    bottomConstant: 0, rightConstant: 0,
+                                    widthConstant: 0, heightConstant: 1)
     }
     
 }

@@ -61,15 +61,27 @@ class ExmoSegmentCell: UITableViewCell, SegmentFormConformity {
 extension ExmoSegmentCell {
     func setupViews() {
         addSubview(titleLabel)
-        titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        titleLabel.anchor(self.topAnchor, left: self.leftAnchor,
+                          bottom: nil, right: self.rightAnchor,
+                          topConstant: 0, leftConstant: 30,
+                          bottomConstant: 0, rightConstant: 30,
+                          widthConstant: 0, heightConstant: 0)
 
         addSubview(segmentControl)
-        segmentControl.anchor(titleLabel.bottomAnchor, left: titleLabel.leftAnchor, bottom: nil, right: titleLabel.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        segmentControl.anchor(titleLabel.bottomAnchor, left: titleLabel.leftAnchor,
+                              bottom: nil, right: titleLabel.rightAnchor,
+                              topConstant: 20, leftConstant: 0,
+                              bottomConstant: 0, rightConstant: 0,
+                              widthConstant: 0, heightConstant: 0)
         segmentControl.addTarget(self, action: #selector(onValueChanged(_:)), for: .valueChanged)
         segmentControl.sendActions(for: .valueChanged)
 
         addSubview(separatorHLineView)
-        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
+        separatorHLineView.anchor(nil, left: self.leftAnchor,
+                                  bottom: self.bottomAnchor, right: self.rightAnchor,
+                                  topConstant: 0, leftConstant: 30,
+                                  bottomConstant: 0, rightConstant: 30,
+                                  widthConstant: 0, heightConstant: 1)
     }
 }
 

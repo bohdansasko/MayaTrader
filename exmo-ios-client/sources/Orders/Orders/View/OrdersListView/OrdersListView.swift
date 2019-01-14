@@ -120,7 +120,11 @@ extension OrdersListView {
     private func setupPlaceholderNoData() {
         self.addSubview(placeholderNoData)
         let topOffset: CGFloat = AppDelegate.isIPhone(model: .five) ? -5 : 50
-        placeholderNoData.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        placeholderNoData.anchor(self.topAnchor, left: self.leftAnchor,
+                                 bottom: nil, right: self.rightAnchor,
+                                 topConstant: topOffset, leftConstant: 0,
+                                 bottomConstant: 0, rightConstant: 0,
+                                 widthConstant: 0, heightConstant: 0)
     }
     
     private func setupTableView() {

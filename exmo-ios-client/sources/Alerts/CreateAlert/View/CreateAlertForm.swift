@@ -50,7 +50,7 @@ class FormCreateAlert {
             self?.updateCurrenciesPlaceholders()
         }
         currencyPairItem.leftValue = currencyPair
-        currencyPairItem.uiProperties.cellType = .CurrencyDetails
+        currencyPairItem.uiProperties.cellType = .currencyDetails
         
         let upperBoundItem = FloatingNumberFormItem(title: "UPPER BOUND", placeholder1: "0", placeholder2: " USD")
         upperBoundItem.valueCompletion = {
@@ -59,7 +59,7 @@ class FormCreateAlert {
             upperBoundItem?.value = value
         }
         upperBoundItem.value = topBound
-        upperBoundItem.uiProperties.cellType = .FloatingNumberTextField
+        upperBoundItem.uiProperties.cellType = .floatingNumberTextField
         
         let bottomBoundItem = FloatingNumberFormItem(title: "BOTTOM BOUND", placeholder1: "0", placeholder2: " USD")
         bottomBoundItem.valueCompletion = {
@@ -68,7 +68,7 @@ class FormCreateAlert {
             bottomBoundItem?.value = value
         }
         bottomBoundItem.value = bottomBound
-        bottomBoundItem.uiProperties.cellType = .FloatingNumberTextField
+        bottomBoundItem.uiProperties.cellType = .floatingNumberTextField
         
         let descriptionItem = TextFormItem(title: "NOTE", placeholder: "Write reminder note...")
         descriptionItem.valueCompletion = {
@@ -77,7 +77,7 @@ class FormCreateAlert {
             descriptionItem?.value = value
         }
         descriptionItem.value = description
-        descriptionItem.uiProperties.cellType = .TextField
+        descriptionItem.uiProperties.cellType = .textField
         
         let switchItem = SwitchFormItem(title: "IS PERSISTENT")
         switchItem.onChange = {
@@ -86,11 +86,11 @@ class FormCreateAlert {
             switchItem?.value = value
         }
         switchItem.value = isPersistent
-        switchItem.uiProperties.cellType = .Switcher
+        switchItem.uiProperties.cellType = .switcher
         
         let buttonItem = ButtonFormItem(title: currencyPair == nil ? "CREATE" : "UPDATE")
         buttonItem.onTouch = onTouchButtonCreate
-        buttonItem.uiProperties.cellType = .Button
+        buttonItem.uiProperties.cellType = .button
         
         cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, descriptionItem, switchItem, buttonItem]
     }

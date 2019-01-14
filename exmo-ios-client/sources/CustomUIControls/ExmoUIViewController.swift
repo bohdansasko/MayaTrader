@@ -103,7 +103,11 @@ extension ExmoUIViewController {
         
         if shouldUseGlow() {
             view.addSubview(glowImage)
-            glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -90, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+            glowImage.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                             bottom: nil, right: view.rightAnchor,
+                             topConstant: -90, leftConstant: 0,
+                             bottomConstant: 0, rightConstant: 0,
+                             widthConstant: 0, heightConstant: 0)
         }
     }
     

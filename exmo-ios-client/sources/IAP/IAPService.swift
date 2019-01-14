@@ -56,7 +56,7 @@ extension IAPService {
                 return false
             }
             let isDateOk = nowDatetime < subscriptionExpirationDate
-            print("\(#function) => productId = \(receipt.productId), subscriptionExpirationDate = \(subscriptionExpirationDate), originalTransactionId = \(receipt.originalTransactionId), isDateOk = \(isDateOk)")
+            print("\(#function) => productId = \(receipt.productId), subscriptionExpirationDate = \(subscriptionExpirationDate), isDateOk = \(isDateOk)")
             
             return receipt.productId == product.rawValue && isDateOk
         })

@@ -97,7 +97,12 @@ extension WatchlistCurrency {
 extension WatchlistCurrency: Persistable {
     init(managedObject: WatchlistCurrencyObject) {
         self.index = managedObject.index
-        self.tickerPair = TickerCurrencyModel(code: managedObject.pairName, buyPrice: managedObject.buyPrice, sellPrice: managedObject.sellPrice, lastTrade: managedObject.lastTrade, high: 0, low: 0, average: 0, volume: managedObject.volume, volumeCurrency: managedObject.volumeCurrency, timestamp: managedObject.timestamp, closeBuyPrice: managedObject.closeBuyPrice, isFavourite: managedObject.isFavourite)
+        self.tickerPair = TickerCurrencyModel(code: managedObject.pairName, buyPrice: managedObject.buyPrice,
+                                              sellPrice: managedObject.sellPrice, lastTrade: managedObject.lastTrade,
+                                              high: 0, low: 0,
+                                              average: 0, volume: managedObject.volume,
+                                              volumeCurrency: managedObject.volumeCurrency, timestamp: managedObject.timestamp,
+                                              closeBuyPrice: managedObject.closeBuyPrice, isFavourite: managedObject.isFavourite)
     }
     
     func managedObject() -> WatchlistCurrencyObject {

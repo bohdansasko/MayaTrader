@@ -11,11 +11,11 @@ import SwiftyJSON
 
 class AlertsApiRequestBuilder {
     static func getJSONForCreateAlert(alert: Alert) -> JSON {
-        return getAlertMessage(requestType: .CreateAlert, alert: alert)
+        return getAlertMessage(requestType: .createAlert, alert: alert)
     }
 
     static func getJSONForUpdateAlert(alert: Alert) -> JSON {
-        var alertJSONData = getAlertMessage(requestType: .UpdateAlert, alert: alert)
+        var alertJSONData = getAlertMessage(requestType: .updateAlert, alert: alert)
         alertJSONData["alert_id"] = JSON(alert.id)
         alertJSONData["alert_status"] = JSON(alert.status.rawValue)
         
@@ -28,14 +28,14 @@ class AlertsApiRequestBuilder {
 
     static func getJSONForDeleteAlerts(withId ids: [Int]) -> JSON {
         return [
-            "request_type" : ServerMessage.DeleteAlert.rawValue,
+            "request_type" : ServerMessage.deleteAlert.rawValue,
             "alerts_id" : ids
         ]
     }
 
     static func getJSONForAlertsHistory() -> JSON {
         return [
-            "request_type" : ServerMessage.AlertsHistory.rawValue,
+            "request_type" : ServerMessage.alertsHistory.rawValue,
         ]
     }
 

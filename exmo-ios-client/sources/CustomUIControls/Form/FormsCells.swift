@@ -35,12 +35,12 @@ protocol FormUpdatable {
 
 
 enum FormItemCellType {
-    case TextField
-    case FloatingNumberTextField
-    case Switcher
-    case Segment
-    case CurrencyDetails
-    case Button
+    case textField
+    case floatingNumberTextField
+    case switcher
+    case segment
+    case currencyDetails
+    case button
     
     static func registerCells(for tableView: UITableView) {
         let classes = [
@@ -58,17 +58,17 @@ enum FormItemCellType {
     
     func dequeueCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         switch self {
-        case .TextField:
+        case .textField:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: TextFieldCell.self), for: indexPath)
-        case .FloatingNumberTextField:
+        case .floatingNumberTextField:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoFloatingNumberCell.self), for: indexPath)
-        case .Switcher:
+        case .switcher:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSwitchCell.self), for: indexPath)
-        case .Segment:
+        case .segment:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSegmentCell.self), for: indexPath)
-        case .CurrencyDetails:
+        case .currencyDetails:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: CurrencyDetailsCell.self), for: indexPath)
-        case .Button:
+        case .button:
             return tableView.dequeueReusableCell(withIdentifier: String(describing: ButtonCell.self), for: indexPath)
         }
     }

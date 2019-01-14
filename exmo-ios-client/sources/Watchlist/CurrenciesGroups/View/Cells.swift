@@ -31,7 +31,11 @@ class CurrenciesGroupListHeaderCell: DatasourceCell {
         super.setupViews()
         
         addSubview(titleLabel)
-        titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 25, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        titleLabel.anchor(self.topAnchor, left: self.leftAnchor,
+                          bottom: self.bottomAnchor, right: self.rightAnchor,
+                          topConstant: 0, leftConstant: 25,
+                          bottomConstant: 0, rightConstant: 0,
+                          widthConstant: 0, heightConstant: 0)
     }
 }
 
@@ -118,12 +122,20 @@ extension CurrenciesGroupListCell {
     fileprivate func setupConstraints() {
         backgroundButton.fillSuperview()
         
-        currencyIcon.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 20, leftConstant: 5, bottomConstant: 20, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        currencyIcon.anchor(self.topAnchor, left: self.leftAnchor,
+                            bottom: self.bottomAnchor, right: nil,
+                            topConstant: 20, leftConstant: 5,
+                            bottomConstant: 20, rightConstant: 0,
+                            widthConstant: 0, heightConstant: 0)
         
         pairNameLabel.anchorCenterYToSuperview()
         pairNameLabel.leftAnchor.constraint(equalTo: currencyIcon.rightAnchor, constant: 15).isActive = true
         pairNameLabel.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 80).isActive = true
 
-        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 1)
+        separatorHLineView.anchor(nil, left: self.leftAnchor,
+                                  bottom: self.bottomAnchor, right: self.rightAnchor,
+                                  topConstant: 0, leftConstant: 0,
+                                  bottomConstant: 0, rightConstant: 0,
+                                  widthConstant: 0, heightConstant: 1)
     }
 }

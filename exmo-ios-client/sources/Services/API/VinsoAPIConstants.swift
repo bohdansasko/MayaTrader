@@ -11,18 +11,18 @@ enum VinsoResponseCode: Int {
 }
 
 enum ServerMessage: Int {
-    case Bad = -1
-    case Connect = 0
-    case Registration = 1
-    case Authorization = 2
-    case ConfirmRegistration = 3
-    case CreateAlert = 4
-    case UpdateAlert = 5
-    case DeleteAlert = 6
-    case FireAlert = 7
-    case ResetUser = 9
-    case AlertsHistory = 10
-    case RegisterAPNsDeviceToken = 11
+    case bad = -1
+    case connect = 0
+    case registration = 1
+    case authorization = 2
+    case confirmRegistration = 3
+    case createAlert = 4
+    case updateAlert = 5
+    case deleteAlert = 6
+    case fireAlert = 7
+    case resetUser = 9
+    case alertsHistory = 10
+    case registerAPNsDeviceToken = 11
 }
 
 

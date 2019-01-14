@@ -23,10 +23,14 @@ class CurrenciesGroupsPresenter: CurrenciesGroupsModuleInput, CurrenciesGroupsVi
     }
     
     func closeVC() {
-        router.closeVC(vc: view as! UIViewController)
+        if let viewController = view as? UIViewController {
+            router.closeVC(vc: viewController)
+        }
     }
     
     func handleTouchCell(listGroupModel: CurrenciesGroupsGroup) {
-        router.openCurrenciesListWithCurrenciesRelativeTo(vc: view as! UIViewController, listGroupModel: listGroupModel)
+        if let viewController = view as? UIViewController {
+            router.openCurrenciesListWithCurrenciesRelativeTo(vc: viewController, listGroupModel: listGroupModel)
+        }
     }
 }

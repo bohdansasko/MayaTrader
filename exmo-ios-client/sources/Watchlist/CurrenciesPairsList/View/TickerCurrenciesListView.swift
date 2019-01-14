@@ -86,8 +86,12 @@ extension TickerCurrenciesListView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader, let cls = datasource?.headerClass(indexPath) {
-            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: String(describing: cls), for: indexPath) as! ExmoCollectionCell
-            cell.datasourceItem = datasource?.headerItem(indexPath.section)
+            let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: String(describing: cls),
+                                                                       for: indexPath)
+            if let exmoCell = cell as? ExmoCollectionCell {
+                exmoCell.datasourceItem = datasource?.headerItem(indexPath.section)
+            }
             return cell
         } else {
             return UICollectionReusableView(frame: self.bounds)

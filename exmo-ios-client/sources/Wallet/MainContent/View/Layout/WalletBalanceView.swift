@@ -86,7 +86,11 @@ extension WalletBalanceView {
         addSubview(btcStackView)
         btcStackView.axis = .vertical
         btcStackView.spacing = 5
-        btcStackView.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: currencyDividerImage.leftAnchor, topConstant: 30, leftConstant: 30, bottomConstant: 48, rightConstant: 20, widthConstant: 0, heightConstant: 0)
+        btcStackView.anchor(self.topAnchor, left: self.leftAnchor,
+                            bottom: self.bottomAnchor, right: currencyDividerImage.leftAnchor,
+                            topConstant: 30, leftConstant: 30,
+                            bottomConstant: 48, rightConstant: 20,
+                            widthConstant: 0, heightConstant: 0)
     }
     
     private func setupUSDView() {
@@ -94,6 +98,10 @@ extension WalletBalanceView {
         addSubview(usdStackView)
         usdStackView.axis = .vertical
         usdStackView.spacing = 5
-        usdStackView.anchor(self.topAnchor, left: currencyDividerImage.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 30, leftConstant: 20, bottomConstant: 48, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        usdStackView.anchor(self.topAnchor, left: currencyDividerImage.rightAnchor,
+                            bottom: self.bottomAnchor, right: self.rightAnchor,
+                            topConstant: 30, leftConstant: 20,
+                            bottomConstant: 48, rightConstant: 30,
+                            widthConstant: 0, heightConstant: 0)
     }
 }

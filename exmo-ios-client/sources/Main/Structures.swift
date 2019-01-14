@@ -310,7 +310,9 @@ extension ExmoWallet: Persistable {
         var b = [ExmoWalletCurrency]()
         managedObject.balances.forEach({
             moCurrency in
-            let currency = ExmoWalletCurrency(code: moCurrency.code, balance: moCurrency.balance, orderId: moCurrency.orderId, isFavourite: moCurrency.isFavourite, countInOrders: moCurrency.countInOrders)
+            let currency = ExmoWalletCurrency(code: moCurrency.code, balance: moCurrency.balance,
+                                              orderId: moCurrency.orderId, isFavourite: moCurrency.isFavourite,
+                                              countInOrders: moCurrency.countInOrders)
             b.append(currency)
         })
         balances = b

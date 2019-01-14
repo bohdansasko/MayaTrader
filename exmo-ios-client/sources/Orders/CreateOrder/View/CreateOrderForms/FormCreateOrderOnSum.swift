@@ -59,14 +59,14 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
             self?.updateCurrenciesPlaceholders()
         }
         currencyPairItem.leftValue = currencyPair
-        currencyPairItem.uiProperties.cellType = .CurrencyDetails
+        currencyPairItem.uiProperties.cellType = .currencyDetails
         
         let forAmountItem = FloatingNumberFormItem(title: "For the amount of", placeholder1: "0", placeholder2: " USD")
-        forAmountItem.uiProperties.cellType = .FloatingNumberTextField
+        forAmountItem.uiProperties.cellType = .floatingNumberTextField
         
         let amountWillBeItem = FloatingNumberFormItem(title: "The amount will be", placeholder1: "0", placeholder2: " USD")
         amountWillBeItem.uiProperties.isUserInteractionEnabled = false
-        amountWillBeItem.uiProperties.cellType = .FloatingNumberTextField
+        amountWillBeItem.uiProperties.cellType = .floatingNumberTextField
         
         forAmountItem.valueCompletion = {
             [weak self, weak forAmountItem, weak amountWillBeItem] value in
@@ -81,11 +81,11 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
             self?.orderType = selectedIndex == 0 ? .marketBuy : .marketSell
             segmentItem?.value = selectedIndex
         }
-        segmentItem.uiProperties.cellType = .Segment
+        segmentItem.uiProperties.cellType = .segment
         
         let buttonItem = ButtonFormItem(title: "CREATE")
         buttonItem.onTouch = onTouchButtonCreate
-        buttonItem.uiProperties.cellType = .Button
+        buttonItem.uiProperties.cellType = .button
         
         cellItems = [currencyPairItem, forAmountItem, amountWillBeItem, segmentItem, buttonItem]
     }

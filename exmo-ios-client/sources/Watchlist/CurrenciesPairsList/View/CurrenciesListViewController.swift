@@ -67,7 +67,11 @@ extension CurrenciesListViewController {
     private func setupSearchBar() {
         view.addSubview(tabBar)
         tabBar.searchBar.delegate = self
-        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 30)
+        tabBar.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                      bottom: nil, right: view.rightAnchor,
+                      topConstant: 0, leftConstant: 10,
+                      bottomConstant: 0, rightConstant: 0,
+                      widthConstant: 0, heightConstant: 30)
     }
 
     func setupDoneButton() {
@@ -86,7 +90,11 @@ extension CurrenciesListViewController {
     private func setupListView() {
         view.addSubview(listView)
         listView.parentVC = self
-        listView.anchor(tabBar.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 5, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        listView.anchor(tabBar.bottomAnchor, left: view.leftAnchor,
+                        bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor,
+                        topConstant: 5, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
     }
 }
 

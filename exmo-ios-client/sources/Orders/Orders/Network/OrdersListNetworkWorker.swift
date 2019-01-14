@@ -54,7 +54,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
             let json = try JSON(data: response.data!)
             json.forEach({
                 (code, properties) in
-                currenciesStr = currenciesStr + code + ","
+                currenciesStr += code + ","
             })
         } catch {
             

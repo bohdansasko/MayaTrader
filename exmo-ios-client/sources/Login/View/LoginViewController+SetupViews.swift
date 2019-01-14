@@ -33,7 +33,11 @@ extension LoginViewController {
     
     private func setupLogo() {
         scrollView.addSubview(logoImage)
-        logoImage.anchor(inputFieldsStackView.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: -85, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        logoImage.anchor(inputFieldsStackView.topAnchor, left: view.leftAnchor,
+                         bottom: nil, right: view.rightAnchor,
+                         topConstant: -85, leftConstant: 30,
+                         bottomConstant: 0, rightConstant: 30,
+                         widthConstant: 0, heightConstant: 0)
     }
     
     private func setupInputViews() {
@@ -72,9 +76,17 @@ extension LoginViewController {
         bottomButtonsStacksView.distribution = .fillEqually
         bottomButtonsStacksView.spacing = 30
         
-        bottomButtonsStacksView.anchor(inputFieldsStackView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 60, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        bottomButtonsStacksView.anchor(inputFieldsStackView.bottomAnchor, left: view.leftAnchor,
+                                       bottom: nil, right: view.rightAnchor,
+                                       topConstant: 60, leftConstant: 30,
+                                       bottomConstant: 0, rightConstant: 30,
+                                       widthConstant: 0, heightConstant: 0)
         
         scrollView.addSubview(skipButton)
-        skipButton.anchor(bottomButtonsStacksView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 30, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 25)
+        skipButton.anchor(bottomButtonsStacksView.bottomAnchor, left: view.leftAnchor,
+                          bottom: nil, right: view.rightAnchor,
+                          topConstant: 30, leftConstant: 30,
+                          bottomConstant: 0, rightConstant: 30,
+                          widthConstant: 0, heightConstant: 25)
     }
 }

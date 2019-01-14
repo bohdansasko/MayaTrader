@@ -59,7 +59,7 @@ extension CreateOrderLimitView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        if form.tabs[layoutType.rawValue].cellItems[indexPath.section].uiProperties.cellType == .CurrencyDetails {
+        if form.tabs[layoutType.rawValue].cellItems[indexPath.section].uiProperties.cellType == .currencyDetails {
             output.openCurrencySearchVC()
         }
     }

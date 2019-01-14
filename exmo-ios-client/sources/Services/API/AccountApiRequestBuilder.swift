@@ -10,7 +10,7 @@ import SwiftyJSON
 
 class AccountApiRequestBuilder {
     static func buildConnectRequest() -> JSON {
-        return ["request_type" : ServerMessage.Connect.rawValue]
+        return ["request_type" : ServerMessage.connect.rawValue]
     }
     
     static func buildAuthorizationRequest() -> JSON {
@@ -19,14 +19,14 @@ class AccountApiRequestBuilder {
         }
         
         return [
-            "request_type": ServerMessage.Authorization.rawValue,
+            "request_type": ServerMessage.authorization.rawValue,
             "udid": udid,
         ]
     }
 
     static func buildRegisterAPNSDeviceTokenRequest(_ deviceToken: String) -> JSON {
         return [
-            "request_type": ServerMessage.RegisterAPNsDeviceToken.rawValue,
+            "request_type": ServerMessage.registerAPNsDeviceToken.rawValue,
             "apns_token": deviceToken
         ]
     }

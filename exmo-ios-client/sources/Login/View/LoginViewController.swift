@@ -159,7 +159,7 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         scrollView.scrollIndicatorInsets.bottom = bottomInset
         
         guard var activeFieldFrame = activeTextField?.superview?.frame else { return }
-        activeFieldFrame.size.height = activeFieldFrame.size.height + keyboardSize.height
+        activeFieldFrame.size.height += keyboardSize.height
         
         scrollView.setContentOffset(activeFieldFrame.origin, animated: true)
     }

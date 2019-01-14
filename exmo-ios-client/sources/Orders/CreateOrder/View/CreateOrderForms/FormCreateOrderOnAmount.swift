@@ -59,14 +59,14 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
             self?.updateCurrenciesPlaceholders()
         }
         currencyPairItem.leftValue = currencyPair
-        currencyPairItem.uiProperties.cellType = .CurrencyDetails
+        currencyPairItem.uiProperties.cellType = .currencyDetails
         
         let amountItem = FloatingNumberFormItem(title: "Amount", placeholder1: "0", placeholder2: " USD")
-        amountItem.uiProperties.cellType = .FloatingNumberTextField
+        amountItem.uiProperties.cellType = .floatingNumberTextField
         
         let totalItem = FloatingNumberFormItem(title: "Total", placeholder1: "0", placeholder2: " USD")
         totalItem.uiProperties.isUserInteractionEnabled = false
-        totalItem.uiProperties.cellType = .FloatingNumberTextField
+        totalItem.uiProperties.cellType = .floatingNumberTextField
         
         amountItem.valueCompletion = {
             [weak self, weak amountItem, weak totalItem] value in
@@ -81,11 +81,11 @@ class FormCreateOrderOnAmount: FormTabCreateOrder {
             self?.orderType = selectedIndex == 0 ? .marketBuyTotal : .marketSellTotal
             segmentItem?.value = selectedIndex
         }
-        segmentItem.uiProperties.cellType = .Segment
+        segmentItem.uiProperties.cellType = .segment
         
         let buttonItem = ButtonFormItem(title: "CREATE")
         buttonItem.onTouch = onTouchButtonCreate
-        buttonItem.uiProperties.cellType = .Button
+        buttonItem.uiProperties.cellType = .button
         
         cellItems = [currencyPairItem, amountItem, totalItem, segmentItem, buttonItem]
     }

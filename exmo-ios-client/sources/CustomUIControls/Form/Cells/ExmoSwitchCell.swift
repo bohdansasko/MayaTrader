@@ -51,16 +51,28 @@ class ExmoSwitchCell: UITableViewCell, SwitchFormConformity {
 extension ExmoSwitchCell {
     func setupViews() {
         addSubview(titleLabel)
-        titleLabel.anchor(nil, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 70, widthConstant: 0, heightConstant: 0)
+        titleLabel.anchor(nil, left: self.leftAnchor,
+                          bottom: nil, right: self.rightAnchor,
+                          topConstant: 0, leftConstant: 30,
+                          bottomConstant: 0, rightConstant: 70,
+                          widthConstant: 0, heightConstant: 0)
         titleLabel.anchorCenterYToSuperview()
 
         addSubview(uiSwitch)
-        uiSwitch.anchor(nil, left: nil, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        uiSwitch.anchor(nil, left: nil,
+                        bottom: nil, right: self.rightAnchor,
+                        topConstant: 0, leftConstant: 10,
+                        bottomConstant: 0, rightConstant: 30,
+                        widthConstant: 0, heightConstant: 0)
         uiSwitch.anchorCenterYToSuperview()
         uiSwitch.addTarget(self, action: #selector(onSwitchValueChanged(_:)), for: .valueChanged)
 
         addSubview(separatorHLineView)
-        separatorHLineView.anchor(nil, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 1)
+        separatorHLineView.anchor(nil, left: self.leftAnchor,
+                                  bottom: self.bottomAnchor, right: self.rightAnchor,
+                                  topConstant: 0, leftConstant: 30,
+                                  bottomConstant: 0, rightConstant: 30,
+                                  widthConstant: 0, heightConstant: 1)
     }
 }
 

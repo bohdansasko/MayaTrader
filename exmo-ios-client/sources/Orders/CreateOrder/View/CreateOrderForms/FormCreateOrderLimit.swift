@@ -69,13 +69,13 @@ class FormCreateOrderLimit: FormTabCreateOrder {
             self?.updateCurrenciesPlaceholders()
         }
         currencyPairItem.leftValue = currencyPair
-        currencyPairItem.uiProperties.cellType = .CurrencyDetails
+        currencyPairItem.uiProperties.cellType = .currencyDetails
         
         let amountItem = FloatingNumberFormItem(title: "Amount", placeholder1: "0", placeholder2: " USD")
-        amountItem.uiProperties.cellType = .FloatingNumberTextField
+        amountItem.uiProperties.cellType = .floatingNumberTextField
 
         let priceItem = FloatingNumberFormItem(title: "Price", placeholder1: "0", placeholder2: " USD")
-        priceItem.uiProperties.cellType = .FloatingNumberTextField
+        priceItem.uiProperties.cellType = .floatingNumberTextField
 
         let totalItem = FloatingNumberFormItem(title: "Total", placeholder1: "0", placeholder2: " USD")
         totalItem.valueCompletion = {
@@ -83,7 +83,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
             totalItem?.value = value
         }
         totalItem.uiProperties.isUserInteractionEnabled = false
-        totalItem.uiProperties.cellType = .FloatingNumberTextField
+        totalItem.uiProperties.cellType = .floatingNumberTextField
 
         let commissionItem = FloatingNumberFormItem(title: "Commission", placeholder1: "0", placeholder2: " USD")
         commissionItem.valueCompletion = {
@@ -91,7 +91,7 @@ class FormCreateOrderLimit: FormTabCreateOrder {
             commissionItem?.value = value
         }
         commissionItem.uiProperties.isUserInteractionEnabled = false
-        commissionItem.uiProperties.cellType = .FloatingNumberTextField
+        commissionItem.uiProperties.cellType = .floatingNumberTextField
         
         let segmentItem = SegmentFormItem(title: "Order type", sections: ["Buy", "Sell"])
         segmentItem.onChange = {
@@ -99,11 +99,11 @@ class FormCreateOrderLimit: FormTabCreateOrder {
             self?.orderType = selectedIndex == 0 ? .buy : .sell
             segmentItem?.value = selectedIndex
         }
-        segmentItem.uiProperties.cellType = .Segment
+        segmentItem.uiProperties.cellType = .segment
         
         let buttonItem = ButtonFormItem(title: "CREATE")
         buttonItem.onTouch = onTouchButtonCreate
-        buttonItem.uiProperties.cellType = .Button
+        buttonItem.uiProperties.cellType = .button
         
         amountItem.valueCompletion = {
             [weak self, weak amountItem, weak totalItem, weak commissionItem] value in

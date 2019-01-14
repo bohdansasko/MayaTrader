@@ -19,7 +19,7 @@ enum IPhoneModel: Int {
     case five
     case sixOrSevenEight
     case sixSevenEightPlus
-    case x
+    case ten
 }
 
 @UIApplicationMain
@@ -211,7 +211,7 @@ extension AppDelegate {
         case 1136: return .five
         case 1334: return .sixOrSevenEight
         case 2208: return .sixSevenEightPlus
-        case 2436: return .x
+        case 2436: return .ten
           default: return .none
         }
     }

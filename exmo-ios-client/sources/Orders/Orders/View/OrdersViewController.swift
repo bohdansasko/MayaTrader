@@ -98,13 +98,21 @@ extension OrdersViewController {
         })
 
         view.addSubview(ordersListView)
-        ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor, bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 0)
+        ordersListView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor,
+                              bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor,
+                              topConstant: 10, leftConstant: 0,
+                              bottomConstant: 0, rightConstant: 0,
+                              widthConstant: 0, heightConstant: 0)
     }
 
     private func setupSegmentControlView() {
         view.addSubview(segmentControlView)
         segmentControlView.addTarget(self, action: #selector(onSegmentChanged(_:)), for: .valueChanged)
-        segmentControlView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
+        segmentControlView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                                  bottom: nil, right: view.rightAnchor,
+                                  topConstant: 0, leftConstant: 30,
+                                  bottomConstant: 0, rightConstant: 30,
+                                  widthConstant: 0, heightConstant: 30)
     }
 
     private func setupNavigationBar() {

@@ -62,17 +62,33 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
         separatorLineView.isHidden = false
 
         addSubview(titleLabel)
-        titleLabel.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
+        titleLabel.anchor(self.topAnchor, left: self.leftAnchor,
+                          bottom: nil, right: self.rightAnchor,
+                          topConstant: 0, leftConstant: 30,
+                          bottomConstant: 0, rightConstant: 20,
+                          widthConstant: 0, heightConstant: 0)
         
         addSubview(textInput)
-        textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor, bottom: nil, right: self.rightAnchor, topConstant: 15, leftConstant: 30, bottomConstant: 0, rightConstant: 20, widthConstant: 0, heightConstant: 0)
+        textInput.anchor(titleLabel.bottomAnchor, left: self.leftAnchor,
+                         bottom: nil, right: self.rightAnchor,
+                         topConstant: 15, leftConstant: 30,
+                         bottomConstant: 0, rightConstant: 20,
+                         widthConstant: 0, heightConstant: 0)
         textInput.addTarget(self, action: #selector(onTextDidChange(_:)), for: .editingChanged)
         
         addSubview(rightLabel)
-        rightLabel.anchor(self.topAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 0, rightConstant: 50, widthConstant: 0, heightConstant: 0)
+        rightLabel.anchor(self.topAnchor, left: nil,
+                          bottom: self.bottomAnchor, right: self.rightAnchor,
+                          topConstant: 10, leftConstant: 0,
+                          bottomConstant: 0, rightConstant: 50,
+                          widthConstant: 0, heightConstant: 0)
         
         addSubview(arrowImage)
-        arrowImage.anchor(titleLabel.bottomAnchor, left: nil, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 10, leftConstant: 0, bottomConstant: 15, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        arrowImage.anchor(titleLabel.bottomAnchor, left: nil,
+                          bottom: self.bottomAnchor, right: self.rightAnchor,
+                          topConstant: 10, leftConstant: 0,
+                          bottomConstant: 15, rightConstant: 30,
+                          widthConstant: 0, heightConstant: 0)
     }
     
     @objc func onTextDidChange(_ textField: UITextField) {

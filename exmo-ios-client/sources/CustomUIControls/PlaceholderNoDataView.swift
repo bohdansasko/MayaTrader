@@ -36,10 +36,18 @@ class PlaceholderNoDataView: UIView {
         super.init(frame: frame)
         
         addSubview(placeHolderImage)
-        placeHolderImage.anchor(self.topAnchor, left: self.leftAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        placeHolderImage.anchor(self.topAnchor, left: self.leftAnchor,
+                                bottom: self.bottomAnchor, right: self.rightAnchor,
+                                topConstant: 0, leftConstant: 30,
+                                bottomConstant: 0, rightConstant: 30,
+                                widthConstant: 0, heightConstant: 0)
         
         addSubview(descriptionLabel)
-        descriptionLabel.anchor(placeHolderImage.bottomAnchor, left: placeHolderImage.leftAnchor, bottom: nil, right: placeHolderImage.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 0)
+        descriptionLabel.anchor(placeHolderImage.bottomAnchor, left: placeHolderImage.leftAnchor,
+                                bottom: nil, right: placeHolderImage.rightAnchor,
+                                topConstant: 0, leftConstant: 10,
+                                bottomConstant: 0, rightConstant: 10,
+                                widthConstant: 0, heightConstant: 0)
     }
     
     required init?(coder aDecoder: NSCoder) {

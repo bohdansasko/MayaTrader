@@ -19,20 +19,36 @@ extension OrderViewCell {
     
     func setupLeftViews() {
         addSubview(labelTimeCreateOrder)
-        labelTimeCreateOrder.anchor(self.topAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 0, leftConstant: 30, bottomConstant: 0, rightConstant: 0, widthConstant: 100, heightConstant: 0)
+        labelTimeCreateOrder.anchor(self.topAnchor, left: self.leftAnchor,
+                                    bottom: nil, right: nil,
+                                    topConstant: 0, leftConstant: 30,
+                                    bottomConstant: 0, rightConstant: 0,
+                                    widthConstant: 100, heightConstant: 0)
         labelTimeCreateOrder.heightAnchor.constraint(greaterThanOrEqualToConstant: 20).isActive = true
         
         addSubview(orderTypeLabel)
-        orderTypeLabel.anchor(labelTimeCreateOrder.bottomAnchor, left: self.leftAnchor, bottom: nil, right: nil, topConstant: 5, leftConstant: 30, bottomConstant: 0, rightConstant: 0, widthConstant: 55, heightConstant: 25)
+        orderTypeLabel.anchor(labelTimeCreateOrder.bottomAnchor, left: self.leftAnchor,
+                              bottom: nil, right: nil,
+                              topConstant: 5, leftConstant: 30,
+                              bottomConstant: 0, rightConstant: 0,
+                              widthConstant: 55, heightConstant: 25)
         
         addSubview(imageSeparator)
-        imageSeparator.anchor(self.topAnchor, left: labelTimeCreateOrder.rightAnchor, bottom: self.bottomAnchor, right: nil, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 10, heightConstant: 0)
+        imageSeparator.anchor(self.topAnchor, left: labelTimeCreateOrder.rightAnchor,
+                              bottom: self.bottomAnchor, right: nil,
+                              topConstant: 5, leftConstant: 10,
+                              bottomConstant: 0, rightConstant: 0,
+                              widthConstant: 10, heightConstant: 0)
     }
 
     func setupRightViews() {
         let contentView = UIView()
         addSubview(contentView)
-        contentView.anchor(self.topAnchor, left: imageSeparator.rightAnchor, bottom: self.bottomAnchor, right: self.rightAnchor, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 0)
+        contentView.anchor(self.topAnchor, left: imageSeparator.rightAnchor,
+                           bottom: self.bottomAnchor, right: self.rightAnchor,
+                           topConstant: 0, leftConstant: 10,
+                           bottomConstant: 0, rightConstant: 30,
+                           widthConstant: 0, heightConstant: 0)
         
         let spaceBetweenRows: CGFloat = 17.0
         let topOffset: CGFloat = -2.0
@@ -48,7 +64,11 @@ extension OrderViewCell {
         contentView.addSubview(leftColumnStackView)
         leftColumnStackView.spacing = spaceBetweenRows
         leftColumnStackView.axis = .vertical
-        leftColumnStackView.anchor(contentView.topAnchor, left: contentView.leftAnchor, bottom: contentView.bottomAnchor, right: nil, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 0)
+        leftColumnStackView.anchor(contentView.topAnchor, left: contentView.leftAnchor,
+                                   bottom: contentView.bottomAnchor, right: nil,
+                                   topConstant: topOffset, leftConstant: 0,
+                                   bottomConstant: 0, rightConstant: 0,
+                                   widthConstant: 80, heightConstant: 0)
         
         // MARK: right column
         let quantityStackView = UIStackView(arrangedSubviews: [quantityTitleLabel, quantityValueLabel])
@@ -62,7 +82,11 @@ extension OrderViewCell {
         rightColumnStackView.spacing = spaceBetweenRows
         rightColumnStackView.axis = .vertical
         rightColumnStackView.alignment = .leading
-        rightColumnStackView.anchor(contentView.topAnchor, left: nil, bottom: contentView.bottomAnchor, right: contentView.rightAnchor, topConstant: topOffset, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 80, heightConstant: 0)
+        rightColumnStackView.anchor(contentView.topAnchor, left: nil,
+                                    bottom: contentView.bottomAnchor, right: contentView.rightAnchor,
+                                    topConstant: topOffset, leftConstant: 0,
+                                    bottomConstant: 0, rightConstant: 0,
+                                    widthConstant: 80, heightConstant: 0)
     }
 }
 
