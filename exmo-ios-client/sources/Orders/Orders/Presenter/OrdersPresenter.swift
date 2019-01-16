@@ -48,8 +48,8 @@ extension OrdersPresenter: OrdersInteractorOutput {
         view.orderCanceled(ids: ids)
     }
 
-    func setAdsActive(_ isVisible: Bool) {
-        view.setAdsActive(isVisible)
+    func setSubscription(_ package: ISubscriptionPackage) {
+        view.setSubscription(package)
     }
 
 }

@@ -185,9 +185,9 @@ extension OrdersViewController {
         segmentControlView.sendActions(for: .valueChanged)
     }
 
-    func setAdsActive(_ isVisible: Bool) {
-        print("Orders: \(#function), visible = \(isVisible)")
-        if isVisible {
+    func setSubscription(_ package: ISubscriptionPackage) {
+        print("Orders: \(#function)")
+        if package.isAdsPresent {
             showAdsView(completion: {
                 self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
             })
