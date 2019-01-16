@@ -16,6 +16,7 @@ class SearchDatasourceListView: UIView {
         tv.separatorStyle = .none
         tv.showsVerticalScrollIndicator = false
         tv.dragInteractionEnabled = true
+        tv.keyboardDismissMode = .onDrag
         tv.tableFooterView = UIView()
         return tv
     }()
