@@ -31,7 +31,6 @@ class RootTabsInteractor {
 extension RootTabsInteractor: RootTabsInteractorInput {
     func viewDidLoad() {
         networkWorker.delegate = self
-        subscribeOnIAPEvents()
 
         IAPService.shared.fetchAllSubscriptions()
         // tryLogin()
@@ -52,58 +51,5 @@ extension RootTabsInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserFail(errorMessage: String?) {
 //        output.showAlert(title: "Login", message: errorMessage ?? "Undefined error")
         AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
-    }
-}
-
-
-extension RootTabsInteractor {
-    func subscribeOnIAPEvents() {
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseSuccess(_ :)),
-                name: IAPService.Notification.purchased.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseError(_ :)),
-                name: IAPService.Notification.expired.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseError(_ :)),
-                name: IAPService.Notification.notPurchased.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseSuccess(_ :)),
-                name: IAPService.Notification.purchaseSuccess.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseError(_ :)),
-                name: IAPService.Notification.purchaseError.name)
-    }
-
-    func unsubscribeEvents() {
-        AppDelegate.notificationController.removeObserver(self)
-    }
-}
-
-
-extension RootTabsInteractor {
-    @objc
-    func onProductPurchaseSuccess(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(#function) => can't convert notification container to IAPProduct")
-            return
-        }
-        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-    }
-
-    @objc
-    func onProductPurchaseError(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
-            return
-        }
-        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
     }
 }
