@@ -19,6 +19,8 @@ class IAPService: NSObject {
         case purchased
         case expired
         case notPurchased
+
+        case updateSubscription
     }
 
     private override init() {
@@ -28,8 +30,8 @@ class IAPService: NSObject {
     private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
     private let kReceiptSubscriptionURLType = AppleReceiptValidator.VerifyReceiptURLType.sandbox
     private var purchasedSubscriptions: [ReceiptItem] = []
-    static let kProductNotificationKey = "product"
-
+    static let kSubscriptionPackageKey = "subscriptionPackage"
+    static let kErrorKey = "error"
 }
 
 extension IAPService {
@@ -55,14 +57,24 @@ extension IAPService {
                         }
                         return currentDate < subscriptionExpirationDate
                     })
-//                    self.sendNotification(.purchased, data: notificationData)
-                    print("purchased items => \(activeSubscriptions) \n\n")
-                case .expired(_, _): break
-                case .notPurchased: break
-                }
 
+                    if activeSubscriptions.contains(where: { $0.productId == IAPProduct.proPackage.rawValue }) {
+                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: ProSubscriptionPackage()])
+                    } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.litePackage.rawValue }) {
+                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: LiteSubscriptionPackage()])
+                    } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.advertisements.rawValue }) {
+                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicNoAdsSubscriptionPackage()])
+                    } else {
+                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                    }
+                    print("\(#function) => purchased items => \(activeSubscriptions) \n\n")
+                case .expired(_, _), .notPurchased:
+                    print("\(#function) => updateSubscription \n\n")
+                    self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                }
             case .error(let error):
                 print("Receipt verification failed: \(error)")
+                self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
             }
         }
     }
@@ -116,25 +128,41 @@ extension IAPService {
 
     func purchase(product: IAPProduct) {
         SwiftyStoreKit.purchaseProduct(product.rawValue, quantity: 1, atomically: true) { result in
-            let notificationData = [IAPService.kProductNotificationKey: product]
+            let notificationData = [IAPService.kSubscriptionPackageKey: product]
             switch result {
             case .success(let purchase):
                 self.sendNotification(.purchaseSuccess, data: notificationData)
                 print("Purchase Success: \(purchase.productId)")
-            case .error(let error):
-                self.sendNotification(.purchaseError, data: notificationData)
-                switch error.code {
-                case .unknown: print("Unknown error. Please contact support")
-                case .clientInvalid: print("Not allowed to make the payment")
-                case .paymentCancelled: break
-                case .paymentInvalid: print("The purchase identifier was invalid")
-                case .paymentNotAllowed: print("The device is not allowed to make the payment")
-                case .storeProductNotAvailable: print("The product is not available in the current storefront")
-                case .cloudServicePermissionDenied: print("Access to cloud service information is not allowed")
-                case .cloudServiceNetworkConnectionFailed: print("Could not connect to the network")
-                case .cloudServiceRevoked: print("User has revoked permission to use this cloud service")
-                default: print((error as NSError).localizedDescription)
+                guard let purchasedProduct = IAPProduct(rawValue: purchase.productId) else {
+                    self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                    return
                 }
+
+                var subscriptionPackage: ISubscriptionPackage
+                switch purchasedProduct {
+                case IAPProduct.proPackage: subscriptionPackage = ProSubscriptionPackage()
+                case IAPProduct.litePackage: subscriptionPackage = LiteSubscriptionPackage()
+                case IAPProduct.advertisements: subscriptionPackage = BasicNoAdsSubscriptionPackage()
+                }
+                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: subscriptionPackage])
+
+            case .error(let error):
+                var errorMessage: String
+                switch error.code {
+                case .unknown: errorMessage = "Unknown error. Please contact support"
+                case .clientInvalid: errorMessage = "Not allowed to make the payment"
+                case .paymentCancelled: errorMessage = "Payment has cancelled"
+                case .paymentInvalid: errorMessage = "The purchase identifier was invalid"
+                case .paymentNotAllowed: errorMessage = "The device is not allowed to make the payment"
+                case .storeProductNotAvailable: errorMessage = "The product is not available in the current storefront"
+                case .cloudServicePermissionDenied: errorMessage = "Access to cloud service information is not allowed"
+                case .cloudServiceNetworkConnectionFailed: errorMessage = "Could not connect to the network"
+                case .cloudServiceRevoked: errorMessage = "User has revoked permission to use this cloud service"
+                default: errorMessage = (error as NSError).localizedDescription
+                }
+
+                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: errorMessage])
             }
         }
     }
@@ -163,7 +191,7 @@ extension IAPService {
                         productId: productId,
                         inReceipt: receipt)
 
-                let notificationData = [IAPService.kProductNotificationKey: product]
+                let notificationData = [IAPService.kSubscriptionPackageKey: product]
                 
                 switch purchaseResult {
                 case .purchased(let expiryDate, let items):
