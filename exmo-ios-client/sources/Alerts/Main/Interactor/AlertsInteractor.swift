@@ -29,9 +29,6 @@ extension AlertsInteractor: AlertsInteractorInput {
         } else {
             AppDelegate.vinsoAPI.establishConnect()
         }
-
-//        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
-//        output.setAdsActive(shouldShowAds)
     }
 
     func updateAlertState(_ alert: Alert) {
@@ -84,23 +81,11 @@ extension AlertsInteractor {
     func subscribeOnIAPEvents() {
         AppDelegate.notificationController.addObserver(
                 self,
-                selector: #selector(onProductPurchased(_ :)),
-                name: IAPService.Notification.purchased.name)
+                selector: #selector(onProductSubscriptionActive(_ :)),
+                name: IAPService.Notification.updateSubscription.name)
         AppDelegate.notificationController.addObserver(
                 self,
-                selector: #selector(onProductExpired(_ :)),
-                name: IAPService.Notification.expired.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductNotPurchased(_ :)),
-                name: IAPService.Notification.notPurchased.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseSuccess(_ :)),
-                name: IAPService.Notification.purchaseSuccess.name)
-        AppDelegate.notificationController.addObserver(
-                self,
-                selector: #selector(onProductPurchaseError(_ :)),
+                selector: #selector(onProductSubscriptionActive(_ :)),
                 name: IAPService.Notification.purchaseError.name)
     }
 
@@ -113,68 +98,23 @@ extension AlertsInteractor {
 
 extension AlertsInteractor {
     @objc
-    func onProductPurchased(_ notification: Notification) {
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(String(describing: self)) => can't convert notification container to IAPProduct")
+    func onProductSubscriptionActive(_ notification: Notification) {
+        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+            print("\(#function) => can't convert notification container to ISubscriptionPackage")
+            output.setSubscription(BasicAdsSubscriptionPackage())
             return
         }
-        print("\(String(describing: self)) => notification IAPProduct is \(product.rawValue)")
-        onProductActive(product)
-    }
-    
-    @objc
-    func onProductExpired(_ notification: Notification) {
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
-            return
-        }
-        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        onProductInactive(product)
-    }
-    
-    @objc
-    func onProductNotPurchased(_ notification: Notification) {
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
-            return
-        }
-        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        onProductInactive(product)
+        output.setSubscription(subscriptionPackage)
     }
 
     @objc
-    func onProductPurchaseSuccess(_ notification: Notification) {
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
+    func onPurchaseError(_ notification: Notification) {
+        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
+            print("\(#function) => can't cast error message to String")
             return
         }
-        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        onProductActive(product)
-    }
-
-    @objc
-    func onProductPurchaseError(_ notification: Notification) {
-        guard let product = notification.userInfo?[IAPService.kProductNotificationKey] as? IAPProduct else {
-            print("\(String(describing: self)), \(#function) => can't convert notification container to IAPProduct")
-            return
-        }
-        print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        onProductInactive(product)
-    }
-
-    private func onProductActive(_ product: IAPProduct) {
-        switch product {
-        case .advertisements: output.setAdsActive(false)
-        case .litePackage: break
-        case .proPackage: break
-        }
-    }
-
-    private func onProductInactive(_ product: IAPProduct) {
-        switch product {
-        case .advertisements: output.setAdsActive(true)
-        case .litePackage: break
-        case .proPackage: break
-        }
+        // TODO: show error message
     }
 }

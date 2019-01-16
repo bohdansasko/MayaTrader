@@ -93,9 +93,9 @@ extension AlertsViewController: AlertsViewInput {
         listView.deleteAlerts(ids: ids)
     }
 
-    func setAdsActive(_ isVisible: Bool) {
-        print("Alerts: \(#function), visible = \(isVisible)")
-        if isVisible {
+    func setSubscription(_ package: ISubscriptionPackage) {
+        print("Alerts: \(#function)")
+        if package.isAdsPresent {
             showAdsView(completion: {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
             })
