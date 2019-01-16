@@ -26,8 +26,7 @@ extension OrdersInteractor: OrdersInteractorInput {
     }
 
     func viewWillAppear() {
-//        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
-//        output.setAdsActive(shouldShowAds)
+        // do nothing
     }
     
     func loadOrderByType(_ orderType: Orders.DisplayType) {

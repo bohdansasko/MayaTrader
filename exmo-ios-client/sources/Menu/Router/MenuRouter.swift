@@ -22,11 +22,11 @@ class MenuRouter: MenuRouterInput {
             sourceVC.present(PasswordModuleConfigurator().navigationVC, animated: true)
 
         case .proFeatures:
-            IAPService.shared.verifySubscription(.advertisements)
+            IAPService.shared.verifySubscription(.noAds)
             let iapInitializer = IAPModuleInitializer()
             sourceVC.present(iapInitializer.viewController, animated: true)
         case .advertisement:
-            IAPService.shared.purchase(product: .advertisements)
+            IAPService.shared.purchase(product: .noAds)
 
         case .restorePurchases:
             IAPService.shared.restorePurchases()

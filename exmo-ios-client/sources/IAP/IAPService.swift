@@ -62,7 +62,7 @@ extension IAPService {
                         self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: ProSubscriptionPackage()])
                     } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.litePackage.rawValue }) {
                         self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: LiteSubscriptionPackage()])
-                    } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.advertisements.rawValue }) {
+                    } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.noAds.rawValue }) {
                         self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicNoAdsSubscriptionPackage()])
                     } else {
                         self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
@@ -142,7 +142,7 @@ extension IAPService {
                 switch purchasedProduct {
                 case IAPProduct.proPackage: subscriptionPackage = ProSubscriptionPackage()
                 case IAPProduct.litePackage: subscriptionPackage = LiteSubscriptionPackage()
-                case IAPProduct.advertisements: subscriptionPackage = BasicNoAdsSubscriptionPackage()
+                case IAPProduct.noAds: subscriptionPackage = BasicNoAdsSubscriptionPackage()
                 }
                 self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: subscriptionPackage])
 
