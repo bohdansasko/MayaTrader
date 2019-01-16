@@ -33,7 +33,7 @@ extension RootTabsInteractor: RootTabsInteractorInput {
         networkWorker.delegate = self
 
         IAPService.shared.fetchAllSubscriptions()
-        // tryLogin()
+        tryLogin()
     }
 
     func viewWillAppear() {
