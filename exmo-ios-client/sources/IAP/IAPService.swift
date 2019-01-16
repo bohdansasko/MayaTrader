@@ -176,13 +176,16 @@ extension IAPService {
                 let isProPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.proPackage.rawValue })
                 let isLitePackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.litePackage.rawValue })
                 let isNoAdsPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.noAds.rawValue })
-                print("Purchase Success: \(purchase.productId)")
-                guard let purchasedProduct = isProPackage
-                        ? ProSubscriptionPackage()
-                        : isLitePackage
-                                ? LiteSubscriptionPackage()
-                                : isNoAdsPackage
-                                        ? BasicNoAdsSubscriptionPackage() : BasicAdsSubscriptionPackage()
+                
+                var purchasedProduct: ISubscriptionPackage = BasicAdsSubscriptionPackage()
+                if isProPackage {
+                    purchasedProduct = ProSubscriptionPackage()
+                } else if isLitePackage {
+                    purchasedProduct = LiteSubscriptionPackage()
+                } else if isNoAdsPackage {
+                    purchasedProduct = BasicNoAdsSubscriptionPackage()
+                }
+                
                 self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: purchasedProduct])
             } else {
                 print("Nothing to Restore")
