@@ -171,10 +171,22 @@ extension IAPService {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
+                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
             } else if results.restoredPurchases.count > 0 {
-                print("Restore Success: \(results.restoredPurchases)")
+                let isProPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.proPackage.rawValue })
+                let isLitePackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.litePackage.rawValue })
+                let isNoAdsPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.noAds.rawValue })
+                print("Purchase Success: \(purchase.productId)")
+                guard let purchasedProduct = isProPackage
+                        ? ProSubscriptionPackage()
+                        : isLitePackage
+                                ? LiteSubscriptionPackage()
+                                : isNoAdsPackage
+                                        ? BasicNoAdsSubscriptionPackage() : BasicAdsSubscriptionPackage()
+                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: purchasedProduct])
             } else {
                 print("Nothing to Restore")
+                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
             }
         }
     }
