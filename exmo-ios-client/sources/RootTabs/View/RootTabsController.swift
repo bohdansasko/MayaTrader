@@ -11,7 +11,6 @@ import UIKit
 class RootTabsController: UITabBarController {
     var output: RootTabsViewOutput!
     
-    var containerInitial: [NSObject] = []
     var isApplicationWasInForeground = true
     var isPasscodeActive = false
     
@@ -21,30 +20,43 @@ class RootTabsController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        subscribeOnNotifications()
-        setupViews()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        output.viewIsReady()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        output.viewWillAppear()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func initializingFinished() {
+        subscribeOnNotifications()
+        setupViews()
+        output.viewDidLoad()
+    }
+}
+
+// MARK: RootTabsInput
+extension RootTabsController: RootTabsViewInput {
+    // do nothing
 }
 
 extension RootTabsController {
     func subscribeOnNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(onApplicationDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(onApplicationEnterForeground),
+                name: UIApplication.willEnterForegroundNotification,
+                object: nil)
+
+        NotificationCenter.default.addObserver(
+                self,
+                selector: #selector(onApplicationDidBecomeActive),
+                name: UIApplication.didBecomeActiveNotification,
+                object: nil)
     }
     
     func unsubscribeNotifications() {
@@ -130,9 +142,4 @@ extension RootTabsController {
             }
         }
     }
-}
-
-// MARK: RootTabsInput
-extension RootTabsController: RootTabsViewInput {
-    // do nothing
 }

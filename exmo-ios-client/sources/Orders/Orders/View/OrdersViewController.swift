@@ -185,7 +185,7 @@ extension OrdersViewController {
         segmentControlView.sendActions(for: .valueChanged)
     }
 
-    func setAdsVisible(_ isVisible: Bool) {
+    func setAdsActive(_ isVisible: Bool) {
         print("Orders: \(#function), visible = \(isVisible)")
         if isVisible {
             showAdsView(completion: {

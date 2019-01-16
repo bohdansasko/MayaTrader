@@ -13,5 +13,6 @@ protocol RootTabsViewInput: class {
 }
 
 protocol RootTabsViewOutput {
-    func viewIsReady()
+    func viewDidLoad()
+    func viewWillAppear()
 }

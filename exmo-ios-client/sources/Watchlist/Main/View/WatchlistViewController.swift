@@ -97,7 +97,7 @@ extension WatchlistViewController: WatchlistViewInput {
         listView.removeItem(currency)
     }
 
-    func setAdsVisible(_ isVisible: Bool) {
+    func setAdsActive(_ isVisible: Bool) {
         print("Watchlist: \(#function), isVisible = \(isVisible)")
         if isVisible {
             showAdsView(completion: {

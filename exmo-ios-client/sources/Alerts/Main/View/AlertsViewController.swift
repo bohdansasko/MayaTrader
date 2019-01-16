@@ -93,7 +93,7 @@ extension AlertsViewController: AlertsViewInput {
         listView.deleteAlerts(ids: ids)
     }
 
-    func setAdsVisible(_ isVisible: Bool) {
+    func setAdsActive(_ isVisible: Bool) {
         print("Alerts: \(#function), visible = \(isVisible)")
         if isVisible {
             showAdsView(completion: {

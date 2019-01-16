@@ -26,8 +26,8 @@ extension OrdersInteractor: OrdersInteractorInput {
     }
 
     func viewWillAppear() {
-        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
-        output.setAdsVisible(shouldShowAds)
+//        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
+//        output.setAdsActive(shouldShowAds)
     }
     
     func loadOrderByType(_ orderType: Orders.DisplayType) {
@@ -151,7 +151,7 @@ extension OrdersInteractor {
             return
         }
         print("\(String(describing: self)) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(false)
+        output.setAdsActive(false)
     }
 
     @objc
@@ -161,7 +161,7 @@ extension OrdersInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(true)
+        output.setAdsActive(true)
     }
 
     @objc
@@ -171,7 +171,7 @@ extension OrdersInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(true)
+        output.setAdsActive(true)
     }
 
     @objc
@@ -181,7 +181,7 @@ extension OrdersInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(false)
+        output.setAdsActive(false)
     }
 
     @objc
@@ -191,6 +191,6 @@ extension OrdersInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(true)
+        output.setAdsActive(true)
     }
 }

@@ -22,5 +22,5 @@ protocol AlertsInteractorOutput: class {
     func updateAlertSuccessful(_ alert: Alert)
     func deleteAlertsSuccessful(ids: [Int])
 
-    func setAdsVisible(_ isVisible: Bool)
+    func setAdsActive(_ isVisible: Bool)
 }

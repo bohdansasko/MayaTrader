@@ -6,27 +6,27 @@
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class RootTabsModuleInitializer {
-    var tabBarController: RootTabsController!
+class RootTabsModuleInitializer: ModuleInitializer {
+    var viewController: UIViewController!
     
     init() {
-        tabBarController = RootTabsController()
-        configure()
-    }
-    
-    private func configure() {
+        let rootViewController = RootTabsController()
+        viewController = rootViewController
+        
         let presenter = RootTabsPresenter()
-        tabBarController.output = presenter
+        presenter.view = rootViewController
+        
+        rootViewController.output = presenter
         
         let interactor = RootTabsInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoLoginNetworkWorker()
         interactor.dbManager = RealmDatabaseManager()
         
-        presenter.view = tabBarController
         presenter.interactor = interactor
         
+        rootViewController.initializingFinished()
     }
 }

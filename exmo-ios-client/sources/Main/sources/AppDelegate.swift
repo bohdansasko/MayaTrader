@@ -133,8 +133,9 @@ extension AppDelegate {
 
 extension AppDelegate {
     func setupWindow() {
+        let rootModule = RootTabsModuleInitializer()
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = RootTabsModuleInitializer().tabBarController
+        window?.rootViewController = rootModule.viewController
         window?.windowLevel = UIWindow.Level.normal
         window?.makeKeyAndVisible()
         

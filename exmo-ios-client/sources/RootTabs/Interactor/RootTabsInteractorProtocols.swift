@@ -9,7 +9,8 @@
 import Foundation
 
 protocol RootTabsInteractorInput {
-    func login()
+    func viewDidLoad()
+    func viewWillAppear()
 }
 
 protocol RootTabsInteractorOutput: class {

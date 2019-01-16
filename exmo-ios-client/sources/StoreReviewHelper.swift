@@ -28,12 +28,10 @@ struct StoreReviewHelper {
             return
         }
 
-        switch appOpenCount {
-        case _ where appOpenCount%100 == 0:
+        if appOpenCount%100 == 0 || appOpenCount == 6 {
             requestReview()
-        default:
+        } else {
             print("App run count is : \(appOpenCount)")
-            break;
         }
     }
 

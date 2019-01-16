@@ -13,7 +13,7 @@ protocol AlertsViewInput: class {
     func updateAlert(_ alert: Alert)
     func deleteAlerts(withIds ids: [Int])
 
-    func setAdsVisible(_ isVisible: Bool)
+    func setAdsActive(_ isVisible: Bool)
 }
 
 protocol AlertsViewOutput: class {

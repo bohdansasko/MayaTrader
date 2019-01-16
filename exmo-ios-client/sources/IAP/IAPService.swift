@@ -21,13 +21,15 @@ class IAPService: NSObject {
         case notPurchased
     }
 
-    private override init() { /* do nothing */ }
+    private override init() {
+    }
     static let shared = IAPService()
 
     private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
     private let kReceiptSubscriptionURLType = AppleReceiptValidator.VerifyReceiptURLType.sandbox
     private var purchasedSubscriptions: [ReceiptItem] = []
     static let kProductNotificationKey = "product"
+
 }
 
 extension IAPService {
@@ -45,10 +47,16 @@ extension IAPService {
                 
                 switch purchaseResult {
                 case .purchased(_, let items):
-                    if let item = items.first {
-                        print("purchased item => \(item) \n")
-//                        UserDefaults.standard.set(item., forKey: UserDefaultsKeys.iapAdvertisement)
-                    }
+                    let currentDate = Date()
+                    let activeSubscriptions = items.filter({
+                        receipt in
+                        guard let subscriptionExpirationDate = receipt.subscriptionExpirationDate else {
+                            return false
+                        }
+                        return currentDate < subscriptionExpirationDate
+                    })
+//                    self.sendNotification(.purchased, data: notificationData)
+                    print("purchased items => \(activeSubscriptions) \n\n")
                 case .expired(_, _): break
                 case .notPurchased: break
                 }
@@ -68,7 +76,7 @@ extension IAPService {
             }
             let isDateOk = nowDatetime < subscriptionExpirationDate
             print("\(#function) => productId = \(receipt.productId), subscriptionExpirationDate = \(subscriptionExpirationDate), isDateOk = \(isDateOk)")
-            
+
             return receipt.productId == product.rawValue && isDateOk
         })
     }

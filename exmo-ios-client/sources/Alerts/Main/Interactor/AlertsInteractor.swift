@@ -30,8 +30,8 @@ extension AlertsInteractor: AlertsInteractorInput {
             AppDelegate.vinsoAPI.establishConnect()
         }
 
-        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
-        output.setAdsVisible(shouldShowAds)
+//        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
+//        output.setAdsActive(shouldShowAds)
     }
 
     func updateAlertState(_ alert: Alert) {
@@ -164,7 +164,7 @@ extension AlertsInteractor {
 
     private func onProductActive(_ product: IAPProduct) {
         switch product {
-        case .advertisements: output.setAdsVisible(false)
+        case .advertisements: output.setAdsActive(false)
         case .litePackage: break
         case .proPackage: break
         }
@@ -172,7 +172,7 @@ extension AlertsInteractor {
 
     private func onProductInactive(_ product: IAPProduct) {
         switch product {
-        case .advertisements: output.setAdsVisible(true)
+        case .advertisements: output.setAdsActive(true)
         case .litePackage: break
         case .proPackage: break
         }

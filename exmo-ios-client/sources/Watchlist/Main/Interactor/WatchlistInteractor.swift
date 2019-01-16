@@ -37,8 +37,8 @@ extension WatchlistInteractor: WatchlistInteractorInput {
             output.didLoadCurrencies(items: favPairs)
         }
 
-        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
-        output.setAdsVisible(shouldShowAds)
+//        let shouldShowAds = !IAPService.shared.isProductPurchased(.advertisements)
+//        output.setAdsActive(shouldShowAds)
     }
 
     func viewWillDisappear() {
@@ -224,7 +224,7 @@ extension WatchlistInteractor {
             return
         }
         print("\(String(describing: self)) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(false)
+        output.setAdsActive(false)
     }
 
     @objc
@@ -234,7 +234,7 @@ extension WatchlistInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(true)
+        output.setAdsActive(true)
     }
 
     @objc
@@ -244,7 +244,7 @@ extension WatchlistInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(true)
+        output.setAdsActive(true)
     }
 
     @objc
@@ -254,7 +254,7 @@ extension WatchlistInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(false)
+        output.setAdsActive(false)
     }
 
     @objc
@@ -264,7 +264,7 @@ extension WatchlistInteractor {
             return
         }
         print("\(String(describing: self)), \(#function) => notification IAPProduct is \(product.rawValue)")
-        output.setAdsVisible(true)
+        output.setAdsActive(true)
     }
 }
 

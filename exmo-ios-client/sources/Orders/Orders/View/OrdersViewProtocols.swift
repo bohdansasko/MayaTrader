@@ -10,7 +10,7 @@ protocol OrdersViewInput: class {
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders])
     func orderCanceled(ids: [Int64])
 
-    func setAdsVisible(_ isVisible: Bool)
+    func setAdsActive(_ isVisible: Bool)
 }
 
 protocol OrdersViewOutput: class {

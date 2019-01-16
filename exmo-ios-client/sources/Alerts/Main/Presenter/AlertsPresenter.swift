@@ -61,7 +61,7 @@ extension AlertsPresenter: AlertsInteractorOutput {
         view.deleteAlerts(withIds: ids)
     }
 
-    func setAdsVisible(_ isVisible: Bool) {
-        view.setAdsVisible(isVisible)
+    func setAdsActive(_ isVisible: Bool) {
+        view.setAdsActive(isVisible)
     }
 }

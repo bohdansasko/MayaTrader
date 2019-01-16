@@ -18,5 +18,5 @@ protocol OrdersInteractorInput {
 protocol OrdersInteractorOutput: class {
     func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders])
     func orderCanceled(ids: [Int64])
-    func setAdsVisible(_ isVisible: Bool)
+    func setAdsActive(_ isVisible: Bool)
 }

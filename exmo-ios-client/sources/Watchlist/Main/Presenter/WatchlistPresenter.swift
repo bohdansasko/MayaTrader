@@ -56,8 +56,8 @@ extension WatchlistPresenter: WatchlistInteractorOutput {
         view.removeItem(currency: currency)
     }
 
-    func setAdsVisible(_ isVisible: Bool) {
-        view.setAdsVisible(isVisible)
+    func setAdsActive(_ isVisible: Bool) {
+        view.setAdsActive(isVisible)
     }
 
 }
