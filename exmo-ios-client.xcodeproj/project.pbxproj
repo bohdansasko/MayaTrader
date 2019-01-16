@@ -190,6 +190,7 @@
 		36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Font+Extension.swift */; };
 		36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129AC2A73866F875D22DE /* ExmoChartData.swift */; };
 		36712BA9A115B28819E97B70 /* VinsoAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */; };
+		36712C66E8B3D44E567B41D9 /* SubscriptionPackages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */; };
 		36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */; };
 		36712E4C4C5245EF136945B7 /* TableMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */; };
 		3C137E9B40C2BD707086FEF6 /* WalletCurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32BC3DFE94094F9C19C047E2 /* WalletCurrenciesListInteractorProtocols.swift */; };
@@ -479,6 +480,7 @@
 		367126066F9FBD9F6FBEBFD1 /* TableMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableMenuView.swift; sourceTree = "<group>"; };
 		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
 		367129AC2A73866F875D22DE /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
+		367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionPackages.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCellType.swift; sourceTree = "<group>"; };
 		36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoSegmentCell.swift; sourceTree = "<group>"; };
 		36712B2B3338633190FB399E /* Font+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
@@ -982,6 +984,7 @@
 				36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */,
 				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
 				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
+				367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -2465,6 +2468,7 @@
 				3671209C676947D8EA9F25E0 /* VinsoAPI.swift in Sources */,
 				367121BC7FF51CEFB18FC1F6 /* VinsoAPI+Alerts.swift in Sources */,
 				367122D0DF0064443BDC5003 /* VinsoAPI+Connection.swift in Sources */,
+				36712C66E8B3D44E567B41D9 /* SubscriptionPackages.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
