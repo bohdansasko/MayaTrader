@@ -39,6 +39,22 @@ class WatchlistListView: UIView {
         return collectionView
     }()
 
+    let quantityPairsAllowsLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .right
+        label.textColor = .white
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 14)
+        label.text = "0/0"
+        return label
+    }()
+
+    var maxPairs: LimitObjects? {
+        didSet {
+            guard let mp = maxPairs else { return }
+            quantityPairsAllowsLabel.text = Utils.getFormatMaxObjects(mp)
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -79,17 +95,32 @@ class WatchlistListView: UIView {
 extension WatchlistListView {
     func setupViews() {
         backgroundColor = nil
+
+        addSubview(quantityPairsAllowsLabel)
+        quantityPairsAllowsLabel.anchor(
+                self.topAnchor, left: self.leftAnchor,
+                bottom: nil, right: self.rightAnchor,
+                topConstant: 0, leftConstant: 0,
+                bottomConstant: 0, rightConstant: 5,
+                widthConstant: 0, heightConstant: 20)
+
         setupCollectionView()
         setupGestureRecognizer()
     }
 
     private func setupCollectionView() {
         addSubview(collectionView)
-        collectionView.fillSuperview()
+        collectionView.anchor(
+                quantityPairsAllowsLabel.bottomAnchor, left: self.leftAnchor,
+                bottom: self.bottomAnchor, right: self.rightAnchor,
+                topConstant: 0, leftConstant: 0,
+                bottomConstant: 0, rightConstant: 0,
+                widthConstant: 0, heightConstant: 0)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 25, left: spaceFromLeftOrRight, bottom: 0, right: spaceFromLeftOrRight)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: spaceFromLeftOrRight, bottom: 0, right: spaceFromLeftOrRight)
+        collectionView.scrollIndicatorInsets = collectionView.contentInset
     }
 
     private func setupGestureRecognizer() {

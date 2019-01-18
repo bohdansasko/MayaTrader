@@ -36,10 +36,34 @@ class AlertsListView: UIView {
         tv.delaysContentTouches = false
         return tv
     }()
+
+    let quantityPairsAllowsLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .right
+        label.textColor = .white
+        label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 14)
+        label.text = "0/0"
+        return label
+    }()
+
+    var maxPairs: LimitObjects? {
+        didSet {
+            guard let mp = maxPairs else { return }
+            quantityPairsAllowsLabel.text = Utils.getFormatMaxObjects(mp)
+        }
+    }
     
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        addSubview(quantityPairsAllowsLabel)
+        quantityPairsAllowsLabel.anchor(
+                self.topAnchor, left: self.leftAnchor,
+                bottom: nil, right: self.rightAnchor,
+                topConstant: 0, leftConstant: 0,
+                bottomConstant: 0, rightConstant: 20,
+                widthConstant: 0, heightConstant: 20)
 
         setupTutorialImg()
         setupTableView()
@@ -144,7 +168,12 @@ extension AlertsListView {
 
     func setupTableView() {
         addSubview(tableView)
-        tableView.fillSuperview()
+        tableView.anchor(
+                quantityPairsAllowsLabel.bottomAnchor, left: self.leftAnchor,
+                bottom: self.bottomAnchor, right: self.rightAnchor,
+                topConstant: 0, leftConstant: 0,
+                bottomConstant: 0, rightConstant: 0,
+                widthConstant: 0, heightConstant: 0)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(AlertViewCell.self, forCellReuseIdentifier: kCellId)

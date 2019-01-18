@@ -18,6 +18,7 @@ class AlertsViewController: ExmoUIViewController {
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     var pickerViewManager: DarkeningPickerViewManager!
+    var subscriptionPackage: ISubscriptionPackage?
 
     var btnCreateAlert: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(named: "icNavbarPlus"),
@@ -82,6 +83,7 @@ class AlertsViewController: ExmoUIViewController {
 extension AlertsViewController: AlertsViewInput {
     func update(_ alerts: [Alert]) {
         listView.alerts.items = alerts
+        listView.maxPairs = LimitObjects(amount: alerts.count, max: subscriptionPackage?.maxAlerts ?? 0)
         listView.invalidate()
     }
 
@@ -95,6 +97,7 @@ extension AlertsViewController: AlertsViewInput {
 
     func setSubscription(_ package: ISubscriptionPackage) {
         print("Alerts: \(#function)")
+        subscriptionPackage = package
         if package.isAdsPresent {
             showAdsView(completion: {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
@@ -103,8 +106,9 @@ extension AlertsViewController: AlertsViewInput {
             hideAdsView(completion: {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
             })
-
         }
+
+        listView.maxPairs = LimitObjects(amount: listView.alerts.count(), max: subscriptionPackage?.maxAlerts ?? 0)
     }
 }
 
@@ -140,7 +144,7 @@ extension AlertsViewController {
         view.addSubview(listView)
         listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
                         bottom: view.bottomAnchor, right: view.rightAnchor,
-                        topConstant: 10, leftConstant: 0,
+                        topConstant: 0, leftConstant: 0,
                         bottomConstant: 0, rightConstant: 0,
                         widthConstant: 0, heightConstant: 0)
     }

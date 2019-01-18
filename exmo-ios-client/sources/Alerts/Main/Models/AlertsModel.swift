@@ -32,7 +32,7 @@ class AlertsModel {
                     : .active
     }
     
-    func getCountMenuItems() -> Int {
+    func count() -> Int {
         return items.count
     }
 

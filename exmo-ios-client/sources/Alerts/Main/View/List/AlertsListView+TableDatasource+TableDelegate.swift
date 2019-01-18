@@ -12,7 +12,7 @@ import UIKit
 // MARK: UITableViewDataSource
 extension AlertsListView: UITableViewDataSource  {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return alerts.getCountMenuItems()
+        return alerts.count()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

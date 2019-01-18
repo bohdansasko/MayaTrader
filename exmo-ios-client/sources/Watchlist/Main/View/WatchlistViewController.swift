@@ -26,8 +26,9 @@ extension DatasourceController {
 // MARK: WatchlistViewController
 class WatchlistViewController: ExmoUIViewController {
     var output: WatchlistViewOutput!
+    var subscriptionPackage: ISubscriptionPackage?
 
-    var listView: WatchlistListView = WatchlistListView()
+    var listView = WatchlistListView()
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
         img.imageName = "imgTutorialWatchlist"
@@ -56,6 +57,10 @@ class WatchlistViewController: ExmoUIViewController {
     // MARK: Touch handlers
     @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {
         output.showCurrenciesListVC()
+    }
+
+    override func shouldUseGlow() -> Bool {
+        return false
     }
 }
 
@@ -91,6 +96,8 @@ extension WatchlistViewController: WatchlistViewInput {
                 index += 1
             })
         }
+
+        listView.maxPairs = LimitObjects(amount: ds.items.count, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
     }
 
     func removeItem(currency: WatchlistCurrency) {
@@ -99,6 +106,7 @@ extension WatchlistViewController: WatchlistViewInput {
 
     func setSubscription(_ package: ISubscriptionPackage) {
         print("Watchlist: \(#function)")
+        subscriptionPackage = package
         if package.isAdsPresent {
             showAdsView(completion: {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
@@ -108,6 +116,13 @@ extension WatchlistViewController: WatchlistViewInput {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
             })
         }
+
+        guard let countItems = listView.datasource?.numberOfItems(0) else {
+            listView.maxPairs = LimitObjects(amount: 0, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
+            return
+        }
+        listView.maxPairs = LimitObjects(amount: countItems, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
+        
     }
 }
 

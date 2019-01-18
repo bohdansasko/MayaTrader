@@ -129,3 +129,8 @@ enum AlertOperationType {
     case add
     case update
 }
+
+struct LimitObjects {
+    let amount: Int
+    let max: Int
+}

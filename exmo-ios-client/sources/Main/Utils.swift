@@ -61,4 +61,8 @@ class Utils {
         let iconName = "ic_crypto_" + currencyShortName.lowercased()
         return iconName
     }
+
+    static func getFormatMaxObjects(_ maxObject: LimitObjects) -> String {
+        return "\(String(maxObject.amount))/\(maxObject.max)"
+    }
 }
