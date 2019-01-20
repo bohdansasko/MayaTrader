@@ -122,7 +122,6 @@ extension WatchlistViewController: WatchlistViewInput {
             return
         }
         listView.maxPairs = LimitObjects(amount: countItems, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
-        
     }
 
     func showAlert(with bodyMsg: String) {

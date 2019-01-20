@@ -23,13 +23,14 @@ class IAPService: NSObject {
         case updateSubscription
     }
 
-    private override init() {
-    }
+    private override init() { }
     static let shared = IAPService()
 
     private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
     private let kReceiptSubscriptionURLType = AppleReceiptValidator.VerifyReceiptURLType.sandbox
-    private var purchasedSubscriptions: [ReceiptItem] = []
+    private(set) var purchasedSubscriptions: [ReceiptItem] = []
+    private(set) var subscriptionPackage: ISubscriptionPackage?
+
     static let kSubscriptionPackageKey = "subscriptionPackage"
     static let kErrorKey = "error"
 }
@@ -59,18 +60,18 @@ extension IAPService {
                     })
 
                     if activeSubscriptions.contains(where: { $0.productId == IAPProduct.proPackage.rawValue }) {
-                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: ProSubscriptionPackage()])
+                        self.updateSubscription(ProSubscriptionPackage())
                     } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.litePackage.rawValue }) {
-                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: LiteSubscriptionPackage()])
+                        self.updateSubscription(LiteSubscriptionPackage())
                     } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.noAds.rawValue }) {
-                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicNoAdsSubscriptionPackage()])
+                        self.updateSubscription(BasicNoAdsSubscriptionPackage())
                     } else {
-                        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                        self.updateSubscription(BasicAdsSubscriptionPackage())
                     }
                     print("\(#function) => purchased items => \(activeSubscriptions) \n\n")
                 case .expired(_, _), .notPurchased:
                     print("\(#function) => updateSubscription \n\n")
-                    self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                    self.updateSubscription(BasicAdsSubscriptionPackage())
                 }
             case .error(let error):
                 print("Receipt verification failed: \(error)")
@@ -134,7 +135,7 @@ extension IAPService {
                 self.sendNotification(.purchaseSuccess, data: notificationData)
                 print("Purchase Success: \(purchase.productId)")
                 guard let purchasedProduct = IAPProduct(rawValue: purchase.productId) else {
-                    self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                    self.updateSubscription(BasicAdsSubscriptionPackage())
                     return
                 }
 
@@ -144,7 +145,7 @@ extension IAPService {
                 case IAPProduct.litePackage: subscriptionPackage = LiteSubscriptionPackage()
                 case IAPProduct.noAds: subscriptionPackage = BasicNoAdsSubscriptionPackage()
                 }
-                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: subscriptionPackage])
+                self.updateSubscription(subscriptionPackage)
 
             case .error(let error):
                 var errorMessage: String
@@ -161,7 +162,7 @@ extension IAPService {
                 default: errorMessage = (error as NSError).localizedDescription
                 }
 
-                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                self.updateSubscription(BasicAdsSubscriptionPackage())
                 self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: errorMessage])
             }
         }
@@ -171,7 +172,7 @@ extension IAPService {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
-                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                self.updateSubscription(BasicAdsSubscriptionPackage())
             } else if results.restoredPurchases.count > 0 {
                 let isProPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.proPackage.rawValue })
                 let isLitePackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.litePackage.rawValue })
@@ -185,11 +186,10 @@ extension IAPService {
                 } else if isNoAdsPackage {
                     purchasedProduct = BasicNoAdsSubscriptionPackage()
                 }
-                
-                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: purchasedProduct])
+                self.updateSubscription(purchasedProduct)
             } else {
                 print("Nothing to Restore")
-                self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: BasicAdsSubscriptionPackage()])
+                self.updateSubscription(BasicAdsSubscriptionPackage())
             }
         }
     }
@@ -256,5 +256,10 @@ extension IAPService {
         DispatchQueue.main.async {
             AppDelegate.notificationController.postBroadcastMessage(name: notificationType.name, data: data)
         }
+    }
+
+    private func updateSubscription(_ subscriptionPackage: ISubscriptionPackage) {
+        self.subscriptionPackage = subscriptionPackage
+        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: subscriptionPackage])
     }
 }

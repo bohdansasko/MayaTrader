@@ -242,10 +242,17 @@ class CurrenciesListCell: ExmoCollectionCell {
     }
     
     @objc func onTouchFavBtn(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        favDelegate?.didTouchCell(datasourceItem: datasourceItem, isSelected: sender.isSelected)
+        favDelegate?.didTouchCell(datasourceItem: datasourceItem, isSelected: !sender.isSelected)
     }
-    
+
+    override func invalidate() {
+        super.invalidate()
+        guard let d = datasourceItem as? WatchlistCurrency else { return }
+        addRemoveFromFavouritesListButton.isSelected = d.tickerPair.isFavourite
+    }
+}
+
+extension CurrenciesListCell {
     private func setupConstraints() {
         let heartView = UIView()
         addSubview(heartView)
@@ -256,7 +263,7 @@ class CurrenciesListCell: ExmoCollectionCell {
         heartView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.13).isActive = true
         heartView.addSubview(addRemoveFromFavouritesListButton)
         addRemoveFromFavouritesListButton.fillSuperview()
-        
+
         let pairNameView = UIView()
         addSubview(pairNameView)
         pairNameView.translatesAutoresizingMaskIntoConstraints = false
@@ -266,7 +273,7 @@ class CurrenciesListCell: ExmoCollectionCell {
         pairNameView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.17).isActive = true
         pairNameView.addSubview(pairNameLabel)
         pairNameLabel.fillSuperview()
-        
+
         let buyValueView = UIView()
         addSubview(buyValueView)
         buyValueView.translatesAutoresizingMaskIntoConstraints = false
@@ -276,7 +283,7 @@ class CurrenciesListCell: ExmoCollectionCell {
         buyValueView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.226).isActive = true
         buyValueView.addSubview(buyValueLabel)
         buyValueLabel.fillSuperview()
-        
+
         let sellValueView = UIView()
         addSubview(sellValueView)
         sellValueView.translatesAutoresizingMaskIntoConstraints = false
@@ -286,7 +293,7 @@ class CurrenciesListCell: ExmoCollectionCell {
         sellValueView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.226).isActive = true
         sellValueView.addSubview(sellValueLabel)
         sellValueLabel.fillSuperview()
-        
+
         let changesValueView = UIView()
         addSubview(changesValueView)
         changesValueView.translatesAutoresizingMaskIntoConstraints = false
@@ -298,4 +305,3 @@ class CurrenciesListCell: ExmoCollectionCell {
         currencyChangesValueLabel.fillSuperview()
     }
 }
-

@@ -117,8 +117,9 @@ extension CurrenciesListViewController: CurrenciesListViewControllerInput {
             guard let index = ds.items.firstIndex(where: { $0.tickerPair.code == favItem.tickerPair.code }) else {
                 continue
             }
-            ds.items[index].tickerPair.isFavourite = favItem.tickerPair.isFavourite
+            ds.items[index] = favItem
         }
+        listView.collectionView.reloadData()
     }
 }
 
