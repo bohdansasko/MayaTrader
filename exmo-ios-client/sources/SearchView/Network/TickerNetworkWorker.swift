@@ -11,17 +11,20 @@ import SwiftyJSON
 
 class TickerNetworkWorker: ITickerNetworkWorker {
     weak var delegate: ITickerNetworkWorkerDelegate?
-    private var timerScheduler: Timer?
+    private var timerRepeater: Timer?
+    private(set) var isLoadCanceled: Bool = false
 
     deinit {
         print("deinit \(String(describing: self))")
     }
 
     func load() {
+        isLoadCanceled = false
+
         let request = ExmoApiRequestBuilder.shared.getTickerRequest()
         Alamofire.request(request).responseJSON {
             [weak self] response in
-            guard let strongSelf = self else { return }
+            guard let strongSelf = self, !strongSelf.isLoadCanceled else { return }
 
             switch response.result {
             case .success(_):
@@ -33,8 +36,13 @@ class TickerNetworkWorker: ITickerNetworkWorker {
     }
 
     func load(timeout: Double, repeat: Bool) {
+        if timerRepeater != nil {
+            load()
+            return
+        }
+
         print("\(String(describing: self)): \(#function)")
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.watchlist, repeats: true) {
+        timerRepeater = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.watchlist, repeats: true) {
             [weak self] _ in
             self?.load()
         }
@@ -43,9 +51,10 @@ class TickerNetworkWorker: ITickerNetworkWorker {
 
     func cancelRepeatLoads() {
         print("\(String(describing: self)): \(#function)")
-        if timerScheduler != nil {
-            timerScheduler?.invalidate()
-            timerScheduler = nil
+        if timerRepeater != nil {
+            isLoadCanceled = true
+            timerRepeater?.invalidate()
+            timerRepeater = nil
         }
     }
 }

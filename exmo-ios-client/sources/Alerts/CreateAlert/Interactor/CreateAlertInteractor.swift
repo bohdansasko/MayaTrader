@@ -12,22 +12,7 @@ class CreateAlertInteractor {
 
     weak var output: CreateAlertInteractorOutput!
     var tickerNetworkWorker: ITickerNetworkWorker!
-    var timerScheduler: Timer?
     private var currencyPairCode: String = ""
-    
-    private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.createOrder, repeats: true) {
-            [weak self] _ in
-            self?.tickerNetworkWorker.load()
-        }
-    }
-    
-    private func unscheduleUpdateCurrencies() {
-        if timerScheduler != nil {
-            timerScheduler?.invalidate()
-            timerScheduler = nil
-        }
-    }
 }
 
 extension CreateAlertInteractor: CreateAlertInteractorInput {
@@ -38,13 +23,13 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     
     func viewWillDisappear() {
         currencyPairCode = ""
-        unscheduleUpdateCurrencies()
+        tickerNetworkWorker.cancelRepeatLoads()
         AppDelegate.vinsoAPI.removeAlertsObserver(self)
     }
     
     func createAlert(_ alertModel: Alert) {
         print(alertModel)
-        unscheduleUpdateCurrencies()
+        tickerNetworkWorker.cancelRepeatLoads()
         AppDelegate.vinsoAPI.createAlert(alert: alertModel)
     }
     
@@ -54,8 +39,7 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     
     func handleSelectedCurrency(rawName: String) {
         currencyPairCode = rawName
-        scheduleUpdateCurrencies()
-        tickerNetworkWorker.load()
+        tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
     }
 }
 
@@ -86,7 +70,7 @@ extension CreateAlertInteractor: AlertsAPIResponseDelegate {
     
     func onDidCreateAlertFail(errorMessage: String) {
         print(errorMessage)
-        scheduleUpdateCurrencies()
+        tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
         output.showAlert(message: errorMessage)
     }
 

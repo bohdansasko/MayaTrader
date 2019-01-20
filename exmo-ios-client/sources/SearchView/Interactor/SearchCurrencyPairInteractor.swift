@@ -12,8 +12,7 @@ import SwiftyJSON
 class SearchInteractor {
     weak var output: SearchInteractorOutput!
     var networkWorker: ITickerNetworkWorker!
-    var timerScheduler: Timer?
-    
+
     deinit {
         print("deinit \(String(describing: self))")
     }
@@ -22,34 +21,14 @@ class SearchInteractor {
 extension SearchInteractor: SearchInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
-        
-        scheduleUpdateCurrencies()
-        loadCurrenciesPairs()
+        networkWorker.load(timeout: FrequencyUpdateInSec.searchPair, repeat: true)
     }
     
     func viewWillDisappear() {
         print("viewWillDisappear")
-        stopScheduleUpdateCurrencies()
+        networkWorker.cancelRepeatLoads()
     }
-    
-    func loadCurrenciesPairs() {
-        networkWorker?.load()
-    }
-    
-    private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.searchPair, repeats: true) {
-            [weak self] _ in
-            self?.networkWorker.load()
-        }
-    }
-    
-    private func stopScheduleUpdateCurrencies() {
-        if timerScheduler != nil {
-            timerScheduler?.invalidate()
-            timerScheduler = nil
-        }
-    }
-    
+
     func getTestData() -> [SearchCurrencyPairModel] {
         return [
             SearchCurrencyPairModel(id: 1, name: "XRP_USD", price: 0.534),

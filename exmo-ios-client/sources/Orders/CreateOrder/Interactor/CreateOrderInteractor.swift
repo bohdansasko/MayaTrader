@@ -11,23 +11,7 @@ class CreateOrderInteractor {
     weak var output: CreateOrderInteractorOutput!
     var networkWorker: ITickerNetworkWorker!
     var ordersNetworkWorker: IOrdersNetworkWorker!
-    var timerScheduler: Timer?
-    
     private var currencyPairCode: String = ""
-    
-    private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.createOrder, repeats: true) {
-            [weak self] _ in
-            self?.networkWorker.load()
-        }
-    }
-    
-    private func unscheduleUpdateCurrencies() {
-        if timerScheduler != nil {
-            timerScheduler?.invalidate()
-            timerScheduler = nil
-        }
-    }
 }
 
 // MARK: CreateOrderInteractorInput
@@ -39,18 +23,18 @@ extension CreateOrderInteractor: CreateOrderInteractorInput {
     
     func viewWillDisappear() {
         currencyPairCode = ""
-        unscheduleUpdateCurrencies()
+        networkWorker.cancelRepeatLoads()
     }
     
     func createOrder(orderModel: OrderModel) {
         print(orderModel)
-        unscheduleUpdateCurrencies()
+        networkWorker.cancelRepeatLoads()
         ordersNetworkWorker.createOrder(order: orderModel)
     }
     
     func handleSelectedCurrency(rawName: String) {
         currencyPairCode = rawName
-        scheduleUpdateCurrencies()
+        networkWorker.load(timeout: FrequencyUpdateInSec.createOrder, repeat: true)
         networkWorker.load()
     }
 }
@@ -69,6 +53,7 @@ extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
     
     func onDidLoadTickerFails() {
         print("onDidLoadTickerFails")
+        networkWorker.cancelRepeatLoads()
         output.updateSelectedCurrency(nil)
         output.showAlert(message: "Can't load data. Please try again a little bit later.")
     }
@@ -82,7 +67,7 @@ extension CreateOrderInteractor: IOrdersNetworkWorkerDelegate {
     
     func onDidCreateOrderFail(errorMessage: String) {
         print(errorMessage)
-        scheduleUpdateCurrencies()
+        networkWorker.load(timeout: FrequencyUpdateInSec.createOrder, repeat: true)
         output.showAlert(message: errorMessage)
     }
 }

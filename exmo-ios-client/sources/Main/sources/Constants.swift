@@ -75,6 +75,7 @@ struct FrequencyUpdateInSec {
     static let watchlist = 10.0
     static let currenciesList = 10.0
     static let createOrder = 15.0
+    static let createAlert = 15.0
     static let searchPair = 10.0
 }
 

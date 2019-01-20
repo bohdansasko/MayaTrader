@@ -13,24 +13,23 @@ import RealmSwift
 class CurrenciesListInteractor {
     weak var output: CurrenciesListInteractorOutput!
     var cachedPairs: [WatchlistCurrency] = []
-    var timerScheduler: Timer?
     var networkWorker: ITickerNetworkWorker!
     var filterGroupController: IFilterGroupController!
-    var currencyGroupName: String = ""
-
     var dbManager: OperationsDatabaseProtocol!
+    var currencyGroupName: String = ""
 }
 
 extension CurrenciesListInteractor: CurrenciesListInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
-
+        if !currencyGroupName.isEmpty {
+            networkWorker.load(timeout: FrequencyUpdateInSec.currenciesList, repeat: true)
+        }
         loadCurrenciesFromCache()
-        scheduleUpdateCurrencies()
     }
 
     func viewWillDisappear() {
-        stopScheduleUpdateCurrencies()
+        networkWorker.cancelRepeatLoads()
         saveToCache()
     }
 
@@ -66,29 +65,6 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
             cachedPairs.append(currencyModel)
         }
         output.updateFavPairs(items: cachedPairs)
-    }
-}
-
-extension CurrenciesListInteractor {
-    private func scheduleUpdateCurrencies() {
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.currenciesList, repeats: true) {
-            [weak self] _ in
-            guard let strongSelf = self else { return }
-            if !strongSelf.currencyGroupName.isEmpty {
-                strongSelf.networkWorker.load()
-            }
-        }
-
-        if !currencyGroupName.isEmpty {
-            networkWorker.load()
-        }
-    }
-
-    private func stopScheduleUpdateCurrencies() {
-        if timerScheduler != nil {
-            timerScheduler?.invalidate()
-            timerScheduler = nil
-        }
     }
 }
 
