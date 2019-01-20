@@ -77,7 +77,7 @@ extension SearchInteractor: ITickerNetworkWorkerDelegate {
         output.onDidLoadCurrenciesPairs(searchPairs)
     }
     
-    func onDidLoadTickerFails(_ ticker: Ticker?) {
+    func onDidLoadTickerFails() {
         print("onDidLoadTickerFails")
         output.onDidLoadCurrenciesPairs([])
     }

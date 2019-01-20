@@ -10,11 +10,13 @@ import Foundation
 
 protocol ITickerNetworkWorkerDelegate: class {
     func onDidLoadTickerSuccess(_ ticker: Ticker?)
-    func onDidLoadTickerFails(_ ticker: Ticker?)
+    func onDidLoadTickerFails()
 }
 
 protocol ITickerNetworkWorker: class {
     var delegate: ITickerNetworkWorkerDelegate? { get set }
     
     func load()
+    func load(timeout: Double, repeat: Bool)
+    func cancelRepeatLoads()
 }

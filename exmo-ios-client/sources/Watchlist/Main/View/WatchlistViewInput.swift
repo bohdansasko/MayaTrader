@@ -10,4 +10,5 @@ protocol WatchlistViewInput: class {
     func presentFavouriteCurrencies(items: [WatchlistCurrency])
     func removeItem(currency: WatchlistCurrency)
     func setSubscription(_ package: ISubscriptionPackage)
+    func showAlert(with bodyMsg: String)
 }

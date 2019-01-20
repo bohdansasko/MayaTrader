@@ -11,7 +11,12 @@ import SwiftyJSON
 
 class TickerNetworkWorker: ITickerNetworkWorker {
     weak var delegate: ITickerNetworkWorkerDelegate?
-    
+    private var timerScheduler: Timer?
+
+    deinit {
+        print("deinit \(String(describing: self))")
+    }
+
     func load() {
         let request = ExmoApiRequestBuilder.shared.getTickerRequest()
         Alamofire.request(request).responseJSON {
@@ -22,13 +27,26 @@ class TickerNetworkWorker: ITickerNetworkWorker {
             case .success(_):
                 strongSelf.delegate?.onDidLoadTickerSuccess(strongSelf.parseResponseIntoModel(response))
             case .failure(_):
-                strongSelf.delegate?.onDidLoadTickerFails(strongSelf.parseResponseIntoModel(response))
+                strongSelf.delegate?.onDidLoadTickerFails()
             }
         }
     }
-    
-    deinit {
-        print("deinit \(String(describing: self))")
+
+    func load(timeout: Double, repeat: Bool) {
+        print("\(String(describing: self)): \(#function)")
+        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.watchlist, repeats: true) {
+            [weak self] _ in
+            self?.load()
+        }
+        load()
+    }
+
+    func cancelRepeatLoads() {
+        print("\(String(describing: self)): \(#function)")
+        if timerScheduler != nil {
+            timerScheduler?.invalidate()
+            timerScheduler = nil
+        }
     }
 }
 

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 class WatchlistInteractor {
     weak var output: WatchlistInteractorOutput!
-    var timerScheduler: Timer?
+
     var networkWorker: TickerNetworkWorker!
     var dbManager: OperationsDatabaseProtocol!
     var favPairs: [WatchlistCurrency] = []
@@ -31,7 +31,7 @@ extension WatchlistInteractor: WatchlistInteractorInput {
     func viewWillAppear() {
         loadCurrenciesFromCache()
         if favPairs.count > 0 {
-            scheduleUpdateCurrencies()
+            networkWorker.load(timeout: FrequencyUpdateInSec.watchlist, repeat: true)
         } else {
             print("Watchlist: didLoadCurrencies \(favPairs)")
             output.didLoadCurrencies(items: favPairs)
@@ -40,7 +40,7 @@ extension WatchlistInteractor: WatchlistInteractorInput {
 
     func viewWillDisappear() {
         print("interactor: viewWillDisappear")
-        stopScheduleUpdateCurrencies()
+        networkWorker.cancelRepeatLoads()
         saveFavCurrenciesToCache()
     }
 
@@ -97,8 +97,10 @@ extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
         output.didLoadCurrencies(items: favPairs)
     }
 
-    func onDidLoadTickerFails(_ ticker: Ticker?) {
-        print("onDidLoadTickerFails")
+    func onDidLoadTickerFails() {
+        print(#function)
+        networkWorker.cancelRepeatLoads()
+        output.onLoadTickerError(msg: "Can't retrieve data from EXMO. Please, try again later.")
     }
 }
 
@@ -117,25 +119,6 @@ extension WatchlistInteractor {
     func saveFavCurrenciesToCache() {
         print("saveFavCurrenciesToCache")
         dbManager.add(data: convertToDBArray(currencies: favPairs), update: true)
-    }
-}
-
-// MARK: work with timer
-extension WatchlistInteractor {
-    func scheduleUpdateCurrencies() {
-        print("Watchlist: scheduleUpdateCurrencies")
-        timerScheduler = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.watchlist, repeats: true) {
-            [weak self] _ in
-            self?.networkWorker.load()
-        }
-        networkWorker.load()
-    }
-
-    func stopScheduleUpdateCurrencies() {
-        if timerScheduler != nil {
-            timerScheduler?.invalidate()
-            timerScheduler = nil
-        }
     }
 }
 
@@ -217,9 +200,10 @@ extension WatchlistInteractor {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
             print("\(#function) => can't cast error message to String")
+            output.onPurchaseError(msg: "Undefined purchase error.")
             return
         }
-        // TODO: show error message
+        output.onPurchaseError(msg: errorMsg)
     }
 }
 

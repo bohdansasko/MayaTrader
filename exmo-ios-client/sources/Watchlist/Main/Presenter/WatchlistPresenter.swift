@@ -60,4 +60,11 @@ extension WatchlistPresenter: WatchlistInteractorOutput {
         view.setSubscription(package)
     }
 
+    func onLoadTickerError(msg: String) {
+        view.showAlert(with: msg)
+    }
+
+    func onPurchaseError(msg: String) {
+        view.showAlert(with: msg)
+    }
 }

@@ -67,7 +67,7 @@ extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
         self.output.updateSelectedCurrency(currencyPairModel)
     }
     
-    func onDidLoadTickerFails(_ ticker: Ticker?) {
+    func onDidLoadTickerFails() {
         print("onDidLoadTickerFails")
         output.updateSelectedCurrency(nil)
         output.showAlert(message: "Can't load data. Please try again a little bit later.")

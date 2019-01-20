@@ -124,6 +124,11 @@ extension WatchlistViewController: WatchlistViewInput {
         listView.maxPairs = LimitObjects(amount: countItems, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
         
     }
+
+    func showAlert(with bodyMsg: String) {
+        hideLoader()
+        showAlert(title: titleNavBar ?? "Alert", message: bodyMsg, closure: nil)
+    }
 }
 
 // MARK: setup views

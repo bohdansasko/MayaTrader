@@ -220,7 +220,7 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
         output.onDidLoadCurrenciesPairs(items: items)
     }
     
-    func onDidLoadTickerFails(_ ticker: Ticker?) {
+    func onDidLoadTickerFails() {
         print("onDidLoadTickerFails")
     }
 }

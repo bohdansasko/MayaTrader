@@ -94,7 +94,7 @@ extension WalletInteractor: ITickerNetworkWorkerDelegate {
         self.ticker = ticker
     }
     
-    func onDidLoadTickerFails(_ ticker: Ticker?) {
+    func onDidLoadTickerFails() {
         print("[Wallet]: faid to load ticker")
     }
 }
