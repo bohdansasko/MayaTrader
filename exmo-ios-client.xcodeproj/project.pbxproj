@@ -240,7 +240,6 @@
 		9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F43CA7FE0D9869186DF0E /* CurrenciesGroupsPresenter.swift */; };
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
 		9B83E5D76255DC1CF427CA5E /* WalletModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A9E8FFEFE9CB50EA36DAAAD /* WalletModuleInput.swift */; };
-		9BFE8D54C0C155EE1340889F /* Pods_exmo_ios_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CC61B17F960DAE93B2F1FD /* Pods_exmo_ios_client.framework */; };
 		9E213ECC5452854BBEB1A693 /* SearchCurrencyPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1156744718574B0A28931 /* SearchCurrencyPairViewController.swift */; };
 		A61320EE80B398D4D4CCE228 /* SearchCurrencyPairModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028C4E223B32A2DEDE1CA52 /* SearchCurrencyPairModuleInput.swift */; };
 		A6421BE76AB236312D8A7FB3 /* WalletInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E75B7DD1E6FC187CA792B51 /* WalletInteractor.swift */; };
@@ -265,6 +264,7 @@
 		C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FEE97F75DF6C190754891B /* AlertsPresenter.swift */; };
 		CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6209D848493B699B132F6 /* CreateOrderViewController.swift */; };
 		CAB081780C816F30AA959325 /* WatchlistCurrencyChartViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FE56E759B5BEA370E6D54 /* WatchlistCurrencyChartViewOutput.swift */; };
+		CE4660382F3BA3DC8F4D27E9 /* Pods_exmo_ios_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A166EB1CD171453302661B /* Pods_exmo_ios_client.framework */; };
 		D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */; };
 		D1D3CCDC25886E62AE5D26BB /* WalletCurrenciesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43709B1EFC615E75A9BE61F /* WalletCurrenciesListRouter.swift */; };
 		D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DE49357B4D20F8EA6EC5EF /* CreateAlertRouter.swift */; };
@@ -307,9 +307,10 @@
 		082A02486E0F9C25E20A52E0 /* WalletCurrenciesListModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListModuleInput.swift; sourceTree = "<group>"; };
 		09553CAEA724964F39994C16 /* WatchlistCurrencyChartViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartViewInput.swift; sourceTree = "<group>"; };
 		0D3347B252E6586875751363 /* SearchCurrencyPairPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairPresenter.swift; sourceTree = "<group>"; };
+		0DC5F5F54B5171EB8D9746E2 /* Pods-exmo-ios-client.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(qa).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		0E6A12F3FF399E6AD6B1051E /* WalletCurrenciesListConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListConfigurator.swift; sourceTree = "<group>"; };
 		103F2FB79C245ED357C3995D /* MenuPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
-		15CC61B17F960DAE93B2F1FD /* Pods_exmo_ios_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exmo_ios_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		109F9B19513287186326C230 /* Pods-exmo-ios-client.release(production) .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(production) .xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(production) .xcconfig"; sourceTree = "<group>"; };
 		19E526FB14C5295A017890D5 /* CreateAlertInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInitializer.swift; sourceTree = "<group>"; };
 		1B44A2753B072A00F924ECE7 /* WatchlistCurrencyChartInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartInitializer.swift; sourceTree = "<group>"; };
 		1D90377AE09AA280BEDD4B6C /* CreateOrderInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInitializer.swift; sourceTree = "<group>"; };
@@ -457,10 +458,10 @@
 		20FE9AFF21ED399600B586CB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleInitializer.swift; sourceTree = "<group>"; };
-		212EB049FA4DA3807B82E5D8 /* Pods-exmo-ios-client.release(production) .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(production) .xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(production) .xcconfig"; sourceTree = "<group>"; };
 		21BB62089BA8D5D64E222050 /* OrdersPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersPresenter.swift; sourceTree = "<group>"; };
 		25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractor.swift; sourceTree = "<group>"; };
 		278A5F19B014B96291ECB0A9 /* WalletRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletRouter.swift; sourceTree = "<group>"; };
+		27D165AD0996680E02992A8F /* Pods-exmo-ios-client.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(development).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(development).xcconfig"; sourceTree = "<group>"; };
 		2C01AAB58E3E81D14C69060A /* CreateAlertModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertModuleInput.swift; sourceTree = "<group>"; };
 		2D5DD0FFBF95A907185CBA63 /* CurrenciesGroupsInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsInitializer.swift; sourceTree = "<group>"; };
 		2D7E0393DC63579CF99C1C57 /* WatchlistCurrencyChartRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartRouterInput.swift; sourceTree = "<group>"; };
@@ -496,10 +497,9 @@
 		3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInitializer.swift; sourceTree = "<group>"; };
 		451C3BC63709B451766F4376 /* OrdersRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersRouterInput.swift; sourceTree = "<group>"; };
 		46735FD81E0F099E4BAF59FC /* AlertsInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsInitializer.swift; sourceTree = "<group>"; };
-		47961902D919297FE6270467 /* Pods-exmo-ios-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release.xcconfig"; sourceTree = "<group>"; };
 		48E8254A5B3DEC5E5D94D4DB /* CreateOrderRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouterInput.swift; sourceTree = "<group>"; };
-		4A4F8A0D2A1AC26718D0941C /* Pods-exmo-ios-client.debug(production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(production).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(production).xcconfig"; sourceTree = "<group>"; };
 		4ADD978E0D15EED1BA175A53 /* AlertsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsRouter.swift; sourceTree = "<group>"; };
+		4D424D2DD5AD23C7BC1C36DA /* Pods-exmo-ios-client.release(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(development).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(development).xcconfig"; sourceTree = "<group>"; };
 		4E80EE8A4D9F28F5EA95655D /* SearchCurrencyPairInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairInteractor.swift; sourceTree = "<group>"; };
 		506FE56E759B5BEA370E6D54 /* WatchlistCurrencyChartViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartViewOutput.swift; sourceTree = "<group>"; };
 		521CE011DCA467B8C1A663B3 /* OrdersModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersModuleInput.swift; sourceTree = "<group>"; };
@@ -510,11 +510,9 @@
 		5F5FA5559DE0F78E9D1164DD /* WalletCurrenciesListViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListViewProtocols.swift; sourceTree = "<group>"; };
 		6070BC376D8AC4F1A5006B4B /* CreateAlertViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertViewProtocols.swift; sourceTree = "<group>"; };
 		60C72D5E70DF60A940E065AF /* WatchlistCurrencyChartModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartModuleInput.swift; sourceTree = "<group>"; };
-		61D3AF7BCC9EC8E8EEE0DC1E /* Pods-exmo-ios-client.release(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(development).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(development).xcconfig"; sourceTree = "<group>"; };
 		645ECA500CFCF983CB3537DF /* WalletRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletRouterInput.swift; sourceTree = "<group>"; };
 		6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorProtocols.swift; sourceTree = "<group>"; };
 		65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInitializer.swift; sourceTree = "<group>"; };
-		67729B16DBBF7E9BF5484BD2 /* Pods-exmo-ios-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug.xcconfig"; sourceTree = "<group>"; };
 		680AF92D203CA7D262F893CE /* SearchCurrencyPairInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairInteractorProtocols.swift; sourceTree = "<group>"; };
 		690425A8A669FA50B0B34B9F /* MenuModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuModuleInput.swift; sourceTree = "<group>"; };
 		690AC79502EACAFD95348EC2 /* OrdersInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersInitializer.swift; sourceTree = "<group>"; };
@@ -526,6 +524,7 @@
 		72AFD63623E5A23D5AAC4E67 /* MenuViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuViewProtocols.swift; sourceTree = "<group>"; };
 		73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewProtocols.swift; sourceTree = "<group>"; };
 		7421909015612BCF6F66203E /* WatchlistCurrencyChartViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartViewController.swift; sourceTree = "<group>"; };
+		759457AF84B73E7223ABE434 /* Pods-exmo-ios-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release.xcconfig"; sourceTree = "<group>"; };
 		77E435360E49F73ABF4C888C /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsConfigurator.swift; sourceTree = "<group>"; };
 		7A8B00CB85A45F762BB1669F /* WalletCurrenciesListInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListInitializer.swift; sourceTree = "<group>"; };
@@ -533,21 +532,22 @@
 		7F3266549D6412B407CE7856 /* MenuRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
 		810E78A3091C97B1DBE4FA20 /* OrdersViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersViewProtocols.swift; sourceTree = "<group>"; };
 		83F609337FB595DB76DBBE6C /* WalletPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletPresenter.swift; sourceTree = "<group>"; };
-		84508FE485DB5D8024EECB8D /* Pods-exmo-ios-client.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(qa).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(qa).xcconfig"; sourceTree = "<group>"; };
 		849E461BDC390A6DC76CC68B /* CreateOrderModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderModuleInput.swift; sourceTree = "<group>"; };
 		8549F3A1497B53C1C1B6A623 /* CurrenciesGroupsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsInteractor.swift; sourceTree = "<group>"; };
+		87A166EB1CD171453302661B /* Pods_exmo_ios_client.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_exmo_ios_client.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8DEC86C562E86E8A7E5534 /* SearchCurrencyPairInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairInitializer.swift; sourceTree = "<group>"; };
 		91D30D8ED181E94C98784518 /* CurrenciesGroupsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsViewController.swift; sourceTree = "<group>"; };
 		91FEE97F75DF6C190754891B /* AlertsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsPresenter.swift; sourceTree = "<group>"; };
 		9299AFB5D8232BA3E2524410 /* CreateOrderInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInteractorProtocols.swift; sourceTree = "<group>"; };
 		96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerConfigurator.swift; sourceTree = "<group>"; };
 		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
-		9DDD6F0FFE097D11FA37C508 /* Pods-exmo-ios-client.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(development).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(development).xcconfig"; sourceTree = "<group>"; };
 		A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletInteractorProtocols.swift; sourceTree = "<group>"; };
 		A028C4E223B32A2DEDE1CA52 /* SearchCurrencyPairModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairModuleInput.swift; sourceTree = "<group>"; };
 		A12FFF3C48F1874EECA05E38 /* AlertsViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsViewProtocols.swift; sourceTree = "<group>"; };
+		A135D7A25E3FBD5C623E778E /* Pods-exmo-ios-client.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(qa).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(qa).xcconfig"; sourceTree = "<group>"; };
 		A185E9A94E795A4CEBE4F2BC /* CreateAlertRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertRouterInput.swift; sourceTree = "<group>"; };
 		A671F1210F4E0D1A42D79382 /* MenuViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		A854FB24896C303370262BFD /* Pods-exmo-ios-client.debug(production).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(production).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(production).xcconfig"; sourceTree = "<group>"; };
 		AC112492B08159F273061757 /* AlertsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsInteractor.swift; sourceTree = "<group>"; };
 		ADD09F9110D86C9AA252D600 /* CreateAlertPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertPresenter.swift; sourceTree = "<group>"; };
 		B2316A16D81BE48B37DECF63 /* WalletInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletInitializer.swift; sourceTree = "<group>"; };
@@ -565,7 +565,6 @@
 		C437A7929205B0B131B0F3EC /* CreateAlertInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractorProtocols.swift; sourceTree = "<group>"; };
 		C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
 		C93E280C9B9618890E1C1F17 /* SearchCurrencyPairConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairConfigurator.swift; sourceTree = "<group>"; };
-		CE4CA1CC73BB59E7DDE642D1 /* Pods-exmo-ios-client.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(qa).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		CF3D865C40710AC9E5D921ED /* WalletViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletViewProtocols.swift; sourceTree = "<group>"; };
 		D092D729F445C73CBBEBA3B3 /* WatchlistCurrencyChartInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyChartInteractorInput.swift; sourceTree = "<group>"; };
 		D0DBDCD76FD9AC84E1C00E12 /* OrdersRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersRouter.swift; sourceTree = "<group>"; };
@@ -600,8 +599,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9BFE8D54C0C155EE1340889F /* Pods_exmo_ios_client.framework in Frameworks */,
 				20BCE4E221E00FE2003669EA /* StoreKit.framework in Frameworks */,
+				CE4660382F3BA3DC8F4D27E9 /* Pods_exmo_ios_client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,8 +725,8 @@
 			children = (
 				20001D67203B8D1200B6966F /* exmo-ios-client */,
 				20001D66203B8D1200B6966F /* Products */,
-				921EAAB49762D12A93BC948E /* Pods */,
 				C6509EEAFE1A3E3EACFA0368 /* Frameworks */,
+				494BD91DE841229E6672468F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1585,6 +1584,20 @@
 			path = CurrencyPairChart;
 			sourceTree = "<group>";
 		};
+		494BD91DE841229E6672468F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				27D165AD0996680E02992A8F /* Pods-exmo-ios-client.debug(development).xcconfig */,
+				0DC5F5F54B5171EB8D9746E2 /* Pods-exmo-ios-client.debug(qa).xcconfig */,
+				A854FB24896C303370262BFD /* Pods-exmo-ios-client.debug(production).xcconfig */,
+				759457AF84B73E7223ABE434 /* Pods-exmo-ios-client.release.xcconfig */,
+				4D424D2DD5AD23C7BC1C36DA /* Pods-exmo-ios-client.release(development).xcconfig */,
+				A135D7A25E3FBD5C623E778E /* Pods-exmo-ios-client.release(qa).xcconfig */,
+				109F9B19513287186326C230 /* Pods-exmo-ios-client.release(production) .xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		4C2B03257F4B0A4F0D4A17C7 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -1779,21 +1792,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		921EAAB49762D12A93BC948E /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				67729B16DBBF7E9BF5484BD2 /* Pods-exmo-ios-client.debug.xcconfig */,
-				47961902D919297FE6270467 /* Pods-exmo-ios-client.release.xcconfig */,
-				9DDD6F0FFE097D11FA37C508 /* Pods-exmo-ios-client.debug(development).xcconfig */,
-				CE4CA1CC73BB59E7DDE642D1 /* Pods-exmo-ios-client.debug(qa).xcconfig */,
-				4A4F8A0D2A1AC26718D0941C /* Pods-exmo-ios-client.debug(production).xcconfig */,
-				61D3AF7BCC9EC8E8EEE0DC1E /* Pods-exmo-ios-client.release(development).xcconfig */,
-				84508FE485DB5D8024EECB8D /* Pods-exmo-ios-client.release(qa).xcconfig */,
-				212EB049FA4DA3807B82E5D8 /* Pods-exmo-ios-client.release(production) .xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		9E01C470C3E1B77012FC4051 /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -1878,7 +1876,7 @@
 			isa = PBXGroup;
 			children = (
 				20BCE4E121E00FE2003669EA /* StoreKit.framework */,
-				15CC61B17F960DAE93B2F1FD /* Pods_exmo_ios_client.framework */,
+				87A166EB1CD171453302661B /* Pods_exmo_ios_client.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2018,14 +2016,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 20001D7A203B8D1200B6966F /* Build configuration list for PBXNativeTarget "exmo-ios-client" */;
 			buildPhases = (
-				C1D4A79303BD8914927971C6 /* [CP] Check Pods Manifest.lock */,
+				4C59DF55931C140B7CEA25A9 /* [CP] Check Pods Manifest.lock */,
 				20001D61203B8D1200B6966F /* Sources */,
 				20001D62203B8D1200B6966F /* Frameworks */,
 				20001D63203B8D1200B6966F /* Resources */,
 				20CAFEED2042C5C700C7DEA5 /* Embed Frameworks */,
-				97DF1DAC616DB2096E06A357 /* [CP] Embed Pods Frameworks */,
 				20CE4313218D093F00F04739 /* Run Script(Fabric) */,
 				208DC7D521E8015200AF559E /* Run Script(SwiftLint) */,
+				0ABDAE1998CDC5D5BC5F3EAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2116,6 +2114,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0ABDAE1998CDC5D5BC5F3EAF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		208DC7D521E8015200AF559E /* Run Script(SwiftLint) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2152,58 +2196,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" bd2ca02689438a03dc0a66ab9253293ddf4f2011 1457f8d069a6241047443c0fe0e6a930fd7391aba077609effda0d2e2159fa20\n";
 		};
-		97DF1DAC616DB2096E06A357 /* [CP] Embed Pods Frameworks */ = {
+		4C59DF55931C140B7CEA25A9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainSwift/KeychainSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/LBTAComponents/LBTAComponents.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LBTAComponents.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C1D4A79303BD8914927971C6 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-exmo-ios-client-checkManifestLockResult.txt",
 			);
@@ -2609,7 +2615,7 @@
 		};
 		20001D7B203B8D1200B6966F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 205A643121E7967C002D5482 /* Development.xcconfig */;
+			baseConfigurationReference = 27D165AD0996680E02992A8F /* Pods-exmo-ios-client.debug(development).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2636,7 +2642,7 @@
 		};
 		20001D7C203B8D1200B6966F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 47961902D919297FE6270467 /* Pods-exmo-ios-client.release.xcconfig */;
+			baseConfigurationReference = 759457AF84B73E7223ABE434 /* Pods-exmo-ios-client.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2722,7 +2728,7 @@
 		};
 		205A642621E79509002D5482 /* Debug(Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9DDD6F0FFE097D11FA37C508 /* Pods-exmo-ios-client.debug(development).xcconfig */;
+			baseConfigurationReference = 27D165AD0996680E02992A8F /* Pods-exmo-ios-client.debug(development).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2802,7 +2808,7 @@
 		};
 		205A642821E7951D002D5482 /* Release(Development) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 61D3AF7BCC9EC8E8EEE0DC1E /* Pods-exmo-ios-client.release(development).xcconfig */;
+			baseConfigurationReference = 4D424D2DD5AD23C7BC1C36DA /* Pods-exmo-ios-client.release(development).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2888,7 +2894,7 @@
 		};
 		205A642A21E7953F002D5482 /* Debug(QA) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE4CA1CC73BB59E7DDE642D1 /* Pods-exmo-ios-client.debug(qa).xcconfig */;
+			baseConfigurationReference = 0DC5F5F54B5171EB8D9746E2 /* Pods-exmo-ios-client.debug(qa).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -2968,7 +2974,7 @@
 		};
 		205A642C21E79568002D5482 /* Release(QA) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 84508FE485DB5D8024EECB8D /* Pods-exmo-ios-client.release(qa).xcconfig */;
+			baseConfigurationReference = A135D7A25E3FBD5C623E778E /* Pods-exmo-ios-client.release(qa).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3047,7 +3053,7 @@
 		};
 		205A642E21E7961D002D5482 /* Release(Production)  */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 212EB049FA4DA3807B82E5D8 /* Pods-exmo-ios-client.release(production) .xcconfig */;
+			baseConfigurationReference = 109F9B19513287186326C230 /* Pods-exmo-ios-client.release(production) .xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -3133,7 +3139,7 @@
 		};
 		205A643021E7962C002D5482 /* Debug(Production) */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A4F8A0D2A1AC26718D0941C /* Pods-exmo-ios-client.debug(production).xcconfig */;
+			baseConfigurationReference = A854FB24896C303370262BFD /* Pods-exmo-ios-client.debug(production).xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

@@ -15,10 +15,10 @@ import UIKit
  */
 open class DatasourceController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    public let activityIndicatorView: UIActivityIndicatorView = {
+    open let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
         aiv.hidesWhenStopped = true
-        aiv.color = .white
+        aiv.color = .black
         return aiv
     }()
     
