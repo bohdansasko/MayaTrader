@@ -21,7 +21,7 @@ class SearchInteractor {
 extension SearchInteractor: SearchInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
-        networkWorker.load(timeout: FrequencyUpdateInSec.searchPair, repeat: true)
+        loadCurrenciesPairs()
     }
     
     func viewWillDisappear() {
@@ -39,6 +39,10 @@ extension SearchInteractor: SearchInteractorInput {
             SearchCurrencyPairModel(id: 5, name: "ETH_BTC", price: 0.00001398),
             SearchCurrencyPairModel(id: 6, name: "RUB_UAH", price: 15.78)
         ]
+    }
+    
+    func loadCurrenciesPairs() {
+        networkWorker.load(timeout: FrequencyUpdateInSec.searchPair, repeat: true)
     }
 }
 
