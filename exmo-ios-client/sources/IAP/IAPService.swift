@@ -29,7 +29,7 @@ class IAPService: NSObject {
     private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
     private let kReceiptSubscriptionURLType = AppleReceiptValidator.VerifyReceiptURLType.sandbox
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
-    private(set) var subscriptionPackage: ISubscriptionPackage?
+    private(set) var subscriptionPackage: ISubscriptionPackage = BasicAdsSubscriptionPackage()
 
     static let kSubscriptionPackageKey = "subscriptionPackage"
     static let kErrorKey = "error"

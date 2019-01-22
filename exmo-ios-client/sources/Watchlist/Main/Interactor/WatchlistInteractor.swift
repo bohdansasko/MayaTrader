@@ -78,7 +78,7 @@ extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
         for (pairCode, tickerPair) in tickerPairs {
             let isFavCurrencyPair = favPairs.contains(where: { $0.tickerPair.code == pairCode })
             if isFavCurrencyPair {
-                tickerContainer[pairCode] = WatchlistCurrency(index: 0, currencyCode: pairCode, tickerCurrencyModel: tickerPair)
+                tickerContainer[pairCode] = WatchlistCurrency(index: 0, tickerCurrencyModel: tickerPair)
             }
 
             if tickerContainer.count == favPairs.count {
@@ -135,7 +135,7 @@ extension WatchlistInteractor {
             guard let model = TickerCurrencyModel(JSONString: currencyDescriptionInJSON.description), isFavCurrencyPair == true else {
                 return
             }
-            tickerContainer[pairCode] = WatchlistCurrency(index: 0, currencyCode: pairCode, tickerCurrencyModel: model)
+            tickerContainer[pairCode] = WatchlistCurrency(index: 0,  tickerCurrencyModel: model)
         })
 
         for favCurrencyIndex in (0..<favPairs.count) {

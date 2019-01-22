@@ -63,7 +63,7 @@ struct WatchlistCurrency {
     var index: Int
     var tickerPair: TickerCurrencyModel
     
-    init(index: Int, currencyCode: String, tickerCurrencyModel: TickerCurrencyModel) {
+    init(index: Int, tickerCurrencyModel: TickerCurrencyModel) {
         self.index = index
         self.tickerPair = tickerCurrencyModel
     }
