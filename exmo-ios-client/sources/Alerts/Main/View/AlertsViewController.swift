@@ -110,6 +110,11 @@ extension AlertsViewController: AlertsViewInput {
 
         listView.maxPairs = LimitObjects(amount: listView.alerts.count(), max: subscriptionPackage?.maxAlerts ?? 0)
     }
+
+    func showAlert(msg: String) {
+        hideLoader()
+        self.showOkAlert(title: titleNavBar, message: msg, onTapOkButton: nil)
+    }
 }
 
 // MARK: setup initial UI state for view controller

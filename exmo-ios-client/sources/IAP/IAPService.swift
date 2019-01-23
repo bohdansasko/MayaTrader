@@ -96,7 +96,7 @@ extension IAPService {
 
     func fetchProducts() {
         let products = Set<String>(IAPProduct.allCases.map({ $0.rawValue }))
-        SwiftyStoreKit.retrieveProductsInfo(products) { [weak self] result in
+        SwiftyStoreKit.retrieveProductsInfo(products) { result in
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
                 print("Product: \(product.localizedDescription), price: \(priceString)")

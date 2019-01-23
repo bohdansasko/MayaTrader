@@ -5,12 +5,12 @@
 
 protocol VinsoAPIConnectionDelegate: class {
     func onConnectionOpened()
-    func onConnectionRefused()
+    func onConnectionRefused(reason: String)
     func onDidLogin()
 }
 
 extension VinsoAPIConnectionDelegate {
     func onConnectionOpened() {}
-    func onConnectionRefused() {}
+    func onConnectionRefused(reason: String) {}
     func onDidLogin() {}
 }

@@ -56,16 +56,15 @@ class VinsoAPI {
         socketManager = SocketManager(serverURL: endpointUrl)
         socketManager.callbackOnOpen = {
             [weak self] in
-            self?.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
             self?.login()
         }
         socketManager.callbackOnClose = {
-            [weak self] _, _, _ in
-            self?.isLogined = false
+            [weak self] _, reason, _ in
+            self?.onSocketClose(reason: reason)
         }
         socketManager.callbackOnError = {
-            [weak self] _ in
-            self?.isLogined = false
+            [weak self] error in
+            self?.onSocketError(reason: error.localizedDescription)
         }
         socketManager.callbackOnMessage = { data in
             self.handleSocketMessage(data)
@@ -78,6 +77,16 @@ class VinsoAPI {
 }
 
 extension VinsoAPI {
+    func onSocketError(reason: String) {
+        isLogined = false
+        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: reason) })
+    }
+
+    func onSocketClose(reason: String) {
+        isLogined = false
+        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: reason) })
+    }
+
     func handleSocketMessage(_ data: Any) {
         guard let message = data as? String else {
             print("socket => can't cast data to String")
@@ -92,15 +101,13 @@ extension VinsoAPI {
             return
         }
 
-        if responseCodeType != VinsoResponseCode.succeed {
-            print("socket => responseCode != ResponseCode.Succeed")
-            return
+        switch responseCodeType {
+        case .succeed: handleSuccessResponseMessage(json: json)
+        case .error: handleErrorResponseMessage(json: json)
         }
-
-        handleResponseMessage(json: json)
     }
 
-    func handleResponseMessage(json: JSON) {
+    func handleSuccessResponseMessage(json: JSON) {
         guard let requestId = json["request_type"].int, let requestType = ServerMessage(rawValue: requestId) else {
             print("handleResponseMessage => request_type out of range. request_type = \(json["request_type"].int ?? -999)")
             return
@@ -119,6 +126,29 @@ extension VinsoAPI {
             break
         }
     }
+
+    func handleErrorResponseMessage(json: JSON) {
+        guard let requestId = json["request_type"].int, let requestType = ServerMessage(rawValue: requestId) else {
+            print("handleResponseMessage => request_type out of range. request_type = \(json["request_type"].int ?? -999)")
+            return
+        }
+
+        print("\(#function) => \(json)")
+//        switch requestType {
+//        case ServerMessage.authorization:
+//            isLogined = true
+//            print("Vinso: Authorization succeed")
+//        case ServerMessage.alertsHistory: handleResponseAlertsLoaded(json: json)
+//        case ServerMessage.createAlert: handleResponseCreateAlert(json: json)
+//        case ServerMessage.updateAlert: handleResponseUpdateAlert(json: json)
+//        case ServerMessage.deleteAlert: handleResponseDeleteAlert(json: json)
+//        case ServerMessage.fireAlert: handleResponseFireAlert(json: json)
+//        default:
+//            break
+//        }
+    }
+
+
 }
 
 extension VinsoAPI {

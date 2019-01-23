@@ -14,6 +14,7 @@ protocol AlertsViewInput: class {
     func deleteAlerts(withIds ids: [Int])
 
     func setSubscription(_ package: ISubscriptionPackage)
+    func showAlert(msg: String)
 }
 
 protocol AlertsViewOutput: class {

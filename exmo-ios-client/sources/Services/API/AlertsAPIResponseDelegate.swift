@@ -7,14 +7,28 @@ import Foundation
 
 protocol AlertsAPIResponseDelegate: class {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert])
+    func onDidLoadAlertsHistoryError(msg: String)
+
     func onDidCreateAlertSuccessful()
+    func onDidCreateAlertError(msg: String)
+
     func onDidUpdateAlertSuccessful(_ alert: Alert)
+    func onDidUpdateAlertError(msg: String)
+
     func onDidDeleteAlertsSuccessful(ids: [Int])
+    func onDidDeleteAlertsError(msg: String)
 }
 
 extension AlertsAPIResponseDelegate {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) { }
+    func onDidLoadAlertsHistoryError(msg: String) { }
+
     func onDidCreateAlertSuccessful() { }
+    func onDidCreateAlertError(msg: String) { }
+
     func onDidUpdateAlertSuccessful(_ alert: Alert) { }
+    func onDidUpdateAlertError(msg: String) { }
+
     func onDidDeleteAlertsSuccessful(ids: [Int]) { }
+    func onDidDeleteAlertsError(msg: String) { }
 }

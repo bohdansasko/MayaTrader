@@ -21,6 +21,7 @@ extension VinsoAPI {
     }
 
     func login() {
+        connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
         print("\(String(describing: self)) => login")
         let msg = AccountApiRequestBuilder.buildAuthorizationRequest()
         socketManager.sendMessage(message: msg)

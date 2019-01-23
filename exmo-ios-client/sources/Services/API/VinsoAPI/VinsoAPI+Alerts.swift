@@ -43,6 +43,7 @@ extension VinsoAPI {
 
 // MARK: handle alerts responses
 extension VinsoAPI {
+    // MARK: responses on load alerts history
     func handleResponseAlertsLoaded(json: JSON) {
         guard let jsonAlerts = json["history_alerts"].array else {
             print("handleResponseAlertsLoaded => can't parse json data")
@@ -59,12 +60,22 @@ extension VinsoAPI {
         alertsObservers.forEach({ $0.value.observer?.onDidLoadAlertsHistorySuccessful(alerts) })
     }
 
+    func handleResponseAlertsLoadedError(reason: String) {
+        alertsObservers.forEach({ $0.value.observer?.onDidLoadAlertsHistoryError(msg: reason) })
+    }
+
+    // MARK: responses on create alert
     func handleResponseCreateAlert(json: JSON) {
         if let _ = Alert(JSONString: json.description) {
             alertsObservers.forEach({ $0.value.observer?.onDidCreateAlertSuccessful() })
         }
     }
 
+    func handleResponseErrorCreateAlert(reason: String) {
+        alertsObservers.forEach({ $0.value.observer?.onDidCreateAlertError(msg: reason) })
+    }
+
+    // MARK: responses on update alert
     func handleResponseUpdateAlert(json: JSON) {
         guard let alert = Alert(JSONString: json.description)else {
             return
@@ -72,16 +83,26 @@ extension VinsoAPI {
         alertsObservers.forEach({ $0.value.observer?.onDidUpdateAlertSuccessful(alert) })
     }
 
+    func handleResponseErrorUpdateAlert(reason: String) {
+        alertsObservers.forEach({ $0.value.observer?.onDidUpdateAlertError(msg: reason) })
+    }
+
+    // MARK: responses on fire alert
     func handleResponseFireAlert(json: JSON) {
         // do nothing
     }
 
+    // MARK: responses on delete alert
     func handleResponseDeleteAlert(json: JSON) {
         guard let alertDict = json.dictionary,
               let ids = alertDict["deleted_alerts_id"]?.array?.map({ $0.intValue }) else {
             return
         }
         alertsObservers.forEach({ $0.value.observer?.onDidDeleteAlertsSuccessful(ids: ids) })
+    }
+
+    func handleResponseErrorDeleteAlert(reason: String) {
+        alertsObservers.forEach({ $0.value.observer?.onDidDeleteAlertsError(msg: reason) })
     }
 }
 

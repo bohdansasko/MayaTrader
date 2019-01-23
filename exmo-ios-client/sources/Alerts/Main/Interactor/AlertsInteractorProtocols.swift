@@ -23,4 +23,7 @@ protocol AlertsInteractorOutput: class {
     func deleteAlertsSuccessful(ids: [Int])
 
     func setSubscription(_ package: ISubscriptionPackage)
+
+    func onConnectionRefused(reason: String)
+    func onPurchaseError(msg: String)
 }

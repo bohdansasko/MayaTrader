@@ -31,6 +31,11 @@ extension AlertsInteractor: AlertsInteractorInput {
         }
     }
 
+    func loadAlerts() {
+        print("\(String(describing: self)) => \(#function)")
+        AppDelegate.vinsoAPI.loadAlerts()
+    }
+
     func updateAlertState(_ alert: Alert) {
         AppDelegate.vinsoAPI.updateAlert(alert)
     }
@@ -47,13 +52,9 @@ extension AlertsInteractor: AlertsInteractorInput {
 }
 
 extension AlertsInteractor: VinsoAPIConnectionDelegate {
-    func loadAlerts() {
-        print("AlertsInteractor => loadAlerts")
-        AppDelegate.vinsoAPI.loadAlerts()
-    }
-
-    func onConnectionRefused() {
+    func onConnectionRefused(reason: String) {
         output.onDidLoadAlertsHistory([])
+        output.onConnectionRefused(reason: reason)
     }
 }
 
@@ -113,8 +114,9 @@ extension AlertsInteractor {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
             print("\(#function) => can't cast error message to String")
+            output.onPurchaseError(msg: "Purchase: Undefined error")
             return
         }
-        // TODO: show error message
+        output.onPurchaseError(msg: errorMsg)
     }
 }

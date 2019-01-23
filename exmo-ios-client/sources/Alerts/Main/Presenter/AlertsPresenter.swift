@@ -64,4 +64,12 @@ extension AlertsPresenter: AlertsInteractorOutput {
     func setSubscription(_ package: ISubscriptionPackage) {
         view.setSubscription(package)
     }
+
+    func onConnectionRefused(reason: String) {
+        view.showAlert(msg: reason)
+    }
+
+    func onPurchaseError(msg: String) {
+        view.showAlert(msg: msg)
+    }
 }

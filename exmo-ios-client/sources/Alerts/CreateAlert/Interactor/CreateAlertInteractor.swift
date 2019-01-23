@@ -62,19 +62,32 @@ extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
     }
 }
 
+extension CreateAlertInteractor: VinsoAPIConnectionDelegate {
+    func onConnectionRefused(reason: String) {
+        print(reason)
+        output.showAlert(message: reason)
+    }
+}
+
 // MARK: IOrdersNetworkWorkerDelegate
 extension CreateAlertInteractor: AlertsAPIResponseDelegate {
     func onDidCreateAlertSuccessful() {
         output.onCreateAlertSuccessful()
     }
-    
-    func onDidCreateAlertFail(errorMessage: String) {
-        print(errorMessage)
+
+    func onDidCreateAlertError(msg: String) {
+        print(msg)
         tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
-        output.showAlert(message: errorMessage)
+        output.showAlert(message: msg)
     }
 
     func onDidUpdateAlertSuccessful(_ alert: Alert) {
         output.updateAlertDidSuccessful()
+    }
+
+    func onDidUpdateAlertError(msg: String) {
+        print(msg)
+        tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
+        output.showAlert(message: msg)
     }
 }
