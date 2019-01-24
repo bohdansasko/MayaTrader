@@ -21,17 +21,17 @@ enum MenuSectionType: Int {
         }
     }
 
-    static func getGuestUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
+    static func getGuestUserCellsLayout(isAdsPresent: Bool) -> [MenuSectionType : [MenuCellType]] {
+        let purchaseGroup: [MenuCellType] = isAdsPresent
+                ? [ .proFeatures, .advertisement, .restorePurchases ]
+                : [ .proFeatures, .restorePurchases ]
+
         return [
         .account : [
             .login,
             .security
         ],
-        .purchase : [
-            .proFeatures,
-            .advertisement,
-            .restorePurchases
-        ],
+        .purchase : purchaseGroup,
         .contactWithUs : [
             .facebook,
             .telegram,
@@ -43,17 +43,17 @@ enum MenuSectionType: Int {
         ]]
     }
 
-    static func getLoginedUserCellsLayout() -> [MenuSectionType : [MenuCellType]] {
+    static func getLoginedUserCellsLayout(isAdsPresent: Bool) -> [MenuSectionType : [MenuCellType]] {
+        let purchaseGroup: [MenuCellType] = isAdsPresent
+                ? [ .proFeatures, .advertisement, .restorePurchases ]
+                : [ .proFeatures, .restorePurchases ]
+
         return [
         .account : [
             .logout,
             .security
         ],
-        .purchase : [
-            .proFeatures,
-            .advertisement,
-            .restorePurchases
-        ],
+        .purchase : purchaseGroup,
         .contactWithUs : [
             .facebook,
             .telegram,

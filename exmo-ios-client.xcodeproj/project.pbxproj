@@ -164,7 +164,7 @@
 		2C0D8C2083A0CF7F71803DFF /* WalletRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278A5F19B014B96291ECB0A9 /* WalletRouter.swift */; };
 		2CCE0A760898715BD2600A3B /* WalletConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBD10044E6852271EF22E838 /* WalletConfigurator.swift */; };
 		2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */; };
-		2DCAAC583A7618B6F7024C58 /* MoreInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507EC9D731B380187FF88E /* MoreInteractor.swift */; };
+		2DCAAC583A7618B6F7024C58 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507EC9D731B380187FF88E /* MenuInteractor.swift */; };
 		2E2904E690113123EAF56A17 /* CreateOrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9011E1AEFC03C0EA27CADA4 /* CreateOrderPresenter.swift */; };
 		2FFE2B3AA119EA553FD16233 /* SearchCurrencyPairInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680AF92D203CA7D262F893CE /* SearchCurrencyPairInteractorProtocols.swift */; };
 		3241679EBA193DF44DAB5E19 /* OrdersModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521CE011DCA467B8C1A663B3 /* OrdersModuleInput.swift */; };
@@ -519,7 +519,7 @@
 		6AC1156744718574B0A28931 /* SearchCurrencyPairViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairViewController.swift; sourceTree = "<group>"; };
 		6C2FC324AD38DA30872BE9C3 /* WalletCurrenciesListViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListViewController.swift; sourceTree = "<group>"; };
 		6F3E059834C77B0C6F11D3D3 /* LoginViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		71507EC9D731B380187FF88E /* MoreInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MoreInteractor.swift; sourceTree = "<group>"; };
+		71507EC9D731B380187FF88E /* MenuInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		71D8F089146D6698EAB70643 /* MenuInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuInitializer.swift; sourceTree = "<group>"; };
 		72AFD63623E5A23D5AAC4E67 /* MenuViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuViewProtocols.swift; sourceTree = "<group>"; };
 		73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewProtocols.swift; sourceTree = "<group>"; };
@@ -1915,7 +1915,7 @@
 			isa = PBXGroup;
 			children = (
 				E3622C2690273A9077846DDD /* MenuInteractorProtocols.swift */,
-				71507EC9D731B380187FF88E /* MoreInteractor.swift */,
+				71507EC9D731B380187FF88E /* MenuInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -2291,7 +2291,7 @@
 				7C80BE19C44E3D1F07DE5B2D /* MenuPresenter.swift in Sources */,
 				0F98487E92B6C785E714D43F /* MenuInteractorProtocols.swift in Sources */,
 				20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */,
-				2DCAAC583A7618B6F7024C58 /* MoreInteractor.swift in Sources */,
+				2DCAAC583A7618B6F7024C58 /* MenuInteractor.swift in Sources */,
 				20B1628D21AAD5770087AEE7 /* OrdersNetworkWorker.swift in Sources */,
 				44C5D2B416D47E19F636B03C /* MenuRouterProtocols.swift in Sources */,
 				23027C32759874645F1BFC61 /* MenuRouter.swift in Sources */,

@@ -11,6 +11,8 @@ protocol TableMenuViewInput: class {
     func updateLayoutView(isLoggedUser: Bool)
     func updateCell(type: MenuCellType)
     func showAlert(_ msg: String)
+
+    func setIsAdsPresent(_ isAdsActive: Bool)
 }
 
 protocol TableMenuViewOutput {

@@ -16,6 +16,12 @@ class TableMenuView: UIView {
             updateViewLayout()
         }
     }
+
+    var isAdsPresent: Bool = false {
+        didSet {
+            updateViewLayout()
+        }
+    }
     private var cellsTypeContainer: [MenuSectionType: [MenuCellType]] = [:] {
         didSet {
             tableView.reloadData()
@@ -59,8 +65,8 @@ class TableMenuView: UIView {
 
     private func updateViewLayout() {
         cellsTypeContainer = isLoggedUser
-            ? MenuSectionType.getLoginedUserCellsLayout()
-            : MenuSectionType.getGuestUserCellsLayout()
+            ? MenuSectionType.getLoginedUserCellsLayout(isAdsPresent: isAdsPresent)
+            : MenuSectionType.getGuestUserCellsLayout(isAdsPresent: isAdsPresent)
     }
     
     func reloadCell(type: MenuCellType) {

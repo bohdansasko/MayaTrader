@@ -7,15 +7,14 @@
 //
 import UIKit
 
-class MenuPresenter: MenuModuleInput, TableMenuViewOutput, MenuInteractorOutput, MenuRouterOutput {
-
+class MenuPresenter: MenuModuleInput {
     weak var view: TableMenuViewInput!
     var interactor: MenuInteractorInput!
     var router: MenuRouterInput!
 }
 
 // MARK: TableMenuViewOutput
-extension MenuPresenter {
+extension MenuPresenter: TableMenuViewOutput {
     func viewIsReady() {
         interactor.viewIsReady()
     }
@@ -29,17 +28,21 @@ extension MenuPresenter {
             router.showViewController(sourceVC: viewController, touchedCellType: type)
         }
     }
+
+    func setIsAdsPresent(_ isAdsActive: Bool) {
+        view.setIsAdsPresent(isAdsActive)
+    }
 }
 
 // MARK: MenuInteractorOutput
-extension MenuPresenter {
+extension MenuPresenter: MenuInteractorOutput {
     func onUserLogInOut(isLoggedUser: Bool) {
         view.updateLayoutView(isLoggedUser: isLoggedUser)
     }
 }
 
 // MARK: MenuRouterOutput
-extension MenuPresenter {
+extension MenuPresenter: MenuRouterOutput {
     func userLogout() {
         interactor.logout()
     }

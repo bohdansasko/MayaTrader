@@ -43,6 +43,10 @@ extension TableMenuViewController: TableMenuViewInput {
     func showAlert(_ msg: String) {
         showAlert(title: "Security", message: msg, closure: nil)
     }
+
+    func setIsAdsPresent(_ isAdsActive: Bool) {
+        tableMenuView.isAdsPresent = isAdsActive
+    }
 }
 
 // MARK: setup UI

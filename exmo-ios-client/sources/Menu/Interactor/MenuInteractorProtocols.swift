@@ -16,4 +16,5 @@ protocol MenuInteractorInput {
 
 protocol MenuInteractorOutput: class {
     func onUserLogInOut(isLoggedUser: Bool)
+    func setIsAdsPresent(_ isAdsActive: Bool)
 }
