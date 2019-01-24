@@ -23,6 +23,10 @@ extension AlertsPresenter: AlertsViewOutput {
         interactor.viewDidAppear()
     }
 
+    func viewWillDisappear() {
+        interactor.viewWillDisappear()
+    }
+
     func showFormCreateAlert() {
         if let ivc = view as? UIViewController {
             router.showVCAddAlert(ivc)

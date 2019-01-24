@@ -38,7 +38,7 @@ class VinsoAPI {
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
 
-    private(set) var isLogined = false {
+    var isLogined = false {
         didSet {
             if isLogined {
                 connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
@@ -77,16 +77,6 @@ class VinsoAPI {
 }
 
 extension VinsoAPI {
-    func onSocketError(reason: String) {
-        isLogined = false
-        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: reason) })
-    }
-
-    func onSocketClose(reason: String) {
-        isLogined = false
-        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: reason) })
-    }
-
     func handleSocketMessage(_ data: Any) {
         guard let message = data as? String else {
             print("socket => can't cast data to String")

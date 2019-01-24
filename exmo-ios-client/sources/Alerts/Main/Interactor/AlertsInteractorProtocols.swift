@@ -11,6 +11,7 @@ import Foundation
 protocol AlertsInteractorInput {
     func viewIsReady()
     func viewDidAppear()
+    func viewWillDisappear()
 
     func updateAlertState(_ alert: Alert)
     func deleteAlert(withId id: Int)

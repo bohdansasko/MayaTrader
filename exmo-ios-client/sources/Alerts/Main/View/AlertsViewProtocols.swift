@@ -20,6 +20,7 @@ protocol AlertsViewInput: class {
 protocol AlertsViewOutput: class {
     func viewIsReady()
     func viewDidAppear()
+    func viewWillDisappear()
 
     func showFormCreateAlert()
 

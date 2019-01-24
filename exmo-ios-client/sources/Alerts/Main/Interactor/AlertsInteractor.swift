@@ -10,6 +10,7 @@ import UIKit.UITableView
 
 class AlertsInteractor  {
     weak var output: AlertsInteractorOutput!
+    var isViewActive = false
 
     deinit {
         print("deinit \(String(describing: self))")
@@ -24,11 +25,16 @@ extension AlertsInteractor: AlertsInteractorInput {
     }
 
     func viewDidAppear() {
+        isViewActive = true
         if AppDelegate.vinsoAPI.isLogined {
             loadAlerts()
         } else {
             AppDelegate.vinsoAPI.establishConnect()
         }
+    }
+
+    func viewWillDisappear() {
+        isViewActive = false
     }
 
     func loadAlerts() {
@@ -53,8 +59,10 @@ extension AlertsInteractor: AlertsInteractorInput {
 
 extension AlertsInteractor: VinsoAPIConnectionDelegate {
     func onConnectionRefused(reason: String) {
-        output.onDidLoadAlertsHistory([])
-        output.onConnectionRefused(reason: reason)
+        if isViewActive {
+            output.onDidLoadAlertsHistory([])
+            output.onConnectionRefused(reason: reason)
+        }
     }
 }
 

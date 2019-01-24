@@ -32,6 +32,16 @@ extension VinsoAPI {
         let msg = AccountApiRequestBuilder.buildRegisterAPNSDeviceTokenRequest(deviceToken)
         socketManager.sendMessage(message: msg)
     }
+
+    func onSocketError(reason: String) {
+        isLogined = false
+        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Can't establish connection. Please, try again through a few minutes or write us.") })
+    }
+
+    func onSocketClose(reason: String) {
+        isLogined = false
+        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Your connection was interrupted. Please, try again through a few minutes or write us.") })
+    }
 }
 
 

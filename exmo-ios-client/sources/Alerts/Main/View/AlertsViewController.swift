@@ -47,7 +47,12 @@ class AlertsViewController: ExmoUIViewController {
         super.viewDidAppear(animated)
         output.viewDidAppear()
     }
-    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        output.viewWillDisappear()
+    }
+
     @objc func showViewCreateOrder(_ sender: Any) {
         output.showFormCreateAlert()
     }
