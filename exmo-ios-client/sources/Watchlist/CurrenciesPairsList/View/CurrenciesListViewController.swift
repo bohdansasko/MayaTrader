@@ -12,6 +12,7 @@ protocol CurrenciesListViewControllerInput: class {
     func setTitle(_ title: String?)
     func onDidLoadCurrenciesPairs(items: [WatchlistCurrency])
     func updateFavPairs(items: [WatchlistCurrency])
+    func showAlert(msg: String)
 }
 
 protocol CurrenciesListViewControllerOutput: class {
@@ -120,8 +121,11 @@ extension CurrenciesListViewController: CurrenciesListViewControllerInput {
             ds.items[index].tickerPair = favItem.tickerPair
         }
 
-        let cellsForReload = items.map({ IndexPath(row: $0.index, section: 0) })
-        listView.collectionView.reloadItems(at: cellsForReload)
+        listView.collectionView.reloadData()
+    }
+    
+    func showAlert(msg: String) {
+        showOkAlert(title: titleNavBar!, message: msg, onTapOkButton: nil)
     }
 }
 

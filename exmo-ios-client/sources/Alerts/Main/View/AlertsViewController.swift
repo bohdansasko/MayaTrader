@@ -113,7 +113,7 @@ extension AlertsViewController: AlertsViewInput {
 
     func showAlert(msg: String) {
         hideLoader()
-        self.showOkAlert(title: titleNavBar, message: msg, onTapOkButton: nil)
+        showOkAlert(title: titleNavBar!, message: msg, onTapOkButton: nil)
     }
 }
 

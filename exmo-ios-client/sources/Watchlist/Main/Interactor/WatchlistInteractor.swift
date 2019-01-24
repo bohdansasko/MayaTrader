@@ -182,7 +182,6 @@ extension WatchlistInteractor {
     }
 }
 
-
 extension WatchlistInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {

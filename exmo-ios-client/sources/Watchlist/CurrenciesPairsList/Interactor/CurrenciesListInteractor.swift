@@ -60,6 +60,7 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
         guard countPairs <= maxPairs,
               var currencyModel = datasourceItem as? WatchlistCurrency else {
             print("\(#function) => max pairs. Can't add one more pair")
+            output.onMaxAlertsSelectedError(msg: "You have already selected max quantity of pairs. For use more pairs, you need to buy one of subscriptions.")
             return
         }
         currencyModel.tickerPair.isFavourite = isSelected
