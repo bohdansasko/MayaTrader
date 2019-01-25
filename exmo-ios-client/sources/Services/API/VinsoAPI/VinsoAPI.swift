@@ -112,6 +112,7 @@ extension VinsoAPI {
         case ServerMessage.updateAlert: handleResponseUpdateAlert(json: json)
         case ServerMessage.deleteAlert: handleResponseDeleteAlert(json: json)
         case ServerMessage.fireAlert: handleResponseFireAlert(json: json)
+        case ServerMessage.subscriptionConfigs: handleResponseSubscriptionConfigs(json: json)
         default:
             break
         }

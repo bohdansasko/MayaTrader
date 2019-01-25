@@ -105,6 +105,15 @@ extension VinsoAPI {
     func handleResponseErrorDeleteAlert(reason: String) {
         alertsObservers.forEach({ $0.value.observer?.onDidDeleteAlertsError(msg: reason) })
     }
+
+    // MARK: responses on subscriptions loaded
+    func handleResponseSubscriptionConfigs(json: JSON) {
+        try JSONDecoder().decode(SubscriptionPackage.self, from: json.rawData())
+    }
+
+    func handleResponseSubscriptionConfigsError(json: JSON) {
+
+    }
 }
 
 extension VinsoAPI {

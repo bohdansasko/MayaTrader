@@ -23,6 +23,8 @@ enum ServerMessage: Int {
     case resetUser = 9
     case alertsHistory = 10
     case registerAPNsDeviceToken = 11
+    case subscriptionConfigs = 12
+    case setSubscriptionType = 13
 }
 
 

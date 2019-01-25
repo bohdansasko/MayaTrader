@@ -42,6 +42,18 @@ extension VinsoAPI {
         isLogined = false
         connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Your connection was interrupted. Please, try again through a few minutes or write us.") })
     }
+
+    func setSubscriptionType(_ packageType: SubscriptionPackageType) {
+        print("\(String(describing: self)) => \(#function)")
+        let msg = AccountApiRequestBuilder.buildSetSubscriptionRequest(packageType.rawValue)
+        socketManager.sendMessage(message: msg)
+    }
+
+    func loadAvailableSubscriptions(_ packageType: SubscriptionPackageType) {
+        print("\(String(describing: self)) => \(#function)")
+        let msg = AccountApiRequestBuilder.buildGetSubscriptionConfigsRequest()
+        socketManager.sendMessage(message: msg)
+    }
 }
 
 

@@ -30,4 +30,17 @@ class AccountApiRequestBuilder {
             "apns_token": deviceToken
         ]
     }
+
+    static func buildGetSubscriptionConfigsRequest() -> JSON {
+        return [
+            "request_type": ServerMessage.subscriptionConfigs.rawValue
+        ]
+    }
+
+    static func buildSetSubscriptionRequest(_ subscriptionId: Int) -> JSON {
+        return [
+            "request_type": ServerMessage.setSubscriptionType.rawValue,
+            "type": subscriptionId
+        ]
+    }
 }
