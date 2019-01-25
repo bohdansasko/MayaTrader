@@ -103,6 +103,7 @@ extension AlertsViewController: AlertsViewInput {
     func setSubscription(_ package: ISubscriptionPackage) {
         print("Alerts: \(#function)")
         subscriptionPackage = package
+        super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {
             showAdsView(completion: {
                 self.listView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true

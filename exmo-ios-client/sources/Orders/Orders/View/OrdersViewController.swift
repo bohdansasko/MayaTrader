@@ -187,6 +187,7 @@ extension OrdersViewController {
 
     func setSubscription(_ package: ISubscriptionPackage) {
         print("Orders: \(#function)")
+        super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {
             showAdsView(completion: {
                 self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true

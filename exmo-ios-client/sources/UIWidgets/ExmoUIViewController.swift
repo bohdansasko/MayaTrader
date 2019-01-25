@@ -58,7 +58,7 @@ class ExmoUIViewController: UIViewController {
     }
     
     var bannerView: GADBannerView!
-    
+    var isAdsActive = true
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -215,6 +215,11 @@ extension ExmoUIViewController {
 // MARK: GADBannerViewDelegate
 extension ExmoUIViewController: GADBannerViewDelegate {
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
+        if !isAdsActive {
+            print("\(#function) => ads is inactive")
+            return
+        }
+
         print("adViewDidReceiveAd")
         if bannerView.superview != nil {
             showAdsView()
