@@ -40,12 +40,12 @@ class AlertsApiRequestBuilder {
     }
 
     static private func getAlertMessage(requestType: ServerMessage, alert: Alert) -> JSON {
-        let upperBound = alert.topBoundary == nil ? JSON.null : JSON(Utils.getFormatedPrice(value: alert.topBoundary!, maxFractDigits: 10))
-        let bottomBound = alert.bottomBoundary == nil ? JSON.null : JSON(Utils.getFormatedPrice(value: alert.bottomBoundary!, maxFractDigits: 10))
+        let upperBound = alert.topBoundary == nil ? JSON.null : JSON(Utils.getJSONFormattedNumb(from: alert.topBoundary!))
+        let bottomBound = alert.bottomBoundary == nil ? JSON.null : JSON(Utils.getJSONFormattedNumb(from: alert.bottomBoundary!))
         return [
             "request_type": requestType.rawValue,
             "currency" : alert.currencyCode,
-            "price_at_create_moment" : Utils.getFormatedPrice(value: alert.priceAtCreateMoment, maxFractDigits: 10),
+            "price_at_create_moment" : Utils.getJSONFormattedNumb(from: alert.priceAtCreateMoment),
             "alert_status": alert.status.rawValue,
             "timestamp" : Int(Date().timeIntervalSince1970),
             "is_persistent" : alert.isPersistentNotification,

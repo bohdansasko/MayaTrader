@@ -30,6 +30,16 @@ class Utils {
         return String(value)
     }
 
+    static func getJSONFormattedNumb(from value: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .none
+        formatter.maximumFractionDigits = 10
+        if let formattedNumb = formatter.string(for: value) {
+            return formattedNumb
+        }
+        return String(value)
+    }
+
     static func getDisplayCurrencyPair(rawCurrencyPairName: String) -> String {
         return rawCurrencyPairName.replacingOccurrences(of: "_", with: "/")
     }
