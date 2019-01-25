@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class OrdersPresenter: OrdersModuleInput {
+class OrdersPresenter {
     weak var view: OrdersViewInput!
     var interactor: OrdersInteractorInput!
     var router: OrdersRouterInput!
@@ -52,4 +52,7 @@ extension OrdersPresenter: OrdersInteractorOutput {
         view.setSubscription(package)
     }
 
+    func purchaseError(reason: String) {
+        view.showAlert(msg: reason)
+    }
 }

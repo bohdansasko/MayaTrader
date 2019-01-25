@@ -7,7 +7,7 @@
 //
 import UIKit.UIViewController
 
-class WatchlistPresenter: WatchlistModuleInput {
+class WatchlistPresenter {
     weak var view: WatchlistViewInput!
     var interactor: WatchlistInteractorInput!
     var router: WatchlistRouterInput!

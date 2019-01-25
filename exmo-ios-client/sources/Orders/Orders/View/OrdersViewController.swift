@@ -198,4 +198,8 @@ extension OrdersViewController {
             })
         }
     }
+    
+    func showAlert(msg: String) {
+        showOkAlert(title: titleNavBar!, message: msg, onTapOkButton: nil)
+    }
 }

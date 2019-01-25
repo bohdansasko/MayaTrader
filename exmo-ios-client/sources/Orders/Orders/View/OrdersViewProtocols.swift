@@ -9,8 +9,10 @@
 protocol OrdersViewInput: class {
     func updateOrders(loadedOrders: [Orders.DisplayType : Orders])
     func orderCanceled(ids: [Int64])
-
+    
     func setSubscription(_ package: ISubscriptionPackage)
+    
+    func showAlert(msg: String)
 }
 
 protocol OrdersViewOutput: class {

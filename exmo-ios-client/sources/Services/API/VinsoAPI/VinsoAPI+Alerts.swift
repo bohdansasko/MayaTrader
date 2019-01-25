@@ -47,6 +47,7 @@ extension VinsoAPI {
     func handleResponseAlertsLoaded(json: JSON) {
         guard let jsonAlerts = json["history_alerts"].array else {
             print("handleResponseAlertsLoaded => can't parse json data")
+            alertsObservers.forEach({ $0.value.observer?.onDidLoadAlertsHistorySuccessful([]) })
             return
         }
 

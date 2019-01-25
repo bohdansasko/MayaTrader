@@ -146,8 +146,9 @@ extension OrdersInteractor {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
             print("\(#function) => can't cast error message to String")
+            output.setSubscription(BasicAdsSubscriptionPackage())
             return
         }
-        // TODO: show error message
+        output.purchaseError(reason: errorMsg)
     }
 }

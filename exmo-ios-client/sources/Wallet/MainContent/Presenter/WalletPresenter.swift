@@ -7,7 +7,7 @@
 //
 import UIKit.UITableView
 
-class WalletPresenter: WalletModuleInput {
+class WalletPresenter {
     weak var view: WalletViewInput!
     var interactor: WalletInteractorInput!
     var router: WalletRouterInput!

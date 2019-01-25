@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class MenuPresenter: MenuModuleInput {
+class MenuPresenter {
     weak var view: TableMenuViewInput!
     var interactor: MenuInteractorInput!
     var router: MenuRouterInput!
