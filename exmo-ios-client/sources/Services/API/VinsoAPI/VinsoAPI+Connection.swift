@@ -34,12 +34,12 @@ extension VinsoAPI {
     }
 
     func onSocketError(reason: String) {
-        isLogined = false
+        isAuthorized = false
         connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Can't establish connection. Please, try again through a few minutes or write us.") })
     }
 
     func onSocketClose(reason: String) {
-        isLogined = false
+        self.isAuthorized = false
         connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Your connection was interrupted. Please, try again through a few minutes or write us.") })
     }
 
@@ -49,7 +49,7 @@ extension VinsoAPI {
         socketManager.sendMessage(message: msg)
     }
 
-    func loadAvailableSubscriptions(_ packageType: SubscriptionPackageType) {
+    func loadAvailableSubscriptions() {
         print("\(String(describing: self)) => \(#function)")
         let msg = AccountApiRequestBuilder.buildGetSubscriptionConfigsRequest()
         socketManager.sendMessage(message: msg)

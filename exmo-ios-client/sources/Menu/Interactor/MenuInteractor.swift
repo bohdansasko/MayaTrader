@@ -85,12 +85,12 @@ extension MenuInteractor {
 
     @objc
     func onPurchaseError(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+       print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let _ = notification.userInfo?[IAPService.kErrorKey] as? String else {
             print("\(#function) => can't cast error message to String")
-            output.setIsAdsPresent(false)
+            output.setIsAdsPresent(true)
             return
         }
-        output.setIsAdsPresent(false)
+        output.setIsAdsPresent(true)
     }
 }

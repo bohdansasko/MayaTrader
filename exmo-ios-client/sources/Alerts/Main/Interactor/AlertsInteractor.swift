@@ -26,7 +26,7 @@ extension AlertsInteractor: AlertsInteractorInput {
 
     func viewDidAppear() {
         isViewActive = true
-        if AppDelegate.vinsoAPI.isLogined {
+        if AppDelegate.vinsoAPI.isAuthorized {
             loadAlerts()
         } else {
             AppDelegate.vinsoAPI.establishConnect()

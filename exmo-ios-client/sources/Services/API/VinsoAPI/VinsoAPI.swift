@@ -38,9 +38,10 @@ class VinsoAPI {
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
 
-    var isLogined = false {
+    var isAuthorized = false {
         didSet {
-            if isLogined {
+            if isAuthorized {
+                AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.subscriptionPackage.type)
                 connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
             }
         }
@@ -48,6 +49,11 @@ class VinsoAPI {
 
     private init() {
         initSocket()
+        subscribeOnIAPEvents()
+    }
+
+    deinit {
+        unsubscribeEvents()
     }
 
     func initSocket() {
@@ -105,7 +111,7 @@ extension VinsoAPI {
 
         switch requestType {
         case ServerMessage.authorization:
-            isLogined = true
+            isAuthorized = true
             print("Vinso: Authorization succeed")
         case ServerMessage.alertsHistory: handleResponseAlertsLoaded(json: json)
         case ServerMessage.createAlert: handleResponseCreateAlert(json: json)
@@ -127,7 +133,7 @@ extension VinsoAPI {
         print("\(#function) => \(json)")
 //        switch requestType {
 //        case ServerMessage.authorization:
-//            isLogined = true
+//            isAuthorized = true
 //            print("Vinso: Authorization succeed")
 //        case ServerMessage.alertsHistory: handleResponseAlertsLoaded(json: json)
 //        case ServerMessage.createAlert: handleResponseCreateAlert(json: json)
@@ -155,5 +161,49 @@ extension VinsoAPI {
             return nil
         }
         return alertServerMap
+    }
+}
+
+
+extension VinsoAPI {
+    func subscribeOnIAPEvents() {
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductSubscriptionActive(_ :)),
+                name: IAPService.Notification.updateSubscription.name)
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductSubscriptionActive(_ :)),
+                name: IAPService.Notification.purchaseError.name)
+    }
+
+    func unsubscribeEvents() {
+        AppDelegate.notificationController.removeObserver(self)
+    }
+}
+
+
+extension VinsoAPI {
+    @objc
+    func onProductSubscriptionActive(_ notification: Notification) {
+        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+            print("\(#function) => can't convert notification container to IAPProduct")
+            if AppDelegate.vinsoAPI.isAuthorized {
+                AppDelegate.vinsoAPI.setSubscriptionType(.freeWithAds)
+            }
+            return
+        }
+
+        if AppDelegate.vinsoAPI.isAuthorized {
+            AppDelegate.vinsoAPI.setSubscriptionType(subscriptionPackage.type)
+        }
+    }
+
+    @objc
+    func onPurchaseError(_ notification: Notification) {
+        if AppDelegate.vinsoAPI.isAuthorized {
+            AppDelegate.vinsoAPI.setSubscriptionType(.freeWithAds)
+        }
     }
 }
