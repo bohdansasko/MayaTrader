@@ -110,6 +110,7 @@ extension CreateAlertViewController: CreateAlertViewInput {
         selectedPair = tickerCurrencyPair
         for (_, cell) in cells {
             guard let floatingCell = cell as? ExmoFloatingNumberCell else { continue }
+            floatingCell.formItem?.value = String(selectedPair!.lastTrade)
             floatingCell.update(item: floatingCell.formItem)
         }
     }

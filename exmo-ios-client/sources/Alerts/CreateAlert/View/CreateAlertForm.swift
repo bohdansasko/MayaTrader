@@ -102,7 +102,6 @@ class FormCreateAlert {
             item in
             guard let floatingItem = item as? FloatingNumberFormItem else { return }
             floatingItem.placeholder2 = " " + currency
-            
         })
     }
 
