@@ -106,12 +106,7 @@
 		207E25062061C41000030023 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25052061C41000030023 /* OrdersModel.swift */; };
 		207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5B21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift */; };
 		207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */; };
-		20848E3C21FDF99A003E7B8E /* SubscriptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E3B21FDF99A003E7B8E /* SubscriptionsCell.swift */; };
-		20848E3E21FE0840003E7B8E /* SubscriptionsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E3D21FE0840003E7B8E /* SubscriptionsHeaderCell.swift */; };
-		20848E4021FE29AB003E7B8E /* ComparisonSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E3F21FE29AB003E7B8E /* ComparisonSubscriptionsView.swift */; };
-		20848E4221FE29D3003E7B8E /* SubscriptionsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4121FE29D3003E7B8E /* SubscriptionsDatasource.swift */; };
-		20848E4621FE3F8B003E7B8E /* SubscriptionsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4521FE3F8B003E7B8E /* SubscriptionsCellModel.swift */; };
-		20848E4821FE42E4003E7B8E /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
+		20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
 		2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087F47621B1E0E7009284D0 /* FormsCells.swift */; };
 		208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */; };
 		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
@@ -176,11 +171,16 @@
 		33FA275589ADB6723CEB02A2 /* WalletInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */; };
 		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
 		366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */; };
+		366FF1DB76C09C5C77EBC414 /* SubscriptionsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFC65724348D5D2E5AA3D /* SubscriptionsDatasource.swift */; };
+		366FF1F557204A77EE0B93CC /* ComparisonSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF2D0C44E5F603F1E5E2A /* ComparisonSubscriptionsView.swift */; };
 		366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */; };
+		366FF9CE76AC761CDB59E856 /* SubscriptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFEC3B0C154B4B8BB3EE4 /* SubscriptionsCell.swift */; };
 		366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF849F00AB918D8AC2F0C /* SubscriptionsRouterInput.swift */; };
+		366FFBE122E0E9F8CE2DE214 /* SubscriptionsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFEDD1D185EDFD6DE7F0A /* SubscriptionsCellModel.swift */; };
 		366FFC69CC56E57670268399 /* SubscriptionsViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF5E8BBEFAC484858A05E /* SubscriptionsViewProtocols.swift */; };
 		366FFD10D64B347C3F0D297C /* SubscriptionsInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF2BC1A6F4E806772921F /* SubscriptionsInteractorProtocols.swift */; };
 		366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF70ECDC9E0C8B62C8079 /* SubscriptionsRouter.swift */; };
+		366FFEB33570D242C87BAAAF /* SubscriptionsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFACB946114B17B89EF5B /* SubscriptionsHeaderCell.swift */; };
 		366FFF4A63006A8CAB78BDB2 /* SubscriptionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF3E3471F2211C757FF11 /* SubscriptionsInteractor.swift */; };
 		36712029F198CF69683FFA1B /* MenuCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */; };
 		3671209C676947D8EA9F25E0 /* VinsoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */; };
@@ -412,11 +412,6 @@
 		207E25052061C41000030023 /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		207EBE5B21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertViewCell+SetupViews.swift"; sourceTree = "<group>"; };
 		207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertsListView+TableDatasource+TableDelegate.swift"; sourceTree = "<group>"; };
-		20848E3B21FDF99A003E7B8E /* SubscriptionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCell.swift; sourceTree = "<group>"; };
-		20848E3D21FE0840003E7B8E /* SubscriptionsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsHeaderCell.swift; sourceTree = "<group>"; };
-		20848E3F21FE29AB003E7B8E /* ComparisonSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonSubscriptionsView.swift; sourceTree = "<group>"; };
-		20848E4121FE29D3003E7B8E /* SubscriptionsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsDatasource.swift; sourceTree = "<group>"; };
-		20848E4521FE3F8B003E7B8E /* SubscriptionsCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCellModel.swift; sourceTree = "<group>"; };
 		20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModuleInitializer.swift; sourceTree = "<group>"; };
 		2087F47621B1E0E7009284D0 /* FormsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsCells.swift; sourceTree = "<group>"; };
 		208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkProtocols.swift; sourceTree = "<group>"; };
@@ -485,11 +480,16 @@
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
 		366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsCell.swift; sourceTree = "<group>"; };
 		366FF2BC1A6F4E806772921F /* SubscriptionsInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractorProtocols.swift; sourceTree = "<group>"; };
+		366FF2D0C44E5F603F1E5E2A /* ComparisonSubscriptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparisonSubscriptionsView.swift; sourceTree = "<group>"; };
 		366FF3E3471F2211C757FF11 /* SubscriptionsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractor.swift; sourceTree = "<group>"; };
 		366FF5E8BBEFAC484858A05E /* SubscriptionsViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewProtocols.swift; sourceTree = "<group>"; };
 		366FF70ECDC9E0C8B62C8079 /* SubscriptionsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouter.swift; sourceTree = "<group>"; };
 		366FF849F00AB918D8AC2F0C /* SubscriptionsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouterInput.swift; sourceTree = "<group>"; };
+		366FFACB946114B17B89EF5B /* SubscriptionsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsHeaderCell.swift; sourceTree = "<group>"; };
+		366FFC65724348D5D2E5AA3D /* SubscriptionsDatasource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsDatasource.swift; sourceTree = "<group>"; };
 		366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
+		366FFEC3B0C154B4B8BB3EE4 /* SubscriptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsCell.swift; sourceTree = "<group>"; };
+		366FFEDD1D185EDFD6DE7F0A /* SubscriptionsCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsCellModel.swift; sourceTree = "<group>"; };
 		3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPIConstants.swift; sourceTree = "<group>"; };
 		367120B1111B487C3177C51D /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
 		367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
@@ -1135,16 +1135,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		20848E4321FE2DAA003E7B8E /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				20848E3B21FDF99A003E7B8E /* SubscriptionsCell.swift */,
-				20848E3D21FE0840003E7B8E /* SubscriptionsHeaderCell.swift */,
-				20848E4521FE3F8B003E7B8E /* SubscriptionsCellModel.swift */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		20848E4421FE2DCB003E7B8E /* SubscriptionsView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1161,10 +1151,8 @@
 			isa = PBXGroup;
 			children = (
 				206221E621E8FC1A004603F3 /* SubscriptionsViewController.swift */,
-				20848E4321FE2DAA003E7B8E /* Cells */,
-				20848E3F21FE29AB003E7B8E /* ComparisonSubscriptionsView.swift */,
-				20848E4121FE29D3003E7B8E /* SubscriptionsDatasource.swift */,
 				366FF5E8BBEFAC484858A05E /* SubscriptionsViewProtocols.swift */,
+				366FF5B1852B5FEB02FF57EB /* ComparisonSubscriptions */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1508,6 +1496,26 @@
 				366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		366FF46CE90A0E60132FF0E6 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				366FFEC3B0C154B4B8BB3EE4 /* SubscriptionsCell.swift */,
+				366FFACB946114B17B89EF5B /* SubscriptionsHeaderCell.swift */,
+				366FFEDD1D185EDFD6DE7F0A /* SubscriptionsCellModel.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		366FF5B1852B5FEB02FF57EB /* ComparisonSubscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				366FF46CE90A0E60132FF0E6 /* Cells */,
+				366FFC65724348D5D2E5AA3D /* SubscriptionsDatasource.swift */,
+				366FF2D0C44E5F603F1E5E2A /* ComparisonSubscriptionsView.swift */,
+			);
+			path = ComparisonSubscriptions;
 			sourceTree = "<group>";
 		};
 		366FF99664E59C0595A91821 /* Router */ = {
@@ -2329,8 +2337,6 @@
 				204F234D21AC849A0023890E /* AlertsNetworkProtocols.swift in Sources */,
 				202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */,
 				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
-				20848E4221FE29D3003E7B8E /* SubscriptionsDatasource.swift in Sources */,
-				20848E4621FE3F8B003E7B8E /* SubscriptionsCellModel.swift in Sources */,
 				20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */,
 				201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
@@ -2338,7 +2344,6 @@
 				207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */,
 				20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */,
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
-				20848E3C21FDF99A003E7B8E /* SubscriptionsCell.swift in Sources */,
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
 				2003B5562048B8DE00BD205F /* WalletTableCells.swift in Sources */,
 				2045B5CB21035D39000F9D4C /* PlaceholderNoDataView.swift in Sources */,
@@ -2425,8 +2430,6 @@
 				20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */,
 				8F61BBEA01E98C5F4DF6F7E2 /* WalletCurrenciesListRouterInput.swift in Sources */,
 				D1D3CCDC25886E62AE5D26BB /* WalletCurrenciesListRouter.swift in Sources */,
-				20848E4021FE29AB003E7B8E /* ComparisonSubscriptionsView.swift in Sources */,
-				20848E3E21FE0840003E7B8E /* SubscriptionsHeaderCell.swift in Sources */,
 				B0F73F18849BE389D8168863 /* WalletCurrenciesListConfigurator.swift in Sources */,
 				EBC38D6BBBA093BFC55BCA2A /* WalletCurrenciesListInitializer.swift in Sources */,
 				499549063C49EEA247935BBF /* CreateOrderViewProtocols.swift in Sources */,
@@ -2553,6 +2556,11 @@
 				366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */,
 				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
 				366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */,
+				366FF9CE76AC761CDB59E856 /* SubscriptionsCell.swift in Sources */,
+				366FFEB33570D242C87BAAAF /* SubscriptionsHeaderCell.swift in Sources */,
+				366FFBE122E0E9F8CE2DE214 /* SubscriptionsCellModel.swift in Sources */,
+				366FF1DB76C09C5C77EBC414 /* SubscriptionsDatasource.swift in Sources */,
+				366FF1F557204A77EE0B93CC /* ComparisonSubscriptionsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
