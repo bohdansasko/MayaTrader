@@ -111,7 +111,7 @@
 		20848E4021FE29AB003E7B8E /* ComparisonSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E3F21FE29AB003E7B8E /* ComparisonSubscriptionsView.swift */; };
 		20848E4221FE29D3003E7B8E /* SubscriptionsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4121FE29D3003E7B8E /* SubscriptionsDatasource.swift */; };
 		20848E4621FE3F8B003E7B8E /* SubscriptionsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4521FE3F8B003E7B8E /* SubscriptionsCellModel.swift */; };
-		20848E4821FE42E4003E7B8E /* IAPModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* IAPModuleInitializer.swift */; };
+		20848E4821FE42E4003E7B8E /* PBXBuildFile */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
 		2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087F47621B1E0E7009284D0 /* FormsCells.swift */; };
 		208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */; };
 		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
@@ -175,7 +175,13 @@
 		3312774E49DBE19CE9306BFA /* OrdersInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690AC79502EACAFD95348EC2 /* OrdersInitializer.swift */; };
 		33FA275589ADB6723CEB02A2 /* WalletInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */; };
 		34D960FCD2696E25C1B4D288 /* QRScannerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */; };
+		366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */; };
 		366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */; };
+		366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF849F00AB918D8AC2F0C /* SubscriptionsRouterInput.swift */; };
+		366FFC69CC56E57670268399 /* SubscriptionsViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF5E8BBEFAC484858A05E /* SubscriptionsViewProtocols.swift */; };
+		366FFD10D64B347C3F0D297C /* SubscriptionsInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF2BC1A6F4E806772921F /* SubscriptionsInteractorProtocols.swift */; };
+		366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF70ECDC9E0C8B62C8079 /* SubscriptionsRouter.swift */; };
+		366FFF4A63006A8CAB78BDB2 /* SubscriptionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF3E3471F2211C757FF11 /* SubscriptionsInteractor.swift */; };
 		36712029F198CF69683FFA1B /* MenuCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */; };
 		3671209C676947D8EA9F25E0 /* VinsoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */; };
 		367121BC7FF51CEFB18FC1F6 /* VinsoAPI+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123472D6E898C5F3B2FA0 /* VinsoAPI+Alerts.swift */; };
@@ -411,7 +417,7 @@
 		20848E3F21FE29AB003E7B8E /* ComparisonSubscriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparisonSubscriptionsView.swift; sourceTree = "<group>"; };
 		20848E4121FE29D3003E7B8E /* SubscriptionsDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsDatasource.swift; sourceTree = "<group>"; };
 		20848E4521FE3F8B003E7B8E /* SubscriptionsCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCellModel.swift; sourceTree = "<group>"; };
-		20848E4721FE42E4003E7B8E /* IAPModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPModuleInitializer.swift; sourceTree = "<group>"; };
+		20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModuleInitializer.swift; sourceTree = "<group>"; };
 		2087F47621B1E0E7009284D0 /* FormsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsCells.swift; sourceTree = "<group>"; };
 		208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkProtocols.swift; sourceTree = "<group>"; };
 		209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
@@ -478,6 +484,12 @@
 		3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractor.swift; sourceTree = "<group>"; };
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
 		366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsCell.swift; sourceTree = "<group>"; };
+		366FF2BC1A6F4E806772921F /* SubscriptionsInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractorProtocols.swift; sourceTree = "<group>"; };
+		366FF3E3471F2211C757FF11 /* SubscriptionsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractor.swift; sourceTree = "<group>"; };
+		366FF5E8BBEFAC484858A05E /* SubscriptionsViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewProtocols.swift; sourceTree = "<group>"; };
+		366FF70ECDC9E0C8B62C8079 /* SubscriptionsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouter.swift; sourceTree = "<group>"; };
+		366FF849F00AB918D8AC2F0C /* SubscriptionsRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsRouterInput.swift; sourceTree = "<group>"; };
+		366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPIConstants.swift; sourceTree = "<group>"; };
 		367120B1111B487C3177C51D /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
 		367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
@@ -1136,10 +1148,11 @@
 		20848E4421FE2DCB003E7B8E /* SubscriptionsView */ = {
 			isa = PBXGroup;
 			children = (
-				20848E4A21FE4309003E7B8E /* Presenter */,
-				20848E4B21FE4316003E7B8E /* Interactor */,
 				20848E4921FE42FE003E7B8E /* View */,
-				20848E4721FE42E4003E7B8E /* IAPModuleInitializer.swift */,
+				366FFE2E8BCEB64066942FEF /* Interactor */,
+				366FF99664E59C0595A91821 /* Router */,
+				366FF2448007B52F6CC166C1 /* Presenter */,
+				20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */,
 			);
 			path = SubscriptionsView;
 			sourceTree = "<group>";
@@ -1151,22 +1164,9 @@
 				20848E4321FE2DAA003E7B8E /* Cells */,
 				20848E3F21FE29AB003E7B8E /* ComparisonSubscriptionsView.swift */,
 				20848E4121FE29D3003E7B8E /* SubscriptionsDatasource.swift */,
+				366FF5E8BBEFAC484858A05E /* SubscriptionsViewProtocols.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		20848E4A21FE4309003E7B8E /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		20848E4B21FE4316003E7B8E /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		208AC7AE21A5E0D500C74890 /* Layout */ = {
@@ -1500,6 +1500,32 @@
 				D1DE49357B4D20F8EA6EC5EF /* CreateAlertRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		366FF2448007B52F6CC166C1 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		366FF99664E59C0595A91821 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				366FF70ECDC9E0C8B62C8079 /* SubscriptionsRouter.swift */,
+				366FF849F00AB918D8AC2F0C /* SubscriptionsRouterInput.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		366FFE2E8BCEB64066942FEF /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				366FF3E3471F2211C757FF11 /* SubscriptionsInteractor.swift */,
+				366FF2BC1A6F4E806772921F /* SubscriptionsInteractorProtocols.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 		36712194B55D0F9BEAD494DF /* Model */ = {
@@ -2474,7 +2500,7 @@
 				206221E721E8FC1A004603F3 /* SubscriptionsViewController.swift in Sources */,
 				BA0F381B769424B4E72E2954 /* WatchlistCurrencyChartInteractorInput.swift in Sources */,
 				3F27375CB9F5EEFF05D5EE92 /* WatchlistCurrencyChartInteractorOutput.swift in Sources */,
-				20848E4821FE42E4003E7B8E /* IAPModuleInitializer.swift in Sources */,
+				20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */,
 				6918BD5EEF3545BE430BA457 /* WatchlistCurrencyChartInteractor.swift in Sources */,
 				AD082830EFA3503E632F0663 /* WatchlistCurrencyChartRouterInput.swift in Sources */,
 				277A456383C3A0A97085C757 /* WatchlistCurrencyChartRouter.swift in Sources */,
@@ -2521,6 +2547,12 @@
 				367121BC7FF51CEFB18FC1F6 /* VinsoAPI+Alerts.swift in Sources */,
 				367122D0DF0064443BDC5003 /* VinsoAPI+Connection.swift in Sources */,
 				36712C66E8B3D44E567B41D9 /* SubscriptionPackages.swift in Sources */,
+				366FFF4A63006A8CAB78BDB2 /* SubscriptionsInteractor.swift in Sources */,
+				366FFD10D64B347C3F0D297C /* SubscriptionsInteractorProtocols.swift in Sources */,
+				366FFC69CC56E57670268399 /* SubscriptionsViewProtocols.swift in Sources */,
+				366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */,
+				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
+				366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

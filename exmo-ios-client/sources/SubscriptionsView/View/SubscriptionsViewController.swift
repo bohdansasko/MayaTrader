@@ -9,6 +9,8 @@
 import UIKit
 
 class SubscriptionsViewController: ExmoUIViewController {
+    var output: SubscriptionsViewOutput!
+
     let exImage: UIImageView = {
         let imgView = UIImageView()
         imgView.image = UIImage(named: "icEXMobile")
@@ -50,6 +52,11 @@ class SubscriptionsViewController: ExmoUIViewController {
         return false
     }
 }
+
+extension SubscriptionsViewController: SubscriptionsViewInput {
+    // do nothing
+}
+
 
 // MARK: help for UI
 extension SubscriptionsViewController {
