@@ -72,12 +72,6 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
         return textField
     }()
-    
-    let closeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "icWalletClose"), for: .normal)
-        return button
-    }()
 
     let scanQRButton: UIButton = {
         let button = UIButton(type: .system)
