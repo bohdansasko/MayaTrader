@@ -23,8 +23,8 @@ enum MenuSectionType: Int {
 
     static func getGuestUserCellsLayout(isAdsPresent: Bool) -> [MenuSectionType : [MenuCellType]] {
         let purchaseGroup: [MenuCellType] = isAdsPresent
-                ? [ .proFeatures, .advertisement, .restorePurchases ]
-                : [ .proFeatures, .restorePurchases ]
+                ? [ .proFeatures, .advertisement ]
+                : [ .proFeatures ]
 
         return [
         .account : [
@@ -45,8 +45,8 @@ enum MenuSectionType: Int {
 
     static func getLoginedUserCellsLayout(isAdsPresent: Bool) -> [MenuSectionType : [MenuCellType]] {
         let purchaseGroup: [MenuCellType] = isAdsPresent
-                ? [ .proFeatures, .advertisement, .restorePurchases ]
-                : [ .proFeatures, .restorePurchases ]
+                ? [ .proFeatures, .advertisement ]
+                : [ .proFeatures ]
 
         return [
         .account : [
@@ -74,7 +74,6 @@ enum MenuCellType {
 
     case proFeatures
     case advertisement
-    case restorePurchases
 
     case security
 
@@ -95,8 +94,7 @@ enum MenuCellType {
 
         case .proFeatures: return "Pro features"
         case .advertisement: return "Remove Ads"
-        case .restorePurchases: return "Restore Purchases"
-            
+
         case .security: return "Security"
 
         case .telegram: return "Telegram"
@@ -117,8 +115,7 @@ enum MenuCellType {
 
         case .proFeatures: return UIImage(named: "icProFeatures")
         case .advertisement: return UIImage(named: "icAds")
-        case .restorePurchases: return UIImage(named: "icProFeatures")
-            
+
         case .security: return UIImage(named: "icTouchId")
 
         case .telegram: return UIImage(named: "icTelegram")

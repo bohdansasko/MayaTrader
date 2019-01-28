@@ -28,9 +28,6 @@ class MenuRouter: MenuRouterInput {
         case .advertisement:
             IAPService.shared.purchase(product: .noAds)
 
-        case .restorePurchases:
-            IAPService.shared.restorePurchases()
-            
         case .telegram:
             if !openLinkOnSupportGroups(.telegramApp) {
                 if !openLinkOnSupportGroups(.telegramWebsite) {
