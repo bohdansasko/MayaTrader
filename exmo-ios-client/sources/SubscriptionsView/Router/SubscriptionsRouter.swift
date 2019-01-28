@@ -3,8 +3,10 @@
 // Copyright (c) 2019 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class SubscriptionsRouter: SubscriptionsRouterInput {
-    // do nothing
+    func closeView(_ viewController: UIViewController) {
+        viewController.close()
+    }
 }

@@ -10,5 +10,8 @@ protocol SubscriptionsViewInput: class {
 }
 
 protocol SubscriptionsViewOutput {
-    // do nothing
+    func onTouchButtonBuyLitePackage()
+    func onTouchButtonBuyProPackage()
+    func onTouchButtonRestorePurchases()
+    func onTouchCloseButton()
 }

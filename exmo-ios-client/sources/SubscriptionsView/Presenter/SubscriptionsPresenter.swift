@@ -3,7 +3,7 @@
 // Copyright (c) 2019 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class SubscriptionsPresenter {
     weak var view: SubscriptionsViewInput!
@@ -12,7 +12,21 @@ class SubscriptionsPresenter {
 }
 
 extension SubscriptionsPresenter: SubscriptionsViewOutput {
-    // do nothing
+    func onTouchButtonBuyLitePackage() {
+        interactor.buyLitePackage()
+    }
+
+    func onTouchButtonBuyProPackage() {
+        interactor.buyProPackage()
+    }
+
+    func onTouchButtonRestorePurchases() {
+        interactor.restorePurchases()
+    }
+
+    func onTouchCloseButton() {
+        router.closeView(view as! UIViewController)
+    }
 }
 
 extension SubscriptionsPresenter: SubscriptionsInteractorOutput {

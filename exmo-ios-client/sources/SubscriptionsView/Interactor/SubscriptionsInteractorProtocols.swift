@@ -6,7 +6,9 @@
 import Foundation
 
 protocol SubscriptionsInteractorInput {
-    // do nothing
+    func buyLitePackage()
+    func buyProPackage()
+    func restorePurchases()
 }
 
 protocol SubscriptionsInteractorOutput: class {

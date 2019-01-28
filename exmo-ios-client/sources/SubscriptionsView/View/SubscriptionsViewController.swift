@@ -82,22 +82,22 @@ extension SubscriptionsViewController {
 extension SubscriptionsViewController {
     @objc
     func onTouchBuyLitePackageButton(_ sender: UIButton) {
-        IAPService.shared.purchase(product: .litePackage)
+        output.onTouchButtonBuyLitePackage()
     }
     
     @objc
     func onTouchBuyProPackageButton(_ sender: UIButton) {
-        IAPService.shared.purchase(product: .proPackage)
+        output.onTouchButtonBuyProPackage()
     }
     
     @objc
     func onTouchRestorePackageButton(_ sender: UIButton) {
-        IAPService.shared.restorePurchases()
+        output.onTouchButtonRestorePurchases()
     }
     
     @objc
     func onTouchCloseButton(_ sender: UIButton) {
-        close()
+        output.onTouchCloseButton()
     }
 }
 
