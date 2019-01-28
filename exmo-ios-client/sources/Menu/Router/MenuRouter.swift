@@ -24,7 +24,7 @@ class MenuRouter: MenuRouterInput {
         case .proFeatures:
             IAPService.shared.verifySubscription(.noAds)
             let iapInitializer = SubscriptionsModuleInitializer()
-            sourceVC.present(iapInitializer.viewController, animated: true)
+            sourceVC.present(UINavigationController(rootViewController: iapInitializer.viewController), animated: true)
         case .advertisement:
             IAPService.shared.purchase(product: .noAds)
 

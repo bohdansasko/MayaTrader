@@ -19,7 +19,6 @@ class SubscriptionsViewController: ExmoUIViewController {
         return imgView
     }()
     
-    let underExLabel = SubscriptionsViewController.getLabel(text: "EXMobile subscriptions", textAlignment: .center, fontSize: 18)
     let subscriptionsView = ComparisonSubscriptionsView()
     let underTableLabel = SubscriptionsViewController.getLabel(text: "**Get free 2 month with Pro subscription", textAlignment: .left, fontSize: 12)
     let buyLitePackageButton = SubscriptionsViewController.getButton(text: "Lite", icName: "icSmallBlueButton")
@@ -27,8 +26,9 @@ class SubscriptionsViewController: ExmoUIViewController {
     let restoreSubscriptionsButton = SubscriptionsViewController.getButton(text: "Restore", icName: "icSmallGrayButton")
 
     let closeButton: UIButton = {
+        let icon = UIImage(named: "icWalletClose")?.withRenderingMode(.alwaysOriginal)
         let button = UIButton(type: .system)
-        button.setTitle("Close", for: .normal)
+        button.setImage(icon, for: .normal)
         return button
     }()
 
@@ -46,10 +46,6 @@ class SubscriptionsViewController: ExmoUIViewController {
         super.viewDidLoad()
         
         setupViews()
-    }
-    
-    override func shouldUseGlow() -> Bool {
-        return false
     }
 }
 
@@ -104,19 +100,23 @@ extension SubscriptionsViewController {
 // MARK: setup UI
 extension SubscriptionsViewController {
     func setupViews() {
+        titleNavBar = "Subscriptions"
+
         setupExImage();
-
-        view.addSubview(underExLabel)
-        underExLabel.anchor(exImage.bottomAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: nil, right: view.layoutMarginsGuide.rightAnchor, topConstant: 10, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
-
         setupTableView()
 
         view.addSubview(underTableLabel)
-        underTableLabel.anchor(subscriptionsView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 20)
+        underTableLabel.anchor(
+                subscriptionsView.bottomAnchor, left: view.leftAnchor,
+                bottom: nil, right: view.rightAnchor,
+                topConstant: 5, leftConstant: 10,
+                bottomConstant: 0, rightConstant: 10,
+                widthConstant: 0, heightConstant: 20)
 
         setupManageSubscriptionsButtons()
 
         closeButton.addTarget(self, action: #selector(onTouchCloseButton(_:)), for: .touchUpInside)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: closeButton)
     }
 
     func setupExImage() {
@@ -128,9 +128,9 @@ extension SubscriptionsViewController {
     func setupTableView() {
         view.addSubview(subscriptionsView)
         subscriptionsView.anchor(
-            underExLabel.bottomAnchor, left: view.leftAnchor,
+            exImage.bottomAnchor, left: view.leftAnchor,
             bottom: nil, right: view.rightAnchor,
-            topConstant: 10, leftConstant: 0,
+            topConstant: 30, leftConstant: 0,
             bottomConstant: 0, rightConstant: 0,
             widthConstant: 0, heightConstant: 310)
 
@@ -144,7 +144,12 @@ extension SubscriptionsViewController {
             restoreSubscriptionsButton
             ])
         view.addSubview(stackButtons)
-        stackButtons.anchor(underTableLabel.bottomAnchor, left: underTableLabel.leftAnchor, bottom: nil, right: underTableLabel.rightAnchor, topConstant: 20, leftConstant: 0, bottomConstant: 0, rightConstant: 0, widthConstant: 0, heightConstant: 42)
+        stackButtons.anchor(
+                underTableLabel.bottomAnchor, left: underTableLabel.leftAnchor,
+                bottom: nil, right: underTableLabel.rightAnchor,
+                topConstant: 20, leftConstant: 0,
+                bottomConstant: 0, rightConstant: 0,
+                widthConstant: 0, heightConstant: 42)
         stackButtons.axis = .horizontal
         stackButtons.distribution = .fillProportionally
         stackButtons.spacing = 15
