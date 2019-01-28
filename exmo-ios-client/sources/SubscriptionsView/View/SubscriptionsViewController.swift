@@ -17,54 +17,14 @@ class SubscriptionsViewController: ExmoUIViewController {
         return imgView
     }()
     
-    let underExLabel: UILabel = {
-        let label = UILabel()
-        label.text = "EXMobile subscriptions"
-        label.textColor = .white
-        label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 18)
-        return label
-    }()
-    
-    let underTableLabel: UILabel = {
-        let label = UILabel()
-        label.text = "**Get free 2 month with Pro subscription"
-        label.textColor = .white
-        label.textAlignment = .left
-        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 12)
-        return label
-    }()
+    let underExLabel = SubscriptionsViewController.getLabel(text: "EXMobile subscriptions", textAlignment: .center, fontSize: 18)
+    let subscriptionsView = ComparisonSubscriptionsView()
+    let underTableLabel = SubscriptionsViewController.getLabel(text: "**Get free 2 month with Pro subscription", textAlignment: .left, fontSize: 12)
+    let buyLitePackageButton = SubscriptionsViewController.getButton(text: "Lite", icName: "icSmallBlueButton")
+    let buyProPackageButton = SubscriptionsViewController.getButton(text: "Pro", icName: "icSmallBlueButton")
+    let restoreSubscriptionsButton = SubscriptionsViewController.getButton(text: "Restore", icName: "icSmallGrayButton")
 
-    lazy var subsriptionsView = ComparisonSubscriptionsView()
-    
-    var buyLitePackageButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Lite", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.setBackgroundImage(UIImage(named: "icSmallBlueButton"), for: .normal)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .medium, fontSize: 16)
-        return button
-    }()
-    
-    var buyProPackageButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Pro", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.setBackgroundImage(UIImage(named: "icSmallBlueButton"), for: .normal)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .medium, fontSize: 16)
-        return button
-    }()
-    
-    var restoreSubscriptionsButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("Restore", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.setBackgroundImage(UIImage(named: "icSmallGrayButton"), for: .normal)
-        button.titleLabel?.font = UIFont.getExo2Font(fontType: .medium, fontSize: 16)
-        return button
-    }()
-    
-    var closeButton: UIButton = {
+    let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Close", for: .normal)
         return button
@@ -86,26 +46,29 @@ class SubscriptionsViewController: ExmoUIViewController {
         setupViews()
     }
     
-    func setupViews() {
-        view.addSubview(exImage)
-        exImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 30).isActive = true
-        exImage.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor, constant: 0).isActive = true
-        
-        view.addSubview(underExLabel)
-        underExLabel.anchor(exImage.bottomAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: nil, right: view.layoutMarginsGuide.rightAnchor, topConstant: 10, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
-
-        setupTableView()
-        
-        view.addSubview(underTableLabel)
-        underTableLabel.anchor(subsriptionsView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 20)
-        
-        setupManageSubscriptionsButtons()
-        
-        closeButton.addTarget(self, action: #selector(onTouchCloseButton(_:)), for: .touchUpInside)
-    }
-    
     override func shouldUseGlow() -> Bool {
         return false
+    }
+}
+
+// MARK: help for UI
+extension SubscriptionsViewController {
+    private static func getLabel(text: String, textAlignment: NSTextAlignment, fontSize: CGFloat) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = .white
+        label.textAlignment = textAlignment
+        label.font = UIFont.getExo2Font(fontType: .regular, fontSize: fontSize)
+        return label
+    }
+
+    private static func getButton(text: String, icName: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(text, for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.setBackgroundImage(UIImage(named: icName), for: .normal)
+        button.titleLabel?.font = UIFont.getExo2Font(fontType: .medium, fontSize: 16)
+        return button
     }
 }
 
@@ -131,16 +94,40 @@ extension SubscriptionsViewController {
     }
 }
 
+// MARK: setup UI
 extension SubscriptionsViewController {
+    func setupViews() {
+        setupExImage();
+
+        view.addSubview(underExLabel)
+        underExLabel.anchor(exImage.bottomAnchor, left: view.layoutMarginsGuide.leftAnchor, bottom: nil, right: view.layoutMarginsGuide.rightAnchor, topConstant: 10, leftConstant: 30, bottomConstant: 0, rightConstant: 30, widthConstant: 0, heightConstant: 30)
+
+        setupTableView()
+
+        view.addSubview(underTableLabel)
+        underTableLabel.anchor(subscriptionsView.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, topConstant: 5, leftConstant: 10, bottomConstant: 0, rightConstant: 10, widthConstant: 0, heightConstant: 20)
+
+        setupManageSubscriptionsButtons()
+
+        closeButton.addTarget(self, action: #selector(onTouchCloseButton(_:)), for: .touchUpInside)
+    }
+
+    func setupExImage() {
+        view.addSubview(exImage)
+        exImage.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 30).isActive = true
+        exImage.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor, constant: 0).isActive = true
+    }
+
     func setupTableView() {
-        view.addSubview(subsriptionsView)
-        subsriptionsView.anchor(
+        view.addSubview(subscriptionsView)
+        subscriptionsView.anchor(
             underExLabel.bottomAnchor, left: view.leftAnchor,
             bottom: nil, right: view.rightAnchor,
             topConstant: 10, leftConstant: 0,
             bottomConstant: 0, rightConstant: 0,
             widthConstant: 0, heightConstant: 310)
-        subsriptionsView.datasource = SubscriptionsDatasource(items: items)
+
+        subscriptionsView.datasource = SubscriptionsDatasource(items: items)
     }
     
     func setupManageSubscriptionsButtons() {
