@@ -163,6 +163,14 @@ extension WatchlistInteractor {
         })
         return objects
     }
+
+    func deletePairsFrom(startIndex: Int) {
+        var pairsForRemove = [WatchlistCurrency]()
+        for idx in (startIndex..<favPairs.count) {
+            pairsForRemove.append(favPairs[idx])
+        }
+        pairsForRemove.forEach({ removeFavCurrency($0) })
+    }
 }
 
 extension WatchlistInteractor {
@@ -188,8 +196,16 @@ extension WatchlistInteractor {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
             print("\(#function) => can't convert notification container to IAPProduct")
-            output.setSubscription(BasicAdsSubscriptionPackage())
+            let basicSubscription = BasicAdsSubscriptionPackage()
+            if favPairs.count > basicSubscription.maxPairsInWatchlist {
+                deletePairsFrom(startIndex: basicSubscription.maxPairsInWatchlist)
+            }
+            output.setSubscription(basicSubscription)
             return
+        }
+
+        if favPairs.count > subscriptionPackage.maxPairsInWatchlist {
+            deletePairsFrom(startIndex: subscriptionPackage.maxPairsInWatchlist)
         }
         output.setSubscription(subscriptionPackage)
     }
@@ -205,6 +221,3 @@ extension WatchlistInteractor {
         output.onPurchaseError(msg: errorMsg)
     }
 }
-
-
-
