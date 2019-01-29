@@ -150,6 +150,7 @@ extension ExmoUIViewController {
 extension ExmoUIViewController {
     func showLoader() {
         if !isLoaderShowing() {
+            view.bringSubviewToFront(activityIndicatorView)
             activityIndicatorView.isHidden = false
             activityIndicatorView.startAnimating()
         }

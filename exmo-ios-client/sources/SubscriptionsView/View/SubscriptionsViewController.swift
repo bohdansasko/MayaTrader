@@ -44,13 +44,21 @@ class SubscriptionsViewController: ExmoUIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
+        output.viewDidLoad()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        output.viewWillDisappear()
     }
 }
 
 extension SubscriptionsViewController: SubscriptionsViewInput {
-    // do nothing
+    func showAlert(msg: String) {
+        hideLoader()
+        showOkAlert(title: titleNavBar!, message: msg, onTapOkButton: nil)
+    }
 }
 
 
@@ -78,22 +86,25 @@ extension SubscriptionsViewController {
 extension SubscriptionsViewController {
     @objc
     func onTouchBuyLitePackageButton(_ sender: UIButton) {
+        showLoader()
         output.onTouchButtonBuyLitePackage()
     }
     
     @objc
     func onTouchBuyProPackageButton(_ sender: UIButton) {
+        showLoader()
         output.onTouchButtonBuyProPackage()
     }
     
     @objc
     func onTouchRestorePackageButton(_ sender: UIButton) {
+        showLoader()
         output.onTouchButtonRestorePurchases()
     }
     
     @objc
     func onTouchCloseButton(_ sender: UIButton) {
-        output.onTouchCloseButton()
+        output.onTouchButtonClose()
     }
 }
 
@@ -142,7 +153,7 @@ extension SubscriptionsViewController {
             buyLitePackageButton,
             buyProPackageButton,
             restoreSubscriptionsButton
-            ])
+        ])
         view.addSubview(stackButtons)
         stackButtons.anchor(
                 underTableLabel.bottomAnchor, left: underTableLabel.leftAnchor,

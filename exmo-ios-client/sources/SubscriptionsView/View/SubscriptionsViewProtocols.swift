@@ -6,12 +6,15 @@
 import Foundation
 
 protocol SubscriptionsViewInput: class {
-    // do nothing
+    func showAlert(msg: String)
 }
 
 protocol SubscriptionsViewOutput {
+    func viewDidLoad()
+    func viewWillDisappear()
+
     func onTouchButtonBuyLitePackage()
     func onTouchButtonBuyProPackage()
     func onTouchButtonRestorePurchases()
-    func onTouchCloseButton()
+    func onTouchButtonClose()
 }

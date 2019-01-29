@@ -12,6 +12,14 @@ class SubscriptionsPresenter {
 }
 
 extension SubscriptionsPresenter: SubscriptionsViewOutput {
+    func viewDidLoad() {
+        interactor.viewDidLoad()
+    }
+
+    func viewWillDisappear() {
+        interactor.viewWillDisappear()
+    }
+
     func onTouchButtonBuyLitePackage() {
         interactor.buyLitePackage()
     }
@@ -24,11 +32,17 @@ extension SubscriptionsPresenter: SubscriptionsViewOutput {
         interactor.restorePurchases()
     }
 
-    func onTouchCloseButton() {
+    func onTouchButtonClose() {
         router.closeView(view as! UIViewController)
     }
 }
 
 extension SubscriptionsPresenter: SubscriptionsInteractorOutput {
-    // do nothing
+    func onPurchaseSubscriptionSuccess(_ subscriptionPackage: ISubscriptionPackage) {
+        view.showAlert(msg: "Congratulations! From now you have \(subscriptionPackage.name) subscription. Enjoy using our app :)")
+    }
+
+    func onPurchaseSubscriptionError(reason: String) {
+        view.showAlert(msg: reason)
+    }
 }

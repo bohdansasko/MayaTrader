@@ -6,11 +6,15 @@
 import Foundation
 
 protocol SubscriptionsInteractorInput {
+    func viewDidLoad()
+    func viewWillDisappear()
+
     func buyLitePackage()
     func buyProPackage()
     func restorePurchases()
 }
 
 protocol SubscriptionsInteractorOutput: class {
-    // do nothing
+    func onPurchaseSubscriptionSuccess(_ subscriptionPackage: ISubscriptionPackage)
+    func onPurchaseSubscriptionError(reason: String)
 }
