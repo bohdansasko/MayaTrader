@@ -42,7 +42,7 @@ class ComparisonSubscriptionsView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     func setupViews() {

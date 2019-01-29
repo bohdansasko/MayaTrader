@@ -54,7 +54,7 @@ class WalletCurrencyHeaderView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
 }
 
@@ -117,7 +117,7 @@ class WalletCurrencyCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

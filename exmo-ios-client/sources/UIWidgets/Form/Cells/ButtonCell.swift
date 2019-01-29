@@ -43,7 +43,7 @@ class ButtonCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     @objc func onTouchButton(_ sender: UIButton) {

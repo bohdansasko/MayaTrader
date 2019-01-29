@@ -37,7 +37,7 @@ class ExmoSegmentCell: UITableViewCell, SegmentFormConformity {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Don't have implementation")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
 
     @objc func onValueChanged(_ sender: UISegmentedControl) {

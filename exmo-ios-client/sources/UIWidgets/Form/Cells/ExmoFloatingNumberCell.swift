@@ -60,7 +60,7 @@ class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Don't have implementation")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     private func setupViews() {

@@ -53,7 +53,7 @@ class CurrencyDetailsCell: ExmoTableViewCell, CurrencyDetailsFormConformity {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Don't have implementation")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     override func setupViews() {

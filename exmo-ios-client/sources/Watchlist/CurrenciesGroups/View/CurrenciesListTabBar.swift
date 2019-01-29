@@ -51,7 +51,7 @@ class CurrenciesListTabBar: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("doesn't have implementation")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     @objc func onTouchDoneBtn(_ sender: Any) {
@@ -132,7 +132,7 @@ class SearchTabBar: UIView {
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("doesn't have implementation")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
 
     func filter() {

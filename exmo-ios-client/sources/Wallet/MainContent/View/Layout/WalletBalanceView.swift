@@ -67,8 +67,7 @@ class WalletBalanceView: UIView {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        fatalError("This method doesn't have implemention")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
 }
 

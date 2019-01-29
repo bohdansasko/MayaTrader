@@ -40,7 +40,7 @@ class ExmoSwitchCell: UITableViewCell, SwitchFormConformity {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("Don't have implementation")
+        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
     }
     
     @objc func onSwitchValueChanged(_ sender: UISwitch) {
