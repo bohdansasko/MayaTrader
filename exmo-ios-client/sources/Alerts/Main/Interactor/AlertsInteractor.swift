@@ -14,10 +14,10 @@ class AlertsInteractor  {
 
     deinit {
         print("deinit \(String(describing: self))")
-        unsubscribeEvents()
     }
 }
 
+// MARK: AlertsInteractorInput
 extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
         subscribeOnVinsoAPIEvents()
@@ -35,6 +35,7 @@ extension AlertsInteractor: AlertsInteractorInput {
 
     func viewWillDisappear() {
         isViewActive = false
+        unsubscribeEvents()
     }
 
     func loadAlerts() {
@@ -57,6 +58,7 @@ extension AlertsInteractor: AlertsInteractorInput {
     }
 }
 
+// MARK: VinsoAPIConnectionDelegate
 extension AlertsInteractor: VinsoAPIConnectionDelegate {
     func onConnectionRefused(reason: String) {
         if isViewActive {
@@ -66,6 +68,7 @@ extension AlertsInteractor: VinsoAPIConnectionDelegate {
     }
 }
 
+// MARK: AlertsAPIResponseDelegate
 extension AlertsInteractor: AlertsAPIResponseDelegate {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) {
         print("AlertsInteractor => loaded alerts history")
@@ -81,6 +84,7 @@ extension AlertsInteractor: AlertsAPIResponseDelegate {
     }
 }
 
+// MARK: subscriptions
 extension AlertsInteractor {
     func subscribeOnVinsoAPIEvents() {
         AppDelegate.vinsoAPI.addConnectionObserver(self)

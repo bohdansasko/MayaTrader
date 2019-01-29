@@ -98,6 +98,7 @@ extension AlertsViewController: AlertsViewInput {
 
     func deleteAlerts(withIds ids: [Int]) {
         listView.deleteAlerts(ids: ids)
+        listView.maxPairs = LimitObjects(amount: listView.alerts.items.count, max: subscriptionPackage?.maxAlerts ?? 0)
     }
 
     func setSubscription(_ package: ISubscriptionPackage) {
