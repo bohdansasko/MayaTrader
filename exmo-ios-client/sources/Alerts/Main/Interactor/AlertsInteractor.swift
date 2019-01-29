@@ -94,7 +94,7 @@ extension AlertsInteractor {
                 name: IAPService.Notification.updateSubscription.name)
         AppDelegate.notificationController.addObserver(
                 self,
-                selector: #selector(onProductSubscriptionActive(_ :)),
+                selector: #selector(onPurchaseError(_ :)),
                 name: IAPService.Notification.purchaseError.name)
     }
 
