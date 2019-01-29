@@ -32,34 +32,35 @@ class ChartTimePeriodContainer: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
+        super.init(coder: aDecoder)
     }
-    
-    func viewDidLoad() {
-        btnOneYear.addTarget(self, action: #selector(handleTouchOnPeriodBtn), for: .touchUpInside)
-        btnOneMonth.addTarget(self, action: #selector(handleTouchOnPeriodBtn), for: .touchUpInside)
-        btnOneWeek.addTarget(self, action: #selector(handleTouchOnPeriodBtn), for: .touchUpInside)
-        btnOneDay.addTarget(self, action: #selector(handleTouchOnPeriodBtn), for: .touchUpInside)
+
+    func setupTouchListeners() {
+        btnOneYear.addTarget(self, action: #selector(handleTouchOnPeriodBtn(_:)), for: .touchUpInside)
+        btnOneMonth.addTarget(self, action: #selector(handleTouchOnPeriodBtn(_:)), for: .touchUpInside)
+        btnOneWeek.addTarget(self, action: #selector(handleTouchOnPeriodBtn(_:)), for: .touchUpInside)
+        btnOneDay.addTarget(self, action: #selector(handleTouchOnPeriodBtn(_:)), for: .touchUpInside)
     }
 
     func emitTouch(periodType: PeriodType) {
         switch (periodType) {
-        case PeriodType.year:
-            handleTouchOnPeriodBtn(btnOneYear)
-        case PeriodType.month:
-            handleTouchOnPeriodBtn(btnOneMonth)
-        case PeriodType.week:
-            handleTouchOnPeriodBtn(btnOneWeek)
-        case PeriodType.day:
-            handleTouchOnPeriodBtn(btnOneDay)
+        case PeriodType.year : handleTouchOnPeriodBtn(btnOneYear)
+        case PeriodType.month: handleTouchOnPeriodBtn(btnOneMonth)
+        case PeriodType.week : handleTouchOnPeriodBtn(btnOneWeek)
+        case PeriodType.day  : handleTouchOnPeriodBtn(btnOneDay)
         }
     }
-    
-    @objc func handleTouchOnPeriodBtn(_ sender: Any?) {
-        guard let senderBtn = sender as? UIButton else { return }
-        
+
+    @objc func handleTouchOnPeriodBtn(_ senderBtn: UIButton) {
+        btnOneYear.setTitleColor(.white, for: .normal)
+        btnOneMonth.setTitleColor(.white, for: .normal)
+        btnOneWeek.setTitleColor(.white, for: .normal)
+        btnOneDay.setTitleColor(.white, for: .normal)
+
+        senderBtn.setTitleColor(UIColor(red: 118.0/255, green: 184.0/255, blue: 254.0/255, alpha: 1), for: .normal)
+
         switch (senderBtn) {
         case btnOneYear:
             print("touch on year")
@@ -80,7 +81,7 @@ class ChartTimePeriodContainer: UIView {
         default:
             break
         }
-        
+
     }
 }
 
@@ -92,31 +93,35 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     @IBOutlet weak var candleChart: CandleStickChartView!
     @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var periodViewController: ChartTimePeriodContainer!
-    
+
     var output: WatchlistCurrencyChartViewOutput!
     private var chartData: ExmoChartData!
     private var candleChartViewController = CandleStickChartViewController()
     private var barChartViewController = BarChartViewController()
     private var currencyPair: String = ""
-    
+
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         titleNavBar = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair)
         output.viewIsReady()
-        periodViewController.viewDidLoad()
+        periodViewController.setupTouchListeners()
         setupInitialState()
     }
-    
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        periodViewController.emitTouch(periodType: .week)
+    }
+
     // MARK: WatchlistCurrencyChartViewInput
     func setupInitialState() {
         candleShortInfoView.isHidden = true
         navigationController?.navigationBar.tintColor = .white
         
         prepareCharts()
-        periodViewController.emitTouch(periodType: .week)
     }
-    
+
     private func prepareCharts() {
         // prepare bar chart
         barChartViewController.chartView = barChart
