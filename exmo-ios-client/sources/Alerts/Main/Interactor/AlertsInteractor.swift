@@ -14,6 +14,7 @@ class AlertsInteractor  {
 
     deinit {
         print("deinit \(String(describing: self))")
+        unsubscribeEvents()
     }
 }
 
@@ -35,7 +36,6 @@ extension AlertsInteractor: AlertsInteractorInput {
 
     func viewWillDisappear() {
         isViewActive = false
-        unsubscribeEvents()
     }
 
     func loadAlerts() {

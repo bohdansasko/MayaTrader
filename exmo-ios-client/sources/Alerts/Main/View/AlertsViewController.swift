@@ -27,7 +27,7 @@ class AlertsViewController: ExmoUIViewController {
                                action: nil)
     }()
 
-    var buttonDeleteAlers: UIButton = {
+    var buttonDeleteAlerts: UIButton = {
         let image = UIImage(named: "icNavbarTrash")?.withRenderingMode(.alwaysOriginal)
         let button = UIButton(type: .system)
         button.setBackgroundImage(image, for: .normal)
@@ -143,9 +143,9 @@ extension AlertsViewController {
         navigationController?.navigationBar.tintColor = .white
         navigationController?.navigationBar.isTranslucent = false
 
-        buttonDeleteAlers.addTarget(self, action: #selector(onTouchButtonDelete(_:)), for: .touchUpInside)
-        let navButtonDeleteAlers = UIBarButtonItem(customView: buttonDeleteAlers)
-        navigationItem.leftBarButtonItem = navButtonDeleteAlers
+        buttonDeleteAlerts.addTarget(self, action: #selector(onTouchButtonDelete(_:)), for: .touchUpInside)
+        let navbuttonDeleteAlerts = UIBarButtonItem(customView: buttonDeleteAlerts)
+        navigationItem.leftBarButtonItem = navbuttonDeleteAlerts
 
         btnCreateAlert.target = self
         btnCreateAlert.action = #selector(showViewCreateOrder(_ :))

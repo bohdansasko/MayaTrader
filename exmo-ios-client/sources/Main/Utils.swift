@@ -33,6 +33,7 @@ class Utils {
     static func getJSONFormattedNumb(from value: Double) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .none
+        formatter.minimumIntegerDigits = 1
         formatter.maximumFractionDigits = 10
         if let formattedNumb = formatter.string(for: value) {
             return formattedNumb
