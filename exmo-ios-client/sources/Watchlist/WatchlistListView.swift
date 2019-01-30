@@ -195,7 +195,7 @@ extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     }
 }
 
-// MARK: UICollectionViewDelegateFlowLayout
+// MARK: CellDelegate
 extension WatchlistListView: CellDelegate {
     func didTouchCell(datasourceItem: Any?) {
         guard let currency = datasourceItem as? WatchlistCurrency else {

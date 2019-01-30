@@ -20,6 +20,7 @@ class SocketManager {
 
     init(serverURL: String) {
         socket = WebSocket(serverURL)
+        socket.allowSelfSignedSSL = true
         setSocketEvents()
     }
 

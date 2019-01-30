@@ -29,6 +29,6 @@ enum ServerMessage: Int {
 
 
 enum APIURLs: String {
-    case global = "ws://193.228.52.26:45667"
+    case global = "wss://193.228.52.26:10443"
     case local = "ws://192.168.0.102:45667"
 }
