@@ -11,11 +11,12 @@ import Foundation
 extension String {
     func isDoubleValid() -> Bool {
         let formatter = NumberFormatter()
-        
-        if formatter.number(from: self) != nil {
-            return true
-        }
-        
-        return false
+        formatter.numberStyle = .decimal
+        formatter.decimalSeparator = "."
+        formatter.groupingSeparator = ","
+        formatter.minimumIntegerDigits = 1
+        formatter.maximumFractionDigits = 10
+        print(self)
+        return formatter.number(from: self) != nil
     }
 }

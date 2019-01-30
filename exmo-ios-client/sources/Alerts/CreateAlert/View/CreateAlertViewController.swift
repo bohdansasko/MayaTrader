@@ -101,17 +101,27 @@ extension CreateAlertViewController: CreateAlertViewInput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         let detailsIndexPath = IndexPath(row: 0, section: 0)
         guard let currencyPair = tickerCurrencyPair,
-            let detailsItem = cells[detailsIndexPath] as? FormUpdatable,
-            let detailsFormItem = form.cellItems[detailsIndexPath.section] as? CurrencyDetailsItem else { return }
+              let detailsItem = cells[detailsIndexPath] as? FormUpdatable,
+              let detailsFormItem = form.cellItems[detailsIndexPath.section] as? CurrencyDetailsItem else {
+            return
+        }
         detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair.code)
         detailsFormItem.rightValue = Utils.getFormatedPrice(value: currencyPair.lastTrade, maxFractDigits: 10)
         detailsItem.update(item: detailsFormItem)
 
+        let isNewPair = selectedPair != nil
+                ? currencyPair.code != selectedPair!.code
+                : true
         selectedPair = tickerCurrencyPair
-        for (_, cell) in cells {
-            guard let floatingCell = cell as? ExmoFloatingNumberCell else { continue }
-            floatingCell.formItem?.value = Utils.getFormatedPrice(value: selectedPair!.lastTrade, maxFractDigits: 10)
-            floatingCell.update(item: floatingCell.formItem)
+
+        if isNewPair {
+            for (_, cell) in cells {
+                guard let floatingCell = cell as? ExmoFloatingNumberCell else {
+                    continue
+                }
+                floatingCell.formItem?.value = Utils.getFormatedPrice(value: currencyPair.lastTrade, maxFractDigits: 10)
+                floatingCell.update(item: floatingCell.formItem)
+            }
         }
     }
     

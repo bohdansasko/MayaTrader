@@ -10,15 +10,14 @@ import Foundation
 import UIKit.UIColor
 
 class Utils {
-    private init() {
-        // do nothing
-    }
+    private init() { }
     
     static func getFormatedPrice(value: Double, maxFractDigits: Int = 4, isForce: Bool = false) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
-        formatter.groupingSeparator = ","
         formatter.decimalSeparator = "."
+        formatter.groupingSeparator = ","
+        formatter.minimumIntegerDigits = 1
         formatter.maximumFractionDigits = isForce
                 ? maxFractDigits
                 : value > 0.0001
