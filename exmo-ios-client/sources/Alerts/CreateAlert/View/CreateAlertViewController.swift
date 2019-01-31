@@ -41,8 +41,8 @@ class CreateAlertViewController: ExmoUIViewController {
         
         if let alert = editAlert {
             form.currencyPair = Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode)
-            form.topBound = alert.topBoundary == nil ? nil : String(alert.topBoundary!)
-            form.bottomBound = alert.bottomBoundary == nil ? nil : String(alert.bottomBoundary!)
+            form.topBound = alert.topBoundary == nil ? nil : Utils.getFormatedPrice(value: alert.topBoundary!, maxFractDigits: 10)
+            form.bottomBound = alert.bottomBoundary == nil ? nil : Utils.getFormatedPrice(value: alert.bottomBoundary!, maxFractDigits: 10)
             form.description = alert.description
             form.isPersistent = alert.isPersistentNotification
         }
@@ -142,6 +142,7 @@ extension CreateAlertViewController: CreateAlertViewInput {
     }
 
     func showAlert(message: String) {
+        hideLoader()
         showOkAlert(title: titleNavBar!, message: message, onTapOkButton: nil)
     }
 }
