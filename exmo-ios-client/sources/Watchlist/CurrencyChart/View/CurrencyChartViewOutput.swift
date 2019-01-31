@@ -1,9 +1,9 @@
 //
-//  WatchlistCurrencyChartWatchlistCurrencyChartViewOutput.swift
+//  WatchlistCurrencyChartCurrencyChartViewOutput.swift
 //  ExmoMobileClient
 //
 
-protocol WatchlistCurrencyChartViewOutput {
+protocol CurrencyChartViewOutput {
     func loadChartData(currencyPair: String, period: String)
 
     func onTouchAddAlert()

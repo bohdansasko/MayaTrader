@@ -20,7 +20,7 @@ class WatchlistRouter: WatchlistRouterInput {
     
     func showChartVC(senderVC: UIViewController, currencyPairName: String) {
         let mainStoryboard = UIStoryboard(name: "Watchlist", bundle: nil)
-        guard let viewController = mainStoryboard.instantiateViewController(withIdentifier: "WatchlistCurrencyChartViewController") as? WatchlistCurrencyChartViewController else { return }
+        guard let viewController = mainStoryboard.instantiateViewController(withIdentifier: "CurrencyChartViewController") as? CurrencyChartViewController else { return }
         
         guard let moduleInput = viewController.output as? WatchlistCurrencyChartModuleInput else { return }
         moduleInput.setChartCurrencyPairName(currencyPairName)

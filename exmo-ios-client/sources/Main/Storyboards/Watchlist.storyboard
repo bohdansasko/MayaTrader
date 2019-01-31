@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="105" y="-2539"/>
         </scene>
-        <!--Watchlistcurrencychart View Controller-->
+        <!--Currency Chart View Controller-->
         <scene sceneID="oAv-j1-wr8">
             <objects>
-                <viewController storyboardIdentifier="WatchlistCurrencyChartViewController" title="BTC/USD" id="y4J-WM-6Ra" customClass="WatchlistCurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CurrencyChartViewController" title="BTC/USD" id="y4J-WM-6Ra" customClass="CurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VqE-Sc-252">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -328,7 +328,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RC0-Sc-NY4" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="yYT-DH-0ar" customClass="WatchlistCurrencyChartModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
                     <connections>
-                        <outlet property="watchlistcurrencychartViewController" destination="y4J-WM-6Ra" id="nbv-sd-1yj"/>
+                        <outlet property="CurrencyChartViewController" destination="y4J-WM-6Ra" id="nbv-sd-1yj"/>
                     </connections>
                 </customObject>
             </objects>

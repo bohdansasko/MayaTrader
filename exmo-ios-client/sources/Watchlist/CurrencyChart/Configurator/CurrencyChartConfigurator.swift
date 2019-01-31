@@ -12,12 +12,12 @@ class WatchlistCurrencyChartModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? WatchlistCurrencyChartViewController {
+        if let viewController = viewInput as? CurrencyChartViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: WatchlistCurrencyChartViewController) {
+    private func configure(viewController: CurrencyChartViewController) {
 
         let router = WatchlistCurrencyChartRouter()
 

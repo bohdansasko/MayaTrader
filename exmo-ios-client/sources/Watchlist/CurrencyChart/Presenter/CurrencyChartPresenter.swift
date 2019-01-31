@@ -9,7 +9,7 @@
 import UIKit
 
 class WatchlistCurrencyChartPresenter {
-    weak var view: WatchlistCurrencyChartViewInput!
+    weak var view: CurrencyChartViewInput!
     var interactor: WatchlistCurrencyChartInteractorInput!
     var router: WatchlistCurrencyChartRouterInput!
 }
@@ -21,8 +21,8 @@ extension WatchlistCurrencyChartPresenter: WatchlistCurrencyChartModuleInput {
     }
 }
 
-// MARK: WatchlistCurrencyChartViewOutput
-extension WatchlistCurrencyChartPresenter: WatchlistCurrencyChartViewOutput {
+// MARK: CurrencyChartViewOutput
+extension WatchlistCurrencyChartPresenter: CurrencyChartViewOutput {
     func loadChartData(currencyPair: String, period: String) {
         interactor.loadCurrencyPairChartHistory(currencyPair: currencyPair, period: period)
     }

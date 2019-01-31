@@ -1,12 +1,12 @@
 //
-//  WatchlistCurrencyChartWatchlistCurrencyChartViewInput.swift
+//  WatchlistCurrencyChartCurrencyChartViewInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 06/06/2018.
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-protocol WatchlistCurrencyChartViewInput: class {
+protocol CurrencyChartViewInput: class {
 
     /**
         @author TQ0oS

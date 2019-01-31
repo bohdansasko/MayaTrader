@@ -11,12 +11,12 @@ import UIKit
 class WatchlistCurrencyChartModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var watchlistcurrencychartViewController: WatchlistCurrencyChartViewController!
+    @IBOutlet weak var CurrencyChartViewController: CurrencyChartViewController!
 
     override func awakeFromNib() {
 
         let configurator = WatchlistCurrencyChartModuleConfigurator()
-        configurator.configureModuleForViewInput(viewInput: watchlistcurrencychartViewController)
+        configurator.configureModuleForViewInput(viewInput: CurrencyChartViewController)
     }
 
 }

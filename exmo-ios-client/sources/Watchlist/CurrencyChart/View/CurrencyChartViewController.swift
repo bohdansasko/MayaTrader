@@ -1,5 +1,5 @@
 //
-//  WatchlistCurrencyChartWatchlistCurrencyChartViewController.swift
+//  WatchlistCurrencyChartCurrencyChartViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 06/06/2018.
@@ -86,22 +86,22 @@ class ChartTimePeriodContainer: UIView {
 }
 
 //
-// MARK: WatchlistCurrencyChartViewController
+// MARK: CurrencyChartViewController
 //
-class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurrencyChartViewInput {
+class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput {
     @IBOutlet weak var candleShortInfoView: CandleBarChartShortInfoView!
     @IBOutlet weak var candleChart: CandleStickChartView!
     @IBOutlet weak var barChart: BarChartView!
     @IBOutlet weak var periodViewController: ChartTimePeriodContainer!
 
-    var output: WatchlistCurrencyChartViewOutput!
+    var output: CurrencyChartViewOutput!
     private var chartData: ExmoChartData!
     private var candleChartViewController = CandleStickChartViewController()
     private var barChartViewController = BarChartViewController()
     private var currencyPair: String = ""
     
-    let addAlertButton = WatchlistCurrencyChartViewController.getButton(icNamed: "icNavbarAddAlert")
-    let addOrderButton = WatchlistCurrencyChartViewController.getButton(icNamed: "icNavbarAddOrder")
+    let addAlertButton = CurrencyChartViewController.getButton(icNamed: "icNavbarAddAlert")
+    let addOrderButton = CurrencyChartViewController.getButton(icNamed: "icNavbarAddOrder")
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -116,7 +116,7 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         periodViewController.emitTouch(periodType: .week)
     }
 
-    // MARK: WatchlistCurrencyChartViewInput
+    // MARK: CurrencyChartViewInput
     func setupInitialState() {
         candleShortInfoView.isHidden = true
         navigationController?.navigationBar.tintColor = .white
