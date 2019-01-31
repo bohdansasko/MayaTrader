@@ -75,6 +75,7 @@ extension IAPService {
                 }
             case .error(let error):
                 print("Receipt verification failed: \(error)")
+                self.updateSubscription(BasicAdsSubscriptionPackage())
                 self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
             }
         }
