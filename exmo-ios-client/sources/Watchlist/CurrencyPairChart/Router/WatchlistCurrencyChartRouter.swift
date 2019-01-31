@@ -2,10 +2,17 @@
 //  WatchlistCurrencyChartWatchlistCurrencyChartRouter.swift
 //  ExmoMobileClient
 //
-//  Created by TQ0oS on 06/06/2018.
-//  Copyright © 2018 Roobik. All rights reserved.
-//
+
+import UIKit
 
 class WatchlistCurrencyChartRouter: WatchlistCurrencyChartRouterInput {
+    func showViewAddAlert(_ viewController: UIViewController) {
+        let moduleInit = CreateAlertModuleInitializer()
+        viewController.present(UINavigationController(rootViewController: moduleInit.viewController), animated: true, completion: nil)
+    }
 
+    func showViewAddOrder(_ viewController: UIViewController) {
+        let moduleInit = CreateOrderModuleInitializer()
+        viewController.present(moduleInit.viewController, animated: true, completion: nil)
+    }
 }

@@ -99,12 +99,14 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     private var candleChartViewController = CandleStickChartViewController()
     private var barChartViewController = BarChartViewController()
     private var currencyPair: String = ""
+    
+    let addAlertButton = WatchlistCurrencyChartViewController.getButton(icNamed: "icNavbarAddAlert")
+    let addOrderButton = WatchlistCurrencyChartViewController.getButton(icNamed: "icNavbarAddOrder")
 
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         titleNavBar = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair)
-        output.viewIsReady()
         periodViewController.setupTouchListeners()
         setupInitialState()
     }
@@ -119,6 +121,13 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         candleShortInfoView.isHidden = true
         navigationController?.navigationBar.tintColor = .white
         
+        addAlertButton.addTarget(self, action: #selector(onTouchAddAlertButton(_:)), for: .touchUpInside)
+        addOrderButton.addTarget(self, action: #selector(onTouchAddOrderButton(_:)), for: .touchUpInside)
+        
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(customView: addOrderButton),
+            UIBarButtonItem(customView: addAlertButton)]
+
         prepareCharts()
     }
 
@@ -161,9 +170,20 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
         self.candleShortInfoView.model = self.candleChartViewController.chartData.candles[candleIndex]
     }
     
-    @objc func onLoadCurrencyPairChartDataFailed() {
+    @objc
+    func onLoadCurrencyPairChartDataFailed() {
         // show alert
         // output.closeView()
+    }
+    
+    @objc
+    func onTouchAddAlertButton(_ senderButton: UIButton) {
+        output.onTouchAddAlert()
+    }
+
+    @objc
+    func onTouchAddOrderButton(_ senderButton: UIButton) {
+        output.onTouchAddOrder()
     }
     
     func updateChart(chartData: ExmoChartData?) {
@@ -175,5 +195,12 @@ class WatchlistCurrencyChartViewController: ExmoUIViewController, WatchlistCurre
     
     func setCurrencyPair(_ currencyPair: String) {
         self.currencyPair = currencyPair
+    }
+    
+    static private func getButton(icNamed: String) -> UIButton {
+        let icon = UIImage(named: icNamed)?.withRenderingMode(.alwaysOriginal)
+        let button = UIButton(type: .system)
+        button.setImage(icon, for: .normal)
+        return button
     }
 }

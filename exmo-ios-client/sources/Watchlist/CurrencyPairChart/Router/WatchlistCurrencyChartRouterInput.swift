@@ -6,8 +6,9 @@
 //  Copyright © 2018 Roobik. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol WatchlistCurrencyChartRouterInput {
-
+    func showViewAddAlert(_ viewController: UIViewController)
+    func showViewAddOrder(_ viewController: UIViewController)
 }
