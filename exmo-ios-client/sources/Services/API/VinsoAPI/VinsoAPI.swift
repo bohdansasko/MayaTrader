@@ -99,7 +99,7 @@ extension VinsoAPI {
 
         switch responseCodeType {
         case .succeed: handleSuccessResponseMessage(json: json)
-        case .error: handleErrorResponseMessage(json: json)
+        case .error, .clientError: handleErrorResponseMessage(json: json)
         }
     }
 
@@ -125,24 +125,23 @@ extension VinsoAPI {
     }
 
     func handleErrorResponseMessage(json: JSON) {
-        guard let requestId = json["request_type"].int, let requestType = ServerMessage(rawValue: requestId) else {
+        guard let requestId = json["request_type"].int,
+              let requestType = ServerMessage(rawValue: requestId),
+              let reason = json["reason"].string else {
             print("handleResponseMessage => request_type out of range. request_type = \(json["request_type"].int ?? -999)")
             return
         }
 
         print("\(#function) => \(json)")
-//        switch requestType {
-//        case ServerMessage.authorization:
-//            isAuthorized = true
-//            print("Vinso: Authorization succeed")
-//        case ServerMessage.alertsHistory: handleResponseAlertsLoaded(json: json)
-//        case ServerMessage.createAlert: handleResponseCreateAlert(json: json)
-//        case ServerMessage.updateAlert: handleResponseUpdateAlert(json: json)
-//        case ServerMessage.deleteAlert: handleResponseDeleteAlert(json: json)
-//        case ServerMessage.fireAlert: handleResponseFireAlert(json: json)
-//        default:
-//            break
-//        }
+        switch requestType {
+        case ServerMessage.authorization: break
+        case ServerMessage.alertsHistory: handleResponseAlertsLoadedError(reason: reason)
+        case ServerMessage.createAlert: handleResponseErrorCreateAlert(reason: reason)
+        case ServerMessage.updateAlert: handleResponseErrorUpdateAlert(reason: reason)
+        case ServerMessage.deleteAlert: handleResponseErrorDeleteAlert(reason: reason)
+        case ServerMessage.fireAlert: handleResponseFireAlertError(reason: reason)
+        default: break
+        }
     }
 
 

@@ -8,6 +8,7 @@ import Foundation
 enum VinsoResponseCode: Int {
     case succeed = 200
     case error = 0
+    case clientError = 429
 }
 
 enum ServerMessage: Int {

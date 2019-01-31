@@ -90,7 +90,11 @@ extension VinsoAPI {
 
     // MARK: responses on fire alert
     func handleResponseFireAlert(json: JSON) {
-        // do nothing
+        print(json)
+    }
+
+    func handleResponseFireAlertError(reason: String) {
+        print(reason)
     }
 
     // MARK: responses on delete alert
