@@ -49,6 +49,14 @@ class Defaults {
     static func isPasscodeActive() -> Bool {
         return !getPasscode().isEmpty
     }
+
+    static func getSubscriptionId() -> Int {
+        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.subscriptionId.rawValue) ?? 0
+    }
+    
+    static func setSubscriptionId(_ id: Int) {
+        UserDefaults.standard.set(id, forKey: UserDefaultsKeys.subscriptionId.rawValue)
+    }
 }
 
 enum UserDefaultsKeys: String {
@@ -58,6 +66,7 @@ enum UserDefaultsKeys: String {
     case passcode
     case exmoId = "EXMO"
     case iapAdvertisement
+    case subscriptionId
 }
 
 enum KeychainDefaultKeys: String {

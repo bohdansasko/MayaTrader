@@ -23,16 +23,37 @@ class IAPService: NSObject {
         case updateSubscription
     }
 
-    private override init() { }
     static let shared = IAPService()
-
+    override private init() {
+        super.init()
+        loadSubscriptionFromCache()
+    }
+    
     private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
     private let kReceiptSubscriptionURLType = AppleReceiptValidator.VerifyReceiptURLType.sandbox
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
-    private(set) var subscriptionPackage: ISubscriptionPackage = BasicAdsSubscriptionPackage()
+    private(set) var subscriptionPackage: ISubscriptionPackage! {
+        didSet {
+            Defaults.setSubscriptionId(subscriptionPackage.type.rawValue)
+        }
+    }
 
     static let kSubscriptionPackageKey = "subscriptionPackage"
     static let kErrorKey = "error"
+    
+    func loadSubscriptionFromCache() {
+        guard let subscriptionType = SubscriptionPackageType(rawValue: Defaults.getSubscriptionId()) else {
+            subscriptionPackage = BasicAdsSubscriptionPackage()
+            return
+        }
+        
+        switch subscriptionType {
+        case .freeWithAds: subscriptionPackage = BasicAdsSubscriptionPackage()
+        case .freeNoAds: subscriptionPackage = BasicNoAdsSubscriptionPackage()
+        case .lite: subscriptionPackage = LiteSubscriptionPackage()
+        case .pro: subscriptionPackage = ProSubscriptionPackage()
+        }
+    }
 }
 
 extension IAPService {
