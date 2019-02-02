@@ -9,5 +9,6 @@
 import Foundation
 
 protocol WatchlistCurrencyChartInteractorInput {
+    func viewWillAppear()
     func loadCurrencyPairChartHistory(currencyPair: String, period: String)
 }

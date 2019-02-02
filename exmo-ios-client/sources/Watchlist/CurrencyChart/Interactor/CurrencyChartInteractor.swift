@@ -11,10 +11,24 @@ import Alamofire
 import SwiftyJSON
 import ObjectMapper
 
-class WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInput {
+class WatchlistCurrencyChartInteractor {
     weak var output: WatchlistCurrencyChartInteractorOutput!
     var networkAPIHandler: BaseAPICandleChartNetworkWorker!
-    
+
+    init() {
+        subscribeOnIAPEvents()
+    }
+
+    deinit {
+        unsubscribeEvents()
+    }
+}
+
+extension WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInput {
+    func viewWillAppear() {
+        output.setSubscription(IAPService.shared.subscriptionPackage)
+    }
+
     func loadCurrencyPairChartHistory(currencyPair: String, period: String = "day") {
         print("start loadCurrencyPairSettings")
         networkAPIHandler.onHandleResponseSuccesfull = {
@@ -24,5 +38,33 @@ class WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInput {
             self?.output.updateChart(chartData: chartData)
         }
         networkAPIHandler.loadCurrencyPairChartHistory(currencyPair: currencyPair, period: period)
+    }
+}
+
+// MARK: subscriptions
+extension WatchlistCurrencyChartInteractor {
+    func subscribeOnIAPEvents() {
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(onProductSubscriptionActive(_ :)),
+                name: IAPService.Notification.updateSubscription.name)
+    }
+
+    func unsubscribeEvents() {
+        AppDelegate.notificationController.removeObserver(self)
+    }
+}
+
+
+extension WatchlistCurrencyChartInteractor {
+    @objc
+    func onProductSubscriptionActive(_ notification: Notification) {
+        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+            print("\(#function) => can't convert notification container to ISubscriptionPackage")
+            output.setSubscription(BasicAdsSubscriptionPackage())
+            return
+        }
+        output.setSubscription(subscriptionPackage)
     }
 }

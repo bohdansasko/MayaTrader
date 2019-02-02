@@ -14,10 +14,10 @@ import Charts
 //
 class ChartTimePeriodContainer: UIView {
     enum PeriodType: String {
-        case year = "year"
+        case year  = "year"
         case month = "month"
-        case week = "week"
-        case day = "day"
+        case week  = "week"
+        case day   = "day"
     }
     
     @IBOutlet weak var currentPeriodViewIndicator: UIView!
@@ -109,10 +109,12 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
         titleNavBar = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currencyPair)
         periodViewController.setupTouchListeners()
         setupInitialState()
+        setupBannerView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        output.viewWillAppear()
         periodViewController.emitTouch(periodType: .week)
     }
 
@@ -124,8 +126,12 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
         addAlertButton.addTarget(self, action: #selector(onTouchAddAlertButton(_:)), for: .touchUpInside)
         addOrderButton.addTarget(self, action: #selector(onTouchAddOrderButton(_:)), for: .touchUpInside)
         
+        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        fixedSpace.width = 15
+        
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(customView: addOrderButton),
+            fixedSpace,
             UIBarButtonItem(customView: addAlertButton)]
 
         prepareCharts()
@@ -202,5 +208,17 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
         let button = UIButton(type: .system)
         button.setImage(icon, for: .normal)
         return button
+    }
+}
+
+extension CurrencyChartViewController {
+    func setSubscription(_ package: ISubscriptionPackage) {
+        print("\(String(describing: self)) => \(#function)")
+        super.isAdsActive = package.isAdsPresent
+        if package.isAdsPresent {
+            showAdsView()
+        } else {
+            hideAdsView()
+        }
     }
 }

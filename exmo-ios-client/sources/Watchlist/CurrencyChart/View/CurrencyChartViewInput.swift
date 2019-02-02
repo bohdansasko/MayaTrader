@@ -7,13 +7,8 @@
 //
 
 protocol CurrencyChartViewInput: class {
-
-    /**
-        @author TQ0oS
-        Setup initial state of the view
-    */
-
     func setupInitialState()
     func updateChart(chartData: ExmoChartData?)
     func setCurrencyPair(_ currencyPair: String)
+    func setSubscription(_ package: ISubscriptionPackage)
 }

@@ -23,6 +23,10 @@ extension WatchlistCurrencyChartPresenter: WatchlistCurrencyChartModuleInput {
 
 // MARK: CurrencyChartViewOutput
 extension WatchlistCurrencyChartPresenter: CurrencyChartViewOutput {
+    func viewWillAppear() {
+        interactor.viewWillAppear()
+    }
+
     func loadChartData(currencyPair: String, period: String) {
         interactor.loadCurrencyPairChartHistory(currencyPair: currencyPair, period: period)
     }
@@ -44,6 +48,10 @@ extension WatchlistCurrencyChartPresenter: CurrencyChartViewOutput {
 extension WatchlistCurrencyChartPresenter: WatchlistCurrencyChartInteractorOutput {
     func updateChart(chartData: ExmoChartData?) {
         view.updateChart(chartData: chartData)
+    }
+
+    func setSubscription(_ package: ISubscriptionPackage) {
+        view.setSubscription(package)
     }
 }
 
