@@ -7,10 +7,12 @@ import Foundation
 
 protocol SubscriptionsViewInput: class {
     func showAlert(msg: String)
+    func updateTable(with items: [SubscriptionsCellModel])
 }
 
 protocol SubscriptionsViewOutput {
     func viewDidLoad()
+    func viewWillAppear()
     func viewWillDisappear()
 
     func onTouchButtonBuyLitePackage()

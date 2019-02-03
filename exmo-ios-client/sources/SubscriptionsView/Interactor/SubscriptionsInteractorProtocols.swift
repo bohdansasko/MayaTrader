@@ -9,6 +9,8 @@ protocol SubscriptionsInteractorInput {
     func viewDidLoad()
     func viewWillDisappear()
 
+    func fetchSubscriptions()
+    
     func buyLitePackage()
     func buyProPackage()
     func restorePurchases()
@@ -17,4 +19,7 @@ protocol SubscriptionsInteractorInput {
 protocol SubscriptionsInteractorOutput: class {
     func onPurchaseSubscriptionSuccess(_ subscriptionPackage: ISubscriptionPackage)
     func onPurchaseSubscriptionError(reason: String)
+    
+    func setSubscriptionItems(with items: [SubscriptionsCellModel])
+    func showError(msg: String)
 }

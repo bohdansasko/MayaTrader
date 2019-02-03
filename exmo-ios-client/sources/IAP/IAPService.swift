@@ -117,16 +117,19 @@ extension IAPService {
         })
     }
 
-    func fetchProducts() {
+    func fetchProducts(completionOnSuccess: ((Set<SKProduct>) -> Void)? = nil, completionOnError: ((String?) -> Void)? = nil) {
         let products = Set<String>(IAPProduct.allCases.map({ $0.rawValue }))
         SwiftyStoreKit.retrieveProductsInfo(products) { result in
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
                 print("Product: \(product.localizedDescription), price: \(priceString)")
+                completionOnSuccess?(result.retrievedProducts)
             } else if let invalidProductId = result.invalidProductIDs.first {
                 print("Invalid product identifier: \(invalidProductId)")
+                completionOnError?("Products were changed. Plese, contact with app developer.")
             } else {
                 print("Error: \(result.error)")
+                completionOnError?(result.error?.localizedDescription)
             }
         }
     }

@@ -11,8 +11,17 @@ import UIKit
 class SubscriptionsCell: ExmoCollectionCell {
     let featureNameLabel: UILabel = SubscriptionsCell.getTitleLabel(text: "", textAlignment: .left)
     let freeLabel: UILabel = SubscriptionsCell.getTitleLabel(text: "")
-    let liteLabel: UILabel = SubscriptionsCell.getTitleLabel(text: "")
-    let proLabel: UILabel = SubscriptionsCell.getTitleLabel(text: "")
+    let liteLabel: UILabel = {
+        let label = SubscriptionsCell.getTitleLabel(text: "")
+        label.numberOfLines = 1
+        return label
+    }()
+    
+    let proLabel: UILabel = {
+        let label = SubscriptionsCell.getTitleLabel(text: "")
+        label.numberOfLines = 1
+        return label
+    }()
     
     let freeStateImg: UIImageView = SubscriptionsCell.getStateImageInstance()
     let liteStateImg: UIImageView = SubscriptionsCell.getStateImageInstance()
@@ -92,6 +101,8 @@ extension SubscriptionsCell {
         label.textAlignment = textAlignment
         label.textColor = .white
         label.numberOfLines = 0
+        label.minimumScaleFactor = 0.1
+        label.adjustsFontSizeToFitWidth = true
         return label
     }
     

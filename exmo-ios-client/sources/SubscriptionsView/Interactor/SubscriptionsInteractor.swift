@@ -7,12 +7,46 @@ import Foundation
 
 class SubscriptionsInteractor {
     weak var output: SubscriptionsInteractorOutput!
+    
+    static func buildSubcsriptionCells(priceForLite strPriceLite: String, priceForPro strPricePro: String) -> [SubscriptionsCellModel] {
+        return [
+            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25),
+            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50),
+            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false),
+            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true),
+            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true),
+            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false),
+            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro)
+        ]
+    }
 }
 
 // MARK: SubscriptionsInteractorInput
 extension SubscriptionsInteractor: SubscriptionsInteractorInput {
     func viewDidLoad() {
         subscribeOnIAPEvents()
+    }
+    
+    func fetchSubscriptions() {
+        IAPService.shared.fetchProducts(completionOnSuccess: {
+            [weak self] products in
+            var priceForLite: String = "$0.99"
+            var priceForPro: String = "$9.99"
+            
+            products.forEach({
+                switch $0.productIdentifier {
+                case IAPProduct.litePackage.rawValue: priceForLite = $0.localizedPrice ?? "$0.99"
+                case IAPProduct.proPackage.rawValue: priceForPro = $0.localizedPrice ?? "$9.99"
+                default: break
+                }
+            })
+            
+            let items = SubscriptionsInteractor.buildSubcsriptionCells(priceForLite: priceForLite, priceForPro: priceForPro)
+            self?.output.setSubscriptionItems(with: items)
+        }, completionOnError: {
+            [weak self] msg in
+            self?.output.showError(msg: msg ?? "Undefined error")
+        })
     }
 
     func viewWillDisappear() {

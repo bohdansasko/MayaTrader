@@ -15,6 +15,10 @@ extension SubscriptionsPresenter: SubscriptionsViewOutput {
     func viewDidLoad() {
         interactor.viewDidLoad()
     }
+    
+    func viewWillAppear() {
+        interactor.fetchSubscriptions()
+    }
 
     func viewWillDisappear() {
         interactor.viewWillDisappear()
@@ -44,5 +48,13 @@ extension SubscriptionsPresenter: SubscriptionsInteractorOutput {
 
     func onPurchaseSubscriptionError(reason: String) {
         view.showAlert(msg: reason)
+    }
+    
+    func setSubscriptionItems(with items: [SubscriptionsCellModel]) {
+        view.updateTable(with: items)
+    }
+    
+    func showError(msg: String) {
+        view.showAlert(msg: msg)
     }
 }

@@ -31,16 +31,6 @@ class SubscriptionsViewController: ExmoUIViewController {
         button.setImage(icon, for: .normal)
         return button
     }()
-
-    let items: [SubscriptionsCellModel] = [
-        SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25),
-        SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50),
-        SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false),
-        SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true),
-        SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true),
-        SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: "$0.99", forPro: false),
-        SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: "$9.99")
-    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +38,12 @@ class SubscriptionsViewController: ExmoUIViewController {
         output.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        showLoader()
+        output.viewWillAppear()
+    }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         output.viewWillDisappear()
@@ -58,6 +54,11 @@ extension SubscriptionsViewController: SubscriptionsViewInput {
     func showAlert(msg: String) {
         hideLoader()
         showOkAlert(title: titleNavBar!, message: msg, onTapOkButton: nil)
+    }
+    
+    func updateTable(with items: [SubscriptionsCellModel]) {
+        hideLoader()
+        subscriptionsView.datasource = SubscriptionsDatasource(items: items)
     }
 }
 
@@ -145,7 +146,7 @@ extension SubscriptionsViewController {
             bottomConstant: 0, rightConstant: 0,
             widthConstant: 0, heightConstant: 310)
 
-        subscriptionsView.datasource = SubscriptionsDatasource(items: items)
+        subscriptionsView.datasource = SubscriptionsDatasource(items: [])
     }
     
     func setupManageSubscriptionsButtons() {
