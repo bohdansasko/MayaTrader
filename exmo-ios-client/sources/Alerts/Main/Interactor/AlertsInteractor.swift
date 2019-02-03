@@ -60,6 +60,10 @@ extension AlertsInteractor: AlertsInteractorInput {
 
 // MARK: VinsoAPIConnectionDelegate
 extension AlertsInteractor: VinsoAPIConnectionDelegate {
+    func onAuthorization() {
+        loadAlerts()
+    }
+    
     func onConnectionRefused(reason: String) {
         if isViewActive {
             output.onDidLoadAlertsHistory([])

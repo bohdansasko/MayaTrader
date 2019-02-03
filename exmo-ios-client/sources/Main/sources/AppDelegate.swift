@@ -73,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: handle connection to Vinso Server
 extension AppDelegate: VinsoAPIConnectionDelegate  {
-    func onDidLogin() {
+    func onAuthorization() {
         if let apnsDeviceToken = KeychainSwift().get(KeychainDefaultKeys.apnsDeviceToken.rawValue) {
             AppDelegate.vinsoAPI.registerAPNSDeviceToken(apnsDeviceToken)
         }

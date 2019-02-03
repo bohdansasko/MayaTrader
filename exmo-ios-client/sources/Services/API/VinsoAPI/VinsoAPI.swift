@@ -42,7 +42,7 @@ class VinsoAPI {
         didSet {
             if isAuthorized {
                 AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.subscriptionPackage.type)
-                connectionObservers.forEach({ $0.value.observer?.onDidLogin() })
+                connectionObservers.forEach({ $0.value.observer?.onAuthorization() })
             }
         }
     }
@@ -61,8 +61,8 @@ class VinsoAPI {
         print("Init socket with url \(endpointUrl)")
         socketManager = SocketManager(serverURL: endpointUrl)
         socketManager.callbackOnOpen = {
-            [weak self] in
-            self?.login()
+            [] in
+            print("\(#function) => socket has opened")
         }
         socketManager.callbackOnClose = {
             [weak self] _, reason, _ in
@@ -110,6 +110,9 @@ extension VinsoAPI {
         }
 
         switch requestType {
+        case ServerMessage.connect:
+            login()
+            print("Vinso: Connect succeed")
         case ServerMessage.authorization:
             isAuthorized = true
             print("Vinso: Authorization succeed")

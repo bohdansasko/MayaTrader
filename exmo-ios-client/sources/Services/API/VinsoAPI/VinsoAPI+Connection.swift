@@ -11,11 +11,13 @@ struct ConnectionObservation {
 
 extension VinsoAPI {
     func establishConnect() {
+        if isAuthorized { return }
         print("\(String(describing: self)) => establish connect")
         socketManager.connect(message: AccountApiRequestBuilder.buildConnectRequest())
     }
 
     func disconnect() {
+        isAuthorized = false
         print("\(String(describing: self)) => disconnect")
         socketManager.disconnect()
     }
@@ -39,7 +41,7 @@ extension VinsoAPI {
     }
 
     func onSocketClose(reason: String) {
-        self.isAuthorized = false
+        isAuthorized = false
         connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Your connection was interrupted. Please, try again through a few minutes or write us.") })
     }
 

@@ -34,6 +34,7 @@ class IAPService: NSObject {
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
     private(set) var subscriptionPackage: ISubscriptionPackage! {
         didSet {
+            print("\(#function) - Active subscription: \(subscriptionPackage.name)")
             Defaults.setSubscriptionId(subscriptionPackage.type.rawValue)
         }
     }
