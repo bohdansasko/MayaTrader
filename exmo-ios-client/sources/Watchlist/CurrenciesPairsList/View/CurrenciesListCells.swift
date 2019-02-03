@@ -181,6 +181,8 @@ class CurrenciesListCell: ExmoCollectionCell {
         label.font = UIFont.getExo2Font(fontType: .medium, fontSize: 11)
         label.textAlignment = .left
         label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.1
         return label
     }()
     

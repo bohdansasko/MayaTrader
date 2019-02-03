@@ -24,7 +24,7 @@ class AlertsListView: UIView {
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
         img.imageName = "imgTutorialAlert"
-        img.offsetByY = -60
+        img.contentMode = .scaleAspectFit
         return img
     }()
 
@@ -163,7 +163,11 @@ extension AlertsListView {
 extension AlertsListView {
     func setupTutorialImg() {
         self.addSubview(tutorialImg)
-        tutorialImg.anchorCenterSuperview()
+        tutorialImg.anchor(topAnchor, left: leftAnchor,
+                           bottom: bottomAnchor, right: rightAnchor,
+                           topConstant: 10, leftConstant: 10,
+                           bottomConstant: 20, rightConstant: 10,
+                           widthConstant: 0, heightConstant: 0)
     }
 
     func setupTableView() {

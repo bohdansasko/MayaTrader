@@ -24,8 +24,7 @@ class TutorialImage: UIView {
         if tutorialImgView.superview == nil && imageName != nil {
             addSubview(tutorialImgView)
             tutorialImgView.image = UIImage(named: imageName!)
-            tutorialImgView.anchorCenterXToSuperview()
-            tutorialImgView.anchorCenterYToSuperview(constant: offsetByY)
+            tutorialImgView.fillSuperview()
         }
         tutorialImgView.isHidden = false
     }

@@ -38,6 +38,7 @@ class WalletTableCurrenciesView: UIView {
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
         img.imageName = "imgTutorialWallet"
+        img.contentMode = .scaleAspectFit
         return img
     }()
 
@@ -45,9 +46,8 @@ class WalletTableCurrenciesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-        setupTutorialImg()
         setupTableView()
+        setupTutorialImg()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,8 +55,12 @@ class WalletTableCurrenciesView: UIView {
     }
 
     func setupTutorialImg() {
-        self.addSubview(tutorialImg)
-        tutorialImg.anchorCenterSuperview()
+        addSubview(tutorialImg)
+        tutorialImg.anchor(topAnchor, left: leftAnchor,
+                           bottom: bottomAnchor, right: rightAnchor,
+                           topConstant: 45, leftConstant: 0,
+                           bottomConstant: 20, rightConstant: 0,
+                           widthConstant: 0, heightConstant: 0)
     }
 
     func setupTableView() {

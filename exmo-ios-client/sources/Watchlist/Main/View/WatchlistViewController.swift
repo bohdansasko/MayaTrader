@@ -32,7 +32,7 @@ class WatchlistViewController: ExmoUIViewController {
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
         img.imageName = "imgTutorialWatchlist"
-        img.offsetByY = -60
+        img.contentMode = .scaleAspectFit
         return img
     }()
 
@@ -135,14 +135,18 @@ extension WatchlistViewController: WatchlistViewInput {
 extension WatchlistViewController {
     func setupViews() {
         setupNavigationBar()
-        setupListView()
         setupTutorialImg()
+        setupListView()
         setupBannerView()
     }
 
     func setupTutorialImg() {
         view.addSubview(tutorialImg)
-        tutorialImg.anchorCenterSuperview()
+        tutorialImg.anchor(view.layoutMarginsGuide.topAnchor, left: view.layoutMarginsGuide.leftAnchor,
+                           bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor,
+                           topConstant: 10, leftConstant: 0,
+                           bottomConstant: 20, rightConstant: 0,
+                           widthConstant: 0, heightConstant: 0)
     }
 
     private func setupListView() {
