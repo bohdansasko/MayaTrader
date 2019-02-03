@@ -9,6 +9,6 @@
 import UIKit
 
 protocol WatchlistCurrencyChartRouterInput {
-    func showViewAddAlert(_ viewController: UIViewController)
-    func showViewAddOrder(_ viewController: UIViewController)
+    func showViewAddAlert(_ viewController: UIViewController, pair: String)
+    func showViewAddOrder(_ viewController: UIViewController, pair: String)
 }

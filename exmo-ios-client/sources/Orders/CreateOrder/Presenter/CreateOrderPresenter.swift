@@ -16,8 +16,8 @@ class CreateOrderPresenter  {
 
 // MARK: CreateOrderViewOutput
 extension CreateOrderPresenter: CreateOrderViewOutput {
-    func viewIsReady() {
-        interactor.viewIsReady()
+    func viewDidLoad() {
+        interactor.viewDidLoad()
     }
     
     func viewWillDisappear() {
@@ -25,7 +25,7 @@ extension CreateOrderPresenter: CreateOrderViewOutput {
     }
     
     func onTabChanged() {
-        interactor.viewWillDisappear()
+        interactor.updateSelectedCurrency()
     }
 
     func createOrder(orderModel: OrderModel) {
@@ -48,15 +48,16 @@ extension CreateOrderPresenter: CreateOrderViewOutput {
 // MARK: CreateOrderInteractorOutput
 extension CreateOrderPresenter: CreateOrderInteractorOutput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
-        self.view.updateSelectedCurrency(tickerCurrencyPair)
+        print("\(#function) => presenter")
+        view.updateSelectedCurrency(tickerCurrencyPair)
     }
 
     func closeView() {
-        self.handleTouchOnCancelButton()
+        handleTouchOnCancelButton()
     }
 
     func setOrderSettings(orderSettings: OrderSettings) {
-        self.view.setOrderSettings(orderSettings: orderSettings)
+        view.setOrderSettings(orderSettings: orderSettings)
     }
     
     func onCreateOrderSuccessull() {

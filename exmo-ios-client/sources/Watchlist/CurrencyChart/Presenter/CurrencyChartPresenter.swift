@@ -31,15 +31,15 @@ extension WatchlistCurrencyChartPresenter: CurrencyChartViewOutput {
         interactor.loadCurrencyPairChartHistory(currencyPair: currencyPair, period: period)
     }
 
-    func onTouchAddAlert() {
+    func onTouchAddAlert(pair: String) {
         if let vc = view as? UIViewController {
-            router.showViewAddAlert(vc)
+            router.showViewAddAlert(vc, pair: pair)
         }
     }
 
-    func onTouchAddOrder() {
+    func onTouchAddOrder(pair: String) {
         if let vc = view as? UIViewController {
-            router.showViewAddOrder(vc)
+            router.showViewAddOrder(vc, pair: pair)
         }
     }
 }

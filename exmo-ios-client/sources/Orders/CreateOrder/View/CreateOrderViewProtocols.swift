@@ -14,7 +14,7 @@ protocol CreateOrderViewInput: class {
 }
 
 protocol CreateOrderViewOutput: class {
-    func viewIsReady()
+    func viewDidLoad()
     func viewWillDisappear()
     func onTabChanged()
     func createOrder(orderModel: OrderModel)

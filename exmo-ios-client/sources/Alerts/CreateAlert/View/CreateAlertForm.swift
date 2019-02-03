@@ -79,20 +79,11 @@ class FormCreateAlert {
         descriptionItem.value = description
         descriptionItem.uiProperties.cellType = .textField
         
-        let switchItem = SwitchFormItem(title: "IS PERSISTENT")
-        switchItem.onChange = {
-            [weak self, weak switchItem] value in
-            self?.isPersistent = value
-            switchItem?.value = value
-        }
-        switchItem.value = isPersistent
-        switchItem.uiProperties.cellType = .switcher
-        
         let buttonItem = ButtonFormItem(title: currencyPair == nil ? "CREATE" : "UPDATE")
         buttonItem.onTouch = onTouchButtonCreate
         buttonItem.uiProperties.cellType = .button
         
-        cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, descriptionItem, switchItem, buttonItem]
+        cellItems = [currencyPairItem, upperBoundItem, bottomBoundItem, descriptionItem, buttonItem]
     }
     
     private func updateCurrenciesPlaceholders() {

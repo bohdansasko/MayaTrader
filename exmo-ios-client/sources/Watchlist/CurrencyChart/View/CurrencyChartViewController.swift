@@ -184,12 +184,12 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
     
     @objc
     func onTouchAddAlertButton(_ senderButton: UIButton) {
-        output.onTouchAddAlert()
+        output.onTouchAddAlert(pair: currencyPair)
     }
 
     @objc
     func onTouchAddOrderButton(_ senderButton: UIButton) {
-        output.onTouchAddOrder()
+        output.onTouchAddOrder(pair: currencyPair)
     }
     
     func updateChart(chartData: ExmoChartData?) {

@@ -9,10 +9,11 @@
 import Foundation
 
 protocol CreateOrderInteractorInput {
-    func viewIsReady()
+    func viewDidLoad()
     func viewWillDisappear()
     func createOrder(orderModel: OrderModel)
     func handleSelectedCurrency(rawName: String)
+    func updateSelectedCurrency()
 }
 
 protocol CreateOrderInteractorOutput: class {

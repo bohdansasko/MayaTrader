@@ -8,6 +8,6 @@ protocol CurrencyChartViewOutput {
 
     func loadChartData(currencyPair: String, period: String)
 
-    func onTouchAddAlert()
-    func onTouchAddOrder()
+    func onTouchAddAlert(pair: String)
+    func onTouchAddOrder(pair: String)
 }

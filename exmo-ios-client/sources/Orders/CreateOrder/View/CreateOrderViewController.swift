@@ -30,7 +30,7 @@ class CreateOrderViewController: ExmoUIViewController {
         return button
     }()
     
-    var segmentControlView: UISegmentedControl = {
+    var tabsControlView: UISegmentedControl = {
         let sc = UISegmentedControl(items: ["Limit", "On amount", "On sum"])
         sc.tintColor = .dodgerBlue
         sc.setTitleTextAttributes([
@@ -47,7 +47,7 @@ class CreateOrderViewController: ExmoUIViewController {
         super.viewDidLoad()
         
         setupViews()
-        output.viewIsReady()
+        output.viewDidLoad()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,13 +55,15 @@ class CreateOrderViewController: ExmoUIViewController {
         output.viewWillDisappear()
     }
     
-    @objc func onSegmentChanged(_ sender: Any) {
-        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .limit
+    @objc
+    func onTabChanged(_ sender: Any) {
+        let layoutType = CreateOrderDisplayType(rawValue: tabsControlView.selectedSegmentIndex) ?? .limit
         cellsLayoutView.layoutType = layoutType
         output.onTabChanged()
     }
     
-    @objc private func hideKeyboard() {
+    @objc
+    func hideKeyboard() {
         view.endEditing(true)
     }
     
@@ -71,7 +73,7 @@ class CreateOrderViewController: ExmoUIViewController {
     
     override func setTouchEnabled(_ isTouchEnabled: Bool) {
         super.setTouchEnabled(isTouchEnabled)
-        segmentControlView.isUserInteractionEnabled = isTouchEnabled
+        tabsControlView.isUserInteractionEnabled = isTouchEnabled
     }
 }
 
@@ -94,7 +96,7 @@ extension CreateOrderViewController: CreateOrderViewInput {
     func onCreateOrderSuccessull() {
         hideLoader()
         
-        let layoutType = CreateOrderDisplayType(rawValue: segmentControlView.selectedSegmentIndex) ?? .limit
+        let layoutType = CreateOrderDisplayType(rawValue: tabsControlView.selectedSegmentIndex) ?? .limit
         cellsLayoutView.layoutType = layoutType
         
         showOkAlert(title: "Create order", message: "Order has been created successfully", onTapOkButton: nil)
@@ -107,8 +109,8 @@ extension CreateOrderViewController {
         setupSegmentControlView()
         setupCellsLayout()
         
-        segmentControlView.selectedSegmentIndex = 0
-        segmentControlView.sendActions(for: .valueChanged)
+        tabsControlView.selectedSegmentIndex = 0
+        tabsControlView.sendActions(for: .valueChanged)
         
         // for hide keyboard on touch background
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -120,7 +122,7 @@ extension CreateOrderViewController {
         view.addSubview(cellsLayoutView)
         cellsLayoutView.output = output
         cellsLayoutView.parentVC = self
-        cellsLayoutView.anchor(segmentControlView.bottomAnchor, left: view.leftAnchor,
+        cellsLayoutView.anchor(tabsControlView.bottomAnchor, left: view.leftAnchor,
                                bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor,
                                topConstant: 10, leftConstant: 0,
                                bottomConstant: 0, rightConstant: 0,
@@ -128,14 +130,14 @@ extension CreateOrderViewController {
     }
     
     private func setupSegmentControlView() {
-        view.addSubview(segmentControlView)
-        segmentControlView.addTarget(self, action: #selector(onSegmentChanged(_:)), for: .valueChanged)
-        segmentControlView.anchor(titleLabel.bottomAnchor, left: view.leftAnchor,
+        view.addSubview(tabsControlView)
+        tabsControlView.addTarget(self, action: #selector(onTabChanged(_:)), for: .valueChanged)
+        tabsControlView.anchor(titleLabel.bottomAnchor, left: view.leftAnchor,
                                   bottom: nil, right: view.rightAnchor,
                                   topConstant: 15, leftConstant: 30,
                                   bottomConstant: 0, rightConstant: 30,
                                   widthConstant: 0, heightConstant: 30)
-        segmentControlView.anchorCenterXToSuperview()
+        tabsControlView.anchorCenterXToSuperview()
     }
 
 }
@@ -165,7 +167,8 @@ extension CreateOrderViewController {
                             widthConstant: 70, heightConstant: 25)
     }
     
-    @objc func onTouchAddCurrencyPairsBtn(_ sender: Any) {
+    @objc
+    func onTouchAddCurrencyPairsBtn(_ sender: Any) {
         output.handleTouchOnCancelButton()
     }
 }

@@ -41,8 +41,11 @@ class FormCreateOrderLimit: FormTabCreateOrder {
         cellButton.onChangeTouchState?(isTouchEnabled)
     }
 
-        func clearFields() {
-        cellItems.forEach({ $0.clear() })
+    func clearFields() {
+        cellItems.forEach({
+            if $0.uiProperties.cellType == .currencyDetails { return }
+            $0.clear()
+        })
         currencyPair = nil
         quantity = nil
         price = nil

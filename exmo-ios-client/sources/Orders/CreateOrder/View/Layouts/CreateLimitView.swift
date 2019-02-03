@@ -38,7 +38,7 @@ class CreateOrderLimitView: UIView {
 
     var selectedCurrency: TickerCurrencyModel? {
         didSet {
-            print("did set selectedCurrency")
+            print("CreateOrderLimitView => did set currency \(selectedCurrency?.code)")
             guard let currency = selectedCurrency else {
                 print("currency == nil")
                 updateSelectedCurrency(name: "", price: 0)
@@ -52,7 +52,6 @@ class CreateOrderLimitView: UIView {
         didSet {
             cells.removeAll()
             orderType = .buy
-            selectedCurrency = nil
             updateLayout(layoutType)
             
             parentVC.hideLoader()
@@ -97,7 +96,16 @@ extension CreateOrderLimitView {
     }
     
     func updateSelectedCurrency(name: String, price: Double) {
-        guard let cell = cells[IndexPath(row: 0, section: 0)] as? CurrencyDetailsCell else { return }
+        guard let cell = cells[IndexPath(row: 0, section: 0)] as? CurrencyDetailsCell else {
+            print("\(#function) => cell haven't found")
+            guard let item = form.tabs[layoutType.rawValue].cellItems[0] as? CurrencyDetailsItem else {
+                print("\(#function) => fail cast to CurrencyDetailsItem")
+                return
+            }
+            item.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: name)
+            item.rightValue = Utils.getFormatedPrice(value: price, maxFractDigits: 9)
+            return
+        }
         let formItem = cell.formItem
         formItem?.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: name)
         formItem?.rightValue = Utils.getFormatedPrice(value: price, maxFractDigits: 9)

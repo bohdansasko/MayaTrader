@@ -12,18 +12,26 @@ class CreateOrderInteractor {
     var networkWorker: ITickerNetworkWorker!
     var ordersNetworkWorker: IOrdersNetworkWorker!
     private var currencyPairCode: String = ""
+    var viewIsReady = false
+    var selectedPair: TickerCurrencyModel?
 }
 
 // MARK: CreateOrderInteractorInput
 extension CreateOrderInteractor: CreateOrderInteractorInput {
-    func viewIsReady() {
+    func viewDidLoad() {
         networkWorker.delegate = self
         ordersNetworkWorker.delegate = self
+        viewIsReady = true
+        handleSelectedCurrency(rawName: currencyPairCode)
     }
     
     func viewWillDisappear() {
-        currencyPairCode = ""
         networkWorker.cancelRepeatLoads()
+    }
+    
+    func updateSelectedCurrency() {
+        print(#function)
+        output.updateSelectedCurrency(selectedPair)
     }
     
     func createOrder(orderModel: OrderModel) {
@@ -33,7 +41,12 @@ extension CreateOrderInteractor: CreateOrderInteractorInput {
     }
     
     func handleSelectedCurrency(rawName: String) {
+        if rawName.isEmpty { return }
+
         currencyPairCode = rawName
+
+        if !viewIsReady { return }
+
         networkWorker.load(timeout: FrequencyUpdateInSec.createOrder, repeat: true)
         networkWorker.load()
     }
@@ -48,7 +61,8 @@ extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
                 output.showAlert(message: "Something went wrong.")
                 return
         }
-        self.output.updateSelectedCurrency(currencyPairModel)
+        selectedPair = currencyPairModel
+        output.updateSelectedCurrency(selectedPair)
     }
     
     func onDidLoadTickerFails() {

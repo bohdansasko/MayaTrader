@@ -19,6 +19,9 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     func viewIsReady() {
         tickerNetworkWorker.delegate = self
         AppDelegate.vinsoAPI.addAlertsObserver(self)
+        if !currencyPairCode.isEmpty {
+            handleSelectedCurrency(rawName: currencyPairCode)
+        }
     }
     
     func viewWillDisappear() {
