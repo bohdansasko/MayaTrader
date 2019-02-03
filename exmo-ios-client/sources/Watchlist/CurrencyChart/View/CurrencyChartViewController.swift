@@ -9,9 +9,7 @@
 import UIKit
 import Charts
 
-//
 // MARK: ChartTimePeriodContainer
-//
 class ChartTimePeriodContainer: UIView {
     enum PeriodType: String {
         case year  = "year"
@@ -61,22 +59,21 @@ class ChartTimePeriodContainer: UIView {
 
         senderBtn.setTitleColor(UIColor(red: 118.0/255, green: 184.0/255, blue: 254.0/255, alpha: 1), for: .normal)
 
+        print("senderBtn.x = \(senderBtn.frame.origin.x)")
+        indicatorLeadingConstraint.constant = senderBtn.frame.origin.x + 30
+        
         switch (senderBtn) {
         case btnOneYear:
             print("touch on year")
-            indicatorLeadingConstraint.constant = btnOneYear.frame.origin.x + 30
             callbackOnChangePeriod?(PeriodType.year.rawValue)
         case btnOneMonth:
             print("touch on month")
-            indicatorLeadingConstraint.constant = btnOneMonth.frame.origin.x + 30
             callbackOnChangePeriod?(PeriodType.month.rawValue)
         case btnOneWeek:
             print("touch on week")
-            indicatorLeadingConstraint.constant = btnOneWeek.frame.origin.x + 30
             callbackOnChangePeriod?(PeriodType.week.rawValue)
         case btnOneDay:
             print("touch on day")
-            indicatorLeadingConstraint.constant = btnOneDay.frame.origin.x + 30
             callbackOnChangePeriod?(PeriodType.day.rawValue)
         default:
             break
@@ -85,9 +82,7 @@ class ChartTimePeriodContainer: UIView {
     }
 }
 
-//
 // MARK: CurrencyChartViewController
-//
 class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput {
     @IBOutlet weak var candleShortInfoView: CandleBarChartShortInfoView!
     @IBOutlet weak var candleChart: CandleStickChartView!
@@ -115,6 +110,10 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output.viewWillAppear()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         periodViewController.emitTouch(periodType: .week)
     }
 
