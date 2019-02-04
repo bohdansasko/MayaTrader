@@ -25,7 +25,7 @@ class PasscodeViewController: ExmoUIViewController {
         
         var description: String? {
             switch self {
-            case .lock: return "To enable the Security please choose a 4-digit code"
+            case .lock: return "To enable the Security please set a 4-digit code"
             case .confirmLock: return "Please confirm your 4-digit code"
             case .unlock: return "Enter EXMobile passcode"
             }
