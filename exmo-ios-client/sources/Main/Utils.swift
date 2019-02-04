@@ -40,6 +40,25 @@ class Utils {
         return String(value)
     }
 
+    static func getJSONFormattedNumb(from value: String) -> Double {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.groupingSeparator = ","
+        formatter.minimumIntegerDigits = 1
+        formatter.maximumFractionDigits = 10
+
+        formatter.decimalSeparator = "."
+        if let n = formatter.number(from: value)?.doubleValue {
+            return n
+        } else {
+            formatter.decimalSeparator = ","
+            if let n = formatter.number(from: value)?.doubleValue {
+                return n
+            }
+            return 0.0
+        }
+    }
+
     static func getDisplayCurrencyPair(rawCurrencyPairName: String) -> String {
         return rawCurrencyPairName.replacingOccurrences(of: "_", with: "/")
     }
