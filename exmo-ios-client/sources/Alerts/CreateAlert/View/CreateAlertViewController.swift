@@ -66,8 +66,8 @@ class CreateAlertViewController: ExmoUIViewController {
         }
 
         let rawCurrencyPairName = Utils.getRawCurrencyPairName(name: currencyPair)
-        let topBound: Double? = form.topBound != nil ? Double(form.topBound!) : nil
-        let bottomBound: Double? = form.bottomBound != nil ? Double(form.bottomBound!) : nil
+        let topBound: Double? = form.topBound != nil ? Utils.getJSONFormattedNumb(from: form.topBound!) : nil
+        let bottomBound: Double? = form.bottomBound != nil ? Utils.getJSONFormattedNumb(from: form.bottomBound!) : nil
         let priceAtCreateMoment = selectedPair?.lastTrade ?? editAlert?.priceAtCreateMoment ?? 0
         let alert = Alert(
                 id: editAlert?.id ?? 0,
