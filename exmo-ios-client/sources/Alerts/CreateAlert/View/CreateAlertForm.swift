@@ -52,7 +52,7 @@ class FormCreateAlert {
         currencyPairItem.leftValue = currencyPair
         currencyPairItem.uiProperties.cellType = .currencyDetails
         
-        let upperBoundItem = FloatingNumberFormItem(title: "UPPER BOUND", placeholder1: "0", placeholder2: " USD")
+        let upperBoundItem = FloatingNumberFormItem(title: "HIGHER VALUE", placeholder1: "0", placeholder2: " USD")
         upperBoundItem.valueCompletion = {
             [weak self, weak upperBoundItem] value in
             self?.topBound = value
@@ -61,7 +61,7 @@ class FormCreateAlert {
         upperBoundItem.value = topBound
         upperBoundItem.uiProperties.cellType = .floatingNumberTextField
         
-        let bottomBoundItem = FloatingNumberFormItem(title: "BOTTOM BOUND", placeholder1: "0", placeholder2: " USD")
+        let bottomBoundItem = FloatingNumberFormItem(title: "LOWER VALUE", placeholder1: "0", placeholder2: " USD")
         bottomBoundItem.valueCompletion = {
             [weak self, weak bottomBoundItem] value in
             self?.bottomBound = value
