@@ -101,7 +101,7 @@ enum MenuCellType {
         case .facebook: return "Facebook"
 
         case .rateUs: return "Rate us"
-        case .shareApp: return "Share app"
+        case .shareApp: return "Share App"
         case .appVersion: return "App version"
         }
     }
