@@ -5,9 +5,10 @@ target 'exmo-ios-client' do
   use_frameworks!
   
   # Crashlytics
-  pod 'Fabric'
-  pod 'Crashlytics'
-
+  pod 'Firebase/Core'
+  pod 'Fabric', '~> 1.9.0'
+  pod 'Crashlytics', '~> 3.12.0'
+  
   # JSON to Object and vice-versa
   pod 'ObjectMapper', '~> 3.1'
   pod 'SwiftyJSON'

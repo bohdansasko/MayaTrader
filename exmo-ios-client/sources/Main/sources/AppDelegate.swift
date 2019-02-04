@@ -8,8 +8,6 @@
 
 import UIKit
 import CoreData
-import Fabric
-import Crashlytics
 import Firebase
 import UserNotifications
 import KeychainSwift
@@ -36,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate.vinsoAPI.addConnectionObserver(self)
         IAPService.shared.completeTransactions()
 
-        setupFabric()
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
+        
         setupAdMob()
         setupWindow()
         registerForRemoteNotifications()
@@ -142,15 +142,8 @@ extension AppDelegate {
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
     }
-    
-    func setupFabric() {
-        Fabric.with([Crashlytics.self])
-    }
 
     func setupAdMob() {
-        // Use Firebase library to configure APIs
-        FirebaseApp.configure()
-        
         // Use Firebase library to configure APIs
         if let url = Bundle.main.url(forResource: AdvertisingValues.googleConfigPlist.rawValue, withExtension: AdvertisingValues.googleConfigExt.rawValue),
             let myDict = NSDictionary(contentsOf: url) as? [String:Any] {
