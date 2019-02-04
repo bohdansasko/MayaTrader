@@ -54,8 +54,8 @@ class OrdersListView: UIView {
     var openedOrders: Orders? {
         didSet { displayOrderType = .open }
     }
-    var canceledOrders: Orders? {
-        didSet { displayOrderType = .canceled }
+    var cancelledOrders: Orders? {
+        didSet { displayOrderType = .cancelled }
     }
     var dealsOrders: Orders? {
         didSet { displayOrderType = .deals }
@@ -90,7 +90,7 @@ class OrdersListView: UIView {
     private func getDataBySegmentIndex(displayOrderType: Orders.DisplayType) -> Orders? {
         switch displayOrderType {
             case .open: return openedOrders
-            case .canceled: return canceledOrders
+            case .cancelled: return cancelledOrders
             default: return dealsOrders
         }
     }
@@ -209,19 +209,19 @@ extension OrdersListView {
         presenter.cancelOrder(ids: ids)
     }
     
-    func orderWasCanceled(ids: [Int64]) {
+    func orderWasCancelled(ids: [Int64]) {
         for id in ids {
             guard let indexPath = tableViewCells[id] else {
-                print("OrdersListView => orderWasCanceled: can't find cell with id \(id) for remove from \(tableViewCells)")
+                print("OrdersListView => orderWasCancelled: can't find cell with id \(id) for remove from \(tableViewCells)")
                 continue
             }
             dataProvider.removeItem(byIndex: indexPath.section)
             tableViewCells.removeValue(forKey: id)
         }
 
-        print("OrdersListView => orderWasCanceled: \(tableViewCells)")
+        print("OrdersListView => orderWasCancelled: \(tableViewCells)")
 
-        print("orderWasCanceled => reload data")
+        print("orderWasCancelled => reload data")
         tableView.reloadData()
 
         checkOnRequirePlaceHolder()
@@ -236,8 +236,8 @@ extension OrdersListView {
         case .open:
             tutorialImg.show()
             placeholderNoData.text = nil
-        case .canceled:
-            placeholderNoData.text = "You haven't canceled orders right now"
+        case .cancelled:
+            placeholderNoData.text = "You haven't cancelled orders right now"
         case .deals:
             placeholderNoData.text = "You haven't deals orders right now"
         default: break

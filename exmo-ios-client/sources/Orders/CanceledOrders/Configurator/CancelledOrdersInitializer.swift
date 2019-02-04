@@ -1,5 +1,5 @@
 //
-//  CanceledOrdersCanceledOrdersInitializer.swift
+//  CancelledOrdersCancelledOrdersInitializer.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 25/03/2018.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-class CanceledOrdersModuleInitializer: NSObject {
+class CancelledOrdersModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    @IBOutlet weak var cancelledordersViewController: CanceledOrdersViewController!
+    @IBOutlet weak var cancelledordersViewController: CancelledOrdersViewController!
 
     override func awakeFromNib() {
 
-        let configurator = CanceledOrdersModuleConfigurator()
+        let configurator = CancelledOrdersModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: cancelledordersViewController)
     }
 

@@ -1,5 +1,5 @@
 //
-//  CanceledOrdersCanceledOrdersInteractorInput.swift
+//  CancelledOrdersCancelledOrdersInteractorInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 25/03/2018.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CanceledOrdersInteractorInput {
+protocol CancelledOrdersInteractorInput {
 
 }

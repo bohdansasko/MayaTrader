@@ -15,7 +15,7 @@ protocol ITickerNetworkWorkerDelegate: class {
 
 protocol ITickerNetworkWorker: class {
     var delegate: ITickerNetworkWorkerDelegate? { get set }
-    var isLoadCanceled: Bool {get}
+    var isLoadCancelled: Bool {get}
 
     func load()
     func load(timeout: Double, repeat: Bool)

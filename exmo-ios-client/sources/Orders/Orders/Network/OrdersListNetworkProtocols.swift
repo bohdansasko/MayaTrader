@@ -12,8 +12,8 @@ protocol IOrdersListNetworkWorkerDelegate: class {
     func onDidLoadSuccessOpenOrders(orders: Orders)
     func onDidLoadFailsOpenOrders(orders: Orders)
     
-    func onDidLoadSuccessCanceledOrders(orders: Orders)
-    func onDidLoadFailsCanceledOrders(orders: Orders)
+    func onDidLoadSuccessCancelledOrders(orders: Orders)
+    func onDidLoadFailsCancelledOrders(orders: Orders)
     
     func onDidLoadSuccessDeals(orders: Orders)
     func onDidLoadFailsDeals(orders: Orders)
@@ -28,7 +28,7 @@ protocol IOrdersListNetworkWorker {
     
     func loadAllOrders()
     func loadOpenOrders()
-    func loadCanceledOrders()
+    func loadCancelledOrders()
     func loadDeals()
     
     func cancelOrder(id: Int64)

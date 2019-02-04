@@ -1,5 +1,5 @@
 //
-//  CanceledOrdersCanceledOrdersViewController.swift
+//  CancelledOrdersViewController.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 25/03/2018.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class CanceledOrdersViewController: UIViewController, CanceledOrdersViewInput {
+class CancelledOrdersViewController: UIViewController, CancelledOrdersViewInput {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var output: CanceledOrdersViewOutput!
+    var output: CancelledOrdersViewOutput!
     var displayManager: OrdersDisplayManager!
     
     // MARK: Life cycle

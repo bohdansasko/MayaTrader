@@ -16,7 +16,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     
     func loadAllOrders() {
         loadOpenOrders()
-        loadCanceledOrders()
+        loadCancelledOrders()
         loadDeals()
     }
     
@@ -34,16 +34,16 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         }
     }
     
-    func loadCanceledOrders() {
-        let request = ExmoApiRequestBuilder.shared.getCanceledOrdersRequest(limit: 100, offset: 0)
+    func loadCancelledOrders() {
+        let request = ExmoApiRequestBuilder.shared.getCancelledOrdersRequest(limit: 100, offset: 0)
         Alamofire.request(request).responseJSON {
             [weak self] response in
             guard let strongSelf = self else { return }
             switch response.result {
             case .success(_):
-                strongSelf.delegate?.onDidLoadSuccessCanceledOrders(orders: strongSelf.parseResponseIntoModel(response, .canceled))
+                strongSelf.delegate?.onDidLoadSuccessCancelledOrders(orders: strongSelf.parseResponseIntoModel(response, .cancelled))
             case .failure(_):
-                strongSelf.delegate?.onDidLoadFailsCanceledOrders(orders: Orders())
+                strongSelf.delegate?.onDidLoadFailsCancelledOrders(orders: Orders())
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  CanceledOrdersCanceledOrdersRouterInput.swift
+//  CancelledOrdersCancelledOrdersRouterInput.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 25/03/2018.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol CanceledOrdersRouterInput {
+protocol CancelledOrdersRouterInput {
 
 }

@@ -14,7 +14,7 @@ class Orders {
     enum DisplayType: Int {
         case none = -1
         case open = 0
-        case canceled
+        case cancelled
         case deals
     }
     
@@ -51,7 +51,7 @@ class Orders {
 
         if let ordersDictionary = json.dictionary {
             let idKey = displayType == .deals ? "trade_id" : "order_id"
-            let orderTypeKey = displayType == .canceled ? "order_type" : "type"
+            let orderTypeKey = displayType == .cancelled ? "order_type" : "type"
             let dateKey = displayType == .open ? "created" : "date"
 
             for (_, orders) in ordersDictionary {

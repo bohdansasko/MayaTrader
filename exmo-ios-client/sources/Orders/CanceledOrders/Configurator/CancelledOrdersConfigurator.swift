@@ -1,5 +1,5 @@
 //
-//  CanceledOrdersCanceledOrdersConfigurator.swift
+//  CancelledOrdersCancelledOrdersConfigurator.swift
 //  ExmoMobileClient
 //
 //  Created by TQ0oS on 25/03/2018.
@@ -8,30 +8,30 @@
 
 import UIKit
 
-class CanceledOrdersModuleConfigurator {
+class CancelledOrdersModuleConfigurator {
 
     func configureModuleForViewInput<UIViewController>(viewInput: UIViewController) {
 
-        if let viewController = viewInput as? CanceledOrdersViewController {
+        if let viewController = viewInput as? CancelledOrdersViewController {
             configure(viewController: viewController)
         }
     }
 
-    private func configure(viewController: CanceledOrdersViewController) {
+    private func configure(viewController: CancelledOrdersViewController) {
 
-        let router = CanceledOrdersRouter()
+        let router = CancelledOrdersRouter()
 
-        let presenter = CanceledOrdersPresenter()
+        let presenter = CancelledOrdersPresenter()
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = CanceledOrdersInteractor()
+        let interactor = CancelledOrdersInteractor()
         interactor.output = presenter
 
         presenter.interactor = interactor
         viewController.output = presenter
         
-        viewController.displayManager = OrdersDisplayManager(data: Session.sharedInstance.getCanceledOrders(), shouldUseActions: false)
+        viewController.displayManager = OrdersDisplayManager(data: Session.sharedInstance.getCancelledOrders(), shouldUseActions: false)
     }
 
 }

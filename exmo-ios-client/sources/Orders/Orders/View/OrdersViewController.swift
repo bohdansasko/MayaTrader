@@ -40,7 +40,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     }()
 
     var segmentControlView: UISegmentedControl = {
-        let sc = UISegmentedControl(items: ["Open", "Canceled", "Deals"])
+        let sc = UISegmentedControl(items: ["Open", "Cancelled", "Deals"])
         sc.tintColor = .dodgerBlue
         sc.selectedSegmentIndex = 0
         sc.setTitleTextAttributes([
@@ -161,7 +161,7 @@ extension OrdersViewController {
         let previousDT = ordersListView.displayOrderType
         if loadedOrders.isEmpty {
             ordersListView.openedOrders = Orders()
-            ordersListView.canceledOrders = Orders()
+            ordersListView.cancelledOrders = Orders()
             ordersListView.dealsOrders = Orders()
             ordersListView.displayOrderType = previousDT
             return
@@ -170,7 +170,7 @@ extension OrdersViewController {
         for (orderType, orders) in loadedOrders {
             switch orderType {
             case .open    : ordersListView.openedOrders = orders
-            case .canceled: ordersListView.canceledOrders = orders
+            case .cancelled: ordersListView.cancelledOrders = orders
             case .deals   : ordersListView.dealsOrders = orders
             default: break
             }
@@ -178,9 +178,9 @@ extension OrdersViewController {
         ordersListView.displayOrderType = previousDT
     }
     
-    func orderCanceled(ids: [Int64]) {
+    func orderCancelled(ids: [Int64]) {
         print("Orders: \(#function)")
-        ordersListView.orderWasCanceled(ids: ids)
+        ordersListView.orderWasCancelled(ids: ids)
         isCancellingOrdersActive = false
         segmentControlView.sendActions(for: .valueChanged)
     }

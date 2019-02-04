@@ -44,8 +44,8 @@ extension OrdersPresenter: OrdersInteractorOutput {
         view.updateOrders(loadedOrders: loadedOrders)
     }
     
-    func orderCanceled(ids: [Int64]) {
-        view.orderCanceled(ids: ids)
+    func orderCancelled(ids: [Int64]) {
+        view.orderCancelled(ids: ids)
     }
 
     func setSubscription(_ package: ISubscriptionPackage) {
