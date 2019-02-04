@@ -48,7 +48,6 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.textColor = .white
         textField.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         textField.keyboardType = .asciiCapable
-        textField.text = "K-369302d5be6ba084fde09cdad7e81b6127d240c2"
         return textField
     }()
     
@@ -69,7 +68,6 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         textField.textColor = .white
         textField.keyboardType = .asciiCapable
         textField.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
-        textField.text = "S-0468871fa277d9c7da6a402bd6c9e1810e45a913"
         return textField
     }()
 
