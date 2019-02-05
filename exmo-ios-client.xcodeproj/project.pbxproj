@@ -269,6 +269,8 @@
 		C5211D41B62E787C92F836A3 /* CreateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7083115E233EBE369D8B337 /* CreateAlertViewController.swift */; };
 		C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C8C6BAC16047D8F23A2219 /* QRScannerRouterInput.swift */; };
 		C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */; };
+		C7D7B7402209EF1800766759 /* PListFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7B73F2209EF1800766759 /* PListFile.swift */; };
+		C7D7B7422209FDA100766759 /* PListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7B7412209FDA100766759 /* PListModels.swift */; };
 		C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FEE97F75DF6C190754891B /* AlertsPresenter.swift */; };
 		CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6209D848493B699B132F6 /* CreateOrderViewController.swift */; };
 		CAB081780C816F30AA959325 /* CurrencyChartViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FE56E759B5BEA370E6D54 /* CurrencyChartViewOutput.swift */; };
@@ -578,6 +580,8 @@
 		C0AB8B6AC444A77EF176DEFC /* Pods-exmo-ios-client.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug.xcconfig"; sourceTree = "<group>"; };
 		C43709B1EFC615E75A9BE61F /* WalletCurrenciesListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListRouter.swift; sourceTree = "<group>"; };
 		C437A7929205B0B131B0F3EC /* CreateAlertInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractorProtocols.swift; sourceTree = "<group>"; };
+		C7D7B73F2209EF1800766759 /* PListFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListFile.swift; sourceTree = "<group>"; };
+		C7D7B7412209FDA100766759 /* PListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListModels.swift; sourceTree = "<group>"; };
 		C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
 		C93E280C9B9618890E1C1F17 /* SearchCurrencyPairConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairConfigurator.swift; sourceTree = "<group>"; };
 		CF3D865C40710AC9E5D921ED /* WalletViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletViewProtocols.swift; sourceTree = "<group>"; };
@@ -766,6 +770,7 @@
 				205A643121E7967C002D5482 /* Development.xcconfig */,
 				205A643221E7968C002D5482 /* QA.xcconfig */,
 				205A643321E79699002D5482 /* Production.xcconfig */,
+				C7D7B7412209FDA100766759 /* PListModels.swift */,
 			);
 			path = "exmo-ios-client";
 			sourceTree = "<group>";
@@ -991,6 +996,7 @@
 				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
 				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
 				367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */,
+				C7D7B73F2209EF1800766759 /* PListFile.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
@@ -2298,6 +2304,7 @@
 			files = (
 				20369A4421972149001D6628 /* RootTabsInteractor.swift in Sources */,
 				201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */,
+				C7D7B7402209EF1800766759 /* PListFile.swift in Sources */,
 				206BD9522074297400ADC91C /* RootTabsController.swift in Sources */,
 				20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */,
 				20A9044F21BA4B7A00718A53 /* FormCreateOrderLimit.swift in Sources */,
@@ -2322,6 +2329,7 @@
 				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
 				207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */,
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
+				C7D7B7422209FDA100766759 /* PListModels.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
 				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
