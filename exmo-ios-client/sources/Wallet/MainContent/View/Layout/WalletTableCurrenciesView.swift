@@ -27,7 +27,7 @@ class WalletTableCurrenciesView: UIView {
     var wallet: ExmoWallet? {
         didSet {
             if let w = wallet {
-                tableView.isScrollEnabled = w.balances.count > 0
+                tableView.isScrollEnabled = w.favBalances.count > 0
             }
 
             showPlaceholderIfRequired()
