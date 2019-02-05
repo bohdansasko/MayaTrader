@@ -142,10 +142,10 @@ extension WatchlistViewController {
 
     func setupTutorialImg() {
         view.addSubview(tutorialImg)
-        tutorialImg.anchor(view.layoutMarginsGuide.topAnchor, left: view.layoutMarginsGuide.leftAnchor,
-                           bottom: view.layoutMarginsGuide.bottomAnchor, right: view.layoutMarginsGuide.rightAnchor,
-                           topConstant: 10, leftConstant: 0,
-                           bottomConstant: 20, rightConstant: 0,
+        tutorialImg.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+                           bottom: view.layoutMarginsGuide.bottomAnchor, right: view.rightAnchor,
+                           topConstant: 10, leftConstant: 10,
+                           bottomConstant: 40, rightConstant: 10,
                            widthConstant: 0, heightConstant: 0)
     }
 

@@ -118,9 +118,6 @@ extension WatchlistListView {
                 widthConstant: 0, heightConstant: 0)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .black
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: spaceFromLeftOrRight, bottom: 0, right: spaceFromLeftOrRight)
-        collectionView.scrollIndicatorInsets = collectionView.contentInset
     }
 
     private func setupGestureRecognizer() {
