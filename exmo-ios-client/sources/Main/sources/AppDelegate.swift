@@ -41,7 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         setupWindow()
         registerForRemoteNotifications()
         callStoreReview()
-    
+        InternetConnectionManager.shared.listen()
+        
         return true
     }
 

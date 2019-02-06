@@ -13,7 +13,7 @@ class RootTabsController: UITabBarController {
     
     var isApplicationWasInForeground = true
     var isPasscodeActive = false
-    var noInternetView = NoInternetView()
+    var noInternetView: NoInternetView?
     
     deinit {
         unsubscribeNotifications()
@@ -27,14 +27,6 @@ class RootTabsController: UITabBarController {
         super.viewWillAppear(animated)
         output.viewWillAppear()
     }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        if noInternetView.superview == nil {
-//            view.addSubview(noInternetView)
-//            noInternetView.fillSuperview()
-//        }
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -45,6 +37,34 @@ class RootTabsController: UITabBarController {
         subscribeOnNotifications()
         setupViews()
         output.viewDidLoad()
+    }
+    
+    @objc
+    func showNoInternetView() {
+        if noInternetView?.superview == nil {
+            noInternetView = NoInternetView()
+            view.addSubview(noInternetView!)
+            noInternetView?.fillSuperview()
+        }
+    }
+    
+    @objc
+    func hideNoInternetView() {
+        if noInternetView?.superview != nil {
+            noInternetView?.removeFromSuperview()
+            noInternetView = nil
+        }
+    }
+
+    func subscribeOnInternetConnectionNotifications() {
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(showNoInternetView),
+                name: InternetConnectionManager.StatusNotification.reachable.name)
+        AppDelegate.notificationController.addObserver(
+                self,
+                selector: #selector(hideNoInternetView),
+                name: InternetConnectionManager.StatusNotification.notReachable.name)
     }
 }
 
