@@ -13,6 +13,7 @@ class RootTabsController: UITabBarController {
     
     var isApplicationWasInForeground = true
     var isPasscodeActive = false
+    var noInternetView = NoInternetView()
     
     deinit {
         unsubscribeNotifications()
@@ -26,6 +27,14 @@ class RootTabsController: UITabBarController {
         super.viewWillAppear(animated)
         output.viewWillAppear()
     }
+    
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        if noInternetView.superview == nil {
+//            view.addSubview(noInternetView)
+//            noInternetView.fillSuperview()
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
