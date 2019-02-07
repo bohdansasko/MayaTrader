@@ -21,6 +21,7 @@ class RootTabsController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeOnInternetConnectionNotifications()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -43,6 +44,9 @@ class RootTabsController: UITabBarController {
     func showNoInternetView() {
         if noInternetView?.superview == nil {
             noInternetView = NoInternetView()
+            noInternetView?.onTouchButtonRefresh = {
+                self.noInternetView?.showLoader()
+            }
             view.addSubview(noInternetView!)
             noInternetView?.fillSuperview()
         }
