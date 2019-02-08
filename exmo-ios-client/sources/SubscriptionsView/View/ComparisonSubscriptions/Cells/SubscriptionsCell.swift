@@ -27,6 +27,9 @@ class SubscriptionsCell: ExmoCollectionCell {
     let liteStateImg: UIImageView = SubscriptionsCell.getStateImageInstance()
     let proStateImg: UIImageView = SubscriptionsCell.getStateImageInstance()
     
+    let freeView = UIView()
+    let liteView = UIView()
+    let proView = UIView()
     
     override var datasourceItem: Any? {
         didSet { onItemDidSet()  }
@@ -34,6 +37,10 @@ class SubscriptionsCell: ExmoCollectionCell {
 
     override func setupViews() {
         super.setupViews()
+        
+        addSubview(freeView)
+        addSubview(liteView)
+        addSubview(proView)
         
         addSubview(featureNameLabel)
         addSubview(freeLabel)
@@ -44,11 +51,47 @@ class SubscriptionsCell: ExmoCollectionCell {
         addSubview(liteStateImg)
         addSubview(proStateImg)
         
-        featureNameLabel.anchor(topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0.4 * frame.width, heightConstant: 0)
+        freeView.anchor(freeLabel.topAnchor, left: freeLabel.leftAnchor,
+                        bottom: freeLabel.bottomAnchor, right: freeLabel.rightAnchor,
+                        topConstant: 0, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
         
-        freeLabel.anchor(topAnchor, left: featureNameLabel.rightAnchor, bottom: bottomAnchor, right: nil, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0.15 * frame.width, heightConstant: 0)
-        liteLabel.anchor(topAnchor, left: freeLabel.rightAnchor, bottom: bottomAnchor, right: nil, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0.15 * frame.width, heightConstant: 0)
-        proLabel.anchor(topAnchor, left: liteLabel.rightAnchor, bottom: bottomAnchor, right: nil, topConstant: 0, leftConstant: 10, bottomConstant: 0, rightConstant: 0, widthConstant: 0.15 * frame.width, heightConstant: 0)
+        
+        liteView.anchor(liteLabel.topAnchor, left: liteLabel.leftAnchor,
+                        bottom: liteLabel.bottomAnchor, right: liteLabel.rightAnchor,
+                        topConstant: 0, leftConstant: 0,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0, heightConstant: 0)
+        
+        proView.anchor(proLabel.topAnchor, left: proLabel.leftAnchor,
+                       bottom: proLabel.bottomAnchor, right: proLabel.rightAnchor,
+                       topConstant: 0, leftConstant: 0,
+                       bottomConstant: 0, rightConstant: 0,
+                       widthConstant: 0, heightConstant: 0)
+        
+        
+        featureNameLabel.anchor(topAnchor, left: leftAnchor,
+                                bottom: bottomAnchor, right: nil,
+                                topConstant: 0, leftConstant: 10,
+                                bottomConstant: 0, rightConstant: 0,
+                                widthConstant: 0.4 * frame.width, heightConstant: 0)
+        
+        freeLabel.anchor(topAnchor, left: featureNameLabel.rightAnchor,
+                         bottom: bottomAnchor, right: nil,
+                         topConstant: 0, leftConstant: 10,
+                         bottomConstant: 0, rightConstant: 0,
+                         widthConstant: 0.15 * frame.width, heightConstant: 0)
+        liteLabel.anchor(topAnchor, left: freeLabel.rightAnchor,
+                         bottom: bottomAnchor, right: nil,
+                         topConstant: 0, leftConstant: 10,
+                         bottomConstant: 0, rightConstant: 0,
+                         widthConstant: 0.15 * frame.width, heightConstant: 0)
+        proLabel.anchor(topAnchor, left: liteLabel.rightAnchor,
+                        bottom: bottomAnchor, right: nil,
+                        topConstant: 0, leftConstant: 10,
+                        bottomConstant: 0, rightConstant: 0,
+                        widthConstant: 0.15 * frame.width, heightConstant: 0)
         
         freeStateImg.centerYAnchor.constraint(equalTo: freeLabel.centerYAnchor).isActive = true
         liteStateImg.centerYAnchor.constraint(equalTo: liteLabel.centerYAnchor).isActive = true
@@ -76,6 +119,14 @@ extension SubscriptionsCell {
         showState(freeLabel, freeStateImg, item.forFree)
         showState(liteLabel, liteStateImg, item.forLite)
         showState(proLabel, proStateImg, item.forPro)
+
+        freeStateImg.backgroundColor = item.activeSubscriptionType == .freeWithAds || item.activeSubscriptionType == .freeNoAds ? .dodgerBlue : nil
+        liteStateImg.backgroundColor = item.activeSubscriptionType == .lite ? .dodgerBlue : nil
+        proStateImg.backgroundColor = item.activeSubscriptionType == .pro ? .dodgerBlue : nil
+        
+        freeView.backgroundColor = item.activeSubscriptionType == .freeWithAds || item.activeSubscriptionType == .freeNoAds ? .dodgerBlue : nil
+        liteView.backgroundColor = item.activeSubscriptionType == .lite ? .dodgerBlue : nil
+        proView.backgroundColor = item.activeSubscriptionType == .pro ? .dodgerBlue : nil
     }
     
     private func showState(_ label: UILabel, _ stateImg: UIImageView, _ value: Any) {

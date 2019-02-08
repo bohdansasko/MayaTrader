@@ -10,13 +10,13 @@ class SubscriptionsInteractor {
     
     static func buildSubcsriptionCells(priceForLite strPriceLite: String, priceForPro strPricePro: String) -> [SubscriptionsCellModel] {
         return [
-            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25),
-            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50),
-            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false),
-            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true),
-            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true),
-            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false),
-            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro)
+            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro, activeSubscriptionType: IAPService.shared.subscriptionPackage.type)
         ]
     }
 }
@@ -45,7 +45,7 @@ extension SubscriptionsInteractor: SubscriptionsInteractorInput {
             self?.output.setSubscriptionItems(with: items)
         }, completionOnError: {
             [weak self] msg in
-            self?.output.showError(msg: msg ?? "Undefined error")
+            self?.output.showError(msg: msg ?? "Fetch subscriptions: undefined error")
         })
     }
 
@@ -93,6 +93,7 @@ extension SubscriptionsInteractor {
             return
         }
         output.onPurchaseSubscriptionSuccess(subscriptionPackage)
+        fetchSubscriptions()
     }
 
     @objc
