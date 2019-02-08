@@ -22,7 +22,9 @@ class IAPService: NSObject {
 
         case updateSubscription
     }
-
+    
+    var timer: Timer?
+    
     static let shared = IAPService()
     override private init() {
         super.init()
@@ -81,14 +83,29 @@ extension IAPService {
                         return currentDate < subscriptionExpirationDate
                     })
 
-                    if activeSubscriptions.contains(where: { $0.productId == IAPProduct.proPackage.rawValue }) {
+                    var subscriptionExpirationDate: Date?
+                    
+                    if let receipt = activeSubscriptions.first(where: { $0.productId == IAPProduct.proPackage.rawValue }) {
+                        subscriptionExpirationDate = receipt.subscriptionExpirationDate
                         self.updateSubscription(ProSubscriptionPackage())
-                    } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.litePackage.rawValue }) {
+                    } else if let receipt = activeSubscriptions.first(where: { $0.productId == IAPProduct.litePackage.rawValue }) {
+                        subscriptionExpirationDate = receipt.subscriptionExpirationDate
                         self.updateSubscription(LiteSubscriptionPackage())
-                    } else if activeSubscriptions.contains(where: { $0.productId == IAPProduct.noAds.rawValue }) {
+                    } else if let receipt = activeSubscriptions.first(where: { $0.productId == IAPProduct.noAds.rawValue }) {
+                        subscriptionExpirationDate = receipt.subscriptionExpirationDate
                         self.updateSubscription(BasicNoAdsSubscriptionPackage())
                     } else {
                         self.updateSubscription(BasicAdsSubscriptionPackage())
+                    }
+                    
+                    if let expirationDate = subscriptionExpirationDate {
+                        if self.timer == nil {
+                            print("Time to end subscription: \(expirationDate.timeIntervalSinceNow)")
+                            self.timer = Timer.scheduledTimer(withTimeInterval: expirationDate.timeIntervalSinceNow, repeats: false, block: {
+                                _ in
+                                self.onSubscriptionExpired()
+                            })
+                        }
                     }
                     print("\(#function) => purchased items => \(activeSubscriptions) \n\n")
                 case .expired(_, _), .notPurchased:
@@ -100,6 +117,14 @@ extension IAPService {
                 self.updateSubscription(BasicAdsSubscriptionPackage())
                 self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
             }
+        }
+    }
+    
+    func onSubscriptionExpired() {
+        fetchAllSubscriptions()
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
         }
     }
 
@@ -187,8 +212,6 @@ extension IAPService {
                 case .cloudServiceRevoked: errorMessage = "User has revoked permission to use this cloud service"
                 default: errorMessage = (error as NSError).localizedDescription
                 }
-
-                self.updateSubscription(BasicAdsSubscriptionPackage())
                 self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: errorMessage])
             }
         }

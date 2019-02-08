@@ -8,6 +8,7 @@ import Foundation
 protocol SubscriptionsViewInput: class {
     func showAlert(msg: String)
     func updateTable(with items: [SubscriptionsCellModel])
+    func hideLoaderActivity()
 }
 
 protocol SubscriptionsViewOutput {

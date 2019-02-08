@@ -60,6 +60,10 @@ extension SubscriptionsViewController: SubscriptionsViewInput {
         hideLoader()
         subscriptionsView.datasource = SubscriptionsDatasource(items: items)
     }
+    
+    func hideLoaderActivity() {
+        hideLoader()
+    }
 }
 
 

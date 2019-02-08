@@ -19,6 +19,7 @@ protocol SubscriptionsInteractorInput {
 protocol SubscriptionsInteractorOutput: class {
     func onPurchaseSubscriptionSuccess(_ subscriptionPackage: ISubscriptionPackage)
     func onPurchaseSubscriptionError(reason: String)
+    func purchaseFinishedSuccess()
     
     func setSubscriptionItems(with items: [SubscriptionsCellModel])
     func showError(msg: String)

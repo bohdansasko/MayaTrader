@@ -7,6 +7,7 @@ import Foundation
 
 class SubscriptionsInteractor {
     weak var output: SubscriptionsInteractorOutput!
+    var subscriptionPackage: ISubscriptionPackage?
     
     static func buildSubcsriptionCells(priceForLite strPriceLite: String, priceForPro strPricePro: String) -> [SubscriptionsCellModel] {
         return [
@@ -87,12 +88,21 @@ extension SubscriptionsInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+        guard let newSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
             print("\(#function) => can't convert notification container to ISubscriptionPackage")
-            output.onPurchaseSubscriptionError(reason: "Purchase: Undefined error")
+            output.purchaseFinishedSuccess()
             return
         }
-        output.onPurchaseSubscriptionSuccess(subscriptionPackage)
+        
+        if let subscriptionPackage = self.subscriptionPackage {
+            if newSubscriptionPackage.type == subscriptionPackage.type  {
+                output.purchaseFinishedSuccess()
+                return
+            }
+        }
+        
+        self.subscriptionPackage = newSubscriptionPackage
+        output.onPurchaseSubscriptionSuccess(newSubscriptionPackage)
         fetchSubscriptions()
     }
 

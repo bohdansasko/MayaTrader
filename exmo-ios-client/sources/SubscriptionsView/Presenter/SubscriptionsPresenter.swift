@@ -57,4 +57,8 @@ extension SubscriptionsPresenter: SubscriptionsInteractorOutput {
     func showError(msg: String) {
         view.showAlert(msg: msg)
     }
+    
+    func purchaseFinishedSuccess() {
+        view.hideLoaderActivity()
+    }
 }
