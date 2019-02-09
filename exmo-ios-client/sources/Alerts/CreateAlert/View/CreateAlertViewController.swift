@@ -129,13 +129,6 @@ extension CreateAlertViewController: CreateAlertViewInput {
         editAlert = alert
     }
 
-    func alertCreated() {
-        hideLoader()
-        form.clear()
-        formTableView.reloadData()
-        showAlert(title: titleNavBar!, message: "Alert has been created successfully", closure: nil)
-    }
-
     func alertUpdated() {
         hideLoader()
         showAlert(title: titleNavBar!, message: "Alert has been updated successfully", closure: nil)

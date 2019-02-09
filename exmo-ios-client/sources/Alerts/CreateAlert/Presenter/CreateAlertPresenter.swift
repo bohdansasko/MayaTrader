@@ -55,7 +55,7 @@ extension CreateAlertPresenter: CreateAlertInteractorOutput {
     }
     
     func onCreateAlertSuccessful() {
-        view.alertCreated()
+        handleTouchOnCancelBtn()
     }
 
     func updateAlertDidSuccessful() {

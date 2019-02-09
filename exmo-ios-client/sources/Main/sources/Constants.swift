@@ -51,7 +51,7 @@ class Defaults {
     }
 
     static func getSubscriptionId() -> Int {
-        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.subscriptionId.rawValue) ?? 0
+        return UserDefaults.standard.integer(forKey: UserDefaultsKeys.subscriptionId.rawValue)
     }
     
     static func setSubscriptionId(_ id: Int) {
