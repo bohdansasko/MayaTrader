@@ -46,8 +46,8 @@ class WalletTableCurrenciesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupTableView()
         setupTutorialImg()
+        setupTableView()
     }
     
     required init?(coder aDecoder: NSCoder) {
