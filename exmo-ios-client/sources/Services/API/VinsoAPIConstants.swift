@@ -27,10 +27,3 @@ enum ServerMessage: Int {
     case subscriptionConfigs = 12
     case setSubscriptionType = 13
 }
-
-
-enum APIURLs: String {
-    case globalDev = "wss://193.228.52.26:10443"
-    case global = "wss://185.236.77.126:10443"
-    case local = "ws://192.168.0.102:45667"
-}

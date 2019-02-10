@@ -97,6 +97,8 @@
 	<false/>
 	<key>configuration</key>
 	<dict>
+		<key>admobAdsId</key>
+		<string>${ADMOB_API_KEY}</string>
 		<key>endpoint</key>
 		<string>${SERVER_API_GLOBAL}</string>
 	</dict>
