@@ -272,7 +272,7 @@
 		C724F2D0EE6F6F5F3B20C6CC /* QRScannerRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C8C6BAC16047D8F23A2219 /* QRScannerRouterInput.swift */; };
 		C73CF2EF984BA1FE75A12CE3 /* QRScannerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25335C61D458464AB99D3D48 /* QRScannerInteractor.swift */; };
 		C7D7B7402209EF1800766759 /* PListFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7B73F2209EF1800766759 /* PListFile.swift */; };
-		C7D7B7422209FDA100766759 /* PListModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7B7412209FDA100766759 /* PListModels.swift */; };
+		C7D7B7422209FDA100766759 /* ConfigInfoPList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7D7B7412209FDA100766759 /* ConfigInfoPList.swift */; };
 		C7FD7600220B411F00A987DB /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD75FF220B411F00A987DB /* NoInternetView.swift */; };
 		C7FD7602220B4DA500A987DB /* InternetConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD7601220B4DA500A987DB /* InternetConnectionManager.swift */; };
 		C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FEE97F75DF6C190754891B /* AlertsPresenter.swift */; };
@@ -585,7 +585,7 @@
 		C43709B1EFC615E75A9BE61F /* WalletCurrenciesListRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletCurrenciesListRouter.swift; sourceTree = "<group>"; };
 		C437A7929205B0B131B0F3EC /* CreateAlertInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractorProtocols.swift; sourceTree = "<group>"; };
 		C7D7B73F2209EF1800766759 /* PListFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListFile.swift; sourceTree = "<group>"; };
-		C7D7B7412209FDA100766759 /* PListModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PListModels.swift; sourceTree = "<group>"; };
+		C7D7B7412209FDA100766759 /* ConfigInfoPList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigInfoPList.swift; sourceTree = "<group>"; };
 		C7FD75FF220B411F00A987DB /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		C7FD7601220B4DA500A987DB /* InternetConnectionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnectionManager.swift; sourceTree = "<group>"; };
 		C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
@@ -997,12 +997,11 @@
 				2F5076038FAE7726FAFBB74C /* Login */,
 				9E01C470C3E1B77012FC4051 /* QRScanner */,
 				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
+				207E88CA2210D5C6001681A2 /* PList */,
+				207E88CB2210D639001681A2 /* Security */,
 				36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */,
-				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
 				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
 				367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */,
-				C7D7B7412209FDA100766759 /* PListModels.swift */,
-				C7D7B73F2209EF1800766759 /* PListFile.swift */,
 				C7FD75FF220B411F00A987DB /* NoInternetView.swift */,
 				C7FD7601220B4DA500A987DB /* InternetConnectionManager.swift */,
 			);
@@ -1130,6 +1129,23 @@
 				207E25052061C41000030023 /* OrdersModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		207E88CA2210D5C6001681A2 /* PList */ = {
+			isa = PBXGroup;
+			children = (
+				C7D7B7412209FDA100766759 /* ConfigInfoPList.swift */,
+				C7D7B73F2209EF1800766759 /* PListFile.swift */,
+			);
+			path = PList;
+			sourceTree = "<group>";
+		};
+		207E88CB2210D639001681A2 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
+			);
+			path = Security;
 			sourceTree = "<group>";
 		};
 		207EBE5F21AD133700CD4D6F /* Cell */ = {
@@ -2340,7 +2356,7 @@
 				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
 				207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */,
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
-				C7D7B7422209FDA100766759 /* PListModels.swift in Sources */,
+				C7D7B7422209FDA100766759 /* ConfigInfoPList.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
 				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
