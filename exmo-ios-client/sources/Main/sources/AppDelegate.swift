@@ -31,18 +31,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        AppDelegate.vinsoAPI.addConnectionObserver(self)
-        IAPService.shared.completeTransactions()
-
         // Use Firebase library to configure APIs
         FirebaseApp.configure()
+        Fabric.sharedSDK().debug = true
+        
+        AppDelegate.vinsoAPI.addConnectionObserver(self)
+        IAPService.shared.completeTransactions()
         
         setupAdMob()
         setupWindow()
         registerForRemoteNotifications()
         callStoreReview()
         InternetConnectionManager.shared.listen()
-        
+
         return true
     }
 
@@ -144,15 +145,12 @@ extension AppDelegate {
     }
 
     func setupAdMob() {
-        // Use Firebase library to configure APIs
-        if let url = Bundle.main.url(forResource: AdvertisingValues.googleConfigPlist.rawValue, withExtension: AdvertisingValues.googleConfigExt.rawValue),
-            let myDict = NSDictionary(contentsOf: url) as? [String:Any] {
-            guard let adsAppId = myDict[AdvertisingValues.adUnitIDForBannerTest.rawValue] as? String else {
-                return
-            }
-            GADMobileAds.configure(withApplicationID: adsAppId)
-            print("GADMobileAds.configure(withApplicationID: \(adsAppId)")
+        guard let config = try? PListFile<ConfigInfoPList>() else {
+            return
         }
+        let adsAppId = config.model.configuration.admobAdsId
+        GADMobileAds.configure(withApplicationID: adsAppId)
+        print("GADMobileAds.configure(withApplicationID: \(adsAppId)")
         
     }
     

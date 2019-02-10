@@ -57,8 +57,13 @@ class VinsoAPI {
     }
 
     func initSocket() {
-        let endpointUrl = APIURLs.global.rawValue
+        guard let config = try? PListFile<ConfigInfoPList>() else {
+            return
+        }
+        APIURLs.global
+        let endpointUrl = config.model.configuration.endpoint
         print("Init socket with url \(endpointUrl)")
+        
         socketManager = SocketManager(serverURL: endpointUrl)
         socketManager.callbackOnOpen = {
             [] in

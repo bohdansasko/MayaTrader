@@ -35,19 +35,23 @@ struct ConfigInfoPList: Codable {
 extension ConfigInfoPList {
     struct Configuration: Codable {
         let endpoint: String
-        
+        let admobAdsId: String
+
         enum ConfigCodableKeys: String, CodingKey {
             case endpoint
+            case admobAdsId
         }
         
         init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: ConfigCodableKeys.self)
             endpoint = try container.decode(String.self, forKey: ConfigCodableKeys.endpoint)
+            admobAdsId = try container.decode(String.self, forKey: ConfigCodableKeys.admobAdsId)
         }
         
         func encode(to encoder: Encoder) throws {
             var container = encoder.container(keyedBy: ConfigCodableKeys.self)
             try container.encode(endpoint, forKey: ConfigCodableKeys.endpoint)
+            try container.encode(admobAdsId, forKey: ConfigCodableKeys.admobAdsId)
         }
     }
 }

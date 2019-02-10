@@ -32,7 +32,7 @@ class IAPService: NSObject {
     }
     
     private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
-    private let kReceiptSubscriptionURLType = AppleReceiptValidator.VerifyReceiptURLType.sandbox
+    private let kReceiptSubscriptionURLType = IAPService.getReceiptSubscriptionURLType()
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
     private(set) var subscriptionPackage: ISubscriptionPackage! {
         didSet {
@@ -43,6 +43,11 @@ class IAPService: NSObject {
 
     static let kSubscriptionPackageKey = "subscriptionPackage"
     static let kErrorKey = "error"
+    
+    
+    static func getReceiptSubscriptionURLType() -> AppleReceiptValidator.VerifyReceiptURLType {
+        return AppleReceiptValidator.VerifyReceiptURLType.production // TODO: use production for production build for all other should be sandbox
+    }
     
     func loadSubscriptionFromCache() {
         guard let subscriptionType = SubscriptionPackageType(rawValue: Defaults.getSubscriptionId()) else {

@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>EXMobile</string>
+	<string>$(APP_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>QA-1.0</string>
+	<string>1.0(QA)</string>
 	<key>CFBundleVersion</key>
-	<string>10</string>
+	<string>0</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -65,7 +65,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>Can I use the camera?</string>
+	<string>We need access to camera for scan QR. Can we get it?</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Exo2-Medium.ttf</string>
@@ -95,5 +95,10 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>configuration</key>
+	<dict>
+		<key>endpoint</key>
+		<string>${SERVER_API_GLOBAL}</string>
+	</dict>
 </dict>
 </plist>

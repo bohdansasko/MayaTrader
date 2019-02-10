@@ -5,7 +5,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-SERVER_API_GLOBAL   = 193.228.52.26:45667
-SERVER_API_LOCAL    = 192.168.0.102:45667
-SOCKET_PROTOCOL     = http
+APP_NAME            = EXMobile(DEV)
+SERVER_API_GLOBAL   = wss:/$()/185.236.77.126:10443
+SERVER_API_LOCAL    = wss:/$()/192.168.0.102:45667
 ADMOB_API_KEY       = ca-app-pub-3940256099942544/2934735716

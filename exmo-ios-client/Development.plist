@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>EXMobile</string>
+	<string>$(APP_NAME)</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>DEV-1.0</string>
+	<string>1.0(DEV)</string>
 	<key>CFBundleVersion</key>
-	<string>1(daily)</string>
+	<string>0</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -95,5 +95,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>configuration</key>
+	<dict>
+		<key>admobAdsId</key>
+		<string>${ADMOB_API_KEY}</string>
+		<key>endpoint</key>
+		<string>${SERVER_API_GLOBAL}</string>
+	</dict>
 </dict>
 </plist>
