@@ -31,26 +31,12 @@ extension PListFile {
                 return try JSONSerialization.data(withJSONObject: infoDict)
             case .plist(let file, let bundle):
                 guard let path = bundle.path(forResource: file, ofType: "plist") else {
+                    print("path not found for \(file).plist")
                     throw Errors.fileNotFound
                 }
+                print("url is \(path)")
                 return try Data(contentsOf: URL(fileURLWithPath: path))
             }
         }
-    }
-}
-
-func f() {
-    do {
-        let f = try PListFile<EXMobilePList>(.plist("Development", Bundle.main))
-        print("bundleVersion is \(f.model.bundleVersion)")
-    } catch (let error) {
-        print("plisterror " + error.localizedDescription)
-    }
-
-    do {
-        let f = try PListFile<GoogleServicePList>(.plist("GoogleService-Info", Bundle.main))
-        print("bannerAdsTestId is \(f.model.bannerAdsTestId)")
-    } catch (let error) {
-        print("plisterror " + error.localizedDescription)
     }
 }

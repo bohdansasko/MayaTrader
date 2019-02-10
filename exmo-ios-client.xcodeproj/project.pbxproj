@@ -73,7 +73,6 @@
 		204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */; };
 		204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F78215B5D9400014017 /* BarChartViewController.swift */; };
 		204F7F7B215B5DAE00014017 /* CandleBarChartShortInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */; };
-		205A643521E7982C002D5482 /* QA.plist in Resources */ = {isa = PBXBuildFile; fileRef = 205A643421E7982C002D5482 /* QA.plist */; };
 		205A643721E7983A002D5482 /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 205A643621E7983A002D5482 /* Production.plist */; };
 		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
 		205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC2203CCEBD00A2E28A /* Main.storyboard */; };
@@ -104,6 +103,9 @@
 		207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderViewCell.swift */; };
 		207E25042061C3FD00030023 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25032061C3FD00030023 /* OrderModel.swift */; };
 		207E25062061C41000030023 /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25052061C41000030023 /* OrdersModel.swift */; };
+		207E88C72210C08E001681A2 /* Development.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 205A643121E7967C002D5482 /* Development.xcconfig */; };
+		207E88C82210C08E001681A2 /* QA.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 205A643221E7968C002D5482 /* QA.xcconfig */; };
+		207E88C92210C08E001681A2 /* Production.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 205A643321E79699002D5482 /* Production.xcconfig */; };
 		207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5B21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift */; };
 		207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */; };
 		20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
@@ -774,7 +776,6 @@
 				205A643121E7967C002D5482 /* Development.xcconfig */,
 				205A643221E7968C002D5482 /* QA.xcconfig */,
 				205A643321E79699002D5482 /* Production.xcconfig */,
-				C7D7B7412209FDA100766759 /* PListModels.swift */,
 			);
 			path = "exmo-ios-client";
 			sourceTree = "<group>";
@@ -1000,6 +1001,7 @@
 				206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */,
 				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
 				367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */,
+				C7D7B7412209FDA100766759 /* PListModels.swift */,
 				C7D7B73F2209EF1800766759 /* PListFile.swift */,
 				C7FD75FF220B411F00A987DB /* NoInternetView.swift */,
 				C7FD7601220B4DA500A987DB /* InternetConnectionManager.swift */,
@@ -2165,11 +2167,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				207E88C72210C08E001681A2 /* Development.xcconfig in Resources */,
+				207E88C82210C08E001681A2 /* QA.xcconfig in Resources */,
+				207E88C92210C08E001681A2 /* Production.xcconfig in Resources */,
 				205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */,
 				20001D73203B8D1200B6966F /* Assets.xcassets in Resources */,
 				2013E58D2071464700EFACB7 /* Exo2-Regular.ttf in Resources */,
 				2013E5872071464700EFACB7 /* Exo2-ExtraLightItalic.ttf in Resources */,
-				205A643521E7982C002D5482 /* QA.plist in Resources */,
 				2013E58C2071464700EFACB7 /* Exo2-MediumItalic.ttf in Resources */,
 				2013E58E2071464700EFACB7 /* Exo2-SemiBold.ttf in Resources */,
 				2013E5862071464700EFACB7 /* Exo2-ExtraLight.ttf in Resources */,
@@ -2263,19 +2267,20 @@
 		};
 		20CE4313218D093F00F04739 /* Run Script(Fabric) */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
 			name = "Run Script(Fabric)";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" bd2ca02689438a03dc0a66ab9253293ddf4f2011 1457f8d069a6241047443c0fe0e6a930fd7391aba077609effda0d2e2159fa20\n";
 		};
@@ -2628,7 +2633,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2794,7 +2799,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2960,7 +2965,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3205,7 +3210,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

@@ -62,7 +62,7 @@ class Defaults {
 enum UserDefaultsKeys: String {
     case isLoggedIn
     case appOpenedCount
-    case appStoreLink = "https://www.telegram.me/exmo_official"
+    case appStoreLink = "http://appstore.com/vinso/exmobile"
     case passcode
     case exmoId = "EXMO"
     case iapAdvertisement
