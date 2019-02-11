@@ -89,9 +89,16 @@ extension QRScannerViewController {
     }
     
     func prepareCameraToReadQRCode() {
+        if AVCaptureDevice.authorizationStatus(for: .video) != .authorized {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { [weak self] isGranted in
+                self?.showAlert(title: "QR Scanner", message: "Unable to access the Camera. \nTo enable access, go to Settings > Privacy > Camera and turn on Camera access for this app.", shouldCloseViewController: true)
+            })
+            return
+        }
+        
         let session = AVCaptureSession()
         guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
-            showAlert(title: "QR Scanner", message: "This device doesn't support capture video via camera", shouldCloseViewController: true)
+            showAlert(title: "QR Scanner", message: "This device doesn't support capture video throught camera", shouldCloseViewController: true)
             return
         }
         
