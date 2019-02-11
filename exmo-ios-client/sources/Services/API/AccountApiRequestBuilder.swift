@@ -12,7 +12,11 @@ class AccountApiRequestBuilder {
     static func buildConnectRequest() -> JSON {
         return ["request_type" : ServerMessage.connect.rawValue]
     }
-    
+
+    static func buildResetUser() -> JSON {
+        return ["request_type" : ServerMessage.resetUser.rawValue]
+    }
+
     static func buildAuthorizationRequest() -> JSON {
         guard let udid = UIDevice.current.identifierForVendor?.uuidString else {
             return JSON()
@@ -20,7 +24,7 @@ class AccountApiRequestBuilder {
         
         return [
             "request_type": ServerMessage.authorization.rawValue,
-            "udid": udid,
+            "udid": udid
         ]
     }
 

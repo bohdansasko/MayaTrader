@@ -35,6 +35,11 @@ extension VinsoAPI {
         socketManager.sendMessage(message: msg)
     }
 
+    func resetUser() {
+        let msg = AccountApiRequestBuilder.buildResetUser()
+        socketManager.sendMessage(message: msg)
+    }
+
     func onSocketError(reason: String) {
         isAuthorized = false
         connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Can't establish connection. Please, try again through a few minutes or write us.") })
