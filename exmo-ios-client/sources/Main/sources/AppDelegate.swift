@@ -156,12 +156,11 @@ extension AppDelegate {
 
     func setupAdMob() {
         guard let config = try? PListFile<ConfigInfoPList>() else {
+            print("Error => Can't open plist file")
             return
         }
-        let adsAppId = config.model.configuration.admobAdsId
-        GADMobileAds.configure(withApplicationID: adsAppId)
-        print("GADMobileAds.configure(withApplicationID: \(adsAppId)")
-        
+        GADMobileAds.configure(withApplicationID: config.model.configuration.admobAdsId)
+        print("GADMobileAds.configure(withApplicationID: \(config.model.configuration.admobAdsId)")
     }
     
     func callStoreReview() {

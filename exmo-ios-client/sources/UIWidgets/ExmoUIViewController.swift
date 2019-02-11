@@ -173,9 +173,13 @@ extension ExmoUIViewController {
     }
     
     func setupBannerView() {
+        guard let config = try? PListFile<ConfigInfoPList>() else {
+            print("Error in \(#function)=> Can't open plist file")
+            return
+        }
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
         bannerView.delegate = self
-        bannerView.adUnitID = "ca-app-pub-3940256099942544/2934735716"
+        bannerView.adUnitID = config.model.configuration.admobAdsId
         bannerView.rootViewController = self
     }
     
