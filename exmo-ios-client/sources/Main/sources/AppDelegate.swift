@@ -74,10 +74,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: handle connection to Vinso Server
 extension AppDelegate: VinsoAPIConnectionDelegate  {
+    func onConnectionOpened() {
+        if !Defaults.isRequiredResetVinsoUser() {
+            AppDelegate.vinsoAPI.resetUser()
+        }
+    }
+
     func onAuthorization() {
         if let apnsDeviceToken = KeychainSwift().get(KeychainDefaultKeys.apnsDeviceToken.rawValue) {
             AppDelegate.vinsoAPI.registerAPNSDeviceToken(apnsDeviceToken)
         }
+    }
+
+    func onResetUserSuccessful() {
+        Defaults.resetVinsoUserSuccessful()
     }
 }
 
@@ -139,7 +149,7 @@ extension AppDelegate {
         window?.rootViewController = rootModule.viewController
         window?.windowLevel = UIWindow.Level.normal
         window?.makeKeyAndVisible()
-        
+
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
     }

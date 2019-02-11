@@ -125,6 +125,7 @@ extension VinsoAPI {
         case ServerMessage.createAlert: handleResponseCreateAlert(json: json)
         case ServerMessage.updateAlert: handleResponseUpdateAlert(json: json)
         case ServerMessage.deleteAlert: handleResponseDeleteAlert(json: json)
+        case ServerMessage.resetUser: handleResponseResetUser(json: json)
         case ServerMessage.fireAlert: handleResponseFireAlert(json: json)
         case ServerMessage.subscriptionConfigs: handleResponseSubscriptionConfigs(json: json)
         default:
@@ -144,10 +145,11 @@ extension VinsoAPI {
         switch requestType {
         case ServerMessage.authorization: break
         case ServerMessage.alertsHistory: handleResponseAlertsLoadedError(reason: reason)
-        case ServerMessage.createAlert: handleResponseErrorCreateAlert(reason: reason)
-        case ServerMessage.updateAlert: handleResponseErrorUpdateAlert(reason: reason)
-        case ServerMessage.deleteAlert: handleResponseErrorDeleteAlert(reason: reason)
-        case ServerMessage.fireAlert: handleResponseFireAlertError(reason: reason)
+        case ServerMessage.createAlert  : handleResponseErrorCreateAlert(reason: reason)
+        case ServerMessage.updateAlert  : handleResponseErrorUpdateAlert(reason: reason)
+        case ServerMessage.deleteAlert  : handleResponseErrorDeleteAlert(reason: reason)
+        case ServerMessage.resetUser    : handleResponseResetUserError(reason: reason)
+        case ServerMessage.fireAlert    : handleResponseFireAlertError(reason: reason)
         default: break
         }
     }

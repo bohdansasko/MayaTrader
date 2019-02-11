@@ -7,10 +7,12 @@ protocol VinsoAPIConnectionDelegate: class {
     func onConnectionOpened()
     func onConnectionRefused(reason: String)
     func onAuthorization()
+    func onResetUserSuccessful()
 }
 
 extension VinsoAPIConnectionDelegate {
     func onConnectionOpened() {}
     func onConnectionRefused(reason: String) {}
     func onAuthorization() {}
+    func onResetUserSuccessful() {}
 }

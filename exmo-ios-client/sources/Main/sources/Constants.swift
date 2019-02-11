@@ -57,6 +57,14 @@ class Defaults {
     static func setSubscriptionId(_ id: Int) {
         UserDefaults.standard.set(id, forKey: UserDefaultsKeys.subscriptionId.rawValue)
     }
+
+    static func isRequiredResetVinsoUser() -> Bool {
+        return UserDefaults.standard.bool(forKey: UserDefaultsKeys.isResetedVinsoUser.rawValue)
+    }
+
+    static func resetVinsoUserSuccessful() {
+        UserDefaults.standard.set(true, forKey: UserDefaultsKeys.isResetedVinsoUser.rawValue)
+    }
 }
 
 enum UserDefaultsKeys: String {
@@ -67,6 +75,7 @@ enum UserDefaultsKeys: String {
     case exmoId = "EXMO"
     case iapAdvertisement
     case subscriptionId
+    case isResetedVinsoUser
 }
 
 enum KeychainDefaultKeys: String {
