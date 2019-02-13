@@ -9,9 +9,9 @@
 import Foundation
 
 enum IAPProduct: String {
-    case noAds = "com.exmotrader.vinso.advertisements"
-    case litePackage = "com.exmotrader.vinso.package.lite"
-    case proPackage   = "com.exmotrader.vinso.pro"
+    case noAds = "com.exmotrader.package.noadvertisement"
+    case litePackage = "com.exmotrader.package.lite"
+    case proPackage   = "com.exmotrader.package.pro"
 }
 
 extension IAPProduct: CaseIterable {

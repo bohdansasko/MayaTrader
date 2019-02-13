@@ -31,7 +31,7 @@ class IAPService: NSObject {
         loadSubscriptionFromCache()
     }
     
-    private let kSharedSecret = "d2d81af55e2f43e3a690af0b28999356"
+    private let kSharedSecret = "ac548a8468d243caa1d13995a28cb3c5"
     private let kReceiptSubscriptionURLType = IAPService.getReceiptSubscriptionURLType()
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
     private(set) var subscriptionPackage: ISubscriptionPackage! {
