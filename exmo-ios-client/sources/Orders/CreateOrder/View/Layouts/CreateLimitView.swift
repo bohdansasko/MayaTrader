@@ -98,7 +98,8 @@ extension CreateOrderLimitView {
     func updateSelectedCurrency(name: String, price: Double) {
         guard let cell = cells[IndexPath(row: 0, section: 0)] as? CurrencyDetailsCell else {
             print("\(#function) => cell haven't found")
-            guard let item = form.tabs[layoutType.rawValue].cellItems[0] as? CurrencyDetailsItem else {
+            guard let item = form.tabs[layoutType.rawValue].cellItems[0] as? CurrencyDetailsItem,
+                  name != "" else {
                 print("\(#function) => fail cast to CurrencyDetailsItem")
                 return
             }
