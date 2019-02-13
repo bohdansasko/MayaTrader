@@ -27,7 +27,7 @@ class PasscodeViewController: ExmoUIViewController {
             switch self {
             case .lock: return "To enable the Security please set a 4-digit code"
             case .confirmLock: return "Please confirm your 4-digit code"
-            case .unlock: return "Enter EXMobile passcode"
+            case .unlock: return "Enter ExmoTrader passcode"
             }
         }
     }
@@ -209,7 +209,7 @@ private extension PasscodeViewController {
             print("*️⃣ success! passcode = \(enteredPasscodeForLock ?? "")")
             Defaults.savePasscode(enteredPasscodeForLock!)
             showAlert(title: "Security enabled!",
-                      message: "Now your passcode lock will be asked every time when you open EXMobile",
+                      message: "Now your passcode lock will be asked every time when you open ExmoTrader",
                       closure: { [weak self] in
                         self?.dismiss(animated: true, completion: nil)
                       }

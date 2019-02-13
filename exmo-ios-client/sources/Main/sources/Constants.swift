@@ -9,9 +9,9 @@ typealias VoidClosure = () -> Void
 typealias IntInVoidOutClosure = (Int) -> Void
 
 enum LinkOnSupportGroups: String {
-    case telegramWebsite = "https://www.telegram.me/exmobile"
-    case telegramApp = "tg://resolve?domain=exmobile"
-    case facebookWebsite = "https://www.facebook.com/groups/exmobile"
+    case telegramWebsite = "https://www.telegram.me/exmotrader"
+    case telegramApp = "tg://resolve?domain=exmotrader"
+    case facebookWebsite = "https://www.facebook.com/groups/exmotrader"
     case facebookApp = "fb://profile/508928876181291"
 }
 
@@ -70,7 +70,7 @@ class Defaults {
 enum UserDefaultsKeys: String {
     case isLoggedIn
     case appOpenedCount
-    case appStoreLink = "http://appstore.com/vinso/exmobile"
+    case appStoreLink = "http://appstore.com/vinso/exmotrader"
     case passcode
     case exmoId = "EXMO"
     case iapAdvertisement
