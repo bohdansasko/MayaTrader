@@ -102,5 +102,7 @@
 		<key>endpoint</key>
 		<string>${SERVER_API_GLOBAL}</string>
 	</dict>
+    <key>GADIsAdManagerApp</key>
+    <true/>
 </dict>
 </plist>
