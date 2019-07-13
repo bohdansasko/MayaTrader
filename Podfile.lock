@@ -69,6 +69,12 @@ PODS:
   - Realm/Headers (3.17.1)
   - RealmSwift (3.17.1):
     - Realm (= 3.17.1)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
   - SmileLock (3.0.7)
   - SwiftWebSocket (2.7.0)
   - SwiftyJSON (5.0.0)
@@ -85,6 +91,8 @@ DEPENDENCIES:
   - LBTAComponents
   - ObjectMapper (~> 3.1)
   - RealmSwift
+  - RxCocoa (~> 5.0.0)
+  - RxSwift (~> 5.0.0)
   - SmileLock (~> 3.0)
   - SwiftWebSocket
   - SwiftyJSON (~> 5.0)
@@ -109,6 +117,9 @@ SPEC REPOS:
     - ObjectMapper
     - Realm
     - RealmSwift
+    - RxCocoa
+    - RxRelay
+    - RxSwift
     - SmileLock
     - SwiftWebSocket
     - SwiftyJSON
@@ -132,11 +143,14 @@ SPEC CHECKSUMS:
   ObjectMapper: 70187b8941977c62ccfb423caf6b50be405cabf0
   Realm: c204f1a890f07dea43b14132a6aad118c054b8f2
   RealmSwift: 4d3c9233544b9cd08a8913e0872b9038eb99b054
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
   SmileLock: 46b847b3ad963e3140d083b53f09036a4d210537
   SwiftWebSocket: 612c9729fd503cb6b0b8b45390c788686dac306f
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: aa3dfdc3f13b329b8f293bded3cc49778c8f32dc
+PODFILE CHECKSUM: 7d7a52b9fc18f06178125a25a8616ef3ae7dabdf
 
 COCOAPODS: 1.7.4

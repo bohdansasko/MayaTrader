@@ -11,13 +11,13 @@ target 'exmo-ios-client' do
   
   # JSON to Object and vice-versa
   pod 'ObjectMapper', '~> 3.1'
-  pod 'SwiftyJSON'
+  pod 'SwiftyJSON', '~> 5.0'
   
   # Connection with Internet
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftWebSocket'
   pod 'SwiftyStoreKit'
-  
+
   # Admob
   pod 'Firebase/Core'
   pod 'Firebase/AdMob'
@@ -30,5 +30,9 @@ target 'exmo-ios-client' do
   pod 'Charts'
 
   pod 'LBTAComponents' # TODO: should remove from project
+  
+  # Rx Swift
+ pod 'RxSwift', '~> 5.0.0'
+ pod 'RxCocoa', '~> 5.0.0'
   
 end
