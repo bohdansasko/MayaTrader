@@ -2222,8 +2222,6 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
@@ -2241,8 +2239,6 @@
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
@@ -2750,7 +2746,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -2776,7 +2772,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -2863,7 +2859,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug(Development)";
@@ -2942,7 +2938,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release(Development)";
@@ -3029,7 +3025,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug(QA)";
@@ -3108,7 +3104,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release(QA)";
@@ -3187,7 +3183,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release(Production) ";
@@ -3274,7 +3270,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug(Production)";

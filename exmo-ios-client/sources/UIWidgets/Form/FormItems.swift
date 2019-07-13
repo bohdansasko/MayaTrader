@@ -135,12 +135,12 @@ class TextFormItem: FormItem {
 }
 
 class SwitchFormItem: FormItem {
-    typealias OnChange = ((Bool) -> Void)?
+    typealias OnChange = (Bool) -> Void
     
     var title: String?
     var value: Bool = false
     var uiProperties: CellUIProperties
-    var onChange: OnChange
+    var onChange: OnChange?
     
     var isMandatory: Bool
     
@@ -161,13 +161,13 @@ class SwitchFormItem: FormItem {
 }
 
 class SegmentFormItem: FormItem {
-    typealias OnChange = ((Int) -> Void)?
+    typealias OnChange = (Int) -> Void
 
     var title: String?
     var value: Int = 0
     var sections: [String]
     var uiProperties: CellUIProperties
-    var onChange: OnChange
+    var onChange: OnChange?
 
     var isMandatory: Bool
 

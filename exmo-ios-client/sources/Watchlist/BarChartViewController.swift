@@ -89,7 +89,7 @@ class BarChartViewController: ExmoChartViewController {
             entries.append(BarChartDataEntry(x: Double(index), y: value.volume))
         }
         
-        let dataSet = BarChartDataSet(values: entries, label: "")
+        let dataSet = BarChartDataSet(entries: entries, label: "")
         dataSet.drawValuesEnabled = false
         dataSet.setColor(UIColor.steel)
         dataSet.drawIconsEnabled = false

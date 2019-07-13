@@ -49,7 +49,7 @@ class AlertsModel {
     }
 
     func getIndexById(alertId: Int) -> Int {
-        let index = items.index(where: { $0.id == alertId })
+        let index = items.firstIndex(where: { $0.id == alertId })
         return index ?? -1
     }
     

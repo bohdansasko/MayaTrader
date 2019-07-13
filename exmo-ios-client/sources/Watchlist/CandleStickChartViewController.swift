@@ -71,7 +71,7 @@ class CandleStickChartViewController: ExmoChartViewController {
             return CandleChartDataEntry(x: Double(idx), shadowH: high, shadowL: low, open: open, close: close)
         }
         
-        let set1 = CandleChartDataSet(values: yVals1, label: "Data Set")
+        let set1 = CandleChartDataSet(entries: yVals1, label: "Data Set")
         set1.axisDependency = .left
         set1.setColor(UIColor(white: 80/255, alpha: 1))
         set1.drawIconsEnabled = false
