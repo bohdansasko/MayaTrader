@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    
     func isDoubleValid() -> Bool {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -25,4 +26,9 @@ extension String {
         }
 
     }
+    
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+    
 }

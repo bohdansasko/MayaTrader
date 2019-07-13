@@ -39,10 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IAPService.shared.completeTransactions()
         
         setupAdMob()
-        setupWindow()
         registerForRemoteNotifications()
         callStoreReview()
         InternetConnectionManager.shared.listen()
+
+        UITextField.appearance().keyboardAppearance = .dark
+        UIApplication.shared.setStatusBarHidden(false, with: .fade)
 
         return true
     }
@@ -143,16 +145,6 @@ extension AppDelegate {
 }
 
 extension AppDelegate {
-    func setupWindow() {
-        let rootModule = RootTabsModuleInitializer()
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = rootModule.viewController
-        window?.windowLevel = UIWindow.Level.normal
-        window?.makeKeyAndVisible()
-
-        UITextField.appearance().keyboardAppearance = .dark
-        UIApplication.shared.setStatusBarHidden(false, with: .fade)
-    }
 
     func setupAdMob() {
         guard let config = try? PListFile<ConfigInfoPList>() else {

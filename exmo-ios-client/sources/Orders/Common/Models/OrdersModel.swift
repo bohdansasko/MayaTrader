@@ -71,7 +71,7 @@ class Orders {
                             : map[orderTypeKey]?.stringValue == OrderActionType.buy.rawValue
                                 ? OrderActionType.buy
                                 : OrderActionType.none,
-                        orderType != .none
+                          orderType != .none
                     else {
                         continue
                     }

@@ -1,0 +1,14 @@
+/* 
+  Localizable.strings
+  exmo-ios-client
+
+  Created by Bogdan Sasko on 7/13/19.
+  Copyright © 2019 Bogdan Sasko. All rights reserved.
+*/
+
+/* Tab bar */
+"TAB_WATCHLIST" = "Watchlist";
+"TAB_ORDERS"    = "Orders";
+"TAB_WALLET"    = "Wallet";
+"TAB_ALERTS"    = "Alerts";
+"TAB_MENU"      = "Menu";

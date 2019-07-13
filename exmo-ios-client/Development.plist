@@ -34,6 +34,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>GADIsAdManagerApp</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -72,6 +74,8 @@
 		<string>Exo2-Bold.ttf</string>
 		<string>Exo2-Regular.ttf</string>
 	</array>
+	<key>UIMainStoryboardFile</key>
+	<string>Home</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -102,7 +106,5 @@
 		<key>endpoint</key>
 		<string>${SERVER_API_GLOBAL}</string>
 	</dict>
-    <key>GADIsAdManagerApp</key>
-    <true/>
 </dict>
 </plist>

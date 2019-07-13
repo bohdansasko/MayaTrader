@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VgN-dq-6lz">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Orders-->
+        <scene sceneID="611-jt-Dl7">
+            <objects>
+                <viewController title="Orders" id="uHR-NY-RFx" customClass="CHOrdersViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="wUb-lT-t1e"/>
+                    <connections>
+                        <segue destination="hYj-cC-Juh" kind="show" identifier="Orders" id="Pyk-0V-eTl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xm9-gd-RMl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3142" y="1240"/>
+        </scene>
+        <!--CHOrders-->
+        <scene sceneID="nb8-XW-3FY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHOrders" id="hYj-cC-Juh" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pwn-su-1JM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3142" y="1682"/>
+        </scene>
+        <!--Watchlist-->
+        <scene sceneID="zZz-dh-aVO">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pv0-jD-lNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController title="Watchlist" id="bMS-7x-Elo" customClass="CHWatchlistViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="5Nn-1h-Oau"/>
+                    <connections>
+                        <segue destination="AGc-eD-ct0" kind="show" identifier="Watchlist" id="JTE-Tw-cHv"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="2022" y="1240"/>
+        </scene>
+        <!--CHWatchlist-->
+        <scene sceneID="ht5-1H-48r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHWatchlist" id="AGc-eD-ct0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BjW-mo-uqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2022" y="1682"/>
+        </scene>
+        <!--Alerts View Controller-->
+        <scene sceneID="CRW-3U-kEq">
+            <objects>
+                <viewController id="n5t-iO-bgk" customClass="CHAlertsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="IFO-7s-ETv"/>
+                    <connections>
+                        <segue destination="GBM-8f-PSw" kind="show" identifier="Alerts" id="bKY-vv-GQ9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U50-fl-dfv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5016" y="1240"/>
+        </scene>
+        <!--CHAlerts-->
+        <scene sceneID="th1-ci-sSe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHAlerts" id="GBM-8f-PSw" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kb9-bz-a9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5016" y="1681"/>
+        </scene>
+        <!--Wallet-->
+        <scene sceneID="5mC-0j-h81">
+            <objects>
+                <viewController title="Wallet" id="hbl-wo-0rW" customClass="CHWalletViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="FPh-J6-Qh6"/>
+                    <connections>
+                        <segue destination="92R-wL-TtQ" kind="show" identifier="Wallet" id="yJi-7N-aPp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e1W-ax-bby" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4107" y="1240"/>
+        </scene>
+        <!--CHWallet-->
+        <scene sceneID="h4X-u9-rGY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHWallet" id="92R-wL-TtQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KHa-Ig-Evz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4109" y="1681"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="eXB-1O-1fk">
+            <objects>
+                <viewController id="y7D-5D-fwD" customClass="CHMenuViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="6Cm-3p-db6"/>
+                    <connections>
+                        <segue destination="Xf2-jy-qOm" kind="show" identifier="Menu" id="1FG-8u-FtS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fNV-a0-smY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6090" y="1240"/>
+        </scene>
+        <!--CHMenu-->
+        <scene sceneID="wfL-qT-QIp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHMenu" id="Xf2-jy-qOm" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NzF-c9-lxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6090" y="1681"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="9Ja-SY-vME">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="VgN-dq-6lz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="llY-g9-UfB"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bgd-nT-7e3">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="DFZ-JA-3So" kind="relationship" relationship="viewControllers" id="mmX-6O-2Md"/>
+                        <segue destination="HEL-3q-kAr" kind="relationship" relationship="viewControllers" id="B7E-BO-F5k"/>
+                        <segue destination="t5O-vr-OE1" kind="relationship" relationship="viewControllers" id="Gm2-no-VXz"/>
+                        <segue destination="bei-oR-khL" kind="relationship" relationship="viewControllers" id="1ou-rQ-gZ0"/>
+                        <segue destination="WpL-Kd-Fz5" kind="relationship" relationship="viewControllers" id="zrm-Ty-Kzw"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WnU-XU-FCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4106" y="-424"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HQk-Xc-F42">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DFZ-JA-3So" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarWatchlist" selectedImage="icTabbarWatchlistSelected" id="CsY-he-6gP"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="n0p-BX-aD1">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bMS-7x-Elo" kind="relationship" relationship="rootViewController" id="Iba-Ws-j9z"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vqe-4L-Y5C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2021.7391304347827" y="491.51785714285711"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jPw-hn-Ps8">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HEL-3q-kAr" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarOrders" selectedImage="icTabbarOrdersSelected" id="Qj3-gw-pLi"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Sw5-9g-8vF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uHR-NY-RFx" kind="relationship" relationship="rootViewController" id="Uws-wf-5e8"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RSf-Ki-kyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3142" y="492"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="bIq-LY-wpb">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="t5O-vr-OE1" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarWallet" selectedImage="icTabbarWalletSelected" id="ROq-ni-5cc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="hzW-jv-Y55">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hbl-wo-0rW" kind="relationship" relationship="rootViewController" id="LDo-Qd-DeI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AFo-qR-4ut" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4107" y="492"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="kCf-Jw-qsv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bei-oR-khL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarAlerts" selectedImage="icTabbarAlertsSelected" id="rrr-3g-tgK"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Hr8-xw-9mm">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="n5t-iO-bgk" kind="relationship" relationship="rootViewController" id="sHg-6X-u8a"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ssp-Tn-4pI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5016" y="492"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jXs-vh-hpX">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WpL-Kd-Fz5" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarMenu" selectedImage="icTabbarMenuSelected" id="9bp-Zz-GHf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bY7-Er-m12">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="y7D-5D-fwD" kind="relationship" relationship="rootViewController" id="4oh-zP-I38"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3gK-rQ-uYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6091" y="492"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icTabbarAlerts" width="32" height="32"/>
+        <image name="icTabbarAlertsSelected" width="32" height="32"/>
+        <image name="icTabbarMenu" width="32" height="32"/>
+        <image name="icTabbarMenuSelected" width="32" height="32"/>
+        <image name="icTabbarOrders" width="32" height="32"/>
+        <image name="icTabbarOrdersSelected" width="32" height="32"/>
+        <image name="icTabbarWallet" width="32" height="32"/>
+        <image name="icTabbarWalletSelected" width="32" height="32"/>
+        <image name="icTabbarWatchlist" width="32" height="32"/>
+        <image name="icTabbarWatchlistSelected" width="32" height="32"/>
+        <namedColor name="exmoMidnight">
+            <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
