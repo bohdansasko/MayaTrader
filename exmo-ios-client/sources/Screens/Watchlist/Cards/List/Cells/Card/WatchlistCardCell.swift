@@ -12,7 +12,7 @@ protocol WatchlistCardCellDelegate: class {
     func watchlistCardCell(_ cell: WatchlistCardCell, didTouchFavouriteAt indexPath: IndexPath)
 }
 
-final class WatchlistCardCell: UICollectionViewCell {
+final class WatchlistCardCell: CHBaseCollectionCell {
     fileprivate var pairNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 15)
@@ -60,12 +60,6 @@ final class WatchlistCardCell: UICollectionViewCell {
         label.textColor = .greenBlue
         return label
     }()
-
-    override var isHighlighted: Bool {
-        didSet {
-            contentView.backgroundColor = isHighlighted ? UIColor.white.withAlphaComponent(0.1) : .clear
-        }
-    }
     
     fileprivate var currencyModel: WatchlistCurrency! {
         didSet { refreshLabels() }
@@ -74,20 +68,19 @@ final class WatchlistCardCell: UICollectionViewCell {
     
     weak var delegate: WatchlistCardCellDelegate?
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupViews()
+    override func setupUI() {
+        layer.cornerRadius = 5
+        layer.masksToBounds = true
+        backgroundColor = .dark
+        
+        addSubview(pairNameLabel)
+        addSubview(pairBuyPriceLabel)
+        addSubview(pairSellPriceLabel)
+        addSubview(pairVolumeLabel)
+        addSubview(currencyChangesLabel)
+        
+        setupConstraints()
     }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupViews()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }
 
 // MARK: - Set
@@ -105,23 +98,6 @@ extension WatchlistCardCell {
 
 private extension WatchlistCardCell {
     
-    func setupViews() {
-        setupUI()
-        setupConstraints()
-    }
-    
-    func setupUI() {
-        layer.cornerRadius = 5
-        layer.masksToBounds = true
-        backgroundColor = .dark
-        
-        addSubview(pairNameLabel)
-        addSubview(pairBuyPriceLabel)
-        addSubview(pairSellPriceLabel)
-        addSubview(pairVolumeLabel)
-        addSubview(currencyChangesLabel)
-    }
-
     func setupConstraints() {
         pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor,
                              bottom: nil, right: self.rightAnchor,

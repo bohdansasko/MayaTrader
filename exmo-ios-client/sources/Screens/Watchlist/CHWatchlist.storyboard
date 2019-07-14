@@ -19,7 +19,7 @@
         <!--Currency Chart View Controller-->
         <scene sceneID="h4F-dW-dcn">
             <objects>
-                <viewController storyboardIdentifier="CurrencyChartViewController" id="WIw-Pw-gfs" customClass="CurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="chCurrencyChartViewController" id="WIw-Pw-gfs" customClass="CurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aem-Sz-Rl5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,8 +300,60 @@
             </objects>
             <point key="canvasLocation" x="-174" y="-765"/>
         </scene>
+        <!--Exchanges View Controller-->
+        <scene sceneID="xey-7r-Gjs">
+            <objects>
+                <viewController id="3fa-i0-fqZ" customClass="CHExchangesViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="mwm-eR-0c1">
+                        <barButtonItem key="rightBarButtonItem" image="icWalletClose" id="9ID-T5-fxl">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actClose:" destination="3fa-i0-fqZ" id="1ib-TU-e2B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mLt-JJ-LEp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175" y="-62"/>
+        </scene>
+        <!--Search Currencies Results View Controller-->
+        <scene sceneID="X2h-Lo-CKs">
+            <objects>
+                <viewController id="Q5P-68-orI" customClass="CHSearchCurrenciesResultsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Fs-30-yrM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="664" y="-62"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="d8N-zU-FVS">
+            <objects>
+                <navigationController storyboardIdentifier="chCurrenciesGroupsViewController" automaticallyAdjustsScrollViewInsets="NO" id="aEi-Ni-BBW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="nds-lU-Ihs">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3fa-i0-fqZ" kind="relationship" relationship="rootViewController" id="9p0-oK-G9J"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2C9-yt-4qx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-997" y="-62"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="icWalletClose" width="25" height="25"/>
+        <namedColor name="exmoMidnight">
+            <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="exmoSteel">
             <color red="0.49000000953674316" green="0.50199997425079346" blue="0.5690000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

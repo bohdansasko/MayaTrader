@@ -11,7 +11,7 @@ import UIKit
 class CurrenciesGroupsModuleInitializer: NSObject {
 
     //Connect with object on storyboard
-    var viewController: CurrenciesGroupsViewController!
+    @IBOutlet var viewController: CurrenciesGroupsViewController!
 
     override func awakeFromNib() {
 

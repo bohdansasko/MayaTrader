@@ -139,6 +139,17 @@
 		20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
 		2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087F47621B1E0E7009284D0 /* FormsCells.swift */; };
 		208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */; };
+		208FE09622DB3F3A0014BCE5 /* CHExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */; };
+		208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */; };
+		208FE09922DB3F460014BCE5 /* CHExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE09822DB3F460014BCE5 /* CHExchangesView.swift */; };
+		208FE09D22DB485C0014BCE5 /* CHExchangeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE09B22DB485C0014BCE5 /* CHExchangeCell.swift */; };
+		208FE09E22DB485C0014BCE5 /* CHExchangeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208FE09C22DB485C0014BCE5 /* CHExchangeCell.xib */; };
+		208FE0A222DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0A022DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift */; };
+		208FE0A322DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208FE0A122DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib */; };
+		208FE0A522DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0A422DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift */; };
+		208FE0A822DB78220014BCE5 /* CHBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */; };
+		208FE0AC22DB7B8C0014BCE5 /* CHBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */; };
+		208FE0AE22DB819A0014BCE5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */; };
 		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
 		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
 		20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */; };
@@ -428,7 +439,7 @@
 		204F7F78215B5D9400014017 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleBarChartShortInfoView.swift; sourceTree = "<group>"; };
 		20518D9D22D9F53D00334133 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
-		20518DA422D9F93100334133 /* CHWatchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = CHWatchlist.storyboard; path = ../CHWatchlist.storyboard; sourceTree = "<group>"; };
+		20518DA422D9F93100334133 /* CHWatchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHWatchlist.storyboard; sourceTree = "<group>"; };
 		20518DA622D9F9EA00334133 /* CHOrders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHOrders.storyboard; sourceTree = "<group>"; };
 		20518DA822D9F9F100334133 /* CHWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHWallet.storyboard; sourceTree = "<group>"; };
 		20518DAA22D9F9F600334133 /* CHAlerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHAlerts.storyboard; sourceTree = "<group>"; };
@@ -474,6 +485,17 @@
 		20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModuleInitializer.swift; sourceTree = "<group>"; };
 		2087F47621B1E0E7009284D0 /* FormsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsCells.swift; sourceTree = "<group>"; };
 		208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkProtocols.swift; sourceTree = "<group>"; };
+		208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangesViewController.swift; sourceTree = "<group>"; };
+		208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHExchangesViewController.xib; sourceTree = "<group>"; };
+		208FE09822DB3F460014BCE5 /* CHExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangesView.swift; sourceTree = "<group>"; };
+		208FE09B22DB485C0014BCE5 /* CHExchangeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangeCell.swift; sourceTree = "<group>"; };
+		208FE09C22DB485C0014BCE5 /* CHExchangeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHExchangeCell.xib; sourceTree = "<group>"; };
+		208FE0A022DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSearchCurrenciesResultsViewController.swift; sourceTree = "<group>"; };
+		208FE0A122DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSearchCurrenciesResultsViewController.xib; sourceTree = "<group>"; };
+		208FE0A422DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSearchCurrenciesResultsView.swift; sourceTree = "<group>"; };
+		208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseCollectionCell.swift; sourceTree = "<group>"; };
+		208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseView.swift; sourceTree = "<group>"; };
+		208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
 		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
 		20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnSum.swift; sourceTree = "<group>"; };
@@ -831,14 +853,6 @@
 			path = "exmo-ios-client";
 			sourceTree = "<group>";
 		};
-		200D52A322DA07200009C07C /* Flow */ = {
-			isa = PBXGroup;
-			children = (
-				20518DA422D9F93100334133 /* CHWatchlist.storyboard */,
-			);
-			path = Flow;
-			sourceTree = "<group>";
-		};
 		200D52A622DA079A0009C07C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -990,7 +1004,6 @@
 				207552952188B1F00011190E /* NetworkWorker.swift */,
 				202F48F0206A144D0080423E /* Common */,
 				207B1D842173F93F00D2A5DE /* Main */,
-				3DDB3E27DAEC8977E4D43CE0 /* CurrenciesGroups */,
 				48EFA6894840F77841C1ED3F /* CurrencyChart */,
 				20DE8847217CDE9900BA5CF3 /* CurrenciesPairsList */,
 				367120B1111B487C3177C51D /* WatchlistListView.swift */,
@@ -1082,7 +1095,6 @@
 		20518D9C22D9F47D00334133 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				200D52BF22DA1CC00009C07C /* CHViewController.swift */,
 				20518D9D22D9F53D00334133 /* Home.storyboard */,
 				20518D9F22D9F8BF00334133 /* Watchlist */,
 				20518DA322D9F8E700334133 /* Orders */,
@@ -1096,11 +1108,11 @@
 		20518D9F22D9F8BF00334133 /* Watchlist */ = {
 			isa = PBXGroup;
 			children = (
-				200D52A322DA07200009C07C /* Flow */,
-				200D52CC22DA23A90009C07C /* List */,
-				20518DB822D9FC7600334133 /* CHWatchlistView.swift */,
-				20518DB422D9FC5C00334133 /* CHWatchlistViewController.swift */,
-				20518DB522D9FC5C00334133 /* CHWatchlistViewController.xib */,
+				20518DA422D9F93100334133 /* CHWatchlist.storyboard */,
+				208FE09222DB3DB70014BCE5 /* Cards */,
+				208FE09322DB3E9D0014BCE5 /* Exchanges */,
+				208FE09F22DB71D50014BCE5 /* SearchCurrenciesResults */,
+				3DDB3E27DAEC8977E4D43CE0 /* oldCurrenciesGroups */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -1152,6 +1164,7 @@
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
 			isa = PBXGroup;
 			children = (
+				208FE0AA22DB7B7A0014BCE5 /* Base */,
 				20518D9C22D9F47D00334133 /* Screens */,
 				20848E4421FE2DCB003E7B8E /* SubscriptionsView */,
 				20BCE4E321E03DDE003669EA /* IAP */,
@@ -1212,18 +1225,19 @@
 		206730E12094D36E008B500D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */,
-				206730E22094D427008B500D /* UITextField+Extension.swift */,
-				20E30AD420A966B0003D9BAF /* UIView+Extension.swift */,
-				36712B2E24600DAE35483C9D /* Color+Extension.swift */,
-				36712B2B3338633190FB399E /* Font+Extension.swift */,
-				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
-				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
-				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
 				20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */,
+				36712B2E24600DAE35483C9D /* Color+Extension.swift */,
+				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
+				20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */,
+				36712B2B3338633190FB399E /* Font+Extension.swift */,
+				20E30AD420A966B0003D9BAF /* UIView+Extension.swift */,
+				206730E22094D427008B500D /* UITextField+Extension.swift */,
+				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
 				200D52C922DA1E550009C07C /* UIStoryboard+Extension.swift */,
 				200D52D122DA7AB60009C07C /* UICollectionView+Extension.swift */,
+				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
 				200D52D322DA7F550009C07C /* UITableView+Extension.swift */,
+				208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1379,6 +1393,57 @@
 				201D807B205DC6A300692DEF /* WalletCurrenciesListView.swift */,
 			);
 			path = Layout;
+			sourceTree = "<group>";
+		};
+		208FE09222DB3DB70014BCE5 /* Cards */ = {
+			isa = PBXGroup;
+			children = (
+				200D52CC22DA23A90009C07C /* List */,
+				20518DB822D9FC7600334133 /* CHWatchlistView.swift */,
+				20518DB422D9FC5C00334133 /* CHWatchlistViewController.swift */,
+				20518DB522D9FC5C00334133 /* CHWatchlistViewController.xib */,
+			);
+			path = Cards;
+			sourceTree = "<group>";
+		};
+		208FE09322DB3E9D0014BCE5 /* Exchanges */ = {
+			isa = PBXGroup;
+			children = (
+				208FE09A22DB48080014BCE5 /* Cell */,
+				208FE09822DB3F460014BCE5 /* CHExchangesView.swift */,
+				208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */,
+				208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */,
+			);
+			path = Exchanges;
+			sourceTree = "<group>";
+		};
+		208FE09A22DB48080014BCE5 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				208FE09B22DB485C0014BCE5 /* CHExchangeCell.swift */,
+				208FE09C22DB485C0014BCE5 /* CHExchangeCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		208FE09F22DB71D50014BCE5 /* SearchCurrenciesResults */ = {
+			isa = PBXGroup;
+			children = (
+				208FE0A422DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift */,
+				208FE0A022DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift */,
+				208FE0A122DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib */,
+			);
+			path = SearchCurrenciesResults;
+			sourceTree = "<group>";
+		};
+		208FE0AA22DB7B7A0014BCE5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */,
+				208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */,
+				200D52BF22DA1CC00009C07C /* CHViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		20A5B88E20AE246600EC2A4D /* Storyboards */ = {
@@ -1769,7 +1834,7 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		3DDB3E27DAEC8977E4D43CE0 /* CurrenciesGroups */ = {
+		3DDB3E27DAEC8977E4D43CE0 /* oldCurrenciesGroups */ = {
 			isa = PBXGroup;
 			children = (
 				B46AACE34BAA98A15F6F9E6F /* View */,
@@ -1778,7 +1843,7 @@
 				0FFCA8BB4A2A911636CF5E1A /* Router */,
 				09E848E0BF18C1B0049117B5 /* Configurator */,
 			);
-			path = CurrenciesGroups;
+			path = oldCurrenciesGroups;
 			sourceTree = "<group>";
 		};
 		3FDE641B246C380D9F3131B0 /* Presenter */ = {
@@ -2348,12 +2413,14 @@
 			files = (
 				207E88C72210C08E001681A2 /* Development.xcconfig in Resources */,
 				207E88C82210C08E001681A2 /* QA.xcconfig in Resources */,
+				208FE0A322DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib in Resources */,
 				20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */,
 				207E88C92210C08E001681A2 /* Production.xcconfig in Resources */,
 				200D52B222DA07DF0009C07C /* CHAlertsViewController.xib in Resources */,
 				200D52BC22DA1B4E0009C07C /* Localizable.strings in Resources */,
 				20518DB722D9FC5C00334133 /* CHWatchlistViewController.xib in Resources */,
 				205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */,
+				208FE09E22DB485C0014BCE5 /* CHExchangeCell.xib in Resources */,
 				20001D73203B8D1200B6966F /* Assets.xcassets in Resources */,
 				2013E58D2071464700EFACB7 /* Exo2-Regular.ttf in Resources */,
 				2013E5872071464700EFACB7 /* Exo2-ExtraLightItalic.ttf in Resources */,
@@ -2364,6 +2431,7 @@
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
 				2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */,
 				2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */,
+				208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */,
 				2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */,
 				20518D9E22D9F53D00334133 /* Home.storyboard in Resources */,
 				200D52AE22DA07CF0009C07C /* CHWalletViewController.xib in Resources */,
@@ -2537,10 +2605,12 @@
 				C7D7B7422209FDA100766759 /* ConfigInfoPList.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
 				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
+				208FE0A822DB78220014BCE5 /* CHBaseCollectionCell.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
 				201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */,
 				204F234D21AC849A0023890E /* AlertsNetworkProtocols.swift in Sources */,
 				202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */,
+				208FE09622DB3F3A0014BCE5 /* CHExchangesViewController.swift in Sources */,
 				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
 				20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */,
 				201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */,
@@ -2611,12 +2681,15 @@
 				20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */,
 				207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
+				208FE09D22DB485C0014BCE5 /* CHExchangeCell.swift in Sources */,
 				204CC7DA21B93478002057CA /* AppDelegate.swift in Sources */,
 				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
 				8F0AEFDE9AEF6C58DC4F078D /* AlertsViewProtocols.swift in Sources */,
 				206730E32094D427008B500D /* UITextField+Extension.swift in Sources */,
 				EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */,
 				C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */,
+				208FE09922DB3F460014BCE5 /* CHExchangesView.swift in Sources */,
+				208FE0A222DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift in Sources */,
 				201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsApiRequestBuilder.swift in Sources */,
 				20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */,
@@ -2654,7 +2727,9 @@
 				200D52AD22DA07CF0009C07C /* CHWalletViewController.swift in Sources */,
 				C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */,
 				D973E58060E2D991B0A64100 /* CreateOrderConfigurator.swift in Sources */,
+				208FE0A522DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift in Sources */,
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
+				208FE0AE22DB819A0014BCE5 /* UIViewController+Extension.swift in Sources */,
 				20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */,
 				20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */,
@@ -2739,6 +2814,7 @@
 				5AE00036F58513F97F1994D1 /* SearchCurrencyPairRouter.swift in Sources */,
 				7BF15DD1D6D4872F7399A413 /* SearchCurrencyPairConfigurator.swift in Sources */,
 				AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */,
+				208FE0AC22DB7B8C0014BCE5 /* CHBaseView.swift in Sources */,
 				3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */,
 				20DE8854217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift in Sources */,
 				36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */,

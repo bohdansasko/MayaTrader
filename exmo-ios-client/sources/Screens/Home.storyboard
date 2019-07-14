@@ -35,7 +35,14 @@
         <scene sceneID="zZz-dh-aVO">
             <objects>
                 <viewController title="Watchlist" id="bMS-7x-Elo" customClass="CHWatchlistViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="5Nn-1h-Oau"/>
+                    <navigationItem key="navigationItem" id="5Nn-1h-Oau">
+                        <barButtonItem key="rightBarButtonItem" image="icNavbarPlus" id="5hH-Jp-5HI">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="m2z-aF-6EK" kind="show" identifier="manageCurrenciesList" id="hiz-k9-GVQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="AGc-eD-ct0" kind="show" identifier="currencyDetails" id="JTE-Tw-cHv"/>
                     </connections>
@@ -44,13 +51,13 @@
             </objects>
             <point key="canvasLocation" x="2022" y="1240"/>
         </scene>
-        <!--CHWatchlist-->
+        <!--chCurrencyChartViewController-->
         <scene sceneID="ht5-1H-48r">
             <objects>
-                <viewControllerPlaceholder storyboardName="CHWatchlist" id="AGc-eD-ct0" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="CHWatchlist" referencedIdentifier="chCurrencyChartViewController" id="AGc-eD-ct0" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BjW-mo-uqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="1682"/>
+            <point key="canvasLocation" x="1820" y="1657"/>
         </scene>
         <!--Alerts View Controller-->
         <scene sceneID="CRW-3U-kEq">
@@ -258,8 +265,17 @@
             </objects>
             <point key="canvasLocation" x="6091" y="492"/>
         </scene>
+        <!--chCurrenciesGroupsViewController-->
+        <scene sceneID="FiK-LN-qhz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHWatchlist" referencedIdentifier="chCurrenciesGroupsViewController" id="m2z-aF-6EK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dqr-AV-Agp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2184" y="1657"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="icNavbarPlus" width="25" height="25"/>
         <image name="icTabbarAlerts" width="32" height="32"/>
         <image name="icTabbarAlertsSelected" width="32" height="32"/>
         <image name="icTabbarMenu" width="32" height="32"/>

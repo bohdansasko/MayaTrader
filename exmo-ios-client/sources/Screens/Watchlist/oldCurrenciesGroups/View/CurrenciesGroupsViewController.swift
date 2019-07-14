@@ -32,6 +32,7 @@ class CurrenciesGroupsViewController: DatasourceController, CurrenciesGroupsView
         view.backgroundColor = .dark
         return view
     }()
+
     
     // MARK: Life cycle
     override func viewDidLoad() {

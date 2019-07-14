@@ -10,6 +10,12 @@ import UIKit
 
 extension UIView {
     
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        set { layer.cornerRadius = newValue }
+        get { return layer.cornerRadius }
+    }
+    
     /** Loads instance from nib with the same name. */
     func loadNib() -> UINib {
         let className = String(describing: self)

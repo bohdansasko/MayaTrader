@@ -12,3 +12,6 @@
 "TAB_WALLET"    = "Wallet";
 "TAB_ALERTS"    = "Alerts";
 "TAB_MENU"      = "Menu";
+
+/* Screens */
+"SCREEN_CURRENCIES_GROUP_TITLE" = "Search";
