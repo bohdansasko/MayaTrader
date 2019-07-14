@@ -167,8 +167,8 @@ extension WatchlistListView: UICollectionViewDataSource {
 extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? WatchlistCardCell else { return }
-        cell.datasourceItem = datasource?.item(indexPath)
-        cell.delegate = self
+//        cell.datasourceItem = datasource?.item(indexPath)
+//        cell.delegate = self
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

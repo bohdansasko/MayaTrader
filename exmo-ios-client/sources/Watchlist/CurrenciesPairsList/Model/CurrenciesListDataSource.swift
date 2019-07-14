@@ -115,7 +115,7 @@ class WatchlistCardsDataSource: TableDatasource {
     }
 
     override func cellClasses() -> [ExmoCollectionCell.Type] {
-        return [WatchlistCardCell.self]
+        return [] // [WatchlistCardCell.self]
     }
 
     override func numberOfItems(_ section: Int) -> Int {

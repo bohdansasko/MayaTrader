@@ -7,10 +7,13 @@
 //
 
 import UIKit
-import LBTAComponents
 
-class WatchlistCardCell: ExmoCollectionCell {
-    var pairNameLabel: UILabel = {
+protocol WatchlistCardCellDelegate: class {
+    func watchlistCardCell(_ cell: WatchlistCardCell, didTouchFavouriteAt indexPath: IndexPath)
+}
+
+final class WatchlistCardCell: UICollectionViewCell {
+    fileprivate var pairNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 15)
         label.textAlignment = .center
@@ -18,7 +21,7 @@ class WatchlistCardCell: ExmoCollectionCell {
         return label
     }()
 
-    var favButton: UIButton = {
+    fileprivate var favButton: UIButton = {
         let btn = UIButton(type: .custom)
         btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOff").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOn").withRenderingMode(.alwaysOriginal), for: .selected)
@@ -26,7 +29,7 @@ class WatchlistCardCell: ExmoCollectionCell {
         return btn
     }()
 
-    var pairBuyPriceLabel: UILabel = {
+    fileprivate var pairBuyPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
@@ -34,7 +37,7 @@ class WatchlistCardCell: ExmoCollectionCell {
         return label
     }()
     
-    var pairSellPriceLabel: UILabel = {
+    fileprivate var pairSellPriceLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
@@ -42,7 +45,7 @@ class WatchlistCardCell: ExmoCollectionCell {
         return label
     }()
 
-    var pairVolumeLabel: UILabel = {
+   fileprivate var pairVolumeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
@@ -50,7 +53,7 @@ class WatchlistCardCell: ExmoCollectionCell {
         return label
     }()
 
-    var currencyChangesLabel: UILabel = {
+    fileprivate var currencyChangesLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 12)
         label.textAlignment = .left
@@ -64,37 +67,55 @@ class WatchlistCardCell: ExmoCollectionCell {
         }
     }
     
-    override func setupViews() {
-        super.setupViews()
-        
+    fileprivate var currencyModel: WatchlistCurrency! {
+        didSet { refreshLabels() }
+    }
+    fileprivate var indexPath: IndexPath!
+    
+    weak var delegate: WatchlistCardCellDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupViews()
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}
+
+// MARK: - Set
+
+extension WatchlistCardCell {
+    
+    func set(_ currencyModel: WatchlistCurrency, indexPath: IndexPath) {
+        self.currencyModel = currencyModel
+        self.indexPath = indexPath
+    }
+    
+}
+
+// MARK: - Setup
+
+private extension WatchlistCardCell {
+    
+    func setupViews() {
         setupUI()
         setupConstraints()
     }
-
-    override func invalidate() {
-        super.invalidate()
-
-        guard let cm = datasourceItem as? WatchlistCurrency else { return }
-
-        print("WatchlistCardCell => invalidate: \(cm.getDisplayCurrencyPairName())")
-        pairNameLabel.text = cm.getDisplayCurrencyPairName()
-        pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
-        pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
-        pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
-        currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
-        currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
-        favButton.isSelected = cm.tickerPair.isFavourite
-    }
-}
-
-extension WatchlistCardCell {
+    
     func setupUI() {
         layer.cornerRadius = 5
         layer.masksToBounds = true
         backgroundColor = .dark
         
         addSubview(pairNameLabel)
-
         addSubview(pairBuyPriceLabel)
         addSubview(pairSellPriceLabel)
         addSubview(pairVolumeLabel)
@@ -147,8 +168,33 @@ extension WatchlistCardCell {
         )
     }
 
+}
+
+// MARK: - Update cell state
+
+private extension WatchlistCardCell {
+    
+    func refreshLabels() {
+        guard let cm = currencyModel else { return }
+        
+        pairNameLabel.text = cm.getDisplayCurrencyPairName()
+        pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
+        pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
+        pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
+        currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
+        currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
+        favButton.isSelected = cm.tickerPair.isFavourite
+    }
+    
+}
+
+// MARK: - Actions
+
+private extension WatchlistCardCell {
+    
     @objc func onTouchFavBtn(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.didTouchCell(datasourceItem: datasourceItem)
+        delegate?.watchlistCardCell(self, didTouchFavouriteAt: indexPath)
     }
+    
 }

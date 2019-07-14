@@ -11,21 +11,46 @@ import UIKit
 final class CHWatchlistViewController: CHViewController, CHViewControllerProtocol {
     typealias ContentView = CHWatchlistView
     
+    fileprivate var presenter: CHWatchlistPresenter!
+    fileprivate enum Segues: String {
+        case currencyDetails
+        case manageCurrenciesList
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "TAB_WATCHLIST".localized
+        
+        presenter = CHWatchlistPresenter(collectionView: contentView.currenciesCollectionView,
+                                             dataSource: CHWatchlistDataSource(),
+                                                    api: TickerNetworkWorker())
+        presenter.delegate = self
+        presenter.fetchItems()
     }
 
-
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let segueType = Segues(rawValue: segue.identifier!)!
+        switch segueType {
+        case .currencyDetails:
+            let currency = sender as! WatchlistCurrency
+            let vc = segue.destination as! CurrencyChartViewController
+            vc.setCurrencyPair(currency.tickerPair.code)
+        case .manageCurrenciesList:
+            break
+        }
     }
-    */
 
+}
+
+// MARK: - CHWatchlistPresenterDelegate
+
+extension CHWatchlistViewController: CHWatchlistPresenterDelegate {
+    
+    func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: WatchlistCurrency) {
+        performSegue(withIdentifier: Segues.currencyDetails.rawValue, sender: currency)
+    }
+    
 }

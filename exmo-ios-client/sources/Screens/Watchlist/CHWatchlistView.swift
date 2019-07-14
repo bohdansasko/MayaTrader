@@ -9,9 +9,11 @@
 import UIKit
 
 final class CHWatchlistView: UIView {
+    @IBOutlet weak var currenciesCollectionView: UICollectionView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
     }
     
 }

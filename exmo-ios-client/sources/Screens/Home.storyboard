@@ -34,13 +34,13 @@
         <!--Watchlist-->
         <scene sceneID="zZz-dh-aVO">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pv0-jD-lNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="Watchlist" id="bMS-7x-Elo" customClass="CHWatchlistViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="5Nn-1h-Oau"/>
                     <connections>
-                        <segue destination="AGc-eD-ct0" kind="show" identifier="Watchlist" id="JTE-Tw-cHv"/>
+                        <segue destination="AGc-eD-ct0" kind="show" identifier="currencyDetails" id="JTE-Tw-cHv"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pv0-jD-lNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2022" y="1240"/>
         </scene>

@@ -32,7 +32,10 @@ target 'exmo-ios-client' do
   pod 'LBTAComponents' # TODO: should remove from project
   
   # Rx Swift
- pod 'RxSwift', '~> 5.0.0'
- pod 'RxCocoa', '~> 5.0.0'
+  pod 'RxSwift', '~> 5.0.0'
+  pod 'RxCocoa', '~> 5.0.0'
+ 
+  # UI
+  pod 'SnapKit', '~> 5.0.0'
   
 end

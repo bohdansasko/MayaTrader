@@ -9,15 +9,11 @@
 import UIKit
 
 extension UIView {
+    
     /** Loads instance from nib with the same name. */
-    func loadNib() -> UIView {
-        let bundle = Bundle(for: type(of: self))
-        let components = type(of: self).description().components(separatedBy: ".")
-        let nibName = components.last!
-        let nib = UINib(nibName: nibName, bundle: bundle)
-        guard let nibView = nib.instantiate(withOwner: self, options: nil).first as? UIView else {
-            return UIView()
-        }
-        return nibView
+    func loadNib() -> UINib {
+        let className = String(describing: self)
+        return UINib(nibName: className, bundle: nil)
     }
+    
 }

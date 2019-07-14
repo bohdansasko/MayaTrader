@@ -24,7 +24,7 @@ extension DatasourceController {
 }
 
 // MARK: WatchlistViewController
-class WatchlistViewController: ExmoUIViewController {
+final class WatchlistViewController: ExmoUIViewController {
     var output: WatchlistViewOutput!
     var subscriptionPackage: ISubscriptionPackage?
 

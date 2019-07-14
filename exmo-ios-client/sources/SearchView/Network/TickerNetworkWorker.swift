@@ -9,7 +9,7 @@
 import Alamofire
 import SwiftyJSON
 
-class TickerNetworkWorker: ITickerNetworkWorker {
+final class TickerNetworkWorker: ITickerNetworkWorker {
     weak var delegate: ITickerNetworkWorkerDelegate?
     private var timerRepeater: Timer?
     private(set) var isLoadCancelled: Bool = false
