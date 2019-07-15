@@ -9,7 +9,8 @@
 import UIKit
 
 final class CHExchangesView: UIView {
-    @IBOutlet fileprivate      weak var exchangesCollectionView: UICollectionView!
+    @IBOutlet fileprivate weak var exchangesCollectionView: UICollectionView!
+    
     fileprivate(set) var searchController: UISearchController = {
         let searchResultsController = CHSearchCurrenciesResultsViewController.loadFromNib()
         let searchController = UISearchController(searchResultsController: searchResultsController)
@@ -62,8 +63,6 @@ private extension CHExchangesView {
     }
     
     func setupSearchController() {
- 
-        
         guard
             let searchTF = searchController.searchBar.value(forKey: "searchField") as? UITextField,
             let backgroundViewTF = searchTF.subviews.first else {

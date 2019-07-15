@@ -193,6 +193,8 @@
 		20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* WalletBalanceView.swift */; };
 		20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */; };
 		20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */; };
+		20F9518122DD222C005A7E42 /* CHExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9518022DD222C005A7E42 /* CHExchangePresenter.swift */; };
+		20F9518322DD22C5005A7E42 /* CHExchangeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9518222DD22C5005A7E42 /* CHExchangeDataSource.swift */; };
 		20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9AFF21ED399600B586CB /* String+Extension.swift */; };
 		20FE9B0221ED3AA900B586CB /* Notification+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */; };
 		20FE9B0421ED41FE00B586CB /* ModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */; };
@@ -540,6 +542,8 @@
 		20E80093207A283B00E1AC6C /* WalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBalanceView.swift; sourceTree = "<group>"; };
 		20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+SetupViews.swift"; sourceTree = "<group>"; };
+		20F9518022DD222C005A7E42 /* CHExchangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangePresenter.swift; sourceTree = "<group>"; };
+		20F9518222DD22C5005A7E42 /* CHExchangeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangeDataSource.swift; sourceTree = "<group>"; };
 		20FE9AFF21ED399600B586CB /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Extension.swift"; sourceTree = "<group>"; };
 		20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleInitializer.swift; sourceTree = "<group>"; };
@@ -1410,8 +1414,10 @@
 			isa = PBXGroup;
 			children = (
 				208FE09A22DB48080014BCE5 /* Cell */,
-				208FE09822DB3F460014BCE5 /* CHExchangesView.swift */,
+				20F9518222DD22C5005A7E42 /* CHExchangeDataSource.swift */,
+				20F9518022DD222C005A7E42 /* CHExchangePresenter.swift */,
 				208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */,
+				208FE09822DB3F460014BCE5 /* CHExchangesView.swift */,
 				208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */,
 			);
 			path = Exchanges;
@@ -2716,6 +2722,7 @@
 				B0F73F18849BE389D8168863 /* WalletCurrenciesListConfigurator.swift in Sources */,
 				EBC38D6BBBA093BFC55BCA2A /* WalletCurrenciesListInitializer.swift in Sources */,
 				499549063C49EEA247935BBF /* CreateOrderViewProtocols.swift in Sources */,
+				20F9518322DD22C5005A7E42 /* CHExchangeDataSource.swift in Sources */,
 				CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */,
 				2E2904E690113123EAF56A17 /* CreateOrderPresenter.swift in Sources */,
 				20518DB922D9FC7600334133 /* CHWatchlistView.swift in Sources */,
@@ -2789,6 +2796,7 @@
 				5A2AFB98DDCEF332BD76F334 /* CurrencyChartViewController.swift in Sources */,
 				2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */,
 				20369A5121972438001D6628 /* RootTabsPresenterProtocols.swift in Sources */,
+				20F9518122DD222C005A7E42 /* CHExchangePresenter.swift in Sources */,
 				88F374AA6AB2C96E9516D8AB /* CurrencyChartModuleInput.swift in Sources */,
 				EABF76B025CEFE0E8375F4D1 /* CurrencyChartPresenter.swift in Sources */,
 				206221E721E8FC1A004603F3 /* SubscriptionsViewController.swift in Sources */,
