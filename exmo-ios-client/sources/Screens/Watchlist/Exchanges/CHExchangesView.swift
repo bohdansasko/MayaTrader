@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CHExchangesView: UIView {
+final class CHExchangesView: CHBaseView {
     @IBOutlet fileprivate weak var exchangesCollectionView: UICollectionView!
     
     fileprivate(set) var searchController: UISearchController = {
@@ -29,9 +29,9 @@ final class CHExchangesView: UIView {
         return searchController
     }()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupUI()
+    override func setupUI() {
+        setupCollectionView()
+        setupSearchController()
     }
     
 }
@@ -41,9 +41,14 @@ final class CHExchangesView: UIView {
 
 extension CHExchangesView {
     
-    func set(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate) {
+    func setList(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate) {
         exchangesCollectionView.dataSource = dataSource
         exchangesCollectionView.delegate = delegate
+    }
+    
+    func set(searchText text: String) {
+        searchController.searchBar.text = text
+        searchController.isActive = true
     }
     
 }
@@ -51,11 +56,6 @@ extension CHExchangesView {
 // MARK: - Setup methods
 
 private extension CHExchangesView {
-    
-    func setupUI() {
-        setupCollectionView()
-        setupSearchController()
-    }
     
     func setupCollectionView() {
         exchangesCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)

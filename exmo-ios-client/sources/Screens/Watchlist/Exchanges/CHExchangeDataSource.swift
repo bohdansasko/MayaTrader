@@ -17,6 +17,12 @@ final class CHExchangeDataSource: NSObject {
         CHExchangeModel(icon:#imageLiteral(resourceName: "ic_crypto_btc") , name: "CEXIO")
     ]
     
+}
+
+// MARK: - Getters
+
+extension CHExchangeDataSource {
+    
     func item(for indexPath: IndexPath) -> CHExchangeModel {
         return exchangeItems[indexPath.row]
     }

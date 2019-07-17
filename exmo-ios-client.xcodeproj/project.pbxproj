@@ -1416,8 +1416,8 @@
 				208FE09A22DB48080014BCE5 /* Cell */,
 				20F9518222DD22C5005A7E42 /* CHExchangeDataSource.swift */,
 				20F9518022DD222C005A7E42 /* CHExchangePresenter.swift */,
-				208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */,
 				208FE09822DB3F460014BCE5 /* CHExchangesView.swift */,
+				208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */,
 				208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */,
 			);
 			path = Exchanges;

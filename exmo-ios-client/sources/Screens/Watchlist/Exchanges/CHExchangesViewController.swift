@@ -16,14 +16,18 @@ struct CHExchangeModel {
 final class CHExchangesViewController: CHViewController, CHViewControllerProtocol {
     typealias ContentView = CHExchangesView
     
+    fileprivate var presenter: CHExchangePresenter!
+    
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupPresenterAndDataSource()
-        setupNavigationBar()
         definesPresentationContext = true
+        setupNavigationBar()
+        setupPresenter()
     }
-    
+
 }
 
 // MARK: - Setup methods
@@ -37,11 +41,12 @@ private extension CHExchangesViewController {
         navigationItem.searchController = contentView.searchController
     }
     
-    func setupPresenterAndDataSource() {
+    func setupPresenter() {
         let networkAPI = TickerNetworkWorker()
         let dataSource = CHExchangeDataSource()
-        let presenter = CHExchangePresenter(api: networkAPI, dataSource: dataSource)
-        contentView.set(dataSource: dataSource, delegate: presenter)
+        presenter = CHExchangePresenter(api: networkAPI, dataSource: dataSource)
+        presenter.delegate = self
+        contentView.setList(dataSource: dataSource, delegate: presenter)
     }
     
 }
@@ -55,3 +60,15 @@ private extension CHExchangesViewController {
     }
     
 }
+
+// MARK: - CHExchangePresenterDelegate
+
+extension CHExchangesViewController: CHExchangePresenterDelegate {
+    
+    func exchangePresenter(_ presenter: CHExchangePresenter, didTouchExchange exchange: CHExchangeModel) {
+        print(#function, exchange.name)
+        contentView.set(searchText: exchange.name + " ")
+    }
+
+}
+

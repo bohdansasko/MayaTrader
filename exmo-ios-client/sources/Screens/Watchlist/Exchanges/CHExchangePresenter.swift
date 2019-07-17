@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol CHExchangePresenterDelegate: class {
+    func exchangePresenter(_ presenter: CHExchangePresenter, didTouchExchange exchange: CHExchangeModel)
+}
+
 final class CHExchangePresenter: NSObject {
     fileprivate var        api: ITickerNetworkWorker
     fileprivate var dataSource: CHExchangeDataSource
+    
+    weak var delegate: CHExchangePresenterDelegate?
     
     init(api: ITickerNetworkWorker, dataSource: CHExchangeDataSource) {
         self.api = api
@@ -43,7 +49,8 @@ extension CHExchangePresenter: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("did touched \(indexPath)")
+        let exchange = dataSource.item(for: indexPath)
+        delegate?.exchangePresenter(self, didTouchExchange: exchange)
     }
     
 }
