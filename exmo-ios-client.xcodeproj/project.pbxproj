@@ -180,6 +180,7 @@
 		20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */; };
 		20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuViewCell.swift */; };
 		20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */; };
+		20DB069C22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB069B22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift */; };
 		20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */; };
 		20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */; };
 		20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */; };
@@ -529,6 +530,7 @@
 		20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrdersListView+UITableView_Delegate+DataSource.swift"; sourceTree = "<group>"; };
+		20DB069B22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RX_VinsoAPI+Ticker.swift"; sourceTree = "<group>"; };
 		20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListView.swift; sourceTree = "<group>"; };
 		20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListDataSource.swift; sourceTree = "<group>"; };
 		20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListCells.swift; sourceTree = "<group>"; };
@@ -1806,6 +1808,7 @@
 				36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */,
 				367123472D6E898C5F3B2FA0 /* VinsoAPI+Alerts.swift */,
 				36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */,
+				20DB069B22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift */,
 			);
 			path = VinsoAPI;
 			sourceTree = "<group>";
@@ -2621,6 +2624,7 @@
 				20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */,
 				201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
+				20DB069C22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift in Sources */,
 				200D52C822DA1DFC0009C07C /* CHMenuView.swift in Sources */,
 				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,
 				207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */,

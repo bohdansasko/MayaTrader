@@ -127,6 +127,7 @@ extension VinsoAPI {
         case ServerMessage.deleteAlert: handleResponseDeleteAlert(json: json)
         case ServerMessage.resetUser: handleResponseResetUser(json: json)
         case ServerMessage.fireAlert: handleResponseFireAlert(json: json)
+        case ServerMessage.getSelectedCurrencies: print(json)
         case ServerMessage.subscriptionConfigs: handleResponseSubscriptionConfigs(json: json)
         default:
             break
@@ -150,6 +151,7 @@ extension VinsoAPI {
         case ServerMessage.deleteAlert  : handleResponseErrorDeleteAlert(reason: reason)
         case ServerMessage.resetUser    : handleResponseResetUserError(reason: reason)
         case ServerMessage.fireAlert    : handleResponseFireAlertError(reason: reason)
+        case ServerMessage.getSelectedCurrencies: print(json)
         default: break
         }
     }

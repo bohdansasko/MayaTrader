@@ -13,8 +13,6 @@ final class CHSearchCurrenciesResultsViewController: CHViewController, CHViewCon
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
 }
@@ -24,7 +22,8 @@ final class CHSearchCurrenciesResultsViewController: CHViewController, CHViewCon
 extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text ?? "Nothing")
+        let searchText = searchController.searchBar.text ?? "<No string>"
+        print(#function, searchText)
     }
     
 }

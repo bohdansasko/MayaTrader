@@ -39,6 +39,12 @@ extension VinsoAPI {
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withId: ids)
         socketManager.sendMessage(message: jsonMsg)
     }
+    
+    func selectedCurrencies() {
+        print("load alerts")
+        socketManager.sendMessage(message: AlertsApiRequestBuilder.getJSONForSelectedCurrencies())
+    }
+    
 }
 
 // MARK: handle alerts responses

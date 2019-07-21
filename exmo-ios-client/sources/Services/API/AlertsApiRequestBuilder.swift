@@ -39,6 +39,15 @@ class AlertsApiRequestBuilder {
         ]
     }
 
+    static func getJSONForSelectedCurrencies() -> JSON {
+        return [
+            "request_type" : ServerMessage.getSelectedCurrencies.rawValue,
+            "selected_currencies": ["BTC_USD"],
+            "stock_exchange": "exmo",
+            "extended": false
+        ]
+    }
+
     static private func getAlertMessage(requestType: ServerMessage, alert: Alert) -> JSON {
         let upperBound = alert.topBoundary == nil ? JSON.null : JSON(Utils.getJSONFormattedNumb(from: alert.topBoundary!))
         let bottomBound = alert.bottomBoundary == nil ? JSON.null : JSON(Utils.getJSONFormattedNumb(from: alert.bottomBoundary!))

@@ -26,4 +26,5 @@ enum ServerMessage: Int {
     case registerAPNsDeviceToken = 11
     case subscriptionConfigs = 12
     case setSubscriptionType = 13
+    case getSelectedCurrencies = 16
 }

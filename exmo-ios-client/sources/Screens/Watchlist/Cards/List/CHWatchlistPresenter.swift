@@ -58,7 +58,7 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let countItems = round(collectionView.frame.width/160)
+        let countItems = round(collectionView.frame.width/170)
         let spaceBetweenCols: CGFloat = (countItems-1) * 10
         let width = (collectionView.frame.width - spaceBetweenCols - 2 * Constants.spaceFromLeftOrRight)/countItems
         return CGSize(width: width, height: 115)
@@ -72,6 +72,7 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
         let currency = dataSource.item(for: indexPath)
         delegate?.presenter(self, didTouchCurrency: currency)
     }
+    
 }
 
 extension CHWatchlistPresenter: WatchlistCardCellDelegate {
