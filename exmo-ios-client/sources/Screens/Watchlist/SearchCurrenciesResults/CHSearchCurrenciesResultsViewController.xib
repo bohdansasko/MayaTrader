@@ -34,6 +34,9 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="kC2-qQ-Wfw" secondAttribute="bottom" id="vQs-ea-Ftg"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="tableView" destination="kC2-qQ-Wfw" id="1WR-U4-J46"/>
+            </connections>
         </view>
     </objects>
     <resources>

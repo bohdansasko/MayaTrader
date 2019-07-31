@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+platform :ios, '10.0'
 
 target 'exmo-ios-client' do
   use_frameworks!
@@ -17,6 +17,7 @@ target 'exmo-ios-client' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftWebSocket'
   pod 'SwiftyStoreKit'
+  pod 'RxStarscream', '~> 0.10'
 
   # Admob
   pod 'Firebase/Core'
@@ -32,8 +33,8 @@ target 'exmo-ios-client' do
   pod 'LBTAComponents' # TODO: should remove from project
   
   # Rx Swift
-  pod 'RxSwift', '~> 5.0.0'
-  pod 'RxCocoa', '~> 5.0.0'
+  pod 'RxSwift', '~> 4.3.0'
+  pod 'RxCocoa', '~> 4.3.0'
  
   # UI
   pod 'SnapKit', '~> 5.0.0'

@@ -9,13 +9,34 @@
 import UIKit
 
 final class CHSearchCurrenciesResultsView: UIView {
+    
+    @IBOutlet fileprivate weak var tableView: UITableView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
+        setupUI()
     }
-    */
 
+}
+
+// MARK: - Setup
+
+private extension CHSearchCurrenciesResultsView {
+    
+    func setupUI() {
+        tableView.register(nib: CHSearchCurrencyResultCell.self)
+    }
+    
+}
+
+// MARK: - Set
+
+extension CHSearchCurrenciesResultsView {
+    
+    func set(dataSource: UITableViewDataSource, delegate: UITableViewDelegate) {
+        tableView.dataSource = dataSource
+        tableView.delegate = delegate
+    }
+    
 }

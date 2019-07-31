@@ -11,8 +11,12 @@ import UIKit
 final class CHSearchCurrenciesResultsViewController: CHViewController, CHViewControllerProtocol {
     typealias ContentView = CHSearchCurrenciesResultsView
     
+    fileprivate var items: [TickerCurrencyModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        contentView.set(dataSource: self, delegate: self)
     }
 
 }
@@ -28,3 +32,26 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
     
 }
 
+extension CHSearchCurrenciesResultsViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeue(class: CHSearchCurrencyResultCell.self, for: indexPath)
+        return cell
+    }
+    
+}
+
+extension CHSearchCurrenciesResultsViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let item = items[indexPath.row]
+//        let currencyCell = cell as! CHSearchCurrencyResultCell
+//        currencyCell.set(model: item)
+        
+    }
+    
+}

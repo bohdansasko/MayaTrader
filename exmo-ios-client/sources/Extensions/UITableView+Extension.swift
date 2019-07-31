@@ -12,14 +12,13 @@ extension UITableView {
     
     /// Register nib for reuse
     func register<T: UITableViewCell>(nib cell: T.Type) {
-        let nib = loadNib()
-        let className = String(describing: self)
-        register(nib, forCellReuseIdentifier: className)
+        let className = String(describing: cell)
+        register(UINib(nibName: className, bundle: nil), forCellReuseIdentifier: className)
     }
     
     /// Returns reusable cell
-    func dequeue<T: UITableViewCell>(for indexPath: IndexPath) -> T {
-        let className = String(describing: self)
+    func dequeue<T: UITableViewCell>(class cell: T.Type, for indexPath: IndexPath) -> T {
+        let className = String(describing: cell)
         return dequeueReusableCell(withIdentifier: className, for: indexPath) as! T
     }
     

@@ -20,6 +20,8 @@
 		1A9B269CD2910DC038EC9F06 /* CreateAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADD09F9110D86C9AA252D600 /* CreateAlertPresenter.swift */; };
 		20001D73203B8D1200B6966F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20001D72203B8D1200B6966F /* Assets.xcassets */; };
 		2003B5562048B8DE00BD205F /* WalletTableCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5552048B8DE00BD205F /* WalletTableCells.swift */; };
+		2005E2A822E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */; };
+		2005E2A922E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */; };
 		200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CA489211C9CF300BB0E9B /* Utils.swift */; };
 		200D52A922DA07B20009C07C /* CHOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52A722DA07B20009C07C /* CHOrdersViewController.swift */; };
 		200D52AA22DA07B20009C07C /* CHOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200D52A822DA07B20009C07C /* CHOrdersViewController.xib */; };
@@ -180,6 +182,7 @@
 		20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */; };
 		20D7F02520460E6A0056F547 /* MenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* MenuViewCell.swift */; };
 		20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */; };
+		20DA7DED22F0DE8700706FAC /* CHSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DA7DEC22F0DE8700706FAC /* CHSocketService.swift */; };
 		20DB069C22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DB069B22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift */; };
 		20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */; };
 		20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */; };
@@ -370,6 +373,8 @@
 		20001D72203B8D1200B6966F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20001D77203B8D1200B6966F /* Development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Development.plist; sourceTree = "<group>"; };
 		2003B5552048B8DE00BD205F /* WalletTableCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTableCells.swift; sourceTree = "<group>"; };
+		2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSearchCurrencyResultCell.swift; sourceTree = "<group>"; };
+		2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSearchCurrencyResultCell.xib; sourceTree = "<group>"; };
 		200CA489211C9CF300BB0E9B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		200D52A722DA07B20009C07C /* CHOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOrdersViewController.swift; sourceTree = "<group>"; };
 		200D52A822DA07B20009C07C /* CHOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHOrdersViewController.xib; sourceTree = "<group>"; };
@@ -530,6 +535,7 @@
 		20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		20D7F02420460E6A0056F547 /* MenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewCell.swift; sourceTree = "<group>"; };
 		20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrdersListView+UITableView_Delegate+DataSource.swift"; sourceTree = "<group>"; };
+		20DA7DEC22F0DE8700706FAC /* CHSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSocketService.swift; sourceTree = "<group>"; };
 		20DB069B22DFC71900E845DE /* RX_VinsoAPI+Ticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RX_VinsoAPI+Ticker.swift"; sourceTree = "<group>"; };
 		20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListView.swift; sourceTree = "<group>"; };
 		20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListDataSource.swift; sourceTree = "<group>"; };
@@ -857,6 +863,15 @@
 				200D52BE22DA1B4E0009C07C /* Localizable.strings */,
 			);
 			path = "exmo-ios-client";
+			sourceTree = "<group>";
+		};
+		2005E2A522E4FA0900B1F677 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */,
+				2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 		200D52A622DA079A0009C07C /* Flow */ = {
@@ -1437,6 +1452,7 @@
 		208FE09F22DB71D50014BCE5 /* SearchCurrenciesResults */ = {
 			isa = PBXGroup;
 			children = (
+				2005E2A522E4FA0900B1F677 /* Cell */,
 				208FE0A422DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift */,
 				208FE0A022DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift */,
 				208FE0A122DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib */,
@@ -1447,9 +1463,8 @@
 		208FE0AA22DB7B7A0014BCE5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */,
-				208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */,
-				200D52BF22DA1CC00009C07C /* CHViewController.swift */,
+				20DA7DEA22F0DDFF00706FAC /* Internet */,
+				20DA7DEB22F0DE0900706FAC /* UI */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1597,6 +1612,24 @@
 				367129EF7BC8BC3DAC904CBE /* MenuCellType.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		20DA7DEA22F0DDFF00706FAC /* Internet */ = {
+			isa = PBXGroup;
+			children = (
+				20DA7DEC22F0DE8700706FAC /* CHSocketService.swift */,
+			);
+			path = Internet;
+			sourceTree = "<group>";
+		};
+		20DA7DEB22F0DE0900706FAC /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */,
+				208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */,
+				200D52BF22DA1CC00009C07C /* CHViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		20DBA23D20B3FEB4007BA0AF /* Cells */ = {
@@ -2426,6 +2459,7 @@
 				20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */,
 				207E88C92210C08E001681A2 /* Production.xcconfig in Resources */,
 				200D52B222DA07DF0009C07C /* CHAlertsViewController.xib in Resources */,
+				2005E2A922E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib in Resources */,
 				200D52BC22DA1B4E0009C07C /* Localizable.strings in Resources */,
 				20518DB722D9FC5C00334133 /* CHWatchlistViewController.xib in Resources */,
 				205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */,
@@ -2484,10 +2518,11 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework",
+				"${BUILT_PRODUCTS_DIR}/RxStarscream/RxStarscream.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SmileLock/SmileLock.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Starscream/Starscream.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftWebSocket/SwiftWebSocket.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
@@ -2504,10 +2539,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxRelay.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxStarscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SmileLock.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Starscream.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftWebSocket.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
@@ -2593,6 +2629,7 @@
 				73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */,
 				207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */,
 				20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */,
+				2005E2A822E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift in Sources */,
 				20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */,
 				206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */,
 				201D807C205DC6A300692DEF /* WalletCurrenciesListView.swift in Sources */,
@@ -2700,6 +2737,7 @@
 				C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */,
 				208FE09922DB3F460014BCE5 /* CHExchangesView.swift in Sources */,
 				208FE0A222DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift in Sources */,
+				20DA7DED22F0DE8700706FAC /* CHSocketService.swift in Sources */,
 				201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsApiRequestBuilder.swift in Sources */,
 				20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */,
@@ -3038,7 +3076,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3064,7 +3102,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
@@ -3151,7 +3189,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug(Development)";
@@ -3230,7 +3268,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release(Development)";
@@ -3317,7 +3355,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug(QA)";
@@ -3396,7 +3434,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release(QA)";
@@ -3475,7 +3513,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "ExmoTrader-prod";
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Release(Production) ";
@@ -3562,7 +3600,7 @@
 				SWIFT_INCLUDE_PATHS = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = "Debug(Production)";

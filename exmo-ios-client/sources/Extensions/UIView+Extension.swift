@@ -18,7 +18,8 @@ extension UIView {
     
     /** Loads instance from nib with the same name. */
     func loadNib() -> UINib {
-        let className = String(describing: self)
+        let classType = type(of: self)
+        let className = String(describing: classType)
         return UINib(nibName: className, bundle: nil)
     }
     
