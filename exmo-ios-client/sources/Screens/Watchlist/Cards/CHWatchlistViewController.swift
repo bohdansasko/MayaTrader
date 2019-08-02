@@ -35,14 +35,24 @@ final class CHWatchlistViewController: CHViewController, CHViewControllerProtoco
         let segueType = Segues(rawValue: segue.identifier!)!
         switch segueType {
         case .currencyDetails:
-            let currency = sender as! WatchlistCurrency
-            let vc = segue.destination as! CurrencyChartViewController
-            vc.setCurrencyPair(currency.tickerPair.code)
+            self.prepareCurrencyChartViewController(for: segue, sender: sender)
         case .manageCurrenciesList:
             break
         }
     }
 
+}
+
+// MARK: - Prepare view controller for segue
+
+extension CHWatchlistViewController {
+    
+    func prepareCurrencyChartViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let currency = sender as! WatchlistCurrency
+        let vc = segue.destination as! CurrencyChartViewController
+        vc.setCurrencyPair(currency.tickerPair.code)
+    }
+    
 }
 
 // MARK: - CHWatchlistPresenterDelegate

@@ -1,5 +1,5 @@
 //
-//  CHSocketService.swift
+//  CHVinsoAPIService.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 7/30/19.
@@ -9,10 +9,11 @@
 import RxSwift
 import Starscream
 import RxStarscream
+import SwiftyJSON
 
-final class CHSocketService {
+final class CHVinsoAPIService {
     fileprivate let disposeBag = DisposeBag()
-    fileprivate var socket: WebSocket!
+    fileprivate var socket     : WebSocket!
     fileprivate var plistConfig: PListFile<ConfigInfoPList> = {
         return try! PListFile<ConfigInfoPList>()
     }()
@@ -42,4 +43,29 @@ final class CHSocketService {
         })
         .disposed(by: disposeBag)
     }
+    
+    func getCurrencies() -> Single<[String]> {
+        let params: [String: Any] = [
+            "name": "BTC"
+        ]
+        return self.sendRequest(messageType: .getSelectedCurrencies, params: params)
+            .mapInBackground { json -> [String] in
+                return []
+            }
+            .asSingle()
+    }
+
+    func sendRequest(messageType: ServerMessage, params: [String: Any]) -> Observable<JSON> {
+        let jsonMessage = Observable<JSON>.create{ [unowned self] subscriber in
+            self.socket.rx.response.subscribe(onNext: { event in
+                if case .message(let message) = event {
+                    print("message - \(message)")
+                    let jsonMessage = JSON(parseJSON: message)
+                    subscriber.onNext(jsonMessage)
+                }
+            })
+        }
+        return jsonMessage
+    }
+    
 }

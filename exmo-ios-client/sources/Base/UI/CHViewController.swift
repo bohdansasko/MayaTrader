@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol CHViewControllerProtocol {
     associatedtype ContentView
@@ -20,7 +21,7 @@ extension CHViewControllerProtocol where Self: CHViewController {
 }
 
 class CHViewController: UIViewController {
-    
+    fileprivate let disposeBag = DisposeBag()
 }
 
 
