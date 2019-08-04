@@ -17,8 +17,19 @@ final class CHSearchCurrenciesResultsViewController: CHViewController, CHViewCon
         super.viewDidLoad()
         
         contentView.set(dataSource: self, delegate: self)
+        self.fetchCurrencies()
+        
     }
 
+    func fetchCurrencies() {
+        let request = self.api.rx.getCurrencies(by: .exmo, selectedCurrencies: ["BTC_USD", "LTC_EUR"])
+        request.subscribe(onSuccess: { arr in
+            //
+        }, onError: { err in
+            print(err)
+        }).disposed(by: self.disposeBag)
+    }
+    
 }
 
 // MARK: - UISearchResultsUpdating

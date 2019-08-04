@@ -91,6 +91,7 @@ extension AppDelegate: VinsoAPIConnectionDelegate  {
     func onResetUserSuccessful() {
         Defaults.resetVinsoUserSuccessful()
     }
+    
 }
 
 // MARK: handle registering APNs

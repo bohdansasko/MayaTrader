@@ -74,6 +74,10 @@
 		<string>Exo2-Bold.ttf</string>
 		<string>Exo2-Regular.ttf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Home</string>
 	<key>UIRequiredDeviceCapabilities</key>

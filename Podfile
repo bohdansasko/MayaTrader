@@ -17,7 +17,6 @@ target 'exmo-ios-client' do
   pod 'Alamofire', '~> 4.7'
   pod 'SwiftWebSocket'
   pod 'SwiftyStoreKit'
-  pod 'RxStarscream', '~> 0.10'
 
   # Admob
   pod 'Firebase/Core'

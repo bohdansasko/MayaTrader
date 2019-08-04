@@ -4,6 +4,7 @@
 //
 
 import SwiftyJSON
+import RxSwift
 
 struct AlertsObservation {
     weak var observer: AlertsAPIResponseDelegate?
@@ -145,4 +146,23 @@ extension VinsoAPI {
         let id = ObjectIdentifier(observer)
         alertsObservers.removeValue(forKey: id)
     }
+}
+
+extension Reactive where Base: VinsoAPI {
+    
+    func getAlerts() -> Single<[Alert]> {
+        let params = ["request_type" : ServerMessage.alertsHistory.rawValue]
+        return self.base.sendRequest(messageType: .alertsHistory, params: params)
+            .mapInBackground{ json -> [Alert] in
+                guard let jsonAlerts = json["history_alerts"].array else {
+                    return []
+                }
+                
+                let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
+                return alerts
+            }
+            .asSingle()
+        
+    }
+    
 }

@@ -3,7 +3,7 @@
 // Copyright (c) 2019 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
+import RxSwift
 
 struct ConnectionObservation {
     weak var observer: VinsoAPIConnectionDelegate?
@@ -63,8 +63,6 @@ extension VinsoAPI {
     }
 }
 
-
-
 extension VinsoAPI {
     func addConnectionObserver(_ observer: VinsoAPIConnectionDelegate) {
         let id = ObjectIdentifier(observer)
@@ -75,4 +73,22 @@ extension VinsoAPI {
         let id = ObjectIdentifier(observer)
         connectionObservers.removeValue(forKey: id)
     }
+}
+
+extension Reactive where Base: VinsoAPI {
+    
+    func getCurrencies(by stockExchange: CHStockExchange, selectedCurrencies: [String] = [], isExtended: Bool = true) -> Single<[String]> {
+        let params: [String: Any] = [
+            "stock_exchange"     : stockExchange.rawValue,
+            "selected_currencies": selectedCurrencies,
+            "extended"           : isExtended
+        ]
+        return self.base.sendRequest(messageType: .getSelectedCurrencies, params: params)
+            .mapInBackground { json -> [String] in
+                print(json)
+                return []
+            }
+            .asSingle()
+    }
+    
 }

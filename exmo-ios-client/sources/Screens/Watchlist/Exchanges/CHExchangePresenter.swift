@@ -40,7 +40,6 @@ extension CHExchangePresenter: UICollectionViewDelegateFlowLayout {
         let widthContentInsets = collectionView.contentInset.left + collectionView.contentInset.right
         
         let width = (collectionView.bounds.size.width - kHorizontalSpace - widthContentInsets)/2
-        print("width = \(width)")
         return CGSize(width: width, height: 60)
     }
     

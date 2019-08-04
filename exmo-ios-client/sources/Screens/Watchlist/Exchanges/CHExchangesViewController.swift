@@ -19,8 +19,6 @@ final class CHExchangesViewController: CHViewController, CHViewControllerProtoco
     
     fileprivate var presenter: CHExchangePresenter!
     
-    var disposeBag: DisposeBag = DisposeBag()
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -29,16 +27,6 @@ final class CHExchangesViewController: CHViewController, CHViewControllerProtoco
         definesPresentationContext = true
         setupNavigationBar()
         setupPresenter()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let request = VinsoAPI.shared.rx.currencyGroup(stockName: "exmo", extended: false)
-        request.subscribe(onNext: { currencies in
-            
-        }, onError: { err in
-            
-        }).disposed(by: disposeBag)
     }
 
 }

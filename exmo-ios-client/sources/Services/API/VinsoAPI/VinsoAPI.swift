@@ -9,32 +9,44 @@
 import Foundation
 import SwiftyJSON
 import ObjectMapper
+import RxSwift
+
+enum CHVinsoAPIError: String, Error {
+    case unknown = "Unknown error"
+}
+
+enum CHStockExchange: String {
+    case exmo     = "exmo"
+    case btcTrade = "btc_trade"
+}
+
+enum ConnectionNotification: String, NotificationName {
+    case connectedSuccess
+    case connectionError
+    
+    case authorizationSuccess
+    case authorizationError
+}
+
+enum AlertsNotification: String, NotificationName {
+    case loadedHistorySuccess
+    case createdAlertSuccess
+    case updatedAlertSuccess
+    case deletedAlertSuccess
+    
+    case loadedHistoryError
+    case createdAlertError
+    case updatedAlertError
+    case deletedAlertError
+}
 
 class VinsoAPI {
-    enum ConnectionNotification: String, NotificationName {
-        case connectedSuccess
-        case connectionError
-        
-        case authorizationSuccess
-        case authorizationError
-    }
-    
-    enum AlertsNotification: String, NotificationName {
-        case loadedHistorySuccess
-        case createdAlertSuccess
-        case updatedAlertSuccess
-        case deletedAlertSuccess
-        
-        case loadedHistoryError
-        case createdAlertError
-        case updatedAlertError
-        case deletedAlertError
-    }
 
     static var shared = VinsoAPI()
 
     private(set) var socketManager: SocketManager!
-
+    fileprivate let disposeBag = DisposeBag()
+    
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
 
@@ -85,6 +97,77 @@ class VinsoAPI {
     func isConnectionOpen() -> Bool {
         return socketManager.isOpen()
     }
+    
+    func connectToServer() {
+//        self.socket.rx.connected.subscribe(onNext: { isConnected in
+//            if !isConnected { return }
+//            self.sendRequest(messageType: .connect)
+//                .subscribe(onNext: { json in
+//                    print("\(#function) = \(json)")
+//                    self.tryToAuthorizateUser()
+//                }, onError: { err in
+//                    print("\(#function) = \(err.localizedDescription)")
+//                }).disposed(by: self.disposeBag)
+//
+//        }).disposed(by: self.disposeBag)
+//        self.socket.connect()
+    }
+    
+    func tryToAuthorizateUser() {
+        guard let udid = UIDevice.current.identifierForVendor?.uuidString else {
+            return
+        }
+        let params = ["udid": udid]
+        self.sendRequest(messageType: .authorization, params: params)
+            .asSingle()
+            .subscribe(onSuccess: { json in
+                print("\(#function) = \(json)")
+            }, onError: { err in
+                print("\(#function) = \(err.localizedDescription)")
+            }).disposed(by: self.disposeBag)
+    }
+    
+    func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {
+//        let request = Observable<JSON>.create{ [unowned self] subscriber in
+//            self.socket.rx.response.subscribe(onNext: { event in
+//                if case .message(let message) = event {
+//                    let json = JSON(parseJSON: message)
+//
+//                    guard let responseCode = json["status"].int,
+//                        let responseCodeType = VinsoResponseCode(rawValue: responseCode),
+//                        let requestId = json["request_type"].int,
+//                        let messageId = ServerMessage(rawValue: requestId) else {
+//                            subscriber.onError(CHVinsoAPIError.unknown)
+//                            return
+//                    }
+//
+//                    print("😎 API Response: \(json)")
+//
+//                    switch responseCodeType {
+//                    case .succeed where messageId == messageType:
+//                        subscriber.onNext(json)
+//                    case .succeed:
+//                        break
+//                    case .error, .clientError:
+//                        subscriber.onError(CHVinsoAPIError.unknown)
+//                    }
+//                }
+//            })
+//        }
+//
+//        var data = params
+//        data["request_type"] = messageType.rawValue
+//        let message = JSON(data)
+//
+//        print("👻 API Request: \(message)")
+//        assert(!message.isEmpty, "don't send empty messages")
+//
+//        self.socket.write(string: message.stringValue)
+//
+//        return request
+        return Observable<JSON>.just("")
+    }
+    
 }
 
 extension VinsoAPI {
@@ -93,12 +176,12 @@ extension VinsoAPI {
             print("socket => can't cast data to String")
             return
         }
-        print("socket => received message: \(message)")
+        print("🙂socket => received message: \(message)")
 
         let json = JSON(parseJSON: message)
         guard let responseCode = json["status"].int,
               let responseCodeType = VinsoResponseCode(rawValue: responseCode) else {
-            print("socket => fail cast code \(json["status"].int ?? -1) into ResponseCode")
+            print("🤮socket => fail cast code \(json["status"].int ?? -1) into ResponseCode")
             return
         }
 
@@ -218,3 +301,5 @@ extension VinsoAPI {
         }
     }
 }
+
+extension VinsoAPI: ReactiveCompatible {}

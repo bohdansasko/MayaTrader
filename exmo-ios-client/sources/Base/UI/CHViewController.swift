@@ -21,7 +21,8 @@ extension CHViewControllerProtocol where Self: CHViewController {
 }
 
 class CHViewController: UIViewController {
-    fileprivate let disposeBag = DisposeBag()
+    internal let disposeBag = DisposeBag()
+    internal let api        = AppDelegate.vinsoAPI
 }
 
 
