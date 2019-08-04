@@ -9,61 +9,71 @@ struct ConnectionObservation {
     weak var observer: VinsoAPIConnectionDelegate?
 }
 
+// MARK: - Connection & disconnection with server
+
 extension VinsoAPI {
-    func establishConnect() {
+
+    func establishConnection() {
         if isAuthorized { return }
         print("\(String(describing: self)) => establish connect")
-        socketManager.connect(message: AccountApiRequestBuilder.buildConnectRequest())
-    }
+        self.socketManager.connected.subscribe(onNext: { isConnected in
+            if !isConnected { return }
+            
+            self.sendRequest(messageType: .connect)
+                .subscribe(onNext: { json in
+                    self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
+                    self.authorizeUser()
+                }, onError: { err in
+                    print("\(#function) = \(err.localizedDescription)")
+                }).disposed(by: self.disposeBag)
+            
+        }).disposed(by: self.disposeBag)
+        
+        self.socketManager.connect()    }
 
     func disconnect() {
         isAuthorized = false
         print("\(String(describing: self)) => disconnect")
         socketManager.disconnect()
     }
+    
+}
 
-    func login() {
-        connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
-        print("\(String(describing: self)) => login")
-        let msg = AccountApiRequestBuilder.buildAuthorizationRequest()
-        socketManager.sendMessage(message: msg)
+// MARK: - Manage user
+
+extension VinsoAPI {
+    
+    func authorizeUser() {
+        guard let udid = UIDevice.current.identifierForVendor?.uuidString else {
+            return
+        }
+        let params = ["udid": udid]
+        self.sendRequest(messageType: .authorization, params: params)
+            .asSingle()
+            .subscribe(onSuccess: { json in
+                print("\(#function) = \(json)")
+            }, onError: { err in
+                print("\(#function) = \(err.localizedDescription)")
+            }).disposed(by: self.disposeBag)
     }
-
+    
+    func resetUser() {
+        let msg = AccountApiRequestBuilder.buildResetUser()
+        socketManager.send(message: msg)
+    }
+    
     func registerAPNSDeviceToken(_ deviceToken: String) {
         print("\(String(describing: self)) => registerAPNSDeviceToken \(deviceToken)")
         let msg = AccountApiRequestBuilder.buildRegisterAPNSDeviceTokenRequest(deviceToken)
-        socketManager.sendMessage(message: msg)
+        socketManager.send(message: msg)
     }
-
-    func resetUser() {
-        let msg = AccountApiRequestBuilder.buildResetUser()
-        socketManager.sendMessage(message: msg)
-    }
-
-    func onSocketError(reason: String) {
-        isAuthorized = false
-        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Can't establish connection. Please, try again through a few minutes or write us.") })
-    }
-
-    func onSocketClose(reason: String) {
-        isAuthorized = false
-        connectionObservers.forEach({ $0.value.observer?.onConnectionRefused(reason: "Your connection was interrupted. Please, try again through a few minutes or write us.") })
-    }
-
-    func setSubscriptionType(_ packageType: SubscriptionPackageType) {
-        print("\(String(describing: self)) => \(#function)")
-        let msg = AccountApiRequestBuilder.buildSetSubscriptionRequest(packageType.rawValue)
-        socketManager.sendMessage(message: msg)
-    }
-
-    func loadAvailableSubscriptions() {
-        print("\(String(describing: self)) => \(#function)")
-        let msg = AccountApiRequestBuilder.buildGetSubscriptionConfigsRequest()
-        socketManager.sendMessage(message: msg)
-    }
+    
 }
 
+// MARK: - Delegate connections
+
 extension VinsoAPI {
+    
     func addConnectionObserver(_ observer: VinsoAPIConnectionDelegate) {
         let id = ObjectIdentifier(observer)
         connectionObservers[id] = ConnectionObservation(observer: observer)
@@ -72,23 +82,6 @@ extension VinsoAPI {
     func removeConnectionObserver(_ observer: VinsoAPIConnectionDelegate) {
         let id = ObjectIdentifier(observer)
         connectionObservers.removeValue(forKey: id)
-    }
-}
-
-extension Reactive where Base: VinsoAPI {
-    
-    func getCurrencies(by stockExchange: CHStockExchange, selectedCurrencies: [String] = [], isExtended: Bool = true) -> Single<[String]> {
-        let params: [String: Any] = [
-            "stock_exchange"     : stockExchange.rawValue,
-            "selected_currencies": selectedCurrencies,
-            "extended"           : isExtended
-        ]
-        return self.base.sendRequest(messageType: .getSelectedCurrencies, params: params)
-            .mapInBackground { json -> [String] in
-                print(json)
-                return []
-            }
-            .asSingle()
     }
     
 }

@@ -13,7 +13,7 @@ class MenuInteractor: MenuInteractorInput {
     var dbManager: OperationsDatabaseProtocol!
     
     deinit {
-        unsubscribeEvents()
+        unsubscribeFromNotifications()
     }
 }
 
@@ -21,7 +21,7 @@ class MenuInteractor: MenuInteractorInput {
 extension MenuInteractor {
     func viewIsReady() {
         subscribeOnEvents()
-        subscribeOnIAPEvents()
+        subscribeOnIAPNotifications()
 
         if Defaults.isUserLoggedIn() {
             onUserSignIn()
@@ -55,7 +55,7 @@ extension MenuInteractor {
 }
 
 extension MenuInteractor {
-    func subscribeOnIAPEvents() {
+    func subscribeOnIAPNotifications() {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
@@ -66,7 +66,7 @@ extension MenuInteractor {
                 name: IAPService.Notification.purchaseError.name)
     }
 
-    func unsubscribeEvents() {
+    func unsubscribeFromNotifications() {
         AppDelegate.notificationController.removeObserver(self)
     }
 }

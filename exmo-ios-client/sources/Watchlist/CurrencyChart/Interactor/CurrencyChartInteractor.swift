@@ -16,11 +16,11 @@ class WatchlistCurrencyChartInteractor {
     var networkAPIHandler: BaseAPICandleChartNetworkWorker!
 
     init() {
-        subscribeOnIAPEvents()
+        subscribeOnIAPNotifications()
     }
 
     deinit {
-        unsubscribeEvents()
+        unsubscribeFromNotifications()
     }
 }
 
@@ -43,14 +43,14 @@ extension WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInpu
 
 // MARK: subscriptions
 extension WatchlistCurrencyChartInteractor {
-    func subscribeOnIAPEvents() {
+    func subscribeOnIAPNotifications() {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
                 name: IAPService.Notification.updateSubscription.name)
     }
 
-    func unsubscribeEvents() {
+    func unsubscribeFromNotifications() {
         AppDelegate.notificationController.removeObserver(self)
     }
 }

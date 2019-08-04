@@ -14,7 +14,7 @@ class AlertsInteractor  {
 
     deinit {
         print("deinit \(String(describing: self))")
-        unsubscribeEvents()
+        unsubscribeFromNotifications()
     }
 }
 
@@ -22,7 +22,7 @@ class AlertsInteractor  {
 extension AlertsInteractor: AlertsInteractorInput {
     func viewIsReady() {
         subscribeOnVinsoAPIEvents()
-        subscribeOnIAPEvents()
+        subscribeOnIAPNotifications()
     }
 
     func viewDidAppear() {
@@ -30,7 +30,7 @@ extension AlertsInteractor: AlertsInteractorInput {
         if AppDelegate.vinsoAPI.isAuthorized {
             loadAlerts()
         } else {
-            AppDelegate.vinsoAPI.establishConnect()
+            AppDelegate.vinsoAPI.establishConnection()
         }
     }
 
@@ -95,7 +95,7 @@ extension AlertsInteractor {
         AppDelegate.vinsoAPI.addAlertsObserver(self)
     }
 
-    func subscribeOnIAPEvents() {
+    func subscribeOnIAPNotifications() {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
@@ -106,7 +106,7 @@ extension AlertsInteractor {
                 name: IAPService.Notification.purchaseError.name)
     }
 
-    func unsubscribeEvents() {
+    func unsubscribeFromNotifications() {
         AppDelegate.vinsoAPI.removeConnectionObserver(self)
         AppDelegate.vinsoAPI.removeAlertsObserver(self)
         AppDelegate.notificationController.removeObserver(self)

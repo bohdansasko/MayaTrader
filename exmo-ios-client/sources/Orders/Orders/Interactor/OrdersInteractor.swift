@@ -14,7 +14,7 @@ class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     var networkWorker: IOrdersListNetworkWorker!
 
     deinit {
-        unsubscribeEvents()
+        unsubscribeFromNotifications()
     }
 }
 
@@ -22,7 +22,7 @@ class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
 extension OrdersInteractor: OrdersInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
-        subscribeOnIAPEvents()
+        subscribeOnIAPNotifications()
     }
 
     func viewWillAppear() {
@@ -113,7 +113,7 @@ extension OrdersInteractor {
 
 
 extension OrdersInteractor {
-    func subscribeOnIAPEvents() {
+    func subscribeOnIAPNotifications() {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
@@ -124,7 +124,7 @@ extension OrdersInteractor {
                 name: IAPService.Notification.purchaseError.name)
     }
 
-    func unsubscribeEvents() {
+    func unsubscribeFromNotifications() {
         AppDelegate.notificationController.removeObserver(self)
     }
 }

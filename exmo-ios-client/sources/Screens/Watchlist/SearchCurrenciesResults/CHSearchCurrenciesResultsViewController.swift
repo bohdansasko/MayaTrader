@@ -24,7 +24,7 @@ final class CHSearchCurrenciesResultsViewController: CHViewController, CHViewCon
     func fetchCurrencies() {
         let request = self.api.rx.getCurrencies(by: .exmo, selectedCurrencies: ["BTC_USD", "LTC_EUR"])
         request.subscribe(onSuccess: { arr in
-            //
+            
         }, onError: { err in
             print(err)
         }).disposed(by: self.disposeBag)

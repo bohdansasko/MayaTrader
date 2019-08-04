@@ -25,7 +25,7 @@ class SubscriptionsInteractor {
 // MARK: SubscriptionsInteractorInput
 extension SubscriptionsInteractor: SubscriptionsInteractorInput {
     func viewDidLoad() {
-        subscribeOnIAPEvents()
+        subscribeOnIAPNotifications()
     }
     
     func fetchSubscriptions() {
@@ -51,7 +51,7 @@ extension SubscriptionsInteractor: SubscriptionsInteractorInput {
     }
 
     func viewWillDisappear() {
-        unsubscribeEvents()
+        unsubscribeFromNotifications()
     }
 
     func buyLitePackage() {
@@ -68,7 +68,7 @@ extension SubscriptionsInteractor: SubscriptionsInteractorInput {
 }
 
 extension SubscriptionsInteractor {
-    func subscribeOnIAPEvents() {
+    func subscribeOnIAPNotifications() {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
@@ -79,7 +79,7 @@ extension SubscriptionsInteractor {
                 name: IAPService.Notification.purchaseError.name)
     }
 
-    func unsubscribeEvents() {
+    func unsubscribeFromNotifications() {
         AppDelegate.notificationController.removeObserver(self)
     }
 }

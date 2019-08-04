@@ -14,36 +14,36 @@ struct AlertsObservation {
 extension VinsoAPI {
     func loadAlerts() {
         print("load alerts")
-        socketManager.sendMessage(message: AlertsApiRequestBuilder.getJSONForAlertsHistory())
+        socketManager.send(message: AlertsApiRequestBuilder.getJSONForAlertsHistory())
     }
 
     func createAlert(alert: Alert) {
         print("create alert")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
-        socketManager.sendMessage(message: jsonMsg)
+        socketManager.send(message: jsonMsg)
     }
 
     func updateAlert(_ alert: Alert) {
         print("update alert")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForUpdateAlert(alert: alert)
-        socketManager.sendMessage(message: jsonMsg)
+        socketManager.send(message: jsonMsg)
     }
 
     func deleteAlert(withId id: Int) {
         print("delete alert \(id)")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlert(withId: id)
-        socketManager.sendMessage(message: jsonMsg)
+        socketManager.send(message: jsonMsg)
     }
 
     func deleteAlerts(withId ids: [Int]) {
         print("delete alert \(ids)")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withId: ids)
-        socketManager.sendMessage(message: jsonMsg)
+        socketManager.send(message: jsonMsg)
     }
     
     func selectedCurrencies() {
         print("load alerts")
-        socketManager.sendMessage(message: AlertsApiRequestBuilder.getJSONForSelectedCurrencies())
+        socketManager.send(message: AlertsApiRequestBuilder.getJSONForSelectedCurrencies())
     }
     
 }

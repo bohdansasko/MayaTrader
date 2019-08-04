@@ -17,7 +17,7 @@ class WatchlistInteractor {
     var favPairs: [WatchlistCurrency] = []
 
     deinit {
-        unsubscribeEvents()
+        unsubscribeFromNotifications()
     }
 }
 
@@ -25,7 +25,7 @@ class WatchlistInteractor {
 extension WatchlistInteractor: WatchlistInteractorInput {
     func viewIsReady() {
         networkWorker.delegate = self
-        subscribeOnIAPEvents()
+        subscribeOnIAPNotifications()
     }
 
     func viewWillAppear() {
@@ -174,7 +174,7 @@ extension WatchlistInteractor {
 }
 
 extension WatchlistInteractor {
-    func subscribeOnIAPEvents() {
+    func subscribeOnIAPNotifications() {
         AppDelegate.notificationController.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
@@ -185,7 +185,7 @@ extension WatchlistInteractor {
                 name: IAPService.Notification.purchaseError.name)
     }
 
-    func unsubscribeEvents() {
+    func unsubscribeFromNotifications() {
         AppDelegate.notificationController.removeObserver(self)
     }
 }
