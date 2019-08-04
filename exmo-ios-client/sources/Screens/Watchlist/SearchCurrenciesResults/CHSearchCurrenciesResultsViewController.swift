@@ -8,28 +8,32 @@
 
 import UIKit
 
-final class CHSearchCurrenciesResultsViewController: CHViewController, CHViewControllerProtocol {
+final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHSearchCurrenciesResultsView
     
-    fileprivate var items: [TickerCurrencyModel] = []
+    fileprivate var items: [CHLiteCurrencyModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         contentView.set(dataSource: self, delegate: self)
-        self.fetchCurrencies()
-        
-    }
-
-    func fetchCurrencies() {
-        let request = self.api.rx.getCurrencies(by: .exmo, selectedCurrencies: ["BTC_USD", "LTC_EUR"])
-        request.subscribe(onSuccess: { arr in
-            
-        }, onError: { err in
-            print(err)
-        }).disposed(by: self.disposeBag)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        fetchCurrencies(by: "BTC_")
+    }
+
+    func fetchCurrencies(by string: String) {
+        self.api.rx.getCurrencies(like: string, stocks: [.exmo], isExtended: false).subscribe(
+            onNext: { [unowned self] currencies in
+                self.items = currencies.map{ $0 }
+                self.contentView.reloadList()
+            }, onError: { err in
+                print("\(#function)error: \(err.localizedDescription)")
+            })
+            .disposed(by: self.disposeBag)
+    }
 }
 
 // MARK: - UISearchResultsUpdating
@@ -39,6 +43,7 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? "<No string>"
         print(#function, searchText)
+//        fetchCurrencies(by: searchText)
     }
     
 }
@@ -46,7 +51,7 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
 extension CHSearchCurrenciesResultsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -59,10 +64,10 @@ extension CHSearchCurrenciesResultsViewController: UITableViewDataSource {
 extension CHSearchCurrenciesResultsViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let item = items[indexPath.row]
-//        let currencyCell = cell as! CHSearchCurrencyResultCell
-//        currencyCell.set(model: item)
-        
+        let item = items[indexPath.row]
+        let itemFormatter = CHLiteCurrencyFormatter(currency: item)
+        let currencyCell = cell as! CHSearchCurrencyResultCell
+        currencyCell.set(formatter: itemFormatter)
     }
     
 }

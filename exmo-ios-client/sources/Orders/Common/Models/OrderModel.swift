@@ -79,32 +79,6 @@ struct OrderSettings : Mappable {
     }
 }
 
-// MARK: TransformOrderType
-class TransformOrderType : TransformType {
-    typealias Object = OrderActionType
-    typealias JSON = String
-    
-    func transformFromJSON(_ value: Any?) -> Object? {
-        guard let strValue = value as? String else {
-            return nil
-        }
-        
-        switch strValue {
-        case "buy":
-            return OrderActionType.buy
-        case "sell":
-            return OrderActionType.sell
-        default:
-            return nil
-        }
-    }
-    
-    func transformToJSON(_ value: Object?) -> JSON? {
-        return nil
-    }
-}
-
-
 // MARK: OrderModel
 struct OrderModel: Mappable {
     var orderType: OrderActionType

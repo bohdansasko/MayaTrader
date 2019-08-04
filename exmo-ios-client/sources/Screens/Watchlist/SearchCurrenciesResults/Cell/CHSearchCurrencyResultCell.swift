@@ -9,18 +9,23 @@
 import UIKit
 
 final class CHSearchCurrencyResultCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
+    
+    @IBOutlet fileprivate weak var stockIcon          : UIImageView!
+    @IBOutlet fileprivate weak var stockLabel         : UILabel!
+    @IBOutlet fileprivate weak var currencyLabel      : UILabel!
+    @IBOutlet fileprivate weak var currencyPriceLabel : UILabel!
+    @IBOutlet fileprivate weak var currencyVolumeLabel: UILabel!
     
 }
 
 extension CHSearchCurrencyResultCell {
     
-    func set(model: TickerCurrencyModel) {
-        
+    func set(formatter: CHLiteCurrencyFormatter) {
+        stockIcon.image          = formatter.stockIcon
+        stockLabel.text          = formatter.stockName
+        currencyLabel.text       = formatter.currencyName
+        currencyPriceLabel.text  = formatter.sellPrice
+        currencyVolumeLabel.text = formatter.volume
     }
     
 }

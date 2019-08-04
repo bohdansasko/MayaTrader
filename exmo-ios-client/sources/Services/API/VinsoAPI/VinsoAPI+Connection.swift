@@ -20,7 +20,8 @@ extension VinsoAPI {
             if !isConnected { return }
             
             self.sendRequest(messageType: .connect)
-                .subscribe(onNext: { json in
+                .asSingle()
+                .subscribe(onSuccess: { json in
                     self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
                     self.authorizeUser()
                 }, onError: { err in

@@ -40,3 +40,13 @@ extension CHSearchCurrenciesResultsView {
     }
     
 }
+
+// MARK: - Help
+
+extension CHSearchCurrenciesResultsView {
+    
+    func reloadList() {
+        tableView.reloadData()
+    }
+    
+}

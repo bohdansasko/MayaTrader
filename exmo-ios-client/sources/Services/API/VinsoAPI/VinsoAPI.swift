@@ -69,29 +69,7 @@ private extension VinsoAPI {
 internal extension VinsoAPI {
     
     func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {
-        let request = Observable<JSON>.create{ [unowned self] subscriber in
-            self.socketManager.response.subscribe(onNext: { event in
-                if case .message(let message) = event {
-                    let json = JSON(parseJSON: message)
-                    
-                    do {
-                        let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
-                        switch responseCodeType {
-                        case .succeed where messageId == messageType:
-                            print("👍 \(messageType.description) API Response for message: \(json)\n")
-                            subscriber.onNext(json)
-                        case .succeed:
-                            break
-                        case .error, .clientError:
-                            subscriber.onError(CHVinsoAPIError.unknown)
-                        }
-                        
-                    } catch (let err) {
-                        subscriber.onError(err)
-                    }
-                }
-            })
-        }
+        let request = self.buildRequestHandler(for: messageType)
         
         var requestParams = params
         requestParams["request_type"] = messageType.rawValue
@@ -107,6 +85,32 @@ internal extension VinsoAPI {
         return request
     }
 
+    func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
+        return Observable<JSON>.create{ [unowned self] subscriber in
+            self.socketManager.response.subscribe(onNext: { event in
+                if case .message(let message) = event {
+                    let json = JSON(parseJSON: message)
+                    do {
+                        let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
+                        switch responseCodeType {
+                        case .succeed where messageId == messageType:
+                            print("👍 \(messageType.description) API Response for message: \(json)\n")
+                            subscriber.onNext(json)
+                        case .succeed:
+                            print("✊ \(messageType.description) API Response for message: \(json)\n")
+                        case .error, .clientError:
+                            print("👎 \(messageType.description) API Response for message: \(json)\n")
+                            subscriber.onError(CHVinsoAPIError.unknown)
+                        }
+                        
+                    } catch (let err) {
+                        subscriber.onError(err)
+                    }
+                }
+            })
+        }
+    }
+    
 }
 
 

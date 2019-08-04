@@ -29,6 +29,7 @@ enum ServerMessage: Int {
     case getAlertsInfo       = 14
     case getCurrencyGroup    = 15
     case getSelectedCurrencies = 16
+    case getCurrenciesLikeString = 17
     
     var description: String {
         switch self {
@@ -49,6 +50,7 @@ enum ServerMessage: Int {
         case .getAlertsInfo       : return "getAlertsInfo"
         case .getCurrencyGroup    : return "getCurrencyGroup"
         case .getSelectedCurrencies : return "getSelectedCurrencies"
+        case .getCurrenciesLikeString : return "getCurrenciesLikeString"
         }
     }
 }
@@ -60,6 +62,7 @@ enum CHVinsoAPIError: String, Error {
 }
 
 enum CHStockExchange: String {
+    case all      = "all"
     case exmo     = "exmo"
     case btcTrade = "btc_trade"
 }

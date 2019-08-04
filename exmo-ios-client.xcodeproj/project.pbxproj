@@ -290,6 +290,10 @@
 		969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9936576524E2F156E83AAC8 /* CurrenciesGroupsRouter.swift */; };
 		9763F42F22F718E900D6E22A /* VinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* VinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* VinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* VinsoAPI+Subscriptions.swift */; };
+		9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */; };
+		9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */; };
+		9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */; };
+		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
 		97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB18AB22F4AD48007BE023 /* Observable+extension.swift */; };
 		9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F43CA7FE0D9869186DF0E /* CurrenciesGroupsPresenter.swift */; };
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
@@ -645,6 +649,10 @@
 		96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerConfigurator.swift; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* VinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* VinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
+		9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
+		9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+extension.swift"; sourceTree = "<group>"; };
+		9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTransforms.swift; sourceTree = "<group>"; };
+		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
 		97DB18AB22F4AD48007BE023 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
 		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
 		A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletInteractorProtocols.swift; sourceTree = "<group>"; };
@@ -1262,6 +1270,7 @@
 				200D52D322DA7F550009C07C /* UITableView+Extension.swift */,
 				208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */,
 				97DB18AB22F4AD48007BE023 /* Observable+extension.swift */,
+				9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1466,6 +1475,7 @@
 		208FE0AA22DB7B7A0014BCE5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				9763F43822F7494A00D6E22A /* Formatters */,
 				20DA7DEB22F0DE0900706FAC /* UI */,
 			);
 			path = Base;
@@ -1576,6 +1586,8 @@
 				3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */,
 				367123CC34179C4F53E597DE /* VinsoAPIConnectionDelegate.swift */,
 				367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */,
+				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
+				9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */,
 				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
 			);
 			path = API;
@@ -2157,6 +2169,14 @@
 				2FFD1AD98656557A1D6B5C2B /* WalletCurrenciesListPresenter.swift */,
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		9763F43822F7494A00D6E22A /* Formatters */ = {
+			isa = PBXGroup;
+			children = (
+				9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */,
+			);
+			path = Formatters;
 			sourceTree = "<group>";
 		};
 		9E01C470C3E1B77012FC4051 /* QRScanner */ = {
@@ -2800,6 +2820,7 @@
 				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,
 				C7FD7602220B4DA500A987DB /* InternetConnectionManager.swift in Sources */,
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewProtocols.swift in Sources */,
+				9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */,
 				20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */,
 				204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */,
 				9763F42F22F718E900D6E22A /* VinsoAPI+Currencies.swift in Sources */,
@@ -2821,6 +2842,7 @@
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
 				200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */,
 				97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */,
+				9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */,
 				20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */,
 				207B1D9E2173F93F00D2A5DE /* WatchlistInteractorProtocols.swift in Sources */,
 				20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */,
@@ -2893,9 +2915,11 @@
 				200D52CE22DA247E0009C07C /* CHWatchlistPresenter.swift in Sources */,
 				366FFC69CC56E57670268399 /* SubscriptionsViewProtocols.swift in Sources */,
 				366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */,
+				9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */,
 				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
 				200D52D022DA24940009C07C /* CHWatchlistDataSource.swift in Sources */,
 				366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */,
+				9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */,
 				200D52C222DA1D1A0009C07C /* CHOrdersView.swift in Sources */,
 				366FF9CE76AC761CDB59E856 /* SubscriptionsCell.swift in Sources */,
 				366FFEB33570D242C87BAAAF /* SubscriptionsHeaderCell.swift in Sources */,

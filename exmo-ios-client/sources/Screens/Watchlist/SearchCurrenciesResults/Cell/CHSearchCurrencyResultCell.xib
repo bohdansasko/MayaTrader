@@ -74,6 +74,13 @@
             </tableViewCellContentView>
             <color key="backgroundColor" name="exmoDark"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="currencyLabel" destination="Hgg-LH-PxE" id="qL1-G0-sQd"/>
+                <outlet property="currencyPriceLabel" destination="jBF-Yx-Nu5" id="LhT-dH-qB2"/>
+                <outlet property="currencyVolumeLabel" destination="DGm-mf-xIM" id="AFQ-ZO-ahh"/>
+                <outlet property="stockIcon" destination="TUO-EE-wbd" id="2KN-zd-Tox"/>
+                <outlet property="stockLabel" destination="v4Z-k1-Odd" id="DCg-cM-3WU"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

@@ -21,8 +21,17 @@ extension CHBaseViewControllerProtocol where Self: CHBaseViewController {
 }
 
 class CHBaseViewController: UIViewController {
+    
+    // MARK: - Internal variables/properties
+    
     internal let disposeBag = DisposeBag()
     internal let api        = AppDelegate.vinsoAPI
+    
+    // MARK: - Lifecycle
+    deinit {
+        print("☠️ deinit \(String(describing: self))")
+    }
+    
 }
 
 
