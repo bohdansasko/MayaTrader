@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CHWatchlistViewController: CHViewController, CHViewControllerProtocol {
+final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHWatchlistView
     
     fileprivate var presenter: CHWatchlistPresenter!

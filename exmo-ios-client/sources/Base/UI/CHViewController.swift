@@ -1,5 +1,5 @@
 //
-//  CHViewController.swift
+//  CHBaseViewController.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 7/13/19.
@@ -9,18 +9,18 @@
 import UIKit
 import RxSwift
 
-protocol CHViewControllerProtocol {
+protocol CHBaseViewControllerProtocol {
     associatedtype ContentView
     var contentView: ContentView! { get }
 }
 
-extension CHViewControllerProtocol where Self: CHViewController {
+extension CHBaseViewControllerProtocol where Self: CHBaseViewController {
     var contentView: ContentView! {
         return view as? ContentView
     }
 }
 
-class CHViewController: UIViewController {
+class CHBaseViewController: UIViewController {
     internal let disposeBag = DisposeBag()
     internal let api        = AppDelegate.vinsoAPI
 }

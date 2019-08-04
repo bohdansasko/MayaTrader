@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CHOrdersViewController: CHViewController, CHViewControllerProtocol {
+final class CHOrdersViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHOrdersView
     
     override func viewDidLoad() {

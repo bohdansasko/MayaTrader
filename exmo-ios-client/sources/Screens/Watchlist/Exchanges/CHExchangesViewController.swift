@@ -14,7 +14,7 @@ struct CHExchangeModel {
     var name: String
 }
 
-final class CHExchangesViewController: CHViewController, CHViewControllerProtocol {
+final class CHExchangesViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHExchangesView
     
     fileprivate var presenter: CHExchangePresenter!
