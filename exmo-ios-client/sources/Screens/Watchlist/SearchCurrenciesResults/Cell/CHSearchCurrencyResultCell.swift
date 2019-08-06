@@ -15,8 +15,11 @@ final class CHSearchCurrencyResultCell: UITableViewCell {
     @IBOutlet fileprivate weak var currencyLabel      : UILabel!
     @IBOutlet fileprivate weak var currencyPriceLabel : UILabel!
     @IBOutlet fileprivate weak var currencyVolumeLabel: UILabel!
+    @IBOutlet fileprivate weak var selectedButton     : UIButton!
     
 }
+
+// MARK: - Setters
 
 extension CHSearchCurrencyResultCell {
     
@@ -26,6 +29,20 @@ extension CHSearchCurrencyResultCell {
         currencyLabel.text       = formatter.currencyName
         currencyPriceLabel.text  = formatter.sellPrice
         currencyVolumeLabel.text = formatter.volume
+    }
+    
+    func set(isSelected: Bool) {
+        selectedButton.isSelected = isSelected
+    }
+    
+}
+
+// MARK: - Actions
+
+private extension CHSearchCurrencyResultCell {
+
+    @IBAction func actSelect(_ sender: Any) {
+        selectedButton.isSelected = !selectedButton.isSelected
     }
     
 }
