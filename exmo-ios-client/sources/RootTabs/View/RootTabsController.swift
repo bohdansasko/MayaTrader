@@ -135,8 +135,7 @@ extension RootTabsController {
             WatchlistModuleInitializer(),
             OrdersModuleInitializer(),
             WalletModuleInitializer(),
-            AlertsModuleInitializer(),
-            MenuModuleInitializer()
+            AlertsModuleInitializer()
         ]
         
         let titleAttributes: [NSAttributedString.Key: Any] = [

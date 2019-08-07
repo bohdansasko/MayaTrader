@@ -1,18 +1,18 @@
+////
+////  MoreMenuRouterInput.swift
+////  ExmoMobileClient
+////
+////  Created by TQ0oS on 27/02/2018.
+////  Copyright © 2018 Roobik. All rights reserved.
+////
 //
-//  MoreMenuRouterInput.swift
-//  ExmoMobileClient
+//import Foundation
+//import UIKit
 //
-//  Created by TQ0oS on 27/02/2018.
-//  Copyright © 2018 Roobik. All rights reserved.
+//protocol MenuRouterInput {
+//    func showViewController(sourceVC: UIViewController, touchedCellType: CHMenuCellType)
+//}
 //
-
-import Foundation
-import UIKit
-
-protocol MenuRouterInput {
-    func showViewController(sourceVC: UIViewController, touchedCellType: MenuCellType)
-}
-
-protocol MenuRouterOutput: class {
-    func userLogout()
-}
+//protocol MenuRouterOutput: class {
+//    func userLogout()
+//}

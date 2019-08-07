@@ -17,10 +17,22 @@ extension UIView {
     }
     
     /** Loads instance from nib with the same name. */
-    func loadNib() -> UINib {
+    static func loadNib() -> UINib {
         let classType = type(of: self)
         let className = String(describing: classType)
         return UINib(nibName: className, bundle: nil)
+    }
+    
+    /** Loads instance of view from nib with the same name. */
+    static func loadViewFromNib() -> Self {
+        return self.viewFromNib()!
+    }
+    
+    static func viewFromNib<T>() -> T? {
+        let className = String(describing: T.self)
+        let nib = UINib(nibName: className, bundle: nil)
+        let view = nib.instantiate(withOwner: nil, options: nil).first
+        return view as? T
     }
     
 }

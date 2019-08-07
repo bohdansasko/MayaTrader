@@ -1,5 +1,5 @@
 //
-//  TableMenuViewCell.swift
+//  CHMenuCell.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 2/28/18.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class TableMenuViewCell: ExmoTableViewCell {
-    var cellType: MenuCellType = .none {
+final class CHMenuCell: ExmoTableViewCell {
+    
+    var cellType: CHMenuCellType = .none {
         didSet {
             iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
             titleLabel.text = cellType.title
@@ -70,9 +71,11 @@ class TableMenuViewCell: ExmoTableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
 }
 
-extension TableMenuViewCell {
+private extension CHMenuCell {
+    
     func setupView() {
         self.backgroundColor = .clear
         
@@ -134,4 +137,5 @@ extension TableMenuViewCell {
             lockButton.isHidden = true
         }
     }
+    
 }

@@ -7,21 +7,14 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CHMenuView: UIView {
     
+    @IBOutlet weak var tableView: UITableView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-    
-}
-
-// MARK: - Setup
-
-extension CHMenuView {
-    
-    func setupUI() {
-        
     }
     
 }

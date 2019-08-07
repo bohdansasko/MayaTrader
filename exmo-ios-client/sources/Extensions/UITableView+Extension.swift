@@ -16,6 +16,12 @@ extension UITableView {
         register(UINib(nibName: className, bundle: nil), forCellReuseIdentifier: className)
     }
     
+    /// Register class for reuse
+    func register<T: UITableViewCell>(class cell: T.Type) {
+        let className = String(describing: cell)
+        register(cell.self, forCellReuseIdentifier: className)
+    }
+    
     /// Returns reusable cell
     func dequeue<T: UITableViewCell>(class cell: T.Type, for indexPath: IndexPath) -> T {
         let className = String(describing: cell)

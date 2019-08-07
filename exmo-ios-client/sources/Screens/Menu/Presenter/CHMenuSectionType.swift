@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-enum MenuSectionType: Int {
+enum CHMenuSectionType: Int {
     case account
     case purchase
     case contactWithUs
@@ -21,8 +21,8 @@ enum MenuSectionType: Int {
         }
     }
 
-    static func getGuestUserCellsLayout(isAdsPresent: Bool) -> [MenuSectionType : [MenuCellType]] {
-        let purchaseGroup: [MenuCellType] = isAdsPresent
+    static func getGuestUserCellsLayout(isAdsPresent: Bool) -> [CHMenuSectionType : [CHMenuCellType]] {
+        let purchaseGroup: [CHMenuCellType] = isAdsPresent
                 ? [ .proFeatures, .advertisement ]
                 : [ .proFeatures ]
 
@@ -43,8 +43,8 @@ enum MenuSectionType: Int {
         ]]
     }
 
-    static func getLoginedUserCellsLayout(isAdsPresent: Bool) -> [MenuSectionType : [MenuCellType]] {
-        let purchaseGroup: [MenuCellType] = isAdsPresent
+    static func getLoginedUserCellsLayout(isAdsPresent: Bool) -> [CHMenuSectionType : [CHMenuCellType]] {
+        let purchaseGroup: [CHMenuCellType] = isAdsPresent
                 ? [ .proFeatures, .advertisement ]
                 : [ .proFeatures ]
 
@@ -66,7 +66,7 @@ enum MenuSectionType: Int {
     }
 }
 
-enum MenuCellType {
+enum CHMenuCellType {
     case none
 
     case login
