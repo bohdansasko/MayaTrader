@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JbL-rM-qbJ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4sb-Zb-1Mn">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="aCv-cs-gIl">
+        <!--Wallet-->
+        <scene sceneID="zah-Wd-rbu">
             <objects>
-                <viewController id="JbL-rM-qbJ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="MbE-pp-GmH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="lru-Jy-dH0"/>
-                    </view>
+                <viewController title="Wallet" id="xMu-fr-5o4" customClass="CHWalletViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="J1V-If-sLW"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bnf-0K-K0X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4xc-sm-vkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-26" y="100"/>
+            <point key="canvasLocation" x="4046" y="1286"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="uxF-0j-Ige">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4sb-Zb-1Mn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarWallet" selectedImage="icTabbarWalletSelected" id="Wi4-X7-psJ"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="QCt-Hm-aIz">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="xMu-fr-5o4" kind="relationship" relationship="rootViewController" id="ImU-nD-vca"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-pN-4ra" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3172" y="1287"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icTabbarWallet" width="32" height="32"/>
+        <image name="icTabbarWalletSelected" width="32" height="32"/>
+        <namedColor name="exmoMidnight">
+            <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

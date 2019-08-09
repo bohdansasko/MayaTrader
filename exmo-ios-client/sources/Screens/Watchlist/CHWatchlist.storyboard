@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WIw-Pw-gfs">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="T1m-yC-NvW">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,11 +21,11 @@
             <objects>
                 <viewController storyboardIdentifier="chCurrencyChartViewController" id="WIw-Pw-gfs" customClass="CurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Aem-Sz-Rl5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7k-3i-99D" userLabel="chartTimePeriodContainer" customClass="ChartTimePeriodContainer" customModule="exmo_ios_client" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="49" width="414" height="35"/>
+                                <rect key="frame" x="0.0" y="5" width="414" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TUe-r1-jyK" userLabel="steelLine">
                                         <rect key="frame" x="0.0" y="34" width="414" height="1"/>
@@ -114,14 +114,14 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZJ-cA-6py" userLabel="chartAdditionalInfo">
-                                <rect key="frame" x="0.0" y="84" width="414" height="717"/>
+                                <rect key="frame" x="0.0" y="40" width="414" height="673"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tK7-L6-KXp" userLabel="Candle Chart View" customClass="CandleStickChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="567"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="532"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Pb-8E-Yd3" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="572" width="394" height="145"/>
+                                        <rect key="frame" x="0.0" y="537" width="394" height="136"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO6-J6-BrP" customClass="CandleBarChartShortInfoView" customModule="exmo_ios_client" customModuleProvider="target">
@@ -298,7 +298,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="-174" y="-765"/>
+            <point key="canvasLocation" x="-997" y="-803"/>
         </scene>
         <!--Exchanges View Controller-->
         <scene sceneID="xey-7r-Gjs">
@@ -348,8 +348,53 @@
             </objects>
             <point key="canvasLocation" x="-997" y="-62"/>
         </scene>
+        <!--Watchlist-->
+        <scene sceneID="b3j-qU-JcI">
+            <objects>
+                <viewController title="Watchlist" id="rh2-Fc-BzK" customClass="CHWatchlistViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="1nd-G7-J7J">
+                        <barButtonItem key="rightBarButtonItem" image="icNavbarPlus" id="3cV-D7-fzD">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="aEi-Ni-BBW" kind="show" identifier="manageCurrenciesList" id="IaT-TT-vl4"/>
+                        <segue destination="WIw-Pw-gfs" kind="show" identifier="currencyDetails" id="f8E-vq-7vb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="38n-xK-xpg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2343" y="-415"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="lYy-ui-78S">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EHi-qQ-GBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T1m-yC-NvW" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarWatchlist" selectedImage="icTabbarWatchlistSelected" id="hYr-C5-0gc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Nda-8h-rBU">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="rh2-Fc-BzK" kind="relationship" relationship="rootViewController" id="BYE-Te-Lsd"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-3375" y="-415"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="icNavbarPlus" width="25" height="25"/>
+        <image name="icTabbarWatchlist" width="32" height="32"/>
+        <image name="icTabbarWatchlistSelected" width="32" height="32"/>
         <image name="icWalletClose" width="25" height="25"/>
         <namedColor name="exmoMidnight">
             <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
