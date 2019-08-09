@@ -101,27 +101,6 @@
             </objects>
             <point key="canvasLocation" x="4109" y="1681"/>
         </scene>
-        <!--Menu View Controller-->
-        <scene sceneID="eXB-1O-1fk">
-            <objects>
-                <viewController id="y7D-5D-fwD" customClass="CHMenuViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="6Cm-3p-db6"/>
-                    <connections>
-                        <segue destination="Xf2-jy-qOm" kind="show" identifier="Menu" id="1FG-8u-FtS"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fNV-a0-smY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6090" y="1240"/>
-        </scene>
-        <!--CHMenu-->
-        <scene sceneID="wfL-qT-QIp">
-            <objects>
-                <viewControllerPlaceholder storyboardName="CHMenu" id="Xf2-jy-qOm" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NzF-c9-lxu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6090" y="1681"/>
-        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="9Ja-SY-vME">
             <objects>
@@ -138,7 +117,7 @@
                         <segue destination="HEL-3q-kAr" kind="relationship" relationship="viewControllers" id="B7E-BO-F5k"/>
                         <segue destination="t5O-vr-OE1" kind="relationship" relationship="viewControllers" id="Gm2-no-VXz"/>
                         <segue destination="bei-oR-khL" kind="relationship" relationship="viewControllers" id="1ou-rQ-gZ0"/>
-                        <segue destination="WpL-Kd-Fz5" kind="relationship" relationship="viewControllers" id="zrm-Ty-Kzw"/>
+                        <segue destination="a6b-Sb-kmR" kind="relationship" relationship="viewControllers" id="oKH-9D-XIn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WnU-XU-FCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -241,29 +220,15 @@
             </objects>
             <point key="canvasLocation" x="5016" y="492"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="jXs-vh-hpX">
+        <!--CHMenu-->
+        <scene sceneID="Z4W-tf-VCX">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WpL-Kd-Fz5" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="icTabbarMenu" selectedImage="icTabbarMenuSelected" id="9bp-Zz-GHf"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bY7-Er-m12">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" name="exmoMidnight"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="y7D-5D-fwD" kind="relationship" relationship="rootViewController" id="4oh-zP-I38"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3gK-rQ-uYl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="CHMenu" id="a6b-Sb-kmR" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarMenu" selectedImage="icTabbarMenuSelected" id="kJS-tE-Kit"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rXY-Ye-bES" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6091" y="492"/>
+            <point key="canvasLocation" x="5013" y="8"/>
         </scene>
         <!--chCurrenciesGroupsViewController-->
         <scene sceneID="FiK-LN-qhz">

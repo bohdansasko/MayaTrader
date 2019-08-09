@@ -27,20 +27,21 @@ enum CHMenuSectionType: Int {
                 : [ .proFeatures ]
 
         return [
-        .account : [
-            .login,
-            .security
-        ],
-        .purchase : purchaseGroup,
-        .contactWithUs : [
-            .facebook,
-            .telegram,
-        ],
-        .about : [
-            .rateUs,
-            .shareApp,
-            .appVersion
-        ]]
+            .account : [
+                .login,
+                .security
+            ],
+            .purchase : purchaseGroup,
+            .contactWithUs : [
+                .facebook,
+                .telegram,
+            ],
+            .about : [
+                .rateUs,
+                .shareApp,
+                .appVersion
+            ]
+        ]
     }
 
     static func getLoginedUserCellsLayout(isAdsPresent: Bool) -> [CHMenuSectionType : [CHMenuCellType]] {
@@ -49,20 +50,21 @@ enum CHMenuSectionType: Int {
                 : [ .proFeatures ]
 
         return [
-        .account : [
-            .logout,
-            .security
-        ],
-        .purchase : purchaseGroup,
-        .contactWithUs : [
-            .facebook,
-            .telegram,
-        ],
-        .about : [
-            .rateUs,
-            .shareApp,
-            .appVersion
-        ]]
+            .account : [
+                .logout,
+                .security
+            ],
+            .purchase : purchaseGroup,
+            .contactWithUs : [
+                .facebook,
+                .telegram,
+            ],
+            .about : [
+                .rateUs,
+                .shareApp,
+                .appVersion
+            ]
+        ]
     }
 }
 

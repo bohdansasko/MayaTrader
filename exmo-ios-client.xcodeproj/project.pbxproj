@@ -99,7 +99,6 @@
 		20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DA622D9F9EA00334133 /* CHOrders.storyboard */; };
 		20518DA922D9F9F100334133 /* CHWallet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DA822D9F9F100334133 /* CHWallet.storyboard */; };
 		20518DAB22D9F9F600334133 /* CHAlerts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DAA22D9F9F600334133 /* CHAlerts.storyboard */; };
-		20518DAD22D9F9FD00334133 /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DAC22D9F9FD00334133 /* CHMenu.storyboard */; };
 		20518DB622D9FC5C00334133 /* CHWatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20518DB422D9FC5C00334133 /* CHWatchlistViewController.swift */; };
 		20518DB722D9FC5C00334133 /* CHWatchlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20518DB522D9FC5C00334133 /* CHWatchlistViewController.xib */; };
 		20518DB922D9FC7600334133 /* CHWatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20518DB822D9FC7600334133 /* CHWatchlistView.swift */; };
@@ -288,6 +287,7 @@
 		920278E6318EFE15D1B07821 /* QRScannerInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */; };
 		940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */; };
 		969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9936576524E2F156E83AAC8 /* CurrenciesGroupsRouter.swift */; };
+		972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */; };
 		9763F42F22F718E900D6E22A /* VinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* VinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* VinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* VinsoAPI+Subscriptions.swift */; };
 		9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */; };
@@ -456,7 +456,6 @@
 		20518DA622D9F9EA00334133 /* CHOrders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHOrders.storyboard; sourceTree = "<group>"; };
 		20518DA822D9F9F100334133 /* CHWallet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHWallet.storyboard; sourceTree = "<group>"; };
 		20518DAA22D9F9F600334133 /* CHAlerts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHAlerts.storyboard; sourceTree = "<group>"; };
-		20518DAC22D9F9FD00334133 /* CHMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
 		20518DB422D9FC5C00334133 /* CHWatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWatchlistViewController.swift; sourceTree = "<group>"; };
 		20518DB522D9FC5C00334133 /* CHWatchlistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWatchlistViewController.xib; sourceTree = "<group>"; };
 		20518DB822D9FC7600334133 /* CHWatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWatchlistView.swift; sourceTree = "<group>"; };
@@ -648,6 +647,7 @@
 		91FEE97F75DF6C190754891B /* AlertsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsPresenter.swift; sourceTree = "<group>"; };
 		9299AFB5D8232BA3E2524410 /* CreateOrderInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInteractorProtocols.swift; sourceTree = "<group>"; };
 		96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerConfigurator.swift; sourceTree = "<group>"; };
+		972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* VinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* VinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
 		9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
@@ -901,7 +901,10 @@
 		200D52B822DA07F80009C07C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				20518DAC22D9F9FD00334133 /* CHMenu.storyboard */,
+				9E01C470C3E1B77012FC4051 /* QRScanner */,
+				2F5076038FAE7726FAFBB74C /* Login */,
+				207E88CB2210D639001681A2 /* Security */,
+				20848E4421FE2DCB003E7B8E /* Subscriptions */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1171,8 +1174,9 @@
 		20518DA222D9F8DF00334133 /* Menu */ = {
 			isa = PBXGroup;
 			children = (
-				8B48EFB1F3079420DA9993D4 /* Presenter */,
+				972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */,
 				200D52B822DA07F80009C07C /* Flow */,
+				8B48EFB1F3079420DA9993D4 /* Presenter */,
 				200D52C722DA1DFC0009C07C /* CHMenuView.swift */,
 				200D52B322DA07EB0009C07C /* CHMenuViewController.swift */,
 				200D52B422DA07EB0009C07C /* CHMenuViewController.xib */,
@@ -1196,7 +1200,6 @@
 			children = (
 				208FE0AA22DB7B7A0014BCE5 /* Base */,
 				20518D9C22D9F47D00334133 /* Screens */,
-				20848E4421FE2DCB003E7B8E /* SubscriptionsView */,
 				20BCE4E321E03DDE003669EA /* IAP */,
 				20B418C6209D019A00B1C636 /* UIWidgets */,
 				206730E12094D36E008B500D /* Extensions */,
@@ -1209,11 +1212,8 @@
 				6F44BB28BA5DFBA6578B81A6 /* Wallet */,
 				66C69DB3D5F2206C45571645 /* Alerts */,
 				0D42C8C67FEB7E4CCB711CBC /* Menu */,
-				2F5076038FAE7726FAFBB74C /* Login */,
-				9E01C470C3E1B77012FC4051 /* QRScanner */,
 				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
 				207E88CA2210D5C6001681A2 /* PList */,
-				207E88CB2210D639001681A2 /* Security */,
 				36712E9E96A996A1CDB90EE3 /* StoreReviewHelper.swift */,
 				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
 				367129EB852E9D257D0438F5 /* SubscriptionPackages.swift */,
@@ -1377,7 +1377,7 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		20848E4421FE2DCB003E7B8E /* SubscriptionsView */ = {
+		20848E4421FE2DCB003E7B8E /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
 				20848E4921FE42FE003E7B8E /* View */,
@@ -1386,7 +1386,7 @@
 				366FF2448007B52F6CC166C1 /* Presenter */,
 				20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */,
 			);
-			path = SubscriptionsView;
+			path = Subscriptions;
 			sourceTree = "<group>";
 		};
 		20848E4921FE42FE003E7B8E /* View */ = {
@@ -2471,6 +2471,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */,
 				207E88C72210C08E001681A2 /* Development.xcconfig in Resources */,
 				207E88C82210C08E001681A2 /* QA.xcconfig in Resources */,
 				208FE0A322DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib in Resources */,
@@ -2497,7 +2498,6 @@
 				20518D9E22D9F53D00334133 /* Home.storyboard in Resources */,
 				200D52AE22DA07CF0009C07C /* CHWalletViewController.xib in Resources */,
 				2013E5832071464700EFACB7 /* Exo2-BoldItalic.ttf in Resources */,
-				20518DAD22D9F9FD00334133 /* CHMenu.storyboard in Resources */,
 				20518DA922D9F9F100334133 /* CHWallet.storyboard in Resources */,
 				2013E5892071464700EFACB7 /* Exo2-Light.ttf in Resources */,
 				205A643721E7983A002D5482 /* Production.plist in Resources */,

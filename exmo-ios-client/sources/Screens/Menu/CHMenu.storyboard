@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3My-eA-U9Q">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="hDz-SM-F88">
+            <objects>
+                <viewController id="2aN-Td-RV3" customClass="LoginViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <connections>
+                        <segue destination="B5H-Vq-Qxi" kind="presentation" identifier="ScanQR" id="n1I-fo-FnR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Wy-oJ-DVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="25l-tk-ILl" customClass="LoginModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="2aN-Td-RV3" id="SYR-eW-ONW"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1051" y="335"/>
+        </scene>
+        <!--Menu View Controller-->
+        <scene sceneID="pAM-wG-SV1">
+            <objects>
+                <viewController id="dF1-wm-4vA" customClass="CHMenuViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="eTj-gk-Gfz"/>
+                    <connections>
+                        <segue destination="2aN-Td-RV3" kind="presentation" identifier="Login" id="LPc-Rh-YHh"/>
+                        <segue destination="nCc-PH-3zH" kind="presentation" identifier="Security" id="NUm-k4-51V"/>
+                        <segue destination="Fwo-az-coM" kind="presentation" identifier="Subscriptions" id="oJu-89-3g4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CIu-Op-Y3Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="1214"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="b9q-dV-2GZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3My-eA-U9Q" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="icTabbarMenu" selectedImage="icTabbarMenuSelected" id="WAt-oF-AvS"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Ekt-SL-DLq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" name="exmoMidnight"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Exo2-SemiBold" family="Exo 2" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dF1-wm-4vA" kind="relationship" relationship="rootViewController" id="eqo-cL-BJe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2WI-ci-5vy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-954" y="1213"/>
+        </scene>
+        <!--Passcode View Controller-->
+        <scene sceneID="eKi-NM-eAW">
+            <objects>
+                <viewController id="nCc-PH-3zH" customClass="PasscodeViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iWq-wU-BJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1051" y="1044"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="W5Z-EC-1bd">
+            <objects>
+                <viewController id="uUB-Mc-ZKQ" customClass="SubscriptionsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="caW-aL-w3o"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ve0-vO-VGk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="vnU-1I-2px" customClass="SubscriptionsModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="uUB-Mc-ZKQ" id="nR0-Hr-Pf0"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1960.8695652173915" y="1759.8214285714284"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="FeV-dB-Fvc">
+            <objects>
+                <viewController id="B5H-Vq-Qxi" customClass="LoginViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SXH-OI-1YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="m5U-lx-N0i" customClass="LoginModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="B5H-Vq-Qxi" id="HMk-vE-79f"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="1954" y="335"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VVG-Yq-QFd">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Fwo-az-coM" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="J83-Uk-p46">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="uUB-Mc-ZKQ" kind="relationship" relationship="rootViewController" id="pYb-VE-IPI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gB8-hw-r9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1050.7246376811595" y="1759.8214285714284"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="icTabbarMenu" width="32" height="32"/>
+        <image name="icTabbarMenuSelected" width="32" height="32"/>
+        <namedColor name="exmoMidnight">
+            <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

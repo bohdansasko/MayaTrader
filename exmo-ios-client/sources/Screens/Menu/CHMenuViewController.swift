@@ -14,6 +14,12 @@ final class CHMenuViewController: CHBaseViewController, CHBaseViewControllerProt
     
     // MARK: - Private properties
     
+    fileprivate enum Segues: String {
+        case login         = "Login"
+        case security      = "Security"
+        case subscriptions = "Subscriptions"
+    }
+    
     fileprivate var presenter: CHMenuViewPresenter!
 
     // MARK: - View Lifecycle
@@ -46,7 +52,16 @@ private extension CHMenuViewController {
 extension CHMenuViewController: CHMenuViewPresenterDelegate {
     
     func menuViewPresenter(_ presenter: CHMenuViewPresenter, didSelect type: CHMenuCellType) {
-        print("\(type)")
+        switch type {
+        case .login:
+            performSegue(withIdentifier: Segues.login.rawValue, sender: nil)
+        case .security:
+            performSegue(withIdentifier: Segues.security.rawValue, sender: nil)
+        case .proFeatures:
+            performSegue(withIdentifier: Segues.subscriptions.rawValue, sender: nil)
+        default:
+            break
+        }
     }
 
 }
