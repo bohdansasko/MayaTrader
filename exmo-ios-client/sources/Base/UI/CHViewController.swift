@@ -20,7 +20,7 @@ extension CHBaseViewControllerProtocol where Self: CHBaseViewController {
     }
 }
 
-class CHBaseViewController: UIViewController {
+class CHBaseViewController: ExmoUIViewController {
     
     // MARK: - Internal variables/properties
     

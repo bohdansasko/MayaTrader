@@ -8,12 +8,6 @@
 
 import UIKit
 
-enum AlertsDeleteAction: Int {
-    case active
-    case inactive
-    case all
-}
-
 class AlertsViewController: ExmoUIViewController {
     var output: AlertsViewOutput!
     var listView: AlertsListView!

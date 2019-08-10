@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateAlertViewController: ExmoUIViewController {
+final class CreateAlertViewController: ExmoUIViewController {
     var output: CreateAlertViewOutput!
     lazy var form = FormCreateAlert()
     var selectedPair: TickerCurrencyModel?

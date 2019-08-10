@@ -23,7 +23,7 @@ enum AlertStatus: Int {
     }
 }
 
-class Alert: SegueBlock, Mappable {
+final class Alert: SegueBlock, Mappable {
     var id: Int = 0
     var currencyCode: String = ""
     var priceAtCreateMoment: Double = 0.0

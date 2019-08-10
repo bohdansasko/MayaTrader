@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,6 +16,9 @@
             <objects>
                 <viewController id="W0q-v8-Bca" customClass="CHAlertsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="e7m-Ql-6td"/>
+                    <connections>
+                        <segue destination="nUS-Ln-WdP" kind="presentation" identifier="CreateAlert" id="YAx-OJ-HbO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccu-Dh-F3r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -43,6 +47,45 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XNt-bX-Ex8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1600" y="735"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="54S-Gv-30C">
+            <objects>
+                <viewController id="biw-vI-YkH" customClass="CreateAlertViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vVr-ea-J13">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="vBe-W2-lS9"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="lL0-og-74s"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oRi-cf-bBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="eh8-eJ-JTe" customClass="CreateAlertModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="biw-vI-YkH" id="Xya-t7-TpK"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="4321.739130434783" y="734.59821428571422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="oYw-4v-npf">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nUS-Ln-WdP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ynS-Yv-Xli">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="biw-vI-YkH" kind="relationship" relationship="rootViewController" id="Oik-ht-9Ak"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mfj-ow-0hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3411.594202898551" y="734.59821428571422"/>
         </scene>
     </scenes>
     <resources>

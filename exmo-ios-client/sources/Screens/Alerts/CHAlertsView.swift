@@ -9,19 +9,34 @@
 import UIKit
 
 final class CHAlertsView: UIView {
+    @IBOutlet fileprivate weak var summaryAlertsLabel: UILabel!
+    @IBOutlet             weak var tableView: UITableView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        setupUI()
     }
     
 }
 
 // MARK: - Setup
 
-extension CHAlertsView {
+private extension CHAlertsView {
     
     func setupUI() {
-        
+        summaryAlertsLabel.text = nil
+        tableView.tableFooterView = UIView()
+    }
+    
+}
+
+// MARK: - Set
+
+extension CHAlertsView {
+    
+    func set(summary text: String) {
+        summaryAlertsLabel.text = text
     }
     
 }

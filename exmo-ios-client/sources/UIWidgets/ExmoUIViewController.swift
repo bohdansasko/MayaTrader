@@ -9,7 +9,8 @@
 import UIKit
 import GoogleMobileAds
 
-class TutorialImage: UIView {
+final class TutorialImage: UIView {
+    
     var imageName: String?
     var offsetByY: CGFloat = 0
     
@@ -19,7 +20,6 @@ class TutorialImage: UIView {
         return imgView
     }()
     
-
     func show() {
         if tutorialImgView.superview == nil && imageName != nil {
             addSubview(tutorialImgView)
@@ -32,10 +32,12 @@ class TutorialImage: UIView {
     func hide() {
         tutorialImgView.isHidden = true
     }
+    
 }
 
 class ExmoUIViewController: UIViewController {
-    let activityIndicatorView: UIActivityIndicatorView = {
+    
+    internal let activityIndicatorView: UIActivityIndicatorView = {
         let aiv = UIActivityIndicatorView(style: .whiteLarge)
         aiv.hidesWhenStopped = true
         aiv.color = .white
@@ -43,30 +45,36 @@ class ExmoUIViewController: UIViewController {
         return aiv
     }()
     
-    var glowImage: UIImageView = {
+    internal var glowImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "icWalletGlow")
         imageView.contentMode = .center
         return imageView
     }()
 
-    var titleNavBar: String? {
+    internal var titleNavBar: String? {
         didSet {
             setupTitle()
         }
     }
     
-    var bannerView: GADBannerView!
-    var isAdsActive = true
+    internal var bannerView: GADBannerView!
+    internal var isAdsActive = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .black
         setupInitialViews()
     }
+    
+    deinit {
+        print(#function, String(describing: self))
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         updateNavigationBar(shouldHideNavigationBar: true)
     }
     
@@ -78,24 +86,13 @@ class ExmoUIViewController: UIViewController {
     func shouldUseGlow() -> Bool {
         return true
     }
-    
-    func setTouchEnabled(_ isTouchEnabled: Bool) {
-        // do nothing
-    }
-    
-    func showAlert(title: String, message: String, closure: VoidClosure?) {
-        hideLoader()
-        
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
-            action in
-            closure?()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
+
 }
 
+// MARK: Setup
+
 extension ExmoUIViewController {
+    
     func setupInitialViews() {
         view.addSubview(activityIndicatorView)
         activityIndicatorView.anchorCenterSuperview()
@@ -109,17 +106,21 @@ extension ExmoUIViewController {
                              widthConstant: 0, heightConstant: 0)
         }
     }
+
+}
+
+// MARK: Setup navigation
+
+extension ExmoUIViewController {
     
-    private func setupTitle() {
+    internal func setupTitle() {
         let titleView = UILabel()
         titleView.text = titleNavBar
         titleView.font = UIFont.getTitleFont()
         titleView.textColor = .white
         navigationItem.titleView = titleView
     }
-}
-
-extension ExmoUIViewController {
+    
     func updateNavigationBar(shouldHideNavigationBar: Bool) {
         if !shouldUseGlow() {
             self.navigationController?.navigationBar.barStyle = .black
@@ -135,6 +136,22 @@ extension ExmoUIViewController {
         self.navigationController?.navigationBar.isTranslucent = shouldHideNavigationBar
     }
     
+    func setupLeftBarButtonItem(image: UIImage, action: Selector?) {
+        let buttonItem = UIBarButtonItem(image: image.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: action)
+        navigationItem.leftBarButtonItem = buttonItem
+    }
+    
+    func setupRightBarButtonItem(image: UIImage, action: Selector?) {
+        let buttonItem = UIBarButtonItem(image: image.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: action)
+        navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+}
+
+// MARK: - Alerts
+
+extension ExmoUIViewController {
+    
     func showOkAlert(title: String, message: String,  onTapOkButton: (() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
@@ -143,10 +160,24 @@ extension ExmoUIViewController {
         }))
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showAlert(title: String, message: String, closure: VoidClosure?) {
+        hideLoader()
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
+            action in
+            closure?()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }
 
-// MARK: manage loader view
+// MARK: - Loader view
+
 extension ExmoUIViewController {
+    
     func showLoader() {
         if !isLoaderShowing() {
             view.bringSubviewToFront(activityIndicatorView)
@@ -165,9 +196,13 @@ extension ExmoUIViewController {
     func isLoaderShowing() -> Bool {
         return activityIndicatorView.isHidden == false
     }
+    
 }
 
+// MARK: - Ads
+
 extension ExmoUIViewController {
+    
     func loadAds() {
         bannerView.load(GADRequest())
     }
@@ -214,10 +249,13 @@ extension ExmoUIViewController {
             completion?()
         }
     }
+    
 }
 
-// MARK: GADBannerViewDelegate
+// MARK: - GADBannerViewDelegate
+
 extension ExmoUIViewController: GADBannerViewDelegate {
+    
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         if !isAdsActive {
             print("\(#function) => ads is inactive")
@@ -236,4 +274,5 @@ extension ExmoUIViewController: GADBannerViewDelegate {
         print(error)
         hideAdsView()
     }
+    
 }

@@ -122,7 +122,7 @@ extension CreateOrderLimitView: FormCreateOrderDelegate {
     }
 
     func setTouchEnabled(_ isEnabled: Bool) {
-        parentVC.setTouchEnabled(isEnabled)
+//        parentVC.setTouchEnabled(isEnabled)
         form.setTouchEnabled(isEnabled)
     }
 }

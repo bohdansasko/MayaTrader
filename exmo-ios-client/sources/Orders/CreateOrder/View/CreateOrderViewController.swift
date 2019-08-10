@@ -71,10 +71,10 @@ class CreateOrderViewController: ExmoUIViewController {
         output.handleTouchOnCancelButton()
     }
     
-    override func setTouchEnabled(_ isTouchEnabled: Bool) {
-        super.setTouchEnabled(isTouchEnabled)
-        tabsControlView.isUserInteractionEnabled = isTouchEnabled
-    }
+//    override func setTouchEnabled(_ isTouchEnabled: Bool) {
+//        super.setTouchEnabled(isTouchEnabled)
+//        tabsControlView.isUserInteractionEnabled = isTouchEnabled
+//    }
 }
 
 // MARK: CreateOrderViewInput

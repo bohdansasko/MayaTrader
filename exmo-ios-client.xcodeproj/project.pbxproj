@@ -294,6 +294,7 @@
 		9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */; };
 		9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */; };
 		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
+		9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */; };
 		97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB18AB22F4AD48007BE023 /* Observable+extension.swift */; };
 		9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F43CA7FE0D9869186DF0E /* CurrenciesGroupsPresenter.swift */; };
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
@@ -654,6 +655,7 @@
 		9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+extension.swift"; sourceTree = "<group>"; };
 		9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTransforms.swift; sourceTree = "<group>"; };
 		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
+		9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHAlertsPresenter.swift; sourceTree = "<group>"; };
 		97DB18AB22F4AD48007BE023 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
 		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
 		A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletInteractorProtocols.swift; sourceTree = "<group>"; };
@@ -894,6 +896,7 @@
 			isa = PBXGroup;
 			children = (
 				20518DAA22D9F9F600334133 /* CHAlerts.storyboard */,
+				37B74EDC1A931709BEED1181 /* CreateAlert */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1156,6 +1159,7 @@
 				200D52C522DA1DCF0009C07C /* CHAlertsView.swift */,
 				200D52AF22DA07DF0009C07C /* CHAlertsViewController.swift */,
 				200D52B022DA07DF0009C07C /* CHAlertsViewController.xib */,
+				9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -2035,7 +2039,6 @@
 			isa = PBXGroup;
 			children = (
 				201D8076205DC5B400692DEF /* Main */,
-				37B74EDC1A931709BEED1181 /* CreateAlert */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -2652,6 +2655,7 @@
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
 				466BE515F58F0A76E05A0A0A /* LoginModuleProtocols.swift in Sources */,
 				2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */,
+				9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */,
 				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorProtocols.swift in Sources */,
 				20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */,

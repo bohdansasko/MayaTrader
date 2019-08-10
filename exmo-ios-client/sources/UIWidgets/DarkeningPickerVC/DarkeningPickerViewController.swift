@@ -18,7 +18,7 @@ struct DarkeningPickerViewModel {
     }
 }
 
-class DarkeningPickerViewManager {
+final class DarkeningPickerViewManager {
     var mainWindow: UIWindow?
     var newTopWindow: UIWindow?
     private var dataSource: [String]!
@@ -31,6 +31,10 @@ class DarkeningPickerViewManager {
         self.frameRect = frameRect
         headerString = model.header
         dataSource = model.dataSouce
+    }
+    
+    deinit {
+        print(#function, String(describing: self))
     }
     
     func showPickerViewWithDarkening(_ withSelectedIndex: Int = -1) {
@@ -58,9 +62,10 @@ class DarkeningPickerViewManager {
         newTopWindow = nil
         mainWindow?.makeKeyAndVisible()
     }
+    
 }
 
-class DarkeningPickerViewController: UIViewController {
+final class DarkeningPickerViewController: UIViewController {
     weak var pickerViewManager: DarkeningPickerViewManager!
     
     private var dataSource: [String]!
@@ -98,6 +103,10 @@ class DarkeningPickerViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         pickerView.backgroundColor = .black
+    }
+    
+    deinit {
+        print(#function, String(describing: self))
     }
     
     @objc func onTouchView(_ sender : Any) {
@@ -200,7 +209,10 @@ class DarkeningPickerViewController: UIViewController {
     }
 }
 
+// MARK: - UIPickerViewDelegate
+
 extension DarkeningPickerViewController: UIPickerViewDelegate {
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return dataSource[row]
     }
@@ -222,9 +234,13 @@ extension DarkeningPickerViewController: UIPickerViewDelegate {
         
         return labelOrderBy
     }
+    
 }
 
+// MARK: - UIPickerViewDataSource
+
 extension DarkeningPickerViewController: UIPickerViewDataSource {
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -232,4 +248,5 @@ extension DarkeningPickerViewController: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return dataSource.count
     }
+    
 }
