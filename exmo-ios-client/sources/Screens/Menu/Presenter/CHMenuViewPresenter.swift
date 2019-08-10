@@ -34,7 +34,7 @@ final class CHMenuViewPresenter: NSObject {
     }
     
     private weak var tableView: UITableView!
-    private      var sections : [CHMenuSectionType: [CHMenuCellType]] = [:]
+    private      var sections : [CHMenuSectionModel] = []
     
 }
 
@@ -45,7 +45,6 @@ private extension CHMenuViewPresenter {
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableFooterView = UIView()
         tableView.register(class: CHMenuCell.self)
     }
     
@@ -63,20 +62,35 @@ extension CHMenuViewPresenter {
     
 }
 
+// MARK: - CHMenuSectionModel help methods
+
+extension CHMenuViewPresenter {
+    
+    func cellsLayout(isLoggedUser: Bool, isAdsPresent: Bool) -> [CHMenuSectionModel] {
+        return [
+            CHMenuSectionModel(section: .account      , cells: [ isLoggedUser ? .login : .logout, .security ]),
+//            CHMenuSectionModel(section: .purchase     , cells: [ .proFeatures ] + (isAdsPresent ? [.advertisement] : [])),
+            CHMenuSectionModel(section: .contactWithUs, cells: [ .facebook, .telegram ]),
+            CHMenuSectionModel(section: .about        , cells: [ .rateUs, .shareApp, .appVersion ])
+        ]
+    }
+    
+}
+
+
 // MARK: Help for sections
 
 private extension CHMenuViewPresenter {
     
     func reloadSections() {
-        sections = isLoggedUser
-            ? CHMenuSectionType.getLoginedUserCellsLayout(isAdsPresent: isAdsPresent)
-            : CHMenuSectionType.getGuestUserCellsLayout(isAdsPresent: isAdsPresent)
+        sections = cellsLayout(isLoggedUser: isLoggedUser, isAdsPresent: isAdsPresent)
+        tableView.reloadData()
     }
     
     func reloadCell(type: CHMenuCellType) {
-        for (section, cells) in sections {
-            if let rowIndex = cells.firstIndex(where: { $0 == type } ) {
-                let indexPath = IndexPath(row: rowIndex, section: section.rawValue)
+        for sectionModel in sections {
+            if let rowIndex = sectionModel.cells.firstIndex(where: { $0 == type } ) {
+                let indexPath = IndexPath(row: rowIndex, section: sectionModel.section.rawValue)
                 print("reload cell at \(indexPath)")
                 tableView.reloadRows(at: [indexPath], with: .automatic)
                 break
@@ -84,12 +98,9 @@ private extension CHMenuViewPresenter {
         }
     }
     
-    func cellType(for indexPath: IndexPath) -> CHMenuCellType? {
-        guard let sectionType = CHMenuSectionType(rawValue: indexPath.section),
-              let cellType = sections[sectionType]?[indexPath.row] else {
-                assertionFailure("must be everything ok")
-                return nil
-        }
+    func cellType(for indexPath: IndexPath) -> CHMenuCellType {
+        let section = sections[indexPath.section]
+        let cellType = section.cells[indexPath.row]
         return cellType
     }
     
@@ -104,11 +115,7 @@ extension CHMenuViewPresenter: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sectionType = CHMenuSectionType(rawValue: section) else {
-            assertionFailure("Fix me!")
-            return 0
-        }
-        return sections[sectionType]?.count ?? 0
+        return sections[section].cells.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -130,12 +137,9 @@ extension CHMenuViewPresenter: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let sectionType = CHMenuSectionType(rawValue: section) else {
-            assertionFailure("Fix me!")
-            return nil
-        }
+        let sectionModel = sections[section]
         let headerView = CHMenuSectionHeader.loadViewFromNib()
-        headerView.set(text: sectionType.header)
+        headerView.set(text: sectionModel.section.header)
         return headerView
     }
 
@@ -145,27 +149,20 @@ extension CHMenuViewPresenter: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard
-            let menuCell = cell as? CHMenuCell,
-            let cellType = cellType(for: indexPath) else {
-                assertionFailure("Fix me!")
-                return
-        }
+        let menuCell = cell as! CHMenuCell
+        let menuCellType = cellType(for: indexPath)
         
-        if cellType == .security {
+        if menuCellType == .security {
             menuCell.lockButton.isSelected = Defaults.isPasscodeActive()
         }
-        
-        menuCell.cellType = cellType
+        menuCell.cellType = menuCellType
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         
-        guard let cellType = cellType(for: indexPath) else {
-            return
-        }
-        delegate?.menuViewPresenter(self, didSelect: cellType)
+        let menuCellType = cellType(for: indexPath)
+        delegate?.menuViewPresenter(self, didSelect: menuCellType)
     }
     
 }

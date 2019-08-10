@@ -6,11 +6,22 @@
 import Foundation
 import UIKit
 
+struct CHMenuSectionModel {
+    var section: CHMenuSectionType
+    var cells  : [CHMenuCellType]
+}
+
 enum CHMenuSectionType: Int {
     case account
     case purchase
     case contactWithUs
     case about
+}
+
+
+// MARK: - CHMenuSectionType getters
+
+extension CHMenuSectionType {
 
     var header: String? {
         switch self {
@@ -20,52 +31,7 @@ enum CHMenuSectionType: Int {
         case .about: return "About"
         }
     }
-
-    static func getGuestUserCellsLayout(isAdsPresent: Bool) -> [CHMenuSectionType : [CHMenuCellType]] {
-        let purchaseGroup: [CHMenuCellType] = isAdsPresent
-                ? [ .proFeatures, .advertisement ]
-                : [ .proFeatures ]
-
-        return [
-            .account : [
-                .login,
-                .security
-            ],
-            .purchase : purchaseGroup,
-            .contactWithUs : [
-                .facebook,
-                .telegram,
-            ],
-            .about : [
-                .rateUs,
-                .shareApp,
-                .appVersion
-            ]
-        ]
-    }
-
-    static func getLoginedUserCellsLayout(isAdsPresent: Bool) -> [CHMenuSectionType : [CHMenuCellType]] {
-        let purchaseGroup: [CHMenuCellType] = isAdsPresent
-                ? [ .proFeatures, .advertisement ]
-                : [ .proFeatures ]
-
-        return [
-            .account : [
-                .logout,
-                .security
-            ],
-            .purchase : purchaseGroup,
-            .contactWithUs : [
-                .facebook,
-                .telegram,
-            ],
-            .about : [
-                .rateUs,
-                .shareApp,
-                .appVersion
-            ]
-        ]
-    }
+    
 }
 
 enum CHMenuCellType {
@@ -83,7 +49,11 @@ enum CHMenuCellType {
     case rateUs
     case shareApp
     case appVersion
+}
 
+// MARK: - CHMenuCellType getters
+
+extension CHMenuCellType {
     
     var title: String? {
         switch self {
@@ -122,4 +92,5 @@ enum CHMenuCellType {
         case .appVersion: return UIImage(named: "icMenuAppversion")
         }
     }
+    
 }
