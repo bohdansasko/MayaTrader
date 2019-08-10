@@ -15,3 +15,6 @@
 
 /* Screens */
 "SCREEN_CURRENCIES_GROUP_TITLE" = "Search";
+
+"ERROR_TITLE_OPEN_SOCIAL_SUPPORT_GROUP" = "Open contact group";
+"ERROR_OPEN_SOCIAL_SUPPORT_GROUP" = "Can't open %@ group. Please contact with us by email: %@. Thanks for your help! We appreciate it :)";

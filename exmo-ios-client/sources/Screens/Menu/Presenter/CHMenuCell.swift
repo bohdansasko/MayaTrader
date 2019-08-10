@@ -10,7 +10,7 @@ import UIKit
 
 final class CHMenuCell: ExmoTableViewCell {
     
-    var cellType: CHMenuCellType = .none {
+    var cellType: CHMenuCellType! {
         didSet {
             iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
             titleLabel.text = cellType.title
@@ -117,6 +117,7 @@ private extension CHMenuCell {
     }
     
     func updateRightView() {
+        guard let cellType = cellType else { return }
         switch cellType {
         case .appVersion:
             infoLabel.isHidden = false
@@ -128,8 +129,8 @@ private extension CHMenuCell {
             lockButton.isHidden = true
         case .security:
             disclosureImage.isHidden = true
-            let highlightedImageName = lockButton.isSelected ? "icPasscodeLock" : "icPasscodeUnlock"
-            lockButton.setImage(UIImage(named: highlightedImageName), for: .normal)
+            let highlightedImage = lockButton.isSelected ? #imageLiteral(resource: "icPasscodeLock") : #imageLiteral(resource: "icPasscodeUnlock")
+            lockButton.setImage(highlightedImage, for: .normal)
             lockButton.isHidden = false
         default:
             infoLabel.isHidden = true

@@ -29,14 +29,14 @@
 //            IAPService.shared.purchase(product: .noAds)
 //
 //        case .telegram:
-//            if !openLinkOnSupportGroups(.telegramApp) {
-//                if !openLinkOnSupportGroups(.telegramWebsite) {
+//            if !openCHAppSupportGroups(.telegramApp) {
+//                if !openCHAppSupportGroups(.telegramWebsite) {
 //                    onFailOpenSocialGroups(.telegramWebsite)
 //                }
 //            }
 //        case .facebook:
-//            if !openLinkOnSupportGroups(.facebookApp) {
-//                if !openLinkOnSupportGroups(.facebookWebsite) {
+//            if !openCHAppSupportGroups(.facebookApp) {
+//                if !openCHAppSupportGroups(.facebookWebsite) {
 //                    onFailOpenSocialGroups(.facebookWebsite)
 //                }
 //            }
@@ -57,22 +57,5 @@
 //}
 //
 //extension MenuRouter {
-//    func onFailOpenSocialGroups(_ link: LinkOnSupportGroups) {
-//        switch link {
-//        case .telegramApp, .telegramWebsite: print("can't open telegram.")
-//        case .facebookApp, .facebookWebsite: print("can't open facebook. install it, please")
-//        }
-//    }
 //    
-//    func openLinkOnSupportGroups(_ link: LinkOnSupportGroups) -> Bool {
-//        guard let socialURL = URL(string: link.rawValue) else {
-//            return false
-//        }
-//        
-//        if UIApplication.shared.canOpenURL(socialURL) {
-//            UIApplication.shared.open(socialURL)
-//            return true
-//        }
-//        return false
-//    }
 //}

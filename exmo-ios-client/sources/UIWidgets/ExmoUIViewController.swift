@@ -161,7 +161,7 @@ extension ExmoUIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showAlert(title: String, message: String, closure: VoidClosure?) {
+    func showAlert(title: String, message: String, closure: VoidClosure? = nil) {
         hideLoader()
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)

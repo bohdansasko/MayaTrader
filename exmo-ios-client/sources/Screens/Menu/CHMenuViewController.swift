@@ -49,19 +49,97 @@ private extension CHMenuViewController {
     
 }
 
+// MARK: - Help methods for links
+
+private extension CHMenuViewController {
+    
+    func doLogout() {
+        ExmoApiRequestBuilder.shared.clearAuthorizationData()
+        Defaults.setUserLoggedIn(false)
+        //        dbManager.clearAllData()
+        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
+    }
+    
+    func doRateUs() {
+        StoreReviewHelper.resetAppOpenedCount()
+        StoreReviewHelper.requestReview()
+    }
+    
+    func doShareApp() {
+        guard let link = NSURL(string: UserDefaultsKeys.appStoreLink.rawValue) else {
+            return
+        }
+        let objectsToShare = [link] as [Any]
+        let activityVC = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
+    }
+    
+    func doOpenLinks(_ links: [CHAppSupportGroups]) {
+        assert(!links.isEmpty)
+        for link in links {
+            if canOpenURL(by: link) { return }
+        }
+        let reason = getErrorDescriptionSocialGroup(links.last!)
+        showAlert(title: "ERROR_TITLE_OPEN_SOCIAL_SUPPORT_GROUP".localized, message: reason)
+    }
+    
+}
+
+// MARK: - Help methods for links
+
+private extension CHMenuViewController {
+    
+    func canOpenURL(by link: CHAppSupportGroups) -> Bool {
+        guard let socialURL = URL(string: link.rawValue) else {
+            return false
+        }
+        
+        if UIApplication.shared.canOpenURL(socialURL) {
+            UIApplication.shared.open(socialURL)
+            return true
+        }
+        
+        return false
+    }
+    
+    func getErrorDescriptionSocialGroup(_ link: CHAppSupportGroups) -> String {
+        switch link {
+        case .telegramApp, .telegramWebsite:
+            return String(format: "ERROR_OPEN_SOCIAL_SUPPORT_GROUP".localized, "telegram", "vinso.dev@gmail.com")
+        case .facebookApp, .facebookWebsite:
+            return String(format: "ERROR_OPEN_SOCIAL_SUPPORT_GROUP".localized, "facebook", "vinso.dev@gmail.com")
+        }
+    }
+    
+}
+
+// MARK: - CHMenuViewPresenterDelegate
+
 extension CHMenuViewController: CHMenuViewPresenterDelegate {
     
     func menuViewPresenter(_ presenter: CHMenuViewPresenter, didSelect type: CHMenuCellType) {
         switch type {
         case .login:
             performSegue(withIdentifier: Segues.login.rawValue, sender: nil)
+        case .logout:
+            doLogout()
         case .security:
             performSegue(withIdentifier: Segues.security.rawValue, sender: nil)
         case .proFeatures:
             performSegue(withIdentifier: Segues.subscriptions.rawValue, sender: nil)
-        default:
+        case .advertisement:
+            IAPService.shared.purchase(product: .noAds)
+        case .telegram:
+            doOpenLinks([.telegramApp, .telegramWebsite])
+        case .facebook:
+            doOpenLinks([.facebookApp, .facebookWebsite])
+        case .rateUs:
+            doRateUs()
+        case .shareApp:
+            doShareApp()
+        case .appVersion:
             break
         }
     }
-
+    
 }

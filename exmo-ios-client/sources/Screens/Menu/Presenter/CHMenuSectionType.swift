@@ -69,8 +69,6 @@ enum CHMenuSectionType: Int {
 }
 
 enum CHMenuCellType {
-    case none
-
     case login
     case logout
 
@@ -89,12 +87,10 @@ enum CHMenuCellType {
     
     var title: String? {
         switch self {
-        case .none: return ""
-
-        case .login: return "Login"
+        case .login : return "Login"
         case .logout: return "Logout"
 
-        case .proFeatures: return "Pro features"
+        case .proFeatures  : return "Pro features"
         case .advertisement: return "Remove Ads"
 
         case .security: return "Security"
@@ -102,16 +98,14 @@ enum CHMenuCellType {
         case .telegram: return "Telegram"
         case .facebook: return "Facebook"
 
-        case .rateUs: return "Rate us"
-        case .shareApp: return "Share App"
+        case .rateUs    : return "Rate us"
+        case .shareApp  : return "Share App"
         case .appVersion: return "App version"
         }
     }
     
     var icon: UIImage? {
         switch self {
-        case .none: return nil
-
         case .login: return UIImage(named: "icMenuLogin")
         case .logout: return UIImage(named: "icMenuLogout")
 
