@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="eTj-gk-Gfz"/>
                     <connections>
                         <segue destination="2aN-Td-RV3" kind="presentation" identifier="Login" id="LPc-Rh-YHh"/>
-                        <segue destination="b5k-qM-gd3" kind="presentation" identifier="Security" id="NUm-k4-51V"/>
+                        <segue destination="b5k-qM-gd3" kind="show" identifier="Security" id="NUm-k4-51V"/>
                         <segue destination="Fwo-az-coM" kind="presentation" identifier="Subscriptions" id="oJu-89-3g4"/>
                     </connections>
                 </viewController>

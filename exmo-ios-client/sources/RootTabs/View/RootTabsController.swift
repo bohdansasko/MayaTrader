@@ -106,12 +106,12 @@ extension RootTabsController {
         if !isPasscodeActive && isApplicationWasInForeground && Defaults.isPasscodeActive() {
             print("show PasswordModuleConfigurator")
             isPasscodeActive = true
-            let module = PasswordModuleConfigurator()
-            module.passcodeVC.onClose = {
+            let vc = PasscodeViewController()
+            vc.onClose = {
                 [weak self] in
                 self?.isPasscodeActive = false
             }
-            present(module.navigationVC, animated: true, completion: nil)
+            present(vc, animated: true, completion: nil)
         }
 
         isApplicationWasInForeground = false

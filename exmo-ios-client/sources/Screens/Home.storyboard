@@ -13,7 +13,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="9Ja-SY-vME">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="VgN-dq-6lz" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="VgN-dq-6lz" customClass="CHTabBarController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="llY-g9-UfB"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bgd-nT-7e3">

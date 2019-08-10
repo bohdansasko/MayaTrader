@@ -42,7 +42,7 @@ extension Reactive where Base: VinsoAPI {
     func getCurrencies(like likeString: String, stocks: [CHStockExchange], isExtended: Bool = true) -> Observable<[CHLiteCurrencyModel]> {
         let params: [String: Any] = [
             "like_string"     : likeString,
-            "stock_exchanges" : stocks.map { $0.rawValue },
+            "stock_exchanges" : [],
             "extended"        : isExtended
         ]
         return self.base.sendRequest(messageType: .getCurrenciesLikeString, params: params)

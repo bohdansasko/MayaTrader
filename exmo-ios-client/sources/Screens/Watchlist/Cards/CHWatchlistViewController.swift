@@ -11,11 +11,12 @@ import UIKit
 final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHWatchlistView
     
-    fileprivate var presenter: CHWatchlistPresenter!
     fileprivate enum Segues: String {
         case currencyDetails
         case manageCurrenciesList
     }
+    
+    fileprivate var presenter: CHWatchlistPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,16 @@ extension CHWatchlistViewController {
         let currency = sender as! WatchlistCurrency
         let vc = segue.destination as! CurrencyChartViewController
         vc.setCurrencyPair(currency.tickerPair.code)
+    }
+    
+}
+
+// MARK: - Actions
+
+private extension CHWatchlistViewController {
+    
+    @IBAction func actManageCurrencies(_ sender: Any) {
+        performSegue(withIdentifier: Segues.manageCurrenciesList.rawValue, sender: nil)
     }
     
 }

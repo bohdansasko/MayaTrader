@@ -355,6 +355,9 @@
                     <navigationItem key="navigationItem" id="1nd-G7-J7J">
                         <barButtonItem key="rightBarButtonItem" image="icNavbarPlus" id="3cV-D7-fzD">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="actManageCurrencies:" destination="rh2-Fc-BzK" id="o0E-Rw-4y7"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -369,7 +372,6 @@
         <!--Navigation Controller-->
         <scene sceneID="lYy-ui-78S">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="EHi-qQ-GBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="T1m-yC-NvW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="icTabbarWatchlist" selectedImage="icTabbarWatchlistSelected" id="hYr-C5-0gc"/>
                     <toolbarItems/>
@@ -387,6 +389,7 @@
                         <segue destination="rh2-Fc-BzK" kind="relationship" relationship="rootViewController" id="BYE-Te-Lsd"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EHi-qQ-GBQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3375" y="-415"/>
         </scene>

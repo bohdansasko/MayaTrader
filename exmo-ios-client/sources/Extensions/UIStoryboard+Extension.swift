@@ -33,4 +33,8 @@ extension UIStoryboard {
         self.init(name: type.rawValue, bundle: bundle)
     }
     
+    func instantiateViewController<T>(class vcType: T.Type) -> T {
+        return instantiateViewController(withIdentifier: String(describing: vcType)) as! T
+    }
+    
 }

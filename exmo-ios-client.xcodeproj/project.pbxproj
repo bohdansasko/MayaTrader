@@ -140,6 +140,7 @@
 		20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
 		2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087F47621B1E0E7009284D0 /* FormsCells.swift */; };
 		208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */; };
+		208D0C5922FF5AE7003B5D90 /* CHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208D0C5822FF5AE7003B5D90 /* CHTabBarController.swift */; };
 		208FE09622DB3F3A0014BCE5 /* CHExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */; };
 		208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */; };
 		208FE09922DB3F460014BCE5 /* CHExchangesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE09822DB3F460014BCE5 /* CHExchangesView.swift */; };
@@ -498,6 +499,7 @@
 		20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModuleInitializer.swift; sourceTree = "<group>"; };
 		2087F47621B1E0E7009284D0 /* FormsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsCells.swift; sourceTree = "<group>"; };
 		208AC7B021A5E15E00C74890 /* WalletNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkProtocols.swift; sourceTree = "<group>"; };
+		208D0C5822FF5AE7003B5D90 /* CHTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTabBarController.swift; sourceTree = "<group>"; };
 		208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangesViewController.swift; sourceTree = "<group>"; };
 		208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHExchangesViewController.xib; sourceTree = "<group>"; };
 		208FE09822DB3F460014BCE5 /* CHExchangesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangesView.swift; sourceTree = "<group>"; };
@@ -1130,6 +1132,7 @@
 		20518D9C22D9F47D00334133 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				208D0C5822FF5AE7003B5D90 /* CHTabBarController.swift */,
 				20518D9D22D9F53D00334133 /* Home.storyboard */,
 				20518D9F22D9F8BF00334133 /* Watchlist */,
 				20518DA322D9F8E700334133 /* Orders */,
@@ -2922,6 +2925,7 @@
 				9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */,
 				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
 				200D52D022DA24940009C07C /* CHWatchlistDataSource.swift in Sources */,
+				208D0C5922FF5AE7003B5D90 /* CHTabBarController.swift in Sources */,
 				366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */,
 				9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */,
 				200D52C222DA1D1A0009C07C /* CHOrdersView.swift in Sources */,

@@ -9,14 +9,6 @@
 import UIKit
 import SmileLock
 
-final class PasswordModuleConfigurator {
-    let passcodeVC = PasscodeViewController()
-    let navigationVC: UINavigationController!
-    init() {
-        navigationVC = UINavigationController(rootViewController: passcodeVC)
-    }
-}
-
 final class PasscodeViewController: ExmoUIViewController {
     enum PasscodeState {
         case lock
@@ -37,10 +29,8 @@ final class PasscodeViewController: ExmoUIViewController {
     var enteredPasscodeForLock: String?
     
     var buttonClose: UIButton = {
-        let image = UIImage(named: "icBack")?.withRenderingMode(.alwaysOriginal)
         let button = UIButton(type: .system)
-        button.setBackgroundImage(image, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        button.setBackgroundImage(#imageLiteral(resourceName: "icWalletClose"), for: .normal)
         return button
     }()
     
@@ -119,7 +109,7 @@ extension PasscodeViewController {
     
     private func setupCloseButton() {
         buttonClose.addTarget(self, action: #selector(onTouchButtonClose(_:)), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: buttonClose)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonClose)
     }
     
     func setupPasswordStackView() {

@@ -30,7 +30,8 @@ extension VinsoAPI {
             
         }).disposed(by: self.disposeBag)
         
-        self.socketManager.connect()    }
+        self.socketManager.connect()
+    }
 
     func disconnect() {
         isAuthorized = false
