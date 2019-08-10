@@ -25,9 +25,9 @@ final class PasscodeViewController: ExmoUIViewController {
         
         var description: String? {
             switch self {
-            case .lock: return "To enable the Security please set a 4-digit code"
-            case .confirmLock: return "Please confirm your 4-digit code"
-            case .unlock: return "Enter ExmoTrader passcode"
+            case .lock       : return "SCREEN_PASSCODE_ENABLE_HINT".localized
+            case .confirmLock: return "SCREEN_PASSCODE_CONFIRM_HINT".localized
+            case .unlock     : return "SCREEN_PASSCODE_UNLOCK_HINT".localized
             }
         }
     }
@@ -48,7 +48,7 @@ final class PasscodeViewController: ExmoUIViewController {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = .white
-        label.text = "To enable the Passcode please choose a 4-digit code"
+        label.text = "SCREEN_PASSCODE_ENABLE_HINT".localized
         label.numberOfLines = 0
         label.font = UIFont.getExo2Font(fontType: .regular, fontSize: 14)
         return label
@@ -93,7 +93,7 @@ final class PasscodeViewController: ExmoUIViewController {
 extension PasscodeViewController {
     
     func setupViews() {
-        titleNavBar = "Security"
+        titleNavBar = "SCREEN_PASSCODE_TITLE".localized
         view.backgroundColor = .black
         
         buttonClose.isHidden = passcodeState == .unlock
@@ -134,7 +134,7 @@ extension PasscodeViewController {
         passwordContainerView = PasswordContainerView.create(in: passwordStackView, digit: kPasswordDigit)
         passwordContainerView.delegate = self
         passwordContainerView.touchAuthenticationEnabled = true
-        passwordContainerView.deleteButtonLocalizedTitle = "Delete"
+        passwordContainerView.deleteButtonLocalizedTitle = "DELETE".localized
         
         // customize password UI
         passwordContainerView.tintColor = .lightGray
@@ -212,8 +212,8 @@ private extension PasscodeViewController {
         if passcodeState == .confirmLock {
             print("*️⃣ success! passcode = \(enteredPasscodeForLock ?? "")")
             Defaults.savePasscode(enteredPasscodeForLock!)
-            showAlert(title: "Security enabled!",
-                      message: "Now your passcode lock will be asked every time when you open ExmoTrader",
+            showAlert(title: "SCREEN_PASSCODE_ENABLED_ALERT_TITLE".localized,
+                      message: "SCREEN_PASSCODE_ENABLED_ALERT_MESSAGE".localized,
                       closure: { [weak self] in
                         self?.dismiss(animated: true, completion: nil)
                       }

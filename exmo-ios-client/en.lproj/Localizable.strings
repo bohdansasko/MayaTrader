@@ -18,3 +18,13 @@
 
 "ERROR_TITLE_OPEN_SOCIAL_SUPPORT_GROUP" = "Open contact group";
 "ERROR_OPEN_SOCIAL_SUPPORT_GROUP" = "Can't open %@ group. Please contact with us by email: %@. Thanks for your help! We appreciate it :)";
+
+/* Passcode screen */
+"SCREEN_PASSCODE_TITLE"        = "Security";
+"SCREEN_PASSCODE_ENABLE_HINT"  = "To enable the Passcode please choose a 4-digit code";
+"SCREEN_PASSCODE_CONFIRM_HINT" = "Please confirm your 4-digit code";
+"SCREEN_PASSCODE_UNLOCK_HINT"  = "Enter passcode";
+"SCREEN_PASSCODE_ENABLED_ALERT_TITLE"   = "Security enabled!";
+"SCREEN_PASSCODE_ENABLED_ALERT_MESSAGE" = "Now your passcode lock will be asked every time when you open application";
+
+"DELETE" = "Delete";

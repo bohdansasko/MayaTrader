@@ -8,12 +8,14 @@
 
 import UIKit
 
-class QRScannerModuleInitializer {
-    lazy var qrScannerViewController = QRScannerViewController()
-
-    init() {
+final class QRScannerModuleInitializer: NSObject {
+    @IBOutlet private(set) weak var viewController: QRScannerViewController!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
         let configurator = QRScannerModuleConfigurator()
-        configurator.configureModuleForViewInput(qrViewInput: qrScannerViewController)
+        configurator.configureModuleForViewInput(qrViewInput: viewController)
     }
 
 }

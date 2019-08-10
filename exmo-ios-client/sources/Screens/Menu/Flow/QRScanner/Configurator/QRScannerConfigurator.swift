@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QRScannerModuleConfigurator {
+final class QRScannerModuleConfigurator {
     func configureModuleForViewInput<UIViewController>(qrViewInput: UIViewController) {
         guard let qrScannerViewController = qrViewInput as? QRScannerViewController else { return }
 

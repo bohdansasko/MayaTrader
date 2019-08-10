@@ -34,7 +34,7 @@
                     <navigationItem key="navigationItem" id="eTj-gk-Gfz"/>
                     <connections>
                         <segue destination="2aN-Td-RV3" kind="presentation" identifier="Login" id="LPc-Rh-YHh"/>
-                        <segue destination="nCc-PH-3zH" kind="presentation" identifier="Security" id="NUm-k4-51V"/>
+                        <segue destination="b5k-qM-gd3" kind="presentation" identifier="Security" id="NUm-k4-51V"/>
                         <segue destination="Fwo-az-coM" kind="presentation" identifier="Subscriptions" id="oJu-89-3g4"/>
                     </connections>
                 </viewController>
@@ -69,10 +69,12 @@
         <!--Passcode View Controller-->
         <scene sceneID="eKi-NM-eAW">
             <objects>
-                <viewController id="nCc-PH-3zH" customClass="PasscodeViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController id="nCc-PH-3zH" customClass="PasscodeViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="kFI-O1-caf"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iWq-wU-BJo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1051" y="1044"/>
+            <point key="canvasLocation" x="1960.8695652173915" y="1043.9732142857142"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="W5Z-EC-1bd">
@@ -92,9 +94,9 @@
         <!--View Controller-->
         <scene sceneID="FeV-dB-Fvc">
             <objects>
-                <viewController id="B5H-Vq-Qxi" customClass="LoginViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController id="B5H-Vq-Qxi" customClass="QRScannerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXH-OI-1YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="m5U-lx-N0i" customClass="LoginModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                <customObject id="m5U-lx-N0i" customClass="QRScannerModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
                     <connections>
                         <outlet property="viewController" destination="B5H-Vq-Qxi" id="HMk-vE-79f"/>
                     </connections>
@@ -119,6 +121,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gB8-hw-r9H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1050.7246376811595" y="1759.8214285714284"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OhZ-zu-Yv9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b5k-qM-gd3" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kfi-mm-6ce">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nCc-PH-3zH" kind="relationship" relationship="rootViewController" id="CDe-If-ngG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Go7-g0-fbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1050.7246376811595" y="1043.9732142857142"/>
         </scene>
     </scenes>
     <resources>

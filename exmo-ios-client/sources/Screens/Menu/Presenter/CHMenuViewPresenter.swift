@@ -68,7 +68,7 @@ extension CHMenuViewPresenter {
     
     func cellsLayout(isLoggedUser: Bool, isAdsPresent: Bool) -> [CHMenuSectionModel] {
         return [
-            CHMenuSectionModel(section: .account      , cells: [ isLoggedUser ? .login : .logout, .security ]),
+            CHMenuSectionModel(section: .account      , cells: [ isLoggedUser ? .logout : .login, .security ]),
 //            CHMenuSectionModel(section: .purchase     , cells: [ .proFeatures ] + (isAdsPresent ? [.advertisement] : [])),
             CHMenuSectionModel(section: .contactWithUs, cells: [ .facebook, .telegram ]),
             CHMenuSectionModel(section: .about        , cells: [ .rateUs, .shareApp, .appVersion ])
