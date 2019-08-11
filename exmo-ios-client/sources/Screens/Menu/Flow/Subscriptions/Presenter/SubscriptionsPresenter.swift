@@ -42,8 +42,8 @@ extension SubscriptionsPresenter: SubscriptionsViewOutput {
 }
 
 extension SubscriptionsPresenter: SubscriptionsInteractorOutput {
-    func onPurchaseSubscriptionSuccess(_ subscriptionPackage: ISubscriptionPackage) {
-        view.showAlert(msg: "Congratulations! From now you have \(subscriptionPackage.name) subscription. Enjoy using our app :)")
+    func onPurchaseSubscriptionSuccess(_ CHSubscriptionPackage: CHSubscriptionPackageProtocol) {
+        view.showAlert(msg: "Congratulations! From now you have \(CHSubscriptionPackage.name) subscription. Enjoy using our app :)")
     }
 
     func onPurchaseSubscriptionError(reason: String) {

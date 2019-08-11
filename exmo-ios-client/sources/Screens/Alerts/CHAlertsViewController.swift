@@ -22,7 +22,7 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
     }
     
     fileprivate var presenter: CHAlertsPresenter!
-    fileprivate var subscriptionPackage: ISubscriptionPackage?
+    fileprivate var CHSubscriptionPackage: CHSubscriptionPackageProtocol?
     
     fileprivate lazy var deleteAlertsPickerView: DarkeningPickerViewManager = {
         let pickerViewLayout = DarkeningPickerViewModel(

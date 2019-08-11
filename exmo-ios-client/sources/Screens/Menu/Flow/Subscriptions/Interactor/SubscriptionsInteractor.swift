@@ -7,17 +7,17 @@ import Foundation
 
 class SubscriptionsInteractor {
     weak var output: SubscriptionsInteractorOutput!
-    var subscriptionPackage: ISubscriptionPackage?
+    var CHSubscriptionPackage: CHSubscriptionPackageProtocol?
     
     static func buildSubcsriptionCells(priceForLite strPriceLite: String, priceForPro strPricePro: String) -> [SubscriptionsCellModel] {
         return [
-            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
-            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
-            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
-            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
-            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
-            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
-            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro, activeSubscriptionType: IAPService.shared.subscriptionPackage.type)
+            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
+            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
+            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
+            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
+            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
+            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
+            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type)
         ]
     }
 }
@@ -88,20 +88,20 @@ extension SubscriptionsInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let newSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
-            print("\(#function) => can't convert notification container to ISubscriptionPackage")
+        guard let newSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
+            print("\(#function) => can't convert notification container to CHSubscriptionPackageProtocol")
             output.purchaseFinishedSuccess()
             return
         }
         
-        if let subscriptionPackage = self.subscriptionPackage {
-            if newSubscriptionPackage.type == subscriptionPackage.type  {
+        if let CHSubscriptionPackage = self.CHSubscriptionPackage {
+            if newSubscriptionPackage.type == CHSubscriptionPackage.type  {
                 output.purchaseFinishedSuccess()
                 return
             }
         }
         
-        self.subscriptionPackage = newSubscriptionPackage
+        self.CHSubscriptionPackage = newSubscriptionPackage
         output.onPurchaseSubscriptionSuccess(newSubscriptionPackage)
         fetchSubscriptions()
     }

@@ -20,7 +20,7 @@ protocol WatchlistInteractorOutput: class {
     func didLoadCurrencies(items: [WatchlistCurrency])
     func didRemoveCurrency(_ currency: WatchlistCurrency)
 
-    func setSubscription(_ package: ISubscriptionPackage)
+    func setSubscription(_ package: CHSubscriptionPackageProtocol)
     func onLoadTickerError(msg: String)
     func onPurchaseError(msg: String)
 }

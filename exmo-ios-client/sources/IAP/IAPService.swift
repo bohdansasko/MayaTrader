@@ -34,14 +34,14 @@ class IAPService: NSObject {
     private let kSharedSecret = "ac548a8468d243caa1d13995a28cb3c5"
     private let kReceiptSubscriptionURLType = IAPService.getReceiptSubscriptionURLType()
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
-    private(set) var subscriptionPackage: ISubscriptionPackage! {
+    private(set) var CHSubscriptionPackage: CHSubscriptionPackageProtocol! {
         didSet {
-            print("\(#function) - Active subscription: \(subscriptionPackage.name)")
-            Defaults.setSubscriptionId(subscriptionPackage.type.rawValue)
+            print("\(#function) - Active subscription: \(CHSubscriptionPackage.name)")
+            Defaults.setSubscriptionId(CHSubscriptionPackage.type.rawValue)
         }
     }
 
-    static let kSubscriptionPackageKey = "subscriptionPackage"
+    static let kSubscriptionPackageKey = "CHSubscriptionPackage"
     static let kErrorKey = "error"
     
     
@@ -50,16 +50,16 @@ class IAPService: NSObject {
     }
     
     func loadSubscriptionFromCache() {
-        guard let subscriptionType = SubscriptionPackageType(rawValue: Defaults.getSubscriptionId()) else {
-            subscriptionPackage = BasicAdsSubscriptionPackage()
+        guard let subscriptionType = CHSubscriptionPackageType(rawValue: Defaults.getSubscriptionId()) else {
+            CHSubscriptionPackage = CHBasicAdsSubscriptionPackage()
             return
         }
         
         switch subscriptionType {
-        case .freeWithAds: subscriptionPackage = BasicAdsSubscriptionPackage()
-        case .freeNoAds: subscriptionPackage = BasicNoAdsSubscriptionPackage()
-        case .lite: subscriptionPackage = LiteSubscriptionPackage()
-        case .pro: subscriptionPackage = ProSubscriptionPackage()
+        case .freeWithAds: CHSubscriptionPackage = CHBasicAdsSubscriptionPackage()
+        case .freeNoAds: CHSubscriptionPackage = CHBasicNoAdsSubscriptionPackage()
+        case .lite: CHSubscriptionPackage = CHLiteSubscriptionPackage()
+        case .pro: CHSubscriptionPackage = CHProSubscriptionPackage()
         }
     }
 }
@@ -92,15 +92,15 @@ extension IAPService {
                     
                     if let receipt = activeSubscriptions.first(where: { $0.productId == IAPProduct.proPackage.rawValue }) {
                         subscriptionExpirationDate = receipt.subscriptionExpirationDate
-                        self.updateSubscription(ProSubscriptionPackage())
+                        self.updateSubscription(CHProSubscriptionPackage())
                     } else if let receipt = activeSubscriptions.first(where: { $0.productId == IAPProduct.litePackage.rawValue }) {
                         subscriptionExpirationDate = receipt.subscriptionExpirationDate
-                        self.updateSubscription(LiteSubscriptionPackage())
+                        self.updateSubscription(CHLiteSubscriptionPackage())
                     } else if let receipt = activeSubscriptions.first(where: { $0.productId == IAPProduct.noAds.rawValue }) {
                         subscriptionExpirationDate = receipt.subscriptionExpirationDate
-                        self.updateSubscription(BasicNoAdsSubscriptionPackage())
+                        self.updateSubscription(CHBasicNoAdsSubscriptionPackage())
                     } else {
-                        self.updateSubscription(BasicAdsSubscriptionPackage())
+                        self.updateSubscription(CHBasicAdsSubscriptionPackage())
                     }
                     
                     if let expirationDate = subscriptionExpirationDate {
@@ -115,11 +115,11 @@ extension IAPService {
                     print("\(#function) => purchased items => \(activeSubscriptions) \n\n")
                 case .expired(_, _), .notPurchased:
                     print("\(#function) => updateSubscription \n\n")
-                    self.updateSubscription(BasicAdsSubscriptionPackage())
+                    self.updateSubscription(CHBasicAdsSubscriptionPackage())
                 }
             case .error(let error):
                 print("Receipt verification failed: \(error)")
-                self.updateSubscription(BasicAdsSubscriptionPackage())
+                self.updateSubscription(CHBasicAdsSubscriptionPackage())
                 self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
             }
         }
@@ -191,17 +191,17 @@ extension IAPService {
                 self.sendNotification(.purchaseSuccess, data: notificationData)
                 print("Purchase Success: \(purchase.productId)")
                 guard let purchasedProduct = IAPProduct(rawValue: purchase.productId) else {
-                    self.updateSubscription(BasicAdsSubscriptionPackage())
+                    self.updateSubscription(CHBasicAdsSubscriptionPackage())
                     return
                 }
 
-                var subscriptionPackage: ISubscriptionPackage
+                var CHSubscriptionPackage: CHSubscriptionPackageProtocol
                 switch purchasedProduct {
-                case IAPProduct.proPackage: subscriptionPackage = ProSubscriptionPackage()
-                case IAPProduct.litePackage: subscriptionPackage = LiteSubscriptionPackage()
-                case IAPProduct.noAds: subscriptionPackage = BasicNoAdsSubscriptionPackage()
+                case IAPProduct.proPackage: CHSubscriptionPackage = CHProSubscriptionPackage()
+                case IAPProduct.litePackage: CHSubscriptionPackage = CHLiteSubscriptionPackage()
+                case IAPProduct.noAds: CHSubscriptionPackage = CHBasicNoAdsSubscriptionPackage()
                 }
-                self.updateSubscription(subscriptionPackage)
+                self.updateSubscription(CHSubscriptionPackage)
 
             case .error(let error):
                 var errorMessage: String
@@ -226,24 +226,24 @@ extension IAPService {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
                 print("Restore Failed: \(results.restoreFailedPurchases)")
-                self.updateSubscription(BasicAdsSubscriptionPackage())
+                self.updateSubscription(CHBasicAdsSubscriptionPackage())
             } else if results.restoredPurchases.count > 0 {
                 let isProPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.proPackage.rawValue })
                 let isLitePackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.litePackage.rawValue })
                 let isNoAdsPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.noAds.rawValue })
                 
-                var purchasedProduct: ISubscriptionPackage = BasicAdsSubscriptionPackage()
+                var purchasedProduct: CHSubscriptionPackageProtocol = CHBasicAdsSubscriptionPackage()
                 if isProPackage {
-                    purchasedProduct = ProSubscriptionPackage()
+                    purchasedProduct = CHProSubscriptionPackage()
                 } else if isLitePackage {
-                    purchasedProduct = LiteSubscriptionPackage()
+                    purchasedProduct = CHLiteSubscriptionPackage()
                 } else if isNoAdsPackage {
-                    purchasedProduct = BasicNoAdsSubscriptionPackage()
+                    purchasedProduct = CHBasicNoAdsSubscriptionPackage()
                 }
                 self.updateSubscription(purchasedProduct)
             } else {
                 print("Nothing to Restore")
-                self.updateSubscription(BasicAdsSubscriptionPackage())
+                self.updateSubscription(CHBasicAdsSubscriptionPackage())
             }
         }
     }
@@ -312,8 +312,8 @@ extension IAPService {
         }
     }
 
-    private func updateSubscription(_ subscriptionPackage: ISubscriptionPackage) {
-        self.subscriptionPackage = subscriptionPackage
-        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: subscriptionPackage])
+    private func updateSubscription(_ CHSubscriptionPackage: CHSubscriptionPackageProtocol) {
+        self.CHSubscriptionPackage = CHSubscriptionPackage
+        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: CHSubscriptionPackage])
     }
 }

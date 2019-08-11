@@ -133,12 +133,12 @@ extension OrdersInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+        guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
             print("\(#function) => can't convert notification container to IAPProduct")
-            output.setSubscription(BasicAdsSubscriptionPackage())
+            output.setSubscription(CHBasicAdsSubscriptionPackage())
             return
         }
-        output.setSubscription(subscriptionPackage)
+        output.setSubscription(CHSubscriptionPackage)
     }
 
     @objc
@@ -146,7 +146,7 @@ extension OrdersInteractor {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
             print("\(#function) => can't cast error message to String")
-            output.setSubscription(BasicAdsSubscriptionPackage())
+            output.setSubscription(CHBasicAdsSubscriptionPackage())
             return
         }
         output.purchaseError(reason: errorMsg)

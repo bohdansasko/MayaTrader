@@ -13,7 +13,7 @@ protocol AlertsViewInput: class {
     func updateAlert(_ alert: Alert)
     func deleteAlerts(withIds ids: [Int])
 
-    func setSubscription(_ package: ISubscriptionPackage)
+    func setSubscription(_ package: CHSubscriptionPackageProtocol)
     func showAlert(msg: String)
 }
 

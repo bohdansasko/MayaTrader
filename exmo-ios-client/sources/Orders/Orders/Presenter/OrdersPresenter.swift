@@ -48,7 +48,7 @@ extension OrdersPresenter: OrdersInteractorOutput {
         view.orderCancelled(ids: ids)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         view.setSubscription(package)
     }
 

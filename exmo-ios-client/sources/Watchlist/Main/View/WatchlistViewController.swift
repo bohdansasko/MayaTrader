@@ -26,7 +26,7 @@ extension DatasourceController {
 // MARK: WatchlistViewController
 final class WatchlistViewController: ExmoUIViewController {
     var output: WatchlistViewOutput!
-    var subscriptionPackage: ISubscriptionPackage?
+    var CHSubscriptionPackage: CHSubscriptionPackageProtocol?
 
     var listView = WatchlistListView()
     var tutorialImg: TutorialImage = {
@@ -97,16 +97,16 @@ extension WatchlistViewController: WatchlistViewInput {
             })
         }
 
-        listView.maxPairs = LimitObjects(amount: ds.items.count, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
+        listView.maxPairs = LimitObjects(amount: ds.items.count, max: CHSubscriptionPackage?.maxPairsInWatchlist ?? 0)
     }
 
     func removeItem(currency: WatchlistCurrency) {
         listView.removeItem(currency)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         print("Watchlist: \(#function)")
-        subscriptionPackage = package
+        CHSubscriptionPackage = package
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {
             showAdsView(completion: {
@@ -119,10 +119,10 @@ extension WatchlistViewController: WatchlistViewInput {
         }
 
         guard let countItems = listView.datasource?.numberOfItems(0) else {
-            listView.maxPairs = LimitObjects(amount: 0, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
+            listView.maxPairs = LimitObjects(amount: 0, max: CHSubscriptionPackage?.maxPairsInWatchlist ?? 0)
             return
         }
-        listView.maxPairs = LimitObjects(amount: countItems, max: subscriptionPackage?.maxPairsInWatchlist ?? 0)
+        listView.maxPairs = LimitObjects(amount: countItems, max: CHSubscriptionPackage?.maxPairsInWatchlist ?? 0)
     }
 
     func showAlert(with bodyMsg: String) {

@@ -23,7 +23,7 @@ final class VinsoAPI {
     var isAuthorized = false {
         didSet {
             if isAuthorized {
-                AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.subscriptionPackage.type)
+                AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
                 connectionObservers.forEach({ $0.value.observer?.onAuthorization() })
             }
         }

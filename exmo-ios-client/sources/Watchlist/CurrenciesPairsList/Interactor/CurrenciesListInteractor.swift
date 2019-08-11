@@ -55,7 +55,7 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
 
     func cacheFavCurrencyPair(datasourceItem: Any?, isSelected: Bool) {
         let countPairs = pairs.filter({ $0.tickerPair.isFavourite }).count + (isSelected ? 1 : -1)
-        let maxPairs = IAPService.shared.subscriptionPackage.maxPairsInWatchlist
+        let maxPairs = IAPService.shared.CHSubscriptionPackage.maxPairsInWatchlist
 
         guard countPairs <= maxPairs,
               var currencyModel = datasourceItem as? WatchlistCurrency else {

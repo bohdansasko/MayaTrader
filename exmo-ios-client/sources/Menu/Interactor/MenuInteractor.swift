@@ -75,12 +75,12 @@
 //    @objc
 //    func onProductSubscriptionActive(_ notification: Notification) {
 //        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-//        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+//        guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
 //            print("\(#function) => can't convert notification container to IAPProduct")
 //            output.setIsAdsPresent(true)
 //            return
 //        }
-//        output.setIsAdsPresent(subscriptionPackage.isAdsPresent)
+//        output.setIsAdsPresent(CHSubscriptionPackage.isAdsPresent)
 //    }
 //
 //    @objc

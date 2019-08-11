@@ -5,24 +5,23 @@
 
 import Foundation
 
-
-enum SubscriptionPackageType: Int {
+enum CHSubscriptionPackageType: Int {
     case freeWithAds = 0
     case freeNoAds = 1
     case lite = 2
     case pro = 3
 }
 
-protocol ISubscriptionPackage {
-    var type: SubscriptionPackageType {get}
+protocol CHSubscriptionPackageProtocol {
+    var type: CHSubscriptionPackageType {get}
     var name: String {get}
     var isAdsPresent: Bool {get}
     var maxAlerts: Int {get}
     var maxPairsInWatchlist: Int {get}
 }
 
-struct SubscriptionPackage: ISubscriptionPackage, Codable {
-    private(set) var type: SubscriptionPackageType = .freeWithAds
+struct CHSubscriptionPackage: CHSubscriptionPackageProtocol, Codable {
+    private(set) var type: CHSubscriptionPackageType = .freeWithAds
     private(set) var name: String = "FreeWithAds"
     private(set) var isAdsPresent: Bool = true
     private(set) var maxPairsInWatchlist: Int = 5
@@ -56,7 +55,7 @@ struct SubscriptionPackage: ISubscriptionPackage, Codable {
         maxPairsInWatchlist = try container.decode(Int.self, forKey: CodingKeys.maxPairsInWatchlist)
         maxAlerts = try container.decode(Int.self, forKey: CodingKeys.maxAlerts)
 
-        guard let subscriptionType = SubscriptionPackageType(rawValue: typeId) else {
+        guard let subscriptionType = CHSubscriptionPackageType(rawValue: typeId) else {
             return
         }
         self.type = subscriptionType
@@ -64,32 +63,32 @@ struct SubscriptionPackage: ISubscriptionPackage, Codable {
 }
 
 
-struct BasicAdsSubscriptionPackage: ISubscriptionPackage {
-    private(set) var type: SubscriptionPackageType = .freeWithAds
+struct CHBasicAdsSubscriptionPackage: CHSubscriptionPackageProtocol {
+    private(set) var type: CHSubscriptionPackageType = .freeWithAds
     private(set) var name: String = "BasicAds"
     private(set) var isAdsPresent: Bool = true
     private(set) var maxAlerts: Int = 3
     private(set) var maxPairsInWatchlist: Int = 5
 }
 
-struct BasicNoAdsSubscriptionPackage: ISubscriptionPackage {
-    private(set) var type: SubscriptionPackageType = .freeNoAds
+struct CHBasicNoAdsSubscriptionPackage: CHSubscriptionPackageProtocol {
+    private(set) var type: CHSubscriptionPackageType = .freeNoAds
     private(set) var name: String = "BasicNoAds"
     private(set) var isAdsPresent: Bool = false
     private(set) var maxAlerts: Int = 3
     private(set) var maxPairsInWatchlist: Int = 5
 }
 
-struct LiteSubscriptionPackage: ISubscriptionPackage {
-    private(set) var type: SubscriptionPackageType = .lite
+struct CHLiteSubscriptionPackage: CHSubscriptionPackageProtocol {
+    private(set) var type: CHSubscriptionPackageType = .lite
     private(set) var name: String = "Lite"
     private(set) var isAdsPresent: Bool = false
     private(set) var maxAlerts: Int = 10
     private(set) var maxPairsInWatchlist: Int = 10
 }
 
-struct ProSubscriptionPackage: ISubscriptionPackage {
-    private(set) var type: SubscriptionPackageType = .pro
+struct CHProSubscriptionPackage: CHSubscriptionPackageProtocol {
+    private(set) var type: CHSubscriptionPackageType = .pro
     private(set) var name: String = "Pro"
     private(set) var isAdsPresent: Bool = false
     private(set) var maxAlerts: Int = 25

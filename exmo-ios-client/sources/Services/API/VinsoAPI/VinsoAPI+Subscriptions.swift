@@ -27,7 +27,7 @@ extension VinsoAPI {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func setSubscriptionType(_ packageType: SubscriptionPackageType) {
+    func setSubscriptionType(_ packageType: CHSubscriptionPackageType) {
         print("\(String(describing: self)) => \(#function)")
         let msg = AccountApiRequestBuilder.buildSetSubscriptionRequest(packageType.rawValue)
         socketManager.send(message: msg)
@@ -48,7 +48,7 @@ private extension VinsoAPI {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+        guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
             print("\(#function) => can't convert notification container to IAPProduct")
             if AppDelegate.vinsoAPI.isAuthorized {
                 AppDelegate.vinsoAPI.setSubscriptionType(.freeWithAds)
@@ -57,7 +57,7 @@ private extension VinsoAPI {
         }
         
         if AppDelegate.vinsoAPI.isAuthorized {
-            AppDelegate.vinsoAPI.setSubscriptionType(subscriptionPackage.type)
+            AppDelegate.vinsoAPI.setSubscriptionType(CHSubscriptionPackage.type)
         }
     }
     

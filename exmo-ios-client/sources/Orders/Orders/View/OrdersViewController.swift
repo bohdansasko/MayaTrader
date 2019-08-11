@@ -185,7 +185,7 @@ extension OrdersViewController {
         segmentControlView.sendActions(for: .valueChanged)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         print("Orders: \(#function)")
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {

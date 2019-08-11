@@ -12,7 +12,7 @@ class AlertsViewController: ExmoUIViewController {
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     var pickerViewManager: DarkeningPickerViewManager!
-    var subscriptionPackage: ISubscriptionPackage?
+    var CHSubscriptionPackage: CHSubscriptionPackageProtocol?
 
     var btnCreateAlert: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(named: "icNavbarPlus"),
@@ -82,7 +82,7 @@ class AlertsViewController: ExmoUIViewController {
 extension AlertsViewController: AlertsViewInput {
     func update(_ alerts: [Alert]) {
         listView.alerts.items = alerts
-        listView.maxPairs = LimitObjects(amount: alerts.count, max: subscriptionPackage?.maxAlerts ?? 0)
+        listView.maxPairs = LimitObjects(amount: alerts.count, max: CHSubscriptionPackage?.maxAlerts ?? 0)
         listView.invalidate()
     }
 
@@ -92,12 +92,12 @@ extension AlertsViewController: AlertsViewInput {
 
     func deleteAlerts(withIds ids: [Int]) {
         listView.deleteAlerts(ids: ids)
-        listView.maxPairs = LimitObjects(amount: listView.alerts.items.count, max: subscriptionPackage?.maxAlerts ?? 0)
+        listView.maxPairs = LimitObjects(amount: listView.alerts.items.count, max: CHSubscriptionPackage?.maxAlerts ?? 0)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         print("Alerts: \(#function)")
-        subscriptionPackage = package
+        CHSubscriptionPackage = package
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {
             showAdsView(completion: {
@@ -109,7 +109,7 @@ extension AlertsViewController: AlertsViewInput {
             })
         }
 
-        listView.maxPairs = LimitObjects(amount: listView.alerts.count(), max: subscriptionPackage?.maxAlerts ?? 0)
+        listView.maxPairs = LimitObjects(amount: listView.alerts.count(), max: CHSubscriptionPackage?.maxAlerts ?? 0)
     }
 
     func showAlert(msg: String) {

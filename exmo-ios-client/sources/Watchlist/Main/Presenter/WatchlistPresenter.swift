@@ -56,7 +56,7 @@ extension WatchlistPresenter: WatchlistInteractorOutput {
         view.removeItem(currency: currency)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         view.setSubscription(package)
     }
 

@@ -64,11 +64,11 @@ class RootTabsController: UITabBarController {
         NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(showNoInternetView),
-                name: InternetConnectionManager.StatusNotification.reachable.name)
+                name: CHInternetReachabilityManager.StatusNotification.reachable.name)
         NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(hideNoInternetView),
-                name: InternetConnectionManager.StatusNotification.notReachable.name)
+                name: CHInternetReachabilityManager.StatusNotification.notReachable.name)
     }
 }
 

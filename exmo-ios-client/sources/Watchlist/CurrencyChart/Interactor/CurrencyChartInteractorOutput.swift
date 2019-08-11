@@ -10,5 +10,5 @@ import Foundation
 
 protocol WatchlistCurrencyChartInteractorOutput: class {
     func updateChart(chartData: ExmoChartData?)
-    func setSubscription(_ package: ISubscriptionPackage)
+    func setSubscription(_ package: CHSubscriptionPackageProtocol)
 }

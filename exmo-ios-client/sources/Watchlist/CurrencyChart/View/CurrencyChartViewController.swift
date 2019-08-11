@@ -211,7 +211,7 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
 }
 
 extension CurrencyChartViewController {
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         print("\(String(describing: self)) => \(#function)")
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {

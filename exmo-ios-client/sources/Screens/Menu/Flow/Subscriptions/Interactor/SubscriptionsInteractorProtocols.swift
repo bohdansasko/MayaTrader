@@ -17,7 +17,7 @@ protocol SubscriptionsInteractorInput {
 }
 
 protocol SubscriptionsInteractorOutput: class {
-    func onPurchaseSubscriptionSuccess(_ subscriptionPackage: ISubscriptionPackage)
+    func onPurchaseSubscriptionSuccess(_ CHSubscriptionPackage: CHSubscriptionPackageProtocol)
     func onPurchaseSubscriptionError(reason: String)
     func purchaseFinishedSuccess()
     

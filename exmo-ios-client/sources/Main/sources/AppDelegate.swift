@@ -41,7 +41,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         setupAdMob()
         registerForRemoteNotifications()
         callStoreReview()
-        InternetConnectionManager.shared.listen()
+        CHInternetReachabilityManager.shared.listen()
 
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
@@ -157,8 +157,8 @@ extension AppDelegate {
     }
     
     func callStoreReview() {
-        StoreReviewHelper.incrementAppOpenedCount()
-        StoreReviewHelper.checkAndAskForReview()
+        CHAppStoreReviewManager.incrementAppOpenedCount()
+        CHAppStoreReviewManager.checkAndAskForReview()
     }
 }
 

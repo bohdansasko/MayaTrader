@@ -50,7 +50,7 @@ extension WatchlistCurrencyChartPresenter: WatchlistCurrencyChartInteractorOutpu
         view.updateChart(chartData: chartData)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         view.setSubscription(package)
     }
 }

@@ -65,7 +65,7 @@ extension AlertsPresenter: AlertsInteractorOutput {
         view.deleteAlerts(withIds: ids)
     }
 
-    func setSubscription(_ package: ISubscriptionPackage) {
+    func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         view.setSubscription(package)
     }
 

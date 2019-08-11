@@ -119,7 +119,7 @@ extension VinsoAPI {
 
     // MARK: responses on subscriptions loaded
     func handleResponseSubscriptionConfigs(json: JSON) {
-        _ = try? JSONDecoder().decode(SubscriptionPackage.self, from: json.rawData())
+        _ = try? JSONDecoder().decode(CHSubscriptionPackage.self, from: json.rawData())
     }
 
     func handleResponseSubscriptionConfigsError(json: JSON) {

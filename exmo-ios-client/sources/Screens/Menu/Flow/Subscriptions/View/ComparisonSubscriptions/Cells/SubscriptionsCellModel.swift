@@ -8,5 +8,5 @@ struct SubscriptionsCellModel {
     let forFree: Any
     let forLite: Any
     let forPro: Any
-    let activeSubscriptionType: SubscriptionPackageType
+    let activeSubscriptionType: CHSubscriptionPackageType
 }

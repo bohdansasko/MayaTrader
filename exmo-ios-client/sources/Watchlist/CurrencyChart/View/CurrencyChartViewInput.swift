@@ -10,5 +10,5 @@ protocol CurrencyChartViewInput: class {
     func setupInitialState()
     func updateChart(chartData: ExmoChartData?)
     func setCurrencyPair(_ currencyPair: String)
-    func setSubscription(_ package: ISubscriptionPackage)
+    func setSubscription(_ package: CHSubscriptionPackageProtocol)
 }

@@ -194,9 +194,9 @@ extension WatchlistInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
         print("\(String(describing: self)), \(#function) => notification \(notification.name)")
-        guard let subscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? ISubscriptionPackage else {
+        guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
             print("\(#function) => can't convert notification container to IAPProduct")
-            let basicSubscription = BasicAdsSubscriptionPackage()
+            let basicSubscription = CHBasicAdsSubscriptionPackage()
             if favPairs.count > basicSubscription.maxPairsInWatchlist {
                 deletePairsFrom(startIndex: basicSubscription.maxPairsInWatchlist)
             }
@@ -204,10 +204,10 @@ extension WatchlistInteractor {
             return
         }
 
-        if favPairs.count > subscriptionPackage.maxPairsInWatchlist {
-            deletePairsFrom(startIndex: subscriptionPackage.maxPairsInWatchlist)
+        if favPairs.count > CHSubscriptionPackage.maxPairsInWatchlist {
+            deletePairsFrom(startIndex: CHSubscriptionPackage.maxPairsInWatchlist)
         }
-        output.setSubscription(subscriptionPackage)
+        output.setSubscription(CHSubscriptionPackage)
     }
 
     @objc

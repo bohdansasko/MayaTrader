@@ -18,6 +18,6 @@ protocol OrdersInteractorInput {
 protocol OrdersInteractorOutput: class {
     func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders])
     func orderCancelled(ids: [Int64])
-    func setSubscription(_ package: ISubscriptionPackage)
+    func setSubscription(_ package: CHSubscriptionPackageProtocol)
     func purchaseError(reason: String)
 }

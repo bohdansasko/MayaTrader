@@ -42,8 +42,8 @@
 //            }
 //
 //        case .rateUs:
-//            StoreReviewHelper.resetAppOpenedCount()
-//            StoreReviewHelper.requestReview()
+//            CHAppStoreReviewManager.resetAppOpenedCount()
+//            CHAppStoreReviewManager.requestReview()
 //        case .shareApp:
 //            if let link = NSURL(string: UserDefaultsKeys.appStoreLink.rawValue) {
 //                let objectsToShare = [link] as [Any]
