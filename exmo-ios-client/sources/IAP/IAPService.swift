@@ -9,19 +9,7 @@
 import StoreKit
 import SwiftyStoreKit
 
-class IAPService: NSObject {
-    enum Notification: String, NotificationName {
-        case completeTransaction
-        
-        case purchaseSuccess
-        case purchaseError
-        
-        case purchased
-        case expired
-        case notPurchased
-
-        case updateSubscription
-    }
+final class IAPService: NSObject {
     
     var timer: Timer?
     
@@ -120,7 +108,7 @@ extension IAPService {
             case .error(let error):
                 print("Receipt verification failed: \(error)")
                 self.updateSubscription(CHBasicAdsSubscriptionPackage())
-                self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
+                self.sendNotification(IAPNotification.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
             }
         }
     }
@@ -179,7 +167,7 @@ extension IAPService {
                     break // do nothing
                 }
             }
-            self.sendNotification(.completeTransaction, data: [:])
+            self.sendNotification(IAPNotification.completeTransaction, data: [:])
         }
     }
 
@@ -188,7 +176,7 @@ extension IAPService {
             let notificationData = [IAPService.kSubscriptionPackageKey: product]
             switch result {
             case .success(let purchase):
-                self.sendNotification(.purchaseSuccess, data: notificationData)
+                self.sendNotification(IAPNotification.purchaseSuccess, data: notificationData)
                 print("Purchase Success: \(purchase.productId)")
                 guard let purchasedProduct = IAPProduct(rawValue: purchase.productId) else {
                     self.updateSubscription(CHBasicAdsSubscriptionPackage())
@@ -217,7 +205,7 @@ extension IAPService {
                 case .cloudServiceRevoked: errorMessage = "User has revoked permission to use this cloud service"
                 default: errorMessage = (error as NSError).localizedDescription
                 }
-                self.sendNotification(.purchaseError, data: [IAPService.kErrorKey: errorMessage])
+                self.sendNotification(IAPNotification.purchaseError, data: [IAPService.kErrorKey: errorMessage])
             }
         }
     }
@@ -306,7 +294,7 @@ extension IAPService {
         }
     }
 
-    private func sendNotification(_ notificationType: IAPService.Notification, data: [AnyHashable: Any]) {
+    private func sendNotification(_ notificationType: IAPNotification, data: [AnyHashable: Any]) {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: notificationType.name, object: data)
         }
@@ -314,6 +302,18 @@ extension IAPService {
 
     private func updateSubscription(_ CHSubscriptionPackage: CHSubscriptionPackageProtocol) {
         self.CHSubscriptionPackage = CHSubscriptionPackage
-        self.sendNotification(.updateSubscription, data: [IAPService.kSubscriptionPackageKey: CHSubscriptionPackage])
+        self.sendNotification(IAPNotification.updateSubscription, data: [IAPService.kSubscriptionPackageKey: CHSubscriptionPackage])
     }
+}
+
+// MARK: - UIApplicationDelegate
+
+extension IAPService: UIApplicationDelegate {
+    
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
+        return true
+    }
+
+    
 }

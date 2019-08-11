@@ -77,6 +77,7 @@
 		20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */; };
 		202F2F3D219244C90000B988 /* WalletNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */; };
 		202F48F6206A157D0080423E /* WatchlistCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistCardCell.swift */; };
+		202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */; };
 		20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20345011217B644400D2E831 /* CurrenciesListViewController.swift */; };
 		20369A4421972149001D6628 /* RootTabsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4321972149001D6628 /* RootTabsInteractor.swift */; };
 		20369A4621972159001D6628 /* RootTabsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4521972159001D6628 /* RootTabsPresenter.swift */; };
@@ -438,6 +439,7 @@
 		20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		202F2F3C219244C90000B988 /* WalletNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNetworkWorker.swift; sourceTree = "<group>"; };
 		202F48F5206A157D0080423E /* WatchlistCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCell.swift; sourceTree = "<group>"; };
+		202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExmoAuthorizationService.swift; sourceTree = "<group>"; };
 		20345011217B644400D2E831 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		20369A4321972149001D6628 /* RootTabsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsInteractor.swift; sourceTree = "<group>"; };
 		20369A4521972159001D6628 /* RootTabsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsPresenter.swift; sourceTree = "<group>"; };
@@ -1607,6 +1609,7 @@
 			children = (
 				20CAFED32042AE6400C7DEA5 /* API */,
 				36712DDE57C5587FC6B6609F /* ErrorModels.swift */,
+				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2750,6 +2753,7 @@
 				204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */,
 				20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */,
 				207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */,
+				202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
 				208FE09D22DB485C0014BCE5 /* CHExchangeCell.swift in Sources */,
 				204CC7DA21B93478002057CA /* AppDelegate.swift in Sources */,

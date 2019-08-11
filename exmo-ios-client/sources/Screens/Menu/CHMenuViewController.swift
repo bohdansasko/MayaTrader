@@ -32,11 +32,11 @@ final class CHMenuViewController: CHBaseViewController, CHBaseViewControllerProt
     }
     
     func subscribeOnUserSignInOut() {
-        NotificationCenter.default.addObserver(forName: .UserSignIn, object: nil, queue: .main) { [unowned self] n in
-            self.presenter.isLoggedUser = true
+        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignIn.name, object: nil, queue: .main) { [unowned self] _ in
+            self.presenter.reloadSections()
         }
-        NotificationCenter.default.addObserver(forName: .UserSignOut, object: nil, queue: .main) { [unowned self] n in
-            self.presenter.isLoggedUser = false
+        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignOut.name, object: nil, queue: .main) { [unowned self] _ in
+            self.presenter.reloadSections()
         }
     }
     
@@ -64,10 +64,7 @@ private extension CHMenuViewController {
 private extension CHMenuViewController {
     
     func doLogout() {
-        ExmoApiRequestBuilder.shared.clearAuthorizationData()
-        Defaults.setUserLoggedIn(false)
-        //        dbManager.clearAllData()
-        NotificationCenter.default.post(name: .UserSignOut)
+        CHExmoAuthorizationService.shared.logout()
     }
     
     func doRateUs() {

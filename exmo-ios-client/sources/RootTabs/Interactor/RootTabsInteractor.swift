@@ -45,11 +45,11 @@ extension RootTabsInteractor: RootTabsInteractorInput {
 // MARK: ILoginNetworkWorkerDelegate
 extension RootTabsInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserSuccessful(user: ExmoUser) {
-        NotificationCenter.default.post(name: .UserSignIn)
+        NotificationCenter.default.post(name: AuthorizationNotification.userSignIn.name)
     }
     
     func onDidLoadUserFail(errorMessage: String?) {
 //        output.showAlert(title: "Login", message: errorMessage ?? "Undefined error")
-        NotificationCenter.default.post(name: .UserFailSignIn)
+//        NotificationCenter.default.post(name: .UserFailSignIn)
     }
 }

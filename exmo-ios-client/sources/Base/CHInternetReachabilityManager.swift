@@ -8,24 +8,22 @@
 
 import Alamofire
 
-final class CHInternetReachabilityManager: NSObject {
-    
-    enum StatusNotification: String, NotificationName {
-        case reachable
-        case notReachable
-    }
-    
+final class CHInternetReachabilityManager: NSObject {    
     static let shared = CHInternetReachabilityManager()
     
     private let networkManager = NetworkReachabilityManager()
-    private override init() { super.init()  }
+    
+    private override init() {
+        super.init()
+    }
+    
 }
 
 // MARK: - Handle listening
 
 extension CHInternetReachabilityManager {
    
-    func listen() {
+    func startListening() {
         networkManager?.listener = { [unowned self] status in
             self.handleStatus(with: status)
         }
@@ -45,9 +43,9 @@ private extension CHInternetReachabilityManager {
     func handleStatus(with status: NetworkReachabilityManager.NetworkReachabilityStatus) {
         switch status {
         case .notReachable:
-            NotificationCenter.default.post(name: StatusNotification.reachable.name)
+            NotificationCenter.default.post(name: InternetReachabilityNotification.reachable.name)
         case .reachable(_), .unknown:
-            NotificationCenter.default.post(name: StatusNotification.notReachable.name)
+            NotificationCenter.default.post(name: InternetReachabilityNotification.notReachable.name)
         }
     }
     
@@ -59,8 +57,12 @@ extension CHInternetReachabilityManager: UIApplicationDelegate {
     
     @discardableResult
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        listen()
+        startListening()
         return true
     }
-
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+        stopListening()
+    }
+    
 }

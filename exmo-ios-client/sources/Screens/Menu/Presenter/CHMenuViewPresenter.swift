@@ -21,11 +21,8 @@ final class CHMenuViewPresenter: NSObject {
     
     // MARK: - Public
     
-    var isLoggedUser: Bool = false {
-        didSet {
-            reloadSections()
-        }
-    }
+    var isUserAuthorized: Bool { return Defaults.isUserLoggedIn() }
+    var isPasscodeActive: Bool { return Defaults.isPasscodeActive() }
     
     var isAdsPresent: Bool = false {
         didSet {
@@ -70,9 +67,9 @@ extension CHMenuViewPresenter {
 
 private extension CHMenuViewPresenter {
     
-    func cellsLayout(isLoggedUser: Bool, isAdsPresent: Bool) -> [CHMenuSectionModel] {
+    func cellsLayout(isUserAuthorized: Bool, isAdsPresent: Bool) -> [CHMenuSectionModel] {
         return [
-            CHMenuSectionModel(section: .account      , cells: [ isLoggedUser ? .logout : .login, .security ]),
+            CHMenuSectionModel(section: .account      , cells: [ isUserAuthorized ? .logout : .login, .security ]),
 //            CHMenuSectionModel(section: .purchase     , cells: [ .proFeatures ] + (isAdsPresent ? [.advertisement] : [])),
             CHMenuSectionModel(section: .contactWithUs, cells: [ .facebook, .telegram ]),
             CHMenuSectionModel(section: .about        , cells: [ .rateUs, .shareApp, .appVersion ])
@@ -84,14 +81,14 @@ private extension CHMenuViewPresenter {
 
 // MARK: Help for sections
 
-private extension CHMenuViewPresenter {
+extension CHMenuViewPresenter {
     
     func reloadSections() {
-        sections = cellsLayout(isLoggedUser: isLoggedUser, isAdsPresent: isAdsPresent)
+        sections = cellsLayout(isUserAuthorized: isUserAuthorized, isAdsPresent: isAdsPresent)
         tableView.reloadData()
     }
     
-    func reloadCell(type: CHMenuCellType) {
+    private func reloadCell(type: CHMenuCellType) {
         for sectionModel in sections {
             if let rowIndex = sectionModel.cells.firstIndex(where: { $0 == type } ) {
                 let indexPath = IndexPath(row: rowIndex, section: sectionModel.section.rawValue)
@@ -102,7 +99,7 @@ private extension CHMenuViewPresenter {
         }
     }
     
-    func cellType(for indexPath: IndexPath) -> CHMenuCellType {
+    private func cellType(for indexPath: IndexPath) -> CHMenuCellType {
         let section = sections[indexPath.section]
         let cellType = section.cells[indexPath.row]
         return cellType
@@ -157,8 +154,9 @@ extension CHMenuViewPresenter: UITableViewDelegate {
         let menuCellType = cellType(for: indexPath)
         
         if menuCellType == .security {
-            menuCell.lockButton.isSelected = Defaults.isPasscodeActive()
+            menuCell.lockButton.isSelected = isPasscodeActive
         }
+        
         menuCell.cellType = menuCellType
     }
 

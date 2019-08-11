@@ -17,9 +17,3 @@ extension Data {
         }
     }
 }
-
-extension Notification.Name {
-    static let UserSignIn = Notification.Name("UserSignIn")
-    static let UserFailSignIn = Notification.Name("UserFailSignIn")
-    static let UserSignOut = Notification.Name("UserSignOut")
-}

@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class ExmoLoginNetworkWorker: ILoginNetworkWorker {
+final class ExmoLoginNetworkWorker: ILoginNetworkWorker {
     var delegate: ILoginNetworkWorkerDelegate!
     var loginModel: ExmoQR?
     

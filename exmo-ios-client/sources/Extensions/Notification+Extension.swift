@@ -20,6 +20,54 @@ extension RawRepresentable where RawValue == String, Self: NotificationName {
     }
 }
 
+enum AuthorizationNotification: String, NotificationName {
+    case userSignIn
+    case userFailSignIn
+    case userSignOut
+}
+
+enum ConnectionNotification: String, NotificationName {
+    case connectedSuccess
+    case connectionError
+    
+    case authorizationSuccess
+    case authorizationError
+}
+
+enum AlertsNotification: String, NotificationName {
+    case loadedHistorySuccess
+    case createdAlertSuccess
+    case updatedAlertSuccess
+    case deletedAlertSuccess
+    
+    case loadedHistoryError
+    case createdAlertError
+    case updatedAlertError
+    case deletedAlertError
+}
+
+enum IAPNotification: String, NotificationName {
+    case completeTransaction
+    
+    case purchaseSuccess
+    case purchaseError
+    
+    case purchased
+    case expired
+    case notPurchased
+    
+    case updateSubscription
+}
+
+enum InternetReachabilityNotification: String, NotificationName {
+    case reachable
+    case notReachable
+}
+
+enum CHUserInfoKeys: String {
+    case reason
+}
+
 extension NotificationCenter {
     
     func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?) {

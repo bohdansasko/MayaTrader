@@ -30,16 +30,20 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate var services: [UIApplicationDelegate] = [
         CHInternetReachabilityManager.shared,
         CHAppStoreReviewManager.shared,
-        CHPushNotificationsService.shared
+        CHPushNotificationsService.shared,
+        CHExmoAuthorizationService.shared,
+        IAPService.shared
     ]
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         AppDelegate.vinsoAPI.addConnectionObserver(self)
-        IAPService.shared.completeTransactions()
         
         setupAdMob()
-        services.forEach{ _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions) }
+        
+        services.forEach{
+            _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions)
+        }
 
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)

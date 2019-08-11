@@ -66,23 +66,3 @@ enum CHStockExchange: String {
     case exmo     = "exmo"
     case btcTrade = "btc_trade"
 }
-
-enum ConnectionNotification: String, NotificationName {
-    case connectedSuccess
-    case connectionError
-    
-    case authorizationSuccess
-    case authorizationError
-}
-
-enum AlertsNotification: String, NotificationName {
-    case loadedHistorySuccess
-    case createdAlertSuccess
-    case updatedAlertSuccess
-    case deletedAlertSuccess
-    
-    case loadedHistoryError
-    case createdAlertError
-    case updatedAlertError
-    case deletedAlertError
-}
