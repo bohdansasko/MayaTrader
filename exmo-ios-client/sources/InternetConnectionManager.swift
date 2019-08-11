@@ -27,8 +27,10 @@ class InternetConnectionManager {
     
     private func handleStatus(with status: NetworkReachabilityManager.NetworkReachabilityStatus) {
         switch status {
-        case .notReachable: AppDelegate.notificationController.postBroadcastMessage(name: StatusNotification.reachable.name)
-        case .reachable(_), .unknown: AppDelegate.notificationController.postBroadcastMessage(name: StatusNotification.notReachable.name)
+        case .notReachable:
+            NotificationCenter.default.post(name: StatusNotification.reachable.name)
+        case .reachable(_), .unknown:
+            NotificationCenter.default.post(name: StatusNotification.notReachable.name)
         }
     }
 }

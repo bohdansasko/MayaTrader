@@ -30,11 +30,11 @@ final class CHTabBarController: UITabBarController {
 private extension CHTabBarController {
     
     func subscribeOnInternetConnectionNotifications() {
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(showNoInternetView),
             name: InternetConnectionManager.StatusNotification.reachable.name)
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
             self,
             selector: #selector(hideNoInternetView),
             name: InternetConnectionManager.StatusNotification.notReachable.name)

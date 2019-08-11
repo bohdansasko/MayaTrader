@@ -36,12 +36,12 @@ extension LoginInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserSuccessful(user: ExmoUser) {
         dbManager.add(data: user.managedObject(), update: true)
         Defaults.setUserLoggedIn(true)
-        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
+        NotificationCenter.default.post(name: .UserSignIn)
         output.closeViewController()
     }
     
     func onDidLoadUserFail(errorMessage: String?) {
-        AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+        NotificationCenter.default.post(name: .UserFailSignIn)
         output.showAlert(title: "Login", message: errorMessage ?? "Undefined error")
     }
 }

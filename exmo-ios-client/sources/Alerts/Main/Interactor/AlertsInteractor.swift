@@ -96,11 +96,11 @@ extension AlertsInteractor {
     }
 
     func subscribeOnIAPNotifications() {
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
                 name: IAPService.Notification.updateSubscription.name)
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onPurchaseError(_ :)),
                 name: IAPService.Notification.purchaseError.name)
@@ -109,7 +109,7 @@ extension AlertsInteractor {
     func unsubscribeFromNotifications() {
         AppDelegate.vinsoAPI.removeConnectionObserver(self)
         AppDelegate.vinsoAPI.removeAlertsObserver(self)
-        AppDelegate.notificationController.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

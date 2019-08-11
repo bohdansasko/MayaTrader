@@ -44,14 +44,14 @@ extension WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInpu
 // MARK: subscriptions
 extension WatchlistCurrencyChartInteractor {
     func subscribeOnIAPNotifications() {
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
                 name: IAPService.Notification.updateSubscription.name)
     }
 
     func unsubscribeFromNotifications() {
-        AppDelegate.notificationController.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

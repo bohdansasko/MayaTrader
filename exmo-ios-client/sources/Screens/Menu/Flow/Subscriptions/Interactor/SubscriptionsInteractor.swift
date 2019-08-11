@@ -69,18 +69,18 @@ extension SubscriptionsInteractor: SubscriptionsInteractorInput {
 
 extension SubscriptionsInteractor {
     func subscribeOnIAPNotifications() {
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
                 name: IAPService.Notification.updateSubscription.name)
-        AppDelegate.notificationController.addObserver(
+        NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onPurchaseError(_ :)),
                 name: IAPService.Notification.purchaseError.name)
     }
 
     func unsubscribeFromNotifications() {
-        AppDelegate.notificationController.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

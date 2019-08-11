@@ -13,7 +13,7 @@ class RootTabsInteractor {
     var dbManager: OperationsDatabaseProtocol!
 
     deinit {
-        AppDelegate.notificationController.removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
 
     func tryLogin() {
@@ -45,11 +45,11 @@ extension RootTabsInteractor: RootTabsInteractorInput {
 // MARK: ILoginNetworkWorkerDelegate
 extension RootTabsInteractor: ILoginNetworkWorkerDelegate {
     func onDidLoadUserSuccessful(user: ExmoUser) {
-        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignIn)
+        NotificationCenter.default.post(name: .UserSignIn)
     }
     
     func onDidLoadUserFail(errorMessage: String?) {
 //        output.showAlert(title: "Login", message: errorMessage ?? "Undefined error")
-        AppDelegate.notificationController.postBroadcastMessage(name: .UserFailSignIn)
+        NotificationCenter.default.post(name: .UserFailSignIn)
     }
 }

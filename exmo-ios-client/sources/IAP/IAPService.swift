@@ -308,7 +308,7 @@ extension IAPService {
 
     private func sendNotification(_ notificationType: IAPService.Notification, data: [AnyHashable: Any]) {
         DispatchQueue.main.async {
-            AppDelegate.notificationController.postBroadcastMessage(name: notificationType.name, data: data)
+            NotificationCenter.default.post(name: notificationType.name, object: data)
         }
     }
 

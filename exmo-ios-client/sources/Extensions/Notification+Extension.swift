@@ -19,3 +19,15 @@ extension RawRepresentable where RawValue == String, Self: NotificationName {
         }
     }
 }
+
+extension NotificationCenter {
+    
+    func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?) {
+        NotificationCenter.default.addObserver(observer, selector: aSelector, name: aName, object: nil)
+    }
+    
+    func post(name aName: NSNotification.Name, userInfo aUserInfo: [AnyHashable : Any]? = nil) {
+        NotificationCenter.default.post(name: aName, object: nil, userInfo: aUserInfo)
+    }
+    
+}

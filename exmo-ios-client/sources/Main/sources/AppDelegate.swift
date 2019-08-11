@@ -162,26 +162,10 @@ extension AppDelegate {
     }
 }
 
-// MARK: notification controller
-class NotificationController {
-    func postBroadcastMessage(name: NSNotification.Name, data: [AnyHashable: Any]? = nil) {
-        NotificationCenter.default.post(name: name, object: nil, userInfo: data)
-    }
-
-    func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?, object anObject: Any? = nil) {
-        NotificationCenter.default.addObserver(observer, selector: aSelector, name: aName, object: anObject)
-    }
-    
-    func removeObserver(_ observer: Any) {
-        NotificationCenter.default.removeObserver(observer)
-    }
-}
-
 // MARK: static instances
 extension AppDelegate {
     static let exmoController = ExmoAccountController()
     static let vinsoAPI = VinsoAPI.shared
-    static let notificationController = NotificationController() // TODO: rename on NotifyService
 }
 
 // MARK: static methods

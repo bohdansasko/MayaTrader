@@ -21,17 +21,21 @@ final class CHMenuViewPresenter: NSObject {
     
     // MARK: - Public
     
+    var isLoggedUser: Bool = false {
+        didSet {
+            reloadSections()
+        }
+    }
+    
+    var isAdsPresent: Bool = false {
+        didSet {
+            reloadSections()
+        }
+    }
+    
     weak var delegate: CHMenuViewPresenterDelegate?
     
     // MARK: - Private
-    
-    fileprivate var isLoggedUser: Bool = false {
-        didSet { reloadSections() }
-    }
-
-    fileprivate var isAdsPresent: Bool = false {
-        didSet { reloadSections() }
-    }
     
     private weak var tableView: UITableView!
     private      var sections : [CHMenuSectionModel] = []
@@ -64,7 +68,7 @@ extension CHMenuViewPresenter {
 
 // MARK: - CHMenuSectionModel help methods
 
-extension CHMenuViewPresenter {
+private extension CHMenuViewPresenter {
     
     func cellsLayout(isLoggedUser: Bool, isAdsPresent: Bool) -> [CHMenuSectionModel] {
         return [

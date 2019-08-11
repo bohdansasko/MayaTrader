@@ -34,15 +34,15 @@
 //        ExmoApiRequestBuilder.shared.clearAuthorizationData()
 //        Defaults.setUserLoggedIn(false)
 //        dbManager.clearAllData()
-//        AppDelegate.notificationController.postBroadcastMessage(name: .UserSignOut)
+//        NotificationCenter.default.post(name: .UserSignOut)
 //    }
 //}
 //
 //// MARK: MenuInteractorInput
 //extension MenuInteractor {
 //    private func subscribeOnEvents() {
-//        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignIn), name: .UserSignIn)
-//        AppDelegate.notificationController.addObserver(self, selector: #selector(self.onUserSignOut), name: .UserSignOut)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.onUserSignIn), name: .UserSignIn)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.onUserSignOut), name: .UserSignOut)
 //    }
 //    
 //    @objc func onUserSignIn() {
@@ -56,18 +56,18 @@
 //
 //extension MenuInteractor {
 //    func subscribeOnIAPNotifications() {
-//        AppDelegate.notificationController.addObserver(
+//        NotificationCenter.default.addObserver(
 //                self,
 //                selector: #selector(onProductSubscriptionActive(_ :)),
 //                name: IAPService.Notification.updateSubscription.name)
-//        AppDelegate.notificationController.addObserver(
+//        NotificationCenter.default.addObserver(
 //                self,
 //                selector: #selector(onPurchaseError(_ :)),
 //                name: IAPService.Notification.purchaseError.name)
 //    }
 //
 //    func unsubscribeFromNotifications() {
-//        AppDelegate.notificationController.removeObserver(self)
+//        NotificationCenter.default.removeObserver(self)
 //    }
 //}
 //
