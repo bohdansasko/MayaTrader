@@ -26,5 +26,6 @@
 "SCREEN_PASSCODE_UNLOCK_HINT"  = "Enter passcode";
 "SCREEN_PASSCODE_ENABLED_ALERT_TITLE"   = "Security enabled!";
 "SCREEN_PASSCODE_ENABLED_ALERT_MESSAGE" = "Now your passcode lock will be asked every time when you open application";
+"SCREEN_PASSCODE_DISABLED"              = "Your passcode has been disabled.";
 
 "DELETE" = "Delete";

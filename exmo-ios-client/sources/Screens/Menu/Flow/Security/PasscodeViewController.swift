@@ -169,7 +169,8 @@ extension PasscodeViewController: PasswordInputCompleteProtocol {
                 })
             case .unlock:
                 validationFail()
-            default: break
+            default:
+                break
             }
         }
     }

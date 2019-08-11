@@ -31,12 +31,19 @@ final class CHMenuViewController: CHBaseViewController, CHBaseViewControllerProt
         subscribeOnUserSignInOut()
     }
     
-    func subscribeOnUserSignInOut() {
-        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignIn.name, object: nil, queue: .main) { [unowned self] _ in
-            self.presenter.reloadSections()
-        }
-        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignOut.name, object: nil, queue: .main) { [unowned self] _ in
-            self.presenter.reloadSections()
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueId = Segues(rawValue: segue.identifier!)!
+        switch segueId {
+        case .login:
+            break
+        case .security:
+            preparePasscodeViewController(for: segue, sender: sender)
+        case .subscriptions:
+            break
         }
     }
     
@@ -59,14 +66,39 @@ private extension CHMenuViewController {
     
 }
 
-// MARK: - Help methods for links
+// MARK: - Prepare for segue
+
+private extension CHMenuViewController {
+    
+    func preparePasscodeViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let nav = segue.destination as! UINavigationController
+        let vc = nav.topViewController as! PasscodeViewController
+        vc.onClose = { [unowned self] in
+            self.presenter.reloadSections()
+        }
+    }
+    
+}
+
+
+// MARK: - Handle user actions
 
 private extension CHMenuViewController {
     
     func doLogout() {
         CHExmoAuthorizationService.shared.logout()
     }
-    
+
+    func doSecurity() {
+        if presenter.isPasscodeActive {
+            Defaults.resetPasscode()
+            presenter.reloadSections()
+            self.showAlert(title: "SCREEN_PASSCODE_TITLE".localized, message: "SCREEN_PASSCODE_DISABLED".localized)
+        } else {
+            performSegue(withIdentifier: Segues.security.rawValue, sender: nil)
+        }
+    }
+
     func doRateUs() {
         CHAppStoreReviewManager.shared.resetAppOpenedCount()
         CHAppStoreReviewManager.shared.requestReview()
@@ -89,7 +121,7 @@ private extension CHMenuViewController {
         let reason = getErrorDescriptionSocialGroup(links.last!)
         showAlert(title: "ERROR_TITLE_OPEN_SOCIAL_SUPPORT_GROUP".localized, message: reason)
     }
-    
+
 }
 
 // MARK: - Help methods for links
@@ -120,6 +152,25 @@ private extension CHMenuViewController {
     
 }
 
+// MARK: - Notifications
+
+private extension CHMenuViewController {
+    
+    func subscribeOnUserSignInOut() {
+        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignIn.name,
+                                               object: nil,
+                                               queue: .main) { [unowned self] _ in
+            self.presenter.reloadSections()
+        }
+        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignOut.name,
+                                               object: nil,
+                                               queue: .main) { [unowned self] _ in
+            self.presenter.reloadSections()
+        }
+    }
+    
+}
+
 // MARK: - CHMenuViewPresenterDelegate
 
 extension CHMenuViewController: CHMenuViewPresenterDelegate {
@@ -131,7 +182,7 @@ extension CHMenuViewController: CHMenuViewPresenterDelegate {
         case .logout:
             doLogout()
         case .security:
-            performSegue(withIdentifier: Segues.security.rawValue, sender: nil)
+            doSecurity()
         case .proFeatures:
             performSegue(withIdentifier: Segues.subscriptions.rawValue, sender: nil)
         case .advertisement:
