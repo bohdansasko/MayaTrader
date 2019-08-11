@@ -9,13 +9,11 @@
 import UIKit
 
 final class CHTabBarController: UITabBarController {
-    fileprivate var isPasscodeActive = false
     fileprivate var noInternetView: NoInternetView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        subscribeOnNotificationApplicationDidEnterBackground()
         subscribeOnInternetConnectionNotifications()
     }
     
@@ -59,33 +57,3 @@ private extension CHTabBarController {
     }
     
 }
-
-// MARK: - Security
-
-private extension CHTabBarController {
-    
-    func subscribeOnNotificationApplicationDidEnterBackground() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(showSecurityViewControllerIfNeeded),
-            name: UIApplication.didEnterBackgroundNotification,
-            object: nil)
-    }
-    
-    @objc func showSecurityViewControllerIfNeeded() {
-        print("onApplicationEnterForeground")
-        if !isPasscodeActive && Defaults.isPasscodeActive() {
-            print("show PasswordModuleConfigurator")
-            isPasscodeActive = true
-            let vc = PasscodeViewController()
-            vc.onClose = {
-                [weak self] in
-                self?.isPasscodeActive = false
-            }
-            present(vc, animated: true, completion: nil)
-        }
-    }
-    
-}
-
-
