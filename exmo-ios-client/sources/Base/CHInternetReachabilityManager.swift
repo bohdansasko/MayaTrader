@@ -62,7 +62,5 @@ extension CHInternetReachabilityManager: UIApplicationDelegate {
         listen()
         return true
     }
-    
-    
-    
+
 }

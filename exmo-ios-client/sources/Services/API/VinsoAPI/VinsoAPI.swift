@@ -31,7 +31,7 @@ final class VinsoAPI {
 
     // MARK: - Private
     
-    internal var socketManager: SocketManager!
+    internal var socketManager: CHSocketManager!
     internal let disposeBag = DisposeBag()
 
     // MARK: - Life cycle
@@ -57,7 +57,7 @@ private extension VinsoAPI {
         }
         
         let endpointUrl = config.model.configuration.endpoint
-        socketManager = SocketManager(serverURL: endpointUrl)
+        socketManager = CHSocketManager(serverURL: endpointUrl)
         
         print("Init socket: \(endpointUrl)")
     }

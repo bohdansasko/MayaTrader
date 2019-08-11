@@ -1,5 +1,5 @@
 //
-//  SocketManager.swift
+//  CHSocketManager.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 2/25/18.
@@ -19,7 +19,7 @@ public enum CHWebSocketEvent {
     case pong
 }
 
-final class SocketManager {
+final class CHSocketManager {
     
     // MARK: - Private variables
     
@@ -42,7 +42,7 @@ final class SocketManager {
 
 }
 
-extension SocketManager {
+extension CHSocketManager {
     
     func isOpen() -> Bool {
         return socket.readyState == .open
@@ -54,7 +54,7 @@ extension SocketManager {
     
 }
 
-extension SocketManager {
+extension CHSocketManager {
     
     func connect() {
         socket.open()
@@ -78,7 +78,7 @@ extension SocketManager {
 }
 
 
-extension SocketManager {
+private extension CHSocketManager {
     
     func subscribeOnSocketEvents() {
         socket.event.open = { [unowned self] in
@@ -96,6 +96,7 @@ extension SocketManager {
             guard let message = data as? String else {
                 return
             }
+            print("message - \(message)")
             self.response.onNext(.message(message))
         }
         
@@ -108,4 +109,4 @@ extension SocketManager {
 }
 
 //
-extension SocketManager: ReactiveCompatible {}
+extension CHSocketManager: ReactiveCompatible {}

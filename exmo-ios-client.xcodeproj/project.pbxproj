@@ -174,7 +174,7 @@
 		20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */; };
 		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
 		20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */; };
-		20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */; };
+		20CAFF002042EE4F00C7DEA5 /* CHSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */; };
 		20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */; };
 		20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */; };
 		20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */; };
@@ -535,7 +535,7 @@
 		20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRLoginModel.swift; path = Models/QRLoginModel.swift; sourceTree = "<group>"; };
 		20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiHandler.swift; sourceTree = "<group>"; };
 		20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
-		20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketAPIHandler.swift; sourceTree = "<group>"; };
+		20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSocketManager.swift; sourceTree = "<group>"; };
 		20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListCell.swift; sourceTree = "<group>"; };
 		20CE7EAD21A1725100EC14FA /* OrdersListNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkProtocols.swift; sourceTree = "<group>"; };
 		20CE7EB021A1757600EC14FA /* TickerNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerNetworkWorker.swift; sourceTree = "<group>"; };
@@ -1588,7 +1588,7 @@
 		20CAFED32042AE6400C7DEA5 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFEFF2042EE4F00C7DEA5 /* SocketAPIHandler.swift */,
+				20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */,
 				20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */,
 				2075612620B2C0DB0063E548 /* AlertsApiRequestBuilder.swift */,
 				20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */,
@@ -2664,7 +2664,7 @@
 				9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */,
 				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorProtocols.swift in Sources */,
-				20CAFF002042EE4F00C7DEA5 /* SocketAPIHandler.swift in Sources */,
+				20CAFF002042EE4F00C7DEA5 /* CHSocketManager.swift in Sources */,
 				207B1D9C2173F93F00D2A5DE /* WatchlistModuleInitializer.swift in Sources */,
 				207B1D9A2173F93F00D2A5DE /* WatchlistViewInput.swift in Sources */,
 				20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */,
