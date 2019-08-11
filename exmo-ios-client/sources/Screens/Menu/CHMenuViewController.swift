@@ -71,8 +71,8 @@ private extension CHMenuViewController {
     }
     
     func doRateUs() {
-        CHAppStoreReviewManager.resetAppOpenedCount()
-        CHAppStoreReviewManager.requestReview()
+        CHAppStoreReviewManager.shared.resetAppOpenedCount()
+        CHAppStoreReviewManager.shared.requestReview()
     }
     
     func doShareApp() {

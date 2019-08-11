@@ -8,7 +8,7 @@
 
 import Alamofire
 
-final class CHInternetReachabilityManager {
+final class CHInternetReachabilityManager: NSObject {
     
     enum StatusNotification: String, NotificationName {
         case reachable
@@ -18,7 +18,7 @@ final class CHInternetReachabilityManager {
     static let shared = CHInternetReachabilityManager()
     
     private let networkManager = NetworkReachabilityManager()
-    private init() {}
+    private override init() { super.init()  }
 }
 
 // MARK: - Handle listening
@@ -50,5 +50,19 @@ private extension CHInternetReachabilityManager {
             NotificationCenter.default.post(name: StatusNotification.notReachable.name)
         }
     }
+    
+}
+
+// MARK: - UIApplicationDelegate
+
+extension CHInternetReachabilityManager: UIApplicationDelegate {
+    
+    @discardableResult
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        listen()
+        return true
+    }
+    
+    
     
 }

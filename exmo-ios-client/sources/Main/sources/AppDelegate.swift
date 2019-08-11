@@ -9,8 +9,6 @@
 import UIKit
 import CoreData
 import Firebase
-import UserNotifications
-import KeychainSwift
 
 enum IPhoneModel: Int {
     case none = 0
@@ -29,19 +27,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         return UIApplication.shared.delegate as! AppDelegate
     }
     
+    fileprivate var services: [UIApplicationDelegate] = [
+        CHInternetReachabilityManager.shared,
+        CHAppStoreReviewManager.shared,
+        CHPushNotificationsService.shared
+    ]
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        // Use Firebase library to configure APIs
-        FirebaseApp.configure()
-        Fabric.sharedSDK().debug = true
         
         AppDelegate.vinsoAPI.addConnectionObserver(self)
         IAPService.shared.completeTransactions()
         
         setupAdMob()
-        registerForRemoteNotifications()
-        callStoreReview()
-        CHInternetReachabilityManager.shared.listen()
+        services.forEach{ _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions) }
 
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
@@ -76,14 +74,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: handle connection to Vinso Server
 extension AppDelegate: VinsoAPIConnectionDelegate  {
+
     func onConnectionOpened() {
         if !Defaults.isRequiredResetVinsoUser() {
             AppDelegate.vinsoAPI.resetUser()
         }
     }
-
+    
     func onAuthorization() {
-        if let apnsDeviceToken = KeychainSwift().get(KeychainDefaultKeys.apnsDeviceToken.rawValue) {
+        if let apnsDeviceToken = CHPushNotificationsService.shared.deviceToken {
             AppDelegate.vinsoAPI.registerAPNSDeviceToken(apnsDeviceToken)
         }
     }
@@ -94,60 +93,13 @@ extension AppDelegate: VinsoAPIConnectionDelegate  {
     
 }
 
-// MARK: handle registering APNs
-extension AppDelegate {
-    func registerForRemoteNotifications() {
-        let center = UNUserNotificationCenter.current()
-        center.getNotificationSettings(completionHandler: {
-            settings in
-            switch settings.authorizationStatus {
-            case .authorized:
-                print("Authorized push notifications by user")
-                self.registerPushNotifications()
-            case .denied:
-                print("show user view explaining why it's better to enable")
-                self.registerPushNotifications()
-            case .notDetermined:
-                self.requestPushNotifications(center: center, {
-                    isGranted in
-                    if isGranted {
-                        self.registerPushNotifications()
-                    }
-                    print("User haven't granted app for get APNS")
-                })
-            case .provisional:
-                print("App provisional post push notifications")
-            }
-        })
-    }
-    
-    func registerPushNotifications() {
-        DispatchQueue.main.async {
-            UIApplication.shared.registerForRemoteNotifications()
-        }
-    }
-    
-    fileprivate func requestPushNotifications(center: UNUserNotificationCenter, _ result: @escaping (Bool) -> Void) {
-        center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
-            print("APNs => granted = \(granted), error = \(error?.localizedDescription ?? "")")
-            result(granted)
-        })
-    }
-
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        let token = deviceToken.map({ String(format: "%02.2hhx", $0) }).joined()
-        print("APNs => device token = \(token)")
-        KeychainSwift().set(token, forKey: KeychainDefaultKeys.apnsDeviceToken.rawValue)
-    }
-    
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("APNs => error = \(error)")
-    }
-}
-
 extension AppDelegate {
 
     func setupAdMob() {
+        // Use Firebase library to configure APIs
+        FirebaseApp.configure()
+        Fabric.sharedSDK().debug = true
+
         guard let config = try? PListFile<ConfigInfoPList>() else {
             print("Error => Can't open plist file")
             return
@@ -156,20 +108,19 @@ extension AppDelegate {
         print("GADMobileAds.configure(withApplicationID: \(config.model.configuration.admobAdsId)")
     }
     
-    func callStoreReview() {
-        CHAppStoreReviewManager.incrementAppOpenedCount()
-        CHAppStoreReviewManager.checkAndAskForReview()
-    }
 }
 
-// MARK: static instances
+// MARK: - Static instances
+
 extension AppDelegate {
     static let exmoController = ExmoAccountController()
     static let vinsoAPI = VinsoAPI.shared
 }
 
-// MARK: static methods
+// MARK: - Static methods
+
 extension AppDelegate {
+    
     static func isIPhone(model: IPhoneModel) -> Bool {
         return getIPhoneModel() == model
     }
@@ -187,4 +138,5 @@ extension AppDelegate {
           default: return .none
         }
     }
+    
 }

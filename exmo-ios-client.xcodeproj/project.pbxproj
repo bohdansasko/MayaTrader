@@ -158,6 +158,7 @@
 		20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */; };
 		20A9044F21BA4B7A00718A53 /* FormCreateOrderLimit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044E21BA4B7A00718A53 /* FormCreateOrderLimit.swift */; };
 		20A9045221BA4C1300718A53 /* FormCreateOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9045121BA4C1300718A53 /* FormCreateOrder.swift */; };
+		20AFE3E922FFB0ED00E905A1 /* CHPushNotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */; };
 		20B1628D21AAD5770087AEE7 /* OrdersNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1628C21AAD5770087AEE7 /* OrdersNetworkWorker.swift */; };
 		20B1628F21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1628E21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift */; };
 		20B1629321AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */; };
@@ -517,6 +518,7 @@
 		20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnAmount.swift; sourceTree = "<group>"; };
 		20A9044E21BA4B7A00718A53 /* FormCreateOrderLimit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderLimit.swift; sourceTree = "<group>"; };
 		20A9045121BA4C1300718A53 /* FormCreateOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrder.swift; sourceTree = "<group>"; };
+		20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPushNotificationsService.swift; sourceTree = "<group>"; };
 		20B1628C21AAD5770087AEE7 /* OrdersNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersNetworkWorker.swift; sourceTree = "<group>"; };
 		20B1628E21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersNetworkWorkerProtocols.swift; sourceTree = "<group>"; };
 		20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateLimitView+Datasource+Delegate.swift"; sourceTree = "<group>"; };
@@ -1480,6 +1482,7 @@
 			children = (
 				C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */,
 				36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */,
+				20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */,
 				367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */,
 				9763F43822F7494A00D6E22A /* Formatters */,
 				20DA7DEB22F0DE0900706FAC /* UI */,
@@ -2788,6 +2791,7 @@
 				2E2904E690113123EAF56A17 /* CreateOrderPresenter.swift in Sources */,
 				20518DB922D9FC7600334133 /* CHWatchlistView.swift in Sources */,
 				B36B68AA9FFEFD57A6937766 /* CreateOrderInteractorProtocols.swift in Sources */,
+				20AFE3E922FFB0ED00E905A1 /* CHPushNotificationsService.swift in Sources */,
 				20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */,
 				3E6304CF146BD0C1098DBB72 /* CreateOrderInteractor.swift in Sources */,
 				811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */,

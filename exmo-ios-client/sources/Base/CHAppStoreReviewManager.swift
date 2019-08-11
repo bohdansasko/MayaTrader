@@ -5,21 +5,26 @@
 
 import StoreKit
 
-final class CHAppStoreReviewManager {
-    private init() {}
+final class CHAppStoreReviewManager: NSObject {
+    
+    private override init() {
+        super.init()
+    }
+    static let shared = CHAppStoreReviewManager()
+
 }
 
 // MARK: - Handle app count opened
 
 extension CHAppStoreReviewManager {
     
-    static func incrementAppOpenedCount() {
+    func incrementAppOpenedCount() {
         var appOpenCount = Defaults.getCountOpenedApp()
         appOpenCount += 1
         Defaults.setCountAppOpened(appOpenCount)
     }
     
-    static func resetAppOpenedCount() {
+    func resetAppOpenedCount() {
         Defaults.setCountAppOpened(0)
     }
     
@@ -29,7 +34,7 @@ extension CHAppStoreReviewManager {
 
 extension CHAppStoreReviewManager {
     
-    static func checkAndAskForReview() {
+    func checkAndAskForReview() {
         let appOpenCount = Defaults.getCountOpenedApp()
         if appOpenCount == 0 {
             Defaults.setCountAppOpened(1)
@@ -43,13 +48,26 @@ extension CHAppStoreReviewManager {
         }
     }
     
-    static func requestReview() {
+    func requestReview() {
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
         } else {
             print("Fallback on earlier versions")
             print("Try any other 3rd party or manual method here.")
         }
+    }
+    
+}
+
+// MARK: - UIApplicationDelegate
+
+extension CHAppStoreReviewManager: UIApplicationDelegate {
+    
+    @discardableResult
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        incrementAppOpenedCount()
+        checkAndAskForReview()
+        return true
     }
     
 }
