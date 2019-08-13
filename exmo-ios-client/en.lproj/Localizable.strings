@@ -19,6 +19,11 @@
 "ERROR_TITLE_OPEN_SOCIAL_SUPPORT_GROUP" = "Open contact group";
 "ERROR_OPEN_SOCIAL_SUPPORT_GROUP" = "Can't open %@ group. Please contact with us by email: %@. Thanks for your help! We appreciate it :)";
 
+/* Wallet screen */
+"SCREEN_WALLET_CURRENCY"    = "Currency";
+"SCREEN_PASSCODE_BALANCE"   = "Balance";
+"SCREEN_PASSCODE_IN_ORDERS" = "In Orders";
+
 /* Passcode screen */
 "SCREEN_PASSCODE_TITLE"        = "Security";
 "SCREEN_PASSCODE_ENABLE_HINT"  = "To enable the Passcode please choose a 4-digit code";

@@ -8,56 +8,6 @@
 
 import UIKit
 
-// MARK: WalletCurrencyHeaderView
-class WalletCurrencyHeaderView: UIView {
-    var balanceLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Currency"
-        return label
-    }()
-    
-    var currencyLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Balance"
-        return label
-    }()
-    
-    var countInOrdersLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 12)
-        label.textColor = .white
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "In Orders"
-        return label
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        backgroundColor = .dodgerBlue
-        
-        let stackView = UIStackView(arrangedSubviews: [balanceLabel, currencyLabel, countInOrdersLabel])
-        addSubview(stackView)
-        stackView.alignment = .fill
-        stackView.distribution = .fillEqually
-        stackView.axis = .horizontal
-        stackView.fillSuperview()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
-    }
-}
-
 // MARK: WalletCurrencyCell
 class WalletCurrencyCell: UITableViewCell {
     var balanceLabel: UILabel = {

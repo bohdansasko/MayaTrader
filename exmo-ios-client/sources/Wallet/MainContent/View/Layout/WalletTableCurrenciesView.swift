@@ -90,7 +90,7 @@ extension WalletTableCurrenciesView: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return WalletCurrencyHeaderView()
+        return CHWalletCurrencyHeaderView()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

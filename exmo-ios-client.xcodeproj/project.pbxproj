@@ -197,6 +197,8 @@
 		20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */; };
 		20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */; };
 		20DFB1C92303486A008C19B5 /* CHWalletBalanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */; };
+		20DFB1CF2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFB1CE2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift */; };
+		20DFB1D123035B21008C19B5 /* CHWalletCurrencyHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DFB1D023035B21008C19B5 /* CHWalletCurrencyHeaderView.xib */; };
 		20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* UIView+Extension.swift */; };
 		20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */; };
 		20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */; };
@@ -564,6 +566,8 @@
 		20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrencyModel.swift; sourceTree = "<group>"; };
 		20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletBalanceView.xib; sourceTree = "<group>"; };
+		20DFB1CE2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletCurrencyHeaderView.swift; sourceTree = "<group>"; };
+		20DFB1D023035B21008C19B5 /* CHWalletCurrencyHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHWalletCurrencyHeaderView.xib; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewCell+SetupViews.swift"; sourceTree = "<group>"; };
 		20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletBalanceView.swift; sourceTree = "<group>"; };
@@ -1185,6 +1189,7 @@
 			isa = PBXGroup;
 			children = (
 				20DFB1CA2303588C008C19B5 /* WalletBalanceView */,
+				20DFB1CB2303597C008C19B5 /* CurrencyHeaderView */,
 				200D52B922DA07FE0009C07C /* Flow */,
 				200D52C322DA1D9E0009C07C /* CHWalletView.swift */,
 				200D52AB22DA07CF0009C07C /* CHWalletViewController.swift */,
@@ -1717,6 +1722,15 @@
 				20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */,
 			);
 			path = WalletBalanceView;
+			sourceTree = "<group>";
+		};
+		20DFB1CB2303597C008C19B5 /* CurrencyHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				20DFB1CE2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift */,
+				20DFB1D023035B21008C19B5 /* CHWalletCurrencyHeaderView.xib */,
+			);
+			path = CurrencyHeaderView;
 			sourceTree = "<group>";
 		};
 		20E54F8621AB2181006A70E8 /* Cell */ = {
@@ -2524,6 +2538,7 @@
 				2013E5872071464700EFACB7 /* Exo2-ExtraLightItalic.ttf in Resources */,
 				2013E58C2071464700EFACB7 /* Exo2-MediumItalic.ttf in Resources */,
 				2013E58E2071464700EFACB7 /* Exo2-SemiBold.ttf in Resources */,
+				20DFB1D123035B21008C19B5 /* CHWalletCurrencyHeaderView.xib in Resources */,
 				2013E5862071464700EFACB7 /* Exo2-ExtraLight.ttf in Resources */,
 				200D52AA22DA07B20009C07C /* CHOrdersViewController.xib in Resources */,
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
@@ -2868,6 +2883,7 @@
 				20B1628F21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift in Sources */,
 				C5211D41B62E787C92F836A3 /* CreateAlertViewController.swift in Sources */,
 				204CC7D921B93478002057CA /* ViperModuleTransitionHandler.swift in Sources */,
+				20DFB1CF2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift in Sources */,
 				206A3B6E2175527B00C25E95 /* CurrenciesGroupsDatasource.swift in Sources */,
 				67289E6F31834F1A38B88D4F /* CreateAlertModuleInput.swift in Sources */,
 				1A9B269CD2910DC038EC9F06 /* CreateAlertPresenter.swift in Sources */,
