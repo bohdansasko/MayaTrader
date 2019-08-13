@@ -13,8 +13,8 @@ class WalletViewController: ExmoUIViewController {
         return UIBarButtonItem(image: UIImage(named: "icWalletOptions"), style: .done, target: nil, action: nil)
     }()
     
-    var balanceView = WalletBalanceView()
-    var listView = WalletTableCurrenciesView()
+    fileprivate lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
+    fileprivate lazy var listView = WalletTableCurrenciesView()
     
     var output: WalletViewOutput!
     
@@ -43,7 +43,7 @@ extension WalletViewController: WalletViewInput {
     }
     
     func updateWallet(_ wallet: ExmoWallet) {
-        balanceView.wallet = wallet
+        balanceView.set(amountBTC: wallet.amountBTC, amountUSD: wallet.amountUSD)
         listView.wallet = wallet
     }
 }

@@ -196,9 +196,10 @@
 		20DE8854217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */; };
 		20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */; };
 		20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */; };
+		20DFB1C92303486A008C19B5 /* CHWalletBalanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */; };
 		20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* UIView+Extension.swift */; };
 		20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */; };
-		20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* WalletBalanceView.swift */; };
+		20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */; };
 		20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */; };
 		20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */; };
 		20F9518122DD222C005A7E42 /* CHExchangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9518022DD222C005A7E42 /* CHExchangePresenter.swift */; };
@@ -562,9 +563,10 @@
 		20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListPresenter.swift; sourceTree = "<group>"; };
 		20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrencyModel.swift; sourceTree = "<group>"; };
 		20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
+		20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletBalanceView.xib; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewCell+SetupViews.swift"; sourceTree = "<group>"; };
-		20E80093207A283B00E1AC6C /* WalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBalanceView.swift; sourceTree = "<group>"; };
+		20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletBalanceView.swift; sourceTree = "<group>"; };
 		20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+SetupViews.swift"; sourceTree = "<group>"; };
 		20F9518022DD222C005A7E42 /* CHExchangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangePresenter.swift; sourceTree = "<group>"; };
@@ -1182,6 +1184,7 @@
 		20518DA122D9F8D900334133 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				20DFB1CA2303588C008C19B5 /* WalletBalanceView */,
 				200D52B922DA07FE0009C07C /* Flow */,
 				200D52C322DA1D9E0009C07C /* CHWalletView.swift */,
 				200D52AB22DA07CF0009C07C /* CHWalletViewController.swift */,
@@ -1420,7 +1423,6 @@
 			children = (
 				2003B5552048B8DE00BD205F /* WalletTableCells.swift */,
 				36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */,
-				20E80093207A283B00E1AC6C /* WalletBalanceView.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -1706,6 +1708,15 @@
 				36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		20DFB1CA2303588C008C19B5 /* WalletBalanceView */ = {
+			isa = PBXGroup;
+			children = (
+				20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */,
+				20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */,
+			);
+			path = WalletBalanceView;
 			sourceTree = "<group>";
 		};
 		20E54F8621AB2181006A70E8 /* Cell */ = {
@@ -2516,6 +2527,7 @@
 				2013E5862071464700EFACB7 /* Exo2-ExtraLight.ttf in Resources */,
 				200D52AA22DA07B20009C07C /* CHOrdersViewController.xib in Resources */,
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
+				20DFB1C92303486A008C19B5 /* CHWalletBalanceView.xib in Resources */,
 				2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */,
 				2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */,
 				208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */,
@@ -2843,7 +2855,7 @@
 				208AC7B121A5E15E00C74890 /* WalletNetworkProtocols.swift in Sources */,
 				200E691C21B2CB0F008C49B6 /* VinsoCreateAlertNetworkWorker.swift in Sources */,
 				20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */,
-				20E80094207A283B00E1AC6C /* WalletBalanceView.swift in Sources */,
+				20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */,
 				207552962188B1F00011190E /* NetworkWorker.swift in Sources */,
 				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,
 				C7FD7602220B4DA500A987DB /* CHInternetReachabilityManager.swift in Sources */,

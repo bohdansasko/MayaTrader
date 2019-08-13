@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,8 +20,39 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="CHWalletView" customModule="exmo_ios_client" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXs-1K-gUa">
+                    <rect key="frame" x="0.0" y="44" width="414" height="160"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="160" id="NBq-y0-fqT"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hFL-D2-Ir8">
+                    <rect key="frame" x="0.0" y="204" width="414" height="692"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" name="exmoMidnight"/>
+            <constraints>
+                <constraint firstItem="hFL-D2-Ir8" firstAttribute="top" secondItem="PXs-1K-gUa" secondAttribute="bottom" id="6bB-3P-Wdg"/>
+                <constraint firstItem="hFL-D2-Ir8" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="BjU-hQ-jvt"/>
+                <constraint firstItem="PXs-1K-gUa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="VUk-68-6Px"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PXs-1K-gUa" secondAttribute="trailing" id="XWD-Oe-oT0"/>
+                <constraint firstAttribute="trailing" secondItem="hFL-D2-Ir8" secondAttribute="trailing" id="am1-4i-EF7"/>
+                <constraint firstAttribute="bottom" secondItem="hFL-D2-Ir8" secondAttribute="bottom" id="j8G-0c-FYA"/>
+                <constraint firstItem="PXs-1K-gUa" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="muD-ZD-XaT"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="balanceContainer" destination="PXs-1K-gUa" id="7dr-yh-NMq"/>
+                <outlet property="currenciesTableView" destination="hFL-D2-Ir8" id="6Lc-lF-Wx9"/>
+            </connections>
         </view>
     </objects>
+    <resources>
+        <namedColor name="exmoMidnight">
+            <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

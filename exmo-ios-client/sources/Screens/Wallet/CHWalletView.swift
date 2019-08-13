@@ -9,19 +9,35 @@
 import UIKit
 
 final class CHWalletView: UIView {
+    @IBOutlet fileprivate weak var balanceContainer: UIView!
+    @IBOutlet fileprivate weak var currenciesTableView: UITableView!
+              fileprivate lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
     }
     
 }
 
 // MARK: - Setup
 
-extension CHWalletView {
+private extension CHWalletView {
     
     func setupUI() {
-        
+        balanceContainer.backgroundColor = .clear
+        balanceContainer.addSubview(balanceView)
+        balanceView.snp.makeConstraints{ $0.edges.equalToSuperview() }
+    }
+    
+}
+
+// MARK: - Setters
+
+extension CHWalletView {
+
+    func set(wallet: ExmoWallet) {
+        balanceView.set(amountBTC: wallet.amountBTC, amountUSD: wallet.amountUSD)
     }
     
 }
