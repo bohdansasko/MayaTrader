@@ -30,7 +30,7 @@ extension AlertsInteractor: AlertsInteractorInput {
         if AppDelegate.vinsoAPI.isAuthorized {
             loadAlerts()
         } else {
-            AppDelegate.vinsoAPI.establishConnection()
+//            AppDelegate.vinsoAPI.establishConnection()
         }
     }
 
@@ -44,7 +44,7 @@ extension AlertsInteractor: AlertsInteractorInput {
     }
 
     func updateAlertState(_ alert: Alert) {
-        AppDelegate.vinsoAPI.updateAlert(alert)
+//        AppDelegate.vinsoAPI.updateAlert(alert)
     }
 
     func deleteAlert(withId id: Int) {

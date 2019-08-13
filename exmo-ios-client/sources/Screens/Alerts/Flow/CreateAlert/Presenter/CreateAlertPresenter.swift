@@ -36,7 +36,7 @@ extension CreateAlertPresenter: CreateAlertViewOutput {
     
     func handleTouchButtonCreate(alertModel: Alert, operationType: AlertOperationType) {
         switch operationType {
-        case .add: interactor.createAlert(alertModel)
+        case .add   : interactor.createAlert(alertModel)
         case .update: interactor.updateAlert(alertModel)
         }
     }

@@ -7,16 +7,16 @@
 //
 
 import UIKit
+import SnapKit
 
-final class CreateAlertViewController: ExmoUIViewController {
+final class CreateAlertViewController: CHBaseViewController {
     var output: CreateAlertViewOutput!
     lazy var form = FormCreateAlert()
     var selectedPair: TickerCurrencyModel?
     var cells: [IndexPath : UITableViewCell] = [:]
 
-    var formTableView: UITableView = {
+    fileprivate var formTableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .clear
         tv.separatorStyle = .none
         tv.tableFooterView = UIView()
         tv.delaysContentTouches = false
@@ -38,6 +38,8 @@ final class CreateAlertViewController: ExmoUIViewController {
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = .black
         
         if let alert = editAlert {
             form.currencyPair = Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode)
@@ -98,6 +100,7 @@ final class CreateAlertViewController: ExmoUIViewController {
 
 // MARK: CreateAlertViewInput
 extension CreateAlertViewController: CreateAlertViewInput {
+    
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         let detailsIndexPath = IndexPath(row: 0, section: 0)
         guard let currencyPair = tickerCurrencyPair,
@@ -140,7 +143,8 @@ extension CreateAlertViewController: CreateAlertViewInput {
     }
 }
 
-extension CreateAlertViewController {    
+extension CreateAlertViewController {
+    
     @objc func hideKeyboard() {
         view.endEditing(true)
     }
@@ -148,12 +152,15 @@ extension CreateAlertViewController {
     @objc func onTouchCancelBtn(_ sender: Any) {
         output.handleTouchOnCancelBtn()
     }
+    
 }
 
 extension CreateAlertViewController {
+    
     func setupViews() {
         view.addSubview(formTableView)
-        formTableView.fillSuperview()
+        formTableView.backgroundColor = .clear
+        formTableView.snp.makeConstraints{ $0.edges.equalToSuperview() }
         formTableView.dataSource = self
         formTableView.delegate = self
         FormItemCellType.registerCells(for: formTableView)
@@ -164,12 +171,11 @@ extension CreateAlertViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-        
-        formTableView.reloadData()
     }
     
     private func setupLeftNavigationBarItems() {
         buttonCancel.addTarget(self, action: #selector(onTouchCancelBtn(_:)), for: .touchUpInside)
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: buttonCancel)
     }
+    
 }

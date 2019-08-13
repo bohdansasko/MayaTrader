@@ -17,18 +17,6 @@ extension VinsoAPI {
         socketManager.send(message: AlertsApiRequestBuilder.getJSONForAlertsHistory())
     }
 
-    func createAlert(alert: Alert) {
-        print("create alert")
-        let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
-        socketManager.send(message: jsonMsg)
-    }
-
-    func updateAlert(_ alert: Alert) {
-        print("update alert")
-        let jsonMsg = AlertsApiRequestBuilder.getJSONForUpdateAlert(alert: alert)
-        socketManager.send(message: jsonMsg)
-    }
-
     func deleteAlert(withId id: Int) {
         print("delete alert \(id)")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlert(withId: id)
@@ -150,19 +138,61 @@ extension VinsoAPI {
 
 extension Reactive where Base: VinsoAPI {
     
-    func getAlerts() -> Single<[Alert]> {
-        let params = ["request_type" : ServerMessage.alertsHistory.rawValue]
-        return self.base.sendRequest(messageType: .alertsHistory, params: params)
+    func getAlerts() -> Observable<[Alert]> {
+        return self.base.sendRequest(messageType: .alertsHistory)
             .mapInBackground{ json -> [Alert] in
                 guard let jsonAlerts = json["history_alerts"].array else {
                     return []
                 }
-                
-                let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
+                let jsonStr = """
+{
+  "alert_status" : 0,
+  "currency" : "STQ_EUR",
+  "timestamp" : 1565640964,
+  "is_persistent" : false,
+  "bottom_bound" : "0.0001",
+  "status" : 200,
+  "upper_bound" : "0.0001",
+  "price_at_create_moment" : "0.0001",
+  "alert_id" : 0,
+  "request_type" : 4,
+  "description" : ""
+}
+"""
+                let alerts: [Alert] = [
+                    Alert(JSONString: jsonStr)!,
+                    Alert(JSONString: jsonStr)!,
+                    Alert(JSONString: jsonStr)!
+                ]
                 return alerts
+
+//                let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
+//                return alerts
+            }
+//            .asSingle()
+    }
+    
+    func createAlert(alert: Alert) -> Single<Alert?> {
+        print("create alert")
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
+        return self.base.sendRequest(messageType: .createAlert, params: jsonMsg.dictionaryObject!)
+            .mapInBackground{ json in
+                guard let alert = Alert(JSONString: json.description) else {
+                    return nil
+                }
+                return alert
             }
             .asSingle()
-        
+    }
+    
+    func updateAlert(_ alert: Alert) -> Single<Void> {
+        print("update alert")
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForUpdateAlert(alert: alert)
+        return self.base.sendRequest(messageType: .updateAlert, params: jsonMsg.dictionaryObject!)
+            .mapInBackground{ json in
+                print(json)
+            }
+            .asSingle()
     }
     
 }

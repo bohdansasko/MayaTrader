@@ -79,6 +79,9 @@
 		202F48F6206A157D0080423E /* WatchlistCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistCardCell.swift */; };
 		202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */; };
 		202F80A923008D650035D123 /* CHSecurityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80A823008D650035D123 /* CHSecurityService.swift */; };
+		202F80AC2300B2590035D123 /* CHCreateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */; };
+		202F80AD2300B2590035D123 /* CHCreateAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202F80AB2300B2590035D123 /* CHCreateAlertViewController.xib */; };
+		202F80AF2300B2800035D123 /* CHCreateAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80AE2300B2800035D123 /* CHCreateAlertView.swift */; };
 		20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20345011217B644400D2E831 /* CurrenciesListViewController.swift */; };
 		20369A4421972149001D6628 /* RootTabsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4321972149001D6628 /* RootTabsInteractor.swift */; };
 		20369A4621972159001D6628 /* RootTabsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4521972159001D6628 /* RootTabsPresenter.swift */; };
@@ -442,6 +445,9 @@
 		202F48F5206A157D0080423E /* WatchlistCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCell.swift; sourceTree = "<group>"; };
 		202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExmoAuthorizationService.swift; sourceTree = "<group>"; };
 		202F80A823008D650035D123 /* CHSecurityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSecurityService.swift; sourceTree = "<group>"; };
+		202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertViewController.swift; sourceTree = "<group>"; };
+		202F80AB2300B2590035D123 /* CHCreateAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHCreateAlertViewController.xib; sourceTree = "<group>"; };
+		202F80AE2300B2800035D123 /* CHCreateAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertView.swift; sourceTree = "<group>"; };
 		20345011217B644400D2E831 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		20369A4321972149001D6628 /* RootTabsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsInteractor.swift; sourceTree = "<group>"; };
 		20369A4521972159001D6628 /* RootTabsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsPresenter.swift; sourceTree = "<group>"; };
@@ -1165,10 +1171,10 @@
 			isa = PBXGroup;
 			children = (
 				200D52B722DA07F20009C07C /* Flow */,
+				9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */,
 				200D52C522DA1DCF0009C07C /* CHAlertsView.swift */,
 				200D52AF22DA07DF0009C07C /* CHAlertsViewController.swift */,
 				200D52B022DA07DF0009C07C /* CHAlertsViewController.xib */,
-				9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -1886,6 +1892,9 @@
 				2675AB4D57DCC86ABDDED6B3 /* Interactor */,
 				354310C3F136A9D58C197345 /* Router */,
 				2E83068A503737289A27CEFC /* Configurator */,
+				202F80AE2300B2800035D123 /* CHCreateAlertView.swift */,
+				202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */,
+				202F80AB2300B2590035D123 /* CHCreateAlertViewController.xib */,
 			);
 			path = CreateAlert;
 			sourceTree = "<group>";
@@ -2498,6 +2507,7 @@
 				20518DB722D9FC5C00334133 /* CHWatchlistViewController.xib in Resources */,
 				205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */,
 				208FE09E22DB485C0014BCE5 /* CHExchangeCell.xib in Resources */,
+				202F80AD2300B2590035D123 /* CHCreateAlertViewController.xib in Resources */,
 				20001D73203B8D1200B6966F /* Assets.xcassets in Resources */,
 				2013E58D2071464700EFACB7 /* Exo2-Regular.ttf in Resources */,
 				2013E5872071464700EFACB7 /* Exo2-ExtraLightItalic.ttf in Resources */,
@@ -2929,6 +2939,7 @@
 				367121BC7FF51CEFB18FC1F6 /* VinsoAPI+Alerts.swift in Sources */,
 				367122D0DF0064443BDC5003 /* VinsoAPI+Connection.swift in Sources */,
 				36712C66E8B3D44E567B41D9 /* CHSubscriptionPackages.swift in Sources */,
+				202F80AF2300B2800035D123 /* CHCreateAlertView.swift in Sources */,
 				366FFF4A63006A8CAB78BDB2 /* SubscriptionsInteractor.swift in Sources */,
 				366FFD10D64B347C3F0D297C /* SubscriptionsInteractorProtocols.swift in Sources */,
 				200D52CE22DA247E0009C07C /* CHWatchlistPresenter.swift in Sources */,
@@ -2942,6 +2953,7 @@
 				9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */,
 				200D52C222DA1D1A0009C07C /* CHOrdersView.swift in Sources */,
 				366FF9CE76AC761CDB59E856 /* SubscriptionsCell.swift in Sources */,
+				202F80AC2300B2590035D123 /* CHCreateAlertViewController.swift in Sources */,
 				366FFEB33570D242C87BAAAF /* SubscriptionsHeaderCell.swift in Sources */,
 				366FFBE122E0E9F8CE2DE214 /* SubscriptionsCellModel.swift in Sources */,
 				366FF1DB76C09C5C77EBC414 /* SubscriptionsDatasource.swift in Sources */,

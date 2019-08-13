@@ -16,21 +16,23 @@ extension VinsoAPI {
     func establishConnection() {
         if isAuthorized { return }
         print("\(String(describing: self)) => establish connect")
-        self.socketManager.connected.subscribe(onNext: { isConnected in
+        self.socketManager.connected.subscribe(onNext: { [unowned self] isConnected in
             if !isConnected { return }
-            
-            self.sendRequest(messageType: .connect)
-                .asSingle()
-                .subscribe(onSuccess: { json in
-                    self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
-                    self.authorizeUser()
-                }, onError: { err in
-                    print("\(#function) = \(err.localizedDescription)")
-                }).disposed(by: self.disposeBag)
-            
+            self.connectToServer()
         }).disposed(by: self.disposeBag)
         
         self.socketManager.connect()
+    }
+    
+    func connectToServer() {
+        let request = self.sendRequest(messageType: .connect)
+        
+        request.subscribe(onNext: { json in
+            self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
+            self.authorizeUser()
+        }, onError: { err in
+            print("\(#function) = \(err.localizedDescription)")
+        }).disposed(by: self.disposeBag)
     }
 
     func disconnect() {
@@ -52,10 +54,12 @@ extension VinsoAPI {
         let params = ["udid": udid]
         self.sendRequest(messageType: .authorization, params: params)
             .asSingle()
-            .subscribe(onSuccess: { json in
+            .subscribe(onSuccess: { [unowned self] json in
                 print("\(#function) = \(json)")
-            }, onError: { err in
+                self.isAuthorized = true
+            }, onError: { [unowned self] err in
                 print("\(#function) = \(err.localizedDescription)")
+                self.isAuthorized = false
             }).disposed(by: self.disposeBag)
     }
     

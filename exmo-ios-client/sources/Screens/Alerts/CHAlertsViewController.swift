@@ -57,6 +57,11 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.fetchAlerts()
+    }
+    
 }
 
 // MARK: - Setup
@@ -65,7 +70,7 @@ private extension CHAlertsViewController {
     
     func setupUI() {
         setupNavigation()
-        presenter = CHAlertsPresenter(tableView: contentView.tableView)
+        presenter = CHAlertsPresenter(tableView: contentView.tableView, api: self.api)
     }
 
     func setupNavigation() {

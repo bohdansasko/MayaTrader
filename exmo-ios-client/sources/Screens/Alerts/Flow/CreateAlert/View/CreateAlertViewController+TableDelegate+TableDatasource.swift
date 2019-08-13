@@ -8,8 +8,10 @@
 
 import UIKit
 
-// MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
+
 extension CreateAlertViewController: UITableViewDataSource {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return form.cellItems.count
     }
@@ -28,15 +30,18 @@ extension CreateAlertViewController: UITableViewDataSource {
             cell = cellType.dequeueCell(for: tableView, at: indexPath)
             cells[indexPath] = cell
         } else {
-            cell = UITableViewCell()
+            fatalError("cell is required")
         }
         
         return cell
     }
+    
 }
 
-// MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
+
 extension CreateAlertViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? FormUpdatable else { return }
         cell.update(item: form.cellItems[indexPath.section])
@@ -51,7 +56,9 @@ extension CreateAlertViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return UIView()
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -61,4 +68,5 @@ extension CreateAlertViewController: UITableViewDelegate {
             output.showSearchViewController(searchType: .currencies)
         }
     }
+    
 }

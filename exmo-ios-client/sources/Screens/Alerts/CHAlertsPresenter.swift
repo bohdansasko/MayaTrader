@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CHAlertsPresenter: NSObject {
     fileprivate enum ActionType {
@@ -16,14 +17,17 @@ final class CHAlertsPresenter: NSObject {
     }
     
     fileprivate weak var tableView: UITableView!
+    fileprivate let api: VinsoAPI
+    fileprivate let disposeBag = DisposeBag()
     
     fileprivate var alerts = AlertsModel()
-    fileprivate var cells: [AlertViewCell] = []
     fileprivate var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
     fileprivate let kCellId = "alertCellId"
     
-    init(tableView: UITableView) {
+    
+    init(tableView: UITableView, api: VinsoAPI) {
         self.tableView = tableView
+        self.api = api
         
         super.init()
         
@@ -47,6 +51,16 @@ private extension CHAlertsPresenter {
 // MARK - Manage alerts
 
 extension CHAlertsPresenter {
+    
+    func fetchAlerts() {
+        let request = api.rx.getAlerts()
+        request.subscribe(onNext: { [unowned self] alerts in
+            self.alerts.items = alerts
+            self.tableView.reloadData()
+        }, onError: { err in
+            print(err)
+        }).disposed(by: disposeBag)
+    }
     
     func deleteAlerts(by action: AlertsDeleteAction) {
         print(#function, action)
@@ -106,7 +120,6 @@ extension CHAlertsPresenter: UITableViewDataSource {
         let alert = alerts.getCellItem(byRow: indexPath.section)
         let alertCell = cell as! AlertViewCell
         alertCell.item = alert
-        cells.append(alertCell)
     }
     
 }

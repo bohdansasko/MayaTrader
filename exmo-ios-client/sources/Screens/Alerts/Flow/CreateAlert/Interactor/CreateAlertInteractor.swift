@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import RxSwift
 
 class CreateAlertInteractor {
 
-    weak var output: CreateAlertInteractorOutput!
-    var tickerNetworkWorker: ITickerNetworkWorker!
-    private var currencyPairCode: String = ""
+           weak var output             : CreateAlertInteractorOutput!
+                var tickerNetworkWorker: ITickerNetworkWorker!
+    fileprivate var currencyPairCode   : String = ""
+    fileprivate var disposeBag         = DisposeBag()
 }
 
 extension CreateAlertInteractor: CreateAlertInteractorInput {
@@ -33,11 +35,27 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     func createAlert(_ alertModel: Alert) {
         print(alertModel)
         tickerNetworkWorker.cancelRepeatLoads()
-        AppDelegate.vinsoAPI.createAlert(alert: alertModel)
+        let request = AppDelegate.vinsoAPI.rx.createAlert(alert: alertModel)
+        request.subscribe(onSuccess: { [weak self] success in
+            guard let `self` = self else { return }
+            self.output.onCreateAlertSuccessful()
+        }, onError: { [weak self] err in
+            guard let `self` = self else { return }
+            self.tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
+            self.output.showAlert(message: err.localizedDescription)
+        }).disposed(by: disposeBag)
     }
     
     func updateAlert(_ alertModel: Alert) {
-        AppDelegate.vinsoAPI.updateAlert(alertModel)
+        let request = AppDelegate.vinsoAPI.rx.updateAlert(alertModel)
+        request.subscribe(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
+            self.output.updateAlertDidSuccessful()
+        }, onError: { [weak self] err in
+            guard let `self` = self else { return }
+            self.tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
+            self.output.showAlert(message: err.localizedDescription)
+        }).disposed(by: disposeBag)
     }
     
     func handleSelectedCurrency(rawName: String) {
