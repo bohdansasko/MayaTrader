@@ -25,7 +25,7 @@ extension VinsoAPI {
 
     func deleteAlerts(withId ids: [Int]) {
         print("delete alert \(ids)")
-        let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withId: ids)
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withIds: ids)
         socketManager.send(message: jsonMsg)
     }
     
@@ -138,7 +138,7 @@ extension VinsoAPI {
 
 extension Reactive where Base: VinsoAPI {
     
-    func getAlerts() -> Observable<[Alert]> {
+    func getAlerts() -> Single<[Alert]> {
         return self.base.sendRequest(messageType: .alertsHistory)
             .mapInBackground{ json -> [Alert] in
                 guard let jsonAlerts = json["history_alerts"].array else {
@@ -169,7 +169,7 @@ extension Reactive where Base: VinsoAPI {
 //                let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
 //                return alerts
             }
-//            .asSingle()
+            .asSingle()
     }
     
     func createAlert(alert: Alert) -> Single<Alert?> {
@@ -189,6 +189,21 @@ extension Reactive where Base: VinsoAPI {
         print("update alert")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForUpdateAlert(alert: alert)
         return self.base.sendRequest(messageType: .updateAlert, params: jsonMsg.dictionaryObject!)
+            .mapInBackground{ json in
+                print(json)
+            }
+            .asSingle()
+    }
+    
+    func deleteAlert(_ alert: Alert) -> Single<Void> {
+        return deleteAlerts([alert])
+    }
+    
+    func deleteAlerts(_ alerts: [Alert]) -> Single<Void> {
+        print("\(#function)")
+        let alertsIds = alerts.compactMap{ $0.id }
+        let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withIds: alertsIds)
+        return self.base.sendRequest(messageType: .deleteAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
                 print(json)
             }

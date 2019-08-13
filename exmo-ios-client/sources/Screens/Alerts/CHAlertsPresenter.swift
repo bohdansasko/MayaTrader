@@ -9,6 +9,10 @@
 import UIKit
 import RxSwift
 
+protocol CHAlertsPresenterDelegate: class {
+    func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert)
+}
+
 final class CHAlertsPresenter: NSObject {
     fileprivate enum ActionType {
         case state
@@ -24,6 +28,7 @@ final class CHAlertsPresenter: NSObject {
     fileprivate var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
     fileprivate let kCellId = "alertCellId"
     
+    weak var delegate: CHAlertsPresenterDelegate?
     
     init(tableView: UITableView, api: VinsoAPI) {
         self.tableView = tableView
@@ -54,7 +59,7 @@ extension CHAlertsPresenter {
     
     func fetchAlerts() {
         let request = api.rx.getAlerts()
-        request.subscribe(onNext: { [unowned self] alerts in
+        request.subscribe(onSuccess: { [unowned self] alerts in
             self.alerts.items = alerts
             self.tableView.reloadData()
         }, onError: { err in
@@ -64,37 +69,57 @@ extension CHAlertsPresenter {
     
     func deleteAlerts(by action: AlertsDeleteAction) {
         print(#function, action)
-        var alertsForRemove = [Alert]()
+        var alertsForDelete = [Alert]()
         switch (action) {
         case AlertsDeleteAction.all:
-            alertsForRemove = alerts.items
+            alertsForDelete = alerts.items
         case AlertsDeleteAction.active:
-            alertsForRemove = alerts.filter({ $0.status == .active })
+            alertsForDelete = alerts.filter({ $0.status == .active })
         case AlertsDeleteAction.inactive:
-            alertsForRemove = alerts.filter({ $0.status == .inactive })
+            alertsForDelete = alerts.filter({ $0.status == .inactive })
         }
-//        doDeleteAlerts(ids: alertsForRemove.map({ $0.id }))
+        let request = api.rx.deleteAlerts(alertsForDelete)
+        request.subscribe(onSuccess: {
+            print("alerts deleted")
+        }, onError: { err in
+            print(err)
+        }).disposed(by: disposeBag)
     }
     
-    func updateAlertState(by indexPath: IndexPath) {
-        guard let alertModel = alerts.getCellItem(byRow: indexPath.row) else {
+    func updateAlertState(at indexPath: IndexPath, on newStatus: AlertStatus) {
+        guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
             print("didSelectRowAt: item doesn't exists")
             return
         }
+        alert.status = newStatus
+        
+        let request = api.rx.updateAlert(alert)
+        request.subscribe(onSuccess: {
+            print("alert status updated")
+        }, onError: { err in
+            print(err)
+        }).disposed(by: disposeBag)
     }
     
     func editAlert(by indexPath: IndexPath) {
-        guard let alertModel = alerts.getCellItem(byRow: indexPath.row) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
             print("didSelectRowAt: item doesn't exists")
             return
         }
+        delegate?.alertPresenter(self, onEdit: alert)
     }
     
     func removeAlert(by indexPath: IndexPath) {
-        guard let alertModel = alerts.getCellItem(byRow: indexPath.row) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
             print("didSelectRowAt: item doesn't exists")
             return
         }
+        let request = api.rx.deleteAlert(alert)
+        request.subscribe(onSuccess: {
+            print("alert deleted")
+        }, onError: { err in
+            print(err)
+        }).disposed(by: disposeBag)
     }
     
 }
@@ -157,7 +182,10 @@ extension CHAlertsPresenter: UITableViewDelegate {
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
             [unowned self] action, _, completionHandler in
             print("alert: state action clicked")
-            self.updateAlertState(by: indexPath)
+            let newStatus = self.alerts.getStatus(forItem: indexPath.section) == .active
+                ? AlertStatus.inactive
+                : AlertStatus.active
+            self.updateAlertState(at: indexPath, on: newStatus)
             completionHandler(true)
         })
         stateAction.backgroundColor = alerts.getStatus(forItem: indexPath.section) == .active

@@ -96,8 +96,9 @@ internal extension VinsoAPI {
                         case .succeed where messageId == messageType:
                             print("👍 \(messageType.description) API Response for message: \(json)\n")
                             subscriber.onNext(json)
-                        case .succeed: break
-                            //print("✊ \(messageType.description) API Response for message: \(json)\n")
+                            subscriber.onCompleted()
+                        case .succeed:
+                            print("✊ \(messageType.description) API Response for message: \(json)\n")
                         default:
                             let error = self.getError(by: responseCodeType)
                             print("👎 \(messageType.description) API Response for message: \(json)\n")
