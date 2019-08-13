@@ -15,6 +15,7 @@ extension VinsoAPI {
 
     func establishConnection() {
         if isAuthorized { return }
+        
         print("\(String(describing: self)) => establish connect")
         self.socketManager.connected.subscribe(onNext: { [unowned self] isConnected in
             if !isConnected { return }

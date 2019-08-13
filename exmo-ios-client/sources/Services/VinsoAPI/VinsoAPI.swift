@@ -20,7 +20,7 @@ final class VinsoAPI {
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
     
-    var isAuthorized = false {
+    internal var isAuthorized = false {
         didSet {
             if isAuthorized {
                 AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
@@ -86,8 +86,8 @@ internal extension VinsoAPI {
     }
 
     func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
-        return Observable<JSON>.create{ [unowned self] subscriber in
-            self.socketManager.response.subscribe(onNext: { event in
+        let observable = Observable<JSON>.create{ subscriber in
+            let socketResponse = self.socketManager.response.share(replay: 1).subscribe(onNext: { event in
                 if case .message(let message) = event {
                     let json = JSON(parseJSON: message)
                     do {
@@ -96,18 +96,36 @@ internal extension VinsoAPI {
                         case .succeed where messageId == messageType:
                             print("👍 \(messageType.description) API Response for message: \(json)\n")
                             subscriber.onNext(json)
-                        case .succeed:
-                            print("✊ \(messageType.description) API Response for message: \(json)\n")
-                        case .error, .clientError:
+                        case .succeed: break
+                            //print("✊ \(messageType.description) API Response for message: \(json)\n")
+                        default:
+                            let error = self.getError(by: responseCodeType)
                             print("👎 \(messageType.description) API Response for message: \(json)\n")
-                            subscriber.onError(CHVinsoAPIError.unknown)
+                            subscriber.onError(error)
                         }
-                        
                     } catch (let err) {
                         subscriber.onError(err)
                     }
                 }
             })
+            return Disposables.create{ socketResponse.dispose() }
+        }
+        
+        return observable
+    }
+    
+    func getError(by responseCode: VinsoResponseCode) -> Error {
+        switch responseCode {
+        case .badRequest:
+            return CHVinsoAPIError.badRequest
+        case .unauthorized:
+            return CHVinsoAPIError.unauthorized
+        case .notFound:
+            return CHVinsoAPIError.notFound
+        case .internalServerError:
+            return CHVinsoAPIError.serverError
+        default:
+            return CHVinsoAPIError.unknown
         }
     }
     

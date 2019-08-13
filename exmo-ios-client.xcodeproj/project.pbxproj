@@ -1607,7 +1607,6 @@
 				367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */,
 				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
 				9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */,
-				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1615,6 +1614,7 @@
 		20CAFEFE2042ED8500C7DEA5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
 				20CAFED32042AE6400C7DEA5 /* API */,
 				36712DDE57C5587FC6B6609F /* ErrorModels.swift */,
 				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,

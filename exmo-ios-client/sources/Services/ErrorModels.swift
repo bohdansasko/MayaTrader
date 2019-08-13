@@ -20,7 +20,7 @@ class ExmoResponseResult: Mappable {
     }
 }
 
-class OrderExmoResponseResult : ExmoResponseResult {
+final class OrderExmoResponseResult : ExmoResponseResult {
     var id: Int64
     
     required init?(map: Map) {

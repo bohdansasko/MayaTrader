@@ -5,11 +5,26 @@
 
 import Foundation
 
+// MARK: - VinsoResponseCode
+
 enum VinsoResponseCode: Int {
-    case succeed     = 200
-    case error       = 0
-    case clientError = 429
+    // request processed successful
+    case succeed      = 200
+    // unknown error
+    case error        = 0
+    // unknown client error
+    case clientError  = 429
+    // client has missed pass some argument or pass something wrong
+    case badRequest   = 400
+    // client hasn't authorized
+    case unauthorized = 401
+    // server cannot find something (e.g. alert with passed wrong id)
+    case notFound     = 404
+    // something went wrong in backend (it's server issue)
+    case internalServerError = 500
 }
+
+// MARK: - ServerMessage
 
 enum ServerMessage: Int {
     case bad                 = -1
@@ -44,7 +59,7 @@ enum ServerMessage: Int {
         case .fireAlert           : return "fireAlert"
         case .resetUser           : return "resetUser"
         case .alertsHistory       : return "alertsHistory"
-        case .registerAPNsDeviceToken : return "registerAPNsDeviceToken"
+        case .registerAPNsDeviceToken: return "registerAPNsDeviceToken"
         case .subscriptionConfigs : return "subscriptionConfigs"
         case .setSubscriptionType : return "setSubscriptionType"
         case .getAlertsInfo       : return "getAlertsInfo"
@@ -55,14 +70,22 @@ enum ServerMessage: Int {
     }
 }
 
-enum CHVinsoAPIError: String, Error {
-    case unknown = "Unknown error."
-    case noConnection = "Can't establish connection. Please, try again through a few minutes or write us."
-    case socketClosed = "Your connection was interrupted. Please, try again through a few minutes or write us."
-}
+// MARK: - CHStockExchange
 
 enum CHStockExchange: String {
     case all      = "all"
     case exmo     = "exmo"
     case btcTrade = "btc_trade"
+}
+
+// MARK: - CHVinsoAPIError
+
+enum CHVinsoAPIError: String, Error {
+    case unknown      = "Unknown error."
+    case noConnection = "Can't establish connection. Please, try again through a few minutes or write us."
+    case socketClosed = "Your connection was interrupted. Please, try again through a few minutes or write us if issue will be repeated again."
+    case badRequest   = "Wrong request. Please verify it."
+    case unauthorized = "Can't accomplish operation. User must be authorized."
+    case notFound     = "Resource hasn't been found."
+    case serverError  = "Something went wrong."
 }
