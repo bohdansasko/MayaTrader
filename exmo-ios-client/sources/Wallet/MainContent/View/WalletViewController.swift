@@ -14,7 +14,7 @@ class WalletViewController: ExmoUIViewController {
     }()
     
     fileprivate lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
-    fileprivate lazy var listView = WalletTableCurrenciesView()
+    fileprivate var listView: CHWalletCurrenciesListPresenter!
     
     var output: WalletViewOutput!
     
@@ -44,7 +44,7 @@ extension WalletViewController: WalletViewInput {
     
     func updateWallet(_ wallet: ExmoWallet) {
         balanceView.set(amountBTC: wallet.amountBTC, amountUSD: wallet.amountUSD)
-        listView.wallet = wallet
+//        listView.wallet = wallet
     }
 }
 
@@ -54,18 +54,18 @@ extension WalletViewController {
         setupNavigationBar()
 
         view.addSubview(balanceView)
-        view.addSubview(listView)
-
-        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
-                           bottom: listView.topAnchor, right: view.rightAnchor,
-                           topConstant: 0, leftConstant: 0,
-                           bottomConstant: 0, rightConstant: 0,
-                           widthConstant: 0, heightConstant: 0)
-        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
-                        bottom: view.bottomAnchor, right: view.rightAnchor,
-                        topConstant: 128, leftConstant: 0,
-                        bottomConstant: 0, rightConstant: 0,
-                        widthConstant: 0, heightConstant: 0)
+//        view.addSubview(listView)
+//
+//        balanceView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+//                           bottom: listView.topAnchor, right: view.rightAnchor,
+//                           topConstant: 0, leftConstant: 0,
+//                           bottomConstant: 0, rightConstant: 0,
+//                           widthConstant: 0, heightConstant: 0)
+//        listView.anchor(view.layoutMarginsGuide.topAnchor, left: view.leftAnchor,
+//                        bottom: view.bottomAnchor, right: view.rightAnchor,
+//                        topConstant: 128, leftConstant: 0,
+//                        bottomConstant: 0, rightConstant: 0,
+//                        widthConstant: 0, heightConstant: 0)
 
     }
     

@@ -20,4 +20,8 @@ extension UIViewController {
         return instantiateFromNib()
     }
     
+    func performSegue(withIdentifier id: String) {
+        performSegue(withIdentifier: id, sender: nil)
+    }
+    
 }

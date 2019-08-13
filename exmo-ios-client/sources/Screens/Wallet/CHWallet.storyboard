@@ -15,10 +15,26 @@
             <objects>
                 <viewController title="Wallet" id="xMu-fr-5o4" customClass="CHWalletViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="J1V-If-sLW"/>
+                    <connections>
+                        <segue destination="JA9-gL-Tzh" kind="presentation" identifier="ManageWallet" id="194-Nb-ltx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4xc-sm-vkq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4046" y="1286"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Vac-df-CUn">
+            <objects>
+                <viewController id="JA9-gL-Tzh" customClass="WalletCurrenciesListViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ohD-cZ-w8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <customObject id="Uj2-Ry-ohO" customClass="WalletCurrenciesListModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <connections>
+                        <outlet property="viewController" destination="JA9-gL-Tzh" id="hBb-BX-Hr3"/>
+                    </connections>
+                </customObject>
+            </objects>
+            <point key="canvasLocation" x="4936" y="1286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uxF-0j-Ige">

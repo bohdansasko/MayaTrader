@@ -8,12 +8,15 @@
 
 import UIKit
 
-class WalletCurrenciesListModuleInitializer {
-    var viewController: WalletCurrenciesListViewController!
+final class WalletCurrenciesListModuleInitializer: NSObject {
+    @IBOutlet fileprivate(set) var viewController: WalletCurrenciesListViewController!
 
-    init() {
-        viewController = WalletCurrenciesListViewController()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
         let configurator = WalletCurrenciesListModuleConfigurator()
         configurator.configureModuleForViewInput(viewInput: viewController)
+
     }
+
 }

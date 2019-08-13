@@ -243,7 +243,7 @@
 		367122D0DF0064443BDC5003 /* VinsoAPI+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */; };
 		367123499097564DF365D13F /* ChartNetworkWorkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */; };
 		3671235C4933D570BEA98C52 /* AlertsAPIResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */; };
-		3671270AD41B65A3E7C2B26D /* WalletTableCurrenciesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */; };
+		3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* CHWalletCurrenciesListPresenter.swift */; };
 		3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */; };
 		36712802066CE6031A5D90E5 /* CHAppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */; };
 		36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367120B1111B487C3177C51D /* WatchlistListView.swift */; };
@@ -627,7 +627,7 @@
 		36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartNetworkWorkers.swift; sourceTree = "<group>"; };
 		36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Connection.swift"; sourceTree = "<group>"; };
 		36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHAppStoreReviewManager.swift; sourceTree = "<group>"; };
-		36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletTableCurrenciesView.swift; sourceTree = "<group>"; };
+		36712F3BF4234409BE0C353E /* CHWalletCurrenciesListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHWalletCurrenciesListPresenter.swift; sourceTree = "<group>"; };
 		3B2A0D3D861EB2BA231E6CAD /* LoginRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
 		3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginInitializer.swift; sourceTree = "<group>"; };
 		451C3BC63709B451766F4376 /* OrdersRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersRouterInput.swift; sourceTree = "<group>"; };
@@ -937,7 +937,7 @@
 		200D52B922DA07FE0009C07C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				20518DA822D9F9F100334133 /* CHWallet.storyboard */,
+				2B284081A368AD62BA7D0900 /* Currencies List */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -1190,10 +1190,12 @@
 		20518DA122D9F8D900334133 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				20518DA822D9F9F100334133 /* CHWallet.storyboard */,
 				20DFB1CA2303588C008C19B5 /* WalletBalanceView */,
 				20DFB1CB2303597C008C19B5 /* CurrencyHeaderView */,
 				20DFB1D323035E6A008C19B5 /* WalletCurrencyCell */,
 				200D52B922DA07FE0009C07C /* Flow */,
+				36712F3BF4234409BE0C353E /* CHWalletCurrenciesListPresenter.swift */,
 				200D52C322DA1D9E0009C07C /* CHWalletView.swift */,
 				200D52AB22DA07CF0009C07C /* CHWalletViewController.swift */,
 				200D52AC22DA07CF0009C07C /* CHWalletViewController.xib */,
@@ -1429,7 +1431,6 @@
 		208AC7AE21A5E0D500C74890 /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				36712F3BF4234409BE0C353E /* WalletTableCurrenciesView.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -2112,7 +2113,6 @@
 		6F44BB28BA5DFBA6578B81A6 /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
-				2B284081A368AD62BA7D0900 /* Currencies List */,
 				201D8077205DC5D800692DEF /* MainContent */,
 			);
 			path = Wallet;
@@ -2795,7 +2795,7 @@
 				2CCE0A760898715BD2600A3B /* WalletConfigurator.swift in Sources */,
 				F6F2F9970B445D6E7ACC036E /* WalletInitializer.swift in Sources */,
 				207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */,
-				3671270AD41B65A3E7C2B26D /* WalletTableCurrenciesView.swift in Sources */,
+				3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesListPresenter.swift in Sources */,
 				200D52C622DA1DCF0009C07C /* CHAlertsView.swift in Sources */,
 				204CC7D821B93478002057CA /* Constants.swift in Sources */,
 				36712E4C4C5245EF136945B7 /* CHMenuViewPresenter.swift in Sources */,

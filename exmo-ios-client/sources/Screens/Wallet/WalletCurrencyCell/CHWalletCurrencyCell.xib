@@ -17,26 +17,26 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CHWalletCurrencyCell" customModule="exmo_ios_client" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="RSs-5X-SmC">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="35"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Currency&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sv-Ot-ecP">
-                            <rect key="frame" x="0.0" y="0.0" width="125.5" height="35"/>
+                            <rect key="frame" x="0.0" y="0.0" width="125.5" height="46"/>
                             <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Balance&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMF-gM-bH0">
-                            <rect key="frame" x="144.5" y="0.0" width="125" height="35"/>
+                            <rect key="frame" x="144.5" y="0.0" width="125" height="46"/>
                             <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;In Orders&gt;" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNU-FX-Z4r">
-                            <rect key="frame" x="288.5" y="0.0" width="125.5" height="35"/>
+                            <rect key="frame" x="288.5" y="0.0" width="125.5" height="46"/>
                             <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="12"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
