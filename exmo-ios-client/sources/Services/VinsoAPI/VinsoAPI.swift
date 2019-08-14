@@ -91,38 +91,55 @@ internal extension VinsoAPI {
         
         return request
     }
+    
+}
 
+
+// MARK: - Helpers
+
+extension VinsoAPI {
+    
     func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
         let observable = Observable<JSON>.create{ [unowned self] subscriber in
             let socketResponse = self.socketManager.response
                 .timeout(self.kTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
                 .share(replay: 1)
                 .subscribe(onNext: { event in
-                if case .message(let message) = event {
-                    let json = JSON(parseJSON: message)
-                    do {
-                        let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
-                        switch responseCodeType {
-                        case .succeed where messageId == messageType:
-                            print("👍 \(messageType.description) API Response for message: \(json)\n")
-                            subscriber.onNext(json)
-                            subscriber.onCompleted()
-                        case .succeed:
-                            print("✊ \(messageType.description) API Response for message: \(json)\n")
-                        default:
-                            let error = self.getError(by: responseCodeType)
-                            print("👎 \(messageType.description) API Response for message: \(json)\n")
-                            subscriber.onError(error)
+                    if case .message(let message) = event {
+                        let json = JSON(parseJSON: message)
+                        do {
+                            let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
+                            switch responseCodeType {
+                            case .succeed where messageId == messageType:
+                                print("👍 \(messageType.description) API Response for message: \(json)\n")
+                                subscriber.onNext(json)
+                                subscriber.onCompleted()
+                            case .succeed:
+                                print("✊ \(messageType.description) API Response for message: \(json)\n")
+                            default:
+                                let error = self.getError(by: responseCodeType)
+                                print("👎 \(messageType.description) API Response for message: \(json)\n")
+                                subscriber.onError(error)
+                            }
+                        } catch (let err) {
+                            subscriber.onError(err)
                         }
-                    } catch (let err) {
-                        subscriber.onError(err)
                     }
-                }
-            })
+                })
             return Disposables.create{ socketResponse.dispose() }
         }
         
         return observable
+    }
+    
+    func parseMessageCodeAndId(from json: JSON) throws -> (VinsoResponseCode, ServerMessage) {
+        guard let responseCode = json["status"].int,
+            let responseCodeType = VinsoResponseCode(rawValue: responseCode),
+            let requestId = json["request_type"].int,
+            let messageId = ServerMessage(rawValue: requestId) else {
+                throw CHVinsoAPIError.unknown
+        }
+        return (responseCodeType, messageId)
     }
     
     func getError(by responseCode: VinsoResponseCode) -> Error {
@@ -138,23 +155,6 @@ internal extension VinsoAPI {
         default:
             return CHVinsoAPIError.unknown
         }
-    }
-    
-}
-
-
-// MARK: - Helpers
-
-extension VinsoAPI {
-    
-    func parseMessageCodeAndId(from json: JSON) throws -> (VinsoResponseCode, ServerMessage) {
-        guard let responseCode = json["status"].int,
-            let responseCodeType = VinsoResponseCode(rawValue: responseCode),
-            let requestId = json["request_type"].int,
-            let messageId = ServerMessage(rawValue: requestId) else {
-                throw CHVinsoAPIError.unknown
-        }
-        return (responseCodeType, messageId)
     }
     
 }
