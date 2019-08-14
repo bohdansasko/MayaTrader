@@ -25,13 +25,13 @@ class WalletModuleConfigurator {
         presenter.view = viewController
         presenter.router = router
 
-        let interactor = WalletInteractor()
-        interactor.output = presenter
-        interactor.walletNetworkWorker = ExmoWalletNetworkWorker()
-        interactor.tickerNetworkWorker = TickerNetworkWorker()
-        interactor.dbManager = RealmDatabaseManager()
-        
-        presenter.interactor = interactor
+//        let interactor = WalletInteractor()
+//        interactor.output = presenter
+//        interactor.walletNetworkWorker = ExmoWalletNetworkWorker()
+//        interactor.tickerNetworkWorker = TickerNetworkWorker()
+//        interactor.dbManager = RealmDatabaseManager()
+//
+//        presenter.interactor = interactor
         viewController.output = presenter
     }
 

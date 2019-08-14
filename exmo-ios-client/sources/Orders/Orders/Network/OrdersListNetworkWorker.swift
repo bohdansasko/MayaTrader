@@ -21,7 +21,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     }
     
     func loadOpenOrders() {
-        let request = ExmoApiRequestBuilder.shared.getOpenOrdersRequest()
+        let request = ExmoApiRequestsBuilder.shared.getOpenOrdersRequest()
         Alamofire.request(request).responseJSON {
             [weak self] response in
             guard let strongSelf = self else { return }
@@ -35,7 +35,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     }
     
     func loadCancelledOrders() {
-        let request = ExmoApiRequestBuilder.shared.getCancelledOrdersRequest(limit: 100, offset: 0)
+        let request = ExmoApiRequestsBuilder.shared.getCancelledOrdersRequest(limit: 100, offset: 0)
         Alamofire.request(request).responseJSON {
             [weak self] response in
             guard let strongSelf = self else { return }
@@ -64,13 +64,13 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     }
     
     func loadDeals() {
-        let pairSettingsRequest = ExmoApiRequestBuilder.shared.getCurrencyPairSettingsRequest()
+        let pairSettingsRequest = ExmoApiRequestsBuilder.shared.getCurrencyPairSettingsRequest()
         Alamofire.request(pairSettingsRequest).responseJSON {
             [weak self] response in
             guard let strongSelf = self else { return }
             
             let allCurrencies = strongSelf.getAllCurrencies(response: response)
-            let request = ExmoApiRequestBuilder.shared.getUserTradesRequest(limit: 100, offset: 0, pairs: allCurrencies)
+            let request = ExmoApiRequestsBuilder.shared.getUserTradesRequest(limit: 100, offset: 0, pairs: allCurrencies)
             
             Alamofire.request(request).responseJSON {
                 [weak self] response in
@@ -92,7 +92,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
     var countOrdersForCancel: Int = 0
 
     func cancelOrder(id: Int64) {
-        let request = ExmoApiRequestBuilder.shared.getCancelOrderRequest(id: id)
+        let request = ExmoApiRequestsBuilder.shared.getCancelOrderRequest(id: id)
         Alamofire.request(request).responseJSON {
             [weak self] jsonResponse in
             guard let strongSelf = self else {

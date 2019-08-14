@@ -18,7 +18,7 @@ class VinsoCreateAlertNetworkWorker: ICreateAlertNetworkWorker {
     }
     
 //    func createOrder(order: OrderModel) {
-//        let request = ExmoApiRequestBuilder.shared.getCreateOrderRequest(pair: order.currencyPair, quantity: order.quantity, price: order.price, type: order.getCreateTypeAsStr())
+//        let request = ExmoApiRequestsBuilder.shared.getCreateOrderRequest(pair: order.currencyPair, quantity: order.quantity, price: order.price, type: order.getCreateTypeAsStr())
 //        Alamofire.request(request).responseJSON {
 //            [weak self] response in
 //            switch response.result {

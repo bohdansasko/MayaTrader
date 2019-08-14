@@ -22,7 +22,11 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
         
         setupUI()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.fetchWallet()
+    }
 }
 
 // MARK: - Setup
@@ -33,7 +37,9 @@ private extension CHWalletViewController {
         navigationItem.title = "TAB_WALLET".localized
         setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
         
-        presenter = CHWalletCurrenciesListPresenter(tableView: contentView.currenciesTableView)
+        presenter = CHWalletCurrenciesListPresenter(tableView : contentView.currenciesTableView,
+                                                    networkAPI: CHExmoAPI.shared,
+                                                    database  : RealmDatabaseManager())
     }
     
 }

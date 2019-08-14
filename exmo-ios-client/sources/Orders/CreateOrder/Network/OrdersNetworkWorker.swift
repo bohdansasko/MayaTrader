@@ -14,7 +14,7 @@ class OrdersNetworkWorker: IOrdersNetworkWorker {
     weak var delegate: IOrdersNetworkWorkerDelegate?
     
     func createOrder(order: OrderModel) {
-        let request = ExmoApiRequestBuilder.shared.getCreateOrderRequest(
+        let request = ExmoApiRequestsBuilder.shared.getCreateOrderRequest(
                     pair: order.currencyPair,
                 quantity: order.quantity,
                    price: order.price,
@@ -24,13 +24,13 @@ class OrdersNetworkWorker: IOrdersNetworkWorker {
             [weak self] response in
             switch response.result {
             case .success(let data):
-                guard let createOrderReponseResult = Mapper<OrderExmoResponseResult>().map(JSONObject: data) else {
+                guard let orderResponse = Mapper<OrderExmoResponseResult>().map(JSONObject: data) else {
                     return
                 }
-                if createOrderReponseResult.result == true && createOrderReponseResult.id > 0 {
+                if orderResponse.base.result == true && orderResponse.id > 0 {
                     self?.delegate?.onDidCreateOrderSuccess()
                 } else {
-                    self?.delegate?.onDidCreateOrderFail(errorMessage: createOrderReponseResult.error ?? "Undefined error")
+                    self?.delegate?.onDidCreateOrderFail(errorMessage: orderResponse.base.error ?? "Undefined error")
                 }
             case .failure(let error):
                 self?.delegate?.onDidCreateOrderFail(errorMessage: error.localizedDescription)

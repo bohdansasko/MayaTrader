@@ -8,7 +8,7 @@
 
 import RealmSwift
 
-class RealmDatabaseManager: OperationsDatabaseProtocol {
+final class RealmDatabaseManager: OperationsDatabaseProtocol {
     func object<T>(type: T.Type, key: String) -> T? where T : Object {
         return objects(type: type)?.first
     }

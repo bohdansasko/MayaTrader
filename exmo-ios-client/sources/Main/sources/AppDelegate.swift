@@ -124,7 +124,7 @@ extension AppDelegate {
 // MARK: - Static instances
 
 extension AppDelegate {
-    static let exmoController = ExmoAccountController()
+    static let exmoController = CHExmoAPI.shared
     static let vinsoAPI = VinsoAPI.shared
 }
 

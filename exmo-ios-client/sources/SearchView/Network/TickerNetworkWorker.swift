@@ -21,7 +21,7 @@ final class TickerNetworkWorker: ITickerNetworkWorker {
     func load() {
         isLoadCancelled = false
 
-        let request = ExmoApiRequestBuilder.shared.getTickerRequest()
+        let request = ExmoApiRequestsBuilder.shared.getTickerRequest()
         Alamofire.request(request).responseJSON {
             [weak self] response in
             guard let strongSelf = self, !strongSelf.isLoadCancelled else { return }

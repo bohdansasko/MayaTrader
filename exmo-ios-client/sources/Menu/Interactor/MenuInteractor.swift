@@ -31,7 +31,7 @@
 //    }
 //
 //    func logout() {
-//        ExmoApiRequestBuilder.shared.clearAuthorizationData()
+//        ExmoApiRequestsBuilder.shared.clearAuthorizationData()
 //        Defaults.setUserLoggedIn(false)
 //        dbManager.clearAllData()
 //        NotificationCenter.default.post(name: .UserSignOut)

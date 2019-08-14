@@ -17,9 +17,9 @@ final class ExmoLoginNetworkWorker: ILoginNetworkWorker {
     func loadUserInfo(loginModel: ExmoQR) {
         print("Loading user info...")
         self.loginModel = loginModel
-        ExmoApiRequestBuilder.shared.setAuthorizationData(apiKey: loginModel.key, secretKey: loginModel.secret)
+        ExmoApiRequestsBuilder.shared.setAuthorizationData(apiKey: loginModel.key, secretKey: loginModel.secret)
         
-        let userInfoRequest = ExmoApiRequestBuilder.shared.getUserInfoRequest()
+        let userInfoRequest = ExmoApiRequestsBuilder.shared.getUserInfoRequest()
         Alamofire.request(userInfoRequest).responseJSON {
             [weak self] response in
             self?.onDidLoadUserInfo(response: response)

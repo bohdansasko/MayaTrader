@@ -177,7 +177,7 @@
 		20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC5A20557ECD00973F2F /* Alert.swift */; };
 		20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */; };
 		20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */; };
-		20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */; };
+		20CAFED52042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED42042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift */; };
 		20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */; };
 		20CAFF002042EE4F00C7DEA5 /* CHSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */; };
 		20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */; };
@@ -247,7 +247,7 @@
 		3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */; };
 		36712802066CE6031A5D90E5 /* CHAppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */; };
 		36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367120B1111B487C3177C51D /* WatchlistListView.swift */; };
-		36712819605402E3BB398CBA /* ErrorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ErrorModels.swift */; };
+		36712819605402E3BB398CBA /* ExmoErrorResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */; };
 		3671298637DF050AFCA49657 /* VinsoAPIConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123CC34179C4F53E597DE /* VinsoAPIConnectionDelegate.swift */; };
 		36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */; };
 		3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */; };
@@ -307,6 +307,10 @@
 		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
 		9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */; };
 		97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB18AB22F4AD48007BE023 /* Observable+extension.swift */; };
+		97E9C011230443D400CF01A2 /* CHExmoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C010230443D400CF01A2 /* CHExmoAPI.swift */; };
+		97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */; };
+		97E9C0152304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */; };
+		97E9C017230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */; };
 		9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F43CA7FE0D9869186DF0E /* CurrenciesGroupsPresenter.swift */; };
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
 		9E213ECC5452854BBEB1A693 /* SearchCurrencyPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1156744718574B0A28931 /* SearchCurrencyPairViewController.swift */; };
@@ -547,7 +551,7 @@
 		20BEDC5A20557ECD00973F2F /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
 		20C0E3FC21A3762A00CAEEF9 /* LoginNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkProtocols.swift; sourceTree = "<group>"; };
 		20CAFED1204208E000C7DEA5 /* QRLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QRLoginModel.swift; path = Models/QRLoginModel.swift; sourceTree = "<group>"; };
-		20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiHandler.swift; sourceTree = "<group>"; };
+		20CAFED42042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extensions.swift"; sourceTree = "<group>"; };
 		20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSocketManager.swift; sourceTree = "<group>"; };
 		20CE7EAB21A16F5E00EC14FA /* SearchDatasourceListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListCell.swift; sourceTree = "<group>"; };
@@ -622,7 +626,7 @@
 		36712B2B3338633190FB399E /* Font+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		36712B2E24600DAE35483C9D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFilterGroupController.swift; sourceTree = "<group>"; };
-		36712DDE57C5587FC6B6609F /* ErrorModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorModels.swift; sourceTree = "<group>"; };
+		36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoErrorResponses.swift; sourceTree = "<group>"; };
 		36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VinsoAPI.swift; sourceTree = "<group>"; };
 		36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartNetworkWorkers.swift; sourceTree = "<group>"; };
 		36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "VinsoAPI+Connection.swift"; sourceTree = "<group>"; };
@@ -679,6 +683,10 @@
 		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
 		9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHAlertsPresenter.swift; sourceTree = "<group>"; };
 		97DB18AB22F4AD48007BE023 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
+		97E9C010230443D400CF01A2 /* CHExmoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExmoAPI.swift; sourceTree = "<group>"; };
+		97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSecurityApiRequestsBuilder.swift; sourceTree = "<group>"; };
+		97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoPublicApiRequestsBuilder.swift; sourceTree = "<group>"; };
+		97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoAuthenticationApiRequestsBuilder.swift; sourceTree = "<group>"; };
 		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
 		A01ADCA5DFCF5BE36465AFE4 /* WalletInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WalletInteractorProtocols.swift; sourceTree = "<group>"; };
 		A028C4E223B32A2DEDE1CA52 /* SearchCurrencyPairModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairModuleInput.swift; sourceTree = "<group>"; };
@@ -1608,14 +1616,9 @@
 		20CAFED32042AE6400C7DEA5 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */,
-				20CAFED42042AE9C00C7DEA5 /* ExmoApiHandler.swift */,
-				2075612620B2C0DB0063E548 /* AlertsApiRequestBuilder.swift */,
-				20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */,
-				3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */,
-				367123CC34179C4F53E597DE /* VinsoAPIConnectionDelegate.swift */,
-				367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */,
-				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
+				97E9C010230443D400CF01A2 /* CHExmoAPI.swift */,
+				97E9C0182304487500CF01A2 /* RequestsBuilders */,
+				36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */,
 				9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */,
 			);
 			path = API;
@@ -1624,11 +1627,11 @@
 		20CAFEFE2042ED8500C7DEA5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
-				20CAFED32042AE6400C7DEA5 /* API */,
-				36712DDE57C5587FC6B6609F /* ErrorModels.swift */,
 				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
 				202F80A823008D650035D123 /* CHSecurityService.swift */,
+				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
+				20CAFED32042AE6400C7DEA5 /* API */,
+				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1903,11 +1906,17 @@
 		36712ED85CCE80904AD3B7E6 /* VinsoAPI */ = {
 			isa = PBXGroup;
 			children = (
+				20CAFEFF2042EE4F00C7DEA5 /* CHSocketManager.swift */,
 				36712E09C93F6FAB62707BD3 /* VinsoAPI.swift */,
 				36712E86BC9F833C4B86DFA2 /* VinsoAPI+Connection.swift */,
 				9763F42E22F718E900D6E22A /* VinsoAPI+Currencies.swift */,
 				367123472D6E898C5F3B2FA0 /* VinsoAPI+Alerts.swift */,
 				9763F43022F71A4900D6E22A /* VinsoAPI+Subscriptions.swift */,
+				3671205987EBAA1263AE126F /* VinsoAPIConstants.swift */,
+				367123CC34179C4F53E597DE /* VinsoAPIConnectionDelegate.swift */,
+				367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */,
+				2075612620B2C0DB0063E548 /* AlertsApiRequestBuilder.swift */,
+				20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */,
 			);
 			path = VinsoAPI;
 			sourceTree = "<group>";
@@ -2237,6 +2246,17 @@
 				9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */,
 			);
 			path = Formatters;
+			sourceTree = "<group>";
+		};
+		97E9C0182304487500CF01A2 /* RequestsBuilders */ = {
+			isa = PBXGroup;
+			children = (
+				20CAFED42042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift */,
+				97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */,
+				97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */,
+				97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */,
+			);
+			path = RequestsBuilders;
 			sourceTree = "<group>";
 		};
 		9E01C470C3E1B77012FC4051 /* QRScanner */ = {
@@ -2722,6 +2742,7 @@
 				20CAFF002042EE4F00C7DEA5 /* CHSocketManager.swift in Sources */,
 				207B1D9C2173F93F00D2A5DE /* WatchlistModuleInitializer.swift in Sources */,
 				207B1D9A2173F93F00D2A5DE /* WatchlistViewInput.swift in Sources */,
+				97E9C011230443D400CF01A2 /* CHExmoAPI.swift in Sources */,
 				20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */,
 				201D8079205DC62800692DEF /* WalletCurrenciesListCells.swift in Sources */,
 				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
@@ -2745,7 +2766,7 @@
 				200D52C822DA1DFC0009C07C /* CHMenuView.swift in Sources */,
 				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,
 				207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */,
-				20CAFED52042AE9C00C7DEA5 /* ExmoApiHandler.swift in Sources */,
+				20CAFED52042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift in Sources */,
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
 				2003B5562048B8DE00BD205F /* CHWalletCurrencyCell.swift in Sources */,
@@ -2769,6 +2790,7 @@
 				20FE9B0221ED3AA900B586CB /* Notification+Extension.swift in Sources */,
 				7C80BE19C44E3D1F07DE5B2D /* MenuPresenter.swift in Sources */,
 				0F98487E92B6C785E714D43F /* MenuInteractorProtocols.swift in Sources */,
+				97E9C0152304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift in Sources */,
 				200D52A922DA07B20009C07C /* CHOrdersViewController.swift in Sources */,
 				20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */,
 				2DCAAC583A7618B6F7024C58 /* MenuInteractor.swift in Sources */,
@@ -2809,7 +2831,7 @@
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
 				208FE09D22DB485C0014BCE5 /* CHExchangeCell.swift in Sources */,
 				204CC7DA21B93478002057CA /* AppDelegate.swift in Sources */,
-				36712819605402E3BB398CBA /* ErrorModels.swift in Sources */,
+				36712819605402E3BB398CBA /* ExmoErrorResponses.swift in Sources */,
 				8F0AEFDE9AEF6C58DC4F078D /* AlertsViewProtocols.swift in Sources */,
 				206730E32094D427008B500D /* UITextField+Extension.swift in Sources */,
 				EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */,
@@ -2817,6 +2839,7 @@
 				208FE09922DB3F460014BCE5 /* CHExchangesView.swift in Sources */,
 				208FE0A222DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift in Sources */,
 				201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */,
+				97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsApiRequestBuilder.swift in Sources */,
 				20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */,
 				C4EB1B12B5E7B5837BFC5C16 /* AlertsInteractorProtocols.swift in Sources */,
@@ -2963,6 +2986,7 @@
 				B07ED5143FC3C4FACA446ACF /* CurrenciesGroupsInteractor.swift in Sources */,
 				969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */,
 				200D52C022DA1CC00009C07C /* CHViewController.swift in Sources */,
+				97E9C017230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift in Sources */,
 				F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */,
 				76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */,
 				366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */,
