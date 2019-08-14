@@ -18,7 +18,10 @@ extension VinsoAPI {
         
         print("\(String(describing: self)) => establish connect")
         self.socketManager.connected.subscribe(onNext: { [unowned self] isConnected in
-            if !isConnected { return }
+            if !isConnected {
+                self.isAuthorized = false
+                return
+            }
             self.connectToServer()
         }).disposed(by: self.disposeBag)
         

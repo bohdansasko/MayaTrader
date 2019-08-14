@@ -1613,15 +1613,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		20CAFED32042AE6400C7DEA5 /* API */ = {
+		20CAFED32042AE6400C7DEA5 /* ExmoAPI */ = {
 			isa = PBXGroup;
 			children = (
 				97E9C010230443D400CF01A2 /* CHExmoAPI.swift */,
-				97E9C0182304487500CF01A2 /* RequestsBuilders */,
 				36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */,
 				9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */,
+				97E9C0182304487500CF01A2 /* RequestsBuilders */,
 			);
-			path = API;
+			path = ExmoAPI;
 			sourceTree = "<group>";
 		};
 		20CAFEFE2042ED8500C7DEA5 /* Services */ = {
@@ -1630,7 +1630,7 @@
 				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
 				202F80A823008D650035D123 /* CHSecurityService.swift */,
 				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
-				20CAFED32042AE6400C7DEA5 /* API */,
+				20CAFED32042AE6400C7DEA5 /* ExmoAPI */,
 				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
 			);
 			path = Services;
