@@ -11,7 +11,7 @@ import UIKit
 final class CHWalletView: UIView {
     @IBOutlet fileprivate weak var balanceContainer: UIView!
     @IBOutlet fileprivate(set) weak var currenciesTableView: UITableView!
-              fileprivate lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
+              fileprivate      lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
     
     fileprivate let tutorialImg: TutorialImage = {
         let img = TutorialImage()
@@ -60,7 +60,7 @@ private extension CHWalletView {
 
 extension CHWalletView {
 
-    func set(wallet: ExmoWallet) {
+    func set(walletForBalanceView wallet: ExmoWallet) {
         balanceView.set(amountBTC: wallet.amountBTC, amountUSD: wallet.amountUSD)
     }
     

@@ -15,6 +15,10 @@ class WalletSegueBlock: SegueBlock {
     }
 }
 
+protocol CHWalletCurrenciesListPresenterDelegate: class {
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesListPresenter, onWalletFetched wallet: ExmoWallet)
+}
+
 final class CHWalletCurrenciesListPresenter: NSObject {
     fileprivate weak var tableView: UITableView!
     
@@ -22,6 +26,8 @@ final class CHWalletCurrenciesListPresenter: NSObject {
     fileprivate let dbManager : OperationsDatabaseProtocol
     
     fileprivate let disposeBag = DisposeBag()
+    
+    weak var delegate: CHWalletCurrenciesListPresenterDelegate?
     
     var wallet: ExmoWallet? {
         didSet {
@@ -65,6 +71,7 @@ extension CHWalletCurrenciesListPresenter  {
             return
         }
         self.wallet = ExmoWallet(managedObject: dbWallet)
+        delegate?.walletCurrenciesListPresenter(self, onWalletFetched: self.wallet!)
     }
     
 }

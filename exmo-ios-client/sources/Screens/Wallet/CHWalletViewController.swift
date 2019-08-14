@@ -40,6 +40,7 @@ private extension CHWalletViewController {
         presenter = CHWalletCurrenciesListPresenter(tableView : contentView.currenciesTableView,
                                                     networkAPI: CHExmoAPI.shared,
                                                     database  : RealmDatabaseManager())
+        presenter.delegate = self
     }
     
 }
@@ -50,6 +51,14 @@ private extension CHWalletViewController {
     
     @objc func actManageWalletCurrencies(_ sender: Any) {
         performSegue(withIdentifier: Segues.manageWallet.rawValue)
+    }
+    
+}
+
+extension CHWalletViewController: CHWalletCurrenciesListPresenterDelegate {
+    
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesListPresenter, onWalletFetched wallet: ExmoWallet) {
+        contentView.set(walletForBalanceView: wallet)
     }
     
 }

@@ -34,3 +34,6 @@
 "SCREEN_PASSCODE_DISABLED"              = "Your passcode has been disabled.";
 
 "DELETE" = "Delete";
+
+"CURRENCY_BTC" = "BTC";
+"CURRENCY_USD" = "USD";

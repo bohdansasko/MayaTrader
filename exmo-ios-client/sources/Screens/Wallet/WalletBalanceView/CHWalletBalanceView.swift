@@ -13,14 +13,21 @@ final class CHWalletBalanceView: UIView {
     @IBOutlet fileprivate weak var btcValueLabel: UILabel!
     @IBOutlet fileprivate weak var usdTextLabel : UILabel!
     @IBOutlet fileprivate weak var usdValueLabel: UILabel!
-    @IBOutlet fileprivate weak var currencyDividerImage: UIImageView!
-    
-    override init(frame: CGRect) {
-        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupUI()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+}
+
+// MARK: - Setup
+
+private extension CHWalletBalanceView {
+    
+    func setupUI() {
+        btcTextLabel.text = "CURRENCY_BTC".localized
+        usdTextLabel.text = "CURRENCY_USD".localized
     }
     
 }

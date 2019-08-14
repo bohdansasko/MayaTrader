@@ -72,7 +72,6 @@
             <connections>
                 <outlet property="btcTextLabel" destination="lMO-Uf-oTV" id="eNI-Md-BJ8"/>
                 <outlet property="btcValueLabel" destination="qNH-1N-GqW" id="cMr-rI-WXm"/>
-                <outlet property="currencyDividerImage" destination="NhS-Ud-Gnq" id="luq-qG-zTF"/>
                 <outlet property="usdTextLabel" destination="sfl-gb-jjb" id="Vzx-Y2-sLd"/>
                 <outlet property="usdValueLabel" destination="R67-QS-x6y" id="w4T-sM-hWy"/>
             </connections>

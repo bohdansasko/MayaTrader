@@ -298,6 +298,7 @@ extension ExmoWallet: Mappable {
             let currency = ExmoWalletCurrency(code: key, balance: balance, orderId: 0, isFavourite: true, countInOrders: countInOrders)
             self.balances.append(currency)
         }
+        self.balances = self.balances.sorted(by: { $0.code < $1.code })
     }
 }
 
@@ -316,8 +317,8 @@ extension ExmoWallet: Persistable {
                                               countInOrders: moCurrency.countInOrders)
             b.append(currency)
         })
-        balances = b
-        favBalances = b.filter{ $0.isFavourite }
+        balances = b.sorted(by: { $0.orderId < $1.orderId })
+        favBalances = balances.filter{ $0.isFavourite }
     }
 
     func managedObject() -> ExmoWalletObject {
