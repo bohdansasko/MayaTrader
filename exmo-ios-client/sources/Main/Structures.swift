@@ -302,6 +302,7 @@ extension ExmoWallet: Mappable {
 }
 
 extension ExmoWallet: Persistable {
+    
     init(managedObject: ExmoWalletObject) {
         id = managedObject.id
         amountBTC = managedObject.amountBTC
@@ -316,6 +317,7 @@ extension ExmoWallet: Persistable {
             b.append(currency)
         })
         balances = b
+        favBalances = b.filter{ $0.isFavourite }
     }
 
     func managedObject() -> ExmoWalletObject {
@@ -334,9 +336,11 @@ extension ExmoWallet: Persistable {
         wallet.balances = moBalances
         return wallet
     }
+    
 }
 
 extension ExmoWallet {
+    
     mutating func refreshOnFavDislikeBalances() {
         balances.removeAll()
         

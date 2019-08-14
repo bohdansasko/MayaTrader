@@ -56,7 +56,19 @@ extension CHExmoAuthorizationService {
 extension CHExmoAuthorizationService: ILoginNetworkWorkerDelegate {
     
     func onDidLoadUserSuccessful(user: ExmoUser) {
-        dbManager.add(data: user.managedObject(), update: true)
+        let isNewUser = dbManager.object(type: ExmoUserObject.self, key: "") == nil
+        if isNewUser {
+            let wallet = ExmoWallet(id: user.wallet!.id,
+                                    amountBTC: user.wallet!.amountBTC,
+                                    amountUSD: user.wallet!.amountUSD,
+                                    balances: user.wallet!.balances,
+                                    favBalances: user.wallet!.balances,
+                                    dislikedBalances: [])
+            let newUser = ExmoUser(uid: user.uid, qr: user.qr, wallet: wallet)
+            dbManager.add(data: newUser.managedObject(), update: true)
+        }
+        
+        ExmoApiRequestsBuilder.shared.setAuthorizationData(apiKey: user.qr!.key, secretKey: user.qr!.secret)
         Defaults.setUserLoggedIn(true)
         NotificationCenter.default.post(name: AuthorizationNotification.userSignIn.name)
     }

@@ -28,8 +28,6 @@ final class CHWalletCurrenciesListPresenter: NSObject {
             if let w = wallet {
                 tableView.isScrollEnabled = w.favBalances.count > 0
             }
-            
-//            showPlaceholderIfRequired()
             tableView.reloadData()
         }
     }
@@ -44,10 +42,6 @@ final class CHWalletCurrenciesListPresenter: NSObject {
         setupTableView()
     }
 
-    func getWalletModelAsSegueBlock() -> SegueBlock? {
-        return WalletSegueBlock(dataModel: wallet)
-    }
-    
 }
 
 // MARK: - Setup
@@ -67,13 +61,10 @@ private extension CHWalletCurrenciesListPresenter  {
 extension CHWalletCurrenciesListPresenter  {
     
     func fetchWallet() {
-        let walletRequest = networkAPI.rx.getWallet()
-        walletRequest.subscribe(onSuccess: { [weak self] aWallet in
-            guard let `self` = self else { return }
-            self.refreshWallet(aWallet)
-        }, onError: { err in
-            print(err.localizedDescription)
-        }).disposed(by: self.disposeBag)
+        guard let dbWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
+            return
+        }
+        self.wallet = ExmoWallet(managedObject: dbWallet)
     }
     
 }
@@ -117,30 +108,6 @@ extension CHWalletCurrenciesListPresenter: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
-    }
-    
-}
-
-// MARK: IWalletNetworkWorkerDelegate
-extension CHWalletCurrenciesListPresenter {
-    
-    func refreshWallet(_ w: ExmoWallet) {
-        guard let cachedWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
-            print("can't read object ExmoWalletObject from db")
-            dbManager.performTransaction {
-                self.dbManager.add(data: w.managedObject(), update: true)
-            }
-            self.wallet = w
-            return
-        }
-        cachedWallet.balances.forEach({ [unowned self] cachedCurrency in
-            guard let iCurrency = w.balances.first(where: { $0.code == cachedCurrency.code }) else { return }
-            self.dbManager.performTransaction {
-                cachedCurrency.balance = iCurrency.balance
-                cachedCurrency.countInOrders = iCurrency.countInOrders
-            }
-        })
-        self.wallet = ExmoWallet(managedObject: cachedWallet)
     }
     
 }

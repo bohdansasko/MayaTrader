@@ -52,6 +52,11 @@
                 <constraint firstAttribute="bottom" secondItem="RSs-5X-SmC" secondAttribute="bottom" id="wwg-fc-BBp"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="balanceLabel" destination="nMF-gM-bH0" id="pyY-4X-KKD"/>
+                <outlet property="countInOrdersLabel" destination="qNU-FX-Z4r" id="tot-sL-YaG"/>
+                <outlet property="currencyLabel" destination="9sv-Ot-ecP" id="bfN-Fb-M6n"/>
+            </connections>
         </view>
     </objects>
 </document>

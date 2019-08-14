@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 final class ExmoLoginNetworkWorker: ILoginNetworkWorker {
-    var delegate: ILoginNetworkWorkerDelegate!
+    weak var delegate: ILoginNetworkWorkerDelegate?
     var loginModel: ExmoQR?
     
     func loadUserInfo(loginModel: ExmoQR) {
@@ -33,22 +33,22 @@ final class ExmoLoginNetworkWorker: ILoginNetworkWorker {
                 let json = try JSON(data: response.data!)
                 if let requestError = ExmoResponseResult(JSONString: json.description) {
                     if requestError.error != nil {
-                        delegate.onDidLoadUserFail(errorMessage: requestError.error)
+                        delegate?.onDidLoadUserFail(errorMessage: requestError.error)
                         return
                     }
                 }
                 guard let userInfoAsDictionary = json.dictionaryObject else { return }
                 guard var userData = ExmoUser(JSON: userInfoAsDictionary) else {
-                    delegate.onDidLoadUserFail(errorMessage: nil)
+                    delegate?.onDidLoadUserFail(errorMessage: nil)
                     return
                 }
                 userData.qr = loginModel!
-                delegate.onDidLoadUserSuccessful(user: userData)
+                delegate?.onDidLoadUserSuccessful(user: userData)
             } catch {
-                delegate.onDidLoadUserFail(errorMessage: nil)
+                delegate?.onDidLoadUserFail(errorMessage: nil)
             }
         case .failure(_):
-            delegate.onDidLoadUserFail(errorMessage: nil)
+            delegate?.onDidLoadUserFail(errorMessage: nil)
         }
     }
 }

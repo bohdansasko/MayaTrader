@@ -14,7 +14,7 @@ protocol ILoginNetworkWorkerDelegate: class {
 }
 
 protocol ILoginNetworkWorker {
-    var delegate: ILoginNetworkWorkerDelegate! { get set }
+    var delegate: ILoginNetworkWorkerDelegate? { get set }
     
     func loadUserInfo(loginModel: ExmoQR)
 }
