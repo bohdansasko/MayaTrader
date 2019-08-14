@@ -26,8 +26,11 @@ extension VinsoAPI {
     }
     
     func connectToServer() {
-        let request = self.sendRequest(messageType: .connect)
+        if !socketManager.isOpen() {
+            return
+        }
         
+        let request = self.sendRequest(messageType: .connect)
         request.subscribe(onNext: { json in
             self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
             self.authorizeUser()

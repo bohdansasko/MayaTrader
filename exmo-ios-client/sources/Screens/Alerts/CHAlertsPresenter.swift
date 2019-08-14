@@ -63,7 +63,7 @@ extension CHAlertsPresenter {
             self.alerts.items = alerts
             self.tableView.reloadData()
         }, onError: { err in
-            print(err)
+            print(err.localizedDescription)
         }).disposed(by: disposeBag)
     }
     

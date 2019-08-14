@@ -30,6 +30,7 @@ final class CHWalletCurrenciesListPresenter: NSObject {
     
     init(tableView: UITableView) {
         self.tableView = tableView
+        
         super.init()
         
         setupTableView()

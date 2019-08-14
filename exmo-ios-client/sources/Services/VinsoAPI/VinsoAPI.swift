@@ -33,7 +33,9 @@ final class VinsoAPI {
     
     internal var socketManager: CHSocketManager!
     internal let disposeBag = DisposeBag()
-
+    
+    fileprivate let kTimeoutSeconds = 30.0
+    
     // MARK: - Life cycle
     
     private init() {
@@ -69,7 +71,12 @@ private extension VinsoAPI {
 internal extension VinsoAPI {
     
     func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {
-        let request = self.buildRequestHandler(for: messageType)
+        if !isAuthorized {
+            establishConnection()
+            return Observable.error(CHVinsoAPIError.unauthorized)
+        }
+        
+        let request = buildRequestHandler(for: messageType)
         
         var requestParams = params
         requestParams["request_type"] = messageType.rawValue
@@ -86,8 +93,11 @@ internal extension VinsoAPI {
     }
 
     func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
-        let observable = Observable<JSON>.create{ subscriber in
-            let socketResponse = self.socketManager.response.share(replay: 1).subscribe(onNext: { event in
+        let observable = Observable<JSON>.create{ [unowned self] subscriber in
+            let socketResponse = self.socketManager.response
+                .timeout(self.kTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+                .share(replay: 1)
+                .subscribe(onNext: { event in
                 if case .message(let message) = event {
                     let json = JSON(parseJSON: message)
                     do {
