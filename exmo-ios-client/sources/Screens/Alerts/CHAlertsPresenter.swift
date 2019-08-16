@@ -60,7 +60,7 @@ extension CHAlertsPresenter {
     func fetchAlerts() {
         let request = api.rx.getAlerts()
         request.subscribe(onSuccess: { [unowned self] alerts in
-            self.alerts.items = alerts
+            self.alerts.items = alerts.sorted(by: { $0.dateCreated > $1.dateCreated })
             self.tableView.reloadData()
         }, onError: { err in
             print(err.localizedDescription)
