@@ -70,12 +70,7 @@ private extension VinsoAPI {
 
 internal extension VinsoAPI {
     
-    func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {
-        if !isAuthorized {
-            establishConnection()
-            return Observable.error(CHVinsoAPIError.unauthorized)
-        }
-        
+    func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {        
         let request = buildRequestHandler(for: messageType)
         
         var requestParams = params

@@ -144,30 +144,9 @@ extension Reactive where Base: VinsoAPI {
                 guard let jsonAlerts = json["history_alerts"].array else {
                     return []
                 }
-                let jsonStr = """
-{
-  "alert_status" : 0,
-  "currency" : "STQ_EUR",
-  "timestamp" : 1565640964,
-  "is_persistent" : false,
-  "bottom_bound" : "0.0001",
-  "status" : 200,
-  "upper_bound" : "0.0001",
-  "price_at_create_moment" : "0.0001",
-  "alert_id" : 0,
-  "request_type" : 4,
-  "description" : ""
-}
-"""
-                let alerts: [Alert] = [
-                    Alert(JSONString: jsonStr)!,
-                    Alert(JSONString: jsonStr)!,
-                    Alert(JSONString: jsonStr)!
-                ]
-                return alerts
 
-//                let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
-//                return alerts
+                let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
+                return alerts
             }
             .asSingle()
     }
