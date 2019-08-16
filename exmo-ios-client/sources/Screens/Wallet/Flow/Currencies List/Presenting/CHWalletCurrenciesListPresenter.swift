@@ -57,12 +57,6 @@ final class CHWalletCurrenciesListPresenter: NSObject {
         setupTableView()
     }
     
-    func saveToCache(wallet: ExmoWallet) {
-        print("wallet was saved to cache")
-        print(wallet.favBalances)
-        dbManager.add(data: wallet.managedObject(), update: true)
-    }
-    
 }
 
 // MARK: - Setup
@@ -92,6 +86,12 @@ extension CHWalletCurrenciesListPresenter {
         }
     }
     
+    func saveToCache(wallet: ExmoWallet) {
+        print("wallet was saved to cache")
+        print(wallet.favBalances)
+        dbManager.add(data: wallet.managedObject(), update: true)
+    }
+    
 }
 
 
@@ -116,12 +116,15 @@ extension CHWalletCurrenciesListPresenter {
         
         var index = 0
         if wallet.favBalances.count > 0 {
-            currencies[0] = wallet.favBalances
+            currencies[index] = wallet.favBalances.sorted(by: { $0.orderId < $1.orderId })
             index += 1
         }
 
-        if wallet.dislikedBalances.count > 0 {
-            currencies[index] = wallet.dislikedBalances
+        let sBalances = Set<ExmoWalletCurrency>(wallet.balances)
+        let sFavBalances = Set<ExmoWalletCurrency>(wallet.favBalances)
+        let dislikedBalances = Array<ExmoWalletCurrency>(sBalances.symmetricDifference(sFavBalances))
+        if !dislikedBalances.isEmpty {
+            currencies[index] = dislikedBalances.sorted(by: { $0.orderId < $1.orderId })
         }
         
         if !isSearching {
