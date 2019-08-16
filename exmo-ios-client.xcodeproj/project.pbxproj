@@ -1199,11 +1199,8 @@
 			isa = PBXGroup;
 			children = (
 				20518DA822D9F9F100334133 /* CHWallet.storyboard */,
-				20DFB1CA2303588C008C19B5 /* WalletBalanceView */,
-				20DFB1CB2303597C008C19B5 /* CurrencyHeaderView */,
-				20DFB1D323035E6A008C19B5 /* WalletCurrencyCell */,
 				200D52B922DA07FE0009C07C /* Flow */,
-				36712F3BF4234409BE0C353E /* CHWalletCurrenciesListPresenter.swift */,
+				20786BD9230640A9007C3944 /* Presentating */,
 				200D52C322DA1D9E0009C07C /* CHWalletView.swift */,
 				200D52AB22DA07CF0009C07C /* CHWalletViewController.swift */,
 				200D52AC22DA07CF0009C07C /* CHWalletViewController.xib */,
@@ -1309,6 +1306,17 @@
 				9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		20786BD9230640A9007C3944 /* Presentating */ = {
+			isa = PBXGroup;
+			children = (
+				20DFB1CA2303588C008C19B5 /* WalletBalanceView */,
+				20DFB1CB2303597C008C19B5 /* CurrencyHeaderView */,
+				20DFB1D323035E6A008C19B5 /* WalletCurrencyCell */,
+				36712F3BF4234409BE0C353E /* CHWalletCurrenciesListPresenter.swift */,
+			);
+			path = Presentating;
 			sourceTree = "<group>";
 		};
 		207930AC21B49ADB005EF54B /* Form */ = {
