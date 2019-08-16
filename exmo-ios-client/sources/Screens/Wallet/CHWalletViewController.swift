@@ -22,11 +22,16 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
         
         setupNavigationBar()
         setupPresenter()
+        setupNotificationsSubscription()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.fetchWallet()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -36,7 +41,7 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
             prepareWalletManagerCurrenciesViewController(for: segue, sender: sender)
         }
     }
-    
+
 }
 
 // MARK: - Setup
@@ -53,6 +58,18 @@ private extension CHWalletViewController {
                                                 networkAPI: CHExmoAPI.shared,
                                                 database  : RealmDatabaseManager.shared)
         presenter.delegate = self
+    }
+    
+    func setupNotificationsSubscription() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: AuthorizationNotification.userFailSignIn.name)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: AuthorizationNotification.userSignIn.name)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: AuthorizationNotification.userSignOut.name)
     }
     
 }
@@ -79,6 +96,16 @@ private extension CHWalletViewController {
     
     @objc func actManageWalletCurrencies(_ sender: Any) {
         performSegue(withIdentifier: Segues.manageWallet.rawValue)
+    }
+    
+}
+
+// MARK: - Notifications
+
+private extension CHWalletViewController {
+    
+    @objc func handleNotificationUserAuthorization(_ notification: Notification) {
+        presenter.fetchWallet()
     }
     
 }

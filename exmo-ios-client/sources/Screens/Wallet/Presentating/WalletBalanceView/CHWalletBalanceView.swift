@@ -28,6 +28,8 @@ private extension CHWalletBalanceView {
     func setupUI() {
         btcTextLabel.text = "CURRENCY_BTC".localized
         usdTextLabel.text = "CURRENCY_USD".localized
+        
+        set(amountBTC: 0.0, amountUSD: 0.0)
     }
     
 }
