@@ -26,7 +26,7 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
     func fetchCurrencies(by string: String?) {
         guard let string = string else { return }
         
-        self.api.rx.getCurrencies(like: string, stocks: [.exmo], isExtended: false)
+        self.api.rx.getCurrencies(like: string)
             .subscribe(
                 onNext: { [unowned self] currencies in
                     self.items = currencies.map{ $0 }
