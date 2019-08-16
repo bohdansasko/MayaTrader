@@ -20,7 +20,8 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        setupNavigationBar()
+        setupPresenter()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -32,29 +33,42 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
         let segueId = Segues(rawValue: segue.identifier!)!
         switch segueId {
         case .manageWallet:
-            let vc =  segue.destination as! CHWalletCurrenciesListViewController
-            vc.onClose = { [unowned self] wallet in
-                if let w = wallet {
-                    self.presenter.saveWallet(w)
-                    self.presenter.wallet = w
-                }
-            }
+            prepareWalletManagerCurrenciesViewController(for: segue, sender: sender)
         }
     }
+    
 }
 
 // MARK: - Setup
 
 private extension CHWalletViewController {
     
-    func setupUI() {
+    func setupNavigationBar() {
         navigationItem.title = "TAB_WALLET".localized
         setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
-        
+    }
+    
+    func setupPresenter() {
         presenter = CHWalletCurrenciesPresenter(tableView : contentView.currenciesTableView,
-                                                    networkAPI: CHExmoAPI.shared,
-                                                    database  : RealmDatabaseManager.shared)
+                                                networkAPI: CHExmoAPI.shared,
+                                                database  : RealmDatabaseManager.shared)
         presenter.delegate = self
+    }
+    
+}
+
+// MARK: - Prepare for segue
+
+private extension CHWalletViewController {
+    
+    func prepareWalletManagerCurrenciesViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc =  segue.destination as! CHWalletCurrenciesListViewController
+        vc.onClose = { [unowned self] wallet in
+            if let w = wallet {
+                self.presenter.saveWallet(w)
+                self.presenter.wallet = w
+            }
+        }
     }
     
 }
@@ -68,6 +82,8 @@ private extension CHWalletViewController {
     }
     
 }
+
+// MARK: - CHWalletCurrenciesPresenterDelegate
 
 extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
     
