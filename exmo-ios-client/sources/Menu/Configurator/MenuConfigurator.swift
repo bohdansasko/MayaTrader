@@ -28,7 +28,7 @@
 //        
 //        let interactor = MenuInteractor()
 //        interactor.output = presenter
-//        interactor.dbManager = RealmDatabaseManager()
+//        interactor.dbManager = RealmDatabaseManager.shared
 //        
 //        presenter.interactor = interactor
 //        viewController.output = presenter

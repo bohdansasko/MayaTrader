@@ -1,5 +1,5 @@
 //
-//  WalletCurrenciesListTableViewCell.swift
+//  CHWalletCurrenciesListCell.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/17/18.
@@ -8,42 +8,9 @@
 
 import UIKit
 
-// MARK: WalletCurrenciesListTableHeaderCell
-class WalletCurrenciesListTableHeaderCell: UITableViewHeaderFooterView {
-    var titleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 14)
-        label.textAlignment = .left
-        label.textColor = .white
-        return label
-    }()
-    
-    var title: String? {
-        didSet {
-            titleLabel.text = title
-        }
-    }
-    
-    override init(reuseIdentifier: String?) {
-        super.init(reuseIdentifier: reuseIdentifier)
-        
-        contentView.backgroundColor = .black
+// MARK: - CHWalletCurrenciesListCell
 
-        addSubview(titleLabel)
-        titleLabel.anchor(topAnchor, left: leftAnchor,
-                          bottom: bottomAnchor, right: rightAnchor,
-                          topConstant: 0, leftConstant: 30,
-                          bottomConstant: 0, rightConstant: 30,
-                          widthConstant: 0, heightConstant: 0)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
-    }
-}
-
-// MARK: WalletCurrenciesListTableViewCell
-class WalletCurrenciesListTableViewCell: UITableViewCell {
+final class CHWalletCurrenciesListCell: UITableViewCell {
     var currencyNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 14)
@@ -118,15 +85,16 @@ class WalletCurrenciesListTableViewCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
+        fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 }
 
-extension WalletCurrenciesListTableViewCell {
+extension CHWalletCurrenciesListCell {
+    
     func setupViews() {
         addSubview(actionButton)
         actionButton.addTarget(self, action: #selector(handleTouchActionButton(_ :)), for: .touchUpInside)
@@ -174,4 +142,5 @@ extension WalletCurrenciesListTableViewCell {
         actionButton.isSelected = lCurrency.isFavourite
         onSwitchValueCallback?(lCurrency)
     }
+    
 }

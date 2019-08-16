@@ -9,6 +9,8 @@
 import RealmSwift
 
 final class RealmDatabaseManager: OperationsDatabaseProtocol {
+    static let shared = RealmDatabaseManager()
+    
     func object<T>(type: T.Type, key: String) -> T? where T : Object {
         return objects(type: type)?.first
     }
@@ -99,6 +101,7 @@ final class RealmDatabaseManager: OperationsDatabaseProtocol {
 }
 
 extension RealmDatabaseManager {
+    
     func isRealmAccessible() -> Bool {
         do {
             _ = try Realm()
@@ -107,4 +110,5 @@ extension RealmDatabaseManager {
             return false
         }
     }
+    
 }

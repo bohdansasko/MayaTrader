@@ -28,7 +28,7 @@ class WatchlistModuleConfigurator {
         let interactor = WatchlistInteractor()
         interactor.output = presenter
         interactor.networkWorker = TickerNetworkWorker()
-        interactor.dbManager = RealmDatabaseManager()
+        interactor.dbManager = RealmDatabaseManager.shared
         
         presenter.interactor = interactor
         viewController.output = presenter

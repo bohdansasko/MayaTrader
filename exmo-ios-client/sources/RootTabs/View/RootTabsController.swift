@@ -134,7 +134,6 @@ extension RootTabsController {
         let modules: [ModuleInitializer] = [
             WatchlistModuleInitializer(),
             OrdersModuleInitializer(),
-            WalletModuleInitializer(),
             AlertsModuleInitializer()
         ]
         

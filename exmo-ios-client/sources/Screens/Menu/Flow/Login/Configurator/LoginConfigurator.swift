@@ -28,7 +28,7 @@ class LoginModuleConfigurator {
         let interactor = LoginInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoLoginNetworkWorker()
-        interactor.dbManager = RealmDatabaseManager()
+        interactor.dbManager = RealmDatabaseManager.shared
 
         presenter.interactor = interactor
         viewController.output = presenter

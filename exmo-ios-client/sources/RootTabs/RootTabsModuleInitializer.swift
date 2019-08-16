@@ -23,7 +23,7 @@ class RootTabsModuleInitializer: ModuleInitializer {
         let interactor = RootTabsInteractor()
         interactor.output = presenter
         interactor.networkWorker = ExmoLoginNetworkWorker()
-        interactor.dbManager = RealmDatabaseManager()
+        interactor.dbManager = RealmDatabaseManager.shared
         
         presenter.interactor = interactor
         

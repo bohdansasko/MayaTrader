@@ -15,7 +15,7 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
         case manageWallet = "ManageWallet"
     }
     
-    fileprivate var presenter: CHWalletCurrenciesListPresenter!
+    fileprivate var presenter: CHWalletCurrenciesPresenter!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,20 @@ final class CHWalletViewController: CHBaseViewController, CHBaseViewControllerPr
         super.viewWillAppear(animated)
         presenter.fetchWallet()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueId = Segues(rawValue: segue.identifier!)!
+        switch segueId {
+        case .manageWallet:
+            let vc =  segue.destination as! CHWalletCurrenciesListViewController
+            vc.onClose = { [unowned self] wallet in
+                if let w = wallet {
+                    self.presenter.saveWallet(w)
+                    self.presenter.wallet = w
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Setup
@@ -37,9 +51,9 @@ private extension CHWalletViewController {
         navigationItem.title = "TAB_WALLET".localized
         setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
         
-        presenter = CHWalletCurrenciesListPresenter(tableView : contentView.currenciesTableView,
+        presenter = CHWalletCurrenciesPresenter(tableView : contentView.currenciesTableView,
                                                     networkAPI: CHExmoAPI.shared,
-                                                    database  : RealmDatabaseManager())
+                                                    database  : RealmDatabaseManager.shared)
         presenter.delegate = self
     }
     
@@ -55,9 +69,9 @@ private extension CHWalletViewController {
     
 }
 
-extension CHWalletViewController: CHWalletCurrenciesListPresenterDelegate {
+extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
     
-    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesListPresenter, onWalletFetched wallet: ExmoWallet) {
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet) {
         contentView.set(walletForBalanceView: wallet)
     }
     

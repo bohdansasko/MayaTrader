@@ -15,11 +15,11 @@ class WalletSegueBlock: SegueBlock {
     }
 }
 
-protocol CHWalletCurrenciesListPresenterDelegate: class {
-    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesListPresenter, onWalletFetched wallet: ExmoWallet)
+protocol CHWalletCurrenciesPresenterDelegate: class {
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet)
 }
 
-final class CHWalletCurrenciesListPresenter: NSObject {
+final class CHWalletCurrenciesPresenter: NSObject {
     fileprivate weak var tableView: UITableView!
     
     fileprivate let networkAPI: CHExmoAPI
@@ -27,12 +27,13 @@ final class CHWalletCurrenciesListPresenter: NSObject {
     
     fileprivate let disposeBag = DisposeBag()
     
-    weak var delegate: CHWalletCurrenciesListPresenterDelegate?
+    weak var delegate: CHWalletCurrenciesPresenterDelegate?
     
     var wallet: ExmoWallet? {
         didSet {
             if let w = wallet {
                 tableView.isScrollEnabled = w.favBalances.count > 0
+                delegate?.walletCurrenciesListPresenter(self, onWalletRefreshed: self.wallet!)
             }
             tableView.reloadData()
         }
@@ -52,7 +53,7 @@ final class CHWalletCurrenciesListPresenter: NSObject {
 
 // MARK: - Setup
 
-private extension CHWalletCurrenciesListPresenter  {
+private extension CHWalletCurrenciesPresenter  {
     
     func setupTableView() {
         tableView.delegate = self
@@ -64,21 +65,24 @@ private extension CHWalletCurrenciesListPresenter  {
 
 // MARK: - Network
 
-extension CHWalletCurrenciesListPresenter  {
+extension CHWalletCurrenciesPresenter  {
     
     func fetchWallet() {
         guard let dbWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
             return
         }
         self.wallet = ExmoWallet(managedObject: dbWallet)
-        delegate?.walletCurrenciesListPresenter(self, onWalletFetched: self.wallet!)
+    }
+    
+    func saveWallet(_ wallet: ExmoWallet) {
+        dbManager.add(data: wallet.managedObject(), update: true)
     }
     
 }
 
 // MARK: - UITableViewDataSource
 
-extension CHWalletCurrenciesListPresenter: UITableViewDataSource  {
+extension CHWalletCurrenciesPresenter: UITableViewDataSource  {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return wallet?.favBalances.count ?? 0
@@ -93,7 +97,7 @@ extension CHWalletCurrenciesListPresenter: UITableViewDataSource  {
 
 // MARK: - UITableViewDelegate
 
-extension CHWalletCurrenciesListPresenter: UITableViewDelegate  {
+extension CHWalletCurrenciesPresenter: UITableViewDelegate  {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return CHWalletCurrencyHeaderView.loadViewFromNib()

@@ -12,7 +12,7 @@ final class CHExmoAuthorizationService: NSObject {
     static let shared = CHExmoAuthorizationService()
     
     fileprivate var networkWorker: ILoginNetworkWorker        = ExmoLoginNetworkWorker()
-    fileprivate var dbManager    : OperationsDatabaseProtocol = RealmDatabaseManager()
+    fileprivate var dbManager    : OperationsDatabaseProtocol = RealmDatabaseManager.shared
     
     private override init() {
         super.init()

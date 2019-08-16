@@ -1,52 +1,102 @@
 //
-//  WalletCurrenciesListView.swift
+//  CHWalletCurrenciesListPresenter.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 3/17/18.
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
-import UIKit.UITableView
+import UIKit
+import Alamofire
+import SwiftyJSON
 
-class WalletCurrenciesListView: UIView {
-    var tableView: UITableView = {
-        let tv = UITableView()
-        tv.allowsSelection = false
-        tv.backgroundColor = .clear
-        tv.separatorStyle = .none
-        tv.showsVerticalScrollIndicator = false
-        tv.dragInteractionEnabled = true
-        tv.tableFooterView = UIView()
-        return tv
-    }()
+//// MARK: IWalletNetworkWorkerDelegate
+//extension WalletCurrenciesListInteractor: IWalletNetworkWorkerDelegate {
+//    func onDidLoadWalletSuccessful(_ w: ExmoWallet) {
+//        guard let cachedWallet = dbManager.object(type: ExmoUserObject.self, key: "")?.wallet else {
+//            return
+//        }
+//        dbManager.performTransaction {
+//            cachedWallet.balances.forEach({
+//                cachedCurrency in
+//                guard let currency = w.balances.first(where: { $0.code == cachedCurrency.code }) else { return }
+//                currency.isFavourite = cachedCurrency.isFavourite
+//                currency.orderId = cachedCurrency.orderId
+//            })
+//        }
+//
+//        var mutableWallet = w
+//        mutableWallet.refresh()
+//        output.onDidLoadWallet(mutableWallet)
+//    }
+//
+//    func onDidLoadWalletFail(messageError: String?) {
+//        output.onDidLoadWallet(ExmoWallet(id: 0, amountBTC: 0, amountUSD: 0, balances: [], favBalances: [], dislikedBalances: []))
+//        print(messageError ?? "Undefined error")
+//    }
+//}
+
+////////////
+final class CHWalletCurrenciesListPresenter: NSObject {
     
-    var wallet: ExmoWallet?
-    private var currencies: [Int: [ExmoWalletCurrency]] = [:]
-    private let cellId = "cellId"
-    private var isSearching = false
+    fileprivate let tableView: UITableView
+    fileprivate let exmoAPI: CHExmoAPI
+    fileprivate let dbManager: OperationsDatabaseProtocol
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    fileprivate(set) var wallet: ExmoWallet?
+    fileprivate var currencies: [Int: [ExmoWalletCurrency]] = [:]
+    fileprivate var isSearching = false
+    
+    init(tableView: UITableView, exmoAPI: CHExmoAPI, dbManager: OperationsDatabaseProtocol) {
+        self.tableView = tableView
+        self.exmoAPI   = exmoAPI
+        self.dbManager = dbManager
+        
+        super.init()
         
         setupTableView()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder aDecoder: NSCoder) hasn't implementation of")
+    func saveToCache(wallet: ExmoWallet) {
+        print("wallet was saved to cache")
+        print(wallet.favBalances)
+        dbManager.add(data: wallet.managedObject(), update: true)
     }
+    
 }
 
-extension WalletCurrenciesListView {
+// MARK: - Setup
+
+private extension CHWalletCurrenciesListPresenter {
+    
     func setupTableView() {
-        addSubview(tableView)
-        tableView.fillSuperview()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.dragDelegate = self
         tableView.dropDelegate = self
-        tableView.register(WalletCurrenciesListTableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        tableView.register(nibForHeaderFooter: CHWalletCurrenciesListHeader.self)
+        tableView.register(class: CHWalletCurrenciesListCell.self)
     }
+    
+}
+
+// MARK: - Database
+
+extension CHWalletCurrenciesListPresenter {
+    
+    func fetchWallet() {
+        if let walletObj = dbManager.object(type: ExmoWalletObject.self, key: "") {
+            wallet = ExmoWallet(managedObject: walletObj)
+            invalidate()
+        }
+    }
+    
+}
+
+
+// MARK: -
+extension CHWalletCurrenciesListPresenter {
     
     func filterBy(text: String) {
         isSearching = !text.isEmpty
@@ -60,18 +110,18 @@ extension WalletCurrenciesListView {
     }
     
     func invalidate() {
-        guard let localWallet = wallet else { return }
+        guard let wallet = wallet else { return }
 
         currencies.removeAll()
         
         var index = 0
-        if localWallet.favBalances.count > 0 {
-            currencies[index] = localWallet.favBalances
+        if wallet.favBalances.count > 0 {
+            currencies[0] = wallet.favBalances
             index += 1
         }
 
-        if localWallet.dislikedBalances.count > 0 {
-            currencies[index] = localWallet.dislikedBalances
+        if wallet.dislikedBalances.count > 0 {
+            currencies[index] = wallet.dislikedBalances
         }
         
         if !isSearching {
@@ -95,10 +145,13 @@ extension WalletCurrenciesListView {
             }
         }
     }
+    
 }
 
-// MARK: UITableViewDataSource
-extension WalletCurrenciesListView: UITableViewDataSource  {
+// MARK: - UITableViewDataSource
+
+extension CHWalletCurrenciesListPresenter: UITableViewDataSource  {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return isSearching ? 1 : currencies.count
     }
@@ -108,13 +161,13 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        let cell = tableView.dequeue(class: CHWalletCurrenciesListCell.self, for: indexPath)
         return cell
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let currency = currencies[indexPath.section]?[indexPath.item],
-              let wclCell = cell as? WalletCurrenciesListTableViewCell else {
+              let wclCell = cell as? CHWalletCurrenciesListCell else {
             return
         }
         
@@ -162,10 +215,13 @@ extension WalletCurrenciesListView: UITableViewDataSource  {
         syncWalletWithCurrencies()
         tableView.reloadData()
     }
+    
 }
 
-// MARK: UITableViewDelegate
-extension WalletCurrenciesListView: UITableViewDelegate  {
+// MARK: - UITableViewDelegate
+
+extension CHWalletCurrenciesListPresenter: UITableViewDelegate  {
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         var title = ""
         if isSearching {
@@ -175,8 +231,8 @@ extension WalletCurrenciesListView: UITableViewDelegate  {
             title = isFirstSectionFav && section == 0 ? "FAVOURITE" : "UNUSED"
         }
         
-        let headerView = WalletCurrenciesListTableHeaderCell()
-        headerView.title = title
+        let headerView = tableView.dequeueReusableHeaderFooterView(withClass: CHWalletCurrenciesListHeader.self)
+        headerView.text = title
         return headerView
     }
     
@@ -191,10 +247,13 @@ extension WalletCurrenciesListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
+    
 }
 
-// MARK: UITableViewDragDelegate
-extension WalletCurrenciesListView: UITableViewDragDelegate {
+// MARK: - UITableViewDragDelegate
+
+extension CHWalletCurrenciesListPresenter: UITableViewDragDelegate {
+    
     func tableView(_ tableView: UITableView, itemsForBeginning session: UIDragSession, at indexPath: IndexPath) -> [UIDragItem] {
         guard let item = currencies[indexPath.section]?[indexPath.row] else { return [] }
         let itemProvider = NSItemProvider(object: item as NSItemProviderWriting)
@@ -209,11 +268,15 @@ extension WalletCurrenciesListView: UITableViewDragDelegate {
         }
         return proposedDestinationIndexPath
     }
+    
 }
 
-// MARK: UITableViewDropDelegate
-extension WalletCurrenciesListView: UITableViewDropDelegate {
+// MARK: - UITableViewDropDelegate
+
+extension CHWalletCurrenciesListPresenter: UITableViewDropDelegate {
+    
     func tableView(_ tableView: UITableView, performDropWith coordinator: UITableViewDropCoordinator) {
         // do something
     }
+    
 }
