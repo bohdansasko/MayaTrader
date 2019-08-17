@@ -57,7 +57,7 @@ extension TickerCurrencyModel: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        let transform = StringToDoubleTransform()
+        let transform = StringToDoubleTransform.shared
         
         buyPrice <- (map["buy_price"], transform)
         sellPrice <- (map["sell_price"], transform)

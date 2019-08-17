@@ -35,8 +35,9 @@ final class TransformOrderType: TransformType {
 final class StringToDoubleTransform: TransformType {
     typealias Object = Double
     typealias JSON = String
-    
-    
+
+    static let shared = StringToDoubleTransform()
+
     func transformFromJSON(_ value: Any?) -> Double? {
         guard let strValue = value as? String else { return nil }
         return Double(strValue)

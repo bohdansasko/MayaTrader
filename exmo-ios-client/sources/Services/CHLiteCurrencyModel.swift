@@ -31,8 +31,8 @@ extension CHLiteCurrencyModel: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        let strToDoubleTransform = StringToDoubleTransform()
-        
+        let strToDoubleTransform = StringToDoubleTransform.shared
+
         name      <-  map["currency_name"]
         buyPrice  <- (map["buy_price"] , strToDoubleTransform)
         sellPrice <- (map["sell_price"], strToDoubleTransform)
