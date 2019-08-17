@@ -1088,8 +1088,8 @@
 			children = (
 				20518DA422D9F93100334133 /* CHWatchlist.storyboard */,
 				208FE09222DB3DB70014BCE5 /* Cards */,
-				208FE09322DB3E9D0014BCE5 /* Exchanges */,
-				208FE09F22DB71D50014BCE5 /* SearchCurrenciesResults */,
+				208FE09322DB3E9D0014BCE5 /* StockExchanges */,
+				208FE09F22DB71D50014BCE5 /* SearchCurrencies */,
 				3DDB3E27DAEC8977E4D43CE0 /* oldCurrenciesGroups */,
 			);
 			path = Watchlist;
@@ -1395,7 +1395,7 @@
 			path = Cards;
 			sourceTree = "<group>";
 		};
-		208FE09322DB3E9D0014BCE5 /* Exchanges */ = {
+		208FE09322DB3E9D0014BCE5 /* StockExchanges */ = {
 			isa = PBXGroup;
 			children = (
 				208FE09A22DB48080014BCE5 /* Cell */,
@@ -1405,7 +1405,7 @@
 				208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */,
 				208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */,
 			);
-			path = Exchanges;
+			path = StockExchanges;
 			sourceTree = "<group>";
 		};
 		208FE09A22DB48080014BCE5 /* Cell */ = {
@@ -1417,7 +1417,7 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		208FE09F22DB71D50014BCE5 /* SearchCurrenciesResults */ = {
+		208FE09F22DB71D50014BCE5 /* SearchCurrencies */ = {
 			isa = PBXGroup;
 			children = (
 				2005E2A522E4FA0900B1F677 /* Cell */,
@@ -1425,7 +1425,7 @@
 				208FE0A022DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift */,
 				208FE0A122DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib */,
 			);
-			path = SearchCurrenciesResults;
+			path = SearchCurrencies;
 			sourceTree = "<group>";
 		};
 		208FE0AA22DB7B7A0014BCE5 /* Base */ = {
