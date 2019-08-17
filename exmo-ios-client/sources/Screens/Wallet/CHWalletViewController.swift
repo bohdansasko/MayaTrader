@@ -50,7 +50,6 @@ private extension CHWalletViewController {
     
     func setupNavigationBar() {
         navigationItem.title = "TAB_WALLET".localized
-        setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
     }
     
     func setupPresenter() {
@@ -115,11 +114,17 @@ private extension CHWalletViewController {
 extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
     
     func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?) {
-        contentView.isWalletVisible = wallet != nil
-        guard let wallet = wallet else {
-            return
+        let isWalletExist = wallet != nil
+        contentView.isWalletVisible = isWalletExist
+        
+        if isWalletExist {
+            contentView.set(walletForBalanceView: wallet!)
+            if navigationItem.rightBarButtonItem == nil {
+                setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
+            }
+        } else {
+            navigationItem.rightBarButtonItem = nil
         }
-        contentView.set(walletForBalanceView: wallet)
     }
     
 }
