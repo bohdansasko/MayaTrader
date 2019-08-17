@@ -9,10 +9,14 @@
 import UIKit
 
 protocol CHWatchlistPresenterDelegate: class {
+    func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [WatchlistCurrency])
     func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: WatchlistCurrency)
 }
 
 final class CHWatchlistPresenter: NSObject {
+    
+    // MARK: - Private properties
+    
     fileprivate enum Constants {
         static var spaceFromLeftOrRight: CGFloat { return 10 }
         static var minSpaceForSection  : CGFloat { return 10 }
@@ -22,7 +26,11 @@ final class CHWatchlistPresenter: NSObject {
     fileprivate var dataSource    : CHWatchlistDataSource
     fileprivate var api           : ITickerNetworkWorker!
     
+    // MARK: - Public properties
+    
     weak var delegate: CHWatchlistPresenterDelegate?
+    
+    // MARK: - View lifecycle
     
     init(collectionView: UICollectionView, dataSource: CHWatchlistDataSource, api: ITickerNetworkWorker) {
         self.collectionView = collectionView
@@ -40,6 +48,8 @@ final class CHWatchlistPresenter: NSObject {
  
 }
 
+// MARK: - Public methods
+
 extension CHWatchlistPresenter {
     
     func fetchItems() {
@@ -47,6 +57,8 @@ extension CHWatchlistPresenter {
     }
     
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
 
 extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
     
@@ -75,16 +87,19 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
     
 }
 
+// MARK: - WatchlistCardCellDelegate
+
 extension CHWatchlistPresenter: WatchlistCardCellDelegate {
     
     func watchlistCardCell(_ cell: WatchlistCardCell, didTouchFavouriteAt indexPath: IndexPath) {
-        
+        assertionFailure("required implementation")
     }
 
 }
 
 
-// MARK: ITickerNetworkWorkerDelegate
+// MARK: - ITickerNetworkWorkerDelegate
+
 extension CHWatchlistPresenter: ITickerNetworkWorkerDelegate {
     
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {

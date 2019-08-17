@@ -70,6 +70,10 @@ private extension CHWatchlistViewController {
 
 extension CHWatchlistViewController: CHWatchlistPresenterDelegate {
     
+    func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [WatchlistCurrency]) {
+        contentView.isTutorialStubVisible = currencies.isEmpty
+    }
+    
     func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: WatchlistCurrency) {
         performSegue(withIdentifier: Segues.currencyDetails.rawValue, sender: currency)
     }
