@@ -57,10 +57,7 @@ extension TickerCurrencyModel: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        let transform = TransformOf<Double, String>(
-            fromJSON: { $0 == nil ? nil : Double($0!) },
-            toJSON: { $0 == nil ? nil : String($0!) }
-        )
+        let transform = StringToDoubleTransform()
         
         buyPrice <- (map["buy_price"], transform)
         sellPrice <- (map["sell_price"], transform)
