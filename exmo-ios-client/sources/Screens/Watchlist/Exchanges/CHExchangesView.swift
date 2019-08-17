@@ -32,6 +32,12 @@ final class CHExchangesView: CHBaseView {
         return searchController
     }()
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        setupUI()
+    }
+    
 }
 
 // MARK: - Setup methods
