@@ -62,6 +62,14 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
         presenter.fetchAlerts()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueId = Segues(rawValue: segue.identifier!)!
+        switch segueId {
+        case .createAlert:
+            prepareAlertUpdateViewController(for: segue, sender: sender)
+        }
+    }
+    
 }
 
 // MARK: - Setup
@@ -71,6 +79,7 @@ private extension CHAlertsViewController {
     func setupUI() {
         setupNavigation()
         presenter = CHAlertsPresenter(tableView: contentView.tableView, api: self.api)
+        presenter.delegate = self
     }
 
     func setupNavigation() {
@@ -78,6 +87,16 @@ private extension CHAlertsViewController {
         setupLeftBarButtonItem (image: #imageLiteral(resourseName: "icNavbarTrash"), action: #selector(actRemoveAlerts(_:)))
         setupRightBarButtonItem(image: #imageLiteral(resourseName: "icNavbarPlus"), action: #selector(actCreateAlert(_:)))
     }
+}
+
+// MARK: - Prepare for segue
+
+private extension CHAlertsViewController {
+    
+    func prepareAlertUpdateViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc =  segue.destination as! CHCreateAlertViewController
+    }
+    
 }
 
 // MARK: - Actions
@@ -92,6 +111,18 @@ private extension CHAlertsViewController {
     @objc func actRemoveAlerts(_ sender: Any) {
         print(#function)
         deleteAlertsPickerView.showPickerViewWithDarkening()
+    }
+    
+}
+
+extension CHAlertsViewController: CHAlertsPresenterDelegate {
+    
+    func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert) {
+        performSegue(withIdentifier: Segues.createAlert.rawValue, sender: alert)
+    }
+    
+    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsDidLoaded alerts: [Alert]) {
+        navigationItem.leftBarButtonItem!.isEnabled = !alerts.isEmpty
     }
     
 }

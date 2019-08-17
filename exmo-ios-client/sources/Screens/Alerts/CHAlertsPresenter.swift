@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 protocol CHAlertsPresenterDelegate: class {
+    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsDidLoaded alerts: [Alert])
     func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert)
 }
 
@@ -59,11 +60,14 @@ extension CHAlertsPresenter {
     
     func fetchAlerts() {
         let request = api.rx.getAlerts()
-        request.subscribe(onSuccess: { [unowned self] alerts in
+        request.subscribe(onSuccess: { [weak self] alerts in
+            guard let `self` = self else { return }
             self.alerts.items = alerts.sorted(by: { $0.dateCreated > $1.dateCreated })
             self.tableView.reloadData()
+            self.delegate?.alertPresenter(self, onAlertsDidLoaded: alerts)
         }, onError: { err in
             print(err.localizedDescription)
+            self.delegate?.alertPresenter(self, onAlertsDidLoaded: [])
         }).disposed(by: disposeBag)
     }
     
@@ -79,10 +83,10 @@ extension CHAlertsPresenter {
             alertsForDelete = alerts.filter({ $0.status == .inactive })
         }
         let request = api.rx.deleteAlerts(alertsForDelete)
-        request.subscribe(onSuccess: {
-            print("alerts deleted")
+        request.subscribe(onSuccess: { [unowned self] in
+            self.fetchAlerts()
         }, onError: { err in
-            print(err)
+            self.fetchAlerts()
         }).disposed(by: disposeBag)
     }
     
@@ -109,16 +113,17 @@ extension CHAlertsPresenter {
         delegate?.alertPresenter(self, onEdit: alert)
     }
     
-    func removeAlert(by indexPath: IndexPath) {
+    func removeAlert(by indexPath: IndexPath, _ completion: @escaping (Bool) -> Void) {
         guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
             print("didSelectRowAt: item doesn't exists")
             return
         }
         let request = api.rx.deleteAlert(alert)
         request.subscribe(onSuccess: {
-            print("alert deleted")
+            completion(true)
         }, onError: { err in
-            print(err)
+            print(err.localizedDescription)
+            completion(false)
         }).disposed(by: disposeBag)
     }
     
@@ -205,8 +210,9 @@ extension CHAlertsPresenter: UITableViewDelegate {
         let removeAction = UIContextualAction(style: .destructive, title: "", handler: {
             [unowned self] _, _, completionHandler in
             print("alert: remove action clicked: row \(indexPath.section)")
-            self.removeAlert(by: indexPath)
-            completionHandler(true)
+            self.removeAlert(by: indexPath) { success in
+                completionHandler(success)
+            }
         })
         removeAction.backgroundColor = UIColor.orangePink
         removeAction.image = #imageLiteral(resourceName: "icNavbarTrash")
