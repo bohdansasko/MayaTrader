@@ -114,7 +114,11 @@ private extension CHWalletViewController {
 
 extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
     
-    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet) {
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?) {
+        contentView.isWalletVisible = wallet != nil
+        guard let wallet = wallet else {
+            return
+        }
         contentView.set(walletForBalanceView: wallet)
     }
     

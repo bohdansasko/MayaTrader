@@ -8,30 +8,25 @@
 
 import UIKit
 
-final class CHWalletView: UIView {
-    @IBOutlet fileprivate weak var balanceContainer: UIView!
+final class CHWalletView: CHBaseTabView {
+    @IBOutlet fileprivate      weak var balanceContainer: UIView!
     @IBOutlet fileprivate(set) weak var currenciesTableView: UITableView!
               fileprivate      lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
     
-    fileprivate let tutorialImg: TutorialImage = {
-        let img = TutorialImage()
-        img.imageName = "imgTutorialWallet"
-        img.contentMode = .scaleAspectFit
-        return img
-    }()
+    override var tutorialImageName: String { return "imgTutorialWallet" }
 
+    var isWalletVisible: Bool = false {
+        didSet {
+            balanceContainer.isHidden = !isWalletVisible
+            currenciesTableView.isHidden = balanceContainer.isHidden
+            isTutorialStubVisible = balanceContainer.isHidden
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
     }
-    
-//    func showPlaceholderIfRequired() {
-//        guard let lWallet = wallet, lWallet.favBalances.isEmpty == false else {
-//            tutorialImg.show()
-//            return
-//        }
-//        tutorialImg.hide()
-//    }
     
 }
 
@@ -45,13 +40,8 @@ private extension CHWalletView {
         balanceView.snp.makeConstraints{ $0.edges.equalToSuperview() }
         
         currenciesTableView.tableFooterView = UIView()
-    }
-    
-    func setupTutorialImg() {
-        addSubview(tutorialImg)
-        tutorialImg.snp.makeConstraints{
-            $0.edges.equalToSuperview().inset(UIEdgeInsets(top: 45, left: 0, bottom: 20, right: 0))
-        }
+        
+        isWalletVisible = false
     }
     
 }

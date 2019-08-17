@@ -16,7 +16,7 @@ class WalletSegueBlock: SegueBlock {
 }
 
 protocol CHWalletCurrenciesPresenterDelegate: class {
-    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet)
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?)
 }
 
 final class CHWalletCurrenciesPresenter: NSObject {
@@ -33,8 +33,8 @@ final class CHWalletCurrenciesPresenter: NSObject {
         didSet {
             if let w = wallet {
                 tableView.isScrollEnabled = w.favBalances.count > 0
-                delegate?.walletCurrenciesListPresenter(self, onWalletRefreshed: self.wallet!)
             }
+            delegate?.walletCurrenciesListPresenter(self, onWalletRefreshed: self.wallet)
             tableView.reloadData()
         }
     }
