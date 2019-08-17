@@ -19,6 +19,7 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
     
     fileprivate enum Segues: String {
         case createAlert = "CreateAlert"
+        case editAlert   = "EditAlert"
     }
     
     fileprivate var presenter: CHAlertsPresenter!
@@ -66,6 +67,8 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
         let segueId = Segues(rawValue: segue.identifier!)!
         switch segueId {
         case .createAlert:
+            break
+        case .editAlert:
             prepareAlertUpdateViewController(for: segue, sender: sender)
         }
     }
@@ -84,7 +87,6 @@ private extension CHAlertsViewController {
 
     func setupNavigation() {
         navigationItem.title = "TAB_ALERTS".localized
-        setupLeftBarButtonItem (image: #imageLiteral(resourseName: "icNavbarTrash"), action: #selector(actRemoveAlerts(_:)))
         setupRightBarButtonItem(image: #imageLiteral(resourseName: "icNavbarPlus"), action: #selector(actCreateAlert(_:)))
     }
 }
@@ -94,7 +96,10 @@ private extension CHAlertsViewController {
 private extension CHAlertsViewController {
     
     func prepareAlertUpdateViewController(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc =  segue.destination as! CHCreateAlertViewController
+        let alert = sender as! Alert
+        let navControl = segue.destination as! UINavigationController
+        let vc =  navControl.topViewController as! CreateAlertViewController
+        vc.editAlert = alert
     }
     
 }
@@ -118,11 +123,15 @@ private extension CHAlertsViewController {
 extension CHAlertsViewController: CHAlertsPresenterDelegate {
     
     func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert) {
-        performSegue(withIdentifier: Segues.createAlert.rawValue, sender: alert)
+        performSegue(withIdentifier: Segues.editAlert.rawValue, sender: alert)
     }
     
     func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsDidLoaded alerts: [Alert]) {
-        navigationItem.leftBarButtonItem!.isEnabled = !alerts.isEmpty
+        if alerts.isEmpty {
+            navigationItem.leftBarButtonItem = nil
+        } else if navigationItem.leftBarButtonItem == nil {
+            setupLeftBarButtonItem (image: #imageLiteral(resourseName: "icNavbarTrash"), action: #selector(actRemoveAlerts(_:)))
+        }
     }
     
 }

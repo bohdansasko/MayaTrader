@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AlertViewCell: ExmoTableViewCell {
+final class AlertViewCell: ExmoTableViewCell {
     var labelTimeCreate: UILabel = {
         let label = OrderViewCell.getTitleLabel(text: "quantity")
         label.text = "29.12.1972 06:02"
@@ -101,15 +101,19 @@ class AlertViewCell: ExmoTableViewCell {
     }
 }
 
-extension AlertViewCell {
+private extension AlertViewCell {
+    
     func onItemDidSet() {
-        guard let item = item else { return }
+        guard let item = item else {
+            fatalError("required")
+        }
+        
         labelTimeCreate.text = item.formatedDate()
         if AppDelegate.isIPhone(model: .five) {
             labelTimeCreate.widthAnchor.constraint(equalToConstant: 70).isActive = true
         }
 
-        labelAlertStatus.text = item.status.description()
+        labelAlertStatus.text = item.status.name
         updateAlertStatusBackground()
 
         currencyLabel.text = Utils.getDisplayCurrencyPair(rawCurrencyPairName: item.currencyCode)
@@ -125,7 +129,10 @@ extension AlertViewCell {
     }
 
     func updateAlertStatusBackground() {
-        guard let item = item else { return }
+        guard let item = item else {
+            return
+        }
         labelAlertStatus.backgroundColor = item.status == AlertStatus.active ? .greenBlue : .steel
     }
+    
 }

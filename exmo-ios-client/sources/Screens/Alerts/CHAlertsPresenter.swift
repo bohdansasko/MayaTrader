@@ -27,7 +27,6 @@ final class CHAlertsPresenter: NSObject {
     
     fileprivate var alerts = AlertsModel()
     fileprivate var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
-    fileprivate let kCellId = "alertCellId"
     
     weak var delegate: CHAlertsPresenterDelegate?
     
@@ -65,7 +64,8 @@ extension CHAlertsPresenter {
             self.alerts.items = alerts.sorted(by: { $0.dateCreated > $1.dateCreated })
             self.tableView.reloadData()
             self.delegate?.alertPresenter(self, onAlertsDidLoaded: alerts)
-        }, onError: { err in
+        }, onError: { [weak self] err in
+            guard let `self` = self else { return }
             print(err.localizedDescription)
             self.delegate?.alertPresenter(self, onAlertsDidLoaded: [])
         }).disposed(by: disposeBag)
@@ -98,10 +98,12 @@ extension CHAlertsPresenter {
         alert.status = newStatus
         
         let request = api.rx.updateAlert(alert)
-        request.subscribe(onSuccess: {
+        request.subscribe(onSuccess: { [unowned self] in
             print("alert status updated")
+            let cell = self.tableView.cellForRow(at: indexPath) as! AlertViewCell
+            cell.item = alert
         }, onError: { err in
-            print(err)
+            print(err.localizedDescription)
         }).disposed(by: disposeBag)
     }
     

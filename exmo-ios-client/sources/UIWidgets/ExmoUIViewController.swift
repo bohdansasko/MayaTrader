@@ -271,7 +271,7 @@ extension ExmoUIViewController: GADBannerViewDelegate {
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print(error)
+        print(error.localizedDescription)
         hideAdsView()
     }
     

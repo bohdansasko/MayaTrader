@@ -13,7 +13,7 @@ enum AlertStatus: Int {
     case active = 0
     case inactive = 1
 
-    func description() -> String {
+    var name: String {
         switch self {
         case .active:
             return "Active"

@@ -17,6 +17,7 @@
                     <navigationItem key="navigationItem" id="e7m-Ql-6td"/>
                     <connections>
                         <segue destination="nUS-Ln-WdP" kind="presentation" identifier="CreateAlert" id="YAx-OJ-HbO"/>
+                        <segue destination="nUS-Ln-WdP" kind="presentation" identifier="EditAlert" id="ml7-g4-NaW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccu-Dh-F3r" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -88,4 +89,7 @@
             <color red="0.012000000104308128" green="0.0040000001899898052" blue="0.039000000804662704" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ml7-g4-NaW"/>
+    </inferredMetricsTieBreakers>
 </document>
