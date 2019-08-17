@@ -31,10 +31,12 @@ extension CHLiteCurrencyModel: Mappable {
     }
     
     mutating func mapping(map: Map) {
+        let strToDoubleTransform = StringToDoubleTransform()
+        
         name      <-  map["currency_name"]
-        buyPrice  <- (map["buy_price"], StringToDoubleTransform())
-        sellPrice <- (map["sell_price"], StringToDoubleTransform())
-        volume    <- (map["vol"], StringToDoubleTransform())
+        buyPrice  <- (map["buy_price"] , strToDoubleTransform)
+        sellPrice <- (map["sell_price"], strToDoubleTransform)
+        volume    <- (map["vol"]       , strToDoubleTransform)
     }
     
 }
