@@ -848,14 +848,6 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		200D52A622DA079A0009C07C /* Flow */ = {
-			isa = PBXGroup;
-			children = (
-				20518DA622D9F9EA00334133 /* CHOrders.storyboard */,
-			);
-			path = Flow;
-			sourceTree = "<group>";
-		};
 		200D52B722DA07F20009C07C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1145,7 +1137,7 @@
 		20518DA322D9F8E700334133 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				200D52A622DA079A0009C07C /* Flow */,
+				20518DA622D9F9EA00334133 /* CHOrders.storyboard */,
 				200D52C122DA1D1A0009C07C /* CHOrdersView.swift */,
 				200D52A722DA07B20009C07C /* CHOrdersViewController.swift */,
 				200D52A822DA07B20009C07C /* CHOrdersViewController.xib */,

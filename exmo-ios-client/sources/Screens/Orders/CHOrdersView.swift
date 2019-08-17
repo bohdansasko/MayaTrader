@@ -8,10 +8,13 @@
 
 import UIKit
 
-final class CHOrdersView: UIView {
+final class CHOrdersView: CHBaseTabView {
+    
+    override var tutorialImageName: String { return "imgTutorialOrder" }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupUI()
     }
     
 }
@@ -21,7 +24,7 @@ final class CHOrdersView: UIView {
 extension CHOrdersView {
     
     func setupUI() {
-        
+        isTutorialStubVisible = true
     }
     
 }
