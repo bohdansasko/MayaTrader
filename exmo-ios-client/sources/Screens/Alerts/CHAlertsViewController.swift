@@ -126,12 +126,13 @@ extension CHAlertsViewController: CHAlertsPresenterDelegate {
         performSegue(withIdentifier: Segues.editAlert.rawValue, sender: alert)
     }
     
-    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsDidLoaded alerts: [Alert]) {
+    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsListUpdated alerts: [Alert]) {
         if alerts.isEmpty {
             navigationItem.leftBarButtonItem = nil
         } else if navigationItem.leftBarButtonItem == nil {
             setupLeftBarButtonItem (image: #imageLiteral(resourseName: "icNavbarTrash"), action: #selector(actRemoveAlerts(_:)))
         }
+        contentView.setVisibleTutorialView(isVisible: alerts.isEmpty)
     }
     
 }

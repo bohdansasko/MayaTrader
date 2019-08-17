@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 protocol CHAlertsPresenterDelegate: class {
-    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsDidLoaded alerts: [Alert])
+    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsListUpdated alerts: [Alert])
     func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert)
 }
 
@@ -63,11 +63,11 @@ extension CHAlertsPresenter {
             guard let `self` = self else { return }
             self.alerts.items = alerts.sorted(by: { $0.dateCreated > $1.dateCreated })
             self.tableView.reloadData()
-            self.delegate?.alertPresenter(self, onAlertsDidLoaded: alerts)
+            self.delegate?.alertPresenter(self, onAlertsListUpdated: alerts)
         }, onError: { [weak self] err in
             guard let `self` = self else { return }
             print(err.localizedDescription)
-            self.delegate?.alertPresenter(self, onAlertsDidLoaded: [])
+            self.delegate?.alertPresenter(self, onAlertsListUpdated: [])
         }).disposed(by: disposeBag)
     }
     
@@ -86,7 +86,7 @@ extension CHAlertsPresenter {
         request.subscribe(onSuccess: { [unowned self] in
             self.fetchAlerts()
         }, onError: { err in
-            self.fetchAlerts()
+            print(err.localizedDescription)
         }).disposed(by: disposeBag)
     }
     
@@ -121,7 +121,11 @@ extension CHAlertsPresenter {
             return
         }
         let request = api.rx.deleteAlert(alert)
-        request.subscribe(onSuccess: {
+        request.subscribe(onSuccess: { [weak self] in
+            guard let `self` = self else { return }
+            print("alert has been deleted")
+            self.alerts.removeItem(byId: alert.id)
+            self.delegate?.alertPresenter(self, onAlertsListUpdated: self.alerts.items)
             completion(true)
         }, onError: { err in
             print(err.localizedDescription)
