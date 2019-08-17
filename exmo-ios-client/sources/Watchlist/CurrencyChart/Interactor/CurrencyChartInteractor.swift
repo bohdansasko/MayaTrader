@@ -47,7 +47,7 @@ extension WatchlistCurrencyChartInteractor {
         NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
-                name: IAPNotification.updateSubscription.name)
+                name: IAPNotification.updateSubscription)
     }
 
     func unsubscribeFromNotifications() {

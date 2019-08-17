@@ -46,7 +46,7 @@ extension CHExmoAuthorizationService {
         ExmoApiRequestsBuilder.shared.clearAuthorizationData()
         Defaults.setUserLoggedIn(false)
         dbManager.clearAllData()
-        NotificationCenter.default.post(name: AuthorizationNotification.userSignOut.name)
+        NotificationCenter.default.post(name: AuthorizationNotification.userSignOut)
     }
     
 }
@@ -70,11 +70,11 @@ extension CHExmoAuthorizationService: ILoginNetworkWorkerDelegate {
         
         ExmoApiRequestsBuilder.shared.setAuthorizationData(apiKey: user.qr!.key, secretKey: user.qr!.secret)
         Defaults.setUserLoggedIn(true)
-        NotificationCenter.default.post(name: AuthorizationNotification.userSignIn.name)
+        NotificationCenter.default.post(name: AuthorizationNotification.userSignIn)
     }
     
     func onDidLoadUserFail(errorMessage: String?) {
-        NotificationCenter.default.post(name: AuthorizationNotification.userFailSignIn.name,
+        NotificationCenter.default.post(name: AuthorizationNotification.userFailSignIn,
                                         userInfo: [CHUserInfoKeys.reason.rawValue: errorMessage ?? "Undefined error"])
     }
     

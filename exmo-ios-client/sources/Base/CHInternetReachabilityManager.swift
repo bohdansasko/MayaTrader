@@ -43,9 +43,9 @@ private extension CHInternetReachabilityManager {
     func handleStatus(with status: NetworkReachabilityManager.NetworkReachabilityStatus) {
         switch status {
         case .notReachable:
-            NotificationCenter.default.post(name: InternetReachabilityNotification.reachable.name)
+            NotificationCenter.default.post(name: InternetReachabilityNotification.reachable)
         case .reachable(_), .unknown:
-            NotificationCenter.default.post(name: InternetReachabilityNotification.notReachable.name)
+            NotificationCenter.default.post(name: InternetReachabilityNotification.notReachable)
         }
     }
     

@@ -117,11 +117,11 @@ extension OrdersInteractor {
         NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onProductSubscriptionActive(_ :)),
-                name: IAPNotification.updateSubscription.name)
+                name: IAPNotification.updateSubscription)
         NotificationCenter.default.addObserver(
                 self,
                 selector: #selector(onPurchaseError(_ :)),
-                name: IAPNotification.purchaseError.name)
+                name: IAPNotification.purchaseError)
     }
 
     func unsubscribeFromNotifications() {

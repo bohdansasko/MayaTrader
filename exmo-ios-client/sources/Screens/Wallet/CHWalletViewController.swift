@@ -63,13 +63,13 @@ private extension CHWalletViewController {
     func setupNotificationsSubscription() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleNotificationUserAuthorization(_:)),
-                                               name: AuthorizationNotification.userFailSignIn.name)
+                                               name: AuthorizationNotification.userFailSignIn)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleNotificationUserAuthorization(_:)),
-                                               name: AuthorizationNotification.userSignIn.name)
+                                               name: AuthorizationNotification.userSignIn)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleNotificationUserAuthorization(_:)),
-                                               name: AuthorizationNotification.userSignOut.name)
+                                               name: AuthorizationNotification.userSignOut)
     }
     
 }

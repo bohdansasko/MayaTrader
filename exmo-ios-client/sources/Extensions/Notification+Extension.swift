@@ -13,11 +13,13 @@ protocol NotificationName {
 }
 
 extension RawRepresentable where RawValue == String, Self: NotificationName {
+    
     var name: Notification.Name {
         get {
             return Notification.Name(rawValue: self.rawValue)
         }
     }
+    
 }
 
 enum AuthorizationNotification: String, NotificationName {
@@ -70,12 +72,12 @@ enum CHUserInfoKeys: String {
 
 extension NotificationCenter {
     
-    func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NSNotification.Name?) {
-        NotificationCenter.default.addObserver(observer, selector: aSelector, name: aName, object: nil)
+    func addObserver(_ observer: Any, selector aSelector: Selector, name aName: NotificationName) {
+        NotificationCenter.default.addObserver(observer, selector: aSelector, name: aName.name, object: nil)
     }
     
-    func post(name aName: NSNotification.Name, userInfo aUserInfo: [AnyHashable : Any]? = nil) {
-        NotificationCenter.default.post(name: aName, object: nil, userInfo: aUserInfo)
+    func post(name aName: NotificationName, userInfo aUserInfo: [AnyHashable : Any]? = nil) {
+        NotificationCenter.default.post(name: aName.name, object: nil, userInfo: aUserInfo)
     }
     
 }
