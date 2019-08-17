@@ -859,7 +859,6 @@
 		200D52B722DA07F20009C07C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
-				20518DAA22D9F9F600334133 /* CHAlerts.storyboard */,
 				37B74EDC1A931709BEED1181 /* CreateAlert */,
 			);
 			path = Flow;
@@ -1107,6 +1106,7 @@
 		20518DA022D9F8C600334133 /* Alerts */ = {
 			isa = PBXGroup;
 			children = (
+				20518DAA22D9F9F600334133 /* CHAlerts.storyboard */,
 				200D52B722DA07F20009C07C /* Flow */,
 				9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */,
 				200D52C522DA1DCF0009C07C /* CHAlertsView.swift */,

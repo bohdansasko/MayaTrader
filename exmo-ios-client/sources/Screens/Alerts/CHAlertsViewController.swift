@@ -132,7 +132,8 @@ extension CHAlertsViewController: CHAlertsPresenterDelegate {
         } else if navigationItem.leftBarButtonItem == nil {
             setupLeftBarButtonItem (image: #imageLiteral(resourseName: "icNavbarTrash"), action: #selector(actRemoveAlerts(_:)))
         }
-        contentView.setVisibleTutorialView(isVisible: alerts.isEmpty)
+        
+        contentView.isTutorialStubVisible = alerts.isEmpty
     }
     
 }

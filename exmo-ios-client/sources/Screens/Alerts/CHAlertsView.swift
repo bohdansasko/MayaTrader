@@ -8,16 +8,11 @@
 
 import UIKit
 
-final class CHAlertsView: UIView {
+final class CHAlertsView: CHBaseTabView {
     @IBOutlet fileprivate      weak var summaryAlertsLabel: UILabel!
     @IBOutlet fileprivate(set) weak var tableView         : UITableView!
     
-    fileprivate let tutorialImg: TutorialImage = {
-        let img = TutorialImage()
-        img.imageName = "imgTutorialAlert"
-        img.contentMode = .scaleAspectFit
-        return img
-    }()
+    override var tutorialImageName: String { return "imgTutorialAlert" }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,20 +39,6 @@ extension CHAlertsView {
     
     func set(summary text: String) {
         summaryAlertsLabel.text = text
-    }
-    
-    func setVisibleTutorialView(isVisible: Bool) {
-        if isVisible && tutorialImg.superview == nil {
-            addSubview(tutorialImg)
-            tutorialImg.snp.makeConstraints{
-                $0.centerX.centerY.equalToSuperview()
-            }
-        }
-        if isVisible {
-            tutorialImg.show()
-        } else {
-            tutorialImg.hide()
-        }
     }
     
 }

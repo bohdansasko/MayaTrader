@@ -9,11 +9,23 @@
 import UIKit
 
 final class CHWatchlistView: CHBaseView {
-    @IBOutlet weak var currenciesCollectionView: UICollectionView!
     
-    override func setupUI() {
+    @IBOutlet fileprivate(set) weak var currenciesCollectionView: UICollectionView!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupUI()
+    }
+
+}
+
+// MARK: - Setup methods
+
+extension CHWatchlistView {
+    
+    func setupUI() {
         self.currenciesCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         self.currenciesCollectionView.register(class: WatchlistCardCell.self)
     }
-
+    
 }

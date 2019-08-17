@@ -37,3 +37,8 @@
 
 "CURRENCY_BTC" = "BTC";
 "CURRENCY_USD" = "USD";
+
+"EXCHANGE" = "Exchange";
+"PAIR"     = "Pair";
+"PRICE"    = "Price";
+"VOLUME"   = "Volume 24h";

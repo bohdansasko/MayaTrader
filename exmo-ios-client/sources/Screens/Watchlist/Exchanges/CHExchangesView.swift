@@ -24,38 +24,24 @@ final class CHExchangesView: CHBaseView {
         searchController.searchBar.tintColor = .white
         searchController.searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .medium, fontSize: 14), textColor: .white)
         searchController.searchBar.sizeToFit()
-        searchController.searchBar.scopeButtonTitles = ["Exchange", "Pair", "Price", "Volume 24h"]
+        searchController.searchBar.scopeButtonTitles = ["EXCHANGE".localized,
+                                                        "PAIR".localized,
+                                                        "PRICE".localized,
+                                                        "VOLUME".localized]
         
         return searchController
     }()
-    
-    override func setupUI() {
-        setupCollectionView()
-        setupSearchController()
-    }
-    
-}
-
-
-// MARK: - Set methods
-
-extension CHExchangesView {
-    
-    func setList(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate) {
-        exchangesCollectionView.dataSource = dataSource
-        exchangesCollectionView.delegate = delegate
-    }
-    
-    func set(searchText text: String) {
-        searchController.searchBar.text = text
-        searchController.isActive = true
-    }
     
 }
 
 // MARK: - Setup methods
 
 private extension CHExchangesView {
+    
+    func setupUI() {
+        setupCollectionView()
+        setupSearchController()
+    }
     
     func setupCollectionView() {
         exchangesCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
@@ -70,6 +56,22 @@ private extension CHExchangesView {
         }
         backgroundViewTF.backgroundColor = .white
         backgroundViewTF.layer.cornerRadius = 6
+    }
+    
+}
+
+// MARK: - Set methods
+
+extension CHExchangesView {
+    
+    func setList(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate) {
+        exchangesCollectionView.dataSource = dataSource
+        exchangesCollectionView.delegate = delegate
+    }
+    
+    func set(searchText text: String) {
+        searchController.searchBar.text = text
+        searchController.isActive = true
     }
     
 }
