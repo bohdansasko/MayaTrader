@@ -20,9 +20,11 @@ final class CHOrdersPresenter: NSObject {
     fileprivate var tableView : UITableView
     fileprivate var exmoAPI   : CHExmoAPI
     fileprivate var dataSource: CHOrdersDataSource
-    
-    fileprivate(set) var selectedOrdersTab: OrdersType = .open
-    fileprivate var loadingRequest   : Disposable? {
+
+    fileprivate(set) var isAllOrdersDownloaded = false
+    fileprivate      var cachedCellsHeights: [IndexPath: CGFloat] = [:]
+    fileprivate(set) var selectedOrdersTab : OrdersType = .open
+    fileprivate      var loadingRequest    : Disposable? {
         didSet {
             oldValue?.dispose()
         }
@@ -51,51 +53,110 @@ final class CHOrdersPresenter: NSObject {
     deinit {
         loadingRequest = nil
     }
-    
-    func fetchOrders(for ordersTab: OrdersType) {
+
+}
+
+// MARK: - Public methods for manage order list
+
+extension CHOrdersPresenter {
+
+    func resetOrders(for ordersTab: OrdersType) {
+        isAllOrdersDownloaded = false
+        dataSource.set([])
+        tableView.reloadData()
+        fetchOrders(for: ordersTab, offset: 0)
+    }
+
+}
+
+// MARK: - Private methods for manage order list
+
+private extension CHOrdersPresenter {
+
+    func fetchOrders(for ordersTab: OrdersType, offset: Int) {
+        print("\(#function), \(ordersTab), offset = \(offset)")
         self.selectedOrdersTab = ordersTab
-        
+
         switch ordersTab {
         case .open:
             let request = exmoAPI.rx.getOpenOrders()
             loadingRequest = request.subscribe(onSuccess: { [weak self] orders in
                 guard let `self` = self else { return }
-                self.dataSource.set(orders)
-                self.tableView.reloadData()
+
+                self.isAllOrdersDownloaded = orders.isEmpty
+                if self.isAllOrdersDownloaded { return }
+
+                self.dataSource.append(orders)
+
+                let lastIndex = offset + orders.count
+                let sections = IndexSet(integersIn: offset..<lastIndex)
+
+                self.tableView.beginUpdates()
+                self.tableView.insertSections(sections, with: .none)
+                self.tableView.endUpdates()
+
                 self.delegate?.ordersPresenter(self, didLoadOrders: orders)
             }, onError: { err in
                 print(err.localizedDescription)
             })
         case .cancelled:
-            let request = exmoAPI.rx.getCancelledOrders(limit: 20, offset: 0)
+            let request = exmoAPI.rx.getCancelledOrders(limit: 20, offset: offset)
             loadingRequest = request.subscribe(onSuccess: { [weak self] orders in
                 guard let `self` = self else { return }
-                self.dataSource.set(orders)
-                self.tableView.reloadData()
+
+                self.isAllOrdersDownloaded = orders.isEmpty
+                if self.isAllOrdersDownloaded { return }
+
+                self.dataSource.append(orders)
+
+                let lastIndex = offset + orders.count
+                let sections = IndexSet(integersIn: offset..<lastIndex)
+
+                self.tableView.beginUpdates()
+                self.tableView.insertSections(sections, with: .none)
+                self.tableView.endUpdates()
+
                 self.delegate?.ordersPresenter(self, didLoadOrders: orders)
             }, onError: { err in
                 print(err.localizedDescription)
             })
         case .deals:
-            let request = exmoAPI.rx.getDealsOrders(limit: 20, offset: 0)
+            let request = exmoAPI.rx.getDealsOrders(limit: 20, offset: offset)
             loadingRequest = request.subscribe(onSuccess: { [weak self] orders in
                 guard let `self` = self else { return }
-                self.dataSource.set(orders)
-                self.tableView.reloadData()
+
+                self.isAllOrdersDownloaded = orders.isEmpty
+                if self.isAllOrdersDownloaded { return }
+
+                self.dataSource.append(orders)
+
+                let lastIndex = offset + orders.count
+                let sections = IndexSet(integersIn: offset..<lastIndex)
+
+                self.tableView.beginUpdates()
+                self.tableView.insertSections(sections, with: .none)
+                self.tableView.endUpdates()
+
                 self.delegate?.ordersPresenter(self, didLoadOrders: orders)
             }, onError: { err in
                 print(err.localizedDescription)
             })
         }
-    
     }
-    
+
+    func fetchOrdersIfNeeded(indexPath: IndexPath) {
+        let lastItemIdx = indexPath.section + 3
+        if lastItemIdx > dataSource.items.count {
+            fetchOrders(for: self.selectedOrdersTab, offset: dataSource.items.count)
+        }
+    }
+
 }
 
 // MARK: - Setup methods
 
 private extension CHOrdersPresenter {
-    
+
     func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = dataSource
@@ -131,29 +192,18 @@ extension CHOrdersPresenter: UITableViewDelegate {
         let order = dataSource.item(for: indexPath)
         let orderCell = cell as! OrderViewCell
         orderCell.order = order
+        
+        cachedCellsHeights[indexPath] = cell.frame.height
+        
+        fetchOrdersIfNeeded(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
     }
     
-    @available(iOS 11.0, *)
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        if !isDeleteActionsAllow {
-            return UISwipeActionsConfiguration(actions: [])
-        }
-        
-        let deleteAction = UIContextualAction(style: .destructive, title: "", handler: {
-            [unowned self] action, view, completionHandler  in
-//            self?.cancelOrderAt(indexPath: indexPath)
-            print("called delete action for row = \(indexPath.section)")
-            completionHandler(true)
-        })
-        deleteAction.backgroundColor = #colorLiteral(red: 1, green: 0.4117647059, blue: 0.3764705882, alpha: 1)
-        deleteAction.image = #imageLiteral(resource: "icNavbarTrash")
-
-        let configurator = UISwipeActionsConfiguration(actions: [deleteAction])
-        return configurator
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return cachedCellsHeights[indexPath] ?? 85
     }
     
 }

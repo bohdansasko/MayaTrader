@@ -64,7 +64,6 @@ extension CHExmoAPI {
     
 }
 
-
 // MARK: - ReactiveCompatible
 
 extension CHExmoAPI: ReactiveCompatible {}

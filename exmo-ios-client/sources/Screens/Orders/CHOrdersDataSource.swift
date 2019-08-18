@@ -9,7 +9,7 @@
 import UIKit
 
 final class CHOrdersDataSource: NSObject {
-    private var items: [OrderModel]
+    private(set) var items: [OrderModel]
     
     init(items: [OrderModel]) {
         self.items = items
@@ -29,6 +29,10 @@ extension CHOrdersDataSource {
     
     func set(_ items: [OrderModel]) {
         self.items = items
+    }
+    
+    func append(_ items: [OrderModel]) {
+        self.items.append(contentsOf: items)
     }
     
 }

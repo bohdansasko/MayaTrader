@@ -61,7 +61,7 @@ private extension CHOrdersViewController {
 private extension CHOrdersViewController {
     
     @objc func actSelectTab(_ sender: Any) {
-        presenter.fetchOrders(for: contentView.selectedOrdersTab)
+        presenter.resetOrders(for: contentView.selectedOrdersTab)
     }
     
 }
@@ -71,7 +71,7 @@ private extension CHOrdersViewController {
 private extension CHOrdersViewController {
     
     @objc func handleNotificationUserAuthorization(_ notification: Notification) {
-        presenter.fetchOrders(for: contentView.selectedOrdersTab)
+        presenter.resetOrders(for: contentView.selectedOrdersTab)
     }
     
 }
