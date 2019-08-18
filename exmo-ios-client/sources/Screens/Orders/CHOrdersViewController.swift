@@ -19,6 +19,7 @@ final class CHOrdersViewController: CHBaseViewController, CHBaseViewControllerPr
         setupNavigationBar()
         contentView.set(target: self, actionOnSelectTab: #selector(actSelectTab(_:)))
         setupPresenter()
+        setupNotificationsSubscription()
         
         contentView.select(tab: presenter.selectedOrdersTab)
     }
@@ -40,6 +41,19 @@ private extension CHOrdersViewController {
                                       dataSource: ordersDataSource)
         presenter.delegate = self
     }
+    
+    func setupNotificationsSubscription() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: AuthorizationNotification.userFailSignIn)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: AuthorizationNotification.userSignIn)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: AuthorizationNotification.userSignOut)
+    }
+    
 }
 
 // MARK: - User interaction
@@ -47,6 +61,16 @@ private extension CHOrdersViewController {
 private extension CHOrdersViewController {
     
     @objc func actSelectTab(_ sender: Any) {
+        presenter.fetchOrders(for: contentView.selectedOrdersTab)
+    }
+    
+}
+
+// MARK: - Notifications
+
+private extension CHOrdersViewController {
+    
+    @objc func handleNotificationUserAuthorization(_ notification: Notification) {
         presenter.fetchOrders(for: contentView.selectedOrdersTab)
     }
     
@@ -61,3 +85,4 @@ extension CHOrdersViewController: CHOrdersPresenterDelegate {
     }
     
 }
+
