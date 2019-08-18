@@ -43,7 +43,7 @@ class OrdersListView: UIView {
     weak var presenter: OrdersViewOutput!
     var dataProvider: Orders!
     var tableViewCells: [Int64 : IndexPath] = [:]
-    var displayOrderType: Orders.DisplayType = .none {
+    var displayOrderType: OrdersType = .open {
         didSet {
             showDataBySegment(displayOrderType: displayOrderType)
         }
@@ -75,7 +75,7 @@ class OrdersListView: UIView {
         return dataProvider.isDataExists()
     }
 
-    func showDataBySegment(displayOrderType: Orders.DisplayType) {
+    func showDataBySegment(displayOrderType: OrdersType) {
         guard let data = getDataBySegmentIndex(displayOrderType: displayOrderType) else {
             dataProvider = Orders()
             updateTableUI()
@@ -87,7 +87,7 @@ class OrdersListView: UIView {
     }
 
     // MARK: private methods
-    private func getDataBySegmentIndex(displayOrderType: Orders.DisplayType) -> Orders? {
+    private func getDataBySegmentIndex(displayOrderType: OrdersType) -> Orders? {
         switch displayOrderType {
             case .open: return openedOrders
             case .cancelled: return cancelledOrders

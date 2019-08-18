@@ -11,12 +11,12 @@ import Foundation
 protocol OrdersInteractorInput {
     func viewIsReady()
     func viewWillAppear()
-    func loadOrderByType(_ orderType: Orders.DisplayType)
+    func loadOrderByType(_ orderType: OrdersType)
     func cancelOrder(ids: [Int64])
 }
 
 protocol OrdersInteractorOutput: class {
-    func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders])
+    func onDidLoadOrders(loadedOrders: [OrdersType : Orders])
     func orderCancelled(ids: [Int64])
     func setSubscription(_ package: CHSubscriptionPackageProtocol)
     func purchaseError(reason: String)

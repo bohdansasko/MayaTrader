@@ -23,7 +23,7 @@ extension OrdersPresenter: OrdersViewOutput {
         interactor.viewWillAppear()
     }
     
-    func onDidSelectTab(_ orderTab: Orders.DisplayType) {
+    func onDidSelectTab(_ orderTab: OrdersType) {
         interactor.loadOrderByType(orderTab)
     }
     
@@ -40,7 +40,7 @@ extension OrdersPresenter: OrdersViewOutput {
 
 // MARK: OrdersInteractorOutput
 extension OrdersPresenter: OrdersInteractorOutput {
-    func onDidLoadOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+    func onDidLoadOrders(loadedOrders: [OrdersType : Orders]) {
         view.updateOrders(loadedOrders: loadedOrders)
     }
     

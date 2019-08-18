@@ -204,6 +204,9 @@
 		20DFB1D523035EDC008C19B5 /* CHWalletCurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DFB1D423035EDC008C19B5 /* CHWalletCurrencyCell.xib */; };
 		20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E30AD420A966B0003D9BAF /* UIView+Extension.swift */; };
 		20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */; };
+		20E5D5902309675600E603D8 /* CHOrdersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5D58F2309675600E603D8 /* CHOrdersPresenter.swift */; };
+		20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5D5912309676D00E603D8 /* CHOrdersDataSource.swift */; };
+		20E5D5942309716500E603D8 /* CHExmoAPI+Orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E5D5932309716500E603D8 /* CHExmoAPI+Orders.swift */; };
 		20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */; };
 		20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */; };
 		20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */; };
@@ -561,6 +564,9 @@
 		20DFB1D423035EDC008C19B5 /* CHWalletCurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrencyCell.xib; sourceTree = "<group>"; };
 		20E30AD420A966B0003D9BAF /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		20E54F8721AB2190006A70E8 /* OrderViewCell+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderViewCell+SetupViews.swift"; sourceTree = "<group>"; };
+		20E5D58F2309675600E603D8 /* CHOrdersPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOrdersPresenter.swift; sourceTree = "<group>"; };
+		20E5D5912309676D00E603D8 /* CHOrdersDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOrdersDataSource.swift; sourceTree = "<group>"; };
+		20E5D5932309716500E603D8 /* CHExmoAPI+Orders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHExmoAPI+Orders.swift"; sourceTree = "<group>"; };
 		20E80093207A283B00E1AC6C /* CHWalletBalanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletBalanceView.swift; sourceTree = "<group>"; };
 		20F023D120FEB40A008E021E /* AccountApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20F9490A218BACB7000C9923 /* LoginViewController+SetupViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+SetupViews.swift"; sourceTree = "<group>"; };
@@ -1138,6 +1144,8 @@
 			isa = PBXGroup;
 			children = (
 				20518DA622D9F9EA00334133 /* CHOrders.storyboard */,
+				20E5D58F2309675600E603D8 /* CHOrdersPresenter.swift */,
+				20E5D5912309676D00E603D8 /* CHOrdersDataSource.swift */,
 				200D52C122DA1D1A0009C07C /* CHOrdersView.swift */,
 				200D52A722DA07B20009C07C /* CHOrdersViewController.swift */,
 				200D52A822DA07B20009C07C /* CHOrdersViewController.xib */,
@@ -1540,6 +1548,7 @@
 			isa = PBXGroup;
 			children = (
 				97E9C010230443D400CF01A2 /* CHExmoAPI.swift */,
+				20E5D5932309716500E603D8 /* CHExmoAPI+Orders.swift */,
 				36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */,
 				9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */,
 				97E9C0182304487500CF01A2 /* RequestsBuilders */,
@@ -2669,6 +2678,7 @@
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */,
 				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
+				20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */,
 				207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */,
 				200D52C622DA1DCF0009C07C /* CHAlertsView.swift in Sources */,
@@ -2679,6 +2689,7 @@
 				201DF20021B27D3300158A15 /* CreateAlertForm.swift in Sources */,
 				204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */,
 				20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */,
+				20E5D5942309716500E603D8 /* CHExmoAPI+Orders.swift in Sources */,
 				207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */,
 				202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
@@ -2837,6 +2848,7 @@
 				36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */,
 				36712802066CE6031A5D90E5 /* CHAppStoreReviewManager.swift in Sources */,
 				36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */,
+				20E5D5902309675600E603D8 /* CHOrdersPresenter.swift in Sources */,
 				20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */,
 				3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */,
 				36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */,

@@ -68,19 +68,3 @@ extension CHExmoAPI {
 // MARK: - ReactiveCompatible
 
 extension CHExmoAPI: ReactiveCompatible {}
-
-// MARK: - Wallet
-
-extension Reactive where Base: CHExmoAPI {
-    
-    func getWallet() -> Single<ExmoWallet> {
-        let request = ExmoApiRequestsBuilder.shared.getUserInfoRequest()
-        return self.base.send(request: request)
-            .mapInBackground{ json in
-                let wallet = ExmoWallet(JSONString: json.description)!
-                return wallet
-            }
-            .asSingle()
-    }
-    
-}

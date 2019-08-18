@@ -9,23 +9,22 @@
 import Foundation
 import SwiftyJSON
 
-class Orders {
-    // MARK: user types
-    enum DisplayType: Int {
-        case none = -1
-        case open = 0
-        case cancelled
-        case deals
-    }
+enum OrdersType: Int {
+    case open = 0
+    case cancelled
+    case deals
+}
+
+final class Orders {
     
-    private var orders: [OrderModel]
-    private(set) var displayType: DisplayType = .none
+    private(set) var orders: [OrderModel]
+    private(set) var displayType: OrdersType = .open
     
     init() {
         self.orders = []
     }
     
-    convenience init(json: JSON, displayType: DisplayType = .none) {
+    convenience init(json: JSON, displayType: OrdersType = .open) {
         self.init()
         self.displayType = displayType
         self.parseJSON(json: json)

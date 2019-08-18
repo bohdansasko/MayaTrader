@@ -139,7 +139,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         }
     }
 
-    private func parseResponseIntoModel(_ response: DataResponse<Any>, _ displayOrderType: Orders.DisplayType) -> Orders {
+    private func parseResponseIntoModel(_ response: DataResponse<Any>, _ displayOrderType: OrdersType) -> Orders {
         do {
             guard let responseData = response.data else { return Orders() }
             let json = try JSON(data: responseData)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrderViewCell: UITableViewCell {
+final class OrderViewCell: UITableViewCell {
     var labelTimeCreateOrder: UILabel = {
         let label = OrderViewCell.getTitleLabel(text: "quantity")
         label.text = "29.12.1972 06:02"

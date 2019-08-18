@@ -139,7 +139,7 @@ extension OrdersViewController {
         if isCancellingOrdersActive {
             return
         }
-        let displayOrderType = Orders.DisplayType(rawValue: segmentControlView.selectedSegmentIndex)!
+        let displayOrderType = OrdersType(rawValue: segmentControlView.selectedSegmentIndex)!
         ordersListView.displayOrderType = displayOrderType
         output.onDidSelectTab(displayOrderType)
     }
@@ -156,7 +156,7 @@ extension OrdersViewController {
 
 // MARK: OrdersViewInput
 extension OrdersViewController {
-    func updateOrders(loadedOrders: [Orders.DisplayType : Orders]) {
+    func updateOrders(loadedOrders: [OrdersType : Orders]) {
         print("Orders: \(#function)")
         let previousDT = ordersListView.displayOrderType
         if loadedOrders.isEmpty {

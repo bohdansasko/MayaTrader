@@ -10,7 +10,7 @@ import Alamofire
 
 class OrdersInteractor: IOrdersListNetworkWorkerDelegate {
     weak var output: OrdersInteractorOutput!
-    var loadedOrders: [Orders.DisplayType : Orders] = [:]
+    var loadedOrders: [OrdersType : Orders] = [:]
     var networkWorker: IOrdersListNetworkWorker!
 
     deinit {
@@ -29,7 +29,7 @@ extension OrdersInteractor: OrdersInteractorInput {
         // do nothing
     }
     
-    func loadOrderByType(_ orderType: Orders.DisplayType) {
+    func loadOrderByType(_ orderType: OrdersType) {
         if !Defaults.isUserLoggedIn() {
             onUserSignOut()
             return
@@ -40,7 +40,6 @@ extension OrdersInteractor: OrdersInteractorInput {
         case .open: networkWorker.loadOpenOrders()
         case .cancelled: networkWorker.loadCancelledOrders()
         case .deals: networkWorker.loadDeals()
-        case .none: break
         }
     }
     
@@ -52,7 +51,7 @@ extension OrdersInteractor: OrdersInteractorInput {
 // MARK: load orders and display them
 extension OrdersInteractor {
     func onUserSignOut() {
-        var loadedOrders = [Orders.DisplayType : Orders]()
+        var loadedOrders = [OrdersType : Orders]()
         loadedOrders[.open] = Orders()
         loadedOrders[.cancelled] = Orders()
         loadedOrders[.deals] = Orders()

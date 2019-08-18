@@ -42,3 +42,7 @@
 "PAIR"     = "Pair";
 "PRICE"    = "Price";
 "VOLUME"   = "Volume 24h";
+
+"ORDERS_OPEN"      = "Open";
+"ORDERS_CANCELLED" = "Cancelled";
+"ORDERS_DEALS"     = "Deals";

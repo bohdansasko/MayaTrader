@@ -7,7 +7,7 @@
 //
 
 protocol OrdersViewInput: class {
-    func updateOrders(loadedOrders: [Orders.DisplayType : Orders])
+    func updateOrders(loadedOrders: [OrdersType : Orders])
     func orderCancelled(ids: [Int64])
     
     func setSubscription(_ package: CHSubscriptionPackageProtocol)
@@ -18,7 +18,7 @@ protocol OrdersViewInput: class {
 protocol OrdersViewOutput: class {
     func viewIsReady()
     func viewWillAppear()
-    func onDidSelectTab(_ orderTab: Orders.DisplayType)
+    func onDidSelectTab(_ orderTab: OrdersType)
     func onTouchButtonAddOrder()
     func cancelOrder(ids: [Int64])
 }

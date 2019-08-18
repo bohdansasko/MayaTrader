@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,8 +20,41 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT" customClass="CHOrdersView" customModule="exmo_ios_client" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="K8a-FK-4EX">
+                    <rect key="frame" x="25" y="44" width="364" height="29"/>
+                    <segments>
+                        <segment title="&lt;Open&gt;"/>
+                        <segment title="&lt;Cancelled&gt;"/>
+                        <segment title="&lt;Deals&gt;"/>
+                    </segments>
+                    <color key="tintColor" name="exmoDodgerBlue"/>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" delaysContentTouches="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rhT-Vj-SOw">
+                    <rect key="frame" x="5" y="74" width="409" height="822"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="rhT-Vj-SOw" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="5" id="1tD-Ok-JhS"/>
+                <constraint firstItem="K8a-FK-4EX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="BVO-jh-7UL"/>
+                <constraint firstAttribute="trailing" secondItem="rhT-Vj-SOw" secondAttribute="trailing" id="TNh-vX-gfa"/>
+                <constraint firstItem="K8a-FK-4EX" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="25" id="Xgu-z2-aPA"/>
+                <constraint firstAttribute="bottom" secondItem="rhT-Vj-SOw" secondAttribute="bottom" id="ZK0-Zc-Sff"/>
+                <constraint firstAttribute="trailing" secondItem="K8a-FK-4EX" secondAttribute="trailing" constant="25" id="baq-lo-YmY"/>
+                <constraint firstItem="rhT-Vj-SOw" firstAttribute="top" secondItem="K8a-FK-4EX" secondAttribute="bottom" constant="2" id="cbJ-uJ-qbB"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="ordersCategoriesControl" destination="K8a-FK-4EX" id="2QP-cJ-28E"/>
+                <outlet property="ordersListView" destination="rhT-Vj-SOw" id="2xT-dx-Rix"/>
+            </connections>
         </view>
     </objects>
+    <resources>
+        <namedColor name="exmoDodgerBlue">
+            <color red="0.28999999165534973" green="0.51800000667572021" blue="0.9570000171661377" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>
