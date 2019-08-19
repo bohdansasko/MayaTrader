@@ -49,7 +49,7 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
         
         searchController.searchBar.rx.text
             .asDriver()
-            .throttle(0.5, latest: true)
+            .throttle(1.0, latest: true)
             .drive(onNext: { [unowned self] text in
                 self.fetchCurrencies(by: text)
             })
