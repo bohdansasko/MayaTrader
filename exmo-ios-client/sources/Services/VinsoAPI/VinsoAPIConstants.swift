@@ -73,9 +73,21 @@ enum ServerMessage: Int {
 // MARK: - CHStockExchange
 
 enum CHStockExchange: String {
-    case all      = "all"
     case exmo     = "exmo"
     case btcTrade = "btc_trade"
+}
+
+extension CHStockExchange {
+    
+    var description: String {
+        switch self {
+        case .exmo:
+            return "EXMO"
+        case .btcTrade:
+            return "BTC TRADE"
+        }
+    }
+    
 }
 
 // MARK: - CHVinsoAPIError

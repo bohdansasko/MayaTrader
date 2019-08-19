@@ -20,7 +20,7 @@ final class CHLiteCurrencyFormatter {
     }
     
     var stockName: String {
-        return currency.stock.rawValue.uppercased()
+        return currency.stock.description
     }
     
     var sellPrice: String {
@@ -35,7 +35,6 @@ final class CHLiteCurrencyFormatter {
         switch currency.stock {
         case .exmo    : return #imageLiteral(resourceName: "ic_crypto_ltc")
         case .btcTrade: return #imageLiteral(resourceName: "ic_crypto_usdt")
-        case .all     : return #imageLiteral(resourceName: "ic_crypto_xmr")
         }
     }
     

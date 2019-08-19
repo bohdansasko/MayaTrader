@@ -105,13 +105,13 @@ struct OrderModel: Mappable {
     }
     
     mutating func mapping(map: Map) {
-        createdDate <- (map["date"], DateTransform())
-        id <- map["order_id"]
+        createdDate  <- (map["date"], DateTransform())
+        id           <- map["order_id"]
         currencyPair <- map["pair"]
-        orderType <- (map["order_type"], TransformOrderType())
-        price <- map["price"]
-        quantity <- map["quantity"]
-        amount <- map["amount"]
+        orderType    <- (map["order_type"], EnumTransform<OrderActionType>())
+        price        <- map["price"]
+        quantity     <- map["quantity"]
+        amount       <- map["amount"]
     }
     
     init(id: Int64, orderType: OrderActionType, currencyPair: String, createdDate: Date, price: Double, quantity: Double, amount: Double) {

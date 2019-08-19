@@ -34,6 +34,7 @@ extension CHLiteCurrencyModel: Mappable {
         let strToDoubleTransform = StringToDoubleTransform.shared
 
         name      <-  map["currency_name"]
+        stock     <- (map["stock_exchange"], EnumTransform<CHStockExchange>())
         buyPrice  <- (map["buy_price"] , strToDoubleTransform)
         sellPrice <- (map["sell_price"], strToDoubleTransform)
         volume    <- (map["vol"]       , strToDoubleTransform)
