@@ -23,9 +23,9 @@ extension CHBaseViewControllerProtocol where Self: CHBaseViewController {
 class CHBaseViewController: ExmoUIViewController {
     
     // MARK: - Internal variables/properties
-    
-    internal let disposeBag = DisposeBag()
-    internal let api        = AppDelegate.vinsoAPI
+
+    let api        = AppDelegate.vinsoAPI
+    let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     deinit {
