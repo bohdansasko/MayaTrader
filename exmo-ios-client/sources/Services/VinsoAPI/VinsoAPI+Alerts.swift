@@ -156,7 +156,7 @@ extension Reactive where Base: VinsoAPI {
         let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
         return self.base.sendRequest(messageType: .createAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
-                guard let alert = Alert(JSONString: json.description) else {
+                guard let alert = Alert(JSONString: json["alert"].description) else {
                     return nil
                 }
                 return alert
