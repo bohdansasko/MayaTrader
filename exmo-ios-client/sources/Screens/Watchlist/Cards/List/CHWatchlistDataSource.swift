@@ -8,16 +8,7 @@
 
 import UIKit
 
-final class CHWatchlistDataSource: NSObject {
-    fileprivate var items: [WatchlistCurrency] = []
-    
-    func item(for indexPath: IndexPath) -> WatchlistCurrency {
-        return items[indexPath.row]
-    }
-    
-    func set(_ items: [WatchlistCurrency]) {
-        self.items = items
-    }
+final class CHWatchlistDataSource: CHBaseDataSource<CHLiteCurrencyModel> {
     
 }
 

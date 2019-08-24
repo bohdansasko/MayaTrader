@@ -25,9 +25,14 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         
         presenter = CHWatchlistPresenter(collectionView: contentView.currenciesCollectionView,
                                              dataSource: CHWatchlistDataSource(),
-                                                    api: TickerNetworkWorker())
+                                               vinsoAPI: vinsoAPI,
+                                              dbManager: dbManager)
         presenter.delegate = self
-        presenter.fetchItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        rx.showLoadingView(request: presenter.fetchItems())
     }
 
     // MARK: - Navigation
@@ -70,12 +75,16 @@ private extension CHWatchlistViewController {
 
 extension CHWatchlistViewController: CHWatchlistPresenterDelegate {
     
-    func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [WatchlistCurrency]) {
+    func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [CHLiteCurrencyModel]) {
         contentView.isTutorialStubVisible = currencies.isEmpty
     }
     
-    func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: WatchlistCurrency) {
+    func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: CHLiteCurrencyModel) {
         performSegue(withIdentifier: Segues.currencyDetails.rawValue, sender: currency)
+    }
+    
+    func presenter(_ presenter: CHWatchlistPresenter, onError error: Error) {
+        handleError(error)
     }
     
 }

@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol CHWatchlistPresenterDelegate: class {
-    func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [WatchlistCurrency])
-    func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: WatchlistCurrency)
+    func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [CHLiteCurrencyModel])
+    func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: CHLiteCurrencyModel)
+    func presenter(_ presenter: CHWatchlistPresenter, onError error: Error)
 }
 
 final class CHWatchlistPresenter: NSObject {
@@ -22,9 +24,12 @@ final class CHWatchlistPresenter: NSObject {
         static var minSpaceForSection  : CGFloat { return 10 }
     }
     
-    fileprivate var collectionView: UICollectionView!
+    fileprivate var collectionView: UICollectionView
     fileprivate var dataSource    : CHWatchlistDataSource
-    fileprivate var api           : ITickerNetworkWorker!
+    fileprivate var vinsoAPI      : VinsoAPI
+    fileprivate var dbManager     : OperationsDatabaseProtocol
+    
+    fileprivate let disposeBag    = DisposeBag()
     
     // MARK: - Public properties
     
@@ -32,18 +37,17 @@ final class CHWatchlistPresenter: NSObject {
     
     // MARK: - View lifecycle
     
-    init(collectionView: UICollectionView, dataSource: CHWatchlistDataSource, api: ITickerNetworkWorker) {
+    init(collectionView: UICollectionView, dataSource: CHWatchlistDataSource, vinsoAPI: VinsoAPI, dbManager: OperationsDatabaseProtocol) {
         self.collectionView = collectionView
-        self.dataSource = dataSource
-        self.api = api
+        self.dataSource     = dataSource
+        self.vinsoAPI       = vinsoAPI
+        self.dbManager      = dbManager
         
         
         super.init()
         
         self.collectionView.dataSource = self.dataSource
         self.collectionView.delegate = self
-        
-        self.api.delegate = self
     }
  
 }
@@ -52,8 +56,23 @@ final class CHWatchlistPresenter: NSObject {
 
 extension CHWatchlistPresenter {
     
-    func fetchItems() {
-        api.load()
+    func fetchItems() -> Single<[CHLiteCurrencyModel]> {
+        let request = vinsoAPI.rx.getCurrencies(by: .exmo, selectedCurrencies: ["XRP_USD", "BTC_USD", "BTC_UAH"])
+        request.subscribe(
+            onSuccess: {[weak self] items in
+                guard let `self` = self else { return }
+                self.dataSource.set(items)
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            },
+            onError: { [weak self] err in
+                guard let `self` = self else { return }
+                self.delegate?.presenter(self, onError: err)
+            }
+        )
+        .disposed(by: disposeBag)
+        return request
     }
     
 }
@@ -63,8 +82,11 @@ extension CHWatchlistPresenter {
 extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let item = dataSource.item(for: indexPath.row)
+        let currencyFormatter = CHLiteCurrencyFormatter(currency: item, addLabels: true)
+        
         let cardCell = cell as! WatchlistCardCell
-        cardCell.set(dataSource.item(for: indexPath), indexPath: indexPath)
+        cardCell.set(currencyFormatter, indexPath: indexPath)
         cardCell.delegate = self
     }
     
@@ -81,7 +103,7 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let currency = dataSource.item(for: indexPath)
+        let currency = dataSource.item(for: indexPath.row)
         delegate?.presenter(self, didTouchCurrency: currency)
     }
     
@@ -96,28 +118,3 @@ extension CHWatchlistPresenter: WatchlistCardCellDelegate {
     }
 
 }
-
-
-// MARK: - ITickerNetworkWorkerDelegate
-
-extension CHWatchlistPresenter: ITickerNetworkWorkerDelegate {
-    
-    func onDidLoadTickerSuccess(_ ticker: Ticker?) {
-        guard let tickerPairs = ticker?.pairs else {
-            onDidLoadTickerFails()
-            return
-        }
-        let currencies = tickerPairs.prefix(15).map({ WatchlistCurrency(index: 1, tickerCurrencyModel: $0.value) })
-        
-        DispatchQueue.main.async {
-            self.dataSource.set(currencies)
-            self.collectionView.reloadData()
-        }
-    }
-    
-    func onDidLoadTickerFails() {
-        api.cancelRepeatLoads()
-    }
-    
-}
-

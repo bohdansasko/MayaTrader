@@ -25,7 +25,7 @@ final class WatchlistCardCell: CHBaseCollectionCell {
         let btn = UIButton(type: .custom)
         btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOff").withRenderingMode(.alwaysOriginal), for: .normal)
         btn.setImage(#imageLiteral(resourceName: "icGlobalHeartOn").withRenderingMode(.alwaysOriginal), for: .selected)
-        btn.isSelected = true
+        btn.isSelected = false
         return btn
     }()
 
@@ -61,7 +61,7 @@ final class WatchlistCardCell: CHBaseCollectionCell {
         return label
     }()
     
-    fileprivate var currencyModel: WatchlistCurrency! {
+    fileprivate var currencyFormatter: CHLiteCurrencyFormatter! {
         didSet { refreshLabels() }
     }
     fileprivate var indexPath: IndexPath!
@@ -87,8 +87,8 @@ final class WatchlistCardCell: CHBaseCollectionCell {
 
 extension WatchlistCardCell {
     
-    func set(_ currencyModel: WatchlistCurrency, indexPath: IndexPath) {
-        self.currencyModel = currencyModel
+    func set(_ currencyFormatter: CHLiteCurrencyFormatter, indexPath: IndexPath) {
+        self.currencyFormatter = currencyFormatter
         self.indexPath = indexPath
     }
     
@@ -151,15 +151,13 @@ private extension WatchlistCardCell {
 private extension WatchlistCardCell {
     
     func refreshLabels() {
-        guard let cm = currencyModel else { return }
-        
-        pairNameLabel.text = cm.getDisplayCurrencyPairName()
-        pairBuyPriceLabel.text = "Buy: " + cm.getBuyAsStr()
-        pairSellPriceLabel.text = "Sell: " + cm.getSellAsStr()
-        pairVolumeLabel.text = "Volume: " + Utils.getFormatedPrice(value: cm.tickerPair.volume)
-        currencyChangesLabel.text = "Changes: " + Utils.getFormatedCurrencyPairChanges(changesValue: cm.tickerPair.getChanges())
-        currencyChangesLabel.textColor = Utils.getChangesColor(value: cm.tickerPair.getChanges())
-        favButton.isSelected = cm.tickerPair.isFavourite
+        pairNameLabel.text             = currencyFormatter.currencyName
+        pairBuyPriceLabel.text         = currencyFormatter.buyPrice
+        pairSellPriceLabel.text        = currencyFormatter.sellPrice
+        pairVolumeLabel.text           = currencyFormatter.volume
+        currencyChangesLabel.text      = currencyFormatter.changes
+        currencyChangesLabel.textColor = currencyFormatter.changesColor
+        favButton.isSelected           = true
     }
     
 }

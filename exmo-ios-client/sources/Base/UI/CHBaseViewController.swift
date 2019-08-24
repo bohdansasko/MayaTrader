@@ -26,8 +26,9 @@ class CHBaseViewController: ExmoUIViewController {
     
     // MARK: - Internal variables/properties
 
-    let vinsoAPI = AppDelegate.vinsoAPI
-    let exmoAPI  = CHExmoAPI.shared
+    let vinsoAPI   = AppDelegate.vinsoAPI
+    let exmoAPI    = CHExmoAPI.shared
+    let dbManager  = RealmDatabaseManager.shared
     
     let disposeBag = DisposeBag()
     
