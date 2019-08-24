@@ -22,6 +22,7 @@ final class CHOrdersViewController: CHBaseViewController, CHBaseViewControllerPr
         setupNotificationsSubscription()
         
         contentView.select(tab: presenter.selectedOrdersTab)
+        presenter.resetOrders(for: presenter.selectedOrdersTab)
     }
     
 }
@@ -37,7 +38,7 @@ private extension CHOrdersViewController {
     func setupPresenter() {
         let ordersDataSource = CHOrdersDataSource(items: [])
         presenter = CHOrdersPresenter(tableView : contentView.ordersListView,
-                                      exmoAPI   : CHExmoAPI.shared,
+                                      exmoAPI   : exmoAPI,
                                       dataSource: ordersDataSource)
         presenter.delegate = self
     }

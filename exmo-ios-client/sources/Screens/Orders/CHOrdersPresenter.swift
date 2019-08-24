@@ -37,6 +37,8 @@ final class CHOrdersPresenter: NSObject {
         return selectedOrdersTab == .open ? true : false
     }
     
+    var kLimitItemsForLoading: Int { return 20 }
+    
     weak var delegate: CHOrdersPresenterDelegate?
     
     // MARK: - View life cycle
@@ -73,7 +75,7 @@ extension CHOrdersPresenter {
 // MARK: - Private methods for manage order list
 
 private extension CHOrdersPresenter {
-
+    
     func fetchOrders(for ordersTab: OrdersType, offset: Int) {
         print("\(#function), \(ordersTab), offset = \(offset)")
         self.selectedOrdersTab = ordersTab
@@ -81,70 +83,28 @@ private extension CHOrdersPresenter {
         switch ordersTab {
         case .open:
             let request = exmoAPI.rx.getOpenOrders()
-            loadingRequest = request.subscribe(onSuccess: { [weak self] orders in
-                guard let `self` = self else { return }
-
-                self.isAllOrdersDownloaded = orders.isEmpty
-                if self.isAllOrdersDownloaded { return }
-
-                self.dataSource.append(orders)
-
-                let lastIndex = offset + orders.count
-                let sections = IndexSet(integersIn: offset..<lastIndex)
-
-                self.tableView.beginUpdates()
-                self.tableView.insertSections(sections, with: .none)
-                self.tableView.endUpdates()
-
-                self.delegate?.ordersPresenter(self, didLoadOrders: orders)
-            }, onError: { [weak self] err in
-                guard let `self` = self else { return }
-                self.delegate?.ordersPresenter(self, onError: err)
-            })
+            loadingRequest = request.subscribe(
+                onSuccess: { [weak self] orders in
+                    self?.handleFetchedOrders(orders, offset: offset)
+                },
+                onError: self.handleError
+            )
         case .cancelled:
-            let request = exmoAPI.rx.getCancelledOrders(limit: 20, offset: offset)
-            loadingRequest = request.subscribe(onSuccess: { [weak self] orders in
-                guard let `self` = self else { return }
-
-                self.isAllOrdersDownloaded = orders.isEmpty
-                if self.isAllOrdersDownloaded { return }
-
-                self.dataSource.append(orders)
-
-                let lastIndex = offset + orders.count
-                let sections = IndexSet(integersIn: offset..<lastIndex)
-
-                self.tableView.beginUpdates()
-                self.tableView.insertSections(sections, with: .none)
-                self.tableView.endUpdates()
-
-                self.delegate?.ordersPresenter(self, didLoadOrders: orders)
-            }, onError: { [weak self] err in
-                guard let `self` = self else { return }
-                self.delegate?.ordersPresenter(self, onError: err)
-            })
+            let request = exmoAPI.rx.getCancelledOrders(limit: kLimitItemsForLoading, offset: offset)
+            loadingRequest = request.subscribe(
+                onSuccess: { [weak self] orders in
+                    self?.handleFetchedOrders(orders, offset: offset)
+                },
+                onError: self.handleError
+            )
         case .deals:
-            let request = exmoAPI.rx.getDealsOrders(limit: 20, offset: offset)
-            loadingRequest = request.subscribe(onSuccess: { [weak self] orders in
-                guard let `self` = self else { return }
-
-                self.isAllOrdersDownloaded = orders.isEmpty
-                if self.isAllOrdersDownloaded { return }
-
-                self.dataSource.append(orders)
-
-                let lastIndex = offset + orders.count
-                let sections = IndexSet(integersIn: offset..<lastIndex)
-
-                self.tableView.beginUpdates()
-                self.tableView.insertSections(sections, with: .none)
-                self.tableView.endUpdates()
-
-                self.delegate?.ordersPresenter(self, didLoadOrders: orders)
-            }, onError: { [weak self] err in
-                guard let `self` = self else { return }
-                self.delegate?.ordersPresenter(self, onError: err)
-            })
+            let request = exmoAPI.rx.getDealsOrders(limit: kLimitItemsForLoading, offset: offset)
+            loadingRequest = request.subscribe(
+                onSuccess: { [weak self] orders in
+                    self?.handleFetchedOrders(orders, offset: offset)
+                },
+                onError: self.handleError
+            )
         }
     }
 
@@ -155,6 +115,26 @@ private extension CHOrdersPresenter {
         }
     }
 
+    func handleFetchedOrders(_ orders: [OrderModel], offset: Int) {
+        self.delegate?.ordersPresenter(self, didLoadOrders: orders)
+        
+        self.isAllOrdersDownloaded = orders.isEmpty
+        if self.isAllOrdersDownloaded { return }
+        
+        self.dataSource.append(orders)
+        
+        let lastIndex = offset + orders.count
+        let sections = IndexSet(integersIn: offset..<lastIndex)
+        
+        self.tableView.beginUpdates()
+        self.tableView.insertSections(sections, with: .none)
+        self.tableView.endUpdates()
+    }
+    
+    func handleError(error: Error) {
+        self.delegate?.ordersPresenter(self, onError: error)
+    }
+    
 }
 
 // MARK: - Setup methods
