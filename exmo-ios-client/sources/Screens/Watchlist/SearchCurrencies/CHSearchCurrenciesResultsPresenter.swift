@@ -117,7 +117,11 @@ extension CHSearchCurrenciesResultsPresenter: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let item = dataSource.item(for: indexPath.row)
-        let itemFormatter = CHLiteCurrencyFormatter(currency: item, addLabels: false)
+        let itemFormatter = CHLiteCurrencyFormatter(
+                currency: item,
+                addLabels: false,
+                isFavourite: dataSource.isItem(selected: item))
+
         let currencyCell = cell as! CHSearchCurrencyResultCell
         currencyCell.set(formatter: itemFormatter)
         

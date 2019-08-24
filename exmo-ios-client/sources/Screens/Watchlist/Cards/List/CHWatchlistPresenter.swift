@@ -83,7 +83,7 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let item = dataSource.item(for: indexPath.row)
-        let currencyFormatter = CHLiteCurrencyFormatter(currency: item, addLabels: true)
+        let currencyFormatter = CHLiteCurrencyFormatter(currency: item, addLabels: true, isFavourite: true)
         
         let cardCell = cell as! WatchlistCardCell
         cardCell.set(currencyFormatter, indexPath: indexPath)

@@ -157,7 +157,7 @@ private extension WatchlistCardCell {
         pairVolumeLabel.text           = currencyFormatter.volume
         currencyChangesLabel.text      = currencyFormatter.changes
         currencyChangesLabel.textColor = currencyFormatter.changesColor
-        favButton.isSelected           = true
+        favButton.isSelected           = currencyFormatter.isFavourite
     }
     
 }

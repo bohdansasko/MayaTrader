@@ -11,10 +11,12 @@ import UIKit
 final class CHLiteCurrencyFormatter {
     fileprivate let currency: CHLiteCurrencyModel
     fileprivate let addLabels: Bool
-    
-    init(currency: CHLiteCurrencyModel, addLabels: Bool) {
-        self.currency = currency
-        self.addLabels = addLabels
+                let isFavourite: Bool
+
+    init(currency: CHLiteCurrencyModel, addLabels: Bool, isFavourite: Bool) {
+        self.currency    = currency
+        self.addLabels   = addLabels
+        self.isFavourite = isFavourite
     }
     
 }
