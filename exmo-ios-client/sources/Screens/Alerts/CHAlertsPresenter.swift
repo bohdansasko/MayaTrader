@@ -56,12 +56,15 @@ private extension CHAlertsPresenter {
 // MARK - Manage alerts
 
 extension CHAlertsPresenter {
-    
-    func fetchAlerts() {
+
+    @discardableResult
+    func fetchAlerts() -> Single<[Alert]> {
         let request = api.rx.getAlerts()
         request.subscribe(onSuccess: { [weak self] alerts in
             guard let `self` = self else { return }
-            self.alerts.items = alerts.sorted(by: { $0.dateCreated > $1.dateCreated })
+            self.alerts.items = alerts.sorted(by: {
+                $0.dateCreated > $1.dateCreated
+            })
             self.tableView.reloadData()
             self.delegate?.alertPresenter(self, onAlertsListUpdated: alerts)
         }, onError: { [weak self] err in
@@ -69,6 +72,8 @@ extension CHAlertsPresenter {
             print(err.localizedDescription)
             self.delegate?.alertPresenter(self, onAlertsListUpdated: [])
         }).disposed(by: disposeBag)
+
+        return request
     }
     
     func deleteAlerts(by action: AlertsDeleteAction) {

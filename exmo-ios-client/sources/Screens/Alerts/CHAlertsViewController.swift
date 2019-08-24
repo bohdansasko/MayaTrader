@@ -60,7 +60,7 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.fetchAlerts()
+        self.rx.showLoadingView(request: presenter.fetchAlerts())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -81,6 +81,7 @@ private extension CHAlertsViewController {
     
     func setupUI() {
         setupNavigation()
+        
         presenter = CHAlertsPresenter(tableView: contentView.tableView, api: self.api)
         presenter.delegate = self
     }
