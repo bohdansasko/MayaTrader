@@ -22,6 +22,8 @@ enum VinsoResponseCode: Int {
     case notFound     = 404
     // something went wrong in backend (it's server issue)
     case internalServerError = 500
+    // client's app api is deprecated, app must be updated for using.
+    case apiVersionNotSupported = 505
 }
 
 // MARK: - ServerMessage
