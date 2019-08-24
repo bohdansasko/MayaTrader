@@ -9,6 +9,7 @@
 import RealmSwift
 
 protocol OperationsDatabaseProtocol {
+    func object<T: Object>(type: T.Type) -> T?
     func object<T: Object>(type: T.Type, key: String) -> T?
     func objects<T: Object>(type: T.Type, predicate: NSPredicate?) -> Results<T>?
     func add<T: Object>(data: [T], update: Bool)

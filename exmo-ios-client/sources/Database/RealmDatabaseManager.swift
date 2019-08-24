@@ -10,7 +10,11 @@ import RealmSwift
 
 final class RealmDatabaseManager: OperationsDatabaseProtocol {
     static let shared = RealmDatabaseManager()
-    
+
+    func object<T>(type: T.Type) -> T? where T : Object {
+        return objects(type: type)?.first
+    }
+
     func object<T>(type: T.Type, key: String) -> T? where T : Object {
         return objects(type: type)?.first
     }
@@ -35,10 +39,10 @@ final class RealmDatabaseManager: OperationsDatabaseProtocol {
         realm.refresh()
         
         if realm.isInWriteTransaction {
-            realm.add(data, update: update)
+            realm.add(data, update: .all)
         } else {
             try? realm.write {
-                realm.add(data, update: update)
+                realm.add(data, update: .all)
             }
         }
     }
