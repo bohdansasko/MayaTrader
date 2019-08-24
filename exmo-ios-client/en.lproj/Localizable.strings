@@ -42,6 +42,10 @@
 "PAIR"     = "Pair";
 "PRICE"    = "Price";
 "VOLUME"   = "Volume 24h";
+"SELL"     = "Sell:";
+"BUY"      = "Buy:";
+"VOLUME"   = "Volume:";
+"CHANGES"  = "Changes:";
 
 "ORDERS_OPEN"      = "Open";
 "ORDERS_CANCELLED" = "Cancelled";

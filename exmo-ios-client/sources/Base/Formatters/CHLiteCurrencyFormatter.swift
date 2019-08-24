@@ -9,11 +9,19 @@
 import UIKit
 
 final class CHLiteCurrencyFormatter {
-    fileprivate var currency: CHLiteCurrencyModel
+    fileprivate let currency: CHLiteCurrencyModel
+    fileprivate let addLabels: Bool
     
-    init(currency: CHLiteCurrencyModel) {
+    init(currency: CHLiteCurrencyModel, addLabels: Bool) {
         self.currency = currency
+        self.addLabels = addLabels
     }
+    
+}
+
+// MARK: - Getters
+
+extension CHLiteCurrencyFormatter {
     
     var currencyName: String {
         return Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
@@ -24,11 +32,31 @@ final class CHLiteCurrencyFormatter {
     }
     
     var sellPrice: String {
-        return Utils.getFormatedPrice(value: currency.sellPrice)
+        let formattedPrice = Utils.getFormatedPrice(value: currency.sellPrice)
+        return addLabels ? "SELL".localized + " " + formattedPrice : formattedPrice
+    }
+    
+    var buyPrice: String {
+        let formattedPrice = Utils.getFormatedPrice(value: currency.buyPrice)
+        return addLabels ? "BUY".localized + " " + formattedPrice : formattedPrice
     }
     
     var volume: String {
-        return Utils.getFormatedPrice(value: currency.volume)
+        let formattedPrice = Utils.getFormatedPrice(value: currency.volume)
+        return addLabels ? "VOLUME".localized + " " + formattedPrice : formattedPrice
+    }
+    
+    var changes: String {
+        // cm.tickerPair.getChanges()
+        let formattedChanges = Utils.getFormatedCurrencyPairChanges(changesValue: 0.18)
+        return addLabels ? "CHANGES".localized + " " + formattedChanges : formattedChanges
+    }
+    
+    var changesColor: UIColor {
+        let changes = 0.18
+        return changes > 0.0
+            ? .greenBlue
+            : changes < 0.0 ? .orangePink : .white
     }
     
     var stockIcon: UIImage {
