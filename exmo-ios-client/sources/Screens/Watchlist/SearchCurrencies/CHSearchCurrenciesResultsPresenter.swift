@@ -34,7 +34,8 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
 extension CHSearchCurrenciesResultsPresenter {
     
     func fetchCurrencies(by string: String?) {
-        guard let likeString = string else { return }
+        guard let likeString = string?.trim(), !likeString.isEmpty else { return }
+
         self.likeString           = likeString
         self.isDownloadedAllItems = false
         

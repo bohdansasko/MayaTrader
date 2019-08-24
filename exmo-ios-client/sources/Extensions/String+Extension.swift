@@ -8,8 +8,20 @@
 
 import Foundation
 
+// MARK: - Localization
+
 extension String {
     
+    var localized: String {
+        return NSLocalizedString(self, comment: "")
+    }
+    
+}
+
+// MARK: - Numbers
+
+extension String {
+
     func isDoubleValid() -> Bool {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -27,8 +39,14 @@ extension String {
 
     }
     
-    var localized: String {
-        return NSLocalizedString(self, comment: "")
+}
+
+// MARK: - Format
+
+extension String {
+
+    func trim() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
 }
