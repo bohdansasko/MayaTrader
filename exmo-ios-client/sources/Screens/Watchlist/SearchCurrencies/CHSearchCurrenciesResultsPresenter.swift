@@ -54,7 +54,7 @@ extension CHSearchCurrenciesResultsPresenter {
         
         self.vinsoAPI.rx.getCurrencies(like: likeString, limit: kCurrenciesFetchLimit, offset: 0)
             .subscribe(
-                onNext: { [unowned self] currencies in
+                onSuccess: { [unowned self] currencies in
                     self.dataSource.set(currencies)
                     self.currenciesListView.reloadData()
                 },
@@ -73,7 +73,7 @@ extension CHSearchCurrenciesResultsPresenter {
         
         self.vinsoAPI.rx.getCurrencies(like: likeString, limit: kCurrenciesFetchLimit, offset: dataSource.items.count)
             .subscribe(
-                onNext: { [unowned self] currencies in
+                onSuccess: { [unowned self] currencies in
                     self.isDownloadedAllItems = currencies.isEmpty
                     if self.isDownloadedAllItems { return }
                     

@@ -11,15 +11,31 @@ import ObjectMapper
 
 extension Reactive where Base: VinsoAPI {
     
-    func getCurrencies(by stockExchange: CHStockExchange, selectedCurrencies: [String] = [], isExtended: Bool = true) -> Single<[String]> {
+    func getCurrencies(by stockExchange: CHStockExchange, selectedCurrencies: [String], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
+        assert(!selectedCurrencies.isEmpty, "at least must be one element")
+        
         let params: [String: Any] = [
             "stock_exchange"     : stockExchange.rawValue,
             "selected_currencies": selectedCurrencies,
             "extended"           : isExtended
         ]
+
         return self.base.sendRequest(messageType: .getSelectedCurrencies, params: params)
-            .mapInBackground { json -> [String] in
-                return []
+            .mapInBackground { json -> [CHLiteCurrencyModel] in
+                guard let jsonCurrenciesList = json["currencies"].array else {
+                    throw CHVinsoAPIError.missingRequiredParams
+                }
+                
+                var currencies = [CHLiteCurrencyModel]()
+                for jsonCurrencyDetails in jsonCurrenciesList {
+                    guard
+                        let jsonRawString = jsonCurrencyDetails.rawString(),
+                        let currency = Mapper<CHLiteCurrencyModel>().map(JSONString: jsonRawString) else {
+                            continue
+                    }
+                    currencies.append(currency)
+                }
+                return currencies
             }
             .asSingle()
     }
@@ -39,7 +55,7 @@ extension Reactive where Base: VinsoAPI {
     }
     
     /// return currencies which like likeString
-    func getCurrencies(like likeString: String, limit: Int, offset: Int, isExtended: Bool = false) -> Observable<[CHLiteCurrencyModel]> {
+    func getCurrencies(like likeString: String, limit: Int, offset: Int, isExtended: Bool = false) -> Single<[CHLiteCurrencyModel]> {
         let params: [String: Any] = [
             "like_string": likeString,
             "limit"      : limit,
@@ -49,8 +65,12 @@ extension Reactive where Base: VinsoAPI {
 
         return self.base.sendRequest(messageType: .getCurrenciesLikeString, params: params)
             .mapInBackground { json -> [CHLiteCurrencyModel] in
+                guard let jsonCurrenciesList = json["currencies"].array else {
+                    throw CHVinsoAPIError.missingRequiredParams
+                }
+                
                 var currencies = [CHLiteCurrencyModel]()
-                for jsonCurrencyDetails in json["currencies"].arrayValue {
+                for jsonCurrencyDetails in jsonCurrenciesList {
                     guard
                         let jsonRawString = jsonCurrencyDetails.rawString(),
                         let currency = Mapper<CHLiteCurrencyModel>().map(JSONString: jsonRawString) else {
@@ -60,5 +80,6 @@ extension Reactive where Base: VinsoAPI {
                 }
                 return currencies
             }
+            .asSingle()
     }
 }

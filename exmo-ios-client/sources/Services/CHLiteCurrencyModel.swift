@@ -14,6 +14,7 @@ struct CHLiteCurrencyModel {
     var buyPrice : Double = 0.0
     var sellPrice: Double = 0.0
     var volume   : Double = 0.0
+    
 }
 
 // MARK: - Mappable
