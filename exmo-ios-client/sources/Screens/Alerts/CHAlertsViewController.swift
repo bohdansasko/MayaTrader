@@ -82,7 +82,7 @@ private extension CHAlertsViewController {
     func setupUI() {
         setupNavigation()
         
-        presenter = CHAlertsPresenter(tableView: contentView.tableView, api: self.api)
+        presenter = CHAlertsPresenter(tableView: contentView.tableView, api: vinsoAPI)
         presenter.delegate = self
     }
 

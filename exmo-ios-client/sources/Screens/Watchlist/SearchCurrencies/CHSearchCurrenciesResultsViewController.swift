@@ -32,7 +32,7 @@ private extension CHSearchCurrenciesResultsViewController {
         let dataSource = CHSearchCurrenciesResultsDataSource()
         presenter = CHSearchCurrenciesResultsPresenter(currenciesListView: contentView.tableView,
                                                        dataSource        : dataSource,
-                                                       vinsoAPI          : api)
+                                                       vinsoAPI          : vinsoAPI)
         contentView.set(dataSource: dataSource, delegate: presenter)
     }
     

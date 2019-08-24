@@ -26,10 +26,11 @@ class CHBaseViewController: ExmoUIViewController {
     
     // MARK: - Internal variables/properties
 
-    let api        = AppDelegate.vinsoAPI
+    let vinsoAPI   = AppDelegate.vinsoAPI
     let disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
+    
     deinit {
         print("☠️ deinit \(String(describing: self))")
     }
