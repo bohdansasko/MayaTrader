@@ -35,7 +35,8 @@ final class VinsoAPI {
     internal let disposeBag = DisposeBag()
     
     fileprivate let kTimeoutSeconds = 30.0
-    
+                let kAPIVersion = 1
+
     // MARK: - Life cycle
     
     private init() {
@@ -80,8 +81,7 @@ internal extension VinsoAPI {
         
         print("🤞 \(messageType.description) API Request: \(requestJSON)")
         assert(!requestJSON.isEmpty, "don't send empty messages")
-        
-        let jsonRawString = requestJSON.rawString([:]) ?? ""
+        let jsonRawString = requestJSON.rawString([.castNilToNSNull: true])!
         self.socketManager.send(message: jsonRawString)
         
         return request

@@ -33,7 +33,8 @@ extension VinsoAPI {
             return
         }
         
-        let request = self.sendRequest(messageType: .connect)
+        let data = ["version_api" : kAPIVersion]
+        let request = self.sendRequest(messageType: .connect, params: data)
         request.subscribe(onNext: { json in
             self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
             self.authorizeUser()
