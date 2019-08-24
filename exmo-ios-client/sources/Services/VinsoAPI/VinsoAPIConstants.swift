@@ -90,21 +90,18 @@ extension CHStockExchange {
     
 }
 
-// MARK: - CHVinsoAPIError
-
 enum CHVinsoAPIError: String, Error {
-    case unknown      = "Unknown error."
-    case noConnection = "Can't establish connection. Please, try again through a few minutes or write us."
-    case socketClosed = "Your connection was interrupted. Please, try again through a few minutes or write us if issue will be repeated again."
-    case badRequest   = "Wrong request. Please verify it."
-    case unauthorized = "Can't accomplish operation. User must be authorized."
-    case notFound     = "Resource hasn't been found."
-    case serverError  = "Something went wrong."
-
-    case missingRequiredParams  = "Couldn't recognize required params. Please contact with developers."
+    case unknown               = "ERROR_UNKNOWN"
+    case noConnection          = "ERROR_NO_CONNECTION"
+    case socketClosed          = "ERROR_SOCKET_CLOSED"
+    case badRequest            = "ERROR_BAD_REQUEST"
+    case unauthorized          = "ERROR_UNAUTHORIZED"
+    case notFound              = "ERROR_RESOURCE_NOT_FOUND"
+    case serverError           = "ERROR_UNDEFINED"
+    case missingRequiredParams = "ERROR_MISSING_REQUIRED_PARAMS"
     
     var localizedDescription: String {
-        return self.rawValue
+        return self.rawValue.localized
     }
 
 }

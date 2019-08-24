@@ -48,3 +48,13 @@
 "ORDERS_DEALS"     = "Deals";
 
 "OK"     = "Ok";
+
+/* Errors description */
+"ERROR_UNKNOWN"                 = "Unknown error.";
+"ERROR_NO_CONNECTION"           = "Can't establish connection. Please, try again through a few minutes or write us.";
+"ERROR_SOCKET_CLOSED"           = "Your connection was interrupted. Please, try again through a few minutes or write us if issue will be repeated again.";
+"ERROR_BAD_REQUEST"             = "Wrong request. Please verify it.";
+"ERROR_UNAUTHORIZED"            = "Can't accomplish operation. User must be authorized.";
+"ERROR_RESOURCE_NOT_FOUND"      = "Resource hasn't been found.";
+"ERROR_UNDEFINED"               = "Something went wrong.";
+"ERROR_MISSING_REQUIRED_PARAMS" = "Couldn't recognize required params. Please contact with developers.";
