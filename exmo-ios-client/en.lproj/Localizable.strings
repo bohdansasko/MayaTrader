@@ -46,3 +46,5 @@
 "ORDERS_OPEN"      = "Open";
 "ORDERS_CANCELLED" = "Cancelled";
 "ORDERS_DEALS"     = "Deals";
+
+"OK"     = "Ok";

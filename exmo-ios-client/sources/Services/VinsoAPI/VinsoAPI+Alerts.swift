@@ -142,7 +142,7 @@ extension Reactive where Base: VinsoAPI {
         return self.base.sendRequest(messageType: .alertsHistory)
             .mapInBackground{ json -> [Alert] in
                 guard let jsonAlerts = json["history_alerts"].array else {
-                    return []
+                    throw CHVinsoAPIError.missingRequiredParams
                 }
 
                 let alerts: [Alert] = jsonAlerts.compactMap{ Alert(JSONString: $0.description) }
@@ -157,7 +157,7 @@ extension Reactive where Base: VinsoAPI {
         return self.base.sendRequest(messageType: .createAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
                 guard let alert = Alert(JSONString: json["alert"].description) else {
-                    return nil
+                    throw CHVinsoAPIError.missingRequiredParams
                 }
                 return alert
             }

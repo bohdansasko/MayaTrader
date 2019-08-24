@@ -100,4 +100,11 @@ enum CHVinsoAPIError: String, Error {
     case unauthorized = "Can't accomplish operation. User must be authorized."
     case notFound     = "Resource hasn't been found."
     case serverError  = "Something went wrong."
+
+    case missingRequiredParams  = "Couldn't recognize required params. Please contact with developers."
+    
+    var localizedDescription: String {
+        return self.rawValue
+    }
+
 }

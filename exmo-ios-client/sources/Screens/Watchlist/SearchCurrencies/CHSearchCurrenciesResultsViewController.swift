@@ -59,3 +59,12 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
     
 }
 
+// MARK: - CHSearchCurrenciesResultsPresenterDelegate
+
+extension CHSearchCurrenciesResultsViewController: CHSearchCurrenciesResultsPresenterDelegate {
+    
+    func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, onError error: Error) {
+        handleError(error)
+    }
+    
+}

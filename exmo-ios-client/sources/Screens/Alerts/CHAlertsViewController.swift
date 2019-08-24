@@ -123,11 +123,11 @@ private extension CHAlertsViewController {
 
 extension CHAlertsViewController: CHAlertsPresenterDelegate {
     
-    func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert) {
+    func alertsPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert) {
         performSegue(withIdentifier: Segues.editAlert.rawValue, sender: alert)
     }
     
-    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsListUpdated alerts: [Alert]) {
+    func alertsPresenter(_ presenter: CHAlertsPresenter, onAlertsListUpdated alerts: [Alert]) {
         if alerts.isEmpty {
             navigationItem.leftBarButtonItem = nil
         } else if navigationItem.leftBarButtonItem == nil {
@@ -135,6 +135,10 @@ extension CHAlertsViewController: CHAlertsPresenterDelegate {
         }
         
         contentView.isTutorialStubVisible = alerts.isEmpty
+    }
+    
+    func alertsPresenter(_ presenter: CHAlertsPresenter, onError error: Error) {
+        handleError(error)
     }
     
 }

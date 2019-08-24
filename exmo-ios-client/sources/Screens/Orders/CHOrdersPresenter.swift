@@ -11,6 +11,7 @@ import RxSwift
 
 protocol CHOrdersPresenterDelegate: class {
     func ordersPresenter(_ presenter: CHOrdersPresenter, didLoadOrders orders: [OrderModel])
+    func ordersPresenter(_ presenter: CHOrdersPresenter, onError error: Error)
 }
 
 final class CHOrdersPresenter: NSObject {
@@ -96,8 +97,9 @@ private extension CHOrdersPresenter {
                 self.tableView.endUpdates()
 
                 self.delegate?.ordersPresenter(self, didLoadOrders: orders)
-            }, onError: { err in
-                print(err.localizedDescription)
+            }, onError: { [weak self] err in
+                guard let `self` = self else { return }
+                self.delegate?.ordersPresenter(self, onError: err)
             })
         case .cancelled:
             let request = exmoAPI.rx.getCancelledOrders(limit: 20, offset: offset)
@@ -117,8 +119,9 @@ private extension CHOrdersPresenter {
                 self.tableView.endUpdates()
 
                 self.delegate?.ordersPresenter(self, didLoadOrders: orders)
-            }, onError: { err in
-                print(err.localizedDescription)
+            }, onError: { [weak self] err in
+                guard let `self` = self else { return }
+                self.delegate?.ordersPresenter(self, onError: err)
             })
         case .deals:
             let request = exmoAPI.rx.getDealsOrders(limit: 20, offset: offset)
@@ -138,8 +141,9 @@ private extension CHOrdersPresenter {
                 self.tableView.endUpdates()
 
                 self.delegate?.ordersPresenter(self, didLoadOrders: orders)
-            }, onError: { err in
-                print(err.localizedDescription)
+            }, onError: { [weak self] err in
+                guard let `self` = self else { return }
+                self.delegate?.ordersPresenter(self, onError: err)
             })
         }
     }

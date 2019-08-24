@@ -9,7 +9,14 @@
 import UIKit
 import RxSwift
 
+protocol CHSearchCurrenciesResultsPresenterDelegate: class {
+    func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, onError error: Error)
+}
+
 final class CHSearchCurrenciesResultsPresenter: NSObject {
+    
+    // MARK: Private
+    
     fileprivate let currenciesListView: UITableView
     fileprivate let dataSource        : CHSearchCurrenciesResultsDataSource
     fileprivate let vinsoAPI          : VinsoAPI
@@ -18,6 +25,12 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
     fileprivate var likeString: String?
     fileprivate let kCurrenciesFetchLimit = 30
     fileprivate var isDownloadedAllItems: Bool = false
+    
+    // MARK: Public
+    
+    var delegate: CHSearchCurrenciesResultsPresenterDelegate?
+    
+    // MARK: - View life cycle
     
     init(currenciesListView: UITableView, dataSource: CHSearchCurrenciesResultsDataSource, vinsoAPI: VinsoAPI) {
         self.currenciesListView = currenciesListView
@@ -44,9 +57,12 @@ extension CHSearchCurrenciesResultsPresenter {
                 onNext: { [unowned self] currencies in
                     self.dataSource.set(currencies)
                     self.currenciesListView.reloadData()
-                }, onError: { err in
-                    print("\(#function)error: \(err.localizedDescription)")
-            })
+                },
+                onError: { [weak self] err in
+                    guard let `self` = self else { return }
+                    self.delegate?.searchCurrenciesResultsPresenter(self, onError: err)
+                }
+            )
             .disposed(by: self.disposeBag)
     }
     
@@ -71,9 +87,12 @@ extension CHSearchCurrenciesResultsPresenter {
                         self.currenciesListView.insertRows(at: rows, with: .none)
                         self.currenciesListView.endUpdates()
                     }
-                }, onError: { err in
-                    print("\(#function)error: \(err.localizedDescription)")
-            })
+                },
+                onError: { [weak self] err in
+                    guard let `self` = self else { return }
+                    self.delegate?.searchCurrenciesResultsPresenter(self, onError: err)
+                }
+            )
             .disposed(by: self.disposeBag)
     }
     

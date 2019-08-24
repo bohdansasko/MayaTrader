@@ -36,14 +36,19 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
         print(alertModel)
         tickerNetworkWorker.cancelRepeatLoads()
         let request = AppDelegate.vinsoAPI.rx.createAlert(alert: alertModel)
-        request.subscribe(onSuccess: { [weak self] success in
-            guard let `self` = self else { return }
-            self.output.onCreateAlertSuccessful()
-        }, onError: { [weak self] err in
-            guard let `self` = self else { return }
-            self.tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
-            self.output.showAlert(message: err.localizedDescription)
-        }).disposed(by: disposeBag)
+        request
+            .subscribe(
+                onSuccess: { [weak self] success in
+                    guard let `self` = self else { return }
+                    self.output.onCreateAlertSuccessful()
+                },
+                onError: { [weak self] err in
+                    guard let `self` = self else { return }
+                    self.tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
+                    self.output.showAlert(message: err.localizedDescription)
+                }
+            )
+            .disposed(by: disposeBag)
     }
     
     func updateAlert(_ alertModel: Alert) {

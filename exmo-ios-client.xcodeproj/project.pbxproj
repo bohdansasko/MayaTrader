@@ -22,6 +22,7 @@
 		2003B5562048B8DE00BD205F /* CHWalletCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2003B5552048B8DE00BD205F /* CHWalletCurrencyCell.swift */; };
 		2005E2A822E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */; };
 		2005E2A922E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */; };
+		200813EF2311A9BC00D090E7 /* CHBaseViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200813EE2311A9BC00D090E7 /* CHBaseViewController+Rx.swift */; };
 		200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CA489211C9CF300BB0E9B /* Utils.swift */; };
 		200D52A922DA07B20009C07C /* CHOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52A722DA07B20009C07C /* CHOrdersViewController.swift */; };
 		200D52AA22DA07B20009C07C /* CHOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200D52A822DA07B20009C07C /* CHOrdersViewController.xib */; };
@@ -32,7 +33,7 @@
 		200D52B522DA07EB0009C07C /* CHMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52B322DA07EB0009C07C /* CHMenuViewController.swift */; };
 		200D52B622DA07EB0009C07C /* CHMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200D52B422DA07EB0009C07C /* CHMenuViewController.xib */; };
 		200D52BC22DA1B4E0009C07C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 200D52BE22DA1B4E0009C07C /* Localizable.strings */; };
-		200D52C022DA1CC00009C07C /* CHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52BF22DA1CC00009C07C /* CHViewController.swift */; };
+		200D52C022DA1CC00009C07C /* CHBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52BF22DA1CC00009C07C /* CHBaseViewController.swift */; };
 		200D52C222DA1D1A0009C07C /* CHOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52C122DA1D1A0009C07C /* CHOrdersView.swift */; };
 		200D52C422DA1D9E0009C07C /* CHWalletView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52C322DA1D9E0009C07C /* CHWalletView.swift */; };
 		200D52C622DA1DCF0009C07C /* CHAlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52C522DA1DCF0009C07C /* CHAlertsView.swift */; };
@@ -385,6 +386,7 @@
 		2003B5552048B8DE00BD205F /* CHWalletCurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletCurrencyCell.swift; sourceTree = "<group>"; };
 		2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSearchCurrencyResultCell.swift; sourceTree = "<group>"; };
 		2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSearchCurrencyResultCell.xib; sourceTree = "<group>"; };
+		200813EE2311A9BC00D090E7 /* CHBaseViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHBaseViewController+Rx.swift"; sourceTree = "<group>"; };
 		200CA489211C9CF300BB0E9B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		200D52A722DA07B20009C07C /* CHOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOrdersViewController.swift; sourceTree = "<group>"; };
 		200D52A822DA07B20009C07C /* CHOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHOrdersViewController.xib; sourceTree = "<group>"; };
@@ -395,7 +397,7 @@
 		200D52B322DA07EB0009C07C /* CHMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHMenuViewController.swift; sourceTree = "<group>"; };
 		200D52B422DA07EB0009C07C /* CHMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHMenuViewController.xib; sourceTree = "<group>"; };
 		200D52BD22DA1B4E0009C07C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		200D52BF22DA1CC00009C07C /* CHViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHViewController.swift; sourceTree = "<group>"; };
+		200D52BF22DA1CC00009C07C /* CHBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseViewController.swift; sourceTree = "<group>"; };
 		200D52C122DA1D1A0009C07C /* CHOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOrdersView.swift; sourceTree = "<group>"; };
 		200D52C322DA1D9E0009C07C /* CHWalletView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletView.swift; sourceTree = "<group>"; };
 		200D52C522DA1DCF0009C07C /* CHAlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHAlertsView.swift; sourceTree = "<group>"; };
@@ -1600,7 +1602,8 @@
 			children = (
 				208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */,
 				208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */,
-				200D52BF22DA1CC00009C07C /* CHViewController.swift */,
+				200D52BF22DA1CC00009C07C /* CHBaseViewController.swift */,
+				200813EE2311A9BC00D090E7 /* CHBaseViewController+Rx.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2684,6 +2687,7 @@
 				20CE7EB321A19CAB00EC14FA /* Structures.swift in Sources */,
 				20369A482197223C001D6628 /* RootTabsModuleInitializer.swift in Sources */,
 				206A3B6B2175522400C25E95 /* Cells.swift in Sources */,
+				200813EF2311A9BC00D090E7 /* CHBaseViewController+Rx.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */,
 				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
@@ -2852,7 +2856,7 @@
 				9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */,
 				B07ED5143FC3C4FACA446ACF /* CurrenciesGroupsInteractor.swift in Sources */,
 				969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */,
-				200D52C022DA1CC00009C07C /* CHViewController.swift in Sources */,
+				200D52C022DA1CC00009C07C /* CHBaseViewController.swift in Sources */,
 				97E9C017230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift in Sources */,
 				F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */,
 				76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */,

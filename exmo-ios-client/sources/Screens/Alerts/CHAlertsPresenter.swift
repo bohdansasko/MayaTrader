@@ -10,8 +10,9 @@ import UIKit
 import RxSwift
 
 protocol CHAlertsPresenterDelegate: class {
-    func alertPresenter(_ presenter: CHAlertsPresenter, onAlertsListUpdated alerts: [Alert])
-    func alertPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert)
+    func alertsPresenter(_ presenter: CHAlertsPresenter, onAlertsListUpdated alerts: [Alert])
+    func alertsPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert)
+    func alertsPresenter(_ presenter: CHAlertsPresenter, onError error: Error)
 }
 
 final class CHAlertsPresenter: NSObject {
@@ -66,11 +67,12 @@ extension CHAlertsPresenter {
                 $0.dateCreated > $1.dateCreated
             })
             self.tableView.reloadData()
-            self.delegate?.alertPresenter(self, onAlertsListUpdated: alerts)
+            self.delegate?.alertsPresenter(self, onAlertsListUpdated: alerts)
         }, onError: { [weak self] err in
             guard let `self` = self else { return }
             print(err.localizedDescription)
-            self.delegate?.alertPresenter(self, onAlertsListUpdated: [])
+            self.delegate?.alertsPresenter(self, onAlertsListUpdated: [])
+            self.delegate?.alertsPresenter(self, onError: err)
         }).disposed(by: disposeBag)
 
         return request
@@ -90,8 +92,9 @@ extension CHAlertsPresenter {
         let request = api.rx.deleteAlerts(alertsForDelete)
         request.subscribe(onSuccess: { [unowned self] in
             self.fetchAlerts()
-        }, onError: { err in
-            print(err.localizedDescription)
+        }, onError: { [weak self] err in
+            guard let `self` = self else { return }
+            self.delegate?.alertsPresenter(self, onError: err)
         }).disposed(by: disposeBag)
     }
     
@@ -107,8 +110,9 @@ extension CHAlertsPresenter {
             print("alert status updated")
             let cell = self.tableView.cellForRow(at: indexPath) as! AlertViewCell
             cell.item = alert
-        }, onError: { err in
-            print(err.localizedDescription)
+        }, onError: { [weak self] err in
+            guard let `self` = self else { return }
+            self.delegate?.alertsPresenter(self, onError: err)
         }).disposed(by: disposeBag)
     }
     
@@ -117,7 +121,7 @@ extension CHAlertsPresenter {
             print("didSelectRowAt: item doesn't exists")
             return
         }
-        delegate?.alertPresenter(self, onEdit: alert)
+        delegate?.alertsPresenter(self, onEdit: alert)
     }
     
     func removeAlert(by indexPath: IndexPath, _ completion: @escaping (Bool) -> Void) {
@@ -130,10 +134,11 @@ extension CHAlertsPresenter {
             guard let `self` = self else { return }
             print("alert has been deleted")
             self.alerts.removeItem(byId: alert.id)
-            self.delegate?.alertPresenter(self, onAlertsListUpdated: self.alerts.items)
+            self.delegate?.alertsPresenter(self, onAlertsListUpdated: self.alerts.items)
             completion(true)
-        }, onError: { err in
-            print(err.localizedDescription)
+        }, onError: { [weak self] err in
+            guard let `self` = self else { return }
+            self.delegate?.alertsPresenter(self, onError: err)
             completion(false)
         }).disposed(by: disposeBag)
     }

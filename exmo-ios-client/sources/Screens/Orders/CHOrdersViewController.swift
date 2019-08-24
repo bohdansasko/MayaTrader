@@ -84,5 +84,8 @@ extension CHOrdersViewController: CHOrdersPresenterDelegate {
         contentView.isTutorialStubVisible = orders.isEmpty
     }
     
+    func ordersPresenter(_ presenter: CHOrdersPresenter, onError error: Error) {
+        handleError(error)
+    }
 }
 
