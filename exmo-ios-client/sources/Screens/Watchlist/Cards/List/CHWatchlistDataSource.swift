@@ -12,6 +12,8 @@ final class CHWatchlistDataSource: CHBaseDataSource<CHLiteCurrencyModel> {
     
 }
 
+// MARK: - UICollectionViewDataSource
+
 extension CHWatchlistDataSource: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

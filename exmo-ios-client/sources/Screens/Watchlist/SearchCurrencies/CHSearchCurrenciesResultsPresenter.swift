@@ -38,6 +38,8 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
         self.vinsoAPI           = vinsoAPI
         
         super.init()
+        
+        dataSource.fetchFavouriteCurrencies()
     }
     
 }
@@ -106,7 +108,28 @@ extension CHSearchCurrenciesResultsPresenter {
     func resetList() {
         isDownloadedAllItems = false
         likeString = nil
-        dataSource.reset()
+        dataSource.set([])
+    }
+    
+    func saveChanges() {
+        dataSource.cacheToDatabase()
+    }
+    
+    func handleTapOnFavourite(by indexPath: IndexPath) {
+        guard let currencyCell = currenciesListView.cellForRow(at: indexPath) as? CHSearchCurrencyResultCell else {
+            assertionFailure("must be casted")
+            return
+        }
+
+        let item           = dataSource.item(for: indexPath.row)
+        let isItemWasSelected = dataSource.isItem(selected: item)
+        
+        if isItemWasSelected {
+            dataSource.remove(selected: item)
+        } else {
+            dataSource.add(selected: item)
+        }
+        currencyCell.set(isSelected: !isItemWasSelected)
     }
     
 }
@@ -123,31 +146,28 @@ extension CHSearchCurrenciesResultsPresenter: UITableViewDelegate {
                 isFavourite: dataSource.isItem(selected: item))
 
         let currencyCell = cell as! CHSearchCurrencyResultCell
-        currencyCell.set(formatter: itemFormatter)
+        currencyCell.set(indexPath: indexPath, formatter: itemFormatter)
         
         let isSelected = dataSource.isItem(selected: item)
         currencyCell.set(isSelected: isSelected)
+        currencyCell.delegate = self
         
         fetchItemsIfNeeded(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        
-        let item = dataSource.item(for: indexPath.row)
-        
-        if dataSource.isItem(selected: item) {
-            dataSource.remove(selected: item)
-        } else {
-            dataSource.add(selected: item)
-        }
+        handleTapOnFavourite(by: indexPath)
+    }
 
-        guard let currencyCell = tableView.cellForRow(at: indexPath) as? CHSearchCurrencyResultCell else {
-            assertionFailure("must be casted")
-            return
-        }
-        let isSelected = dataSource.isItem(selected: item)
-        currencyCell.set(isSelected: isSelected)
+}
+
+// MARK: - CHSearchCurrencyResultCellDelegate
+
+extension CHSearchCurrenciesResultsPresenter: CHSearchCurrencyResultCellDelegate {
+    
+    func searchCurrencyResultCell(_ cell: CHSearchCurrencyResultCell, didTapFavouriteAt indexPath: IndexPath) {
+        handleTapOnFavourite(by: indexPath)
     }
     
 }

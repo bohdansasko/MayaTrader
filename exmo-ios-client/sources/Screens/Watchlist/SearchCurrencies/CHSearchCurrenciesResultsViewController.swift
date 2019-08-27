@@ -22,6 +22,11 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
         setupPresenter()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        presenter.saveChanges()
+    }
+    
 }
 
 // MARK: Setup methods
@@ -29,7 +34,7 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
 private extension CHSearchCurrenciesResultsViewController {
 
     func setupPresenter() {
-        let dataSource = CHSearchCurrenciesResultsDataSource()
+        let dataSource = CHSearchCurrenciesResultsDataSource(dbManager: dbManager)
         presenter = CHSearchCurrenciesResultsPresenter(currenciesListView: contentView.tableView,
                                                        dataSource        : dataSource,
                                                        vinsoAPI          : vinsoAPI)
