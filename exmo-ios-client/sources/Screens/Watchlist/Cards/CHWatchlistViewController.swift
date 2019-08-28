@@ -18,6 +18,8 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
     
     fileprivate var presenter: CHWatchlistPresenter!
     
+    // MARK: - View life cycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,18 +32,21 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         presenter.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.rx.showLoadingView(request: self.presenter.fetchItems())
+            self.presenter.runIntervalCurrenciesRefreshing()
         }
     }
-
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        presenter.stopIntervalCurrenciesRefreshing()
+    }
+    
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

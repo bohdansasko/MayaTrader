@@ -22,6 +22,7 @@ final class CHWatchlistPresenter: NSObject {
     fileprivate enum Constants {
         static var spaceFromLeftOrRight: CGFloat { return 10 }
         static var minSpaceForSection  : CGFloat { return 10 }
+        static var refreshingIntervalInSeconds: TimeInterval { return 10.0 }
     }
     
     fileprivate var collectionView: UICollectionView
@@ -30,6 +31,7 @@ final class CHWatchlistPresenter: NSObject {
     fileprivate var dbManager     : OperationsDatabaseProtocol
     
     fileprivate let disposeBag    = DisposeBag()
+    fileprivate var currencyRefreshTimer: Timer?
     
     // MARK: - Public properties
     
@@ -49,7 +51,10 @@ final class CHWatchlistPresenter: NSObject {
         self.collectionView.dataSource = self.dataSource
         self.collectionView.delegate = self
     }
- 
+    
+    deinit {
+        stopIntervalCurrenciesRefreshing()
+    }
 }
 
 // MARK: - Public methods
@@ -66,10 +71,26 @@ extension CHWatchlistPresenter {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
+        
         return Single.just(currencies)
     }
     
-    func refreshCurrencies(_ currencies: [CHLiteCurrencyModel]) {
+    func runIntervalCurrenciesRefreshing() {
+        if currencyRefreshTimer == nil {
+            currencyRefreshTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshingIntervalInSeconds, repeats: true) { [weak self] t in
+                guard let `self` = self else { return }
+                self.refreshCurrencies(self.dataSource.items)
+            }
+            currencyRefreshTimer?.fire()
+        }
+    }
+    
+    func stopIntervalCurrenciesRefreshing() {
+        currencyRefreshTimer?.invalidate()
+        currencyRefreshTimer = nil
+    }
+    
+    private func refreshCurrencies(_ currencies: [CHLiteCurrencyModel]) {
         let groupedSelectedCurrencies = Dictionary(grouping: currencies, by: { $0.stockName })
         let selectedCurrencies = groupedSelectedCurrencies.mapValues{ $0.map{ $0.name } }
         let request = vinsoAPI.rx.getCurrencies(selectedCurrencies: selectedCurrencies)
