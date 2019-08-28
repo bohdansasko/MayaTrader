@@ -57,24 +57,38 @@ final class CHWatchlistPresenter: NSObject {
 extension CHWatchlistPresenter {
     
     func fetchItems() -> Single<[CHLiteCurrencyModel]> {
-        let request = vinsoAPI.rx.getCurrencies(by: .exmo, selectedCurrencies: ["XRP_USD", "BTC_USD", "BTC_UAH"])
-        request.subscribe(
-            onSuccess: {[weak self] items in
-                guard let `self` = self else { return }
-                self.dataSource.set(items)
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            },
-            onError: { [weak self] err in
-                guard let `self` = self else { return }
-                self.delegate?.presenter(self, onError: err)
-            }
-        )
-        .disposed(by: disposeBag)
-        return request
+        guard let currenciesList = dbManager.objects(type: CHLiteCurrencyModel.self, predicate: nil) else {
+            return Single.just([])
+        }
+        
+        let currencies = Array(currenciesList)
+        self.dataSource.set(currencies)
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        return Single.just(currencies)
     }
     
+    func refreshCurrencies(_ currencies: [CHLiteCurrencyModel]) {
+        let groupedSelectedCurrencies = Dictionary(grouping: currencies, by: { $0.stockName })
+        let selectedCurrencies = groupedSelectedCurrencies.mapValues{ $0.map{ $0.name } }
+        let request = vinsoAPI.rx.getCurrencies(selectedCurrencies: selectedCurrencies)
+        request
+            .subscribe(
+                onSuccess: {[weak self] items in
+                    guard let `self` = self else { return }
+                    self.dataSource.set(items)
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                    }
+                },
+                onError: { [weak self] err in
+                    guard let `self` = self else { return }
+                    self.delegate?.presenter(self, onError: err)
+                }
+            )
+            .disposed(by: disposeBag)
+    }
 }
 
 // MARK: - UICollectionViewDelegateFlowLayout

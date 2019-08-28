@@ -11,11 +11,10 @@ import ObjectMapper
 
 extension Reactive where Base: VinsoAPI {
     
-    func getCurrencies(by stockExchange: CHStockExchange, selectedCurrencies: [String], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
+    func getCurrencies(selectedCurrencies: [String: [String]], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
         assert(!selectedCurrencies.isEmpty, "at least must be one element")
         
         let params: [String: Any] = [
-            "stock_exchange"     : stockExchange.rawValue,
             "selected_currencies": selectedCurrencies,
             "extended"           : isExtended
         ]

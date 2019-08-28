@@ -36,7 +36,10 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        rx.showLoadingView(request: presenter.fetchItems())
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.rx.showLoadingView(request: self.presenter.fetchItems())
+        }
     }
 
     // MARK: - Navigation
