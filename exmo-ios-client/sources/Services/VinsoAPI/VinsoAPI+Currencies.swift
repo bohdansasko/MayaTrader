@@ -21,19 +21,28 @@ extension Reactive where Base: VinsoAPI {
 
         return self.base.sendRequest(messageType: .getSelectedCurrencies, params: params)
             .mapInBackground { json -> [CHLiteCurrencyModel] in
-                guard let jsonCurrenciesList = json["currencies"].array else {
+                guard let stocksJson = json["currencies"].dictionary else {
                     throw CHVinsoAPIError.missingRequiredParams
                 }
                 
                 var currencies = [CHLiteCurrencyModel]()
-                for jsonCurrencyDetails in jsonCurrenciesList {
-                    guard
-                        let jsonRawString = jsonCurrencyDetails.rawString(),
-                        let currency = Mapper<CHLiteCurrencyModel>().map(JSONString: jsonRawString) else {
-                            continue
+                
+                for (stockName, stockJsonCurrencies)  in stocksJson {
+                    guard let currenciesListJson = stockJsonCurrencies.array else {
+                        continue
                     }
-                    currencies.append(currency)
+                    for currencyJson in currenciesListJson {
+                        guard var jsonDict = currencyJson.dictionaryObject else {
+                            continue
+                        }
+                        jsonDict["stock_exchange"] = stockName
+                        
+                        if let currency = Mapper<CHLiteCurrencyModel>().map(JSON: jsonDict) {
+                            currencies.append(currency)
+                        }
+                    }
                 }
+                
                 return currencies
             }
             .asSingle()
