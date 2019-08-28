@@ -11,10 +11,7 @@ import UIKit
 final class CHExchangeDataSource: NSObject {
     fileprivate var exchangeItems: [CHExchangeModel] = [
         CHExchangeModel(icon:#imageLiteral(resourceName: "ic_crypto_dash") , name: "EXMO"),
-        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_crypto_uah") , name: "BITFINEX"),
-        
-        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_crypto_kick") , name: "BINANCE"),
-        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_crypto_btc") , name: "CEXIO")
+        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_crypto_uah") , name: "BTC TRADE")
     ]
     
 }
