@@ -78,15 +78,16 @@ internal extension VinsoAPI {
         requestParams["request_type"] = messageType.rawValue
         
         let requestJSON = JSON(requestParams)
-        
-        print("🤞 \(messageType.description) API Request: \(requestJSON)")
         assert(!requestJSON.isEmpty, "don't send empty messages")
-        let jsonRawString = requestJSON.rawString([.castNilToNSNull: true])!
-        self.socketManager.send(message: jsonRawString)
+        
+        let serializedMessage = serialize(json: requestJSON)
+        print("🤞 \(messageType.description) API Request: \(serializedMessage)")
+    
+        self.socketManager.send(message: serializedMessage)
         
         return request
     }
-    
+
 }
 
 
@@ -150,6 +151,12 @@ extension VinsoAPI {
         default:
             return CHVinsoAPIError.unknown
         }
+    }
+    
+    func serialize(json: JSON) -> String {
+        let jsonRawString = json.rawString([.castNilToNSNull: true]) ?? ""
+        let serializedStr = jsonRawString.replacingOccurrences(of: "\\/", with: "/")
+        return serializedStr
     }
     
 }
