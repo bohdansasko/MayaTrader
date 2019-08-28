@@ -81,7 +81,8 @@ extension CHWatchlistPresenter {
                 guard let `self` = self else { return }
                 self.refreshCurrencies(self.dataSource.items)
             }
-            currencyRefreshTimer?.fire()
+            RunLoop.current.add(currencyRefreshTimer!, forMode: .common)
+            currencyRefreshTimer!.tolerance = 5
         }
     }
     
