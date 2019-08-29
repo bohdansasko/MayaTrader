@@ -30,15 +30,16 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
                                                vinsoAPI: vinsoAPI,
                                               dbManager: dbManager)
         presenter.delegate = self
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.rx.showLoadingView(request: self.presenter.fetchItems())
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.rx.showLoadingView(request: self.presenter.fetchItems())
-            self.presenter.runIntervalCurrenciesRefreshing()
-        }
+        self.presenter.runIntervalCurrenciesRefreshing()
     }
     
     override func viewDidDisappear(_ animated: Bool) {

@@ -11,7 +11,7 @@ import RealmSwift
 import ObjectMapper
 
 final class CHLiteCurrencyModel: Object, Mappable {
-    @objc dynamic var id       : Int = 0
+    @objc dynamic var id       : String = ""
     @objc dynamic var stockName: String = ""
     @objc dynamic var name     : String = ""
     @objc dynamic var buyPrice : Double = 0.0
@@ -42,7 +42,7 @@ final class CHLiteCurrencyModel: Object, Mappable {
     
     override func isEqual(_ object: Any?) -> Bool {
         if let mObj = object as? CHLiteCurrencyModel {
-            return self.name == mObj.name && self.stockName == mObj.stockName
+            return self.id == mObj.id
         }
         return false
     }
@@ -74,7 +74,7 @@ final class CHLiteCurrencyModel: Object, Mappable {
         sellPrice <- (map["sell_price"]    , strToDoubleTransform)
         volume    <- (map["vol"]           , strToDoubleTransform)
         
-        id = stockName.hashValue & name.hashValue
+        id = stockName + "_" + name
     }
     
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import RxSwift
+import RealmSwift
 
 protocol CHWatchlistPresenterDelegate: class {
     func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [CHLiteCurrencyModel])
@@ -32,6 +33,11 @@ final class CHWatchlistPresenter: NSObject {
     
     fileprivate let disposeBag    = DisposeBag()
     fileprivate var currencyRefreshTimer: Timer?
+    fileprivate var currenciesNotificationToken: NotificationToken? {
+        didSet {
+            oldValue?.invalidate()
+        }
+    }
     
     // MARK: - Public properties
     
@@ -61,16 +67,36 @@ final class CHWatchlistPresenter: NSObject {
 
 extension CHWatchlistPresenter {
     
+    @discardableResult
     func fetchItems() -> Single<[CHLiteCurrencyModel]> {
         guard let currenciesList = dbManager.objects(type: CHLiteCurrencyModel.self, predicate: nil) else {
             return Single.just([])
         }
         
+        currenciesNotificationToken = currenciesList.observe{ [weak self] changes in
+            guard let `self` = self else { return }
+            
+            switch changes {
+            case .initial:
+                print("\(#function)")
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .update(_, let deletions, let insertions, _ /* let modifications */):
+                print("\(#function)")
+                if !insertions.isEmpty || !deletions.isEmpty {
+                    self.fetchItems()
+                }
+                self.collectionView.reloadData()
+            case .error(let err):
+                print("\(#function)")
+                print("error: ", err.localizedDescription)
+                break
+            }
+        }
+        
         let currencies = Array(currenciesList)
         self.dataSource.set(currencies)
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
         
         return Single.just(currencies)
     }
@@ -78,7 +104,7 @@ extension CHWatchlistPresenter {
     func runIntervalCurrenciesRefreshing() {
         if currencyRefreshTimer == nil {
             currencyRefreshTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshingIntervalInSeconds, repeats: true) { [weak self] t in
-                guard let `self` = self else { return }
+                guard let `self` = self, !self.dataSource.items.isEmpty else { return }
                 self.refreshCurrencies(self.dataSource.items)
             }
             RunLoop.current.add(currencyRefreshTimer!, forMode: .common)
@@ -100,9 +126,7 @@ extension CHWatchlistPresenter {
                 onSuccess: {[weak self] items in
                     guard let `self` = self else { return }
                     self.dataSource.set(items)
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
+                    self.dbManager.add(data: items, update: true)
                 },
                 onError: { [weak self] err in
                     guard let `self` = self else { return }
@@ -150,7 +174,8 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
 extension CHWatchlistPresenter: WatchlistCardCellDelegate {
     
     func watchlistCardCell(_ cell: WatchlistCardCell, didTouchFavouriteAt indexPath: IndexPath) {
-        assertionFailure("required implementation")
+        let item = dataSource.remove(at: indexPath.row)
+        dbManager.delete(data: item)
     }
 
 }

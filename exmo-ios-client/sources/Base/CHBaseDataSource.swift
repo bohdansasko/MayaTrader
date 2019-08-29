@@ -23,4 +23,9 @@ class CHBaseDataSource<T>: NSObject {
         self.items.append(contentsOf: items)
     }
     
+    @discardableResult
+    func remove(at index: Int) -> T {
+        return self.items.remove(at: index)
+    }
+
 }
