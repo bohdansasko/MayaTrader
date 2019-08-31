@@ -34,12 +34,12 @@ extension CHLiteCurrencyFormatter {
     }
     
     var sellPrice: String {
-        let formattedPrice = Utils.getFormatedPrice(value: currency.sellPrice)
+        let formattedPrice = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 9)
         return addLabels ? "SELL".localized + " " + formattedPrice : formattedPrice
     }
     
     var buyPrice: String {
-        let formattedPrice = Utils.getFormatedPrice(value: currency.buyPrice)
+        let formattedPrice = Utils.getFormatedPrice(value: currency.buyPrice, maxFractDigits: 9)
         return addLabels ? "BUY".localized + " " + formattedPrice : formattedPrice
     }
     
@@ -63,8 +63,8 @@ extension CHLiteCurrencyFormatter {
     
     var stockIcon: UIImage {
         switch currency.stock {
-        case .exmo    : return #imageLiteral(resourceName: "ic_crypto_ltc")
-        case .btcTrade: return #imageLiteral(resourceName: "ic_crypto_usdt")
+        case .exmo    : return #imageLiteral(resourceName: "ic_stock_exmo")
+        case .btcTrade: return #imageLiteral(resourceName: "ic_stock_btc_trade")
         }
     }
     
