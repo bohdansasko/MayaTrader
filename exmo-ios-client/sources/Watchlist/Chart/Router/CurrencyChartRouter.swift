@@ -5,12 +5,13 @@
 
 import UIKit
 
-class WatchlistCurrencyChartRouter: WatchlistCurrencyChartRouterInput {
+final class WatchlistCurrencyChartRouter: WatchlistCurrencyChartRouterInput {
     func showViewAddAlert(_ viewController: UIViewController, pair: String) {
-//        let moduleInit = CreateAlertModuleInitializer()
-//        guard let mInput = moduleInit.viewController.output as? SearchModuleOutput else { return }
-//        mInput.onDidSelectCurrencyPair(rawName: pair)
-//        viewController.present(UINavigationController(rootViewController: moduleInit.viewController), animated: true, completion: nil)
+        let createAlertNavController = UIStoryboard(.alerts).instantiateViewController(withIdentifier: "chCreateAlertViewController") as! UINavigationController
+        let vc = createAlertNavController.topViewController as! CreateAlertViewController
+        guard let mInput = vc.output as? SearchModuleOutput else { return }
+        mInput.onDidSelectCurrencyPair(rawName: pair)
+        viewController.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
     func showViewAddOrder(_ viewController: UIViewController, pair: String) {

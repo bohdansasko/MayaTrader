@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WatchlistCurrencyChartPresenter {
+final class WatchlistCurrencyChartPresenter {
     weak var view: CurrencyChartViewInput!
     var interactor: WatchlistCurrencyChartInteractorInput!
     var router: WatchlistCurrencyChartRouterInput!
