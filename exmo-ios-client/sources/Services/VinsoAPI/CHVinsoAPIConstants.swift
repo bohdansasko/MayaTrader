@@ -45,29 +45,31 @@ enum ServerMessage: Int {
     case setSubscriptionType = 13
     case getAlertsInfo       = 14
     case getCurrencyGroup    = 15
-    case getSelectedCurrencies = 16
+    case getSelectedCurrencies   = 16
     case getCurrenciesLikeString = 17
+    case getUserBalance          = 18
     
     var description: String {
         switch self {
-        case .bad                 : return "bad"
-        case .connect             : return "connect"
-        case .registration        : return "registration"
-        case .authorization       : return "authorization"
-        case .confirmRegistration : return "confirmRegistration"
-        case .createAlert         : return "createAlert"
-        case .updateAlert         : return "updateAlert"
-        case .deleteAlert         : return "deleteAlert"
-        case .fireAlert           : return "fireAlert"
-        case .resetUser           : return "resetUser"
-        case .alertsHistory       : return "alertsHistory"
+        case .bad                    : return "bad"
+        case .connect                : return "connect"
+        case .registration           : return "registration"
+        case .authorization          : return "authorization"
+        case .confirmRegistration    : return "confirmRegistration"
+        case .createAlert            : return "createAlert"
+        case .updateAlert            : return "updateAlert"
+        case .deleteAlert            : return "deleteAlert"
+        case .fireAlert              : return "fireAlert"
+        case .resetUser              : return "resetUser"
+        case .alertsHistory          : return "alertsHistory"
         case .registerAPNsDeviceToken: return "registerAPNsDeviceToken"
-        case .subscriptionConfigs : return "subscriptionConfigs"
-        case .setSubscriptionType : return "setSubscriptionType"
-        case .getAlertsInfo       : return "getAlertsInfo"
-        case .getCurrencyGroup    : return "getCurrencyGroup"
-        case .getSelectedCurrencies : return "getSelectedCurrencies"
-        case .getCurrenciesLikeString : return "getCurrenciesLikeString"
+        case .subscriptionConfigs    : return "subscriptionConfigs"
+        case .setSubscriptionType    : return "setSubscriptionType"
+        case .getAlertsInfo          : return "getAlertsInfo"
+        case .getCurrencyGroup       : return "getCurrencyGroup"
+        case .getSelectedCurrencies  : return "getSelectedCurrencies"
+        case .getCurrenciesLikeString: return "getCurrenciesLikeString"
+        case .getUserBalance         : return "getUserBalance"
         }
     }
 }

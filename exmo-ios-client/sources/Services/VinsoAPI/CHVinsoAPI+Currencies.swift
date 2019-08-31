@@ -90,4 +90,30 @@ extension Reactive where Base: VinsoAPI {
             }
             .asSingle()
     }
+    
+    /**
+        - parameter currencies: "BTC", "USD", etc.
+        - parameter currenciesMoney: [String - currency name, Double - amount money for that currency]
+        - parameter stockExchange: where price will be taken and calculated
+        - returns: price in BTC and USD
+    */
+    func getBalance(in currencies: [String], info currenciesMoney: [String: Double], at stockExchange: CHStockExchange) -> Single<CHWalletBalance?> {
+        let params: [String: Any] = [
+            "convert_to_currencies": currencies,
+            "stock_exchange"       : stockExchange.rawValue,
+            "wallet"               : currenciesMoney
+        ]
+
+        return self.base.sendRequest(messageType: .getUserBalance, params: params)
+            .mapInBackground { json in
+                guard let jsonBalance = json["wallet"].dictionaryObject else {
+                    throw CHVinsoAPIError.missingRequiredParams
+                }
+                
+                let balance = Mapper<CHWalletBalance>().map(JSON: jsonBalance)
+                return balance
+            }
+            .asSingle()
+    }
+    
 }

@@ -50,8 +50,8 @@ private extension CHWalletView {
 
 extension CHWalletView {
 
-    func set(walletForBalanceView wallet: ExmoWallet) {
-        balanceView.set(amountBTC: wallet.amountBTC, amountUSD: wallet.amountUSD)
+    func set(balance: CHWalletBalance) {
+        balanceView.set(amountBTC: balance.btc, amountUSD: balance.usd)
     }
     
 }

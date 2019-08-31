@@ -53,9 +53,10 @@ private extension CHWalletViewController {
     }
     
     func setupPresenter() {
-        presenter = CHWalletCurrenciesPresenter(tableView : contentView.currenciesTableView,
-                                                networkAPI: CHExmoAPI.shared,
-                                                database  : RealmDatabaseManager.shared)
+        presenter = CHWalletCurrenciesPresenter(tableView: contentView.currenciesTableView,
+                                                exmoAPI  : exmoAPI,
+                                                vinsoAPI : vinsoAPI,
+                                                database : RealmDatabaseManager.shared)
         presenter.delegate = self
     }
     
@@ -113,12 +114,12 @@ private extension CHWalletViewController {
 
 extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
     
-    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?) {
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?, balance walletBalance: CHWalletBalance?) {
         let isWalletExist = wallet != nil
         contentView.isWalletVisible = isWalletExist
         
         if isWalletExist {
-            contentView.set(walletForBalanceView: wallet!)
+            contentView.set(balance: walletBalance!)
             if navigationItem.rightBarButtonItem == nil {
                 setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
             }

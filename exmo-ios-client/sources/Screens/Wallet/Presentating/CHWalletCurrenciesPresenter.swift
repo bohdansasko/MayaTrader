@@ -7,42 +7,38 @@ import Foundation
 import UIKit
 import RxSwift
 
-class WalletSegueBlock: SegueBlock {
-    private(set) var wallet: ExmoWallet!
-    
-    init(dataModel: ExmoWallet?) {
-        wallet = dataModel
-    }
-}
-
 protocol CHWalletCurrenciesPresenterDelegate: class {
-    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?)
+    func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?, balance walletBalance: CHWalletBalance?)
 }
 
 final class CHWalletCurrenciesPresenter: NSObject {
     fileprivate weak var tableView: UITableView!
     
-    fileprivate let networkAPI: CHExmoAPI
-    fileprivate let dbManager : OperationsDatabaseProtocol
+    fileprivate let exmoAPI  : CHExmoAPI
+    fileprivate let vinsoAPI : VinsoAPI
+    fileprivate let dbManager: OperationsDatabaseProtocol
     
     fileprivate let disposeBag = DisposeBag()
     
     weak var delegate: CHWalletCurrenciesPresenterDelegate?
+    
+    fileprivate var walletBalance: CHWalletBalance?
     
     var wallet: ExmoWallet? {
         didSet {
             if let w = wallet {
                 tableView.isScrollEnabled = w.favBalances.count > 0
             }
-            delegate?.walletCurrenciesListPresenter(self, onWalletRefreshed: self.wallet)
+            delegate?.walletCurrenciesListPresenter(self, onWalletRefreshed: self.wallet, balance: walletBalance)
             tableView.reloadData()
         }
     }
     
-    init(tableView: UITableView, networkAPI: CHExmoAPI, database: OperationsDatabaseProtocol) {
-        self.tableView  = tableView
-        self.networkAPI = networkAPI
-        self.dbManager  = database
+    init(tableView: UITableView, exmoAPI: CHExmoAPI, vinsoAPI: VinsoAPI, database: OperationsDatabaseProtocol) {
+        self.tableView = tableView
+        self.exmoAPI   = exmoAPI
+        self.vinsoAPI  = vinsoAPI
+        self.dbManager = database
         
         super.init()
         
@@ -68,11 +64,28 @@ private extension CHWalletCurrenciesPresenter  {
 extension CHWalletCurrenciesPresenter  {
     
     func fetchWallet() {
-        guard let dbWallet = dbManager.object(type: ExmoWalletObject.self, key: "") else {
+        guard let dbWallet = self.dbManager.object(type: ExmoWalletObject.self, key: "") else {
             self.wallet = nil
             return
         }
-        self.wallet = ExmoWallet(managedObject: dbWallet)
+        
+        let w = ExmoWallet(managedObject: dbWallet)
+        let info = w.balances.reduce(into: [String: Double](), { r, currency in
+            if currency.balance > 0 {
+                r[currency.code] = currency.balance
+            }
+        })
+        
+        vinsoAPI.rx.getBalance(in: ["BTC", "USD"], info: info, at: .exmo)
+            .subscribe(
+                onSuccess: { [weak self] balance in
+                    guard let `self` = self else { return }
+                    self.walletBalance = balance
+                    self.wallet = w
+                }, onError: { err in
+                    print(err.localizedDescription)
+                }
+            ).disposed(by: disposeBag)
     }
     
     func saveWallet(_ wallet: ExmoWallet) {

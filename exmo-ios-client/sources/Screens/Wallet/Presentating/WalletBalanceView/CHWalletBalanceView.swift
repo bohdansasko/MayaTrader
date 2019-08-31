@@ -7,6 +7,32 @@
 //
 
 import UIKit
+import ObjectMapper
+
+struct CHWalletBalance {
+    var btc: Double = 0.0
+    var usd: Double = 0.0
+    
+}
+
+// MARK: - Mappable
+
+extension CHWalletBalance: Mappable {
+    
+    init?(map: Map) {
+        let requiredFields = [ "BTC", "USD" ]
+        
+        if !map.isJsonValid(by: requiredFields) {
+            assertionFailure("required")
+            return nil
+        }
+    }
+    
+    mutating func mapping(map: Map) {
+        btc <- map["BTC"]
+        usd <- map["USD"]
+    }
+}
 
 final class CHWalletBalanceView: UIView {
     @IBOutlet fileprivate weak var btcTextLabel : UILabel!
