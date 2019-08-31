@@ -11,9 +11,15 @@ import RealmSwift
 import ObjectMapper
 
 final class CHLiteCurrencyModel: Object, Mappable {
+    /// stockName + "_" + name
     @objc dynamic var id       : String = ""
+    
+    /// exmo, btc_trade, ..., etc
     @objc dynamic var stockName: String = ""
+    
+    /// BTC_USD, BTC_ETH, ..., etc
     @objc dynamic var name     : String = ""
+    
     @objc dynamic var buyPrice : Double = 0.0
     @objc dynamic var sellPrice: Double = 0.0
     @objc dynamic var volume   : Double = 0.0

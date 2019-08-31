@@ -67,9 +67,9 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
 extension CHWatchlistViewController {
     
     func prepareCurrencyChartViewController(for segue: UIStoryboardSegue, sender: Any?) {
-        let currency = sender as! WatchlistCurrency
+        let currency = sender as! CHLiteCurrencyModel
         let vc = segue.destination as! CurrencyChartViewController
-        vc.setCurrencyPair(currency.tickerPair.code)
+        vc.setCurrencyPair(currency.name)
     }
     
 }

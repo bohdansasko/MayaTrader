@@ -114,14 +114,14 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZJ-cA-6py" userLabel="chartAdditionalInfo">
-                                <rect key="frame" x="0.0" y="40" width="414" height="673"/>
+                                <rect key="frame" x="0.0" y="40" width="414" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tK7-L6-KXp" userLabel="Candle Chart View" customClass="CandleStickChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="394" height="532"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="581"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Pb-8E-Yd3" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="537" width="394" height="136"/>
+                                        <rect key="frame" x="0.0" y="586" width="394" height="148"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uO6-J6-BrP" customClass="CandleBarChartShortInfoView" customModule="exmo_ios_client" customModuleProvider="target">
@@ -279,7 +279,7 @@
                             <constraint firstItem="f7k-3i-99D" firstAttribute="trailing" secondItem="m5A-g8-p2s" secondAttribute="trailing" id="GNa-zT-nzL"/>
                             <constraint firstItem="f7k-3i-99D" firstAttribute="top" secondItem="m5A-g8-p2s" secondAttribute="top" constant="5" id="RnV-O8-L8r"/>
                             <constraint firstItem="mZJ-cA-6py" firstAttribute="leading" secondItem="m5A-g8-p2s" secondAttribute="leading" id="U32-OE-ScF"/>
-                            <constraint firstItem="m5A-g8-p2s" firstAttribute="bottom" secondItem="mZJ-cA-6py" secondAttribute="bottom" constant="61" id="bnP-Fg-ETS"/>
+                            <constraint firstItem="m5A-g8-p2s" firstAttribute="bottom" secondItem="mZJ-cA-6py" secondAttribute="bottom" id="bnP-Fg-ETS"/>
                             <constraint firstItem="mZJ-cA-6py" firstAttribute="top" secondItem="f7k-3i-99D" secondAttribute="bottom" id="rXL-MF-nWS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m5A-g8-p2s"/>
