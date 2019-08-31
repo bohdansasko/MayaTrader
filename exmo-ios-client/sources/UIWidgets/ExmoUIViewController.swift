@@ -58,8 +58,8 @@ class ExmoUIViewController: UIViewController {
         }
     }
     
-    internal var bannerView: GADBannerView!
-    internal var isAdsActive = true
+    var bannerView: GADBannerView!
+    var isAdsActive = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +113,7 @@ extension ExmoUIViewController {
 
 extension ExmoUIViewController {
     
-    internal func setupTitle() {
+    func setupTitle() {
         let titleView = UILabel()
         titleView.text = titleNavBar
         titleView.font = UIFont.getTitleFont()

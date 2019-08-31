@@ -9,8 +9,9 @@
 import UIKit
 import Charts
 
-// MARK: ChartTimePeriodContainer
-class ChartTimePeriodContainer: UIView {
+// MARK: - ChartTimePeriodContainer
+
+final class ChartTimePeriodContainer: UIView {
     enum PeriodType: String {
         case year  = "year"
         case month = "month"
@@ -82,8 +83,9 @@ class ChartTimePeriodContainer: UIView {
     }
 }
 
-// MARK: CurrencyChartViewController
-class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput {
+// MARK: - CurrencyChartViewController
+
+final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput {
     @IBOutlet weak var candleShortInfoView: CandleBarChartShortInfoView!
     @IBOutlet weak var candleChart: CandleStickChartView!
     @IBOutlet weak var barChart: BarChartView!
@@ -94,9 +96,6 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
     private var candleChartViewController = CandleStickChartViewController()
     private var barChartViewController = BarChartViewController()
     private var currencyPair: String = ""
-    
-    let addAlertButton = CurrencyChartViewController.getButton(icNamed: "icNavbarAddAlert")
-    let addOrderButton = CurrencyChartViewController.getButton(icNamed: "icNavbarAddOrder")
 
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -117,21 +116,15 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
         periodViewController.emitTouch(periodType: .week)
     }
 
-    // MARK: CurrencyChartViewInput
+    // MARK: - CurrencyChartViewInput
+    
     func setupInitialState() {
         candleShortInfoView.isHidden = true
         navigationController?.navigationBar.tintColor = .white
         
+        let addAlertButton = CurrencyChartViewController.getButton(icon: #imageLiteral(imageResource: "icNavbarAddAlert"))
         addAlertButton.addTarget(self, action: #selector(onTouchAddAlertButton(_:)), for: .touchUpInside)
-        addOrderButton.addTarget(self, action: #selector(onTouchAddOrderButton(_:)), for: .touchUpInside)
-        
-        let fixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
-        fixedSpace.width = 15
-        
-        navigationItem.rightBarButtonItems = [
-            UIBarButtonItem(customView: addOrderButton),
-            fixedSpace,
-            UIBarButtonItem(customView: addAlertButton)]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addAlertButton)
 
         prepareCharts()
     }
@@ -185,11 +178,6 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
     func onTouchAddAlertButton(_ senderButton: UIButton) {
         output.onTouchAddAlert(pair: currencyPair)
     }
-
-    @objc
-    func onTouchAddOrderButton(_ senderButton: UIButton) {
-        output.onTouchAddOrder(pair: currencyPair)
-    }
     
     func updateChart(chartData: ExmoChartData?) {
         guard let chartData = chartData else { return }
@@ -202,8 +190,7 @@ class CurrencyChartViewController: ExmoUIViewController, CurrencyChartViewInput 
         self.currencyPair = currencyPair
     }
     
-    static private func getButton(icNamed: String) -> UIButton {
-        let icon = UIImage(named: icNamed)?.withRenderingMode(.alwaysOriginal)
+    static private func getButton(icon: UIImage) -> UIButton {
         let button = UIButton(type: .system)
         button.setImage(icon, for: .normal)
         return button
@@ -214,10 +201,10 @@ extension CurrencyChartViewController {
     func setSubscription(_ package: CHSubscriptionPackageProtocol) {
         print("\(String(describing: self)) => \(#function)")
         super.isAdsActive = package.isAdsPresent
-        if package.isAdsPresent {
-            showAdsView()
-        } else {
-            hideAdsView()
-        }
+//        if package.isAdsPresent {
+//            showAdsView()
+//        } else {
+//            hideAdsView()
+//        }
     }
 }

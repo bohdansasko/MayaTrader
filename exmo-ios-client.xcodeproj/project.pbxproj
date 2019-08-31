@@ -995,7 +995,7 @@
 				207552952188B1F00011190E /* NetworkWorker.swift */,
 				202F48F0206A144D0080423E /* Common */,
 				207B1D842173F93F00D2A5DE /* Main */,
-				48EFA6894840F77841C1ED3F /* CurrencyChart */,
+				48EFA6894840F77841C1ED3F /* Chart */,
 				20DE8847217CDE9900BA5CF3 /* CurrenciesPairsList */,
 				367120B1111B487C3177C51D /* WatchlistListView.swift */,
 			);
@@ -1964,7 +1964,7 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		48EFA6894840F77841C1ED3F /* CurrencyChart */ = {
+		48EFA6894840F77841C1ED3F /* Chart */ = {
 			isa = PBXGroup;
 			children = (
 				73B88DA9D6AEEF1A2D1E6F66 /* View */,
@@ -1974,7 +1974,7 @@
 				5915FD138D9D8B884E0325DD /* Configurator */,
 				36712194B55D0F9BEAD494DF /* Model */,
 			);
-			path = CurrencyChart;
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		494BD91DE841229E6672468F /* Pods */ = {
