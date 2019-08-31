@@ -51,14 +51,15 @@ class AlertsApiRequestBuilder {
         let upperBound = alert.topBoundary == nil ? JSON.null : JSON(Utils.getJSONFormattedNumb(from: alert.topBoundary!))
         let bottomBound = alert.bottomBoundary == nil ? JSON.null : JSON(Utils.getJSONFormattedNumb(from: alert.bottomBoundary!))
         return [
-            "currency" : alert.currencyCode,
+            "currency"               : alert.currencyCode,
             "price_at_create_moment" : Utils.getJSONFormattedNumb(from: alert.priceAtCreateMoment),
-            "alert_status": alert.status.rawValue,
-            "timestamp" : Int(Date().timeIntervalSince1970),
-            "is_persistent" : alert.isPersistentNotification,
-            "upper_bound": upperBound,
-            "bottom_bound": bottomBound,
-            "description": alert.description ?? JSON.null
+            "alert_status"           : alert.status.rawValue,
+            "timestamp"              : Int(Date().timeIntervalSince1970),
+            "is_persistent"          : alert.isPersistentNotification,
+            "stock_exchange"         : alert.stockExchange.rawValue,
+            "upper_bound"            : upperBound,
+            "bottom_bound"           : bottomBound,
+            "description"            : alert.description ?? JSON.null
         ]
     }
 }

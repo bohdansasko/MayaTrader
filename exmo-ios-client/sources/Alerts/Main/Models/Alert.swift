@@ -33,6 +33,7 @@ final class Alert: SegueBlock, Mappable {
     var dateCreated: Date = Date()
     var description: String?
     var isPersistentNotification: Bool = false
+    var stockExchange: CHStockExchange = .exmo
     
     init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, description: String?,
          topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .active, isPersistentNotification: Bool) {
@@ -57,15 +58,17 @@ final class Alert: SegueBlock, Mappable {
             toJSON: { $0 == nil ? nil : String($0!) }
         )
         
-        id                  <- map["alert_id"]
-        currencyCode        <- map["currency"]
-        priceAtCreateMoment <- (map["price_at_create_moment"], transform)
-        topBoundary      <- (map["upper_bound"], transform)
-        bottomBoundary   <- (map["bottom_bound"], transform)
-        status           <- map["alert_status"]
-        dateCreated      <- (map["timestamp"], DateTransform())
-        description             <- map["description"]
+        id                       <- map["alert_id"]
+        currencyCode             <- map["currency"]
+        priceAtCreateMoment      <- (map["price_at_create_moment"], transform)
+        topBoundary              <- (map["upper_bound"], transform)
+        bottomBoundary           <- (map["bottom_bound"], transform)
+        status                   <- map["alert_status"]
+        dateCreated              <- (map["timestamp"], DateTransform())
+        description              <- map["description"]
         isPersistentNotification <- map["is_persistent"]
+        stockExchange            <- (map["stock_exchange"], EnumTransform<CHStockExchange>())
+        
     }
     
     func getDataAsText() -> String {
@@ -95,4 +98,5 @@ final class Alert: SegueBlock, Mappable {
         dataFormat.dateFormat = "dd.MM.yyyy HH:mm"
         return dataFormat.string(from: dateCreated)
     }
+    
 }
