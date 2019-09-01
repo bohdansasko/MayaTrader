@@ -20,11 +20,11 @@ final class VinsoAPI {
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
     
-    internal var isAuthorized = false {
+    var isAuthorized = false {
         didSet {
             if isAuthorized {
                 AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
-                connectionObservers.forEach({ $0.value.observer?.onAuthorization() })
+                NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
             }
         }
     }
@@ -69,7 +69,7 @@ private extension VinsoAPI {
 
 // MARK: - Send messages
 
-internal extension VinsoAPI {
+extension VinsoAPI {
     
     func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {        
         let request = buildRequestHandler(for: messageType)
@@ -93,7 +93,7 @@ internal extension VinsoAPI {
 
 // MARK: - Helpers
 
-extension VinsoAPI {
+private extension VinsoAPI {
     
     func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
         let observable = Observable<JSON>.create{ [unowned self] subscriber in

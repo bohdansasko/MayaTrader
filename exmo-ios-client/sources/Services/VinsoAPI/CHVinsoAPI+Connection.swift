@@ -76,12 +76,6 @@ extension VinsoAPI {
         socketManager.send(message: msg)
     }
     
-    func registerAPNSDeviceToken(_ deviceToken: String) {
-        print("\(String(describing: self)) => registerAPNSDeviceToken \(deviceToken)")
-        let msg = AccountApiRequestBuilder.buildRegisterAPNSDeviceTokenRequest(deviceToken)
-        socketManager.send(message: msg)
-    }
-    
 }
 
 // MARK: - Delegate connections
@@ -96,6 +90,21 @@ extension VinsoAPI {
     func removeConnectionObserver(_ observer: VinsoAPIConnectionDelegate) {
         let id = ObjectIdentifier(observer)
         connectionObservers.removeValue(forKey: id)
+    }
+    
+}
+
+extension Reactive where Base: VinsoAPI {
+
+    func registerAPNSDeviceToken(_ deviceToken: String) -> Completable {
+        let params: [String: Any] = [ "apns_token": deviceToken ]
+
+        return self.base.sendRequest(messageType: .registerAPNsDeviceToken, params: params)
+            .mapInBackground { json in
+                print(json)
+            }
+            .asSingle()
+            .asCompletable()
     }
     
 }

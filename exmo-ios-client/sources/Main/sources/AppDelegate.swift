@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Firebase
+import RxSwift
 
 enum IPhoneModel: Int {
     case none = 0
@@ -35,10 +36,13 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         IAPService.shared,
         CHSecurityService.shared
     ]
+    fileprivate let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        AppDelegate.vinsoAPI.addConnectionObserver(self)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: ConnectionNotification.authorizationSuccess)
         
         setupAdMob()
         
@@ -81,6 +85,19 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
     }
+    
+    @objc func handleNotificationUserAuthorization(_ notification: Notification) {
+        guard let apnsDeviceToken = CHPushNotificationsService.shared.deviceToken else {
+            return
+        }
+        AppDelegate.vinsoAPI.rx.registerAPNSDeviceToken(apnsDeviceToken)
+            .subscribe(onCompleted: {
+                    print("registering APNS Token \"\(apnsDeviceToken)\" has been succesfull")
+                }, onError: { err in
+                    print(err.localizedDescription)
+            }).disposed(by: disposeBag)
+    }
+    
 }
 
 // MARK: handle connection to Vinso Server
@@ -89,12 +106,6 @@ extension AppDelegate: VinsoAPIConnectionDelegate  {
     func onConnectionOpened() {
         if !Defaults.isRequiredResetVinsoUser() {
             AppDelegate.vinsoAPI.resetUser()
-        }
-    }
-    
-    func onAuthorization() {
-        if let apnsDeviceToken = CHPushNotificationsService.shared.deviceToken {
-            AppDelegate.vinsoAPI.registerAPNSDeviceToken(apnsDeviceToken)
         }
     }
 
