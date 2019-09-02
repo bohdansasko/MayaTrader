@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum CHExchangeSortBy: Int, CaseIterable {
     case stock
@@ -119,7 +120,7 @@ extension CHExchangesView {
     }
     
     func set(searchText text: String) {
-        searchController.searchBar.text = text
+        searchController.searchBar.rx.value.onNext(text)
         searchController.isActive = true
     }
     

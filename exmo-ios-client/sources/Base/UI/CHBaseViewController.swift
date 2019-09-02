@@ -30,7 +30,7 @@ class CHBaseViewController: ExmoUIViewController {
     let exmoAPI    = CHExmoAPI.shared
     let dbManager  = RealmDatabaseManager.shared
     
-    let disposeBag = DisposeBag()
+    var disposeBag = DisposeBag()
     
     // MARK: - Lifecycle
     

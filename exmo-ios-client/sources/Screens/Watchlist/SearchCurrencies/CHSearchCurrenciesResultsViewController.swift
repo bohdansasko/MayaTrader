@@ -25,6 +25,10 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+
+        isSubscribedOnSearchBarText = false
+        disposeBag = DisposeBag()
+        
         presenter.saveChanges()
     }
     
