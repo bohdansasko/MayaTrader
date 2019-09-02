@@ -60,7 +60,7 @@ extension CHSearchCurrenciesResultsPresenter {
         self.isDownloadedAllItems = false
         self.sortBy               = sortBy
         
-        self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, limit: kCurrenciesFetchLimit, offset: 0)
+        self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, order: .descending, limit: kCurrenciesFetchLimit, offset: 0)
             .subscribe(
                 onSuccess: { [unowned self] currencies in
                     self.dataSource.set(currencies)
@@ -79,7 +79,7 @@ extension CHSearchCurrenciesResultsPresenter {
         
         guard let likeString = self.likeString else { return }
         
-        self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, limit: kCurrenciesFetchLimit, offset: dataSource.items.count)
+        self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, order: .descending, limit: kCurrenciesFetchLimit, offset: dataSource.items.count)
             .subscribe(
                 onSuccess: { [unowned self] currencies in
                     self.isDownloadedAllItems = currencies.isEmpty

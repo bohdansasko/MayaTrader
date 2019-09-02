@@ -63,12 +63,13 @@ extension Reactive where Base: VinsoAPI {
     }
     
     /// return currencies which like likeString
-    func getCurrencies(like likeString: String, sortBy: CHExchangeSortBy, limit: Int, offset: Int, isExtended: Bool = false) -> Single<[CHLiteCurrencyModel]> {
+    func getCurrencies(like likeString: String, sortBy: CHExchangeSortBy, order: CHSortOrder, limit: Int, offset: Int, isExtended: Bool = false) -> Single<[CHLiteCurrencyModel]> {
         let params: [String: Any] = [
             "like_string": likeString,
             "limit"      : limit,
             "offset"     : offset,
             "sort_by"    : sortBy.apiArg,
+            "sort_strategy": order.apiArg,
             "extended"   : isExtended
         ]
 

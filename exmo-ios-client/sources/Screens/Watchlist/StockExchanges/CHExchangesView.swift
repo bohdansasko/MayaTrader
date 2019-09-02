@@ -34,6 +34,19 @@ enum CHExchangeSortBy: Int, CaseIterable {
     
 }
 
+enum CHSortOrder: Int, CaseIterable {
+    case ascending
+    case descending
+    
+    var apiArg: String {
+        switch self {
+        case .ascending : return "ascend"
+        case .descending: return "descend"
+        }
+    }
+
+}
+
 final class CHExchangesView: CHBaseView {
     @IBOutlet fileprivate weak var exchangesCollectionView: UICollectionView!
     
