@@ -22,9 +22,10 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
     fileprivate let vinsoAPI          : VinsoAPI
     fileprivate let disposeBag       = DisposeBag()
     
-    fileprivate var likeString: String?
+    fileprivate(set) var likeString     : String?
     fileprivate let kCurrenciesFetchLimit = 30
     fileprivate var isDownloadedAllItems: Bool = false
+    fileprivate var sortBy              : CHExchangeSortBy = .pair
     
     // MARK: Public
     
@@ -48,13 +49,18 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
 
 extension CHSearchCurrenciesResultsPresenter {
     
-    func fetchCurrencies(by string: String?) {
+    func fetchCurrencies(sortBy: CHExchangeSortBy) {
+        fetchCurrencies(by: likeString, sortBy: sortBy)
+    }
+    
+    func fetchCurrencies(by string: String?, sortBy: CHExchangeSortBy) {
         guard let likeString = string?.trim(), !likeString.isEmpty else { return }
-
+        
         self.likeString           = likeString
         self.isDownloadedAllItems = false
+        self.sortBy               = sortBy
         
-        self.vinsoAPI.rx.getCurrencies(like: likeString, limit: kCurrenciesFetchLimit, offset: 0)
+        self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, limit: kCurrenciesFetchLimit, offset: 0)
             .subscribe(
                 onSuccess: { [unowned self] currencies in
                     self.dataSource.set(currencies)
@@ -73,7 +79,7 @@ extension CHSearchCurrenciesResultsPresenter {
         
         guard let likeString = self.likeString else { return }
         
-        self.vinsoAPI.rx.getCurrencies(like: likeString, limit: kCurrenciesFetchLimit, offset: dataSource.items.count)
+        self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, limit: kCurrenciesFetchLimit, offset: dataSource.items.count)
             .subscribe(
                 onSuccess: { [unowned self] currencies in
                     self.isDownloadedAllItems = currencies.isEmpty

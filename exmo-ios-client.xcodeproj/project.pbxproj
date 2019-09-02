@@ -174,7 +174,6 @@
 		20B1628F21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1628E21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift */; };
 		20B1629321AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */; };
 		20B9CC9B219A34B9004AC3B2 /* CreateLimitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */; };
-		20BCE4E221E00FE2003669EA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20BCE4E121E00FE2003669EA /* StoreKit.framework */; };
 		20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCE4E421E03DEF003669EA /* IAPProduct.swift */; };
 		20BCE4E721E03E92003669EA /* IAPService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BCE4E621E03E92003669EA /* IAPService.swift */; };
 		20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20BEDC52205579FA00973F2F /* AlertViewCell.swift */; };
@@ -538,7 +537,6 @@
 		20B1629221AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateLimitView+Datasource+Delegate.swift"; sourceTree = "<group>"; };
 		20B9CC9A219A34B9004AC3B2 /* CreateLimitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateLimitView.swift; sourceTree = "<group>"; };
 		20BCD49721E68C87002EB36B /* exmo-ios-client.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "exmo-ios-client.entitlements"; sourceTree = "<group>"; };
-		20BCE4E121E00FE2003669EA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		20BCE4E421E03DEF003669EA /* IAPProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPProduct.swift; sourceTree = "<group>"; };
 		20BCE4E621E03E92003669EA /* IAPService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPService.swift; sourceTree = "<group>"; };
 		20BEDC52205579FA00973F2F /* AlertViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewCell.swift; sourceTree = "<group>"; };
@@ -734,7 +732,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20BCE4E221E00FE2003669EA /* StoreKit.framework in Frameworks */,
 				CE4660382F3BA3DC8F4D27E9 /* Pods_exmo_ios_client.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2249,7 +2246,6 @@
 		C6509EEAFE1A3E3EACFA0368 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				20BCE4E121E00FE2003669EA /* StoreKit.framework */,
 				87A166EB1CD171453302661B /* Pods_exmo_ios_client.framework */,
 			);
 			name = Frameworks;
@@ -2399,7 +2395,7 @@
 								enabled = 1;
 							};
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Push = {
 								enabled = 1;

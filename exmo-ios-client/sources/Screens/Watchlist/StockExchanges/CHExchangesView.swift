@@ -8,29 +8,37 @@
 
 import UIKit
 
+enum CHExchangeSortBy: Int, CaseIterable {
+    case stock
+    case pair
+    case price
+    case volume
+    
+    var apiArg: String {
+        switch self {
+        case .stock : return "stock_exchange"
+        case .pair  : return "pair"
+        case .price : return "price"
+        case .volume: return "volume"
+        }
+    }
+    
+    var localized: String {
+        switch self {
+        case .stock : return "EXCHANGE".localized
+        case .pair  : return "PAIR".localized
+        case .price : return "PRICE".localized
+        case .volume: return "VOLUME_24H".localized
+        }
+    }
+    
+}
+
 final class CHExchangesView: CHBaseView {
     @IBOutlet fileprivate weak var exchangesCollectionView: UICollectionView!
     
-    fileprivate(set) var searchController: UISearchController = {
-        let searchResultsController = CHSearchCurrenciesResultsViewController.loadFromNib()
-        let searchController = UISearchController(searchResultsController: searchResultsController)
-        
-        searchController.searchResultsUpdater = searchResultsController
-        searchController.hidesNavigationBarDuringPresentation = true
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.dimsBackgroundDuringPresentation = true
-        
-        searchController.searchBar.placeholder = "BTC/USD"
-        searchController.searchBar.tintColor = .white
-        searchController.searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .medium, fontSize: 14), textColor: .white)
-        searchController.searchBar.sizeToFit()
-        searchController.searchBar.scopeButtonTitles = ["EXCHANGE".localized,
-                                                        "PAIR".localized,
-                                                        "PRICE".localized,
-                                                        "VOLUME".localized]
-        
-        return searchController
-    }()
+    fileprivate(set) var searchResultsController: CHSearchCurrenciesResultsViewController!
+    fileprivate(set) var searchController       : UISearchController!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -45,6 +53,7 @@ final class CHExchangesView: CHBaseView {
 private extension CHExchangesView {
     
     func setupUI() {
+        setupSearchController()
         setupCollectionView()
         setupSearchController()
     }
@@ -55,6 +64,23 @@ private extension CHExchangesView {
     }
     
     func setupSearchController() {
+        searchResultsController = CHSearchCurrenciesResultsViewController.loadFromNib()
+        
+        searchController = UISearchController(searchResultsController: searchResultsController)
+        
+        searchController.searchResultsUpdater = searchResultsController
+        searchController.hidesNavigationBarDuringPresentation = true
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = true
+        
+        searchController.searchBar.placeholder = "BTC/USD"
+        searchController.searchBar.tintColor = .white
+        searchController.searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .medium, fontSize: 14), textColor: .white)
+        searchController.searchBar.sizeToFit()
+        
+        let titles = CHExchangeSortBy.allCases.compactMap{ $0.localized }
+        searchController.searchBar.scopeButtonTitles = titles
+        
         guard
             let searchTF = searchController.searchBar.value(forKey: "searchField") as? UITextField,
             let backgroundViewTF = searchTF.subviews.first else {
@@ -73,6 +99,10 @@ extension CHExchangesView {
     func setList(dataSource: UICollectionViewDataSource, delegate: UICollectionViewDelegate) {
         exchangesCollectionView.dataSource = dataSource
         exchangesCollectionView.delegate = delegate
+    }
+    
+    func setSearchBar(delegate: UISearchBarDelegate) {
+        searchController.searchBar.delegate = delegate
     }
     
     func set(searchText text: String) {

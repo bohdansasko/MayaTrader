@@ -14,6 +14,7 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
     typealias ContentView = CHSearchCurrenciesResultsView
     
     fileprivate var presenter: CHSearchCurrenciesResultsPresenter!
+    fileprivate var sortBy   : CHExchangeSortBy = .pair
     fileprivate var isSubscribedOnSearchBarText = false
     
     override func viewDidLoad() {
@@ -25,6 +26,11 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         presenter.saveChanges()
+    }
+    
+    func set(sortBy: CHExchangeSortBy) {
+        self.sortBy = sortBy
+        self.presenter.fetchCurrencies(sortBy: self.sortBy)
     }
     
 }
@@ -57,7 +63,7 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
             .throttle(1.0, latest: true)
             .drive(onNext: { [weak self] text in
                 guard let `self` = self else { return }
-                self.presenter.fetchCurrencies(by: text)
+                self.presenter.fetchCurrencies(by: text, sortBy: self.sortBy)
             })
             .disposed(by: self.disposeBag)
     }

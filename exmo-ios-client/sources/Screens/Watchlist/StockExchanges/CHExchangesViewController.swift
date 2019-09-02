@@ -45,9 +45,11 @@ private extension CHExchangesViewController {
     func setupPresenter() {
         let networkAPI = TickerNetworkWorker()
         let dataSource = CHExchangeDataSource()
+        
         presenter = CHExchangePresenter(api: networkAPI, dataSource: dataSource)
         presenter.delegate = self
         contentView.setList(dataSource: dataSource, delegate: presenter)
+        contentView.setSearchBar(delegate: self)
     }
     
 }
@@ -71,5 +73,16 @@ extension CHExchangesViewController: CHExchangePresenterDelegate {
         contentView.set(searchText: exchange.name + " ")
     }
 
+}
+
+// MARK: - CHExchangePresenterDelegate
+
+extension CHExchangesViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        let sortBy = CHExchangeSortBy(rawValue: selectedScope)!
+        contentView.searchResultsController.set(sortBy: sortBy)
+    }
+    
 }
 

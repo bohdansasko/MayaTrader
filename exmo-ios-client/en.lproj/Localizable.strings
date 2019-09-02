@@ -41,7 +41,7 @@
 "EXCHANGE" = "Exchange";
 "PAIR"     = "Pair";
 "PRICE"    = "Price";
-"VOLUME"   = "Volume 24h";
+"VOLUME_24H" = "Volume 24h";
 "SELL"     = "Sell:";
 "BUY"      = "Buy:";
 "VOLUME"   = "Volume:";
