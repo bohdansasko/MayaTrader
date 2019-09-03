@@ -53,6 +53,9 @@
             <objects>
                 <viewController id="biw-vI-YkH" customClass="CreateAlertViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="lL0-og-74s"/>
+                    <connections>
+                        <segue destination="SJ4-ge-BQQ" kind="show" identifier="selectCurrency" id="1CY-fa-VXa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRi-cf-bBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="eh8-eJ-JTe" customClass="CreateAlertModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
@@ -62,6 +65,14 @@
                 </customObject>
             </objects>
             <point key="canvasLocation" x="4321.739130434783" y="734.59821428571422"/>
+        </scene>
+        <!--chCurrenciesGroupsViewController-->
+        <scene sceneID="a3e-LR-efe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CHWatchlist" referencedIdentifier="chCurrenciesGroupsViewController" id="SJ4-ge-BQQ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xjG-ZY-QbF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5092" y="735"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="oYw-4v-npf">

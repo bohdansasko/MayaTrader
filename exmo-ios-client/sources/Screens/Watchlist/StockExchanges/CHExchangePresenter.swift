@@ -13,14 +13,20 @@ protocol CHExchangePresenterDelegate: class {
 }
 
 final class CHExchangePresenter: NSObject {
-    fileprivate var        api: ITickerNetworkWorker
-    fileprivate var dataSource: CHExchangeDataSource
+    fileprivate enum Constants {
+        static var horizontalCellSpace: CGFloat { return 12 }
+        static var cellHeight         : CGFloat { return 60 }
+        static var minimumLineSpacingForSection: CGFloat { return 8 }
+    }
+    
+    fileprivate let        api: ITickerNetworkWorker
+    fileprivate let dataSource: CHExchangeDataSource
     
     weak var delegate: CHExchangePresenterDelegate?
     
     init(api: ITickerNetworkWorker, dataSource: CHExchangeDataSource) {
-        self.api = api
-        self.dataSource = dataSource
+        self.api           = api
+        self.dataSource    = dataSource
     }
     
 }
@@ -36,15 +42,14 @@ extension CHExchangePresenter: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let kHorizontalSpace: CGFloat = 12
         let widthContentInsets = collectionView.contentInset.left + collectionView.contentInset.right
         
-        let width = (collectionView.bounds.size.width - kHorizontalSpace - widthContentInsets)/2
-        return CGSize(width: width, height: 60)
+        let width = (collectionView.bounds.size.width - Constants.horizontalCellSpace - widthContentInsets)/2
+        return CGSize(width: width, height: Constants.cellHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return Constants.minimumLineSpacingForSection
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

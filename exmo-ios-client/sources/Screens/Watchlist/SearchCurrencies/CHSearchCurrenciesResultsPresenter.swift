@@ -11,6 +11,7 @@ import RxSwift
 
 protocol CHSearchCurrenciesResultsPresenterDelegate: class {
     func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, onError error: Error)
+    func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, didSelect currency: CHLiteCurrencyModel)
 }
 
 final class CHSearchCurrenciesResultsPresenter: NSObject {
@@ -20,23 +21,25 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
     fileprivate let currenciesListView: UITableView
     fileprivate let dataSource        : CHSearchCurrenciesResultsDataSource
     fileprivate let vinsoAPI          : VinsoAPI
+    fileprivate let selectionMode     : CHSelectionCurrenciesMode
+
     fileprivate let disposeBag       = DisposeBag()
     
     fileprivate(set) var likeString     : String?
     fileprivate let kCurrenciesFetchLimit = 30
     fileprivate var isDownloadedAllItems: Bool = false
     fileprivate var sortBy              : CHExchangeSortBy = .pair
-    
     // MARK: Public
     
     var delegate: CHSearchCurrenciesResultsPresenterDelegate?
     
     // MARK: - View life cycle
     
-    init(currenciesListView: UITableView, dataSource: CHSearchCurrenciesResultsDataSource, vinsoAPI: VinsoAPI) {
+    init(currenciesListView: UITableView, dataSource: CHSearchCurrenciesResultsDataSource, vinsoAPI: VinsoAPI, selectionMode: CHSelectionCurrenciesMode) {
         self.currenciesListView = currenciesListView
         self.dataSource         = dataSource
         self.vinsoAPI           = vinsoAPI
+        self.selectionMode      = selectionMode
         
         super.init()
         
@@ -126,16 +129,24 @@ extension CHSearchCurrenciesResultsPresenter {
             assertionFailure("must be casted")
             return
         }
-
-        let item           = dataSource.item(for: indexPath.row)
-        let isItemWasSelected = dataSource.isItem(selected: item)
         
-        if isItemWasSelected {
-            dataSource.remove(selected: item)
-        } else {
-            dataSource.add(selected: item)
+        let item = dataSource.item(for: indexPath.row)
+        
+        switch selectionMode {
+        case .currencies:
+            let isItemWasSelected = dataSource.isItem(selected: item)
+            
+            if isItemWasSelected {
+                dataSource.remove(selected: item)
+            } else {
+                dataSource.add(selected: item)
+            }
+            currencyCell.set(isSelected: !isItemWasSelected)
+        case .currency:
+            break
         }
-        currencyCell.set(isSelected: !isItemWasSelected)
+        
+        delegate?.searchCurrenciesResultsPresenter(self, didSelect: item)
     }
     
 }
@@ -152,7 +163,7 @@ extension CHSearchCurrenciesResultsPresenter: UITableViewDelegate {
                 isFavourite: dataSource.isItem(selected: item))
 
         let currencyCell = cell as! CHSearchCurrencyResultCell
-        currencyCell.set(indexPath: indexPath, formatter: itemFormatter)
+        currencyCell.set(indexPath: indexPath, formatter: itemFormatter, isHiddenFavouriteButton: selectionMode == .currency)
         
         let isSelected = dataSource.isItem(selected: item)
         currencyCell.set(isSelected: isSelected)

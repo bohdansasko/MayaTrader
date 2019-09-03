@@ -14,10 +14,21 @@ struct CHExchangeModel {
     var name: String
 }
 
+enum CHSelectionCurrenciesMode {
+    case currencies // can select many currencies
+    case currency   // can select a currency
+}
+
 final class CHExchangesViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHExchangesView
     
+    // MARK: - Private params
+    
     fileprivate var presenter: CHExchangePresenter!
+    
+    // MARK: - Input params
+    
+    var selectionMode: CHSelectionCurrenciesMode = .currencies
     
     // MARK: - Lifecycle
     
@@ -48,8 +59,10 @@ private extension CHExchangesViewController {
         
         presenter = CHExchangePresenter(api: networkAPI, dataSource: dataSource)
         presenter.delegate = self
+        
         contentView.setList(dataSource: dataSource, delegate: presenter)
         contentView.setSearchBar(delegate: self)
+        contentView.searchResultsController.selectionMode = selectionMode
     }
     
 }

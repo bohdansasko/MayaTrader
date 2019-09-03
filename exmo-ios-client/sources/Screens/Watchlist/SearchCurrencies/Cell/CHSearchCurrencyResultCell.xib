@@ -63,6 +63,9 @@
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wkp-dj-ak5">
                         <rect key="frame" x="295" y="20" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="1" id="5Fh-VI-tzc"/>
+                        </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" backgroundImage="icGlobalHeartOff"/>
                         <state key="selected" backgroundImage="icGlobalHeartOn">
@@ -75,8 +78,8 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="wkp-dj-ak5" firstAttribute="leading" secondItem="csF-aV-FFi" secondAttribute="trailing" constant="5" id="5Im-tz-tQG"/>
                     <constraint firstItem="TUO-EE-wbd" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Fi0-PL-fJQ"/>
-                    <constraint firstAttribute="trailing" secondItem="csF-aV-FFi" secondAttribute="trailing" constant="30" id="ICd-9K-pI4"/>
                     <constraint firstItem="H8M-0L-ZKN" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VVT-t1-PrR"/>
                     <constraint firstAttribute="trailing" secondItem="wkp-dj-ak5" secondAttribute="trailing" constant="5" id="Yf5-i7-gFH"/>
                     <constraint firstItem="TUO-EE-wbd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="dt6-jH-Y3u"/>
@@ -92,6 +95,7 @@
                 <outlet property="currencyPriceLabel" destination="jBF-Yx-Nu5" id="LhT-dH-qB2"/>
                 <outlet property="currencyVolumeLabel" destination="DGm-mf-xIM" id="AFQ-ZO-ahh"/>
                 <outlet property="selectedButton" destination="wkp-dj-ak5" id="YI5-tg-DvG"/>
+                <outlet property="selectedButtonZeroWidthConstraint" destination="5Fh-VI-tzc" id="QhJ-ul-sFT"/>
                 <outlet property="stockIcon" destination="TUO-EE-wbd" id="2KN-zd-Tox"/>
                 <outlet property="stockLabel" destination="v4Z-k1-Odd" id="DCg-cM-3WU"/>
             </connections>

@@ -10,6 +10,10 @@ import UIKit
 import SnapKit
 
 final class CreateAlertViewController: CHBaseViewController {
+    enum Segues: String {
+        case selectCurrency
+    }
+    
     var output: CreateAlertViewOutput!
     lazy var form = FormCreateAlert()
     var selectedPair: TickerCurrencyModel?
@@ -96,6 +100,21 @@ final class CreateAlertViewController: CHBaseViewController {
     override func shouldUseGlow() -> Bool {
         return false
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let segueId = Segues(rawValue: segue.identifier!)!
+        switch segueId {
+        case .selectCurrency:
+            prepareSearchViewController(for: segue, sender: sender)
+        }
+    }
+    
+    func prepareSearchViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! CHExchangesViewController
+        vc.selectionMode = .currency
+    }
+    
 }
 
 // MARK: CreateAlertViewInput

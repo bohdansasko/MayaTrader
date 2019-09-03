@@ -13,12 +13,26 @@ import RxCocoa
 final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHSearchCurrenciesResultsView
     
+    // MARK: - Private params
+    
     fileprivate var presenter: CHSearchCurrenciesResultsPresenter!
     fileprivate var sortBy   : CHExchangeSortBy = .pair
     fileprivate var isSubscribedOnSearchBarText = false
     
+    // MARK: - Input params
+    
+    var selectionMode: CHSelectionCurrenciesMode! {
+        didSet { assert(!self.isViewLoaded) }
+    }
+    
+    var onClose: VoidClosure?
+    
+    // MARK: - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        assert(selectionMode != nil, "required")
         
         setupPresenter()
     }
@@ -47,7 +61,10 @@ private extension CHSearchCurrenciesResultsViewController {
         let dataSource = CHSearchCurrenciesResultsDataSource(dbManager: dbManager)
         presenter = CHSearchCurrenciesResultsPresenter(currenciesListView: contentView.tableView,
                                                        dataSource        : dataSource,
-                                                       vinsoAPI          : vinsoAPI)
+                                                       vinsoAPI          : vinsoAPI,
+                                                       selectionMode     : selectionMode
+        )
+        presenter.delegate = self
         contentView.set(dataSource: dataSource, delegate: presenter)
     }
     
@@ -65,6 +82,7 @@ extension CHSearchCurrenciesResultsViewController: UISearchResultsUpdating {
         searchController.searchBar.rx.text
             .asDriver()
             .throttle(1.0, latest: true)
+            .distinctUntilChanged()
             .drive(onNext: { [weak self] text in
                 guard let `self` = self else { return }
                 self.presenter.fetchCurrencies(by: text, sortBy: self.sortBy)
@@ -80,6 +98,11 @@ extension CHSearchCurrenciesResultsViewController: CHSearchCurrenciesResultsPres
     
     func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, onError error: Error) {
         handleError(error)
+    }
+    
+    func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, didSelect currency: CHLiteCurrencyModel) {
+        onClose?()
+        dismiss(animated: true, completion: nil)
     }
     
 }

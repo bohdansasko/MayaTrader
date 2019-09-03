@@ -20,6 +20,7 @@ final class CHSearchCurrencyResultCell: UITableViewCell {
     @IBOutlet fileprivate weak var currencyPriceLabel : UILabel!
     @IBOutlet fileprivate weak var currencyVolumeLabel: UILabel!
     @IBOutlet fileprivate weak var selectedButton     : UIButton!
+    @IBOutlet fileprivate weak var selectedButtonZeroWidthConstraint: NSLayoutConstraint!
     
     private(set) var indexPath: IndexPath!
     
@@ -31,7 +32,7 @@ final class CHSearchCurrencyResultCell: UITableViewCell {
 
 extension CHSearchCurrencyResultCell {
     
-    func set(indexPath: IndexPath, formatter: CHLiteCurrencyFormatter) {
+    func set(indexPath: IndexPath, formatter: CHLiteCurrencyFormatter, isHiddenFavouriteButton: Bool) {
         self.indexPath           = indexPath
         
         stockIcon.image          = formatter.stockIcon
@@ -39,6 +40,9 @@ extension CHSearchCurrencyResultCell {
         currencyLabel.text       = formatter.currencyName
         currencyPriceLabel.text  = formatter.sellPrice
         currencyVolumeLabel.text = formatter.volume
+        
+        selectedButton.isHidden = isHiddenFavouriteButton
+        selectedButtonZeroWidthConstraint.priority = .init(isHiddenFavouriteButton ? 999 : 1)
     }
     
     func set(isSelected: Bool) {

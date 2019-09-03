@@ -65,7 +65,7 @@ extension CreateAlertViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: false)
         
         if form.cellItems[indexPath.section].uiProperties.cellType == .currencyDetails {
-            output.showSearchViewController(searchType: .currencies)
+            self.performSegue(withIdentifier: Segues.selectCurrency.rawValue)
         }
     }
     
