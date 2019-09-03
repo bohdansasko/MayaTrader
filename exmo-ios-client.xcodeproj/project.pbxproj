@@ -299,6 +299,7 @@
 		920278E6318EFE15D1B07821 /* QRScannerInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */; };
 		940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */; };
 		969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9936576524E2F156E83AAC8 /* CurrenciesGroupsRouter.swift */; };
+		970B3E41231E80B2002CA2E8 /* CHLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E40231E80B2002CA2E8 /* CHLogger.swift */; };
 		972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */; };
 		9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */; };
@@ -663,6 +664,7 @@
 		91FEE97F75DF6C190754891B /* AlertsPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsPresenter.swift; sourceTree = "<group>"; };
 		9299AFB5D8232BA3E2524410 /* CreateOrderInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInteractorProtocols.swift; sourceTree = "<group>"; };
 		96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerConfigurator.swift; sourceTree = "<group>"; };
+		970B3E40231E80B2002CA2E8 /* CHLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLogger.swift; sourceTree = "<group>"; };
 		972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
@@ -1453,6 +1455,7 @@
 				201728B1230B44CC000823E1 /* CHBaseDataSource.swift */,
 				9763F43822F7494A00D6E22A /* Formatters */,
 				20DA7DEB22F0DE0900706FAC /* UI */,
+				970B3E40231E80B2002CA2E8 /* CHLogger.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -2690,6 +2693,7 @@
 				20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */,
 				207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */,
+				970B3E41231E80B2002CA2E8 /* CHLogger.swift in Sources */,
 				200D52C622DA1DCF0009C07C /* CHAlertsView.swift in Sources */,
 				204CC7D821B93478002057CA /* Constants.swift in Sources */,
 				36712E4C4C5245EF136945B7 /* CHMenuViewPresenter.swift in Sources */,
