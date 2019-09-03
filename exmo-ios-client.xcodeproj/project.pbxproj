@@ -77,7 +77,6 @@
 		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
 		201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */; };
 		201EA2B421A4954500A1E693 /* OperationsDatabaseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */; };
-		2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */; };
 		20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */; };
 		202F48F6206A157D0080423E /* WatchlistCardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F48F5206A157D0080423E /* WatchlistCardCell.swift */; };
 		202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */; };
@@ -85,7 +84,6 @@
 		202F80AC2300B2590035D123 /* CHCreateAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */; };
 		202F80AD2300B2590035D123 /* CHCreateAlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 202F80AB2300B2590035D123 /* CHCreateAlertViewController.xib */; };
 		202F80AF2300B2800035D123 /* CHCreateAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 202F80AE2300B2800035D123 /* CHCreateAlertView.swift */; };
-		20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20345011217B644400D2E831 /* CurrenciesListViewController.swift */; };
 		20369A4421972149001D6628 /* RootTabsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4321972149001D6628 /* RootTabsInteractor.swift */; };
 		20369A4621972159001D6628 /* RootTabsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A4521972159001D6628 /* RootTabsPresenter.swift */; };
 		20369A482197223C001D6628 /* RootTabsModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20369A472197223C001D6628 /* RootTabsModuleInitializer.swift */; };
@@ -100,9 +98,6 @@
 		204EC7CE230655800097D229 /* CHWalletCurrenciesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204EC7CC230655800097D229 /* CHWalletCurrenciesListViewController.xib */; };
 		204F234D21AC849A0023890E /* AlertsNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F234C21AC849A0023890E /* AlertsNetworkProtocols.swift */; };
 		204F234F21AC84AD0023890E /* AlertsNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F234E21AC84AD0023890E /* AlertsNetworkWorker.swift */; };
-		204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */; };
-		204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F78215B5D9400014017 /* BarChartViewController.swift */; };
-		204F7F7B215B5DAE00014017 /* CandleBarChartShortInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */; };
 		20518D9E22D9F53D00334133 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518D9D22D9F53D00334133 /* Home.storyboard */; };
 		20518DA522D9F93100334133 /* CHWatchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DA422D9F93100334133 /* CHWatchlist.storyboard */; };
 		20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DA622D9F9EA00334133 /* CHOrders.storyboard */; };
@@ -123,23 +118,12 @@
 		206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */; };
 		206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */; };
 		206BD9522074297400ADC91C /* RootTabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206BD9512074297400ADC91C /* RootTabsController.swift */; };
-		207552962188B1F00011190E /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207552952188B1F00011190E /* NetworkWorker.swift */; };
 		2075612720B2C0DB0063E548 /* AlertsApiRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2075612620B2C0DB0063E548 /* AlertsApiRequestBuilder.swift */; };
 		20786BDB230642F6007C3944 /* CHWalletCurrenciesListHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20786BDA230642F6007C3944 /* CHWalletCurrenciesListHeader.xib */; };
 		20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20786BDC2306430A007C3944 /* CHWalletCurrenciesListHeader.swift */; };
 		20786BDF2306434F007C3944 /* CHWalletCurrenciesListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20786BDE2306434F007C3944 /* CHWalletCurrenciesListCell.xib */; };
 		207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E221B326D30049B26D /* TextFieldCell.swift */; };
 		207A85E521B349570049B26D /* ButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E421B349570049B26D /* ButtonCell.swift */; };
-		207B1D972173F93F00D2A5DE /* WatchlistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D872173F93F00D2A5DE /* WatchlistPresenter.swift */; };
-		207B1D982173F93F00D2A5DE /* WatchlistViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D892173F93F00D2A5DE /* WatchlistViewOutput.swift */; };
-		207B1D992173F93F00D2A5DE /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8A2173F93F00D2A5DE /* WatchlistViewController.swift */; };
-		207B1D9A2173F93F00D2A5DE /* WatchlistViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8B2173F93F00D2A5DE /* WatchlistViewInput.swift */; };
-		207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8D2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift */; };
-		207B1D9C2173F93F00D2A5DE /* WatchlistModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D8E2173F93F00D2A5DE /* WatchlistModuleInitializer.swift */; };
-		207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D902173F93F00D2A5DE /* WatchlistInteractor.swift */; };
-		207B1D9E2173F93F00D2A5DE /* WatchlistInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D912173F93F00D2A5DE /* WatchlistInteractorProtocols.swift */; };
-		207B1DA02173F93F00D2A5DE /* WatchlistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D942173F93F00D2A5DE /* WatchlistRouter.swift */; };
-		207B1DA12173F93F00D2A5DE /* WatchlistRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207B1D952173F93F00D2A5DE /* WatchlistRouterInput.swift */; };
 		207E24FF2061B85B00030023 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersListView.swift */; };
 		207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderViewCell.swift */; };
 		207E25042061C3FD00030023 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25032061C3FD00030023 /* OrderModel.swift */; };
@@ -163,7 +147,6 @@
 		208FE0A822DB78220014BCE5 /* CHBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */; };
 		208FE0AC22DB7B8C0014BCE5 /* CHBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */; };
 		208FE0AE22DB819A0014BCE5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */; };
-		209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */; };
 		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
 		20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */; };
 		20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */; };
@@ -194,12 +177,6 @@
 		20D7F02520460E6A0056F547 /* CHMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D7F02420460E6A0056F547 /* CHMenuCell.swift */; };
 		20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */; };
 		20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */; };
-		20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */; };
-		20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */; };
-		20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */; };
-		20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */; };
-		20DE8854217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */; };
-		20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */; };
 		20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */; };
 		20DFB1C92303486A008C19B5 /* CHWalletBalanceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */; };
 		20DFB1CF2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DFB1CE2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift */; };
@@ -222,7 +199,6 @@
 		20FFDF4F22FB717D00A65D01 /* CHMenuSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20FFDF4E22FB717D00A65D01 /* CHMenuSectionHeader.xib */; };
 		21221A6706D679626A565871 /* CurrenciesGroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91D30D8ED181E94C98784518 /* CurrenciesGroupsViewController.swift */; };
 		23027C32759874645F1BFC61 /* MenuRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3266549D6412B407CE7856 /* MenuRouter.swift */; };
-		277A456383C3A0A97085C757 /* CurrencyChartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C37F6B3A1917E7C23C54A7C /* CurrencyChartRouter.swift */; };
 		2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */; };
 		2DCAAC583A7618B6F7024C58 /* MenuInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71507EC9D731B380187FF88E /* MenuInteractor.swift */; };
 		2E2904E690113123EAF56A17 /* CreateOrderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9011E1AEFC03C0EA27CADA4 /* CreateOrderPresenter.swift */; };
@@ -246,43 +222,33 @@
 		367121BC7FF51CEFB18FC1F6 /* CHVinsoAPI+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123472D6E898C5F3B2FA0 /* CHVinsoAPI+Alerts.swift */; };
 		3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2E24600DAE35483C9D /* Color+Extension.swift */; };
 		367122D0DF0064443BDC5003 /* CHVinsoAPI+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E86BC9F833C4B86DFA2 /* CHVinsoAPI+Connection.swift */; };
-		367123499097564DF365D13F /* ChartNetworkWorkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */; };
 		3671235C4933D570BEA98C52 /* AlertsAPIResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */; };
 		3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* CHWalletCurrenciesPresenter.swift */; };
 		3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */; };
 		36712802066CE6031A5D90E5 /* CHAppStoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */; };
-		36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367120B1111B487C3177C51D /* WatchlistListView.swift */; };
 		36712819605402E3BB398CBA /* ExmoErrorResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */; };
 		3671298637DF050AFCA49657 /* CHVinsoAPIConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123CC34179C4F53E597DE /* CHVinsoAPIConnectionDelegate.swift */; };
 		36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */; };
-		3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */; };
 		36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Font+Extension.swift */; };
-		36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129AC2A73866F875D22DE /* ExmoChartData.swift */; };
 		36712BA9A115B28819E97B70 /* CHVinsoAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671205987EBAA1263AE126F /* CHVinsoAPIConstants.swift */; };
 		36712C66E8B3D44E567B41D9 /* CHSubscriptionPackages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */; };
-		36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */; };
 		36712E4C4C5245EF136945B7 /* CHMenuViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* CHMenuViewPresenter.swift */; };
 		3C8FD995246C02311C6868DA /* OrdersInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D35167E18996F164F478C8 /* OrdersInteractorInput.swift */; };
 		3E6304CF146BD0C1098DBB72 /* CreateOrderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D31F2D68B9E62669EBBEF567 /* CreateOrderInteractor.swift */; };
 		3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E435360E49F73ABF4C888C /* LoginPresenter.swift */; };
-		3F27375CB9F5EEFF05D5EE92 /* CurrencyChartInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = E866E5C73F2D9CE0AEF748F0 /* CurrencyChartInteractorOutput.swift */; };
 		4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E526FB14C5295A017890D5 /* CreateAlertInitializer.swift */; };
 		44C5D2B416D47E19F636B03C /* MenuRouterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAA187AD955A09698CDE3831 /* MenuRouterProtocols.swift */; };
 		466BE515F58F0A76E05A0A0A /* LoginModuleProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB04A56E5D9C15348E901E25 /* LoginModuleProtocols.swift */; };
 		499549063C49EEA247935BBF /* CreateOrderViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = D63977E4ED0ACEE06254D7CC /* CreateOrderViewProtocols.swift */; };
 		4C8399DB000EE08F2E8E87E6 /* CreateAlertRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A185E9A94E795A4CEBE4F2BC /* CreateAlertRouterInput.swift */; };
 		4F89858FE7FD02C365D529B5 /* AlertsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83E9EA666249FCA5A274BB9 /* AlertsRouterInput.swift */; };
-		5A2AFB98DDCEF332BD76F334 /* CurrencyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7421909015612BCF6F66203E /* CurrencyChartViewController.swift */; };
 		5AE00036F58513F97F1994D1 /* SearchCurrencyPairRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0177B41140A8F397D1A959E2 /* SearchCurrencyPairRouter.swift */; };
 		643F1A05DF8DE97B34F64435 /* SearchCurrencyPairRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E7F01894FC8E5893E47B52 /* SearchCurrencyPairRouterInput.swift */; };
 		6476491CD5C14319332F295E /* CHWalletCurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2FC324AD38DA30872BE9C3 /* CHWalletCurrenciesListViewController.swift */; };
 		67289E6F31834F1A38B88D4F /* CreateAlertModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C01AAB58E3E81D14C69060A /* CreateAlertModuleInput.swift */; };
-		6918BD5EEF3545BE430BA457 /* CurrencyChartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC74944885F96358C68A3CCF /* CurrencyChartInteractor.swift */; };
-		69496187267B8697A0D01EDC /* CurrencyChartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D265F6D569AFA5D2FB70CA0F /* CurrencyChartConfigurator.swift */; };
 		6982526DA482F5B7AB47FA25 /* OrdersInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9CAD9ABA92E4B5D8C9BA66C /* OrdersInteractor.swift */; };
 		6DB1D1516F26E97C850CB63F /* OrdersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DBDCD76FD9AC84E1C00E12 /* OrdersRouter.swift */; };
 		73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */; };
-		74208443D94F8B7E1F98710D /* CurrencyChartViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09553CAEA724964F39994C16 /* CurrencyChartViewInput.swift */; };
 		7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D90377AE09AA280BEDD4B6C /* CreateOrderInitializer.swift */; };
 		76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D5DD0FFBF95A907185CBA63 /* CurrenciesGroupsInitializer.swift */; };
 		7BF15DD1D6D4872F7399A413 /* SearchCurrencyPairConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C93E280C9B9618890E1C1F17 /* SearchCurrencyPairConfigurator.swift */; };
@@ -291,7 +257,6 @@
 		811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48E8254A5B3DEC5E5D94D4DB /* CreateOrderRouterInput.swift */; };
 		81D6C5A005CDED67BB51198D /* SearchCurrencyPairPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D3347B252E6586875751363 /* SearchCurrencyPairPresenter.swift */; };
 		820D8F305E45D621689112C1 /* OrdersPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21BB62089BA8D5D64E222050 /* OrdersPresenter.swift */; };
-		88F374AA6AB2C96E9516D8AB /* CurrencyChartModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C72D5E70DF60A940E065AF /* CurrencyChartModuleInput.swift */; };
 		8B2D71C4450F33B9D9AAA0B9 /* CreateAlertInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C437A7929205B0B131B0F3EC /* CreateAlertInteractorProtocols.swift */; };
 		8E09D1469BC714D8CEE79956 /* CreateAlertInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */; };
 		8F0AEFDE9AEF6C58DC4F078D /* AlertsViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12FFF3C48F1874EECA05E38 /* AlertsViewProtocols.swift */; };
@@ -300,6 +265,46 @@
 		940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D0A44652FC07AE7F5FDDB4 /* LoginRouterInput.swift */; };
 		969B52B16E655BDA6BCE3ED2 /* CurrenciesGroupsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9936576524E2F156E83AAC8 /* CurrenciesGroupsRouter.swift */; };
 		970B3E41231E80B2002CA2E8 /* CHLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E40231E80B2002CA2E8 /* CHLogger.swift */; };
+		970B3E7F231EB298002CA2E8 /* NetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E44231EB298002CA2E8 /* NetworkWorker.swift */; };
+		970B3E80231EB298002CA2E8 /* CurrencyChartModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E47231EB298002CA2E8 /* CurrencyChartModuleInput.swift */; };
+		970B3E81231EB298002CA2E8 /* CurrencyChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E48231EB298002CA2E8 /* CurrencyChartPresenter.swift */; };
+		970B3E82231EB298002CA2E8 /* ExmoChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E4A231EB298002CA2E8 /* ExmoChartData.swift */; };
+		970B3E83231EB298002CA2E8 /* CurrencyChartViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E4C231EB298002CA2E8 /* CurrencyChartViewInput.swift */; };
+		970B3E84231EB298002CA2E8 /* CurrencyChartViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E4D231EB298002CA2E8 /* CurrencyChartViewOutput.swift */; };
+		970B3E85231EB298002CA2E8 /* CurrencyChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E4E231EB298002CA2E8 /* CurrencyChartViewController.swift */; };
+		970B3E86231EB298002CA2E8 /* CurrencyChartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E50231EB298002CA2E8 /* CurrencyChartConfigurator.swift */; };
+		970B3E87231EB298002CA2E8 /* CurrencyChartInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E51231EB298002CA2E8 /* CurrencyChartInitializer.swift */; };
+		970B3E88231EB298002CA2E8 /* CurrencyChartInteractorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E53231EB298002CA2E8 /* CurrencyChartInteractorOutput.swift */; };
+		970B3E89231EB298002CA2E8 /* CurrencyChartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E54231EB298002CA2E8 /* CurrencyChartInteractor.swift */; };
+		970B3E8A231EB298002CA2E8 /* ChartNetworkWorkers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E55231EB298002CA2E8 /* ChartNetworkWorkers.swift */; };
+		970B3E8B231EB298002CA2E8 /* CurrencyChartInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E56231EB298002CA2E8 /* CurrencyChartInteractorInput.swift */; };
+		970B3E8C231EB298002CA2E8 /* CurrencyChartRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E58231EB298002CA2E8 /* CurrencyChartRouterInput.swift */; };
+		970B3E8D231EB298002CA2E8 /* CurrencyChartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E59231EB298002CA2E8 /* CurrencyChartRouter.swift */; };
+		970B3E8E231EB298002CA2E8 /* WatchlistCurrencyPairModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E5C231EB298002CA2E8 /* WatchlistCurrencyPairModel.swift */; };
+		970B3E8F231EB298002CA2E8 /* CurrenciesListModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E5E231EB298002CA2E8 /* CurrenciesListModuleConfigurator.swift */; };
+		970B3E90231EB298002CA2E8 /* CurrenciesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E5F231EB298002CA2E8 /* CurrenciesListPresenter.swift */; };
+		970B3E91231EB298002CA2E8 /* CurrenciesListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E61231EB298002CA2E8 /* CurrenciesListDataSource.swift */; };
+		970B3E92231EB298002CA2E8 /* TickerCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E62231EB298002CA2E8 /* TickerCurrencyModel.swift */; };
+		970B3E93231EB298002CA2E8 /* CurrenciesListCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E64231EB298002CA2E8 /* CurrenciesListCells.swift */; };
+		970B3E94231EB298002CA2E8 /* TickerCurrenciesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E65231EB298002CA2E8 /* TickerCurrenciesListView.swift */; };
+		970B3E95231EB298002CA2E8 /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E66231EB298002CA2E8 /* CurrenciesListViewController.swift */; };
+		970B3E96231EB298002CA2E8 /* IFilterGroupController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E68231EB298002CA2E8 /* IFilterGroupController.swift */; };
+		970B3E97231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E69231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift */; };
+		970B3E98231EB298002CA2E8 /* CurrenciesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6A231EB298002CA2E8 /* CurrenciesListInteractor.swift */; };
+		970B3E99231EB298002CA2E8 /* CandleBarChartShortInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6B231EB298002CA2E8 /* CandleBarChartShortInfoView.swift */; };
+		970B3E9A231EB298002CA2E8 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6C231EB298002CA2E8 /* BarChartViewController.swift */; };
+		970B3E9B231EB298002CA2E8 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6D231EB298002CA2E8 /* WatchlistListView.swift */; };
+		970B3E9C231EB298002CA2E8 /* WatchlistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E70231EB298002CA2E8 /* WatchlistPresenter.swift */; };
+		970B3E9D231EB298002CA2E8 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E72231EB298002CA2E8 /* WatchlistViewController.swift */; };
+		970B3E9E231EB298002CA2E8 /* WatchlistViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E73231EB298002CA2E8 /* WatchlistViewOutput.swift */; };
+		970B3E9F231EB298002CA2E8 /* WatchlistViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E74231EB298002CA2E8 /* WatchlistViewInput.swift */; };
+		970B3EA0231EB298002CA2E8 /* WatchlistModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E76231EB298002CA2E8 /* WatchlistModuleInitializer.swift */; };
+		970B3EA1231EB298002CA2E8 /* WatchlistModuleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E77231EB298002CA2E8 /* WatchlistModuleConfigurator.swift */; };
+		970B3EA2231EB298002CA2E8 /* WatchlistInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E79231EB298002CA2E8 /* WatchlistInteractorProtocols.swift */; };
+		970B3EA3231EB298002CA2E8 /* WatchlistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7A231EB298002CA2E8 /* WatchlistInteractor.swift */; };
+		970B3EA4231EB298002CA2E8 /* WatchlistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7C231EB298002CA2E8 /* WatchlistRouter.swift */; };
+		970B3EA5231EB298002CA2E8 /* WatchlistRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7D231EB298002CA2E8 /* WatchlistRouterInput.swift */; };
+		970B3EA6231EB298002CA2E8 /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */; };
 		972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */; };
 		9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */; };
@@ -317,12 +322,10 @@
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
 		9E213ECC5452854BBEB1A693 /* SearchCurrencyPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1156744718574B0A28931 /* SearchCurrencyPairViewController.swift */; };
 		A61320EE80B398D4D4CCE228 /* SearchCurrencyPairModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = A028C4E223B32A2DEDE1CA52 /* SearchCurrencyPairModuleInput.swift */; };
-		AD082830EFA3503E632F0663 /* CurrencyChartRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7E0393DC63579CF99C1C57 /* CurrencyChartRouterInput.swift */; };
 		AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8DEC86C562E86E8A7E5534 /* SearchCurrencyPairInitializer.swift */; };
 		B07ED5143FC3C4FACA446ACF /* CurrenciesGroupsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8549F3A1497B53C1C1B6A623 /* CurrenciesGroupsInteractor.swift */; };
 		B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810E78A3091C97B1DBE4FA20 /* OrdersViewProtocols.swift */; };
 		B36B68AA9FFEFD57A6937766 /* CreateOrderInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299AFB5D8232BA3E2524410 /* CreateOrderInteractorProtocols.swift */; };
-		BA0F381B769424B4E72E2954 /* CurrencyChartInteractorInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D092D729F445C73CBBEBA3B3 /* CurrencyChartInteractorInput.swift */; };
 		BC73413875E7DA458E9010FA /* MenuModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D8F089146D6698EAB70643 /* MenuModuleInitializer.swift */; };
 		C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */; };
 		C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA5D227BEE00B955D0C7F2E /* LoginInitializer.swift */; };
@@ -336,21 +339,18 @@
 		C7FD7602220B4DA500A987DB /* CHInternetReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */; };
 		C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FEE97F75DF6C190754891B /* AlertsPresenter.swift */; };
 		CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE6209D848493B699B132F6 /* CreateOrderViewController.swift */; };
-		CAB081780C816F30AA959325 /* CurrencyChartViewOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506FE56E759B5BEA370E6D54 /* CurrencyChartViewOutput.swift */; };
 		CE4660382F3BA3DC8F4D27E9 /* Pods_exmo_ios_client.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87A166EB1CD171453302661B /* Pods_exmo_ios_client.framework */; };
 		D130A090D8C3419858DC7F32 /* QRScannerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */; };
 		D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1DE49357B4D20F8EA6EC5EF /* CreateAlertRouter.swift */; };
 		D973E58060E2D991B0A64100 /* CreateOrderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1FAAAB1ED29D6B9C96AE0D5 /* CreateOrderConfigurator.swift */; };
 		DD63D0024D67C51BFB1C988F /* SearchCurrencyPairInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E80EE8A4D9F28F5EA95655D /* SearchCurrencyPairInteractor.swift */; };
 		DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3E059834C77B0C6F11D3D3 /* LoginViewController.swift */; };
-		EABF76B025CEFE0E8375F4D1 /* CurrencyChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDFDAA34E9FD08CDEBF8CFA2 /* CurrencyChartPresenter.swift */; };
 		EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */; };
 		EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287C505BB92AB6197863E9E /* AlertsViewController.swift */; };
 		F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33B5CC4983136487CA151E5 /* LoginInteractor.swift */; };
 		F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 556D358C8D17D302E978FD03 /* CurrenciesGroupsConfigurator.swift */; };
 		F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */; };
 		F5BB78F915E45A31A1040BAF /* AlertsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC112492B08159F273061757 /* AlertsInteractor.swift */; };
-		FCD7A93EECADB3B4960974E7 /* CurrencyChartInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B44A2753B072A00F924ECE7 /* CurrencyChartInitializer.swift */; };
 		FEA9FA32F865C22F7445201B /* LoginInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBC7B14E3C96EC51DF9EEB44 /* LoginInteractorProtocols.swift */; };
 		FF108A31BC65D1D2992047D5 /* QRScannerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */; };
 /* End PBXBuildFile section */
@@ -372,13 +372,11 @@
 		0177B41140A8F397D1A959E2 /* SearchCurrencyPairRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairRouter.swift; sourceTree = "<group>"; };
 		01E7F01894FC8E5893E47B52 /* SearchCurrencyPairRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairRouterInput.swift; sourceTree = "<group>"; };
 		0442B6B3AC06605F78CECF03 /* OrdersConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersConfigurator.swift; sourceTree = "<group>"; };
-		09553CAEA724964F39994C16 /* CurrencyChartViewInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartViewInput.swift; sourceTree = "<group>"; };
 		0D3347B252E6586875751363 /* SearchCurrencyPairPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairPresenter.swift; sourceTree = "<group>"; };
 		0DC5F5F54B5171EB8D9746E2 /* Pods-exmo-ios-client.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(qa).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		103F2FB79C245ED357C3995D /* MenuPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuPresenter.swift; sourceTree = "<group>"; };
 		109F9B19513287186326C230 /* Pods-exmo-ios-client.release(production) .xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(production) .xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(production) .xcconfig"; sourceTree = "<group>"; };
 		19E526FB14C5295A017890D5 /* CreateAlertInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInitializer.swift; sourceTree = "<group>"; };
-		1B44A2753B072A00F924ECE7 /* CurrencyChartInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartInitializer.swift; sourceTree = "<group>"; };
 		1D90377AE09AA280BEDD4B6C /* CreateOrderInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInitializer.swift; sourceTree = "<group>"; };
 		20001D65203B8D1200B6966F /* exmo-ios-client.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "exmo-ios-client.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		20001D72203B8D1200B6966F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -441,7 +439,6 @@
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
 		201EA2B321A4954500A1E693 /* OperationsDatabaseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsDatabaseProtocol.swift; sourceTree = "<group>"; };
-		2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrenciesListView.swift; sourceTree = "<group>"; };
 		20294FEB2189F4AF0080B30E /* LoginNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginNetworkWorker.swift; sourceTree = "<group>"; };
 		202F48F5206A157D0080423E /* WatchlistCardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCardCell.swift; sourceTree = "<group>"; };
 		202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExmoAuthorizationService.swift; sourceTree = "<group>"; };
@@ -449,7 +446,6 @@
 		202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertViewController.swift; sourceTree = "<group>"; };
 		202F80AB2300B2590035D123 /* CHCreateAlertViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHCreateAlertViewController.xib; sourceTree = "<group>"; };
 		202F80AE2300B2800035D123 /* CHCreateAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertView.swift; sourceTree = "<group>"; };
-		20345011217B644400D2E831 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		20369A4321972149001D6628 /* RootTabsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsInteractor.swift; sourceTree = "<group>"; };
 		20369A4521972159001D6628 /* RootTabsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsPresenter.swift; sourceTree = "<group>"; };
 		20369A472197223C001D6628 /* RootTabsModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsModuleInitializer.swift; sourceTree = "<group>"; };
@@ -463,9 +459,6 @@
 		204EC7CC230655800097D229 /* CHWalletCurrenciesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrenciesListViewController.xib; sourceTree = "<group>"; };
 		204F234C21AC849A0023890E /* AlertsNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsNetworkProtocols.swift; sourceTree = "<group>"; };
 		204F234E21AC84AD0023890E /* AlertsNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsNetworkWorker.swift; sourceTree = "<group>"; };
-		204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
-		204F7F78215B5D9400014017 /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
-		204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CandleBarChartShortInfoView.swift; sourceTree = "<group>"; };
 		20518D9D22D9F53D00334133 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		20518DA422D9F93100334133 /* CHWatchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHWatchlist.storyboard; sourceTree = "<group>"; };
 		20518DA622D9F9EA00334133 /* CHOrders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHOrders.storyboard; sourceTree = "<group>"; };
@@ -489,23 +482,12 @@
 		206A3B6F217552D700C25E95 /* CurrenciesListTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListTabBar.swift; sourceTree = "<group>"; };
 		206AAA6F21DBC82A00E956E7 /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		206BD9512074297400ADC91C /* RootTabsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootTabsController.swift; sourceTree = "<group>"; };
-		207552952188B1F00011190E /* NetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
 		2075612620B2C0DB0063E548 /* AlertsApiRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsApiRequestBuilder.swift; sourceTree = "<group>"; };
 		20786BDA230642F6007C3944 /* CHWalletCurrenciesListHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrenciesListHeader.xib; sourceTree = "<group>"; };
 		20786BDC2306430A007C3944 /* CHWalletCurrenciesListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletCurrenciesListHeader.swift; sourceTree = "<group>"; };
 		20786BDE2306434F007C3944 /* CHWalletCurrenciesListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrenciesListCell.xib; sourceTree = "<group>"; };
 		207A85E221B326D30049B26D /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		207A85E421B349570049B26D /* ButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonCell.swift; sourceTree = "<group>"; };
-		207B1D872173F93F00D2A5DE /* WatchlistPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistPresenter.swift; sourceTree = "<group>"; };
-		207B1D892173F93F00D2A5DE /* WatchlistViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewOutput.swift; sourceTree = "<group>"; };
-		207B1D8A2173F93F00D2A5DE /* WatchlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
-		207B1D8B2173F93F00D2A5DE /* WatchlistViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewInput.swift; sourceTree = "<group>"; };
-		207B1D8D2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleConfigurator.swift; sourceTree = "<group>"; };
-		207B1D8E2173F93F00D2A5DE /* WatchlistModuleInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleInitializer.swift; sourceTree = "<group>"; };
-		207B1D902173F93F00D2A5DE /* WatchlistInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractor.swift; sourceTree = "<group>"; };
-		207B1D912173F93F00D2A5DE /* WatchlistInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractorProtocols.swift; sourceTree = "<group>"; };
-		207B1D942173F93F00D2A5DE /* WatchlistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouter.swift; sourceTree = "<group>"; };
-		207B1D952173F93F00D2A5DE /* WatchlistRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouterInput.swift; sourceTree = "<group>"; };
 		207E24FE2061B85B00030023 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 		207E25002061BD3B00030023 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
 		207E25032061C3FD00030023 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
@@ -526,7 +508,6 @@
 		208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseCollectionCell.swift; sourceTree = "<group>"; };
 		208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseView.swift; sourceTree = "<group>"; };
 		208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
 		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
 		20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnSum.swift; sourceTree = "<group>"; };
 		20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnAmount.swift; sourceTree = "<group>"; };
@@ -558,12 +539,6 @@
 		20D7F02420460E6A0056F547 /* CHMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHMenuCell.swift; sourceTree = "<group>"; };
 		20D8B67321A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrdersListView+UITableView_Delegate+DataSource.swift"; sourceTree = "<group>"; };
 		20DE4A8521A0A1CF0099A6DF /* SearchDatasourceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDatasourceListView.swift; sourceTree = "<group>"; };
-		20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListDataSource.swift; sourceTree = "<group>"; };
-		20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListCells.swift; sourceTree = "<group>"; };
-		20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListModuleConfigurator.swift; sourceTree = "<group>"; };
-		20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractor.swift; sourceTree = "<group>"; };
-		20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListPresenter.swift; sourceTree = "<group>"; };
-		20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TickerCurrencyModel.swift; sourceTree = "<group>"; };
 		20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchBar+Extension.swift"; sourceTree = "<group>"; };
 		20DFB1C82303486A008C19B5 /* CHWalletBalanceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletBalanceView.xib; sourceTree = "<group>"; };
 		20DFB1CE2303599B008C19B5 /* CHWalletCurrencyHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletCurrencyHeaderView.swift; sourceTree = "<group>"; };
@@ -589,7 +564,6 @@
 		27D165AD0996680E02992A8F /* Pods-exmo-ios-client.debug(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.debug(development).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.debug(development).xcconfig"; sourceTree = "<group>"; };
 		2C01AAB58E3E81D14C69060A /* CreateAlertModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertModuleInput.swift; sourceTree = "<group>"; };
 		2D5DD0FFBF95A907185CBA63 /* CurrenciesGroupsInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsInitializer.swift; sourceTree = "<group>"; };
-		2D7E0393DC63579CF99C1C57 /* CurrencyChartRouterInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartRouterInput.swift; sourceTree = "<group>"; };
 		30BE974C2513907BDD66D135 /* OrdersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractor.swift; sourceTree = "<group>"; };
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
@@ -606,23 +580,18 @@
 		366FFEC3B0C154B4B8BB3EE4 /* SubscriptionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsCell.swift; sourceTree = "<group>"; };
 		366FFEDD1D185EDFD6DE7F0A /* SubscriptionsCellModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsCellModel.swift; sourceTree = "<group>"; };
 		3671205987EBAA1263AE126F /* CHVinsoAPIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHVinsoAPIConstants.swift; sourceTree = "<group>"; };
-		367120B1111B487C3177C51D /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
-		367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
 		367123472D6E898C5F3B2FA0 /* CHVinsoAPI+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Alerts.swift"; sourceTree = "<group>"; };
 		367123CC34179C4F53E597DE /* CHVinsoAPIConnectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHVinsoAPIConnectionDelegate.swift; sourceTree = "<group>"; };
 		367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertsAPIResponseDelegate.swift; sourceTree = "<group>"; };
 		367126066F9FBD9F6FBEBFD1 /* CHMenuViewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHMenuViewPresenter.swift; sourceTree = "<group>"; };
 		367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoUIViewController.swift; sourceTree = "<group>"; };
-		367129AC2A73866F875D22DE /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
 		367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHSubscriptionPackages.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* CHMenuSectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHMenuSectionType.swift; sourceTree = "<group>"; };
 		36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoSegmentCell.swift; sourceTree = "<group>"; };
 		36712B2B3338633190FB399E /* Font+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
 		36712B2E24600DAE35483C9D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
-		36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFilterGroupController.swift; sourceTree = "<group>"; };
 		36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoErrorResponses.swift; sourceTree = "<group>"; };
 		36712E09C93F6FAB62707BD3 /* CHVinsoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHVinsoAPI.swift; sourceTree = "<group>"; };
-		36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartNetworkWorkers.swift; sourceTree = "<group>"; };
 		36712E86BC9F833C4B86DFA2 /* CHVinsoAPI+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Connection.swift"; sourceTree = "<group>"; };
 		36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHAppStoreReviewManager.swift; sourceTree = "<group>"; };
 		36712F3BF4234409BE0C353E /* CHWalletCurrenciesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHWalletCurrenciesPresenter.swift; sourceTree = "<group>"; };
@@ -634,12 +603,10 @@
 		4ADD978E0D15EED1BA175A53 /* AlertsRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsRouter.swift; sourceTree = "<group>"; };
 		4D424D2DD5AD23C7BC1C36DA /* Pods-exmo-ios-client.release(development).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release(development).xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release(development).xcconfig"; sourceTree = "<group>"; };
 		4E80EE8A4D9F28F5EA95655D /* SearchCurrencyPairInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairInteractor.swift; sourceTree = "<group>"; };
-		506FE56E759B5BEA370E6D54 /* CurrencyChartViewOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartViewOutput.swift; sourceTree = "<group>"; };
 		5287C505BB92AB6197863E9E /* AlertsViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsViewController.swift; sourceTree = "<group>"; };
 		556D358C8D17D302E978FD03 /* CurrenciesGroupsConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsConfigurator.swift; sourceTree = "<group>"; };
 		5EE49DA66514C8DFE7D71133 /* QRScannerPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerPresenter.swift; sourceTree = "<group>"; };
 		6070BC376D8AC4F1A5006B4B /* CreateAlertViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertViewProtocols.swift; sourceTree = "<group>"; };
-		60C72D5E70DF60A940E065AF /* CurrencyChartModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartModuleInput.swift; sourceTree = "<group>"; };
 		6463546423363E6BA20C09C8 /* QRScannerInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInteractorProtocols.swift; sourceTree = "<group>"; };
 		65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerInitializer.swift; sourceTree = "<group>"; };
 		680AF92D203CA7D262F893CE /* SearchCurrencyPairInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairInteractorProtocols.swift; sourceTree = "<group>"; };
@@ -650,11 +617,9 @@
 		71507EC9D731B380187FF88E /* MenuInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuInteractor.swift; sourceTree = "<group>"; };
 		71D8F089146D6698EAB70643 /* MenuModuleInitializer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuModuleInitializer.swift; sourceTree = "<group>"; };
 		73544C83E2351279A35FEA8C /* QRScannerViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewProtocols.swift; sourceTree = "<group>"; };
-		7421909015612BCF6F66203E /* CurrencyChartViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartViewController.swift; sourceTree = "<group>"; };
 		759457AF84B73E7223ABE434 /* Pods-exmo-ios-client.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-exmo-ios-client.release.xcconfig"; path = "Pods/Target Support Files/Pods-exmo-ios-client/Pods-exmo-ios-client.release.xcconfig"; sourceTree = "<group>"; };
 		77E435360E49F73ABF4C888C /* LoginPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
 		78726C02BA81C1A5BF0F0917 /* AlertsConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsConfigurator.swift; sourceTree = "<group>"; };
-		7C37F6B3A1917E7C23C54A7C /* CurrencyChartRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartRouter.swift; sourceTree = "<group>"; };
 		7F3266549D6412B407CE7856 /* MenuRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuRouter.swift; sourceTree = "<group>"; };
 		810E78A3091C97B1DBE4FA20 /* OrdersViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersViewProtocols.swift; sourceTree = "<group>"; };
 		8549F3A1497B53C1C1B6A623 /* CurrenciesGroupsInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrenciesGroupsInteractor.swift; sourceTree = "<group>"; };
@@ -665,6 +630,46 @@
 		9299AFB5D8232BA3E2524410 /* CreateOrderInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInteractorProtocols.swift; sourceTree = "<group>"; };
 		96408060495CEFDFCE579106 /* QRScannerConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerConfigurator.swift; sourceTree = "<group>"; };
 		970B3E40231E80B2002CA2E8 /* CHLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLogger.swift; sourceTree = "<group>"; };
+		970B3E44231EB298002CA2E8 /* NetworkWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkWorker.swift; sourceTree = "<group>"; };
+		970B3E47231EB298002CA2E8 /* CurrencyChartModuleInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartModuleInput.swift; sourceTree = "<group>"; };
+		970B3E48231EB298002CA2E8 /* CurrencyChartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartPresenter.swift; sourceTree = "<group>"; };
+		970B3E4A231EB298002CA2E8 /* ExmoChartData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoChartData.swift; sourceTree = "<group>"; };
+		970B3E4C231EB298002CA2E8 /* CurrencyChartViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartViewInput.swift; sourceTree = "<group>"; };
+		970B3E4D231EB298002CA2E8 /* CurrencyChartViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartViewOutput.swift; sourceTree = "<group>"; };
+		970B3E4E231EB298002CA2E8 /* CurrencyChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartViewController.swift; sourceTree = "<group>"; };
+		970B3E50231EB298002CA2E8 /* CurrencyChartConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartConfigurator.swift; sourceTree = "<group>"; };
+		970B3E51231EB298002CA2E8 /* CurrencyChartInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartInitializer.swift; sourceTree = "<group>"; };
+		970B3E53231EB298002CA2E8 /* CurrencyChartInteractorOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartInteractorOutput.swift; sourceTree = "<group>"; };
+		970B3E54231EB298002CA2E8 /* CurrencyChartInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartInteractor.swift; sourceTree = "<group>"; };
+		970B3E55231EB298002CA2E8 /* ChartNetworkWorkers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartNetworkWorkers.swift; sourceTree = "<group>"; };
+		970B3E56231EB298002CA2E8 /* CurrencyChartInteractorInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartInteractorInput.swift; sourceTree = "<group>"; };
+		970B3E58231EB298002CA2E8 /* CurrencyChartRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartRouterInput.swift; sourceTree = "<group>"; };
+		970B3E59231EB298002CA2E8 /* CurrencyChartRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyChartRouter.swift; sourceTree = "<group>"; };
+		970B3E5C231EB298002CA2E8 /* WatchlistCurrencyPairModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistCurrencyPairModel.swift; sourceTree = "<group>"; };
+		970B3E5E231EB298002CA2E8 /* CurrenciesListModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListModuleConfigurator.swift; sourceTree = "<group>"; };
+		970B3E5F231EB298002CA2E8 /* CurrenciesListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListPresenter.swift; sourceTree = "<group>"; };
+		970B3E61231EB298002CA2E8 /* CurrenciesListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListDataSource.swift; sourceTree = "<group>"; };
+		970B3E62231EB298002CA2E8 /* TickerCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerCurrencyModel.swift; sourceTree = "<group>"; };
+		970B3E64231EB298002CA2E8 /* CurrenciesListCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListCells.swift; sourceTree = "<group>"; };
+		970B3E65231EB298002CA2E8 /* TickerCurrenciesListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TickerCurrenciesListView.swift; sourceTree = "<group>"; };
+		970B3E66231EB298002CA2E8 /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
+		970B3E68231EB298002CA2E8 /* IFilterGroupController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IFilterGroupController.swift; sourceTree = "<group>"; };
+		970B3E69231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
+		970B3E6A231EB298002CA2E8 /* CurrenciesListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractor.swift; sourceTree = "<group>"; };
+		970B3E6B231EB298002CA2E8 /* CandleBarChartShortInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleBarChartShortInfoView.swift; sourceTree = "<group>"; };
+		970B3E6C231EB298002CA2E8 /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		970B3E6D231EB298002CA2E8 /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
+		970B3E70231EB298002CA2E8 /* WatchlistPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistPresenter.swift; sourceTree = "<group>"; };
+		970B3E72231EB298002CA2E8 /* WatchlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
+		970B3E73231EB298002CA2E8 /* WatchlistViewOutput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewOutput.swift; sourceTree = "<group>"; };
+		970B3E74231EB298002CA2E8 /* WatchlistViewInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewInput.swift; sourceTree = "<group>"; };
+		970B3E76231EB298002CA2E8 /* WatchlistModuleInitializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleInitializer.swift; sourceTree = "<group>"; };
+		970B3E77231EB298002CA2E8 /* WatchlistModuleConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistModuleConfigurator.swift; sourceTree = "<group>"; };
+		970B3E79231EB298002CA2E8 /* WatchlistInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractorProtocols.swift; sourceTree = "<group>"; };
+		970B3E7A231EB298002CA2E8 /* WatchlistInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractor.swift; sourceTree = "<group>"; };
+		970B3E7C231EB298002CA2E8 /* WatchlistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouter.swift; sourceTree = "<group>"; };
+		970B3E7D231EB298002CA2E8 /* WatchlistRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouterInput.swift; sourceTree = "<group>"; };
+		970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
 		972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
@@ -703,10 +708,8 @@
 		C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHInternetReachabilityManager.swift; sourceTree = "<group>"; };
 		C8CD82C4565476721CD72933 /* CreateOrderRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderRouter.swift; sourceTree = "<group>"; };
 		C93E280C9B9618890E1C1F17 /* SearchCurrencyPairConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairConfigurator.swift; sourceTree = "<group>"; };
-		D092D729F445C73CBBEBA3B3 /* CurrencyChartInteractorInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartInteractorInput.swift; sourceTree = "<group>"; };
 		D0DBDCD76FD9AC84E1C00E12 /* OrdersRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersRouter.swift; sourceTree = "<group>"; };
 		D1DE49357B4D20F8EA6EC5EF /* CreateAlertRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertRouter.swift; sourceTree = "<group>"; };
-		D265F6D569AFA5D2FB70CA0F /* CurrencyChartConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartConfigurator.swift; sourceTree = "<group>"; };
 		D31F2D68B9E62669EBBEF567 /* CreateOrderInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderInteractor.swift; sourceTree = "<group>"; };
 		D63977E4ED0ACEE06254D7CC /* CreateOrderViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderViewProtocols.swift; sourceTree = "<group>"; };
 		D7083115E233EBE369D8B337 /* CreateAlertViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertViewController.swift; sourceTree = "<group>"; };
@@ -714,12 +717,9 @@
 		DAA187AD955A09698CDE3831 /* MenuRouterProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuRouterProtocols.swift; sourceTree = "<group>"; };
 		DDFFB05050EE8A6CA50DD19F /* QRScannerViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerViewController.swift; sourceTree = "<group>"; };
 		E3622C2690273A9077846DDD /* MenuInteractorProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MenuInteractorProtocols.swift; sourceTree = "<group>"; };
-		E866E5C73F2D9CE0AEF748F0 /* CurrencyChartInteractorOutput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartInteractorOutput.swift; sourceTree = "<group>"; };
 		E8BE3CACEB7580F7E0E0138A /* SearchCurrencyPairViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairViewProtocols.swift; sourceTree = "<group>"; };
 		E9011E1AEFC03C0EA27CADA4 /* CreateOrderPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderPresenter.swift; sourceTree = "<group>"; };
-		EC74944885F96358C68A3CCF /* CurrencyChartInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartInteractor.swift; sourceTree = "<group>"; };
 		ED4B771AF062127B0D3782DF /* LoginConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginConfigurator.swift; sourceTree = "<group>"; };
-		EDFDAA34E9FD08CDEBF8CFA2 /* CurrencyChartPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurrencyChartPresenter.swift; sourceTree = "<group>"; };
 		EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertConfigurator.swift; sourceTree = "<group>"; };
 		F1FAAAB1ED29D6B9C96AE0D5 /* CreateOrderConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateOrderConfigurator.swift; sourceTree = "<group>"; };
 		F3ABB16DB0E8D7265FCE3ECA /* QRScannerRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerRouter.swift; sourceTree = "<group>"; };
@@ -985,38 +985,6 @@
 			path = Database;
 			sourceTree = "<group>";
 		};
-		202F48EF206A136D0080423E /* Watchlist */ = {
-			isa = PBXGroup;
-			children = (
-				204F7F76215B5D6700014017 /* CandleStickChartViewController.swift */,
-				204F7F78215B5D9400014017 /* BarChartViewController.swift */,
-				204F7F7A215B5DAE00014017 /* CandleBarChartShortInfoView.swift */,
-				207552952188B1F00011190E /* NetworkWorker.swift */,
-				202F48F0206A144D0080423E /* Common */,
-				207B1D842173F93F00D2A5DE /* Main */,
-				48EFA6894840F77841C1ED3F /* Chart */,
-				20DE8847217CDE9900BA5CF3 /* CurrenciesPairsList */,
-				367120B1111B487C3177C51D /* WatchlistListView.swift */,
-			);
-			path = Watchlist;
-			sourceTree = "<group>";
-		};
-		202F48F0206A144D0080423E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				202F48F2206A145C0080423E /* Models */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		202F48F2206A145C0080423E /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				209F1B43210986FD00D4205D /* WatchlistCurrencyPairModel.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		20369A42219720F0001D6628 /* RootTabs */ = {
 			isa = PBXGroup;
 			children = (
@@ -1262,64 +1230,6 @@
 				201DF20521B2907B00158A15 /* Cells */,
 			);
 			path = Form;
-			sourceTree = "<group>";
-		};
-		207B1D842173F93F00D2A5DE /* Main */ = {
-			isa = PBXGroup;
-			children = (
-				207B1D882173F93F00D2A5DE /* View */,
-				207B1D852173F93F00D2A5DE /* Presenter */,
-				207B1D932173F93F00D2A5DE /* Router */,
-				207B1D8F2173F93F00D2A5DE /* Interactor */,
-				207B1D8C2173F93F00D2A5DE /* Configurator */,
-			);
-			name = Main;
-			path = "exmo-ios-client/sources/Watchlist/Main";
-			sourceTree = SOURCE_ROOT;
-		};
-		207B1D852173F93F00D2A5DE /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				207B1D872173F93F00D2A5DE /* WatchlistPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		207B1D882173F93F00D2A5DE /* View */ = {
-			isa = PBXGroup;
-			children = (
-				207B1D892173F93F00D2A5DE /* WatchlistViewOutput.swift */,
-				207B1D8A2173F93F00D2A5DE /* WatchlistViewController.swift */,
-				207B1D8B2173F93F00D2A5DE /* WatchlistViewInput.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		207B1D8C2173F93F00D2A5DE /* Configurator */ = {
-			isa = PBXGroup;
-			children = (
-				207B1D8D2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift */,
-				207B1D8E2173F93F00D2A5DE /* WatchlistModuleInitializer.swift */,
-			);
-			path = Configurator;
-			sourceTree = "<group>";
-		};
-		207B1D8F2173F93F00D2A5DE /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				207B1D902173F93F00D2A5DE /* WatchlistInteractor.swift */,
-				207B1D912173F93F00D2A5DE /* WatchlistInteractorProtocols.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		207B1D932173F93F00D2A5DE /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				207B1D942173F93F00D2A5DE /* WatchlistRouter.swift */,
-				207B1D952173F93F00D2A5DE /* WatchlistRouterInput.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		207E25022061C3EF00030023 /* Models */ = {
@@ -1620,47 +1530,6 @@
 			path = Card;
 			sourceTree = "<group>";
 		};
-		20DE8847217CDE9900BA5CF3 /* CurrenciesPairsList */ = {
-			isa = PBXGroup;
-			children = (
-				20DE884E217CDF4800BA5CF3 /* View */,
-				20DE884F217CDFD000BA5CF3 /* Model */,
-				20DE8852217CE0D400BA5CF3 /* Interactor */,
-				20DE884C217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift */,
-				20DE8853217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift */,
-			);
-			path = CurrenciesPairsList;
-			sourceTree = "<group>";
-		};
-		20DE884E217CDF4800BA5CF3 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				20345011217B644400D2E831 /* CurrenciesListViewController.swift */,
-				2022A79021C0544300B53292 /* TickerCurrenciesListView.swift */,
-				20DE884A217CDEF200BA5CF3 /* CurrenciesListCells.swift */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		20DE884F217CDFD000BA5CF3 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				20DE8855217D017B00BA5CF3 /* TickerCurrencyModel.swift */,
-				20DE8848217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		20DE8852217CE0D400BA5CF3 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				20DE8850217CE08C00BA5CF3 /* CurrenciesListInteractor.swift */,
-				367122C4DD0719D3DD784643 /* CurrenciesListInteractorProtocols.swift */,
-				36712BDDF59FD8FED1922599 /* IFilterGroupController.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
 		20DFB1CA2303588C008C19B5 /* WalletBalanceView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1834,14 +1703,6 @@
 			path = Interactor;
 			sourceTree = "<group>";
 		};
-		36712194B55D0F9BEAD494DF /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				367129AC2A73866F875D22DE /* ExmoChartData.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		36712ED85CCE80904AD3B7E6 /* VinsoAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1932,15 +1793,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		466DD8FBDECAAF2C9547A7F5 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				60C72D5E70DF60A940E065AF /* CurrencyChartModuleInput.swift */,
-				EDFDAA34E9FD08CDEBF8CFA2 /* CurrencyChartPresenter.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		476496FDF8E745AC892D4DBC /* Orders */ = {
 			isa = PBXGroup;
 			children = (
@@ -1958,19 +1810,6 @@
 				4ADD978E0D15EED1BA175A53 /* AlertsRouter.swift */,
 			);
 			path = Router;
-			sourceTree = "<group>";
-		};
-		48EFA6894840F77841C1ED3F /* Chart */ = {
-			isa = PBXGroup;
-			children = (
-				73B88DA9D6AEEF1A2D1E6F66 /* View */,
-				466DD8FBDECAAF2C9547A7F5 /* Presenter */,
-				AE0BC1F431AF590B7937F6EF /* Interactor */,
-				EB6DBAC46056F868D36FAA63 /* Router */,
-				5915FD138D9D8B884E0325DD /* Configurator */,
-				36712194B55D0F9BEAD494DF /* Model */,
-			);
-			path = Chart;
 			sourceTree = "<group>";
 		};
 		494BD91DE841229E6672468F /* Pods */ = {
@@ -2015,15 +1854,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		5915FD138D9D8B884E0325DD /* Configurator */ = {
-			isa = PBXGroup;
-			children = (
-				D265F6D569AFA5D2FB70CA0F /* CurrencyChartConfigurator.swift */,
-				1B44A2753B072A00F924ECE7 /* CurrencyChartInitializer.swift */,
-			);
-			path = Configurator;
-			sourceTree = "<group>";
-		};
 		5BB50F2EFDC73E7C41F092E8 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -2056,16 +1886,6 @@
 				8B8DEC86C562E86E8A7E5534 /* SearchCurrencyPairInitializer.swift */,
 			);
 			path = Configurator;
-			sourceTree = "<group>";
-		};
-		73B88DA9D6AEEF1A2D1E6F66 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				09553CAEA724964F39994C16 /* CurrencyChartViewInput.swift */,
-				506FE56E759B5BEA370E6D54 /* CurrencyChartViewOutput.swift */,
-				7421909015612BCF6F66203E /* CurrencyChartViewController.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		7D304F3784AEA984D8FD4ED8 /* Configurator */ = {
@@ -2156,13 +1976,212 @@
 		970B3E42231EAA20002CA2E8 /* Screens(old) */ = {
 			isa = PBXGroup;
 			children = (
+				970B3E43231EB298002CA2E8 /* Watchlist */,
 				20369A42219720F0001D6628 /* RootTabs */,
-				202F48EF206A136D0080423E /* Watchlist */,
 				476496FDF8E745AC892D4DBC /* Orders */,
 				66C69DB3D5F2206C45571645 /* Alerts */,
 				0D42C8C67FEB7E4CCB711CBC /* Menu */,
 			);
 			path = "Screens(old)";
+			sourceTree = "<group>";
+		};
+		970B3E43231EB298002CA2E8 /* Watchlist */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E44231EB298002CA2E8 /* NetworkWorker.swift */,
+				970B3E45231EB298002CA2E8 /* Chart */,
+				970B3E5A231EB298002CA2E8 /* Common */,
+				970B3E5D231EB298002CA2E8 /* CurrenciesPairsList */,
+				970B3E6B231EB298002CA2E8 /* CandleBarChartShortInfoView.swift */,
+				970B3E6C231EB298002CA2E8 /* BarChartViewController.swift */,
+				970B3E6D231EB298002CA2E8 /* WatchlistListView.swift */,
+				970B3E6E231EB298002CA2E8 /* Main */,
+				970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */,
+			);
+			path = Watchlist;
+			sourceTree = "<group>";
+		};
+		970B3E45231EB298002CA2E8 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E46231EB298002CA2E8 /* Presenter */,
+				970B3E49231EB298002CA2E8 /* Model */,
+				970B3E4B231EB298002CA2E8 /* View */,
+				970B3E4F231EB298002CA2E8 /* Configurator */,
+				970B3E52231EB298002CA2E8 /* Interactor */,
+				970B3E57231EB298002CA2E8 /* Router */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		970B3E46231EB298002CA2E8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E47231EB298002CA2E8 /* CurrencyChartModuleInput.swift */,
+				970B3E48231EB298002CA2E8 /* CurrencyChartPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		970B3E49231EB298002CA2E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E4A231EB298002CA2E8 /* ExmoChartData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		970B3E4B231EB298002CA2E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E4C231EB298002CA2E8 /* CurrencyChartViewInput.swift */,
+				970B3E4D231EB298002CA2E8 /* CurrencyChartViewOutput.swift */,
+				970B3E4E231EB298002CA2E8 /* CurrencyChartViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		970B3E4F231EB298002CA2E8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E50231EB298002CA2E8 /* CurrencyChartConfigurator.swift */,
+				970B3E51231EB298002CA2E8 /* CurrencyChartInitializer.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		970B3E52231EB298002CA2E8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E53231EB298002CA2E8 /* CurrencyChartInteractorOutput.swift */,
+				970B3E54231EB298002CA2E8 /* CurrencyChartInteractor.swift */,
+				970B3E55231EB298002CA2E8 /* ChartNetworkWorkers.swift */,
+				970B3E56231EB298002CA2E8 /* CurrencyChartInteractorInput.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		970B3E57231EB298002CA2E8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E58231EB298002CA2E8 /* CurrencyChartRouterInput.swift */,
+				970B3E59231EB298002CA2E8 /* CurrencyChartRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		970B3E5A231EB298002CA2E8 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E5B231EB298002CA2E8 /* Models */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		970B3E5B231EB298002CA2E8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E5C231EB298002CA2E8 /* WatchlistCurrencyPairModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		970B3E5D231EB298002CA2E8 /* CurrenciesPairsList */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E5E231EB298002CA2E8 /* CurrenciesListModuleConfigurator.swift */,
+				970B3E5F231EB298002CA2E8 /* CurrenciesListPresenter.swift */,
+				970B3E60231EB298002CA2E8 /* Model */,
+				970B3E63231EB298002CA2E8 /* View */,
+				970B3E67231EB298002CA2E8 /* Interactor */,
+			);
+			path = CurrenciesPairsList;
+			sourceTree = "<group>";
+		};
+		970B3E60231EB298002CA2E8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E61231EB298002CA2E8 /* CurrenciesListDataSource.swift */,
+				970B3E62231EB298002CA2E8 /* TickerCurrencyModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		970B3E63231EB298002CA2E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E64231EB298002CA2E8 /* CurrenciesListCells.swift */,
+				970B3E65231EB298002CA2E8 /* TickerCurrenciesListView.swift */,
+				970B3E66231EB298002CA2E8 /* CurrenciesListViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		970B3E67231EB298002CA2E8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E68231EB298002CA2E8 /* IFilterGroupController.swift */,
+				970B3E69231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift */,
+				970B3E6A231EB298002CA2E8 /* CurrenciesListInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		970B3E6E231EB298002CA2E8 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E6F231EB298002CA2E8 /* Presenter */,
+				970B3E71231EB298002CA2E8 /* View */,
+				970B3E75231EB298002CA2E8 /* Configurator */,
+				970B3E78231EB298002CA2E8 /* Interactor */,
+				970B3E7B231EB298002CA2E8 /* Router */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		970B3E6F231EB298002CA2E8 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E70231EB298002CA2E8 /* WatchlistPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		970B3E71231EB298002CA2E8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E72231EB298002CA2E8 /* WatchlistViewController.swift */,
+				970B3E73231EB298002CA2E8 /* WatchlistViewOutput.swift */,
+				970B3E74231EB298002CA2E8 /* WatchlistViewInput.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		970B3E75231EB298002CA2E8 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E76231EB298002CA2E8 /* WatchlistModuleInitializer.swift */,
+				970B3E77231EB298002CA2E8 /* WatchlistModuleConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		970B3E78231EB298002CA2E8 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E79231EB298002CA2E8 /* WatchlistInteractorProtocols.swift */,
+				970B3E7A231EB298002CA2E8 /* WatchlistInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		970B3E7B231EB298002CA2E8 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				970B3E7C231EB298002CA2E8 /* WatchlistRouter.swift */,
+				970B3E7D231EB298002CA2E8 /* WatchlistRouterInput.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		9763F43822F7494A00D6E22A /* Formatters */ = {
@@ -2195,17 +2214,6 @@
 				E78E595F779B91946691C178 /* Configurator */,
 			);
 			path = QRScanner;
-			sourceTree = "<group>";
-		};
-		AE0BC1F431AF590B7937F6EF /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				D092D729F445C73CBBEBA3B3 /* CurrencyChartInteractorInput.swift */,
-				E866E5C73F2D9CE0AEF748F0 /* CurrencyChartInteractorOutput.swift */,
-				EC74944885F96358C68A3CCF /* CurrencyChartInteractor.swift */,
-				36712E326854CA1CA9A53E3A /* ChartNetworkWorkers.swift */,
-			);
-			path = Interactor;
 			sourceTree = "<group>";
 		};
 		B46AACE34BAA98A15F6F9E6F /* View */ = {
@@ -2296,15 +2304,6 @@
 				65114ECDC0A58E80CA27F23D /* QRScannerInitializer.swift */,
 			);
 			path = Configurator;
-			sourceTree = "<group>";
-		};
-		EB6DBAC46056F868D36FAA63 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				2D7E0393DC63579CF99C1C57 /* CurrencyChartRouterInput.swift */,
-				7C37F6B3A1917E7C23C54A7C /* CurrencyChartRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		EB8E928A1994D40070815C1D /* Interactor */ = {
@@ -2620,29 +2619,28 @@
 				207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */,
 				20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */,
 				2005E2A822E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift in Sources */,
+				970B3EA5231EB298002CA2E8 /* WatchlistRouterInput.swift in Sources */,
 				20FE9B0021ED399600B586CB /* String+Extension.swift in Sources */,
 				206A3B70217552D700C25E95 /* CurrenciesListTabBar.swift in Sources */,
 				201D807C205DC6A300692DEF /* CHWalletCurrenciesListPresenter.swift in Sources */,
 				DF1DBBD1CAF1A9F5DD90EFD4 /* LoginViewController.swift in Sources */,
 				466BE515F58F0A76E05A0A0A /* LoginModuleProtocols.swift in Sources */,
-				2022A79121C0544300B53292 /* TickerCurrenciesListView.swift in Sources */,
 				9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */,
 				3EFA300489B77AB07A45C3E3 /* LoginPresenter.swift in Sources */,
 				FEA9FA32F865C22F7445201B /* LoginInteractorProtocols.swift in Sources */,
 				20CAFF002042EE4F00C7DEA5 /* CHSocketManager.swift in Sources */,
-				207B1D9C2173F93F00D2A5DE /* WatchlistModuleInitializer.swift in Sources */,
-				207B1D9A2173F93F00D2A5DE /* WatchlistViewInput.swift in Sources */,
 				97E9C011230443D400CF01A2 /* CHExmoAPI.swift in Sources */,
 				20BEDC5920557E2F00973F2F /* AlertsModel.swift in Sources */,
 				201D8079205DC62800692DEF /* CHWalletCurrenciesListCell.swift in Sources */,
 				F242E37F3C1E2B2F22E16732 /* LoginInteractor.swift in Sources */,
+				970B3E85231EB298002CA2E8 /* CurrencyChartViewController.swift in Sources */,
 				940A6111B404C56A5C57CF19 /* LoginRouterInput.swift in Sources */,
 				20467D5051D58148706B41DA /* LoginRouter.swift in Sources */,
 				207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */,
 				0F2EBF7907418DCBAC0C254D /* LoginConfigurator.swift in Sources */,
 				C7D7B7422209FDA100766759 /* ConfigInfoPList.swift in Sources */,
+				970B3E9C231EB298002CA2E8 /* WatchlistPresenter.swift in Sources */,
 				20DEBBA821768AE800BE921E /* UISearchBar+Extension.swift in Sources */,
-				20DE884D217CDF2000BA5CF3 /* CurrenciesListModuleConfigurator.swift in Sources */,
 				208FE0A822DB78220014BCE5 /* CHBaseCollectionCell.swift in Sources */,
 				C457DAD84E3C4A7AF0D358D6 /* LoginInitializer.swift in Sources */,
 				201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */,
@@ -2654,13 +2652,14 @@
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				200D52C822DA1DFC0009C07C /* CHMenuView.swift in Sources */,
 				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,
-				207B1D9B2173F93F00D2A5DE /* WatchlistModuleConfigurator.swift in Sources */,
+				970B3E82231EB298002CA2E8 /* ExmoChartData.swift in Sources */,
 				20CAFED52042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift in Sources */,
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
 				20CAFED2204208E000C7DEA5 /* QRLoginModel.swift in Sources */,
+				970B3E80231EB298002CA2E8 /* CurrencyChartModuleInput.swift in Sources */,
 				2003B5562048B8DE00BD205F /* CHWalletCurrencyCell.swift in Sources */,
+				970B3E9B231EB298002CA2E8 /* WatchlistListView.swift in Sources */,
 				2045B5CB21035D39000F9D4C /* PlaceholderNoDataView.swift in Sources */,
-				204F7F7B215B5DAE00014017 /* CandleBarChartShortInfoView.swift in Sources */,
 				200D52B522DA07EB0009C07C /* CHMenuViewController.swift in Sources */,
 				20CAFED72042AF0D00C7DEA5 /* Data+Extensions.swift in Sources */,
 				20B1629321AAD6BF0087AEE7 /* CreateLimitView+Datasource+Delegate.swift in Sources */,
@@ -2680,6 +2679,7 @@
 				7C80BE19C44E3D1F07DE5B2D /* MenuPresenter.swift in Sources */,
 				0F98487E92B6C785E714D43F /* MenuInteractorProtocols.swift in Sources */,
 				97E9C0152304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift in Sources */,
+				970B3E89231EB298002CA2E8 /* CurrencyChartInteractor.swift in Sources */,
 				200D52A922DA07B20009C07C /* CHOrdersViewController.swift in Sources */,
 				20C0E3FD21A3762A00CAEEF9 /* LoginNetworkProtocols.swift in Sources */,
 				2DCAAC583A7618B6F7024C58 /* MenuInteractor.swift in Sources */,
@@ -2691,15 +2691,16 @@
 				BC73413875E7DA458E9010FA /* MenuModuleInitializer.swift in Sources */,
 				204F234F21AC84AD0023890E /* AlertsNetworkWorker.swift in Sources */,
 				20B9CC9B219A34B9004AC3B2 /* CreateLimitView.swift in Sources */,
+				970B3E81231EB298002CA2E8 /* CurrencyChartPresenter.swift in Sources */,
 				20CE7EB321A19CAB00EC14FA /* Structures.swift in Sources */,
 				20369A482197223C001D6628 /* RootTabsModuleInitializer.swift in Sources */,
+				970B3EA1231EB298002CA2E8 /* WatchlistModuleConfigurator.swift in Sources */,
 				206A3B6B2175522400C25E95 /* Cells.swift in Sources */,
 				200813EF2311A9BC00D090E7 /* CHBaseViewController+Rx.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */,
 				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
 				20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */,
-				207B1D9D2173F93F00D2A5DE /* WatchlistInteractor.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */,
 				970B3E41231E80B2002CA2E8 /* CHLogger.swift in Sources */,
 				200D52C622DA1DCF0009C07C /* CHAlertsView.swift in Sources */,
@@ -2708,40 +2709,48 @@
 				20CE7EB721A1A05300EC14FA /* UITableViewCell+Extensions.swift in Sources */,
 				36712029F198CF69683FFA1B /* CHMenuSectionType.swift in Sources */,
 				201DF20021B27D3300158A15 /* CreateAlertForm.swift in Sources */,
-				204F7F79215B5D9400014017 /* BarChartViewController.swift in Sources */,
 				20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */,
 				20E5D5942309716500E603D8 /* CHExmoAPI+Orders.swift in Sources */,
+				970B3E87231EB298002CA2E8 /* CurrencyChartInitializer.swift in Sources */,
 				207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */,
 				202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */,
 				207E25042061C3FD00030023 /* OrderModel.swift in Sources */,
 				208FE09D22DB485C0014BCE5 /* CHExchangeCell.swift in Sources */,
 				204CC7DA21B93478002057CA /* AppDelegate.swift in Sources */,
+				970B3E8B231EB298002CA2E8 /* CurrencyChartInteractorInput.swift in Sources */,
 				36712819605402E3BB398CBA /* ExmoErrorResponses.swift in Sources */,
 				8F0AEFDE9AEF6C58DC4F078D /* AlertsViewProtocols.swift in Sources */,
 				206730E32094D427008B500D /* UITextField+Extension.swift in Sources */,
+				970B3E83231EB298002CA2E8 /* CurrencyChartViewInput.swift in Sources */,
+				970B3EA0231EB298002CA2E8 /* WatchlistModuleInitializer.swift in Sources */,
 				EFD55CC7F99A0B08911C44A4 /* AlertsViewController.swift in Sources */,
 				C99B3CA6AF06F8834A70F598 /* AlertsPresenter.swift in Sources */,
 				201728B2230B44CC000823E1 /* CHBaseDataSource.swift in Sources */,
 				208FE09922DB3F460014BCE5 /* CHExchangesView.swift in Sources */,
+				970B3E8A231EB298002CA2E8 /* ChartNetworkWorkers.swift in Sources */,
 				208FE0A222DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.swift in Sources */,
 				201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */,
 				97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */,
+				970B3E8E231EB298002CA2E8 /* WatchlistCurrencyPairModel.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsApiRequestBuilder.swift in Sources */,
 				20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */,
 				C4EB1B12B5E7B5837BFC5C16 /* AlertsInteractorProtocols.swift in Sources */,
+				970B3E92231EB298002CA2E8 /* TickerCurrencyModel.swift in Sources */,
 				F5BB78F915E45A31A1040BAF /* AlertsInteractor.swift in Sources */,
 				20BEDC5520557BB200973F2F /* AlertsListView.swift in Sources */,
 				4F89858FE7FD02C365D529B5 /* AlertsRouterInput.swift in Sources */,
 				205C71AC0D95BD83EA398C27 /* AlertsRouter.swift in Sources */,
+				970B3E8F231EB298002CA2E8 /* CurrenciesListModuleConfigurator.swift in Sources */,
 				01236729B7F200EE9462975B /* AlertsConfigurator.swift in Sources */,
+				970B3E84231EB298002CA2E8 /* CurrencyChartViewOutput.swift in Sources */,
 				1099C4E67FC05CDE75CFB34B /* AlertsInitializer.swift in Sources */,
 				20F023D220FEB40A008E021E /* AccountApiRequestBuilder.swift in Sources */,
-				207B1DA12173F93F00D2A5DE /* WatchlistRouterInput.swift in Sources */,
 				6476491CD5C14319332F295E /* CHWalletCurrenciesListViewController.swift in Sources */,
 				20FE9B0421ED41FE00B586CB /* ModuleInitializer.swift in Sources */,
 				205AA983209DE3BD00148649 /* DarkeningPickerViewController.swift in Sources */,
 				01734E1F7D82963B9E334BA8 /* CHWalletCurrenciesListView.swift in Sources */,
 				20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */,
+				970B3E9A231EB298002CA2E8 /* BarChartViewController.swift in Sources */,
 				499549063C49EEA247935BBF /* CreateOrderViewProtocols.swift in Sources */,
 				20F9518322DD22C5005A7E42 /* CHExchangeDataSource.swift in Sources */,
 				CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */,
@@ -2749,17 +2758,18 @@
 				20518DB922D9FC7600334133 /* CHWatchlistView.swift in Sources */,
 				B36B68AA9FFEFD57A6937766 /* CreateOrderInteractorProtocols.swift in Sources */,
 				20AFE3E922FFB0ED00E905A1 /* CHPushNotificationsService.swift in Sources */,
+				970B3E90231EB298002CA2E8 /* CurrenciesListPresenter.swift in Sources */,
 				20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */,
 				3E6304CF146BD0C1098DBB72 /* CreateOrderInteractor.swift in Sources */,
 				811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */,
 				20369A4621972159001D6628 /* RootTabsPresenter.swift in Sources */,
 				200D52AD22DA07CF0009C07C /* CHWalletViewController.swift in Sources */,
+				970B3E88231EB298002CA2E8 /* CurrencyChartInteractorOutput.swift in Sources */,
 				C2DBAA19510695EEF985FCDB /* CreateOrderRouter.swift in Sources */,
 				D973E58060E2D991B0A64100 /* CreateOrderConfigurator.swift in Sources */,
 				208FE0A522DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift in Sources */,
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
 				208FE0AE22DB819A0014BCE5 /* UIViewController+Extension.swift in Sources */,
-				20DE8851217CE08C00BA5CF3 /* CurrenciesListInteractor.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */,
 				20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */,
 				C7FD7600220B411F00A987DB /* NoInternetView.swift in Sources */,
@@ -2767,31 +2777,26 @@
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersViewController.swift in Sources */,
 				200E691A21B2C86B008C49B6 /* CreateAlertViewController+TableDelegate+TableDatasource.swift in Sources */,
 				200D52D422DA7F550009C07C /* UITableView+Extension.swift in Sources */,
-				207B1D972173F93F00D2A5DE /* WatchlistPresenter.swift in Sources */,
 				820D8F305E45D621689112C1 /* OrdersPresenter.swift in Sources */,
 				3C8FD995246C02311C6868DA /* OrdersInteractorInput.swift in Sources */,
 				9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */,
 				6982526DA482F5B7AB47FA25 /* OrdersInteractor.swift in Sources */,
 				201DF20421B27E9700158A15 /* ExmoSwitchCell.swift in Sources */,
+				970B3E95231EB298002CA2E8 /* CurrenciesListViewController.swift in Sources */,
 				05EC9F79ECD8EEF51EAA9651 /* OrdersRouterInput.swift in Sources */,
 				6DB1D1516F26E97C850CB63F /* OrdersRouter.swift in Sources */,
 				0DA73D94141B22E81CEAAE7D /* OrdersConfigurator.swift in Sources */,
 				3312774E49DBE19CE9306BFA /* OrdersInitializer.swift in Sources */,
-				207B1DA02173F93F00D2A5DE /* WatchlistRouter.swift in Sources */,
 				200D52D222DA7AB60009C07C /* UICollectionView+Extension.swift in Sources */,
-				20DE8849217CDEBA00BA5CF3 /* CurrenciesListDataSource.swift in Sources */,
 				200E691C21B2CB0F008C49B6 /* VinsoCreateAlertNetworkWorker.swift in Sources */,
 				20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */,
 				20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */,
-				207552962188B1F00011190E /* NetworkWorker.swift in Sources */,
-				20DE884B217CDEF200BA5CF3 /* CurrenciesListCells.swift in Sources */,
+				970B3EA6231EB298002CA2E8 /* CandleStickChartViewController.swift in Sources */,
 				C7FD7602220B4DA500A987DB /* CHInternetReachabilityManager.swift in Sources */,
 				0A003E3DEAF08E8A47511C4B /* CreateAlertViewProtocols.swift in Sources */,
+				970B3E98231EB298002CA2E8 /* CurrenciesListInteractor.swift in Sources */,
 				9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */,
-				20DE8856217D017B00BA5CF3 /* TickerCurrencyModel.swift in Sources */,
-				204F7F77215B5D6700014017 /* CandleStickChartViewController.swift in Sources */,
 				9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */,
-				209F1B44210986FD00D4205D /* WatchlistCurrencyPairModel.swift in Sources */,
 				20B1628F21AAD5930087AEE7 /* OrdersNetworkWorkerProtocols.swift in Sources */,
 				C5211D41B62E787C92F836A3 /* CreateAlertViewController.swift in Sources */,
 				204CC7D921B93478002057CA /* ViperModuleTransitionHandler.swift in Sources */,
@@ -2802,42 +2807,32 @@
 				8B2D71C4450F33B9D9AAA0B9 /* CreateAlertInteractorProtocols.swift in Sources */,
 				8E09D1469BC714D8CEE79956 /* CreateAlertInteractor.swift in Sources */,
 				202F80A923008D650035D123 /* CHSecurityService.swift in Sources */,
-				20345012217B644400D2E831 /* CurrenciesListViewController.swift in Sources */,
 				4C8399DB000EE08F2E8E87E6 /* CreateAlertRouterInput.swift in Sources */,
 				D485B8E8AF400FEF97C58353 /* CreateAlertRouter.swift in Sources */,
 				20369A4D219723FB001D6628 /* RootTabsInteractorProtocols.swift in Sources */,
 				9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */,
-				207B1D992173F93F00D2A5DE /* WatchlistViewController.swift in Sources */,
 				4046D4EC23EB127C1C06C63A /* CreateAlertInitializer.swift in Sources */,
 				200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */,
 				97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */,
 				9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */,
 				20CE7EAE21A1725100EC14FA /* OrdersListNetworkProtocols.swift in Sources */,
-				207B1D9E2173F93F00D2A5DE /* WatchlistInteractorProtocols.swift in Sources */,
 				20CE7EB121A1757600EC14FA /* TickerNetworkWorker.swift in Sources */,
 				20E54F8821AB2190006A70E8 /* OrderViewCell+SetupViews.swift in Sources */,
 				207A85E521B349570049B26D /* ButtonCell.swift in Sources */,
-				207B1D982173F93F00D2A5DE /* WatchlistViewOutput.swift in Sources */,
-				74208443D94F8B7E1F98710D /* CurrencyChartViewInput.swift in Sources */,
-				CAB081780C816F30AA959325 /* CurrencyChartViewOutput.swift in Sources */,
+				970B3E93231EB298002CA2E8 /* CurrenciesListCells.swift in Sources */,
 				20369A4A2197232E001D6628 /* RootTabsProtocols.swift in Sources */,
+				970B3E91231EB298002CA2E8 /* CurrenciesListDataSource.swift in Sources */,
 				201728B0230B3A8B000823E1 /* CHSearchCurrenciesResultsDataSource.swift in Sources */,
-				5A2AFB98DDCEF332BD76F334 /* CurrencyChartViewController.swift in Sources */,
 				2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */,
+				970B3E86231EB298002CA2E8 /* CurrencyChartConfigurator.swift in Sources */,
 				20369A5121972438001D6628 /* RootTabsPresenterProtocols.swift in Sources */,
 				20F9518122DD222C005A7E42 /* CHExchangePresenter.swift in Sources */,
-				88F374AA6AB2C96E9516D8AB /* CurrencyChartModuleInput.swift in Sources */,
-				EABF76B025CEFE0E8375F4D1 /* CurrencyChartPresenter.swift in Sources */,
 				206221E721E8FC1A004603F3 /* SubscriptionsViewController.swift in Sources */,
-				BA0F381B769424B4E72E2954 /* CurrencyChartInteractorInput.swift in Sources */,
-				3F27375CB9F5EEFF05D5EE92 /* CurrencyChartInteractorOutput.swift in Sources */,
+				970B3E9D231EB298002CA2E8 /* WatchlistViewController.swift in Sources */,
 				20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */,
-				6918BD5EEF3545BE430BA457 /* CurrencyChartInteractor.swift in Sources */,
-				AD082830EFA3503E632F0663 /* CurrencyChartRouterInput.swift in Sources */,
-				277A456383C3A0A97085C757 /* CurrencyChartRouter.swift in Sources */,
-				69496187267B8697A0D01EDC /* CurrencyChartConfigurator.swift in Sources */,
 				201728AE230B3A83000823E1 /* CHSearchCurrenciesResultsPresenter.swift in Sources */,
-				FCD7A93EECADB3B4960974E7 /* CurrencyChartInitializer.swift in Sources */,
+				970B3E8D231EB298002CA2E8 /* CurrencyChartRouter.swift in Sources */,
+				970B3E8C231EB298002CA2E8 /* CurrencyChartRouterInput.swift in Sources */,
 				20294FEC2189F4AF0080B30E /* LoginNetworkWorker.swift in Sources */,
 				07691C6DE9BBF53E13AFBA96 /* SearchCurrencyPairViewProtocols.swift in Sources */,
 				9E213ECC5452854BBEB1A693 /* SearchCurrencyPairViewController.swift in Sources */,
@@ -2846,20 +2841,21 @@
 				201DF1FE21B27D0F00158A15 /* FormItems.swift in Sources */,
 				2FFE2B3AA119EA553FD16233 /* SearchCurrencyPairInteractorProtocols.swift in Sources */,
 				20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */,
+				970B3E7F231EB298002CA2E8 /* NetworkWorker.swift in Sources */,
+				970B3EA2231EB298002CA2E8 /* WatchlistInteractorProtocols.swift in Sources */,
 				DD63D0024D67C51BFB1C988F /* SearchCurrencyPairInteractor.swift in Sources */,
 				643F1A05DF8DE97B34F64435 /* SearchCurrencyPairRouterInput.swift in Sources */,
 				20BCE4E721E03E92003669EA /* IAPService.swift in Sources */,
 				5AE00036F58513F97F1994D1 /* SearchCurrencyPairRouter.swift in Sources */,
 				7BF15DD1D6D4872F7399A413 /* SearchCurrencyPairConfigurator.swift in Sources */,
 				AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */,
+				970B3E97231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift in Sources */,
 				208FE0AC22DB7B8C0014BCE5 /* CHBaseView.swift in Sources */,
 				3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */,
-				20DE8854217CE0FF00BA5CF3 /* CurrenciesListPresenter.swift in Sources */,
 				36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */,
 				20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */,
+				970B3E96231EB298002CA2E8 /* IFilterGroupController.swift in Sources */,
 				3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */,
-				36712B572F2F01DDF7FB4583 /* ExmoChartData.swift in Sources */,
-				367123499097564DF365D13F /* ChartNetworkWorkers.swift in Sources */,
 				21221A6706D679626A565871 /* CurrenciesGroupsViewController.swift in Sources */,
 				9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */,
 				B07ED5143FC3C4FACA446ACF /* CurrenciesGroupsInteractor.swift in Sources */,
@@ -2868,13 +2864,11 @@
 				97E9C017230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift in Sources */,
 				F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */,
 				76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */,
+				970B3EA3231EB298002CA2E8 /* WatchlistInteractor.swift in Sources */,
 				366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */,
-				36712815DE0EF7A523C424A4 /* WatchlistListView.swift in Sources */,
 				36712802066CE6031A5D90E5 /* CHAppStoreReviewManager.swift in Sources */,
-				36712D8472747676E25A0753 /* CurrenciesListInteractorProtocols.swift in Sources */,
 				20E5D5902309675600E603D8 /* CHOrdersPresenter.swift in Sources */,
 				20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */,
-				3671299B8F171A627B3DC676 /* IFilterGroupController.swift in Sources */,
 				36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */,
 				36712BA9A115B28819E97B70 /* CHVinsoAPIConstants.swift in Sources */,
 				3671298637DF050AFCA49657 /* CHVinsoAPIConnectionDelegate.swift in Sources */,
@@ -2889,20 +2883,25 @@
 				200D52CE22DA247E0009C07C /* CHWatchlistPresenter.swift in Sources */,
 				366FFC69CC56E57670268399 /* SubscriptionsViewProtocols.swift in Sources */,
 				366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */,
+				970B3E9E231EB298002CA2E8 /* WatchlistViewOutput.swift in Sources */,
 				9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */,
 				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
+				970B3EA4231EB298002CA2E8 /* WatchlistRouter.swift in Sources */,
 				200D52D022DA24940009C07C /* CHWatchlistDataSource.swift in Sources */,
 				208D0C5922FF5AE7003B5D90 /* CHTabBarController.swift in Sources */,
 				366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */,
 				9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */,
 				200D52C222DA1D1A0009C07C /* CHOrdersView.swift in Sources */,
 				366FF9CE76AC761CDB59E856 /* SubscriptionsCell.swift in Sources */,
+				970B3E94231EB298002CA2E8 /* TickerCurrenciesListView.swift in Sources */,
 				202F80AC2300B2590035D123 /* CHCreateAlertViewController.swift in Sources */,
 				366FFEB33570D242C87BAAAF /* SubscriptionsHeaderCell.swift in Sources */,
+				970B3E99231EB298002CA2E8 /* CandleBarChartShortInfoView.swift in Sources */,
 				366FFBE122E0E9F8CE2DE214 /* SubscriptionsCellModel.swift in Sources */,
 				366FF1DB76C09C5C77EBC414 /* SubscriptionsDatasource.swift in Sources */,
 				200D52B122DA07DF0009C07C /* CHAlertsViewController.swift in Sources */,
 				366FF1F557204A77EE0B93CC /* ComparisonSubscriptionsView.swift in Sources */,
+				970B3E9F231EB298002CA2E8 /* WatchlistViewInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
