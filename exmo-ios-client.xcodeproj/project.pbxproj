@@ -1165,34 +1165,24 @@
 			children = (
 				208FE0AA22DB7B7A0014BCE5 /* Base */,
 				20518D9C22D9F47D00334133 /* Screens */,
-				20BCE4E321E03DDE003669EA /* IAP */,
-				20B418C6209D019A00B1C636 /* UIWidgets */,
+				20B418C6209D019A00B1C636 /* UIControls */,
 				206730E12094D36E008B500D /* Extensions */,
-				201EA2B221A4952000A1E693 /* Database */,
-				205A7CBE203CCEBD00A2E28A /* Main */,
 				20CAFEFE2042ED8500C7DEA5 /* Services */,
-				20369A42219720F0001D6628 /* RootTabs */,
-				202F48EF206A136D0080423E /* Watchlist */,
-				476496FDF8E745AC892D4DBC /* Orders */,
-				66C69DB3D5F2206C45571645 /* Alerts */,
-				0D42C8C67FEB7E4CCB711CBC /* Menu */,
-				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
-				207E88CA2210D5C6001681A2 /* PList */,
+				205A7CBE203CCEBD00A2E28A /* Main(old) */,
+				970B3E42231EAA20002CA2E8 /* Screens(old) */,
 				20FE9B0321ED41FE00B586CB /* ModuleInitializer.swift */,
 				C7FD75FF220B411F00A987DB /* NoInternetView.swift */,
 			);
 			path = sources;
 			sourceTree = "<group>";
 		};
-		205A7CBE203CCEBD00A2E28A /* Main */ = {
+		205A7CBE203CCEBD00A2E28A /* Main(old) */ = {
 			isa = PBXGroup;
 			children = (
 				20A5B88E20AE246600EC2A4D /* Storyboards */,
 				20A5B88F20AE247B00EC2A4D /* sources */,
-				200CA489211C9CF300BB0E9B /* Utils.swift */,
-				20CE7EB221A19CAB00EC14FA /* Structures.swift */,
 			);
-			path = Main;
+			path = "Main(old)";
 			sourceTree = "<group>";
 		};
 		205C25702067EC3400588ABE /* Common */ = {
@@ -1341,13 +1331,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		207E88CA2210D5C6001681A2 /* PList */ = {
+		207E88CA2210D5C6001681A2 /* PListConfig */ = {
 			isa = PBXGroup;
 			children = (
 				C7D7B7412209FDA100766759 /* ConfigInfoPList.swift */,
 				C7D7B73F2209EF1800766759 /* PListFile.swift */,
 			);
-			path = PList;
+			path = PListConfig;
 			sourceTree = "<group>";
 		};
 		207E88CB2210D639001681A2 /* Security */ = {
@@ -1448,14 +1438,16 @@
 		208FE0AA22DB7B7A0014BCE5 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */,
-				36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */,
-				20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */,
-				367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */,
-				201728B1230B44CC000823E1 /* CHBaseDataSource.swift */,
 				9763F43822F7494A00D6E22A /* Formatters */,
 				20DA7DEB22F0DE0900706FAC /* UI */,
+				207E88CA2210D5C6001681A2 /* PListConfig */,
+				204CC7D621B93478002057CA /* AppDelegate.swift */,
+				367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */,
+				201728B1230B44CC000823E1 /* CHBaseDataSource.swift */,
 				970B3E40231E80B2002CA2E8 /* CHLogger.swift */,
+				20CE7EB221A19CAB00EC14FA /* Structures.swift */,
+				204CC7D421B93478002057CA /* Constants.swift */,
+				200CA489211C9CF300BB0E9B /* Utils.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1473,8 +1465,6 @@
 		20A5B88F20AE247B00EC2A4D /* sources */ = {
 			isa = PBXGroup;
 			children = (
-				204CC7D621B93478002057CA /* AppDelegate.swift */,
-				204CC7D421B93478002057CA /* Constants.swift */,
 				204CC7D521B93478002057CA /* ViperModuleTransitionHandler.swift */,
 			);
 			path = sources;
@@ -1500,15 +1490,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		20B418C6209D019A00B1C636 /* UIWidgets */ = {
+		20B418C6209D019A00B1C636 /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
+				8CA0F04B11898DFC3CDAEE08 /* SearchView */,
 				207930AC21B49ADB005EF54B /* Form */,
 				204CC7CB21B93337002057CA /* DarkeningPickerVC */,
 				367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */,
 				2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */,
 			);
-			path = UIWidgets;
+			path = UIControls;
 			sourceTree = "<group>";
 		};
 		20B9CC99219A3492004AC3B2 /* Layouts */ = {
@@ -1570,11 +1561,16 @@
 		20CAFEFE2042ED8500C7DEA5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
-				202F80A823008D650035D123 /* CHSecurityService.swift */,
 				36712ED85CCE80904AD3B7E6 /* VinsoAPI */,
 				20CAFED32042AE6400C7DEA5 /* ExmoAPI */,
+				201EA2B221A4952000A1E693 /* Database */,
+				20BCE4E321E03DDE003669EA /* IAP */,
+				C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */,
+				36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */,
+				20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */,
 				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
+				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
+				202F80A823008D650035D123 /* CHSecurityService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2155,6 +2151,18 @@
 				7F3266549D6412B407CE7856 /* MenuRouter.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		970B3E42231EAA20002CA2E8 /* Screens(old) */ = {
+			isa = PBXGroup;
+			children = (
+				20369A42219720F0001D6628 /* RootTabs */,
+				202F48EF206A136D0080423E /* Watchlist */,
+				476496FDF8E745AC892D4DBC /* Orders */,
+				66C69DB3D5F2206C45571645 /* Alerts */,
+				0D42C8C67FEB7E4CCB711CBC /* Menu */,
+			);
+			path = "Screens(old)";
 			sourceTree = "<group>";
 		};
 		9763F43822F7494A00D6E22A /* Formatters */ = {
