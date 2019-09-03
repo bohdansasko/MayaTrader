@@ -13,9 +13,11 @@ struct log {
     private init() {}
     
     private static func log(level: Level, _ items: [Any], pathToFile: String, line: Int) {
-        let fileName = (pathToFile as NSString).lastPathComponent
-        let argsAsStr = items.map { String(describing: $0) }.joined(separator: " ")
-        print(level.icon, line, fileName, argsAsStr)
+        #if DEBUG
+            let fileName = (pathToFile as NSString).lastPathComponent
+            let argsAsStr = items.map { String(describing: $0) }.joined(separator: " ")
+            print(level.icon, line, fileName, argsAsStr)
+        #endif
     }
 
 }
@@ -35,7 +37,7 @@ private extension log {
             case .debug  : return "🧠"
             case .info   : return "🤓"
             case .error  : return "🤬"
-            case .network: return "📡"
+            case .network: return "📨"
             }
         }
     }

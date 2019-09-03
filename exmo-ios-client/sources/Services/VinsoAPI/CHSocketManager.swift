@@ -96,7 +96,6 @@ private extension CHSocketManager {
             guard let message = data as? String else {
                 return
             }
-            print("message - \(message)")
             self.response.onNext(.message(message))
         }
         

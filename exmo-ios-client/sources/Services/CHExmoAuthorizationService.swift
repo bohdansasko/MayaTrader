@@ -35,7 +35,7 @@ extension CHExmoAuthorizationService {
     func tryLogin() {
         guard let user = dbManager.object(type: ExmoUserObject.self, key: ""),
               let qr = user.qr else {
-                print("\(#function) => Can't load QR Code from cache")
+                log.info("Can't load QR Code from cache")
                 return
         }
         let qrModel = ExmoQR(managedObject: qr)

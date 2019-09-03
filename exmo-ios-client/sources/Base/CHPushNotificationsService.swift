@@ -37,21 +37,20 @@ private extension CHPushNotificationsService {
         center.getNotificationSettings(completionHandler: { settings in
             switch settings.authorizationStatus {
             case .authorized:
-                print("Authorized push notifications by user")
+                log.info("Authorized push notifications by user")
                 self.registerPushNotifications()
             case .denied:
-                print("show user view explaining why it's better to enable")
+                log.info("show user view explaining why it's better to enable")
                 self.registerPushNotifications()
             case .notDetermined:
-                self.requestPushNotifications(center: center, {
-                    isGranted in
+                self.requestPushNotifications(center: center) { isGranted in
                     if isGranted {
                         self.registerPushNotifications()
                     }
-                    print("User haven't granted app for get APNS")
-                })
+                    log.info("User have\((isGranted ? "" : "n't")) granted app for get APNS")
+                }
             case .provisional:
-                print("App provisional post push notifications")
+                log.info("App provisional post push notifications")
             }
         })
     }

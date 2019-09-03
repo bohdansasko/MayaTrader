@@ -19,10 +19,10 @@ class RootTabsInteractor {
     func tryLogin() {
         guard let user = dbManager.object(type: ExmoUserObject.self, key: ""),
               let qr = user.qr else {
-            print("\(#function) => Can't load QR Code from cache")
+            log.info("Can't load QR Code from cache")
             return
         }
-        print("\(#function) => loadUserInfo()")
+        log.info("loading user")
         networkWorker.loadUserInfo(loginModel: ExmoQR(managedObject: qr))
     }
 }

@@ -76,22 +76,20 @@ extension CHWatchlistPresenter {
         currenciesNotificationToken = currenciesList.observe{ [weak self] changes in
             guard let `self` = self else { return }
             
+            log.info("got changes for currencies list")
+            
             switch changes {
             case .initial:
-                print("\(#function)")
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
             case .update(_, let deletions, let insertions, _ /* let modifications */):
-                print("\(#function)")
                 if !insertions.isEmpty || !deletions.isEmpty {
                     self.fetchItems()
                 }
                 self.collectionView.reloadData()
             case .error(let err):
-                print("\(#function)")
-                print("error: ", err.localizedDescription)
-                break
+                log.info(err.localizedDescription)
             }
         }
         

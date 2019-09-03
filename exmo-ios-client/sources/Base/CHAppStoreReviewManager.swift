@@ -44,7 +44,7 @@ extension CHAppStoreReviewManager {
         if (appOpenCount % 100 == 0) || (appOpenCount == 6) {
             requestReview()
         } else {
-            print("App run count is : \(appOpenCount)")
+            log.info("App run count is : \(appOpenCount)")
         }
     }
     
@@ -52,8 +52,8 @@ extension CHAppStoreReviewManager {
         if #available(iOS 10.3, *) {
             SKStoreReviewController.requestReview()
         } else {
-            print("Fallback on earlier versions")
-            print("Try any other 3rd party or manual method here.")
+            log.error("Fallback on earlier versions. Try any other 3rd party or manual method here.")
+            assertionFailure("fix me")
         }
     }
     

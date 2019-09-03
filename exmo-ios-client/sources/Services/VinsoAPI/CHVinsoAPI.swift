@@ -62,7 +62,7 @@ private extension VinsoAPI {
         let endpointUrl = config.model.configuration.endpoint
         socketManager = CHSocketManager(serverURL: endpointUrl)
         
-        print("Init socket: \(endpointUrl)")
+        log.info("Init socket: \(endpointUrl)")
     }
     
 }
@@ -81,9 +81,10 @@ extension VinsoAPI {
         assert(!requestJSON.isEmpty, "don't send empty messages")
         
         let serializedMessage = serialize(json: requestJSON)
-        print("🤞 \(messageType.description) API Request: \(serializedMessage)")
-    
         self.socketManager.send(message: serializedMessage)
+        
+        let serializedMessageJSON = JSON(parseJSON: serializedMessage)
+        log.network("🙂🤞 \(messageType.description) API Request: \(serializedMessageJSON)")
         
         return request
     }
@@ -107,14 +108,14 @@ private extension VinsoAPI {
                             let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
                             switch responseCodeType {
                             case .succeed where messageId == messageType:
-                                print("👍 \(messageType.description) API Response for message: \(json)\n")
+                                log.network("🙂👍 \(messageType.description) API Response for message: \(json)\n")
                                 subscriber.onNext(json)
                                 subscriber.onCompleted()
                             case .succeed:
-                                print("✊ \(messageType.description) API Response for message: \(json)\n")
+                                log.network("🤐 \(messageType.description) API Response for message: \(json)\n")
                             default:
                                 let error = self.getError(by: responseCodeType)
-                                print("👎 \(messageType.description) API Response for message: \(json)\n")
+                                log.network("🙂👎 \(messageType.description) API Response for message: \(json)\n")
                                 subscriber.onError(error)
                             }
                         } catch (let err) {
@@ -163,4 +164,6 @@ private extension VinsoAPI {
 
 // MARK: - ReactiveCompatible
 
-extension VinsoAPI: ReactiveCompatible {}
+extension VinsoAPI: ReactiveCompatible {
+    // do nothing
+}

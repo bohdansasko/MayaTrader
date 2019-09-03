@@ -16,7 +16,7 @@ extension VinsoAPI {
     func establishConnection() {
         if isAuthorized { return }
         
-        print("\(String(describing: self)) => establish connect")
+        log.info("establish connection")
         self.socketManager.connected.subscribe(onNext: { [unowned self] isConnected in
             if !isConnected {
                 self.isAuthorized = false
@@ -35,17 +35,17 @@ extension VinsoAPI {
         
         let data = ["version_api" : kAPIVersion]
         let request = self.sendRequest(messageType: .connect, params: data)
-        request.subscribe(onNext: { json in
+        request.subscribe(onNext: { [unowned self] json in
             self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
             self.authorizeUser()
         }, onError: { err in
-            print("\(#function) = \(err.localizedDescription)")
+            log.info(err.localizedDescription)
         }).disposed(by: self.disposeBag)
     }
 
     func disconnect() {
         isAuthorized = false
-        print("\(String(describing: self)) => disconnect")
+        log.info("disconnect")
         socketManager.disconnect()
     }
     
@@ -101,7 +101,7 @@ extension Reactive where Base: VinsoAPI {
 
         return self.base.sendRequest(messageType: .registerAPNsDeviceToken, params: params)
             .mapInBackground { json in
-                print(json)
+                log.info(json)
             }
             .asSingle()
             .asCompletable()
