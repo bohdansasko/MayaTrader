@@ -9,11 +9,15 @@
 import UIKit
 import UserNotifications
 import KeychainSwift
+import RxSwift
 
 final class CHPushNotificationsService: NSObject {
     private override init() {
         super.init()
     }
+    
+    fileprivate let disposeBag = DisposeBag()
+    
     static let shared = CHPushNotificationsService()
     
 }
@@ -24,6 +28,24 @@ extension CHPushNotificationsService {
     
     var deviceToken: String? {
         return KeychainSwift().get(KeychainDefaultKeys.apnsDeviceToken.rawValue)
+    }
+    
+    private func registerAPNSDeviceTokenOnServer(_ apnsDeviceToken: String?) {
+        guard let apnsDeviceToken = apnsDeviceToken, !apnsDeviceToken.isEmpty else {
+            assertionFailure("should be valide always")
+            return
+        }
+        
+        AppDelegate.vinsoAPI.rx.registerAPNSDeviceToken(apnsDeviceToken)
+            .subscribe(onCompleted: {
+                log.info("APNS Token \"\(apnsDeviceToken)\" has been registered succesfull")
+            }, onError: { err in
+                log.error(err.localizedDescription)
+            }).disposed(by: disposeBag)
+    }
+    
+    @objc private func handleNotificationUserAuthorization(_ n: Notification) {
+        registerAPNSDeviceTokenOnServer(deviceToken)
     }
     
 }
@@ -63,8 +85,12 @@ private extension CHPushNotificationsService {
     
     func requestPushNotifications(center: UNUserNotificationCenter, _ result: @escaping (Bool) -> Void) {
         center.requestAuthorization(options: [.alert, .badge, .sound], completionHandler: { (granted, error) in
-            print("APNs => granted = \(granted), error = \(error?.localizedDescription ?? "")")
-            result(granted)
+            log.info("APNs => is granted = \(granted)")
+            
+            if let err = error {
+                log.error(err.localizedDescription)
+            }
+            
         })
     }
     
@@ -82,12 +108,23 @@ extension CHPushNotificationsService: UIApplicationDelegate {
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map({ String(format: "%02.2hhx", $0) }).joined()
-        print("APNs => device token = \(token)")
+        
+        log.debug("APNs device token =", token)
+        
         KeychainSwift().set(token, forKey: KeychainDefaultKeys.apnsDeviceToken.rawValue)
+        
+        
+        if VinsoAPI.shared.isAuthorized {
+            registerAPNSDeviceTokenOnServer(token)
+        } else {
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(handleNotificationUserAuthorization(_:)),
+                                                   name: ConnectionNotification.authorizationSuccess)
+        }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("APNs => error = \(error)")
+        log.error(error.localizedDescription)
     }
 
 }

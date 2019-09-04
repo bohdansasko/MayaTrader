@@ -33,17 +33,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         CHAppStoreReviewManager.shared,
         CHPushNotificationsService.shared,
         CHExmoAuthorizationService.shared,
-        IAPService.shared,
         CHSecurityService.shared
     ]
     fileprivate let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleNotificationUserAuthorization(_:)),
-                                               name: ConnectionNotification.authorizationSuccess)
-        
+
         setupAdMob()
         
         services.forEach{
@@ -98,9 +93,22 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             }).disposed(by: disposeBag)
     }
     
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        services.forEach{
+            _ = $0.application?(application, didRegisterForRemoteNotificationsWithDeviceToken: deviceToken)
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        services.forEach{
+            _ = $0.application?(application, didFailToRegisterForRemoteNotificationsWithError: error)
+        }
+    }
+
 }
 
-// MARK: handle connection to Vinso Server
+// MARK: - Handle connection to Vinso Server
+
 extension AppDelegate: VinsoAPIConnectionDelegate  {
 
     func onConnectionOpened() {
