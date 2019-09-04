@@ -25,7 +25,7 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
         didSet { assert(!self.isViewLoaded) }
     }
     
-    var onClose: VoidClosure?
+    var onClose: ((CHLiteCurrencyModel) -> Void)?
     
     // MARK: - View lifecycle
     
@@ -101,8 +101,12 @@ extension CHSearchCurrenciesResultsViewController: CHSearchCurrenciesResultsPres
     }
     
     func searchCurrenciesResultsPresenter(_ presenter: CHSearchCurrenciesResultsPresenter, didSelect currency: CHLiteCurrencyModel) {
-        onClose?()
-        dismiss(animated: true, completion: nil)
+        if selectionMode == .currency {
+            onClose?(currency)
+            dismiss(animated: true, completion: nil)
+        }
+        
+        
     }
     
 }

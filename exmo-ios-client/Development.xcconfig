@@ -5,7 +5,7 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-APP_NAME            = MayaTrader(DEV)
+APP_NAME            = Maya(DEV)
 SERVER_API_GLOBAL   = wss:/$()/193.228.52.26:10443
 SERVER_API_LOCAL    = wss:/$()/192.168.0.102:45667
 ADMOB_API_KEY       = ca-app-pub-3940256099942544/2934735716

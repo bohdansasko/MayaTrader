@@ -14,6 +14,10 @@ import RxSwift
 final class CHPushNotificationsService: NSObject {
     private override init() {
         super.init()
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleNotificationUserAuthorization(_:)),
+                                               name: ConnectionNotification.authorizationSuccess)
     }
     
     fileprivate let disposeBag = DisposeBag()
@@ -31,8 +35,7 @@ extension CHPushNotificationsService {
     }
     
     private func registerAPNSDeviceTokenOnServer(_ apnsDeviceToken: String?) {
-        guard let apnsDeviceToken = apnsDeviceToken, !apnsDeviceToken.isEmpty else {
-            assertionFailure("should be valide always")
+        guard let apnsDeviceToken = apnsDeviceToken else {
             return
         }
         
@@ -112,15 +115,6 @@ extension CHPushNotificationsService: UIApplicationDelegate {
         log.debug("APNs device token =", token)
         
         KeychainSwift().set(token, forKey: KeychainDefaultKeys.apnsDeviceToken.rawValue)
-        
-        
-        if VinsoAPI.shared.isAuthorized {
-            registerAPNSDeviceTokenOnServer(token)
-        } else {
-            NotificationCenter.default.addObserver(self,
-                                                   selector: #selector(handleNotificationUserAuthorization(_:)),
-                                                   name: ConnectionNotification.authorizationSuccess)
-        }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

@@ -113,12 +113,48 @@ final class CreateAlertViewController: CHBaseViewController {
         let navController = segue.destination as! UINavigationController
         let vc = navController.topViewController as! CHExchangesViewController
         vc.selectionMode = .currency
+        vc.onClose = { [unowned self] selectedCurrency in
+            log.info("selected currency", selectedCurrency)
+            self.set(currency: selectedCurrency)
+        }
     }
     
 }
 
 // MARK: CreateAlertViewInput
 extension CreateAlertViewController: CreateAlertViewInput {
+
+    func set(currency: CHLiteCurrencyModel) {
+        if let selectedPair = self.selectedPair, selectedPair.code == currency.name {
+            return
+        }
+        
+        let detailsIndexPath = IndexPath(row: 0, section: 0)
+        guard
+            let detailsItem = cells[detailsIndexPath] as? FormUpdatable,
+            let detailsFormItem = form.cellItems[detailsIndexPath.section] as? CurrencyDetailsItem else {
+                assertionFailure("fix me")
+                return
+        }
+        detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
+        detailsFormItem.rightValue = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
+        detailsItem.update(item: detailsFormItem)
+
+        guard let selectedPair = selectedPair else {
+            return
+        }
+        self.selectedPair!.code = currency.name
+
+        for (_, cell) in cells {
+            guard let floatingCell = cell as? ExmoFloatingNumberCell else {
+                continue
+            }
+            floatingCell.formItem?.value = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
+            floatingCell.update(item: floatingCell.formItem)
+        }
+        
+        self.selectedPair = selectedPair
+    }
     
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
         let detailsIndexPath = IndexPath(row: 0, section: 0)

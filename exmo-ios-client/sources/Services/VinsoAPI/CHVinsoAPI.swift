@@ -6,42 +6,50 @@
 //  Copyright © 2018 Bogdan Sasko. All rights reserved.
 //
 
-import Foundation
 import SwiftyJSON
 import ObjectMapper
 import RxSwift
+import RxCocoa
 
 final class VinsoAPI {
     
     // MARK: - Public
+    enum AuthorizationState {
+        case notConnected
+        
+        case connectionToSocket
+        case connectionToServer
+        
+        case connectedToSocket
+        case connectedToServer
+        
+        case authorization
+        case authorizated
+    }
     
     static var shared = VinsoAPI()
     
     var connectionObservers = [ObjectIdentifier : ConnectionObservation]()
     var alertsObservers = [ObjectIdentifier : AlertsObservation]()
     
-    var isAuthorized = false {
-        didSet {
-            if isAuthorized {
-                AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
-                NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
-            }
-        }
-    }
-
+    var authorizedState = BehaviorRelay<AuthorizationState>(value: .notConnected)
+    
     // MARK: - Private
     
-    internal var socketManager: CHSocketManager!
-    internal let disposeBag = DisposeBag()
+    var socketManager: CHSocketManager!
+    let disposeBag = DisposeBag()
     
     fileprivate let kTimeoutSeconds = 30.0
                 let kAPIVersion = 1
-
+    
+    var isAuthorized: Bool { return authorizedState.value == .authorizated }
+    
     // MARK: - Life cycle
     
     private init() {
         initSocket()
         subscribeOnIAPNotifications()
+        registerAuthorizationListener()
     }
 
     deinit {
@@ -56,13 +64,25 @@ private extension VinsoAPI {
     
     func initSocket() {
         guard let config = try? PListFile<ConfigInfoPList>() else {
-            fatalError("file is required")
+            assertionFailure("file is required")
+            return
         }
         
         let endpointUrl = config.model.configuration.endpoint
-        socketManager = CHSocketManager(serverURL: endpointUrl)
+        log.info("Init socket:", endpointUrl)
         
-        log.info("Init socket: \(endpointUrl)")
+        socketManager = CHSocketManager(serverURL: endpointUrl)
+        socketManager.connected
+            .subscribe(
+                onNext: { [unowned self] isConnected in
+                    if isConnected {
+                        self.authorizedState.accept(.connectedToSocket)
+                    } else {
+                        self.authorizedState.accept(.notConnected)
+                    }
+                }
+            )
+            .disposed(by: self.disposeBag)
     }
     
 }
@@ -71,7 +91,11 @@ private extension VinsoAPI {
 
 extension VinsoAPI {
     
-    func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {        
+    func sendRequest(messageType: ServerMessage, params: [String: Any?] = [:]) -> Observable<JSON> {
+        if !isAuthorized && messageType != .connect && messageType != .authorization {
+            return Observable.empty()
+        }
+        
         let request = buildRequestHandler(for: messageType)
         
         var requestParams = params
@@ -92,7 +116,7 @@ extension VinsoAPI {
 }
 
 
-// MARK: - Helpers
+// MARK: - Request/Responses helpers
 
 private extension VinsoAPI {
     
@@ -158,6 +182,45 @@ private extension VinsoAPI {
         let jsonRawString = json.rawString([.castNilToNSNull: true]) ?? ""
         let serializedStr = jsonRawString.replacingOccurrences(of: "\\/", with: "/")
         return serializedStr
+    }
+    
+}
+
+// MARK: - Connection state handlers
+
+private extension VinsoAPI {
+    
+    func registerAuthorizationListener() {
+        self.authorizedState
+            .asDriver()
+            .drive(onNext: { [unowned self] state in
+                self.handleUpdateAuthorizationState(state)
+            }).disposed(by: disposeBag)
+    }
+    
+    func handleUpdateAuthorizationState(_ state: AuthorizationState) {
+        switch state {
+        case .notConnected:
+            log.info("Not connected to Vinso server")
+            self.establishConnection()
+        case .connectionToSocket:
+            log.info("Connection to Vinso socket")
+        case .connectionToServer:
+            log.info("Connection to Vinso server")
+        case .connectedToSocket:
+            log.info("Connected to Vinso socket")
+            self.connectToServer()
+        case .connectedToServer:
+            log.info("Connected to Vinso server")
+            self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
+            self.authorizeUser()
+        case .authorization:
+            log.info("Authorization to Vinso server")
+        case .authorizated:
+            log.info("Authorizated to Vinso server")
+            AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
+            NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
+        }
     }
     
 }
