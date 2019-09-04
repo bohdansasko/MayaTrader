@@ -29,6 +29,7 @@ final class CHExchangesViewController: CHBaseViewController, CHBaseViewControlle
     // MARK: - Input params
     
     var selectionMode: CHSelectionCurrenciesMode = .currencies
+    var onClose: ((CHLiteCurrencyModel) -> Void)?
     
     // MARK: - Lifecycle
     
@@ -62,6 +63,10 @@ private extension CHExchangesViewController {
         
         contentView.setList(dataSource: dataSource, delegate: presenter)
         contentView.setSearchBar(delegate: self)
+        contentView.set(completionOnClose: { [unowned self] c in
+            self.onClose?(c)
+            self.close()
+        })
         contentView.searchResultsController.selectionMode = selectionMode
     }
     

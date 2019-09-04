@@ -14,31 +14,36 @@ struct ConnectionObservation {
 extension VinsoAPI {
 
     func establishConnection() {
-        if isAuthorized { return }
+        if authorizedState.value == .connectedToSocket {
+            assertionFailure("fix me")
+            return
+        }
         
-        log.info("establish connection")
-        self.socketManager.connected.subscribe(onNext: { [unowned self] isConnected in
-            if !isConnected {
-                self.isAuthorized = false
-                return
-            }
-            self.connectToServer()
-        }).disposed(by: self.disposeBag)
+        authorizedState.accept(.connectionToSocket)
+        
+        self.socketManager.connected.subscribe(
+            onNext: { [unowned self] isConnected in
+                self.authorizedState.accept(.connectedToSocket)
+            })
+            .disposed(by: self.disposeBag)
         
         self.socketManager.connect()
     }
     
     func connectToServer() {
-        if !socketManager.isOpen() {
+        if self.authorizedState.value == .connectionToServer {
+            assertionFailure("fix me")
             return
         }
+
+        self.authorizedState.accept(.connectionToServer)
         
         let data = ["version_api" : kAPIVersion]
         let request = self.sendRequest(messageType: .connect, params: data)
         request.subscribe(onNext: { [unowned self] json in
-            self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
-            self.authorizeUser()
-        }, onError: { err in
+            self.authorizedState.accept(.connectedToServer)
+        }, onError: { [unowned self] err in
+            self.authorizedState.accept(.notConnected)
             log.info(err.localizedDescription)
         }).disposed(by: self.disposeBag)
     }
@@ -56,18 +61,26 @@ extension VinsoAPI {
 extension VinsoAPI {
     
     func authorizeUser() {
+        if self.authorizedState.value == .authorization {
+            assertionFailure("fix me")
+            return
+        }
+        
         guard let udid = UIDevice.current.identifierForVendor?.uuidString else {
             return
         }
+        
+        self.authorizedState.accept(.authorization)
+        
         let params = ["udid": udid]
         self.sendRequest(messageType: .authorization, params: params)
             .asSingle()
             .subscribe(onSuccess: { [unowned self] json in
-                print("\(#function) = \(json)")
-                self.isAuthorized = true
+                log.debug(json)
+                self.authorizedState.accept(.authorizated)
             }, onError: { [unowned self] err in
-                print("\(#function) = \(err.localizedDescription)")
-                self.isAuthorized = false
+                log.error(err.localizedDescription)
+                self.authorizedState.accept(.notConnected)
             }).disposed(by: self.disposeBag)
     }
     

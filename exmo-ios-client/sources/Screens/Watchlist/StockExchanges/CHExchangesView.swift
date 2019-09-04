@@ -124,4 +124,8 @@ extension CHExchangesView {
         searchController.isActive = true
     }
     
+    func set(completionOnClose onClose: @escaping (CHLiteCurrencyModel) -> Void) {
+        searchResultsController.onClose = onClose
+    }
+    
 }
