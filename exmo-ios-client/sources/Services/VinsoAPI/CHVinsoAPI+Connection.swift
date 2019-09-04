@@ -21,12 +21,6 @@ extension VinsoAPI {
         
         authorizedState.accept(.connectionToSocket)
         
-        self.socketManager.connected.subscribe(
-            onNext: { [unowned self] isConnected in
-                self.authorizedState.accept(.connectedToSocket)
-            })
-            .disposed(by: self.disposeBag)
-        
         self.socketManager.connect()
     }
     
@@ -49,7 +43,6 @@ extension VinsoAPI {
     }
 
     func disconnect() {
-        isAuthorized = false
         log.info("disconnect")
         socketManager.disconnect()
     }
@@ -106,6 +99,8 @@ extension VinsoAPI {
     }
     
 }
+
+// MARK: - Reactive VinsoAPI
 
 extension Reactive where Base: VinsoAPI {
 
