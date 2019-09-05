@@ -72,8 +72,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         services.forEach{
             _ = $0.applicationDidBecomeActive?(application)
         }
-        
-        AppDelegate.vinsoAPI.establishConnection()
+
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 

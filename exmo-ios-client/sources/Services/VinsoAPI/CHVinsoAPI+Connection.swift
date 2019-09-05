@@ -84,7 +84,6 @@ extension VinsoAPI {
         self.sendRequest(messageType: .authorization, params: params)
             .asSingle()
             .subscribe(onSuccess: { [unowned self] json in
-                log.debug(json)
                 self.authorizedState.accept(.authorizated)
             }, onError: { [unowned self] err in
                 log.error(err.localizedDescription)

@@ -29,8 +29,6 @@ extension AlertsInteractor: AlertsInteractorInput {
         isViewActive = true
         if AppDelegate.vinsoAPI.isAuthorized {
             loadAlerts()
-        } else {
-//            AppDelegate.vinsoAPI.establishConnection()
         }
     }
 
