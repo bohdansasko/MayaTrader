@@ -73,11 +73,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             _ = $0.applicationDidBecomeActive?(application)
         }
         
-//        AppDelegate.vinsoAPI.isUserAuthorized
-//            .asDriver()
-//            .drive(onNext: { isAuthorized in
-//
-//            }).disposed(by: disposeBag)
         AppDelegate.vinsoAPI.establishConnection()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
@@ -129,7 +124,7 @@ extension AppDelegate {
             return
         }
         GADMobileAds.configure(withApplicationID: config.model.configuration.admobAdsId)
-        print("GADMobileAds.configure(withApplicationID: \(config.model.configuration.admobAdsId)")
+        log.debug("GADMobileAds.configure(withApplicationID: \(config.model.configuration.admobAdsId)")
     }
     
 }

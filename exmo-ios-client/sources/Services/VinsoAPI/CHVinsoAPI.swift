@@ -192,10 +192,18 @@ private extension VinsoAPI {
     
     func registerAuthorizationListener() {
         self.authorizedState
-            .asDriver()
-            .drive(onNext: { [unowned self] state in
+            .asObservable()
+            .observeOnMainAsyncQueue()
+            .subscribe(onNext: { [unowned self] state in
                 self.handleUpdateAuthorizationState(state)
-            }).disposed(by: disposeBag)
+            }, onError: { err in
+                log.error(err.localizedDescription)
+            }, onCompleted: {
+                log.info("authorizedState onCompleted")
+            }, onDisposed: {
+                log.info("authorizedState onDisposed")
+            })
+            .disposed(by: disposeBag)
     }
     
     func handleUpdateAuthorizationState(_ state: AuthorizationState) {
@@ -205,11 +213,11 @@ private extension VinsoAPI {
             self.establishConnection()
         case .connectionToSocket:
             log.info("Connection to Vinso socket")
-        case .connectionToServer:
-            log.info("Connection to Vinso server")
         case .connectedToSocket:
             log.info("Connected to Vinso socket")
             self.connectToServer()
+        case .connectionToServer:
+            log.info("Connection to Vinso server")
         case .connectedToServer:
             log.info("Connected to Vinso server")
             self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })

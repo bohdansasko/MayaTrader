@@ -14,23 +14,33 @@ struct ConnectionObservation {
 extension VinsoAPI {
 
     func establishConnection() {
-        if authorizedState.value == .connectedToSocket {
-            assertionFailure("fix me")
+        if authorizedState.value == .connectionToSocket || self.socketManager.isConnecting() {
+            return
+        }
+        
+        if socketManager.isOpen() {
+            log.info("User has been already connected to socket")
+            authorizedState.accept(.connectedToSocket)
             return
         }
         
         authorizedState.accept(.connectionToSocket)
-        
-        self.socketManager.connect()
+        socketManager.connect()
     }
     
     func connectToServer() {
         if self.authorizedState.value == .connectionToServer {
-            assertionFailure("fix me")
+            return
+        }
+        
+        if authorizedState.value == .connectedToServer {
+            log.info("User has been already connected to server")
+            self.authorizedState.accept(.connectedToServer)
             return
         }
 
-        self.authorizedState.accept(.connectionToServer)
+        authorizedState.accept(.connectionToServer)
+        log.info("sending request to connect to server")
         
         let data = ["version_api" : kAPIVersion]
         let request = self.sendRequest(messageType: .connect, params: data)
@@ -55,7 +65,12 @@ extension VinsoAPI {
     
     func authorizeUser() {
         if self.authorizedState.value == .authorization {
-            assertionFailure("fix me")
+            return
+        }
+        
+        if self.authorizedState.value == .authorizated {
+            log.info("User has been already authorized")
+            authorizedState.accept(.authorizated)
             return
         }
         
