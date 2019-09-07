@@ -42,7 +42,7 @@ class FormCreateOrder {
             }
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
             let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: price, quantity: quantity, amount: 0)
-            print(order)
+            log.debug(order)
             self?.delegate.createOrder(order)
         }
         formLimit.viewIsReady()
@@ -58,7 +58,7 @@ class FormCreateOrder {
             }
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
             let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: quantity, amount: 0)
-            print(order)
+            log.debug(order)
             self?.delegate.createOrder(order)
         }
         formOnAmount.viewIsReady()
@@ -74,7 +74,7 @@ class FormCreateOrder {
             }
             let currencyPairCode = Utils.getRawCurrencyPairName(name: currencyPair)
             let order = OrderModel(createType: orderType, currencyPair: currencyPairCode, price: 0, quantity: quantity, amount: 0)
-            print(order)
+            log.debug(order)
             self?.delegate.createOrder(order)
         }
         formOnSum.viewIsReady()

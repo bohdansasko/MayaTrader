@@ -35,7 +35,7 @@ class CHBaseViewController: ExmoUIViewController {
     // MARK: - Lifecycle
     
     deinit {
-        print("☠️ deinit \(String(describing: self))")
+        log.debug("☠️ deinit")
     }
     
 }

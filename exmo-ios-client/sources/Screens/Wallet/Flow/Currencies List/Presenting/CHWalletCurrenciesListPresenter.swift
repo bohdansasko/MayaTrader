@@ -32,7 +32,7 @@ import SwiftyJSON
 //
 //    func onDidLoadWalletFail(messageError: String?) {
 //        output.onDidLoadWallet(ExmoWallet(id: 0, amountBTC: 0, amountUSD: 0, balances: [], favBalances: [], dislikedBalances: []))
-//        print(messageError ?? "Undefined error")
+//        log.error(messageError ?? "Undefined error")
 //    }
 //}
 
@@ -87,8 +87,8 @@ extension CHWalletCurrenciesListPresenter {
     }
     
     func saveToCache(wallet: ExmoWallet) {
-        print("wallet was saved to cache")
-        print(wallet.favBalances)
+        log.info("wallet was saved to cache")
+        log.debug(wallet.favBalances)
         dbManager.add(data: wallet.managedObject(), update: true)
     }
     

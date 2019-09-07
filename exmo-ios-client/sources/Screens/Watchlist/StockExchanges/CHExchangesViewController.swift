@@ -87,7 +87,7 @@ private extension CHExchangesViewController {
 extension CHExchangesViewController: CHExchangePresenterDelegate {
     
     func exchangePresenter(_ presenter: CHExchangePresenter, didTouchExchange exchange: CHExchangeModel) {
-        print(#function, exchange.name)
+        log.debug(exchange.name)
         contentView.set(searchText: exchange.name + " ")
     }
 

@@ -56,7 +56,7 @@ final class PasscodeViewController: ExmoUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("*️⃣ active passcode = \(Defaults.getPasscode())")
+        log.debug("*️⃣ active passcode = \(Defaults.getPasscode())")
         passcodeState = Defaults.isPasscodeActive() ? .unlock : .lock
         setupViews()
     }
@@ -201,7 +201,7 @@ private extension PasscodeViewController {
     
     func validationSuccess() {
         if passcodeState == .confirmLock {
-            print("*️⃣ success! passcode = \(enteredPasscodeForLock ?? "")")
+            log.debug("*️⃣ success! passcode = \(enteredPasscodeForLock ?? "")")
             Defaults.savePasscode(enteredPasscodeForLock!)
             showAlert(title: "SCREEN_PASSCODE_ENABLED_ALERT_TITLE".localized,
                       message: "SCREEN_PASSCODE_ENABLED_ALERT_MESSAGE".localized,
@@ -215,7 +215,7 @@ private extension PasscodeViewController {
     }
     
     func validationFail() {
-        print("*️⃣ failure!")
+        log.debug("*️⃣ validation failure!")
         passwordContainerView.wrongPassword()
     }
     

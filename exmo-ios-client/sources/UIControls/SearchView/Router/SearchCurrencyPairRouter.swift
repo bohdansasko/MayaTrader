@@ -13,6 +13,6 @@ class SearchRouter: SearchRouterInput {
     }
     
     deinit {
-        print("deinit \(String(describing: self))")
+        log.debug("deinit")
     }
 }

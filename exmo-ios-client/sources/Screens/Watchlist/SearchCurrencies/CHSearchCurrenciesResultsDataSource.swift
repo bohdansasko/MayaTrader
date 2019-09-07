@@ -33,11 +33,11 @@ final class CHSearchCurrenciesResultsDataSource: CHBaseDataSource<CHLiteCurrency
         let newSelectedItems = selectedItems.subtracting(selectedItemsFromDB)
         
         for item in removedItems {
-            print("😥 removed item -> ", item)
+            log.debug("😥 removed item -> ", item)
         }
         
         for item in newSelectedItems {
-            print("😃 new added item -> ", item)
+            log.debug("😃 new added item -> ", item)
         }
         
         DispatchQueue.main.async {

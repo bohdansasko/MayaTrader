@@ -77,7 +77,7 @@ extension CHOrdersPresenter {
 private extension CHOrdersPresenter {
     
     func fetchOrders(for ordersTab: OrdersType, offset: Int) {
-        print("\(#function), \(ordersTab), offset = \(offset)")
+        log.debug("\(ordersTab), offset = \(offset)")
         self.selectedOrdersTab = ordersTab
 
         switch ordersTab {

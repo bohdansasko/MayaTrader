@@ -83,7 +83,7 @@ extension CHWalletCurrenciesPresenter  {
                     self.walletBalance = balance
                     self.wallet = w
                 }, onError: { err in
-                    print(err.localizedDescription)
+                    log.error(err.localizedDescription)
                 }
             ).disposed(by: disposeBag)
     }

@@ -120,7 +120,7 @@ extension AppDelegate {
         Fabric.sharedSDK().debug = true
 
         guard let config = try? PListFile<ConfigInfoPList>() else {
-            print("Error => Can't open plist file")
+            log.error("Can't open plist file")
             return
         }
         GADMobileAds.configure(withApplicationID: config.model.configuration.admobAdsId)

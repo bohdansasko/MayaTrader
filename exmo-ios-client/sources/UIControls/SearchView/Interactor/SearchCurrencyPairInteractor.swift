@@ -25,7 +25,6 @@ extension SearchInteractor: SearchInteractorInput {
     }
     
     func viewWillDisappear() {
-        print("viewWillDisappear")
         networkWorker.cancelRepeatLoads()
     }
 
@@ -48,9 +47,10 @@ extension SearchInteractor: SearchInteractorInput {
 
 extension SearchInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
-        print("onDidLoadTickerSuccess")
         guard let tickerPairs = ticker?.pairs else { return }
         var searchPairs: [SearchCurrencyPairModel] = []
+        
+        log.debug(tickerPairs)
         
         tickerPairs.forEach({
             currencyCode, tickerCurrency in
@@ -61,7 +61,7 @@ extension SearchInteractor: ITickerNetworkWorkerDelegate {
     }
     
     func onDidLoadTickerFails() {
-        print("onDidLoadTickerFails")
+        log.debug()
         output.onDidLoadCurrenciesPairs([])
     }
 }

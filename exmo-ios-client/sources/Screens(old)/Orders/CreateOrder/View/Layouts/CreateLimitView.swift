@@ -38,9 +38,9 @@ class CreateOrderLimitView: UIView {
 
     var selectedCurrency: TickerCurrencyModel? {
         didSet {
-            print("CreateOrderLimitView => did set currency \(selectedCurrency?.code)")
+            log.debug("did set currency \(selectedCurrency?.code ?? "<nil>")")
             guard let currency = selectedCurrency else {
-                print("currency == nil")
+                log.debug("currency == nil")
                 updateSelectedCurrency(name: "", price: 0)
                 return
             }
@@ -97,10 +97,10 @@ extension CreateOrderLimitView {
     
     func updateSelectedCurrency(name: String, price: Double) {
         guard let cell = cells[IndexPath(row: 0, section: 0)] as? CurrencyDetailsCell else {
-            print("\(#function) => cell haven't found")
+            log.debug("cell haven't found")
             guard let item = form.tabs[layoutType.rawValue].cellItems[0] as? CurrencyDetailsItem,
                   name != "" else {
-                print("\(#function) => fail cast to CurrencyDetailsItem")
+                log.error("fail cast to CurrencyDetailsItem")
                 return
             }
             item.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: name)
@@ -122,7 +122,6 @@ extension CreateOrderLimitView: FormCreateOrderDelegate {
     }
 
     func setTouchEnabled(_ isEnabled: Bool) {
-//        parentVC.setTouchEnabled(isEnabled)
         form.setTouchEnabled(isEnabled)
     }
 }

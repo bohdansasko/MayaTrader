@@ -136,7 +136,7 @@ extension AlertsListView {
     func handleStateAction(elementIndex: Int) {
         alerts.reverseStatus(index: elementIndex)
         guard let alert = alerts.getCellItem(byRow: elementIndex) else {
-            print("handleStateAction: item doesn't exists")
+            log.error("handleStateAction: item doesn't exists")
             return
         }
         presenter.updateAlertState(alert)
@@ -144,7 +144,7 @@ extension AlertsListView {
 
     func handleEditAction(elementIndex: Int) {
         guard let alertModel = alerts.getCellItem(byRow: elementIndex) else {
-            print("handleStateAction: item doesn't exists")
+            log.error("handleStateAction: item doesn't exists")
             return
         }
         presenter.editAlert(alertModel)
@@ -152,7 +152,7 @@ extension AlertsListView {
 
     func handleRemoveAction(elementIndex: Int) {
         guard let alert = alerts.getCellItem(byRow: elementIndex) else {
-            print("handleRemoveAction: item doesn't exists")
+            log.error("handleRemoveAction: item doesn't exists")
             return
         }
         presenter.deleteAlert(withId: alert.id)

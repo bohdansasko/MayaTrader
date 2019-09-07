@@ -12,7 +12,7 @@ class AlertsViewController: ExmoUIViewController {
     var output: AlertsViewOutput!
     var listView: AlertsListView!
     var pickerViewManager: DarkeningPickerViewManager!
-    var CHSubscriptionPackage: CHSubscriptionPackageProtocol?
+    var CHSubscriptionPackage: CHSubscriptionPackageProtocol? // TODO bohdans: fix me
 
     var btnCreateAlert: UIBarButtonItem = {
         return UIBarButtonItem(image: UIImage(named: "icNavbarPlus"),
@@ -56,9 +56,9 @@ class AlertsViewController: ExmoUIViewController {
     }
 
     private func onSelectedAlertsDeleteAction(actionIndex: Int) {
-        print("onSelectedAlertsDeleteAction: \(actionIndex)")
+        log.debug("onSelectedAlertsDeleteAction: \(actionIndex)")
         guard let action = AlertsDeleteAction(rawValue: actionIndex) else {
-            print("Alerts => selected index out of range")
+            log.error("Alerts => selected index out of range")
             return
         }
 
@@ -66,13 +66,13 @@ class AlertsViewController: ExmoUIViewController {
         switch (action) {
         case AlertsDeleteAction.all:
             alertsForRemove = listView.alerts.items
-            print("Alerts => delete all")
+            log.info("Alerts => delete all")
         case AlertsDeleteAction.active:
             alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.active })
-            print("Alerts => delete Active")
+            log.info("Alerts => delete Active")
         case AlertsDeleteAction.inactive:
             alertsForRemove = listView.alerts.filter({ $0.status == AlertStatus.inactive })
-            print("Alerts => delete Inactive")
+            log.info("Alerts => delete Inactive")
         }
 
         output.deleteAlerts(ids: alertsForRemove.map({ $0.id }))
@@ -96,7 +96,8 @@ extension AlertsViewController: AlertsViewInput {
     }
 
     func setSubscription(_ package: CHSubscriptionPackageProtocol) {
-        print("Alerts: \(#function)")
+        log.debug(package)
+        
         CHSubscriptionPackage = package
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {

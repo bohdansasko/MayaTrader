@@ -13,24 +13,24 @@ struct AlertsObservation {
 // MARK: manage alerts
 extension VinsoAPI {
     func loadAlerts() {
-        print("load alerts")
+        log.info("fetching user alerts")
         socketManager.send(message: AlertsApiRequestBuilder.getJSONForAlertsHistory())
     }
 
     func deleteAlert(withId id: Int) {
-        print("delete alert \(id)")
+        log.debug("delete alert \(id)")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlert(withId: id)
         socketManager.send(message: jsonMsg)
     }
 
     func deleteAlerts(withId ids: [Int]) {
-        print("delete alert \(ids)")
+        log.debug("delete alert \(ids)")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withIds: ids)
         socketManager.send(message: jsonMsg)
     }
     
     func selectedCurrencies() {
-        print("load alerts")
+        log.info("fetching info for selected currencies")
         socketManager.send(message: AlertsApiRequestBuilder.getJSONForSelectedCurrencies())
     }
     
@@ -41,7 +41,7 @@ extension VinsoAPI {
     // MARK: responses on load alerts history
     func handleResponseAlertsLoaded(json: JSON) {
         guard let jsonAlerts = json["history_alerts"].array else {
-            print("handleResponseAlertsLoaded => can't parse json data")
+            log.error("handleResponseAlertsLoaded => can't parse json data")
             alertsObservers.forEach({ $0.value.observer?.onDidLoadAlertsHistorySuccessful([]) })
             return
         }
@@ -85,11 +85,11 @@ extension VinsoAPI {
 
     // MARK: responses on fire alert
     func handleResponseFireAlert(json: JSON) {
-        print(json)
+        log.debug(json)
     }
 
     func handleResponseFireAlertError(reason: String) {
-        print(reason)
+        log.debug(reason)
     }
 
     // MARK: responses on delete alert
@@ -120,7 +120,7 @@ extension VinsoAPI {
     }
 
     func handleResponseResetUserError(reason: String) {
-        print(reason)
+        log.debug(reason)
     }
 }
 
@@ -152,7 +152,6 @@ extension Reactive where Base: VinsoAPI {
     }
     
     func createAlert(alert: Alert) -> Single<Alert?> {
-        print("create alert")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
         return self.base.sendRequest(messageType: .createAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
@@ -165,11 +164,10 @@ extension Reactive where Base: VinsoAPI {
     }
     
     func updateAlert(_ alert: Alert) -> Single<Void> {
-        print("update alert")
         let jsonMsg = AlertsApiRequestBuilder.getJSONForUpdateAlert(alert: alert)
         return self.base.sendRequest(messageType: .updateAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
-                print(json)
+                log.debug(json)
             }
             .asSingle()
     }
@@ -179,12 +177,11 @@ extension Reactive where Base: VinsoAPI {
     }
     
     func deleteAlerts(_ alerts: [Alert]) -> Single<Void> {
-        print("\(#function)")
         let alertsIds = alerts.compactMap{ $0.id }
         let jsonMsg = AlertsApiRequestBuilder.getJSONForDeleteAlerts(withIds: alertsIds)
         return self.base.sendRequest(messageType: .deleteAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
-                print(json)
+                log.debug(json)
             }
             .asSingle()
     }

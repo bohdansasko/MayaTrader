@@ -34,7 +34,7 @@ final class DarkeningPickerViewManager {
     }
     
     deinit {
-        print(#function, String(describing: self))
+        log.debug("deinit")
     }
     
     func showPickerViewWithDarkening(_ withSelectedIndex: Int = -1) {
@@ -106,7 +106,7 @@ final class DarkeningPickerViewController: UIViewController {
     }
     
     deinit {
-        print(#function, String(describing: self))
+        log.debug("deinit")
     }
     
     @objc func onTouchView(_ sender : Any) {

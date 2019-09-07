@@ -69,7 +69,7 @@ class ExmoUIViewController: UIViewController {
     }
     
     deinit {
-        print(#function, String(describing: self))
+        log.debug("☠️ deinit")
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -209,7 +209,8 @@ extension ExmoUIViewController {
     
     func setupBannerView() {
         guard let config = try? PListFile<ConfigInfoPList>() else {
-            print("Error in \(#function)=> Can't open plist file")
+            log.error("couldn't open plist file")
+            assertionFailure("fix me")
             return
         }
         bannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
@@ -230,7 +231,7 @@ extension ExmoUIViewController {
 
     func showAdsView(completion: VoidClosure? = nil) {
         if bannerView.superview == nil {
-            print("bannerView doesn't have parent view")
+            log.debug("bannerView doesn't have parent view")
             loadAds()
             completion?()
             return
@@ -258,11 +259,11 @@ extension ExmoUIViewController: GADBannerViewDelegate {
     
     func adViewDidReceiveAd(_ bannerView: GADBannerView) {
         if !isAdsActive {
-            print("\(#function) => ads is inactive")
+            log.info("ads is inactive")
             return
         }
 
-        print("adViewDidReceiveAd")
+        log.info("adViewDidReceiveAd")
         if bannerView.superview != nil {
             showAdsView()
         } else {
@@ -271,7 +272,7 @@ extension ExmoUIViewController: GADBannerViewDelegate {
     }
     
     func adView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        print(error.localizedDescription)
+        log.error(error.localizedDescription)
         hideAdsView()
     }
     

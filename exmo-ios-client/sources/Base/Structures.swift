@@ -392,13 +392,13 @@ extension ExmoWallet {
         toContainer.insert(sourceItem, at: targetDestination.item)
         fromContainer.remove(at: sourceDestination.item)
         
-        print("sourceDestination = \(sourceDestination)")
-        print("targetDestination = \(targetDestination)")
+        log.debug("sourceDestination = \(sourceDestination)")
+        log.debug("targetDestination = \(targetDestination)")
     }
 
     mutating func setFavourite(currencyCode: String, isFavourite: Bool) {
         guard let favIndex = balances.firstIndex(where: { $0.code == currencyCode }) else {
-            print("couldn't found index")
+            log.error("couldn't found index for currency \(currencyCode)")
             return
         }
         balances[favIndex].isFavourite = isFavourite

@@ -35,7 +35,7 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
         )
         let picker = DarkeningPickerViewManager(frameRect: UIScreen.main.bounds, model: pickerViewLayout)
         picker.setCallbackOnSelectAction(callback: { [unowned self] actionIndex in
-            print("onSelectedAlertsDeleteAction: \(actionIndex)")
+            log.debug("onSelectedAlertsDeleteAction: \(actionIndex)")
             guard let action = AlertsDeleteAction(rawValue: actionIndex) else {
                 assertionFailure("selected index out of range")
                 return
@@ -110,12 +110,10 @@ private extension CHAlertsViewController {
 private extension CHAlertsViewController {
     
     @objc func actCreateAlert(_ sender: Any) {
-        print(#function)
         performSegue(withIdentifier: Segues.createAlert.rawValue, sender: self)
     }
     
     @objc func actRemoveAlerts(_ sender: Any) {
-        print(#function)
         deleteAlertsPickerView.showPickerViewWithDarkening()
     }
     

@@ -13,7 +13,7 @@ class AlertsInteractor  {
     var isViewActive = false
 
     deinit {
-        print("deinit \(String(describing: self))")
+        log.debug()
         unsubscribeFromNotifications()
     }
 }
@@ -37,7 +37,6 @@ extension AlertsInteractor: AlertsInteractorInput {
     }
 
     func loadAlerts() {
-        print("\(String(describing: self)) => \(#function)")
         AppDelegate.vinsoAPI.loadAlerts()
     }
 
@@ -73,7 +72,7 @@ extension AlertsInteractor: VinsoAPIConnectionDelegate {
 // MARK: AlertsAPIResponseDelegate
 extension AlertsInteractor: AlertsAPIResponseDelegate {
     func onDidLoadAlertsHistorySuccessful(_ alerts: [Alert]) {
-        print("AlertsInteractor => loaded alerts history")
+        log.info("AlertsInteractor => loaded alerts history")
         output.onDidLoadAlertsHistory(alerts)
     }
 
@@ -112,22 +111,21 @@ extension AlertsInteractor {
 }
 
 extension AlertsInteractor {
-    @objc
-    func onProductSubscriptionActive(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+    
+    @objc func onProductSubscriptionActive(_ notification: Notification) {
+        log.debug(notification.name)
         guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-            print("\(#function) => can't convert notification container to CHSubscriptionPackageProtocol")
+            log.error("\(#function) => can't convert notification container to CHSubscriptionPackageProtocol")
             output.setSubscription(CHBasicAdsSubscriptionPackage())
             return
         }
         output.setSubscription(CHSubscriptionPackage)
     }
 
-    @objc
-    func onPurchaseError(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+    @objc func onPurchaseError(_ notification: Notification) {
+        log.debug(notification.name)
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
-            print("\(#function) => can't cast error message to String")
+            log.error("\(#function) => can't cast error message to String")
             output.onPurchaseError(msg: "Purchase: Undefined error")
             return
         }

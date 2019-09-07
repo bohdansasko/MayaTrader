@@ -70,7 +70,7 @@ extension CHAlertsPresenter {
             self.delegate?.alertsPresenter(self, onAlertsListUpdated: alerts)
         }, onError: { [weak self] err in
             guard let `self` = self else { return }
-            print(err.localizedDescription)
+            log.error(err.localizedDescription)
             self.delegate?.alertsPresenter(self, onAlertsListUpdated: [])
             self.delegate?.alertsPresenter(self, onError: err)
         }).disposed(by: disposeBag)
@@ -79,7 +79,8 @@ extension CHAlertsPresenter {
     }
     
     func deleteAlerts(by action: AlertsDeleteAction) {
-        print(#function, action)
+        log.debug(action)
+        
         var alertsForDelete = [Alert]()
         switch (action) {
         case AlertsDeleteAction.all:
@@ -100,14 +101,14 @@ extension CHAlertsPresenter {
     
     func updateAlertState(at indexPath: IndexPath, on newStatus: AlertStatus) {
         guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
-            print("didSelectRowAt: item doesn't exists")
+            log.error("item doesn't exists")
             return
         }
         alert.status = newStatus
         
         let request = api.rx.updateAlert(alert)
         request.subscribe(onSuccess: { [unowned self] in
-            print("alert status updated")
+            log.info("alert status updated")
             let cell = self.tableView.cellForRow(at: indexPath) as! AlertViewCell
             cell.item = alert
         }, onError: { [weak self] err in
@@ -118,7 +119,7 @@ extension CHAlertsPresenter {
     
     func editAlert(by indexPath: IndexPath) {
         guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
-            print("didSelectRowAt: item doesn't exists")
+            log.error("item doesn't exists")
             return
         }
         delegate?.alertsPresenter(self, onEdit: alert)
@@ -126,13 +127,13 @@ extension CHAlertsPresenter {
     
     func removeAlert(by indexPath: IndexPath, _ completion: @escaping (Bool) -> Void) {
         guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
-            print("didSelectRowAt: item doesn't exists")
+            log.error("item doesn't exists")
             return
         }
         let request = api.rx.deleteAlert(alert)
         request.subscribe(onSuccess: { [weak self] in
             guard let `self` = self else { return }
-            print("alert has been deleted")
+            log.info("alert has been deleted")
             self.alerts.removeItem(byId: alert.id)
             self.delegate?.alertsPresenter(self, onAlertsListUpdated: self.alerts.items)
             completion(true)
@@ -202,7 +203,7 @@ extension CHAlertsPresenter: UITableViewDelegate {
         
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
             [unowned self] action, _, completionHandler in
-            print("alert: state action clicked")
+            log.debug("alert: state action clicked")
             let newStatus = self.alerts.getStatus(forItem: indexPath.section) == .active
                 ? AlertStatus.inactive
                 : AlertStatus.active
@@ -216,7 +217,7 @@ extension CHAlertsPresenter: UITableViewDelegate {
         
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             [unowned self] _, _, completionHandler in
-            print("alert: edit action clicked")
+            log.debug("alert: edit action clicked")
             self.editAlert(by: indexPath)
             completionHandler(true)
         })
@@ -225,7 +226,7 @@ extension CHAlertsPresenter: UITableViewDelegate {
         
         let removeAction = UIContextualAction(style: .destructive, title: "", handler: {
             [unowned self] _, _, completionHandler in
-            print("alert: remove action clicked: row \(indexPath.section)")
+            log.debug("alert: remove action clicked: row \(indexPath.section)")
             self.removeAlert(by: indexPath) { success in
                 completionHandler(success)
             }

@@ -48,7 +48,6 @@ extension CreateOrderPresenter: CreateOrderViewOutput {
 // MARK: CreateOrderInteractorOutput
 extension CreateOrderPresenter: CreateOrderInteractorOutput {
     func updateSelectedCurrency(_ tickerCurrencyPair: TickerCurrencyModel?) {
-        print("\(#function) => presenter")
         view.updateSelectedCurrency(tickerCurrencyPair)
     }
 
@@ -72,7 +71,7 @@ extension CreateOrderPresenter: CreateOrderInteractorOutput {
 // MARK: CreateOrderInteractorOutput
 extension CreateOrderPresenter: SearchModuleOutput {
     func onDidSelectCurrencyPair(rawName: String) {
-        print("was selected currency with id = \(rawName)")
+        log.debug("was selected currency with id = \(rawName)")
         interactor.handleSelectedCurrency(rawName: rawName)
     }
 }

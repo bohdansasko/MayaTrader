@@ -135,7 +135,6 @@ extension OrdersViewController {
 // MARK: buttons handlers
 extension OrdersViewController {
     @objc func onSegmentChanged(_ sender: Any) {
-        print("Orders: \(#function)")
         if isCancellingOrdersActive {
             return
         }
@@ -157,7 +156,6 @@ extension OrdersViewController {
 // MARK: OrdersViewInput
 extension OrdersViewController {
     func updateOrders(loadedOrders: [OrdersType : Orders]) {
-        print("Orders: \(#function)")
         let previousDT = ordersListView.displayOrderType
         if loadedOrders.isEmpty {
             ordersListView.openedOrders = Orders()
@@ -179,21 +177,18 @@ extension OrdersViewController {
     }
     
     func orderCancelled(ids: [Int64]) {
-        print("Orders: \(#function)")
         ordersListView.orderWasCancelled(ids: ids)
         isCancellingOrdersActive = false
         segmentControlView.sendActions(for: .valueChanged)
     }
 
     func setSubscription(_ package: CHSubscriptionPackageProtocol) {
-        print("Orders: \(#function)")
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {
             showAdsView(completion: {
                 self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: -50).isActive = true
             })
         } else {
-            print("Orders: \(#function)")
             hideAdsView(completion: {
                 self.ordersListView.bottomAnchor.constraint(equalTo: self.view.layoutMarginsGuide.bottomAnchor, constant: 0).isActive = true
             })

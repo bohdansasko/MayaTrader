@@ -14,7 +14,7 @@ class VinsoCreateAlertNetworkWorker: ICreateAlertNetworkWorker {
     weak var delegate: ICreateAlertNetworkWorkerDelegate?
     
     func createAlert(_ alert: Alert) {
-        print(alert)
+        log.debug(alert)
     }
     
 //    func createOrder(order: OrderModel) {

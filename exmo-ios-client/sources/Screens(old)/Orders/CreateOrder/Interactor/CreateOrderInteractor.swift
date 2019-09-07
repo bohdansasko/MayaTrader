@@ -30,12 +30,11 @@ extension CreateOrderInteractor: CreateOrderInteractorInput {
     }
     
     func updateSelectedCurrency() {
-        print(#function)
         output.updateSelectedCurrency(selectedPair)
     }
     
     func createOrder(orderModel: OrderModel) {
-        print(orderModel)
+        log.debug(orderModel)
         networkWorker.cancelRepeatLoads()
         ordersNetworkWorker.createOrder(order: orderModel)
     }
@@ -66,7 +65,7 @@ extension CreateOrderInteractor: ITickerNetworkWorkerDelegate {
     }
     
     func onDidLoadTickerFails() {
-        print("onDidLoadTickerFails")
+        log.error("onDidLoadTickerFails")
         networkWorker.cancelRepeatLoads()
         output.updateSelectedCurrency(nil)
         output.showAlert(message: "Can't load data. Please try again a little bit later.")
@@ -80,7 +79,7 @@ extension CreateOrderInteractor: IOrdersNetworkWorkerDelegate {
     }
     
     func onDidCreateOrderFail(errorMessage: String) {
-        print(errorMessage)
+        log.error(errorMessage)
         networkWorker.load(timeout: FrequencyUpdateInSec.createOrder, repeat: true)
         output.showAlert(message: errorMessage)
     }

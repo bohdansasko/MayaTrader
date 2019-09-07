@@ -62,7 +62,7 @@ class CurrenciesGroupsViewController: DatasourceController, CurrenciesGroupsView
     
     func didTouchCell(datasourceItem: Any?) {
         guard let groupModel = datasourceItem as? CurrenciesGroupsGroup else { return }
-        print("Touched \(groupModel.name)")
+        log.debug("Touched \(groupModel.name)")
         output.handleTouchCell(listGroupModel: groupModel)
     }
     

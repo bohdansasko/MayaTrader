@@ -27,7 +27,7 @@ extension AlertsListView: UITableViewDataSource  {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let alert = alerts.getCellItem(byRow: indexPath.section),
               let alertCell = cell as? AlertViewCell else {
-            print("cellForRowAt: item doesn't exists")
+            log.error("cellForRowAt: item doesn't exists")
             return
         }
         alertCell.item = alert
@@ -58,7 +58,7 @@ extension AlertsListView: UITableViewDelegate  {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         guard let alertModel = alerts.getCellItem(byRow: indexPath.row) else {
-            print("didSelectRowAt: item doesn't exists")
+            log.error("didSelectRowAt: item doesn't exists")
             return
         }
         presenter.editAlert(alertModel)
@@ -69,7 +69,7 @@ extension AlertsListView: UITableViewDelegate  {
         
         let stateAction = UIContextualAction(style: .normal, title: "", handler: {
             [weak self] action, _, completionHandler in
-            print("alert: state action clicked")
+            log.debug("alert: state action clicked")
             self?.handleStateAction(elementIndex: indexPath.section)
             completionHandler(true)
         })
@@ -80,7 +80,7 @@ extension AlertsListView: UITableViewDelegate  {
         
         let editAction = UIContextualAction(style: .normal, title: "", handler: {
             [weak self] _, _, completionHandler in
-            print("alert: edit action clicked")
+            log.debug("alert: edit action clicked")
             self?.handleEditAction(elementIndex: indexPath.section)
             completionHandler(true)
         })
@@ -89,7 +89,7 @@ extension AlertsListView: UITableViewDelegate  {
         
         let removeAction = UIContextualAction(style: .destructive, title: "", handler: {
             [weak self] _, _, completionHandler in
-            print("alert: remove action clicked: row \(indexPath.section)")
+            log.debug("alert: remove action clicked: row \(indexPath.section)")
             self?.handleRemoveAction(elementIndex: indexPath.section)
             completionHandler(true)
         })

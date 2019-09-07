@@ -195,7 +195,7 @@ extension LoginViewController {
     
     func login() {
         guard let key = apiKeyField.text, let secret = secretKeyField.text else {
-            print("Fields is empty!")
+            log.error("API (and/or) Secret (are/is) empty!")
             return
         }
         

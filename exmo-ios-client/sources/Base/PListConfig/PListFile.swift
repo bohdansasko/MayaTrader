@@ -31,10 +31,10 @@ extension PListFile {
                 return try JSONSerialization.data(withJSONObject: infoDict)
             case .plist(let file, let bundle):
                 guard let path = bundle.path(forResource: file, ofType: "plist") else {
-                    print("path not found for \(file).plist")
+                    log.error("path not found for \(file).plist")
                     throw Errors.fileNotFound
                 }
-                print("url is \(path)")
+                log.debug("url is \(path)")
                 return try Data(contentsOf: URL(fileURLWithPath: path))
             }
         }

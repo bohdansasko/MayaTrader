@@ -63,7 +63,7 @@ extension OrdersListView: UITableViewDelegate  {
         let deleteAction = UIContextualAction(style: .normal, title: "", handler: {
             [weak self] action, view, completionHandler  in
             self?.cancelOrderAt(indexPath: indexPath)
-            print("called delete action for row = \(indexPath.section)")
+            log.debug("called delete action for row = \(indexPath.section)")
             completionHandler(true)
         })
         deleteAction.image = UIImage(named: "icNavbarTrash")
