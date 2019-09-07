@@ -40,12 +40,12 @@ final class VinsoAPI {
     let disposeBag = DisposeBag()
 
     let kResponseTimeoutSeconds      = 10.0
-    let kAuthorizationTimeoutSeconds = 10.0
+    let kAuthorizationTimeoutSeconds = 5.0
 
     let kAPIVersion = 1
     
     var isAuthorized: Bool { return authorizedState.value == .authorizated }
-    
+
     // MARK: - Life cycle
     
     private init() {
@@ -75,12 +75,14 @@ private extension VinsoAPI {
         
         socketManager = CHSocketManager(serverURL: endpointUrl)
         socketManager.connected
+            .distinctUntilChanged()
             .subscribe(
                 onNext: { [unowned self] isConnected in
                     if isConnected {
                         self.authorizedState.accept(.connectedToSocket)
                     } else {
                         self.authorizedState.accept(.notConnected)
+                        self.autoconnectToSocket()
                     }
                 }
             )
@@ -128,7 +130,8 @@ private extension VinsoAPI {
                 .timeout(self.kResponseTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
                 .share(replay: 1)
                 .subscribe(onNext: { event in
-                    if case .message(let message) = event {
+                    switch event {
+                    case .message(let message):
                         let json = JSON(parseJSON: message)
                         do {
                             let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
@@ -145,8 +148,13 @@ private extension VinsoAPI {
                                 subscriber.onError(error)
                             }
                         } catch (let err) {
+                            log.error("🙂👎 \(messageType.description) API Response error: \(err.localizedDescription)\n")
                             subscriber.onError(err)
                         }
+                    case .disconnected(let err):
+                        log.error(err?.localizedDescription ?? "")
+                    default:
+                        break
                     }
                 })
             return Disposables.create{ socketResponse.dispose() }
@@ -195,6 +203,7 @@ private extension VinsoAPI {
     func registerAuthorizationListener() {
         self.authorizedState
             .asObservable()
+            .distinctUntilChanged()
             .observeOnMainAsyncQueue()
             .subscribe(onNext: { [unowned self] state in
                 self.handleUpdateAuthorizationState(state)
@@ -212,10 +221,12 @@ private extension VinsoAPI {
         switch state {
         case .notConnected:
             log.info("Not connected to Vinso server")
+            NotificationCenter.default.post(name: ConnectionNotification.connectionError)
         case .connectionToSocket:
             log.info("Connection to Vinso socket")
         case .connectedToSocket:
-            log.info("Connected to Vinso socket")
+            log.info("Connected to Vinso socket isConnected =", socketManager.isOpen())
+            NotificationCenter.default.post(name: ConnectionNotification.connectedSuccess)
             self.connectToServer()
         case .connectionToServer:
             log.info("Connection to Vinso server")
@@ -231,7 +242,15 @@ private extension VinsoAPI {
             NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
         }
     }
-    
+
+    func autoconnectToSocket() {
+        self.socketManager.autoconnect(timeout: self.kAuthorizationTimeoutSeconds).subscribe(onSuccess: {
+            log.info("connected via autoconnect")
+        }, onError: { err in
+            log.debug(err.localizedDescription)
+        }).disposed(by: self.disposeBag)
+    }
+
 }
 
 // MARK: - ReactiveCompatible

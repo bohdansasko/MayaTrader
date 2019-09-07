@@ -27,20 +27,9 @@ extension VinsoAPI {
             authorizedState.accept(.connectedToSocket)
             return
         }
-        
+
         authorizedState.accept(.connectionToSocket)
-        socketManager.autoconnect(timeout: kAuthorizationTimeoutSeconds)
-            .subscribe(onNext: {
-                    log.debug("onNext")
-                }, onError: { err in
-                    log.error(err)
-                }, onCompleted: {
-                    log.debug("onComplete")
-                }, onDisposed: {
-                    log.debug("onDispose")
-                }
-            )
-            .disposed(by: self.disposeBag)
+        self.socketManager.connect()
     }
     
     func connectToServer() {
@@ -58,12 +47,12 @@ extension VinsoAPI {
         log.info("sending request to connect to server")
         
         let data = ["version_api" : kAPIVersion]
-        let request = self.sendRequest(messageType: .connect, params: data)
-        request.subscribe(onNext: { [unowned self] json in
+        let request = self.sendRequest(messageType: .connect, params: data).asSingle()
+        request.subscribe(onSuccess: { [unowned self] json in
             self.authorizedState.accept(.connectedToServer)
         }, onError: { [unowned self] err in
+            log.info("error:", err.localizedDescription)
             self.authorizedState.accept(.notConnected)
-            log.info(err.localizedDescription)
         }).disposed(by: self.disposeBag)
     }
 

@@ -31,11 +31,11 @@ private extension CHTabBarController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(showNoInternetView),
-            name: InternetReachabilityNotification.reachable)
+            name: InternetReachabilityNotification.notReachable)
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(hideNoInternetView),
-            name: InternetReachabilityNotification.notReachable)
+            name: InternetReachabilityNotification.reachable)
     }
     
     @objc func showNoInternetView() {

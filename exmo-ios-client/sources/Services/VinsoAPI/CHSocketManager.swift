@@ -57,34 +57,50 @@ extension CHSocketManager {
 
 extension CHSocketManager {
     
-    func autoconnect(timeout: TimeInterval) -> Observable<Void> {
+    func autoconnect(timeout: TimeInterval) -> Single<Void> {
         let autoconnectSubscriber = Observable<Void>
             .create{ [unowned self] s in
-                self.socket.open()
-                self.connected.subscribe(onNext: { isConnected in
-                    if isConnected {
-                        s.onNext(())
-                    }
-                }).disposed(by: self.disposeBag)
-
-                return Disposables.create()
+                log.info("trying to open socket")
+                self.connect()
+                let subscription = self.connected
+                    .distinctUntilChanged()
+                    .subscribe(onNext: { isConnected in
+                        log.info(isConnected)
+                        if isConnected {
+                            s.onNext(())
+                            s.onCompleted()
+                        } else {
+                            s.onError(CHVinsoAPIError.noConnection)
+                        }
+                    })
+                return Disposables.create{
+                    subscription.dispose()
+                }
             }
-            .timeout(timeout, scheduler: MainScheduler.asyncInstance)
-            .retry()
+            .retry(withTimeout: timeout)
+            .asSingle()
         
         return autoconnectSubscriber
+    }
+    
+    func connect() {
+        socket.open()
     }
     
     func disconnect() {
         socket.close()
     }
 
+}
+
+extension CHSocketManager {
+        
     func send(message: JSON) {
         self.send(message: message.stringValue)
     }
     
     func send(message: String) {
-        if message.isEmpty {
+        if message.isEmpty || socket.readyState != .open {
             assertionFailure("fix me")
             return
         }
@@ -106,6 +122,7 @@ private extension CHSocketManager {
             log.debug("socket has been closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
             self.response.onNext(.disconnected(nil))
             self.connected.onNext(false)
+            self.disconnect()
         }
         
         socket.event.message = { [unowned self] data in
@@ -117,7 +134,7 @@ private extension CHSocketManager {
         
         socket.event.error = { [unowned self] error in
             log.debug("socket error: \(error)")
-            self.response.onError(error)
+            self.disconnect()
         }
     }
     

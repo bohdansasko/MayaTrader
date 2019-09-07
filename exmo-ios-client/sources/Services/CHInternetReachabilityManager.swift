@@ -42,10 +42,10 @@ private extension CHInternetReachabilityManager {
     
     func handleStatus(with status: NetworkReachabilityManager.NetworkReachabilityStatus) {
         switch status {
-        case .notReachable:
-            NotificationCenter.default.post(name: InternetReachabilityNotification.reachable)
-        case .reachable(_), .unknown:
+        case .notReachable, .unknown:
             NotificationCenter.default.post(name: InternetReachabilityNotification.notReachable)
+        case .reachable(_):
+            NotificationCenter.default.post(name: InternetReachabilityNotification.reachable)
         }
     }
     
@@ -55,10 +55,8 @@ private extension CHInternetReachabilityManager {
 
 extension CHInternetReachabilityManager: UIApplicationDelegate {
     
-    @discardableResult
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+    func applicationDidBecomeActive(_ application: UIApplication) {
         startListening()
-        return true
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
