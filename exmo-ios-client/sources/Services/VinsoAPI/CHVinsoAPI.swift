@@ -227,7 +227,7 @@ private extension VinsoAPI {
             log.info("Authorization to Vinso server")
         case .authorizated:
             log.info("Authorizated to Vinso server")
-            AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
+            AppDelegate.vinsoAPI.setSubscription(IAPService.shared.CHSubscriptionPackage.type)
             NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
         }
     }

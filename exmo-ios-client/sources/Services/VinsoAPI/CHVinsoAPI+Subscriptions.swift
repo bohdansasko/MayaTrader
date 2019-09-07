@@ -8,9 +8,39 @@
 
 import Foundation
 
-// MARK: - Manage subscriptions
+// MARK: - Manage subscriptions like set, fetch, ..., etc
 
 extension VinsoAPI {
+    
+    func setSubscription(_ packageType: CHSubscriptionPackageType) {
+        let params: [String: Any] = ["type": packageType.rawValue]
+        
+        self.sendRequest(messageType: .setSubscriptionType, params: params)
+            .asSingle()
+            .subscribe(onSuccess: { json in
+                log.debug(json)
+            }, onError: { err in
+                log.error(err)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func fetchAvailableSubscriptions() {
+        self.sendRequest(messageType: .subscriptionConfigs)
+            .asSingle()
+            .subscribe(onSuccess: { json in
+                log.debug(json)
+            }, onError: { err in
+                log.error(err)
+            })
+            .disposed(by: disposeBag)
+    }
+
+}
+
+// MARK: - Manage notification subscribes
+
+private extension VinsoAPI {
     
     func subscribeOnIAPNotifications() {
         NotificationCenter.default.addObserver(
@@ -27,54 +57,30 @@ extension VinsoAPI {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func setSubscriptionType(_ packageType: CHSubscriptionPackageType) {
-        self.sendRequest(messageType: .setSubscriptionType, params: ["type": packageType.rawValue])
-            .asSingle()
-            .subscribe(onSuccess: { json in
-                log.debug(json)
-            }, onError: { err in
-                log.error(err)
-            })
-            .disposed(by: disposeBag)
-    }
-    
-    func loadAvailableSubscriptions() {
-        self.sendRequest(messageType: .subscriptionConfigs)
-            .asSingle()
-            .subscribe(onSuccess: { json in
-                log.debug(json)
-            }, onError: { err in
-                log.error(err)
-            })
-            .disposed(by: disposeBag)
-    }
-    
 }
 
-// MARK: - Notification handlers
+// MARK: - Manage subscribes notifications
 
 private extension VinsoAPI {
 
-    @objc
-    func onProductSubscriptionActive(_ notification: Notification) {
+    @objc func onProductSubscriptionActive(_ notification: Notification) {
         log.info("notification name =", notification.name)
         guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
             log.info("can't convert notification container to IAPProduct")
             if AppDelegate.vinsoAPI.isAuthorized {
-                AppDelegate.vinsoAPI.setSubscriptionType(.freeWithAds)
+                AppDelegate.vinsoAPI.setSubscription(.freeWithAds)
             }
             return
         }
         
         if AppDelegate.vinsoAPI.isAuthorized {
-            AppDelegate.vinsoAPI.setSubscriptionType(CHSubscriptionPackage.type)
+            AppDelegate.vinsoAPI.setSubscription(CHSubscriptionPackage.type)
         }
     }
     
-    @objc
-    func onPurchaseError(_ notification: Notification) {
+    @objc func onPurchaseError(_ notification: Notification) {
         if AppDelegate.vinsoAPI.isAuthorized {
-            AppDelegate.vinsoAPI.setSubscriptionType(.freeWithAds)
+            AppDelegate.vinsoAPI.setSubscription(.freeWithAds)
         }
     }
     
