@@ -24,6 +24,7 @@ final class CHSocketManager {
     // MARK: - Private variables
     
     fileprivate var socket: WebSocket
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Public variables
     
@@ -56,8 +57,22 @@ extension CHSocketManager {
 
 extension CHSocketManager {
     
-    func connect() {
-        socket.open()
+    func autoconnect(timeout: TimeInterval) -> Observable<Void> {
+        let autoconnectSubscriber = Observable<Void>
+            .create{ [unowned self] s in
+                self.socket.open()
+                self.connected.subscribe(onNext: { isConnected in
+                    if isConnected {
+                        s.onNext(())
+                    }
+                }).disposed(by: self.disposeBag)
+
+                return Disposables.create()
+            }
+            .timeout(timeout, scheduler: MainScheduler.asyncInstance)
+            .retry()
+        
+        return autoconnectSubscriber
     }
     
     func disconnect() {
@@ -69,7 +84,7 @@ extension CHSocketManager {
     }
     
     func send(message: String) {
-        guard !message.isEmpty else {
+        if message.isEmpty {
             assertionFailure("fix me")
             return
         }

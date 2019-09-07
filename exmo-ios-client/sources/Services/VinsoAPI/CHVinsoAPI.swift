@@ -38,9 +38,11 @@ final class VinsoAPI {
     
     var socketManager: CHSocketManager!
     let disposeBag = DisposeBag()
-    
-    fileprivate let kTimeoutSeconds = 30.0
-                let kAPIVersion = 1
+
+    let kResponseTimeoutSeconds      = 10.0
+    let kAuthorizationTimeoutSeconds = 10.0
+
+    let kAPIVersion = 1
     
     var isAuthorized: Bool { return authorizedState.value == .authorizated }
     
@@ -69,7 +71,7 @@ private extension VinsoAPI {
         }
         
         let endpointUrl = config.model.configuration.endpoint
-        log.info("Init socket:", endpointUrl)
+        log.info("connect to", endpointUrl)
         
         socketManager = CHSocketManager(serverURL: endpointUrl)
         socketManager.connected
@@ -123,7 +125,7 @@ private extension VinsoAPI {
     func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
         let observable = Observable<JSON>.create{ [unowned self] subscriber in
             let socketResponse = self.socketManager.response
-                .timeout(self.kTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+                .timeout(self.kResponseTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
                 .share(replay: 1)
                 .subscribe(onNext: { event in
                     if case .message(let message) = event {
@@ -210,7 +212,6 @@ private extension VinsoAPI {
         switch state {
         case .notConnected:
             log.info("Not connected to Vinso server")
-            self.establishConnection()
         case .connectionToSocket:
             log.info("Connection to Vinso socket")
         case .connectedToSocket:

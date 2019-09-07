@@ -14,6 +14,10 @@ struct ConnectionObservation {
 extension VinsoAPI {
 
     func establishConnection() {
+        if authorizedState.value == .authorizated {
+            return
+        }
+
         if authorizedState.value == .connectionToSocket || self.socketManager.isConnecting() {
             return
         }
@@ -25,7 +29,18 @@ extension VinsoAPI {
         }
         
         authorizedState.accept(.connectionToSocket)
-        socketManager.connect()
+        socketManager.autoconnect(timeout: kAuthorizationTimeoutSeconds)
+            .subscribe(onNext: {
+                    log.debug("onNext")
+                }, onError: { err in
+                    log.error(err)
+                }, onCompleted: {
+                    log.debug("onComplete")
+                }, onDisposed: {
+                    log.debug("onDispose")
+                }
+            )
+            .disposed(by: self.disposeBag)
     }
     
     func connectToServer() {

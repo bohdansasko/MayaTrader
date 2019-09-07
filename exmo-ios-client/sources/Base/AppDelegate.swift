@@ -72,7 +72,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         services.forEach{
             _ = $0.applicationDidBecomeActive?(application)
         }
-
+        VinsoAPI.shared.establishConnection()
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
@@ -123,7 +123,7 @@ extension AppDelegate {
             return
         }
         GADMobileAds.configure(withApplicationID: config.model.configuration.admobAdsId)
-        log.debug("GADMobileAds.configure(withApplicationID: \(config.model.configuration.admobAdsId)")
+        log.debug("admobAdsId =", config.model.configuration.admobAdsId)
     }
     
 }
