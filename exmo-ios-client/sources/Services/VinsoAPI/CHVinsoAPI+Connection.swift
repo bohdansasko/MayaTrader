@@ -14,23 +14,48 @@ struct ConnectionObservation {
 extension VinsoAPI {
 
     func establishConnection() {
-        if authorizedState.value == .connectedToSocket {
-            assertionFailure("fix me")
+        if authorizedState.value == .authorizated {
+            return
+        }
+
+        if authorizedState.value == .connectionToSocket || self.socketManager.isConnecting() {
+            return
+        }
+        
+        if socketManager.isOpen() {
+            log.info("User has been already connected to socket")
+            authorizedState.accept(.connectedToSocket)
             return
         }
         
         authorizedState.accept(.connectionToSocket)
-        
-        self.socketManager.connect()
+        socketManager.autoconnect(timeout: kAuthorizationTimeoutSeconds)
+            .subscribe(onNext: {
+                    log.debug("onNext")
+                }, onError: { err in
+                    log.error(err)
+                }, onCompleted: {
+                    log.debug("onComplete")
+                }, onDisposed: {
+                    log.debug("onDispose")
+                }
+            )
+            .disposed(by: self.disposeBag)
     }
     
     func connectToServer() {
         if self.authorizedState.value == .connectionToServer {
-            assertionFailure("fix me")
+            return
+        }
+        
+        if authorizedState.value == .connectedToServer {
+            log.info("User has been already connected to server")
+            self.authorizedState.accept(.connectedToServer)
             return
         }
 
-        self.authorizedState.accept(.connectionToServer)
+        authorizedState.accept(.connectionToServer)
+        log.info("sending request to connect to server")
         
         let data = ["version_api" : kAPIVersion]
         let request = self.sendRequest(messageType: .connect, params: data)
@@ -55,7 +80,12 @@ extension VinsoAPI {
     
     func authorizeUser() {
         if self.authorizedState.value == .authorization {
-            assertionFailure("fix me")
+            return
+        }
+        
+        if self.authorizedState.value == .authorizated {
+            log.info("User has been already authorized")
+            authorizedState.accept(.authorizated)
             return
         }
         
@@ -69,7 +99,6 @@ extension VinsoAPI {
         self.sendRequest(messageType: .authorization, params: params)
             .asSingle()
             .subscribe(onSuccess: { [unowned self] json in
-                log.debug(json)
                 self.authorizedState.accept(.authorizated)
             }, onError: { [unowned self] err in
                 log.error(err.localizedDescription)

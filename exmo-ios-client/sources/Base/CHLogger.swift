@@ -16,7 +16,8 @@ struct log {
         #if DEBUG
             let fileName = (pathToFile as NSString).lastPathComponent
             let argsAsStr = items.map { String(describing: $0) }.joined(separator: " ")
-            print(level.icon, line, fileName, argsAsStr)
+            let threadAsStr = Thread.current.isMainThread ? "thread: <main>" : "thread: <background>"
+            print(level.icon, Date().now, threadAsStr, line, fileName, argsAsStr)
         #endif
     }
 
@@ -34,10 +35,10 @@ private extension log {
         
         var icon: String {
             switch self {
-            case .debug  : return "🧠"
-            case .info   : return "🤓"
+            case .debug  : return "👁"
+            case .info   : return "ℹ️"
             case .error  : return "🤬"
-            case .network: return "📨"
+            case .network: return "📡"
             }
         }
     }

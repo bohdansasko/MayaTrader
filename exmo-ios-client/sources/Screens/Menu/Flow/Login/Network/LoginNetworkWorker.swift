@@ -15,7 +15,7 @@ final class ExmoLoginNetworkWorker: ILoginNetworkWorker {
     var loginModel: ExmoQR?
     
     func loadUserInfo(loginModel: ExmoQR) {
-        print("Loading user info...")
+        log.info("Loading exmo user info...")
         self.loginModel = loginModel
         ExmoApiRequestsBuilder.shared.setAuthorizationData(apiKey: loginModel.key, secretKey: loginModel.secret)
         

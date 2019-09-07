@@ -38,9 +38,11 @@ final class VinsoAPI {
     
     var socketManager: CHSocketManager!
     let disposeBag = DisposeBag()
-    
-    fileprivate let kTimeoutSeconds = 30.0
-                let kAPIVersion = 1
+
+    let kResponseTimeoutSeconds      = 10.0
+    let kAuthorizationTimeoutSeconds = 10.0
+
+    let kAPIVersion = 1
     
     var isAuthorized: Bool { return authorizedState.value == .authorizated }
     
@@ -69,7 +71,7 @@ private extension VinsoAPI {
         }
         
         let endpointUrl = config.model.configuration.endpoint
-        log.info("Init socket:", endpointUrl)
+        log.info("connect to", endpointUrl)
         
         socketManager = CHSocketManager(serverURL: endpointUrl)
         socketManager.connected
@@ -123,7 +125,7 @@ private extension VinsoAPI {
     func buildRequestHandler(for messageType: ServerMessage) -> Observable<JSON> {
         let observable = Observable<JSON>.create{ [unowned self] subscriber in
             let socketResponse = self.socketManager.response
-                .timeout(self.kTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
+                .timeout(self.kResponseTimeoutSeconds, scheduler: ConcurrentDispatchQueueScheduler(qos: .default))
                 .share(replay: 1)
                 .subscribe(onNext: { event in
                     if case .message(let message) = event {
@@ -192,24 +194,31 @@ private extension VinsoAPI {
     
     func registerAuthorizationListener() {
         self.authorizedState
-            .asDriver()
-            .drive(onNext: { [unowned self] state in
+            .asObservable()
+            .observeOnMainAsyncQueue()
+            .subscribe(onNext: { [unowned self] state in
                 self.handleUpdateAuthorizationState(state)
-            }).disposed(by: disposeBag)
+            }, onError: { err in
+                log.error(err.localizedDescription)
+            }, onCompleted: {
+                log.info("authorizedState onCompleted")
+            }, onDisposed: {
+                log.info("authorizedState onDisposed")
+            })
+            .disposed(by: disposeBag)
     }
     
     func handleUpdateAuthorizationState(_ state: AuthorizationState) {
         switch state {
         case .notConnected:
             log.info("Not connected to Vinso server")
-            self.establishConnection()
         case .connectionToSocket:
             log.info("Connection to Vinso socket")
-        case .connectionToServer:
-            log.info("Connection to Vinso server")
         case .connectedToSocket:
             log.info("Connected to Vinso socket")
             self.connectToServer()
+        case .connectionToServer:
+            log.info("Connection to Vinso server")
         case .connectedToServer:
             log.info("Connected to Vinso server")
             self.connectionObservers.forEach({ $0.value.observer?.onConnectionOpened() })
@@ -218,7 +227,7 @@ private extension VinsoAPI {
             log.info("Authorization to Vinso server")
         case .authorizated:
             log.info("Authorizated to Vinso server")
-            AppDelegate.vinsoAPI.setSubscriptionType(IAPService.shared.CHSubscriptionPackage.type)
+            AppDelegate.vinsoAPI.setSubscription(IAPService.shared.CHSubscriptionPackage.type)
             NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
         }
     }

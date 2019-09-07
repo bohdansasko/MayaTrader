@@ -12,17 +12,17 @@ extension Observable {
     
     func mapInBackground<R>(_ transform: @escaping (Element) throws -> R) -> Observable<R> {
         return self
-            .observeOnBackgroundThread()
+            .observeOnBackgroundQueue()
             .map(transform)
-            .observeOnMainThread()
+            .observeOnMainAsyncQueue()
     }
     
     
-    func observeOnBackgroundThread() -> Observable<Element> {
+    func observeOnBackgroundQueue() -> Observable<Element> {
         return self.observeOn(ConcurrentDispatchQueueScheduler(qos: .default))
     }
     
-    func observeOnMainThread() -> Observable<Element> {
+    func observeOnMainAsyncQueue() -> Observable<Element> {
         return self.observeOn(MainScheduler.asyncInstance)
     }
     

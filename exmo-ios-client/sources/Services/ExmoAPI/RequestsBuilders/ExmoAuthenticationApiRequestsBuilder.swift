@@ -33,6 +33,8 @@ extension ExmoApiRequestsBuilder: ExmoAuthenticationApiRequests {
         ConnectionConfig.apiSecret = secretKey
     }
     
+    // TODO: remove keyword `internal`
+    
     internal func getAuthenticatedRequest(postDictionary: [String: Any], method: String) -> URLRequest {
         var post: String = ""
         var index: Int = 0
@@ -46,7 +48,8 @@ extension ExmoApiRequestsBuilder: ExmoAuthenticationApiRequests {
         }
         post = "\(post)&nonce=\(nonce)"
         nonce += 1
-        print(post)
+        
+        log.debug(post)
         
         let apiUrl = URL(string: ConnectionConfig.apiUrl + method)!
         let requestBodyData = post.data(using: .utf8)

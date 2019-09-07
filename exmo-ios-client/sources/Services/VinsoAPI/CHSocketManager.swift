@@ -11,7 +11,7 @@ import SwiftWebSocket
 import SwiftyJSON
 import RxSwift
 
-public enum CHWebSocketEvent {
+enum CHWebSocketEvent {
     case connected
     case disconnected(Error?)
     case message(String)
@@ -24,6 +24,7 @@ final class CHSocketManager {
     // MARK: - Private variables
     
     fileprivate var socket: WebSocket
+    fileprivate let disposeBag = DisposeBag()
     
     // MARK: - Public variables
     
@@ -56,8 +57,22 @@ extension CHSocketManager {
 
 extension CHSocketManager {
     
-    func connect() {
-        socket.open()
+    func autoconnect(timeout: TimeInterval) -> Observable<Void> {
+        let autoconnectSubscriber = Observable<Void>
+            .create{ [unowned self] s in
+                self.socket.open()
+                self.connected.subscribe(onNext: { isConnected in
+                    if isConnected {
+                        s.onNext(())
+                    }
+                }).disposed(by: self.disposeBag)
+
+                return Disposables.create()
+            }
+            .timeout(timeout, scheduler: MainScheduler.asyncInstance)
+            .retry()
+        
+        return autoconnectSubscriber
     }
     
     func disconnect() {
@@ -69,7 +84,8 @@ extension CHSocketManager {
     }
     
     func send(message: String) {
-        guard !message.isEmpty else {
+        if message.isEmpty {
+            assertionFailure("fix me")
             return
         }
         socket.send(text: message)
@@ -87,7 +103,7 @@ private extension CHSocketManager {
         }
         
         socket.event.close = { [unowned self] code, reason, clean in
-            print("socket has been closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
+            log.debug("socket has been closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
             self.response.onNext(.disconnected(nil))
             self.connected.onNext(false)
         }
@@ -100,12 +116,15 @@ private extension CHSocketManager {
         }
         
         socket.event.error = { [unowned self] error in
-            print("socket error: \(error)")
+            log.debug("socket error: \(error)")
             self.response.onError(error)
         }
     }
     
 }
 
-//
-extension CHSocketManager: ReactiveCompatible {}
+// MARK: - ReactiveCompatible
+
+extension CHSocketManager: ReactiveCompatible {
+    // do nothing
+}
