@@ -40,7 +40,7 @@ extension VinsoAPI {
 
 // MARK: - Manage notification subscribes
 
-private extension VinsoAPI {
+extension VinsoAPI {
     
     func subscribeOnIAPNotifications() {
         NotificationCenter.default.addObserver(
