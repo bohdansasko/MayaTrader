@@ -220,7 +220,7 @@
 		36712029F198CF69683FFA1B /* CHMenuSectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EF7BC8BC3DAC904CBE /* CHMenuSectionType.swift */; };
 		3671209C676947D8EA9F25E0 /* CHVinsoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E09C93F6FAB62707BD3 /* CHVinsoAPI.swift */; };
 		367121BC7FF51CEFB18FC1F6 /* CHVinsoAPI+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123472D6E898C5F3B2FA0 /* CHVinsoAPI+Alerts.swift */; };
-		3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2E24600DAE35483C9D /* Color+Extension.swift */; };
+		3671220BB478D212AC3CF7B2 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2E24600DAE35483C9D /* UIColor+Extension.swift */; };
 		367122D0DF0064443BDC5003 /* CHVinsoAPI+Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712E86BC9F833C4B86DFA2 /* CHVinsoAPI+Connection.swift */; };
 		3671235C4933D570BEA98C52 /* AlertsAPIResponseDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367125D1C89897B18EF1C03C /* AlertsAPIResponseDelegate.swift */; };
 		3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712F3BF4234409BE0C353E /* CHWalletCurrenciesPresenter.swift */; };
@@ -229,7 +229,7 @@
 		36712819605402E3BB398CBA /* ExmoErrorResponses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */; };
 		3671298637DF050AFCA49657 /* CHVinsoAPIConnectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367123CC34179C4F53E597DE /* CHVinsoAPIConnectionDelegate.swift */; };
 		36712989A157C8B14187A836 /* ExmoSegmentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */; };
-		36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* Font+Extension.swift */; };
+		36712A6D0B8BC149BFAF5E81 /* UIFont+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36712B2B3338633190FB399E /* UIFont+Extension.swift */; };
 		36712BA9A115B28819E97B70 /* CHVinsoAPIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3671205987EBAA1263AE126F /* CHVinsoAPIConstants.swift */; };
 		36712C66E8B3D44E567B41D9 /* CHSubscriptionPackages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */; };
 		36712E4C4C5245EF136945B7 /* CHMenuViewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367126066F9FBD9F6FBEBFD1 /* CHMenuViewPresenter.swift */; };
@@ -589,8 +589,8 @@
 		367129EB852E9D257D0438F5 /* CHSubscriptionPackages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHSubscriptionPackages.swift; sourceTree = "<group>"; };
 		367129EF7BC8BC3DAC904CBE /* CHMenuSectionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHMenuSectionType.swift; sourceTree = "<group>"; };
 		36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoSegmentCell.swift; sourceTree = "<group>"; };
-		36712B2B3338633190FB399E /* Font+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Font+Extension.swift"; sourceTree = "<group>"; };
-		36712B2E24600DAE35483C9D /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
+		36712B2B3338633190FB399E /* UIFont+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Extension.swift"; sourceTree = "<group>"; };
+		36712B2E24600DAE35483C9D /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		36712DDE57C5587FC6B6609F /* ExmoErrorResponses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExmoErrorResponses.swift; sourceTree = "<group>"; };
 		36712E09C93F6FAB62707BD3 /* CHVinsoAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHVinsoAPI.swift; sourceTree = "<group>"; };
 		36712E86BC9F833C4B86DFA2 /* CHVinsoAPI+Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Connection.swift"; sourceTree = "<group>"; };
@@ -1176,22 +1176,9 @@
 		206730E12094D36E008B500D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */,
-				36712B2E24600DAE35483C9D /* Color+Extension.swift */,
-				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
-				20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */,
-				36712B2B3338633190FB399E /* Font+Extension.swift */,
-				97FD9B292323DAEB00D90178 /* Date+Extension.swift */,
-				20E30AD420A966B0003D9BAF /* UIView+Extension.swift */,
-				206730E22094D427008B500D /* UITextField+Extension.swift */,
-				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
-				200D52C922DA1E550009C07C /* UIStoryboard+Extension.swift */,
-				200D52D122DA7AB60009C07C /* UICollectionView+Extension.swift */,
-				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
-				200D52D322DA7F550009C07C /* UITableView+Extension.swift */,
-				208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */,
-				97DB18AB22F4AD48007BE023 /* Observable+extension.swift */,
-				9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */,
+				97FD9B2C2323EBE100D90178 /* Foundation */,
+				97FD9B2B2323EBAD00D90178 /* UIKit */,
+				97FD9B2D2323EBFD00D90178 /* 3rd libs */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2206,6 +2193,43 @@
 			path = RequestsBuilders;
 			sourceTree = "<group>";
 		};
+		97FD9B2B2323EBAD00D90178 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				36712B2E24600DAE35483C9D /* UIColor+Extension.swift */,
+				36712B2B3338633190FB399E /* UIFont+Extension.swift */,
+				20E30AD420A966B0003D9BAF /* UIView+Extension.swift */,
+				206730E22094D427008B500D /* UITextField+Extension.swift */,
+				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
+				200D52C922DA1E550009C07C /* UIStoryboard+Extension.swift */,
+				200D52D122DA7AB60009C07C /* UICollectionView+Extension.swift */,
+				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
+				200D52D322DA7F550009C07C /* UITableView+Extension.swift */,
+				208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		97FD9B2C2323EBE100D90178 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				20FE9B0121ED3AA900B586CB /* Notification+Extension.swift */,
+				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
+				20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */,
+				97FD9B292323DAEB00D90178 /* Date+Extension.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		97FD9B2D2323EBFD00D90178 /* 3rd libs */ = {
+			isa = PBXGroup;
+			children = (
+				97DB18AB22F4AD48007BE023 /* Observable+extension.swift */,
+				9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */,
+			);
+			path = "3rd libs";
+			sourceTree = "<group>";
+		};
 		9E01C470C3E1B77012FC4051 /* QRScanner */ = {
 			isa = PBXGroup;
 			children = (
@@ -2855,8 +2879,8 @@
 				AEAC706A62DCECCD60132E58 /* SearchCurrencyPairInitializer.swift in Sources */,
 				970B3E97231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift in Sources */,
 				208FE0AC22DB7B8C0014BCE5 /* CHBaseView.swift in Sources */,
-				3671220BB478D212AC3CF7B2 /* Color+Extension.swift in Sources */,
-				36712A6D0B8BC149BFAF5E81 /* Font+Extension.swift in Sources */,
+				3671220BB478D212AC3CF7B2 /* UIColor+Extension.swift in Sources */,
+				36712A6D0B8BC149BFAF5E81 /* UIFont+Extension.swift in Sources */,
 				20F9490B218BACB7000C9923 /* LoginViewController+SetupViews.swift in Sources */,
 				970B3E96231EB298002CA2E8 /* IFilterGroupController.swift in Sources */,
 				3671273B6669BA91DE37CA11 /* ExmoUIViewController.swift in Sources */,
