@@ -318,6 +318,7 @@
 		97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */; };
 		97E9C0152304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */; };
 		97E9C017230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */; };
+		97FD9B2A2323DAEB00D90178 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD9B292323DAEB00D90178 /* Date+Extension.swift */; };
 		9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F43CA7FE0D9869186DF0E /* CurrenciesGroupsPresenter.swift */; };
 		9B434E9900109F99C8591738 /* CreateAlertConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF738944C62F6B85A42AF0CD /* CreateAlertConfigurator.swift */; };
 		9E213ECC5452854BBEB1A693 /* SearchCurrencyPairViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC1156744718574B0A28931 /* SearchCurrencyPairViewController.swift */; };
@@ -683,6 +684,7 @@
 		97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSecurityApiRequestsBuilder.swift; sourceTree = "<group>"; };
 		97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoPublicApiRequestsBuilder.swift; sourceTree = "<group>"; };
 		97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoAuthenticationApiRequestsBuilder.swift; sourceTree = "<group>"; };
+		97FD9B292323DAEB00D90178 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
 		A028C4E223B32A2DEDE1CA52 /* SearchCurrencyPairModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchCurrencyPairModuleInput.swift; sourceTree = "<group>"; };
 		A12FFF3C48F1874EECA05E38 /* AlertsViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsViewProtocols.swift; sourceTree = "<group>"; };
@@ -1179,6 +1181,7 @@
 				20FE9AFF21ED399600B586CB /* String+Extension.swift */,
 				20CAFED62042AF0D00C7DEA5 /* Data+Extensions.swift */,
 				36712B2B3338633190FB399E /* Font+Extension.swift */,
+				97FD9B292323DAEB00D90178 /* Date+Extension.swift */,
 				20E30AD420A966B0003D9BAF /* UIView+Extension.swift */,
 				206730E22094D427008B500D /* UITextField+Extension.swift */,
 				20DEBBA721768AE800BE921E /* UISearchBar+Extension.swift */,
@@ -2828,6 +2831,7 @@
 				20369A5121972438001D6628 /* RootTabsPresenterProtocols.swift in Sources */,
 				20F9518122DD222C005A7E42 /* CHExchangePresenter.swift in Sources */,
 				206221E721E8FC1A004603F3 /* SubscriptionsViewController.swift in Sources */,
+				97FD9B2A2323DAEB00D90178 /* Date+Extension.swift in Sources */,
 				970B3E9D231EB298002CA2E8 /* WatchlistViewController.swift in Sources */,
 				20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */,
 				201728AE230B3A83000823E1 /* CHSearchCurrenciesResultsPresenter.swift in Sources */,
