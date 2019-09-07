@@ -11,7 +11,7 @@ import SwiftWebSocket
 import SwiftyJSON
 import RxSwift
 
-public enum CHWebSocketEvent {
+enum CHWebSocketEvent {
     case connected
     case disconnected(Error?)
     case message(String)
@@ -70,6 +70,7 @@ extension CHSocketManager {
     
     func send(message: String) {
         guard !message.isEmpty else {
+            assertionFailure("fix me")
             return
         }
         socket.send(text: message)
@@ -87,7 +88,7 @@ private extension CHSocketManager {
         }
         
         socket.event.close = { [unowned self] code, reason, clean in
-            print("socket has been closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
+            log.debug("socket has been closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
             self.response.onNext(.disconnected(nil))
             self.connected.onNext(false)
         }
@@ -100,12 +101,15 @@ private extension CHSocketManager {
         }
         
         socket.event.error = { [unowned self] error in
-            print("socket error: \(error)")
+            log.debug("socket error: \(error)")
             self.response.onError(error)
         }
     }
     
 }
 
-//
-extension CHSocketManager: ReactiveCompatible {}
+// MARK: - ReactiveCompatible
+
+extension CHSocketManager: ReactiveCompatible {
+    // do nothing
+}
