@@ -28,15 +28,25 @@ extension VinsoAPI {
     }
     
     func setSubscriptionType(_ packageType: CHSubscriptionPackageType) {
-        print("\(String(describing: self)) => \(#function)")
-        let msg = AccountApiRequestBuilder.buildSetSubscriptionRequest(packageType.rawValue)
-        socketManager.send(message: msg)
+        self.sendRequest(messageType: .setSubscriptionType, params: ["type": packageType.rawValue])
+            .asSingle()
+            .subscribe(onSuccess: { json in
+                log.debug(json)
+            }, onError: { err in
+                log.error(err)
+            })
+            .disposed(by: disposeBag)
     }
     
     func loadAvailableSubscriptions() {
-        print("\(String(describing: self)) => \(#function)")
-        let msg = AccountApiRequestBuilder.buildGetSubscriptionConfigsRequest()
-        socketManager.send(message: msg)
+        self.sendRequest(messageType: .subscriptionConfigs)
+            .asSingle()
+            .subscribe(onSuccess: { json in
+                log.debug(json)
+            }, onError: { err in
+                log.error(err)
+            })
+            .disposed(by: disposeBag)
     }
     
 }
@@ -47,9 +57,9 @@ private extension VinsoAPI {
 
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        log.info("notification name =", notification.name)
         guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-            print("\(#function) => can't convert notification container to IAPProduct")
+            log.info("can't convert notification container to IAPProduct")
             if AppDelegate.vinsoAPI.isAuthorized {
                 AppDelegate.vinsoAPI.setSubscriptionType(.freeWithAds)
             }
