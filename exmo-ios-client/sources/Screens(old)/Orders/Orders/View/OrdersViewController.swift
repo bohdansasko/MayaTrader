@@ -67,7 +67,7 @@ class OrdersViewController: ExmoUIViewController, OrdersViewInput {
     }
 
     private func onSelectedDeleteAction(actionIndex: Int) {
-        print("onSelectedDeleteAction: \(actionIndex)")
+        log.debug("onSelectedDeleteAction: \(actionIndex)")
         isCancellingOrdersActive = true
         switch (actionIndex) {
         case OrderAdditionalAction.deleteAll.rawValue:

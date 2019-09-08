@@ -19,17 +19,16 @@ protocol NetworkWorker {
 
 extension NetworkWorker {
     func handleResponse(response: DataResponse<Any>) {
-        print("default result is : \(response.result)")
         switch response.result {
         case .success(_):
             do {
                 let jsonStr = try JSON(data: response.data!)
                 onHandleResponseSuccesfull?(jsonStr)
             } catch {
-                print("NetworkWorker: we caught a problem in handle response")
+                log.error("NetworkWorker: we caught a problem in handle response")
             }
         case .failure(_):
-            print("NetworkWorker: failure loading chart data")
+            log.error("NetworkWorker: failure loading chart data")
         }
     }
 }

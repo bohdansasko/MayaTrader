@@ -66,7 +66,6 @@ final class WatchlistViewController: ExmoUIViewController {
 
 extension WatchlistViewController: WatchlistViewInput {
     func presentFavouriteCurrencies(items: [WatchlistCurrency]) {
-        print("update currencies")
         guard let ds = listView.datasource as? WatchlistCardsDataSource else {
             return
         }
@@ -105,7 +104,6 @@ extension WatchlistViewController: WatchlistViewInput {
     }
 
     func setSubscription(_ package: CHSubscriptionPackageProtocol) {
-        print("Watchlist: \(#function)")
         CHSubscriptionPackage = package
         super.isAdsActive = package.isAdsPresent
         if package.isAdsPresent {

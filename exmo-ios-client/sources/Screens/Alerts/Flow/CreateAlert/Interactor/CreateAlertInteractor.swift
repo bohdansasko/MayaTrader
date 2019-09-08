@@ -33,7 +33,7 @@ extension CreateAlertInteractor: CreateAlertInteractorInput {
     }
     
     func createAlert(_ alertModel: Alert) {
-        print(alertModel)
+        log.debug("alert -", alertModel)
         tickerNetworkWorker.cancelRepeatLoads()
         let request = AppDelegate.vinsoAPI.rx.createAlert(alert: alertModel)
         request
@@ -82,7 +82,6 @@ extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
     }
     
     func onDidLoadTickerFails() {
-        print("onDidLoadTickerFails")
         output.updateSelectedCurrency(nil)
         output.showAlert(message: "Can't load data. Please try again a little bit later.")
     }
@@ -90,7 +89,6 @@ extension CreateAlertInteractor: ITickerNetworkWorkerDelegate {
 
 extension CreateAlertInteractor: VinsoAPIConnectionDelegate {
     func onConnectionRefused(reason: String) {
-        print(reason)
         output.showAlert(message: reason)
     }
 }
@@ -102,7 +100,6 @@ extension CreateAlertInteractor: AlertsAPIResponseDelegate {
     }
 
     func onDidCreateAlertError(msg: String) {
-        print(msg)
         tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
         output.showAlert(message: msg)
     }
@@ -112,7 +109,6 @@ extension CreateAlertInteractor: AlertsAPIResponseDelegate {
     }
 
     func onDidUpdateAlertError(msg: String) {
-        print(msg)
         tickerNetworkWorker.load(timeout: FrequencyUpdateInSec.createAlert, repeat: true)
         output.showAlert(message: msg)
     }

@@ -14,7 +14,7 @@ class SearchPresenter {
     weak var moduleOutput: SearchModuleOutput?
     
     deinit {
-        print("deinit \(String(describing: self))")
+        log.debug("deinit")
     }
 }
 

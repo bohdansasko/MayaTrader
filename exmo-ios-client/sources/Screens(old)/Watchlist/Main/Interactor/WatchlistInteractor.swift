@@ -33,13 +33,12 @@ extension WatchlistInteractor: WatchlistInteractorInput {
         if favPairs.count > 0 {
             networkWorker.load(timeout: FrequencyUpdateInSec.watchlist, repeat: true)
         } else {
-            print("Watchlist: didLoadCurrencies \(favPairs)")
+            log.debug("Watchlist: didLoadCurrencies \(favPairs)")
             output.didLoadCurrencies(items: favPairs)
         }
     }
 
     func viewWillDisappear() {
-        print("interactor: viewWillDisappear")
         networkWorker.cancelRepeatLoads()
         saveFavCurrenciesToCache()
     }
@@ -70,7 +69,6 @@ extension WatchlistInteractor: WatchlistInteractorInput {
 // MARK: ITickerNetworkWorkerDelegate
 extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
-        print("onDidLoadTickerSuccess")
         guard let tickerPairs = ticker?.pairs else { return }
 
         var tickerContainer: [String : WatchlistCurrency] = [:]
@@ -98,7 +96,6 @@ extension WatchlistInteractor: ITickerNetworkWorkerDelegate {
     }
 
     func onDidLoadTickerFails() {
-        print(#function)
         networkWorker.cancelRepeatLoads()
         output.onLoadTickerError(msg: "Can't retrieve data from EXMO. Please, try again later.")
     }
@@ -113,11 +110,11 @@ extension WatchlistInteractor {
         }
         favPairs = convertToArray(currencies: object.pairs)
         favPairs.sort(by: { $0.index < $1.index })
-        favPairs.forEach({ print("code = \($0.tickerPair.code)") })
+        favPairs.forEach({ log.debug("code = \($0.tickerPair.code)") })
     }
 
     func saveFavCurrenciesToCache() {
-        print("saveFavCurrenciesToCache")
+        log.info("saveFavCurrenciesToCache")
         dbManager.add(data: convertToDBArray(currencies: favPairs), update: true)
     }
 }
@@ -125,8 +122,6 @@ extension WatchlistInteractor {
 // MARK: helps methods
 extension WatchlistInteractor {
     func parseTicker(json: JSON) {
-        print("Loaded ticker for Watchlist")
-
         var tickerContainer: [String: WatchlistCurrency] = [:]
 
         json["data"]["ticker"].dictionaryValue.forEach({
@@ -150,8 +145,7 @@ extension WatchlistInteractor {
     func convertToDBArray(currencies: [WatchlistCurrency]) -> [WatchlistCurrencyObject] {
         var objects = [WatchlistCurrencyObject]()
         currencies.forEach({ objects.append($0.managedObject()) })
-        print("convertToDBArray")
-        objects.forEach({ print("code = \($0.pairName), index = \($0.index)") })
+        objects.forEach({ log.debug("code = \($0.pairName), index = \($0.index)") })
         return objects
     }
     
@@ -193,9 +187,8 @@ extension WatchlistInteractor {
 extension WatchlistInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
         guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-            print("\(#function) => can't convert notification container to IAPProduct")
+            log.error("can't convert notification container to IAPProduct")
             let basicSubscription = CHBasicAdsSubscriptionPackage()
             if favPairs.count > basicSubscription.maxPairsInWatchlist {
                 deletePairsFrom(startIndex: basicSubscription.maxPairsInWatchlist)
@@ -212,9 +205,9 @@ extension WatchlistInteractor {
 
     @objc
     func onPurchaseError(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        log.debug("notification \(notification.name)")
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
-            print("\(#function) => can't cast error message to String")
+            log.error("can't cast error message to String")
             output.onPurchaseError(msg: "Undefined purchase error.")
             return
         }

@@ -92,7 +92,7 @@ extension CHMenuViewPresenter {
         for sectionModel in sections {
             if let rowIndex = sectionModel.cells.firstIndex(where: { $0 == type } ) {
                 let indexPath = IndexPath(row: rowIndex, section: sectionModel.section.rawValue)
-                print("reload cell at \(indexPath)")
+                log.debug("reload cell at \(indexPath)")
                 tableView.reloadRows(at: [indexPath], with: .automatic)
                 break
             }

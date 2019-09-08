@@ -60,21 +60,16 @@ final class ChartTimePeriodContainer: UIView {
 
         senderBtn.setTitleColor(UIColor(red: 118.0/255, green: 184.0/255, blue: 254.0/255, alpha: 1), for: .normal)
 
-        print("senderBtn.x = \(senderBtn.frame.origin.x)")
         indicatorLeadingConstraint.constant = senderBtn.frame.origin.x + 30
         
         switch (senderBtn) {
         case btnOneYear:
-            print("touch on year")
             callbackOnChangePeriod?(PeriodType.year.rawValue)
         case btnOneMonth:
-            print("touch on month")
             callbackOnChangePeriod?(PeriodType.month.rawValue)
         case btnOneWeek:
-            print("touch on week")
             callbackOnChangePeriod?(PeriodType.week.rawValue)
         case btnOneDay:
-            print("touch on day")
             callbackOnChangePeriod?(PeriodType.day.rawValue)
         default:
             break
@@ -199,7 +194,6 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
 
 extension CurrencyChartViewController {
     func setSubscription(_ package: CHSubscriptionPackageProtocol) {
-        print("\(String(describing: self)) => \(#function)")
         super.isAdsActive = package.isAdsPresent
 //        if package.isAdsPresent {
 //            showAdsView()

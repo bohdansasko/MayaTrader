@@ -38,7 +38,7 @@ class SearchViewController: ExmoUIViewController {
     }
     
     deinit {
-        print("deinit \(String(describing: self))")
+        log.debug("deinit")
     }
     
     override func shouldUseGlow() -> Bool {

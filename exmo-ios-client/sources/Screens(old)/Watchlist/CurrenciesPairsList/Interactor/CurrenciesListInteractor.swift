@@ -55,11 +55,11 @@ extension CurrenciesListInteractor: CurrenciesListInteractorInput {
 
     func cacheFavCurrencyPair(datasourceItem: Any?, isSelected: Bool) {
         let countPairs = pairs.filter({ $0.tickerPair.isFavourite }).count + (isSelected ? 1 : -1)
-        let maxPairs = IAPService.shared.CHSubscriptionPackage.maxPairsInWatchlist
+        let maxPairs = IAPService.shared.subscriptionPackage.maxPairsInWatchlist
 
         guard countPairs <= maxPairs,
               var currencyModel = datasourceItem as? WatchlistCurrency else {
-            print("\(#function) => max pairs. Can't add one more pair")
+            log.error("max pairs. Can't add one more pair")
             output.onMaxAlertsSelectedError(msg: "You have already selected max quantity of pairs. For use more pairs, you need to buy one of subscriptions.")
             return
         }
@@ -95,7 +95,7 @@ extension CurrenciesListInteractor {
         }
 
         var wobjPairs = convertToArray(currencies: wobj.pairs)
-        wobjPairs.forEach({ print("wobjPairs: code = \($0.tickerPair.code), isFavourite = \($0.tickerPair.isFavourite)") })
+        wobjPairs.forEach({ log.debug("wobjPairs: code = \($0.tickerPair.code), isFavourite = \($0.tickerPair.isFavourite)") })
 
         // remove unused pairs from db
         var removePairsIds = [String]()
@@ -105,7 +105,7 @@ extension CurrenciesListInteractor {
         for indexPair in (0..<countObjPairs) {
             let isCachedCurrency = wobjPairs.first(where: { $0.tickerPair.code == pairs[indexPair].tickerPair.code }) != nil
             if !pairs[indexPair].tickerPair.isFavourite && isCachedCurrency {
-                print("remove \(pairs[indexPair].tickerPair.code)")
+                log.debug("remove \(pairs[indexPair].tickerPair.code)")
                 removePairsIds.append(pairs[indexPair].tickerPair.code)
                 pairsForRemove.append(pairs[indexPair])
             }
@@ -124,7 +124,7 @@ extension CurrenciesListInteractor {
                 }
             }
         }
-        print("==========")
+        log.info("==========")
 
         // add new selected currencies to db
         var newPairs = self.pairs.filter({
@@ -134,7 +134,7 @@ extension CurrenciesListInteractor {
         })
 
         if newPairs.count > 0 {
-            newPairs.forEach({ print("append \($0.tickerPair.code)") })
+            newPairs.forEach({ log.debug("append \($0.tickerPair.code)") })
 
             dbManager.performTransaction {
                 for index in (0..<wobj.pairs.count) {
@@ -175,7 +175,6 @@ extension CurrenciesListInteractor {
 
 extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
     func onDidLoadTickerSuccess(_ ticker: Ticker?) {
-        print("onDidLoadTickerSuccess")
         guard let tickerPairs = ticker?.pairs else { return }
         
         var tickerContainer: [String : TickerCurrencyModel] = [:]
@@ -204,6 +203,6 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
     }
     
     func onDidLoadTickerFails() {
-        print("onDidLoadTickerFails")
+        log.debug()
     }
 }

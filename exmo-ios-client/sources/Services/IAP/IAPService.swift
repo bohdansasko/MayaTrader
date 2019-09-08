@@ -22,10 +22,10 @@ final class IAPService: NSObject {
     private let kSharedSecret = "ac548a8468d243caa1d13995a28cb3c5"
     private let kReceiptSubscriptionURLType = IAPService.getReceiptSubscriptionURLType()
     private(set) var purchasedSubscriptions: [ReceiptItem] = []
-    private(set) var CHSubscriptionPackage: CHSubscriptionPackageProtocol! {
+    private(set) var subscriptionPackage: CHSubscriptionPackageProtocol! {
         didSet {
-            print("\(#function) - Active subscription: \(CHSubscriptionPackage.name)")
-            Defaults.setSubscriptionId(CHSubscriptionPackage.type.rawValue)
+            log.debug("Active subscription: \(subscriptionPackage.name)")
+            Defaults.setSubscriptionId(subscriptionPackage.type.rawValue)
         }
     }
 
@@ -39,23 +39,24 @@ final class IAPService: NSObject {
     
     func loadSubscriptionFromCache() {
         guard let subscriptionType = CHSubscriptionPackageType(rawValue: Defaults.getSubscriptionId()) else {
-            CHSubscriptionPackage = CHBasicAdsSubscriptionPackage()
+            subscriptionPackage = CHBasicAdsSubscriptionPackage()
             return
         }
         
         switch subscriptionType {
-        case .freeWithAds: CHSubscriptionPackage = CHBasicAdsSubscriptionPackage()
-        case .freeNoAds: CHSubscriptionPackage = CHBasicNoAdsSubscriptionPackage()
-        case .lite: CHSubscriptionPackage = CHLiteSubscriptionPackage()
-        case .pro: CHSubscriptionPackage = CHProSubscriptionPackage()
+        case .freeWithAds: subscriptionPackage = CHBasicAdsSubscriptionPackage()
+        case .freeNoAds  : subscriptionPackage = CHBasicNoAdsSubscriptionPackage()
+        case .lite       : subscriptionPackage = CHLiteSubscriptionPackage()
+        case .pro        : subscriptionPackage = CHProSubscriptionPackage()
         }
     }
 }
 
 extension IAPService {
+    
     func fetchAllSubscriptions() {
         purchasedSubscriptions = []
-        print("\(String(describing: self)), \(#function)")
+
         let appleValidator = AppleReceiptValidator(service: kReceiptSubscriptionURLType, sharedSecret: kSharedSecret)
         SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
             switch result {
@@ -93,20 +94,20 @@ extension IAPService {
                     
                     if let expirationDate = subscriptionExpirationDate {
                         if self.timer == nil {
-                            print("Time to end subscription: \(expirationDate.timeIntervalSinceNow)")
+                            log.debug("Time to end subscription: \(expirationDate.timeIntervalSinceNow)")
                             self.timer = Timer.scheduledTimer(withTimeInterval: expirationDate.timeIntervalSinceNow, repeats: false, block: {
                                 _ in
                                 self.onSubscriptionExpired()
                             })
                         }
                     }
-                    print("\(#function) => purchased items => \(activeSubscriptions) \n\n")
+                    log.debug("purchased items => \(activeSubscriptions) \n\n")
                 case .expired(_, _), .notPurchased:
-                    print("\(#function) => updateSubscription \n\n")
+                    log.debug("\(#function) => updateSubscription \n\n")
                     self.updateSubscription(CHBasicAdsSubscriptionPackage())
                 }
             case .error(let error):
-                print("Receipt verification failed: \(error)")
+                log.error("Receipt verification failed: \(error)")
                 self.updateSubscription(CHBasicAdsSubscriptionPackage())
                 self.sendNotification(IAPNotification.purchaseError, data: [IAPService.kErrorKey: error.localizedDescription])
             }
@@ -129,7 +130,7 @@ extension IAPService {
                 return false
             }
             let isDateOk = nowDatetime < subscriptionExpirationDate
-            print("\(#function) => productId = \(receipt.productId), subscriptionExpirationDate = \(subscriptionExpirationDate), isDateOk = \(isDateOk)")
+            log.debug("productId = \(receipt.productId), subscriptionExpirationDate = \(subscriptionExpirationDate), isDateOk = \(isDateOk)")
 
             return receipt.productId == product.rawValue && isDateOk
         })
@@ -140,13 +141,13 @@ extension IAPService {
         SwiftyStoreKit.retrieveProductsInfo(products) { result in
             if let product = result.retrievedProducts.first {
                 let priceString = product.localizedPrice!
-                print("Product: \(product.localizedDescription), price: \(priceString)")
+                log.debug("Product: \(product.localizedDescription), price: \(priceString)")
                 completionOnSuccess?(result.retrievedProducts)
             } else if let invalidProductId = result.invalidProductIDs.first {
-                print("Invalid product identifier: \(invalidProductId)")
+                log.debug("Invalid product identifier: \(invalidProductId)")
                 completionOnError?("Products were changed. Plese, contact with app developer.")
             } else {
-                print("Error: \(result.error)")
+                log.error("Error: \(result.error)")
                 completionOnError?(result.error?.localizedDescription)
             }
         }
@@ -177,33 +178,34 @@ extension IAPService {
             switch result {
             case .success(let purchase):
                 self.sendNotification(IAPNotification.purchaseSuccess, data: notificationData)
-                print("Purchase Success: \(purchase.productId)")
+                log.debug("Purchase Success: \(purchase.productId)")
                 guard let purchasedProduct = IAPProduct(rawValue: purchase.productId) else {
                     self.updateSubscription(CHBasicAdsSubscriptionPackage())
                     return
                 }
 
-                var CHSubscriptionPackage: CHSubscriptionPackageProtocol
+                var subscriptionPackage: CHSubscriptionPackageProtocol
                 switch purchasedProduct {
-                case IAPProduct.proPackage: CHSubscriptionPackage = CHProSubscriptionPackage()
-                case IAPProduct.litePackage: CHSubscriptionPackage = CHLiteSubscriptionPackage()
-                case IAPProduct.noAds: CHSubscriptionPackage = CHBasicNoAdsSubscriptionPackage()
+                case IAPProduct.proPackage : subscriptionPackage = CHProSubscriptionPackage()
+                case IAPProduct.litePackage: subscriptionPackage = CHLiteSubscriptionPackage()
+                case IAPProduct.noAds      : subscriptionPackage = CHBasicNoAdsSubscriptionPackage()
                 }
-                self.updateSubscription(CHSubscriptionPackage)
+                self.updateSubscription(subscriptionPackage)
 
             case .error(let error):
                 var errorMessage: String
                 switch error.code {
-                case .unknown: errorMessage = "Unknown error. Please contact support"
-                case .clientInvalid: errorMessage = "Not allowed to make the payment"
-                case .paymentCancelled: errorMessage = "Payment has cancelled"
-                case .paymentInvalid: errorMessage = "The purchase identifier was invalid"
-                case .paymentNotAllowed: errorMessage = "The device is not allowed to make the payment"
-                case .storeProductNotAvailable: errorMessage = "The product is not available in the current storefront"
-                case .cloudServicePermissionDenied: errorMessage = "Access to cloud service information is not allowed"
+                case .unknown                            : errorMessage = "Unknown error. Please contact support"
+                case .clientInvalid                      : errorMessage = "Not allowed to make the payment"
+                case .paymentCancelled                   : errorMessage = "Payment has cancelled"
+                case .paymentInvalid                     : errorMessage = "The purchase identifier was invalid"
+                case .paymentNotAllowed                  : errorMessage = "The device is not allowed to make the payment"
+                case .storeProductNotAvailable           : errorMessage = "The product is not available in the current storefront"
+                case .cloudServicePermissionDenied       : errorMessage = "Access to cloud service information is not allowed"
                 case .cloudServiceNetworkConnectionFailed: errorMessage = "Could not connect to the network"
-                case .cloudServiceRevoked: errorMessage = "User has revoked permission to use this cloud service"
-                default: errorMessage = (error as NSError).localizedDescription
+                case .cloudServiceRevoked                : errorMessage = "User has revoked permission to use this cloud service"
+                default:
+                    errorMessage = (error as NSError).localizedDescription
                 }
                 self.sendNotification(IAPNotification.purchaseError, data: [IAPService.kErrorKey: errorMessage])
             }
@@ -213,11 +215,11 @@ extension IAPService {
     func restorePurchases() {
         SwiftyStoreKit.restorePurchases(atomically: true) { results in
             if results.restoreFailedPurchases.count > 0 {
-                print("Restore Failed: \(results.restoreFailedPurchases)")
+                log.error("Restore Failed: \(results.restoreFailedPurchases)")
                 self.updateSubscription(CHBasicAdsSubscriptionPackage())
             } else if results.restoredPurchases.count > 0 {
-                let isProPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.proPackage.rawValue })
-                let isLitePackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.litePackage.rawValue })
+                let isProPackage   = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.proPackage.rawValue })
+                let isLitePackage  = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.litePackage.rawValue })
                 let isNoAdsPackage = results.restoredPurchases.contains(where: { $0.productId == IAPProduct.noAds.rawValue })
                 
                 var purchasedProduct: CHSubscriptionPackageProtocol = CHBasicAdsSubscriptionPackage()
@@ -230,7 +232,7 @@ extension IAPService {
                 }
                 self.updateSubscription(purchasedProduct)
             } else {
-                print("Nothing to Restore")
+                log.error("Nothing to Restore")
                 self.updateSubscription(CHBasicAdsSubscriptionPackage())
             }
         }
@@ -255,20 +257,20 @@ extension IAPService {
                     if let item = items.first {
                         self.purchasedSubscriptions.append(item)
                     }
-                    print("\(productId) is valid until \(expiryDate)\n\(items)\n")
+                    log.debug("\(productId) is valid until \(expiryDate)\n\(items)\n")
                     self.sendNotification(.purchased, data: notificationData)
 
                 case .expired(let expiryDate, let items):
-                    print("\(productId) is expired since \(expiryDate)\n\(items.first)\n")
+                    log.debug("\(productId) is expired since \(expiryDate)\n\(items.first)\n")
                     self.sendNotification(.expired, data: notificationData)
 
                 case .notPurchased:
-                    print("The user has never purchased \(productId)")
+                    log.debug("The user has never purchased \(productId)")
                     self.sendNotification(.notPurchased, data: notificationData)
                 }
 
             case .error(let error):
-                print("Receipt verification failed: \(error)")
+                log.error("Receipt verification failed: \(error)")
             }
         }
     }
@@ -282,14 +284,14 @@ extension IAPService {
                 let purchaseResult = SwiftyStoreKit.verifySubscriptions(productIds: productIds, inReceipt: receipt)
                 switch purchaseResult {
                 case .purchased(let expiryDate, let items):
-                    print("\(productIds) are valid until \(expiryDate)\n\(items)\n")
+                    log.debug("\(productIds) are valid until \(expiryDate)\n\(items)\n")
                 case .expired(let expiryDate, let items):
-                    print("\(productIds) are expired since \(expiryDate)\n\(items)\n")
+                    log.debug("\(productIds) are expired since \(expiryDate)\n\(items)\n")
                 case .notPurchased:
-                    print("The user has never purchased \(productIds)")
+                    log.debug("The user has never purchased \(productIds)")
                 }
             case .error(let error):
-                print("Receipt verification failed: \(error)")
+                log.error("Receipt verification failed: \(error)")
             }
         }
     }
@@ -300,9 +302,9 @@ extension IAPService {
         }
     }
 
-    private func updateSubscription(_ CHSubscriptionPackage: CHSubscriptionPackageProtocol) {
-        self.CHSubscriptionPackage = CHSubscriptionPackage
-        self.sendNotification(IAPNotification.updateSubscription, data: [IAPService.kSubscriptionPackageKey: CHSubscriptionPackage])
+    private func updateSubscription(_ subscriptionPackage: CHSubscriptionPackageProtocol) {
+        self.subscriptionPackage = subscriptionPackage
+        self.sendNotification(IAPNotification.updateSubscription, data: [IAPService.kSubscriptionPackageKey: subscriptionPackage])
     }
 }
 

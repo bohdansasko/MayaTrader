@@ -14,7 +14,7 @@ class SearchInteractor {
     var networkWorker: ITickerNetworkWorker!
 
     deinit {
-        print("deinit \(String(describing: self))")
+        log.debug("deinit")
     }
 }
 

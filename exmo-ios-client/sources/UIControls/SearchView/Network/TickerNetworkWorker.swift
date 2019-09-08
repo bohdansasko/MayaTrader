@@ -15,7 +15,7 @@ final class TickerNetworkWorker: ITickerNetworkWorker {
     private(set) var isLoadCancelled: Bool = false
 
     deinit {
-        print("deinit \(String(describing: self))")
+        log.debug("deinit")
     }
 
     func load() {
@@ -41,7 +41,6 @@ final class TickerNetworkWorker: ITickerNetworkWorker {
             return
         }
 
-        print("\(String(describing: self)): \(#function)")
         timerRepeater = Timer.scheduledTimer(withTimeInterval: FrequencyUpdateInSec.watchlist, repeats: true) {
             [weak self] _ in
             self?.load()
@@ -50,7 +49,6 @@ final class TickerNetworkWorker: ITickerNetworkWorker {
     }
 
     func cancelRepeatLoads() {
-        print("\(String(describing: self)): \(#function)")
         if timerRepeater != nil {
             isLoadCancelled = true
             timerRepeater?.invalidate()

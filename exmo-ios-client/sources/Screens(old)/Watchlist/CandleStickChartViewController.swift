@@ -114,7 +114,7 @@ extension CandleStickChartViewController : ChartViewDelegate {
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-        print("candle dx\(dX)")
+        log.debug("candle dx\(dX)")
         guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
         callbackOnChartTranslated?(highlight)
     }

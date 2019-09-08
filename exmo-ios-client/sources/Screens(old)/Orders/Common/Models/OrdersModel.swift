@@ -32,7 +32,7 @@ final class Orders {
     
     private func parseJSON(json: JSON) {
         if displayType == .none {
-            print("order display type == none")
+            log.error("order display type == none")
             return
         }
         

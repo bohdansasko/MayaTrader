@@ -26,11 +26,11 @@ class WatchlistCurrencyChartInteractor {
 
 extension WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInput {
     func viewWillAppear() {
-        output.setSubscription(IAPService.shared.CHSubscriptionPackage)
+        output.setSubscription(IAPService.shared.subscriptionPackage)
     }
 
     func loadCurrencyPairChartHistory(currencyPair: String, period: String = "day") {
-        print("start loadCurrencyPairSettings")
+        log.info("start loadCurrencyPairSettings")
         networkAPIHandler.onHandleResponseSuccesfull = {
             [weak self] json in
             guard let jsonObj = json as? JSON else { return }
@@ -59,9 +59,9 @@ extension WatchlistCurrencyChartInteractor {
 extension WatchlistCurrencyChartInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        log.debug("notification \(notification.name)")
         guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-            print("\(#function) => can't convert notification container to CHSubscriptionPackageProtocol")
+            log.error("can't convert notification container to CHSubscriptionPackageProtocol")
             output.setSubscription(CHBasicAdsSubscriptionPackage())
             return
         }

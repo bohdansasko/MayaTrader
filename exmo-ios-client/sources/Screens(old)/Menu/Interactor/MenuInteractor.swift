@@ -74,9 +74,9 @@
 //extension MenuInteractor {
 //    @objc
 //    func onProductSubscriptionActive(_ notification: Notification) {
-//        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+//        log.debug("notification \(notification.name)")
 //        guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-//            print("\(#function) => can't convert notification container to IAPProduct")
+//            log.error("\(#function) => can't convert notification container to IAPProduct")
 //            output.setIsAdsPresent(true)
 //            return
 //        }
@@ -85,9 +85,9 @@
 //
 //    @objc
 //    func onPurchaseError(_ notification: Notification) {
-//       print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+//       log.debug("notification \(notification.name)")
 //        guard let _ = notification.userInfo?[IAPService.kErrorKey] as? String else {
-//            print("\(#function) => can't cast error message to String")
+//            log.error("can't cast error message to String")
 //            output.setIsAdsPresent(true)
 //            return
 //        }

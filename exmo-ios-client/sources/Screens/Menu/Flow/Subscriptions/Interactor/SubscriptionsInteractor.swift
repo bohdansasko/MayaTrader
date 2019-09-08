@@ -11,13 +11,13 @@ class SubscriptionsInteractor {
     
     static func buildSubcsriptionCells(priceForLite strPriceLite: String, priceForPro strPricePro: String) -> [SubscriptionsCellModel] {
         return [
-            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
-            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
-            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
-            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
-            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
-            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type),
-            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro, activeSubscriptionType: IAPService.shared.CHSubscriptionPackage.type)
+            SubscriptionsCellModel(name: "Max Alerts", forFree: 0, forLite: 10, forPro: 25, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Watchlist Max Pairs", forFree: 5, forLite: 10, forPro: 50, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Advertisement", forFree: true, forLite: false, forPro: false, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Free upcoming features", forFree: false, forLite: false, forPro: true, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Support", forFree: true, forLite: true, forPro: true, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Price/month", forFree: false, forLite: strPriceLite, forPro: false, activeSubscriptionType: IAPService.shared.subscriptionPackage.type),
+            SubscriptionsCellModel(name: "Price/year", forFree: false, forLite: false, forPro: strPricePro, activeSubscriptionType: IAPService.shared.subscriptionPackage.type)
         ]
     }
 }
@@ -87,9 +87,9 @@ extension SubscriptionsInteractor {
 extension SubscriptionsInteractor {
     @objc
     func onProductSubscriptionActive(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        log.debug("notification \(notification.name)")
         guard let newSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-            print("\(#function) => can't convert notification container to CHSubscriptionPackageProtocol")
+            log.error("can't convert notification container to CHSubscriptionPackageProtocol")
             output.purchaseFinishedSuccess()
             return
         }
@@ -108,9 +108,9 @@ extension SubscriptionsInteractor {
 
     @objc
     func onPurchaseError(_ notification: Notification) {
-        print("\(String(describing: self)), \(#function) => notification \(notification.name)")
+        log.debug("notification \(notification.name)")
         guard let errorMsg = notification.userInfo?[IAPService.kErrorKey] as? String else {
-            print("\(#function) => can't cast error message to String")
+            log.error("can't cast error message to String")
             output.onPurchaseSubscriptionError(reason: "Purchase: Undefined error")
             return
         }

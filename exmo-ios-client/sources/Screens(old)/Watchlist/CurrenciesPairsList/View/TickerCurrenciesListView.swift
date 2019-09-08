@@ -112,8 +112,9 @@ extension TickerCurrenciesListView: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        print(self.frame.width)
-        return datasource == nil ? .zero : CGSize(width: self.frame.width, height: 30)
+        return datasource == nil
+            ? .zero
+            : CGSize(width: self.frame.width, height: 30)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

@@ -162,7 +162,6 @@ extension OrdersListView {
 extension OrdersListView {
     func appendOpenOrder(orderModel: OrderModel) {
         if (displayOrderType == .open) {
-            print("OrdersListView => empty method - appendOpenOrder")
 //            openedOrders = AppDelegate.session.getOpenOrders()
 //            dataProvider.append(orderModel: orderModel)
 //            tableView.insertSections(IndexSet(integer: 0), with: .automatic)
@@ -177,18 +176,16 @@ extension OrdersListView {
     }
 
     func deleteAllOrdersOnBuy() {
-        print("delete all orders on buy")
         deleteAllOrdersOn(deleteOrderType: .buy)
     }
 
     func deleteAllOrdersOnSell() {
-        print("delete all orders on sell")
         deleteAllOrdersOn(deleteOrderType: .sell)
     }
 
     private func deleteAllOrdersOn(deleteOrderType: OrderActionType) {
         guard let openedOrders = openedOrders else {
-            print("deleteOrders: openedOrders == nil")
+            log.error("deleteOrders: openedOrders == nil")
             return
         }
 
@@ -198,10 +195,8 @@ extension OrdersListView {
     }
     
     func deleteAllOrders() {
-        print("delete all orders")
-        
         guard let openedOrders = openedOrders else {
-            print("deleteAllOrders: openedOrders == nil")
+            log.error("deleteAllOrders: openedOrders == nil")
             return
         }
         var ids: [Int64] = []
@@ -212,16 +207,16 @@ extension OrdersListView {
     func orderWasCancelled(ids: [Int64]) {
         for id in ids {
             guard let indexPath = tableViewCells[id] else {
-                print("OrdersListView => orderWasCancelled: can't find cell with id \(id) for remove from \(tableViewCells)")
+                log.error("OrdersListView => orderWasCancelled: can't find cell with id \(id) for remove from \(tableViewCells)")
                 continue
             }
             dataProvider.removeItem(byIndex: indexPath.section)
             tableViewCells.removeValue(forKey: id)
         }
 
-        print("OrdersListView => orderWasCancelled: \(tableViewCells)")
+        log.debug("OrdersListView => orderWasCancelled: \(tableViewCells)")
 
-        print("orderWasCancelled => reload data")
+        log.info("orderWasCancelled => reload data")
         tableView.reloadData()
 
         checkOnRequirePlaceHolder()

@@ -96,7 +96,7 @@ class ExmoOrdersListNetworkWorker: IOrdersListNetworkWorker {
         Alamofire.request(request).responseJSON {
             [weak self] jsonResponse in
             guard let strongSelf = self else {
-                print("should handle this bad situation")
+                log.error("should handle this bad situation")
                 return
             }
 

@@ -97,14 +97,12 @@ extension RootTabsController {
     }
 
     @objc func onApplicationEnterForeground() {
-        print("onApplicationEnterForeground")
         isApplicationWasInForeground = true
     }
 
     @objc func onApplicationDidBecomeActive() {
-        print("onApplicationDidBecomeActive")
         if !isPasscodeActive && isApplicationWasInForeground && Defaults.isPasscodeActive() {
-            print("show PasswordModuleConfigurator")
+            log.info("show PasswordModuleConfigurator")
             isPasscodeActive = true
             let vc = PasscodeViewController()
             vc.onClose = {

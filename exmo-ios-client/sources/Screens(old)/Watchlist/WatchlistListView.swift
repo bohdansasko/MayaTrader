@@ -134,7 +134,6 @@ extension WatchlistListView: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print("cellForItemAt = \(indexPath)")
         if let cellClass = datasource?.cellClass(indexPath) {
             let cellIdentifier = String(describing: cellClass)
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath)
@@ -150,10 +149,10 @@ extension WatchlistListView: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, moveItemAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         guard let ds = datasource as? WatchlistCardsDataSource else {
-            print("can't cast to WatchlistCardsDataSource")
+            log.error("can't cast to WatchlistCardsDataSource")
             return
         }
-        print("sourceIndexPath = \(sourceIndexPath), destinationIndexPath = \(destinationIndexPath)")
+        log.debug("sourceIndexPath = \(sourceIndexPath), destinationIndexPath = \(destinationIndexPath)")
         let item = ds.items.remove(at: sourceIndexPath.item)
         ds.items.insert(item, at: destinationIndexPath.item)
         for index in (0..<ds.items.count) {
@@ -166,7 +165,7 @@ extension WatchlistListView: UICollectionViewDataSource {
 // MARK: UICollectionViewDelegateFlowLayout
 extension WatchlistListView: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let cell = cell as? WatchlistCardCell else { return }
+//        guard let cell = cell as? WatchlistCardCell else { return }
 //        cell.datasourceItem = datasource?.item(indexPath)
 //        cell.delegate = self
     }
@@ -175,7 +174,7 @@ extension WatchlistListView: UICollectionViewDelegateFlowLayout {
         let countItems = round(self.frame.width/160)
         let spaceBetweenCols: CGFloat = (countItems-1) * 10
         let width = (self.frame.width - spaceBetweenCols - 2 * spaceFromLeftOrRight)/countItems
-        print("watchlist cell width = \(width)")
+        log.debug("watchlist cell width = \(width)")
         return CGSize(width: width, height: 115)
     }
 

@@ -31,14 +31,14 @@ class ProfessionalCandleChartNetworkWorker: NetworkWorker {
             self?.handleResponse(response: response)
         }
     }
+
     // TODO: refactoring
     func handleResponse(response: DataResponse<Any>) {
-        print("Result is : \(response.result)")
         switch response.result {
         case .success(_):
             do {
                 let jsonStr = try JSON(data: response.data!)
-                print("professional JSON: \(jsonStr)")
+                log.debug("professional JSON: \(jsonStr)")
                 var chartData = ExmoChartData(json: jsonStr, parseType: .Professional)
                 chartData.saveFirst30Elements()
                 
@@ -46,7 +46,7 @@ class ProfessionalCandleChartNetworkWorker: NetworkWorker {
                 
             }
         case .failure(_):
-            print("ProfessionalCandleChartNetworkWorker: failure loading chart data")
+            log.info("ProfessionalCandleChartNetworkWorker: failure loading chart data")
         }
     }
 }
