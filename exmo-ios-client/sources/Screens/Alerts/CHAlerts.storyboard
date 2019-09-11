@@ -48,21 +48,16 @@
             </objects>
             <point key="canvasLocation" x="1600" y="735"/>
         </scene>
-        <!--View Controller-->
+        <!--Create Alert View Controller-->
         <scene sceneID="54S-Gv-30C">
             <objects>
-                <viewController id="biw-vI-YkH" customClass="CreateAlertViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="biw-vI-YkH" customClass="CHCreateAlertViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="lL0-og-74s"/>
                     <connections>
                         <segue destination="SJ4-ge-BQQ" kind="show" identifier="selectCurrency" id="1CY-fa-VXa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oRi-cf-bBR" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <customObject id="eh8-eJ-JTe" customClass="CreateAlertModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
-                    <connections>
-                        <outlet property="viewController" destination="biw-vI-YkH" id="Xya-t7-TpK"/>
-                    </connections>
-                </customObject>
             </objects>
             <point key="canvasLocation" x="4321.739130434783" y="734.59821428571422"/>
         </scene>

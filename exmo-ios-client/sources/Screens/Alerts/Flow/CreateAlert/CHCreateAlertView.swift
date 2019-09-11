@@ -9,9 +9,8 @@
 import UIKit
 
 final class CHCreateAlertView: UIView {
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet fileprivate(set) weak var tableView: UITableView!
     
-
     override func awakeFromNib() {
         super.awakeFromNib()
         
