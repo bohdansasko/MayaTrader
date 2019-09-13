@@ -51,25 +51,24 @@ enum FormItemCellType {
             CurrencyDetailsCell.self,
             ButtonCell.self
         ]
-        classes.forEach({
-            tableView.register($0, forCellReuseIdentifier: String(describing: $0))
-        })
+        
+        classes.forEach({ tableView.register(class: $0) })
     }
     
     func dequeueCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
         switch self {
         case .textField:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: TextFieldCell.self), for: indexPath)
+            return tableView.dequeue(class: TextFieldCell.self, for: indexPath)
         case .floatingNumberTextField:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoFloatingNumberCell.self), for: indexPath)
+            return tableView.dequeue(class: ExmoFloatingNumberCell.self, for: indexPath)
         case .switcher:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSwitchCell.self), for: indexPath)
+            return tableView.dequeue(class: ExmoSwitchCell.self, for: indexPath)
         case .segment:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: ExmoSegmentCell.self), for: indexPath)
+            return tableView.dequeue(class: ExmoSegmentCell.self, for: indexPath)
         case .currencyDetails:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: CurrencyDetailsCell.self), for: indexPath)
+            return tableView.dequeue(class: CurrencyDetailsCell.self, for: indexPath)
         case .button:
-            return tableView.dequeueReusableCell(withIdentifier: String(describing: ButtonCell.self), for: indexPath)
+            return tableView.dequeue(class: ButtonCell.self, for: indexPath)
         }
     }
 }

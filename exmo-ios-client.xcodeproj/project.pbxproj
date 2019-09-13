@@ -106,6 +106,7 @@
 		20518DB622D9FC5C00334133 /* CHWatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20518DB422D9FC5C00334133 /* CHWatchlistViewController.swift */; };
 		20518DB722D9FC5C00334133 /* CHWatchlistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20518DB522D9FC5C00334133 /* CHWatchlistViewController.xib */; };
 		20518DB922D9FC7600334133 /* CHWatchlistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20518DB822D9FC7600334133 /* CHWatchlistView.swift */; };
+		205200B7232B457C002637FA /* CHCreateAlertLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205200B6232B457C002637FA /* CHCreateAlertLayout.swift */; };
 		205A643721E7983A002D5482 /* Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 205A643621E7983A002D5482 /* Production.plist */; };
 		205A7CFC203CCEBD00A2E28A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC0203CCEBD00A2E28A /* LaunchScreen.storyboard */; };
 		205A7CFD203CCEBD00A2E28A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 205A7CC2203CCEBD00A2E28A /* Main.storyboard */; };
@@ -471,6 +472,7 @@
 		20518DB422D9FC5C00334133 /* CHWatchlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWatchlistViewController.swift; sourceTree = "<group>"; };
 		20518DB522D9FC5C00334133 /* CHWatchlistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWatchlistViewController.xib; sourceTree = "<group>"; };
 		20518DB822D9FC7600334133 /* CHWatchlistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWatchlistView.swift; sourceTree = "<group>"; };
+		205200B6232B457C002637FA /* CHCreateAlertLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertLayout.swift; sourceTree = "<group>"; };
 		205A643121E7967C002D5482 /* Development.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Development.xcconfig; sourceTree = "<group>"; };
 		205A643221E7968C002D5482 /* QA.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = QA.xcconfig; sourceTree = "<group>"; };
 		205A643321E79699002D5482 /* Production.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Production.xcconfig; sourceTree = "<group>"; };
@@ -1134,6 +1136,22 @@
 				200D52A822DA07B20009C07C /* CHOrdersViewController.xib */,
 			);
 			path = Orders;
+			sourceTree = "<group>";
+		};
+		205200B8232B45A1002637FA /* Layouts */ = {
+			isa = PBXGroup;
+			children = (
+				205200B6232B457C002637FA /* CHCreateAlertLayout.swift */,
+				97EDA04F23294F7900A5BE54 /* CHCreateAlertHighLowLayout.swift */,
+			);
+			path = Layouts;
+			sourceTree = "<group>";
+		};
+		205200B9232B4726002637FA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
@@ -2204,7 +2222,8 @@
 			isa = PBXGroup;
 			children = (
 				97EDA04C23294E4600A5BE54 /* CHCreateAlertPresenter.swift */,
-				97EDA04F23294F7900A5BE54 /* CHCreateAlertHighLowLayout.swift */,
+				205200B9232B4726002637FA /* Cells */,
+				205200B8232B45A1002637FA /* Layouts */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -2868,6 +2887,7 @@
 				970B3E93231EB298002CA2E8 /* CurrenciesListCells.swift in Sources */,
 				20369A4A2197232E001D6628 /* RootTabsProtocols.swift in Sources */,
 				970B3E91231EB298002CA2E8 /* CurrenciesListDataSource.swift in Sources */,
+				205200B7232B457C002637FA /* CHCreateAlertLayout.swift in Sources */,
 				201728B0230B3A8B000823E1 /* CHSearchCurrenciesResultsDataSource.swift in Sources */,
 				2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */,
 				970B3E86231EB298002CA2E8 /* CurrencyChartConfigurator.swift in Sources */,

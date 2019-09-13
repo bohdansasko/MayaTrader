@@ -19,7 +19,7 @@ protocol FormItem: FormItemValidate {
     var uiProperties: CellUIProperties {get set}
 }
 
-class ButtonFormItem: FormItem {
+final class ButtonFormItem: FormItem {
     var title: String?
     var uiProperties = CellUIProperties()
     var onTouch: (() -> Void)?
@@ -42,7 +42,7 @@ class ButtonFormItem: FormItem {
     }
 }
 
-class CurrencyDetailsItem: FormItem {
+final class CurrencyDetailsItem: FormItem {
     var title: String?
     var leftValue: String?
     var rightValue: String?
@@ -72,7 +72,7 @@ class CurrencyDetailsItem: FormItem {
 }
 
 
-class FloatingNumberFormItem: FormItem {
+final class FloatingNumberFormItem: FormItem {
     var isMandatory: Bool
     var title: String?
     var value: String?
@@ -104,7 +104,7 @@ class FloatingNumberFormItem: FormItem {
     }
 }
 
-class TextFormItem: FormItem {
+final class TextFormItem: FormItem {
     var title: String?
     var value: String?
     var placeholder: String?
@@ -134,7 +134,7 @@ class TextFormItem: FormItem {
     }
 }
 
-class SwitchFormItem: FormItem {
+final class SwitchFormItem: FormItem {
     typealias OnChange = (Bool) -> Void
     
     var title: String?
@@ -160,7 +160,7 @@ class SwitchFormItem: FormItem {
     }
 }
 
-class SegmentFormItem: FormItem {
+final class SegmentFormItem: FormItem {
     typealias OnChange = (Int) -> Void
 
     var title: String?
