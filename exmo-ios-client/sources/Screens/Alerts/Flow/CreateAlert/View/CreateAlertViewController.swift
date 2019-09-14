@@ -146,7 +146,7 @@ extension CreateAlertViewController: CreateAlertViewInput {
         self.selectedPair!.code = currency.name
 
         for (_, cell) in cells {
-            guard let floatingCell = cell as? ExmoFloatingNumberCell else {
+            guard let floatingCell = cell as? CHNumberCell else {
                 continue
             }
             floatingCell.formItem?.value = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
@@ -174,7 +174,7 @@ extension CreateAlertViewController: CreateAlertViewInput {
 
         if isNewPair {
             for (_, cell) in cells {
-                guard let floatingCell = cell as? ExmoFloatingNumberCell else {
+                guard let floatingCell = cell as? CHNumberCell else {
                     continue
                 }
                 floatingCell.formItem?.value = Utils.getFormatedPrice(value: currencyPair.lastTrade, maxFractDigits: 10)

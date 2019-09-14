@@ -72,7 +72,7 @@
 		201D807C205DC6A300692DEF /* CHWalletCurrenciesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201D807B205DC6A300692DEF /* CHWalletCurrenciesListPresenter.swift */; };
 		201DF1FE21B27D0F00158A15 /* FormItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF1FD21B27D0F00158A15 /* FormItems.swift */; };
 		201DF20021B27D3300158A15 /* CreateAlertForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */; };
-		201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */; };
+		201DF20221B27E7E00158A15 /* CHNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20121B27E7E00158A15 /* CHNumberCell.swift */; };
 		201DF20421B27E9700158A15 /* ExmoSwitchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */; };
 		201E28212199C439000960FD /* OrdersListNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201E28202199C439000960FD /* OrdersListNetworkWorker.swift */; };
 		201EA2B121A4900000A1E693 /* RealmDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */; };
@@ -309,6 +309,7 @@
 		97291CF9232421630096078E /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97291CF8232421630096078E /* ObservableType+Extension.swift */; };
 		972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */; };
 		973725AB232D2EDA0077733B /* CHSelectCurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */; };
+		973725AF232D47960077733B /* CHNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725AD232D47960077733B /* CHNumberCell.xib */; };
 		9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */; };
 		9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */; };
@@ -440,7 +441,7 @@
 		201D807B205DC6A300692DEF /* CHWalletCurrenciesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletCurrenciesListPresenter.swift; sourceTree = "<group>"; };
 		201DF1FD21B27D0F00158A15 /* FormItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormItems.swift; sourceTree = "<group>"; };
 		201DF1FF21B27D3300158A15 /* CreateAlertForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAlertForm.swift; sourceTree = "<group>"; };
-		201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoFloatingNumberCell.swift; sourceTree = "<group>"; };
+		201DF20121B27E7E00158A15 /* CHNumberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHNumberCell.swift; sourceTree = "<group>"; };
 		201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSwitchCell.swift; sourceTree = "<group>"; };
 		201E28202199C439000960FD /* OrdersListNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListNetworkWorker.swift; sourceTree = "<group>"; };
 		201EA2B021A4900000A1E693 /* RealmDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDatabaseManager.swift; sourceTree = "<group>"; };
@@ -680,6 +681,7 @@
 		97291CF8232421630096078E /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
 		973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSelectCurrencyCell.xib; sourceTree = "<group>"; };
+		973725AD232D47960077733B /* CHNumberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHNumberCell.xib; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
 		9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
@@ -971,8 +973,8 @@
 			children = (
 				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
 				207A85E221B326D30049B26D /* TextFieldCell.swift */,
-				207A85E421B349570049B26D /* ButtonCell.swift */,
 				36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */,
+				207A85E421B349570049B26D /* ButtonCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2197,7 +2199,8 @@
 			children = (
 				366FF086575BDD60AF34697E /* CHSelectCurrencyCell.swift */,
 				973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */,
-				201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */,
+				201DF20121B27E7E00158A15 /* CHNumberCell.swift */,
+				973725AD232D47960077733B /* CHNumberCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2509,6 +2512,7 @@
 				208FE0A322DB72260014BCE5 /* CHSearchCurrenciesResultsViewController.xib in Resources */,
 				20786BDB230642F6007C3944 /* CHWalletCurrenciesListHeader.xib in Resources */,
 				20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */,
+				973725AF232D47960077733B /* CHNumberCell.xib in Resources */,
 				207E88C92210C08E001681A2 /* Production.xcconfig in Resources */,
 				200D52B222DA07DF0009C07C /* CHAlertsViewController.xib in Resources */,
 				2005E2A922E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib in Resources */,
@@ -2715,7 +2719,7 @@
 				208FE09622DB3F3A0014BCE5 /* CHExchangesViewController.swift in Sources */,
 				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
 				20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */,
-				201DF20221B27E7E00158A15 /* ExmoFloatingNumberCell.swift in Sources */,
+				201DF20221B27E7E00158A15 /* CHNumberCell.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				200D52C822DA1DFC0009C07C /* CHMenuView.swift in Sources */,
 				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,

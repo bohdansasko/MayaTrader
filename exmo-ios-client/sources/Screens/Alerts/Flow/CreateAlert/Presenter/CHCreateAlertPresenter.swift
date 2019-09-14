@@ -48,7 +48,7 @@ final class CHCreateAlertPresenter: NSObject {
         
         self.cellsLayout.forEach{
             let cellType = self.tableViewCellType(for: $0.key)
-            if cellType == CHSelectCurrencyCell.self  {
+            if cellType == CHSelectCurrencyCell.self || cellType == CHNumberCell.self  {
                 self.tableView.register(nib: cellType)
             } else {
                 self.tableView.register(class: cellType)
@@ -68,11 +68,11 @@ private extension CHCreateAlertPresenter {
         case .currency:
             return CHSelectCurrencyCell.self
         case .currencyTopValue:
-            return ExmoFloatingNumberCell.self
+            return CHNumberCell.self
         case .currencyBottomValue:
-            return ExmoFloatingNumberCell.self
+            return CHNumberCell.self
         case .notes:
-            return ExmoFloatingNumberCell.self
+            return TextFieldCell.self
         case .cta:
             return ButtonCell.self
         }

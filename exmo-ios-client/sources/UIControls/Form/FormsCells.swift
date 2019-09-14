@@ -45,7 +45,7 @@ enum FormItemCellType {
     static func registerCells(for tableView: UITableView) {
         let classes = [
             TextFieldCell.self,
-            ExmoFloatingNumberCell.self,
+            CHNumberCell.self,
             ExmoSwitchCell.self,
             ExmoSegmentCell.self,
             CHSelectCurrencyCell.self,
@@ -60,7 +60,7 @@ enum FormItemCellType {
         case .textField:
             return tableView.dequeue(class: TextFieldCell.self, for: indexPath)
         case .floatingNumberTextField:
-            return tableView.dequeue(class: ExmoFloatingNumberCell.self, for: indexPath)
+            return tableView.dequeue(class: CHNumberCell.self, for: indexPath)
         case .switcher:
             return tableView.dequeue(class: ExmoSwitchCell.self, for: indexPath)
         case .segment:
