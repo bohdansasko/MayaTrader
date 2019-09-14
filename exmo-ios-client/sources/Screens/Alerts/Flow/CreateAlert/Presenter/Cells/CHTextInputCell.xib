@@ -20,7 +20,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CHNumberCell" customModule="exmo_ios_client" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CHTextInputCell" customModule="exmo_ios_client" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -33,13 +33,13 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rgh-YB-2pn">
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rgh-YB-2pn">
                         <rect key="frame" x="30" y="37" width="270" height="22.5"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
-                            <outlet property="delegate" destination="KGk-i7-Jjw" id="XnB-sv-QJk"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="Ep0-ka-9UV"/>
                         </connections>
                     </textField>
                 </subviews>
@@ -57,8 +57,8 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="textInput" destination="Rgh-YB-2pn" id="prH-lr-zKR"/>
-                <outlet property="titleLabel" destination="az1-jg-UWf" id="0lK-VN-RUe"/>
+                <outlet property="textInput" destination="Rgh-YB-2pn" id="OnY-TT-dhP"/>
+                <outlet property="titleLabel" destination="az1-jg-UWf" id="79P-0j-jYM"/>
             </connections>
             <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
         </tableViewCell>
