@@ -45,14 +45,14 @@ class ExmoUIViewController: UIViewController {
         return aiv
     }()
     
-    internal var glowImage: UIImageView = {
+    let glowImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "icWalletGlow")
         imageView.contentMode = .center
         return imageView
     }()
 
-    internal var titleNavBar: String? {
+    var titleNavBar: String? {
         didSet {
             setupTitle()
         }
@@ -109,7 +109,7 @@ extension ExmoUIViewController {
 
 }
 
-// MARK: Setup navigation
+// MARK: - Navigation
 
 extension ExmoUIViewController {
     

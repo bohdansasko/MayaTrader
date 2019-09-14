@@ -28,7 +28,6 @@ final class CHCreateAlertPresenter: NSObject {
         IndexPath(row: 4, section: 0): .cta
     ]
     private var cells: [IndexPath: UITableViewCell] = [:]
-    private var items: [String] = ["", "", "", "", ""]
     
     init(tableView: UITableView, layout: CHCreateAlertLayout) {
         self.tableView = tableView
@@ -38,6 +37,12 @@ final class CHCreateAlertPresenter: NSObject {
         
         setupTableView()
     }
+    
+}
+
+// MARK: - UITableViewDelegate
+
+private extension CHCreateAlertPresenter {
     
     func setupTableView() {
         self.tableView.rowHeight = UITableView.automaticDimension
@@ -138,7 +143,7 @@ private extension CHCreateAlertPresenter {
 extension CHCreateAlertPresenter: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return cellsLayout.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
