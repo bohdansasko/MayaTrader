@@ -49,7 +49,7 @@ enum FormItemCellType {
             ExmoSwitchCell.self,
             ExmoSegmentCell.self,
             CHSelectCurrencyCell.self,
-            ButtonCell.self
+            CHButtonCell.self
         ]
         
         classes.forEach({ tableView.register(class: $0) })
@@ -68,7 +68,7 @@ enum FormItemCellType {
         case .currencyDetails:
             return tableView.dequeue(class: CHSelectCurrencyCell.self, for: indexPath)
         case .button:
-            return tableView.dequeue(class: ButtonCell.self, for: indexPath)
+            return tableView.dequeue(class: CHButtonCell.self, for: indexPath)
         }
     }
 }
