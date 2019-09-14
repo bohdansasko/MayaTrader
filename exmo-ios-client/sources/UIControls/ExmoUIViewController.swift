@@ -146,6 +146,41 @@ extension ExmoUIViewController {
         navigationItem.rightBarButtonItem = buttonItem
     }
     
+    func setupLeftBarButtonItem(title: String, normalColor: UIColor, highlightedColor: UIColor, action: Selector?) {
+        let font = UIFont.getExo2Font(fontType: .semibold, fontSize: 18)
+        let buttonItem = self.makeBarButtonItem(title: title,
+                                                titleFont: font,
+                                                normalColor: normalColor,
+                                                highlightedColor: highlightedColor,
+                                                action: action)
+        navigationItem.leftBarButtonItem = buttonItem
+    }
+
+    func setupRightBarButtonItem(title: String, normalColor: UIColor, highlightedColor: UIColor, action: Selector?) {
+        let font = UIFont.getExo2Font(fontType: .semibold, fontSize: 18)
+        let buttonItem = self.makeBarButtonItem(title: title,
+                                                titleFont: font,
+                                                normalColor: normalColor,
+                                                highlightedColor: highlightedColor,
+                                                action: action)
+        navigationItem.rightBarButtonItem = buttonItem
+    }
+    
+    private func makeBarButtonItem(title: String, titleFont font: UIFont, normalColor: UIColor, highlightedColor: UIColor, action: Selector?) -> UIBarButtonItem {
+        let button = UIButton(type: .roundedRect)
+        button.setTitle(title, for: .normal)
+        button.setTitleColor(normalColor, for: .normal)
+        button.setTitleColor(highlightedColor, for: .highlighted)
+        button.titleLabel!.font = font
+        
+        if let action = action {
+            button.addTarget(self, action: action, for: .touchUpInside)
+        }
+        
+        let buttonItem = UIBarButtonItem(customView: button)
+        return buttonItem
+    }
+
 }
 
 // MARK: - Alerts

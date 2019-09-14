@@ -19,6 +19,10 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
         super.viewDidLoad()
 
         setupPresenter()
+        setupRightBarButtonItem(title: "CANCEL".localized,
+                                normalColor: .orangePink,
+                                highlightedColor: .orangePink,
+                                action: #selector(actClose(_:)))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -33,6 +37,16 @@ private extension CHCreateAlertViewController {
     
     func setupPresenter() {
         presenter = CHCreateAlertPresenter(tableView: contentView.tableView, layout: CHCreateAlertHighLowLayout())
+    }
+    
+}
+
+// MARK: - User interaction
+
+private extension CHCreateAlertViewController {
+    
+    @objc func actClose(_ sender: Any) {
+        self.close()
     }
     
 }

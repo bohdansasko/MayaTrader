@@ -52,6 +52,7 @@
 "ORDERS_DEALS"     = "Deals";
 
 "OK"     = "Ok";
+"CANCEL" = "Cancel";
 
 /* Errors description */
 "ERROR_UNKNOWN"                 = "Unknown error.";

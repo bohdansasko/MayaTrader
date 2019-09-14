@@ -209,7 +209,7 @@
 		366FF0CDAE247A941EE87B19 /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFD084B03EA504C6DC903 /* SubscriptionsPresenter.swift */; };
 		366FF1DB76C09C5C77EBC414 /* SubscriptionsDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFC65724348D5D2E5AA3D /* SubscriptionsDatasource.swift */; };
 		366FF1F557204A77EE0B93CC /* ComparisonSubscriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF2D0C44E5F603F1E5E2A /* ComparisonSubscriptionsView.swift */; };
-		366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */; };
+		366FF907855A7BF896EAF5B7 /* CHSelectCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF086575BDD60AF34697E /* CHSelectCurrencyCell.swift */; };
 		366FF9CE76AC761CDB59E856 /* SubscriptionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFEC3B0C154B4B8BB3EE4 /* SubscriptionsCell.swift */; };
 		366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FF849F00AB918D8AC2F0C /* SubscriptionsRouterInput.swift */; };
 		366FFBE122E0E9F8CE2DE214 /* SubscriptionsCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366FFEDD1D185EDFD6DE7F0A /* SubscriptionsCellModel.swift */; };
@@ -308,6 +308,7 @@
 		970B3EA6231EB298002CA2E8 /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */; };
 		97291CF9232421630096078E /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97291CF8232421630096078E /* ObservableType+Extension.swift */; };
 		972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */; };
+		973725AB232D2EDA0077733B /* CHSelectCurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */; };
 		9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */; };
 		9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */; };
@@ -573,7 +574,7 @@
 		30BE974C2513907BDD66D135 /* OrdersViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		3407E036A637CE9F925613A0 /* CreateAlertInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CreateAlertInteractor.swift; sourceTree = "<group>"; };
 		349F2CB0625621FE1D77883A /* LoginViewProtocols.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewProtocols.swift; sourceTree = "<group>"; };
-		366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyDetailsCell.swift; sourceTree = "<group>"; };
+		366FF086575BDD60AF34697E /* CHSelectCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHSelectCurrencyCell.swift; sourceTree = "<group>"; };
 		366FF2BC1A6F4E806772921F /* SubscriptionsInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractorProtocols.swift; sourceTree = "<group>"; };
 		366FF2D0C44E5F603F1E5E2A /* ComparisonSubscriptionsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComparisonSubscriptionsView.swift; sourceTree = "<group>"; };
 		366FF3E3471F2211C757FF11 /* SubscriptionsInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubscriptionsInteractor.swift; sourceTree = "<group>"; };
@@ -678,6 +679,7 @@
 		970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
 		97291CF8232421630096078E /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
+		973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSelectCurrencyCell.xib; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
 		9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
@@ -967,11 +969,9 @@
 		201DF20521B2907B00158A15 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */,
 				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
 				207A85E221B326D30049B26D /* TextFieldCell.swift */,
 				207A85E421B349570049B26D /* ButtonCell.swift */,
-				366FF086575BDD60AF34697E /* CurrencyDetailsCell.swift */,
 				36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */,
 			);
 			path = Cells;
@@ -1145,13 +1145,6 @@
 				97EDA04F23294F7900A5BE54 /* CHCreateAlertHighLowLayout.swift */,
 			);
 			path = Layouts;
-			sourceTree = "<group>";
-		};
-		205200B9232B4726002637FA /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		205A7CBD203CCEBD00A2E28A /* sources */ = {
@@ -2199,6 +2192,16 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		973725A7232D2ECA0077733B /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				366FF086575BDD60AF34697E /* CHSelectCurrencyCell.swift */,
+				973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */,
+				201DF20121B27E7E00158A15 /* ExmoFloatingNumberCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		9763F43822F7494A00D6E22A /* Formatters */ = {
 			isa = PBXGroup;
 			children = (
@@ -2221,9 +2224,9 @@
 		97EDA04E23294F4900A5BE54 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				97EDA04C23294E4600A5BE54 /* CHCreateAlertPresenter.swift */,
-				205200B9232B4726002637FA /* Cells */,
 				205200B8232B45A1002637FA /* Layouts */,
+				973725A7232D2ECA0077733B /* Cells */,
+				97EDA04C23294E4600A5BE54 /* CHCreateAlertPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -2535,6 +2538,7 @@
 				200D52AE22DA07CF0009C07C /* CHWalletViewController.xib in Resources */,
 				2013E5832071464700EFACB7 /* Exo2-BoldItalic.ttf in Resources */,
 				20518DA922D9F9F100334133 /* CHWallet.storyboard in Resources */,
+				973725AB232D2EDA0077733B /* CHSelectCurrencyCell.xib in Resources */,
 				2013E5892071464700EFACB7 /* Exo2-Light.ttf in Resources */,
 				205A643721E7983A002D5482 /* Production.plist in Resources */,
 				2013E58A2071464700EFACB7 /* Exo2-LightItalic.ttf in Resources */,
@@ -2933,7 +2937,7 @@
 				F46642F778C454CDDF69A3EF /* CurrenciesGroupsConfigurator.swift in Sources */,
 				76693AF693CF6E13B7919025 /* CurrenciesGroupsInitializer.swift in Sources */,
 				970B3EA3231EB298002CA2E8 /* WatchlistInteractor.swift in Sources */,
-				366FF907855A7BF896EAF5B7 /* CurrencyDetailsCell.swift in Sources */,
+				366FF907855A7BF896EAF5B7 /* CHSelectCurrencyCell.swift in Sources */,
 				36712802066CE6031A5D90E5 /* CHAppStoreReviewManager.swift in Sources */,
 				20E5D5902309675600E603D8 /* CHOrdersPresenter.swift in Sources */,
 				20BCE4E521E03DEF003669EA /* IAPProduct.swift in Sources */,

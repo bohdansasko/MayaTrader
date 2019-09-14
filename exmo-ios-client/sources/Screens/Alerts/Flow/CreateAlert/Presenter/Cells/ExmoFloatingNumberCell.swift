@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
+final class ExmoFloatingNumberCell: UITableViewCell, FloatingNumberFormConformity {
     var formItem: FloatingNumberFormItem? {
         didSet {
             formItem?.valueChanged = {

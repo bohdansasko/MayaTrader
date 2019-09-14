@@ -48,7 +48,7 @@ enum FormItemCellType {
             ExmoFloatingNumberCell.self,
             ExmoSwitchCell.self,
             ExmoSegmentCell.self,
-            CurrencyDetailsCell.self,
+            CHSelectCurrencyCell.self,
             ButtonCell.self
         ]
         
@@ -66,7 +66,7 @@ enum FormItemCellType {
         case .segment:
             return tableView.dequeue(class: ExmoSegmentCell.self, for: indexPath)
         case .currencyDetails:
-            return tableView.dequeue(class: CurrencyDetailsCell.self, for: indexPath)
+            return tableView.dequeue(class: CHSelectCurrencyCell.self, for: indexPath)
         case .button:
             return tableView.dequeue(class: ButtonCell.self, for: indexPath)
         }
