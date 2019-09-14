@@ -48,11 +48,7 @@ final class CHCreateAlertPresenter: NSObject {
         
         self.cellsLayout.forEach{
             let cellType = self.tableViewCellType(for: $0.key)
-            if cellType == TextFieldCell.self {
-                self.tableView.register(class: cellType)
-            } else {
-                self.tableView.register(nib: cellType)
-            }
+            self.tableView.register(nib: cellType)
         }
     }
     
@@ -72,7 +68,7 @@ private extension CHCreateAlertPresenter {
         case .currencyBottomValue:
             return CHNumberCell.self
         case .notes:
-            return TextFieldCell.self
+            return CHTextInputCell.self
         case .cta:
             return CHButtonCell.self
         }
@@ -120,9 +116,9 @@ private extension CHCreateAlertPresenter {
             descriptionItem.valueCompletion = {
                 [weak self, weak descriptionItem] value in
 //                self?.description = value
-                descriptionItem?.value = value
+//                descriptionItem?.value = value
             }
-            descriptionItem.value = description
+//            descriptionItem.value = description
             descriptionItem.uiProperties.cellType = .textField
             formItem = descriptionItem
         case .cta:

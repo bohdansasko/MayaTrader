@@ -123,7 +123,7 @@
 		20786BDB230642F6007C3944 /* CHWalletCurrenciesListHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20786BDA230642F6007C3944 /* CHWalletCurrenciesListHeader.xib */; };
 		20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20786BDC2306430A007C3944 /* CHWalletCurrenciesListHeader.swift */; };
 		20786BDF2306434F007C3944 /* CHWalletCurrenciesListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20786BDE2306434F007C3944 /* CHWalletCurrenciesListCell.xib */; };
-		207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E221B326D30049B26D /* TextFieldCell.swift */; };
+		207A85E321B326D30049B26D /* CHTextInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E221B326D30049B26D /* CHTextInputCell.swift */; };
 		207A85E521B349570049B26D /* CHButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207A85E421B349570049B26D /* CHButtonCell.swift */; };
 		207E24FF2061B85B00030023 /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E24FE2061B85B00030023 /* OrdersListView.swift */; };
 		207E25012061BD3B00030023 /* OrderViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207E25002061BD3B00030023 /* OrderViewCell.swift */; };
@@ -311,6 +311,7 @@
 		973725AB232D2EDA0077733B /* CHSelectCurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */; };
 		973725AF232D47960077733B /* CHNumberCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725AD232D47960077733B /* CHNumberCell.xib */; };
 		973725B3232D553C0077733B /* CHButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725B1232D553C0077733B /* CHButtonCell.xib */; };
+		973725BE232D57CB0077733B /* CHTextInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725BD232D57CA0077733B /* CHTextInputCell.xib */; };
 		9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */; };
 		9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */; };
@@ -495,7 +496,7 @@
 		20786BDA230642F6007C3944 /* CHWalletCurrenciesListHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrenciesListHeader.xib; sourceTree = "<group>"; };
 		20786BDC2306430A007C3944 /* CHWalletCurrenciesListHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWalletCurrenciesListHeader.swift; sourceTree = "<group>"; };
 		20786BDE2306434F007C3944 /* CHWalletCurrenciesListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrenciesListCell.xib; sourceTree = "<group>"; };
-		207A85E221B326D30049B26D /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		207A85E221B326D30049B26D /* CHTextInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTextInputCell.swift; sourceTree = "<group>"; };
 		207A85E421B349570049B26D /* CHButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHButtonCell.swift; sourceTree = "<group>"; };
 		207E24FE2061B85B00030023 /* OrdersListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 		207E25002061BD3B00030023 /* OrderViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderViewCell.swift; sourceTree = "<group>"; };
@@ -684,6 +685,7 @@
 		973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSelectCurrencyCell.xib; sourceTree = "<group>"; };
 		973725AD232D47960077733B /* CHNumberCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHNumberCell.xib; sourceTree = "<group>"; };
 		973725B1232D553C0077733B /* CHButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHButtonCell.xib; sourceTree = "<group>"; };
+		973725BD232D57CA0077733B /* CHTextInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHTextInputCell.xib; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
 		9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
@@ -974,7 +976,6 @@
 			isa = PBXGroup;
 			children = (
 				201DF20321B27E9700158A15 /* ExmoSwitchCell.swift */,
-				207A85E221B326D30049B26D /* TextFieldCell.swift */,
 				36712A342A0E2815A8BEDECA /* ExmoSegmentCell.swift */,
 			);
 			path = Cells;
@@ -2204,6 +2205,8 @@
 				973725AD232D47960077733B /* CHNumberCell.xib */,
 				207A85E421B349570049B26D /* CHButtonCell.swift */,
 				973725B1232D553C0077733B /* CHButtonCell.xib */,
+				207A85E221B326D30049B26D /* CHTextInputCell.swift */,
+				973725BD232D57CA0077733B /* CHTextInputCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2516,6 +2519,7 @@
 				20786BDB230642F6007C3944 /* CHWalletCurrenciesListHeader.xib in Resources */,
 				20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */,
 				973725AF232D47960077733B /* CHNumberCell.xib in Resources */,
+				973725BE232D57CB0077733B /* CHTextInputCell.xib in Resources */,
 				207E88C92210C08E001681A2 /* Production.xcconfig in Resources */,
 				200D52B222DA07DF0009C07C /* CHAlertsViewController.xib in Resources */,
 				2005E2A922E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib in Resources */,
@@ -2726,7 +2730,7 @@
 				201DF20221B27E7E00158A15 /* CHNumberCell.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				200D52C822DA1DFC0009C07C /* CHMenuView.swift in Sources */,
-				207A85E321B326D30049B26D /* TextFieldCell.swift in Sources */,
+				207A85E321B326D30049B26D /* CHTextInputCell.swift in Sources */,
 				970B3E82231EB298002CA2E8 /* ExmoChartData.swift in Sources */,
 				20CAFED52042AE9C00C7DEA5 /* ExmoApiRequestBuilder.swift in Sources */,
 				2D14B0555AE10DB8020A3714 /* QRScannerModuleInput.swift in Sources */,
