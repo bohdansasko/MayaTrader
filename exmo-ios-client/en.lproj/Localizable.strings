@@ -51,6 +51,12 @@
 "ORDERS_CANCELLED" = "Cancelled";
 "ORDERS_DEALS"     = "Deals";
 
+/* Create alet screen */
+"SCREEN_CREATE_ALERT_TITLE" = "Create alert";
+
+/* Update alert screen */
+"SCREEN_UPDATE_ALERT_TITLE" = "Update alert";
+
 "OK"     = "Ok";
 "CANCEL" = "Cancel";
 

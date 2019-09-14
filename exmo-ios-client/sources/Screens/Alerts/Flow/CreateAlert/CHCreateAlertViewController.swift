@@ -17,23 +17,28 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        setupNavigation()
         setupPresenter()
-        setupRightBarButtonItem(title: "CANCEL".localized,
-                                normalColor: .orangePink,
-                                highlightedColor: .orangePink,
-                                action: #selector(actClose(_:)))
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         assertionFailure("required")
     }
-
+    
 }
 
 // MARK: - Setup
 
 private extension CHCreateAlertViewController {
+    
+    func setupNavigation() {
+        navigationItem.title = "SCREEN_CREATE_ALERT_TITLE".localized
+        setupRightBarButtonItem(title: "CANCEL".localized,
+                                normalColor: .orangePink,
+                                highlightedColor: .orangePink,
+                                action: #selector(actClose(_:)))
+    }
     
     func setupPresenter() {
         presenter = CHCreateAlertPresenter(tableView: contentView.tableView, layout: CHCreateAlertHighLowLayout())
