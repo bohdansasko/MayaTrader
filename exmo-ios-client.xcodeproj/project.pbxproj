@@ -1743,12 +1743,7 @@
 		37B74EDC1A931709BEED1181 /* CreateAlert */ = {
 			isa = PBXGroup;
 			children = (
-				200E691621B2C634008C49B6 /* Network */,
-				303FDB829C07716829FABE3A /* View */,
-				B708DF577566F4FC03D3389D /* Presenter1 */,
-				2675AB4D57DCC86ABDDED6B3 /* Interactor */,
-				354310C3F136A9D58C197345 /* Router */,
-				2E83068A503737289A27CEFC /* Configurator */,
+				973725BF232D6BA30077733B /* old */,
 				97EDA04E23294F4900A5BE54 /* Presenter */,
 				202F80AE2300B2800035D123 /* CHCreateAlertView.swift */,
 				202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */,
@@ -2209,6 +2204,19 @@
 				973725BD232D57CA0077733B /* CHTextInputCell.xib */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		973725BF232D6BA30077733B /* old */ = {
+			isa = PBXGroup;
+			children = (
+				200E691621B2C634008C49B6 /* Network */,
+				303FDB829C07716829FABE3A /* View */,
+				B708DF577566F4FC03D3389D /* Presenter1 */,
+				2675AB4D57DCC86ABDDED6B3 /* Interactor */,
+				354310C3F136A9D58C197345 /* Router */,
+				2E83068A503737289A27CEFC /* Configurator */,
+			);
+			path = old;
 			sourceTree = "<group>";
 		};
 		9763F43822F7494A00D6E22A /* Formatters */ = {
