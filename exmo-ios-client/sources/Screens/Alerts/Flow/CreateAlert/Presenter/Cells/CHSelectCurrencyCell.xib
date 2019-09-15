@@ -51,6 +51,12 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z0r-QC-4AX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="67.5"/>
+                        <connections>
+                            <action selector="actSelectCurrency:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cfc-pb-UdA"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
@@ -58,16 +64,21 @@
                     <constraint firstItem="aPE-sZ-x1i" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="8RT-DY-IGN"/>
                     <constraint firstItem="bD8-GT-9R8" firstAttribute="leading" secondItem="Rgh-YB-2pn" secondAttribute="trailing" id="AFU-Gt-c4F"/>
                     <constraint firstItem="bD8-GT-9R8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="En0-f1-ETa"/>
+                    <constraint firstItem="Z0r-QC-4AX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="F9d-ha-xyo"/>
                     <constraint firstItem="Rgh-YB-2pn" firstAttribute="top" secondItem="az1-jg-UWf" secondAttribute="bottom" constant="12" id="MNw-d7-ylW"/>
                     <constraint firstAttribute="trailing" secondItem="bD8-GT-9R8" secondAttribute="trailing" constant="30" id="NHt-5b-tq4"/>
+                    <constraint firstItem="Z0r-QC-4AX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NMd-nx-xmb"/>
                     <constraint firstItem="az1-jg-UWf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Sya-pg-5V1"/>
+                    <constraint firstAttribute="bottom" secondItem="Z0r-QC-4AX" secondAttribute="bottom" id="gNz-aB-FAc"/>
                     <constraint firstAttribute="trailing" secondItem="az1-jg-UWf" secondAttribute="trailing" constant="20" id="mJF-Pw-kr9"/>
                     <constraint firstItem="az1-jg-UWf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="qOg-kU-flm"/>
                     <constraint firstAttribute="bottom" secondItem="Rgh-YB-2pn" secondAttribute="bottom" constant="8" id="rt8-CO-y0f"/>
+                    <constraint firstAttribute="trailing" secondItem="Z0r-QC-4AX" secondAttribute="trailing" id="tVX-Z4-GKa"/>
                     <constraint firstAttribute="trailing" secondItem="aPE-sZ-x1i" secondAttribute="trailing" constant="30" id="zWZ-9Y-0rQ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <gestureRecognizers/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="rightLabel" destination="bD8-GT-9R8" id="Z18-xu-moC"/>

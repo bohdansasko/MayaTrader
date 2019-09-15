@@ -41,7 +41,11 @@ final class CHSelectCurrencyCell: ExmoTableViewCell, CurrencyDetailsFormConformi
 private extension CHSelectCurrencyCell {
     
     @IBAction func onTextDidChange(_ textField: UITextField) {
-        formItem?.valueCompletion?(textField.text, rightLabel.text)
+        formItem?.onTextChanged?(textField.text, rightLabel.text)
+    }
+    
+    @IBAction func actSelectCurrency(_ textField: UITextField) {
+        formItem?.onSelect?()
     }
     
 }

@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol CHCreateAlertPresenterDelegate: class {
+    func createAlertPresenterDidSelectCurrency(_ presenter: CHCreateAlertPresenter)
+}
+
 final class CHCreateAlertPresenter: NSObject {    
     fileprivate let form: CHCreateAlertHighLowForm
     
+    weak var delegate: CHCreateAlertPresenterDelegate?
+    
     // MARK: - View lifecycle
-
+    
     init(form: CHCreateAlertHighLowForm) {
         self.form = form
         
@@ -28,19 +34,28 @@ final class CHCreateAlertPresenter: NSObject {
 private extension CHCreateAlertPresenter {
     
     func doCreateAlert() {
-//        log.debug(currencyPair, topBound, bottomBound, notes)
+        log.debug(form.currencyPair, form.topBound, form.bottomBound, form.notes)
     }
     
 }
 
+// MARK: - CHCreateAlertHighLowFormDelegate
+
 extension CHCreateAlertPresenter: CHCreateAlertHighLowFormDelegate {
     
-    func createAlertHighLowFormDidActCTA(_ form: CHCreateAlertHighLowForm) {
-        if form.isValid() {
-            log.debug("form is valid")
-            doCreateAlert()
-        } else {
-            log.debug("form isn't valid")
+    func createAlertHighLowForm(_ form: CHCreateAlertHighLowForm, didTouch cell: CHCreateAlertHighLowForm.CellId) {
+        switch cell {
+        case .currency:
+            self.delegate?.createAlertPresenterDidSelectCurrency(self)
+        case .cta:
+            if form.isValid() {
+                log.debug("form is valid")
+                doCreateAlert()
+            } else {
+                log.debug("form isn't valid")
+            }
+        default:
+            break
         }
     }
     

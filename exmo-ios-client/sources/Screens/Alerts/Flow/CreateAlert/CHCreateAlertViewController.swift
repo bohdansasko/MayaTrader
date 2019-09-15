@@ -11,6 +11,10 @@ import UIKit
 final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHCreateAlertView
     
+    fileprivate enum Segues: String {
+        case selectCurrency
+    }
+    
     fileprivate var presenter: CHCreateAlertPresenter!
 
     // MARK: - View Lifecycle
@@ -23,7 +27,11 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        assertionFailure("required")
+        let segueId = Segues(rawValue: segue.identifier!)!
+        switch segueId {
+        case .selectCurrency:
+            prepareSearchViewController(for: segue, sender: sender)
+        }
     }
     
 }
@@ -43,6 +51,23 @@ private extension CHCreateAlertViewController {
     func setupPresenter() {
         let form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
         presenter = CHCreateAlertPresenter(form: form)
+        presenter.delegate = self
+    }
+    
+}
+
+// MARK: - Prepare view controller for segue
+
+private extension CHCreateAlertViewController {
+    
+    func prepareSearchViewController(for segue: UIStoryboardSegue, sender: Any?) {
+        let navController = segue.destination as! UINavigationController
+        let vc = navController.topViewController as! CHExchangesViewController
+        vc.selectionMode = .currency
+        vc.onClose = { [unowned self] selectedCurrency in
+            log.info("selected currency", selectedCurrency)
+//            self.set(currency: selectedCurrency)
+        }
     }
     
 }
@@ -53,6 +78,14 @@ private extension CHCreateAlertViewController {
     
     @objc func actClose(_ sender: Any) {
         self.close()
+    }
+    
+}
+
+extension CHCreateAlertViewController: CHCreateAlertPresenterDelegate {
+    
+    func createAlertPresenterDidSelectCurrency(_ presenter: CHCreateAlertPresenter) {
+        performSegue(withIdentifier: Segues.selectCurrency.rawValue)
     }
     
 }

@@ -48,7 +48,8 @@ final class CurrencyDetailsItem: FormItem {
     var rightValue: String?
     var placeholder: String?
     var uiProperties = CellUIProperties()
-    var valueCompletion: ((String?, String?) -> Void)?
+    var onTextChanged: ((String?, String?) -> Void)?
+    var onSelect: (() -> Void)?
     var isMandatory: Bool
     
     init(title: String?, placeholder: String?, isMandatory: Bool) {

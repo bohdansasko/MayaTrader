@@ -51,8 +51,7 @@ class FormCreateOrderOnSum: FormTabCreateOrder {
     
     private func setupFormItems() {
         let currencyPairItem = CurrencyDetailsItem(title: "Currency pair", placeholder: "Select currency pair…", isMandatory: true)
-        currencyPairItem.valueCompletion = {
-            [weak self, weak currencyPairItem] leftValue, rightValue in
+        currencyPairItem.onTextChanged = { [weak self, weak currencyPairItem] leftValue, rightValue in
             self?.currencyPair = leftValue
             currencyPairItem?.leftValue = leftValue
             self?.strPrice = rightValue

@@ -43,11 +43,10 @@ class FormCreateAlert {
     
     private func setupFormItems() {
         let currencyPairItem = CurrencyDetailsItem(title: "Currency pair", placeholder: "Select currency pair…", isMandatory: true)
-        currencyPairItem.valueCompletion = {
-            [weak self, weak currencyPairItem] leftValue, rightValue in
-            self?.currencyPair = leftValue
+        currencyPairItem.onTextChanged = { [unowned self, weak currencyPairItem] leftValue, rightValue in
+            self.currencyPair = leftValue
             currencyPairItem?.leftValue = leftValue
-            self?.updateCurrenciesPlaceholders()
+            self.updateCurrenciesPlaceholders()
         }
         currencyPairItem.leftValue = currencyPair
         currencyPairItem.uiProperties.cellType = .currencyDetails
