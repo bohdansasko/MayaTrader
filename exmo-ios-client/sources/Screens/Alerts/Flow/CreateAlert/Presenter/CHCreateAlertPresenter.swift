@@ -7,20 +7,27 @@
 //
 
 import UIKit
+import RxSwift
 
 protocol CHCreateAlertPresenterDelegate: class {
     func createAlertPresenterDidSelectCurrency(_ presenter: CHCreateAlertPresenter)
+    func createAlertPresenter(_ presenter: CHCreateAlertPresenter, didActCreateAlert alert: Alert)
+    func createAlertPresenter(_ presenter: CHCreateAlertPresenter, onError error: Error)
 }
 
 final class CHCreateAlertPresenter: NSObject {    
+    fileprivate let vinsoAPI: VinsoAPI
+    fileprivate let disposeBag = DisposeBag()
+    
     fileprivate let form: CHCreateAlertHighLowForm
     
     weak var delegate: CHCreateAlertPresenterDelegate?
     
     // MARK: - View lifecycle
     
-    init(form: CHCreateAlertHighLowForm) {
+    init(vinsoAPI: VinsoAPI, form: CHCreateAlertHighLowForm) {
         self.form = form
+        self.vinsoAPI = vinsoAPI
         
         super.init()
         
@@ -39,12 +46,36 @@ extension CHCreateAlertPresenter {
     
 }
 
-// MARK: - Network
+// MARK: - User interaction
 
 private extension CHCreateAlertPresenter {
     
     func doCreateAlert() {
-        log.debug(form.currencyPair, form.topBound, form.bottomBound, form.notes)
+        let topBound: Double? = form.topBound != nil ? Utils.getJSONFormattedNumb(from: form.topBound!) : nil
+        let bottomBound: Double? = form.bottomBound != nil ? Utils.getJSONFormattedNumb(from: form.bottomBound!) : nil
+        
+        // TODO bohdansrz: fetch priceAtCreateMoment
+        //        let priceAtCreateMoment = selectedPair?.lastTrade ?? editAlert?.priceAtCreateMoment ?? 0
+        
+        let newAlert = Alert(id: 0,
+                             currencyPairName: form.selectedCurrency!.name,
+                             priceAtCreateMoment: form.selectedCurrency!.sellPrice,
+                             notes: form.notes,
+                             topBoundary: topBound,
+                             bottomBoundary: bottomBound,
+                             isPersistentNotification: false)
+        self.delegate?.createAlertPresenter(self, didActCreateAlert: newAlert)
+    }
+    
+}
+
+// MARK: - Network
+
+extension CHCreateAlertPresenter {
+    
+    func createAlert(_ alert: Alert) -> Single<Alert> {
+        let request = vinsoAPI.rx.createAlert(alert: alert)
+        return request
     }
     
 }
@@ -59,10 +90,7 @@ extension CHCreateAlertPresenter: CHCreateAlertHighLowFormDelegate {
             self.delegate?.createAlertPresenterDidSelectCurrency(self)
         case .cta:
             if form.isValid() {
-                log.debug("form is valid")
                 doCreateAlert()
-            } else {
-                log.debug("form isn't valid")
             }
         default:
             break

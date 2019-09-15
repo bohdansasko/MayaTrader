@@ -32,7 +32,7 @@ final class CHCreateAlertHighLowForm: CHBaseForm {
         IndexPath(row: 4, section: 0): .cta
     ]
 
-    fileprivate var selectedCurrency: CHLiteCurrencyModel?
+    fileprivate(set) var selectedCurrency: CHLiteCurrencyModel?
     
     fileprivate(set) var currencyPair: String?
     fileprivate(set) var topBound: String?
@@ -87,10 +87,6 @@ private extension CHCreateAlertHighLowForm {
 extension CHCreateAlertHighLowForm {
     
     func set(currency: CHLiteCurrencyModel) {
-        if selectedCurrency != nil {
-            return
-        }
-        
         guard
             let currencyIndexPath = cellsLayout.first(where: { $0.value == .currency })?.key,
             let currencyCell = cells[currencyIndexPath] as? FormUpdatable,

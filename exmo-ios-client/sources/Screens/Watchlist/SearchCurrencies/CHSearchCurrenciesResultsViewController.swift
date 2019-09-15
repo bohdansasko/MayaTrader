@@ -105,8 +105,6 @@ extension CHSearchCurrenciesResultsViewController: CHSearchCurrenciesResultsPres
             onClose?(currency)
             dismiss(animated: true, completion: nil)
         }
-        
-        
     }
     
 }

@@ -65,7 +65,9 @@ private extension CHExchangesViewController {
         contentView.setSearchBar(delegate: self)
         contentView.set(completionOnClose: { [unowned self] c in
             self.onClose?(c)
-            self.close()
+            DispatchQueue.main.async {
+                self.close()
+            }
         })
         contentView.searchResultsController.selectionMode = selectionMode
     }
@@ -77,7 +79,7 @@ private extension CHExchangesViewController {
 private extension CHExchangesViewController {
     
     @IBAction func actClose(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.close()
     }
     
 }

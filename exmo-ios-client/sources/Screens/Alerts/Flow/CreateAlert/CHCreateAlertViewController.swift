@@ -16,7 +16,12 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
     }
     
     fileprivate var presenter: CHCreateAlertPresenter!
-
+    
+    /// use for editing existing alert
+    var editAlert: Alert? {
+        didSet { assert(!self.isViewLoaded) }
+    }
+    
     // MARK: - View Lifecycle
     
     override func viewDidLoad() {
@@ -50,7 +55,7 @@ private extension CHCreateAlertViewController {
     
     func setupPresenter() {
         let form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
-        presenter = CHCreateAlertPresenter(form: form)
+        presenter = CHCreateAlertPresenter(vinsoAPI: vinsoAPI, form: form)
         presenter.delegate = self
     }
     
@@ -86,6 +91,22 @@ extension CHCreateAlertViewController: CHCreateAlertPresenterDelegate {
     
     func createAlertPresenterDidSelectCurrency(_ presenter: CHCreateAlertPresenter) {
         performSegue(withIdentifier: Segues.selectCurrency.rawValue)
+    
+    }
+    
+    func createAlertPresenter(_ presenter: CHCreateAlertPresenter, didActCreateAlert alert: Alert) {
+        let request = presenter.createAlert(alert)
+        rx.showLoadingView(request: request)
+            .subscribe(onSuccess: { [unowned self] alert in
+                self.close()
+            }, onError: { [unowned self] err in
+                self.handleError(err)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func createAlertPresenter(_ presenter: CHCreateAlertPresenter, onError error: Error) {
+        handleError(error)
     }
     
 }

@@ -151,7 +151,7 @@ extension Reactive where Base: VinsoAPI {
             .asSingle()
     }
     
-    func createAlert(alert: Alert) -> Single<Alert?> {
+    func createAlert(alert: Alert) -> Single<Alert> {
         let jsonMsg = AlertsApiRequestBuilder.getJSONForCreateAlert(alert: alert)
         return self.base.sendRequest(messageType: .createAlert, params: jsonMsg.dictionaryObject!)
             .mapInBackground{ json in
