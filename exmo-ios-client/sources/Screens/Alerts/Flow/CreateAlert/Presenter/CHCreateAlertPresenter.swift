@@ -86,7 +86,9 @@ private extension CHCreateAlertPresenter {
         
         switch cellId {
         case .currency:
-            let currencyPairItem = CurrencyDetailsItem(title: "Currency pair", placeholder: "Select currency pair…", isMandatory: true)
+            let currencyPairItem = CurrencyDetailsItem(title: "SCREEN_CREATE_ALERT_CURRENCY_PAIR".localized,
+                                                       placeholder: "SCREEN_CREATE_ALERT_SELECT_CURRENCY".localized,
+                                                       isMandatory: true)
             currencyPairItem.valueCompletion = {
                 [weak self, weak currencyPairItem] leftValue, rightValue in
 //                self?.currencyPair = leftValue
@@ -97,7 +99,7 @@ private extension CHCreateAlertPresenter {
             currencyPairItem.uiProperties.cellType = .currencyDetails
             formItem = currencyPairItem
         case .currencyTopValue:
-            let upperBoundItem = FloatingNumberFormItem(title: "HIGHER VALUE", placeholder1: "0", placeholder2: " USD")
+            let upperBoundItem = FloatingNumberFormItem(title: "SCREEN_CREATE_ALERT_HIGH_VALUE".localized, placeholder1: "0", placeholder2: " USD")
             upperBoundItem.valueCompletion = {
                 [weak self, weak upperBoundItem] value in
 //                self?.topBound = value
@@ -107,7 +109,7 @@ private extension CHCreateAlertPresenter {
             upperBoundItem.uiProperties.cellType = .floatingNumberTextField
             formItem = upperBoundItem
         case .currencyBottomValue:
-            let bottomBoundItem = FloatingNumberFormItem(title: "LOWER VALUE", placeholder1: "0", placeholder2: " USD")
+            let bottomBoundItem = FloatingNumberFormItem(title: "SCREEN_CREATE_ALERT_LOW_VALUE".localized, placeholder1: "0", placeholder2: " USD")
             bottomBoundItem.valueCompletion = {
                 [weak self, weak bottomBoundItem] value in
 //                self?.bottomBound = value
@@ -117,7 +119,7 @@ private extension CHCreateAlertPresenter {
             bottomBoundItem.uiProperties.cellType = .floatingNumberTextField
             formItem = bottomBoundItem
         case .notes:
-            let descriptionItem = TextFormItem(title: "NOTE", placeholder: "Write reminder note...")
+            let descriptionItem = TextFormItem(title: "SCREEN_CREATE_ALERT_NOTE".localized, placeholder: "SCREEN_CREATE_ALERT_NOTE_PLACEHOLDER".localized)
             descriptionItem.valueCompletion = {
                 [weak self, weak descriptionItem] value in
 //                self?.description = value
@@ -128,7 +130,7 @@ private extension CHCreateAlertPresenter {
             formItem = descriptionItem
         case .cta:
             let currencyPair: String? = nil
-            let buttonItem = ButtonFormItem(title: currencyPair == nil ? "CREATE" : "UPDATE")
+            let buttonItem = ButtonFormItem(title: currencyPair == nil ? "SCREEN_CREATE_ALERT_CTA_CREATE".localized : "SCREEN_CREATE_ALERT_CTA_UPDATE".localized)
 //            buttonItem.onTouch = onTouchButtonCreate
             buttonItem.uiProperties.cellType = .button
             formItem = buttonItem
@@ -154,7 +156,7 @@ extension CHCreateAlertPresenter: UITableViewDataSource {
         let cellType = tableViewCellType(for: indexPath)
         let cell = tableView.dequeue(class: cellType, for: indexPath)
         cells[indexPath] = cell
-        self.configure(cell: cell, at: indexPath)
+        
         return cell
     }
     
@@ -163,5 +165,9 @@ extension CHCreateAlertPresenter: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension CHCreateAlertPresenter: UITableViewDelegate {
-    // do nothing
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        self.configure(cell: cell, at: indexPath)
+    }
+    
 }
