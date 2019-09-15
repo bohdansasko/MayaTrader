@@ -10,23 +10,23 @@ import Foundation
 import UIKit
 
 protocol CurrencyDetailsFormConformity {
-    var formItem: CurrencyDetailsItem? {get set}
+    var formItem: CurrencyDetailsItem? { get set }
 }
 
 protocol TextFormConformity {
-    var formItem: TextFormItem? {get set}
+    var formItem: TextFormItem? { get set }
 }
 
 protocol FloatingNumberFormConformity {
-    var formItem: FloatingNumberFormItem? {get set}
+    var formItem: FloatingNumberFormItem? { get set }
 }
 
 protocol SwitchFormConformity {
-    var formItem: SwitchFormItem? {get set}
+    var formItem: SwitchFormItem? { get set }
 }
 
 protocol SegmentFormConformity {
-    var formItem: SegmentFormItem? {get set}
+    var formItem: SegmentFormItem? { get set }
 }
 
 protocol FormUpdatable {

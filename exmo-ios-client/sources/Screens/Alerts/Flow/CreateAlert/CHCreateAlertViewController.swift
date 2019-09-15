@@ -41,7 +41,8 @@ private extension CHCreateAlertViewController {
     }
     
     func setupPresenter() {
-        presenter = CHCreateAlertPresenter(tableView: contentView.tableView, layout: CHCreateAlertHighLowLayout())
+        let form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
+        presenter = CHCreateAlertPresenter(form: form)
     }
     
 }

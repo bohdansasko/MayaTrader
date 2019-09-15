@@ -9,14 +9,14 @@
 import Foundation
 
 protocol FormItemValidate {
-    var isMandatory: Bool {get set}
+    var isMandatory: Bool { get set }
     func isValidate() -> Bool
     func clear()
 }
 
 protocol FormItem: FormItemValidate {
     var title: String? {get set}
-    var uiProperties: CellUIProperties {get set}
+    var uiProperties: CellUIProperties { get set }
 }
 
 final class ButtonFormItem: FormItem {

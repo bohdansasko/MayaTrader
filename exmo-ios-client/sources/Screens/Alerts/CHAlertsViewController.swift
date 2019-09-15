@@ -119,6 +119,8 @@ private extension CHAlertsViewController {
     
 }
 
+// MARK: - CHAlertsPresenterDelegate
+
 extension CHAlertsViewController: CHAlertsPresenterDelegate {
     
     func alertsPresenter(_ presenter: CHAlertsPresenter, onEdit alert: Alert) {
