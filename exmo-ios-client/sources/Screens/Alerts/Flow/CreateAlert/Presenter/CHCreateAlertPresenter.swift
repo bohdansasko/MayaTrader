@@ -29,6 +29,15 @@ final class CHCreateAlertPresenter: NSObject {
     ]
     private var cells: [IndexPath: UITableViewCell] = [:]
     
+    // MARK: - Input values over form
+
+    fileprivate var currencyPair: String?
+    fileprivate var topBound: String?
+    fileprivate var bottomBound: String?
+    fileprivate var notes: String?
+
+    // MARK: - View lifecycle
+
     init(tableView: UITableView, layout: CHCreateAlertLayout) {
         self.tableView = tableView
         self.layout = layout
@@ -40,7 +49,7 @@ final class CHCreateAlertPresenter: NSObject {
     
 }
 
-// MARK: - UITableViewDelegate
+// MARK: - Setup methods
 
 private extension CHCreateAlertPresenter {
     
@@ -55,6 +64,16 @@ private extension CHCreateAlertPresenter {
             let cellType = self.tableViewCellType(for: $0.key)
             self.tableView.register(nib: cellType)
         }
+    }
+    
+}
+
+// MARK: - Network
+
+private extension CHCreateAlertPresenter {
+    
+    func doCreateAlert() {
+        log.debug(currencyPair, topBound, bottomBound, notes)
     }
     
 }
@@ -79,63 +98,90 @@ private extension CHCreateAlertPresenter {
         }
     }
     
-    func configure(cell: UITableViewCell, at indexPath: IndexPath) {
+    func configure(cell: FormUpdatable, at indexPath: IndexPath) {
         let cellId = cellsLayout[indexPath]!
-        let updatableCell = cell as! FormUpdatable
-        var formItem: FormItem?
-        
+        let formItem = makeFormItem(by: cellId)
+        cell.update(item: formItem)
+    }
+    
+}
+
+// MARK: - Make form items
+
+private extension CHCreateAlertPresenter {
+    
+    func makeFormItem(by cellId: CellId) -> FormItem {
+        let formItem: FormItem
         switch cellId {
         case .currency:
-            let currencyPairItem = CurrencyDetailsItem(title: "SCREEN_CREATE_ALERT_CURRENCY_PAIR".localized,
-                                                       placeholder: "SCREEN_CREATE_ALERT_SELECT_CURRENCY".localized,
-                                                       isMandatory: true)
-            currencyPairItem.valueCompletion = {
-                [weak self, weak currencyPairItem] leftValue, rightValue in
-//                self?.currencyPair = leftValue
-//                currencyPairItem?.leftValue = leftValue
-//                self?.updateCurrenciesPlaceholders()
-            }
-//            currencyPairItem.leftValue = currencyPair
-            currencyPairItem.uiProperties.cellType = .currencyDetails
-            formItem = currencyPairItem
+            formItem = makeCurrencyFormItem(currencyPair: nil)
         case .currencyTopValue:
-            let upperBoundItem = FloatingNumberFormItem(title: "SCREEN_CREATE_ALERT_HIGH_VALUE".localized, placeholder1: "0", placeholder2: " USD")
-            upperBoundItem.valueCompletion = {
-                [weak self, weak upperBoundItem] value in
-//                self?.topBound = value
-//                upperBoundItem?.value = value
-            }
-//            upperBoundItem.value = topBound
-            upperBoundItem.uiProperties.cellType = .floatingNumberTextField
-            formItem = upperBoundItem
+            formItem = makeHigherValueFormItem(upperBoundValue: nil)
         case .currencyBottomValue:
-            let bottomBoundItem = FloatingNumberFormItem(title: "SCREEN_CREATE_ALERT_LOW_VALUE".localized, placeholder1: "0", placeholder2: " USD")
-            bottomBoundItem.valueCompletion = {
-                [weak self, weak bottomBoundItem] value in
-//                self?.bottomBound = value
-//                bottomBoundItem?.value = value
-            }
-//            bottomBoundItem.value = bottomBound
-            bottomBoundItem.uiProperties.cellType = .floatingNumberTextField
-            formItem = bottomBoundItem
+            formItem = makeLowerValueFormItem(bottomBoundValue: nil)
         case .notes:
-            let descriptionItem = TextFormItem(title: "SCREEN_CREATE_ALERT_NOTE".localized, placeholder: "SCREEN_CREATE_ALERT_NOTE_PLACEHOLDER".localized)
-            descriptionItem.valueCompletion = {
-                [weak self, weak descriptionItem] value in
-//                self?.description = value
-//                descriptionItem?.value = value
-            }
-//            descriptionItem.value = description
-            descriptionItem.uiProperties.cellType = .textField
-            formItem = descriptionItem
+            formItem = makeNotesFormItem(notes: nil)
         case .cta:
-            let currencyPair: String? = nil
-            let buttonItem = ButtonFormItem(title: currencyPair == nil ? "SCREEN_CREATE_ALERT_CTA_CREATE".localized : "SCREEN_CREATE_ALERT_CTA_UPDATE".localized)
-//            buttonItem.onTouch = onTouchButtonCreate
-            buttonItem.uiProperties.cellType = .button
-            formItem = buttonItem
+            formItem = makeCTAFormItem(onTouch: { [unowned self] in
+                self.doCreateAlert()
+            })
         }
-        updatableCell.update(item: formItem)
+        return formItem
+    }
+    
+    func makeCurrencyFormItem(currencyPair: String?) -> FormItem {
+        let currencyPairItem = CurrencyDetailsItem(title: "SCREEN_CREATE_ALERT_CURRENCY_PAIR".localized,
+                                                   placeholder: "SCREEN_CREATE_ALERT_SELECT_CURRENCY".localized,
+                                                   isMandatory: true)
+        currencyPairItem.valueCompletion = { [unowned self, weak currencyPairItem] leftValue, rightValue in
+            self.currencyPair = leftValue
+            currencyPairItem?.leftValue = leftValue
+//            self?.updateCurrenciesPlaceholders()
+        }
+        currencyPairItem.leftValue = currencyPair
+        currencyPairItem.uiProperties.cellType = .currencyDetails
+        return currencyPairItem
+    }
+    
+    func makeHigherValueFormItem(upperBoundValue: String?) -> FormItem {
+        let upperBoundItem = FloatingNumberFormItem(title: "SCREEN_CREATE_ALERT_HIGH_VALUE".localized, placeholder1: "0", placeholder2: " USD")
+        upperBoundItem.valueCompletion = { [unowned self, weak upperBoundItem] value in
+            self.topBound = value
+            upperBoundItem?.value = value
+        }
+        upperBoundItem.value = upperBoundValue
+        upperBoundItem.uiProperties.cellType = .floatingNumberTextField
+        return upperBoundItem
+    }
+    
+    func makeLowerValueFormItem(bottomBoundValue: String?) -> FormItem {
+        let bottomBoundItem = FloatingNumberFormItem(title: "SCREEN_CREATE_ALERT_LOW_VALUE".localized, placeholder1: "0", placeholder2: " USD")
+        bottomBoundItem.valueCompletion = { [unowned self, weak bottomBoundItem] value in
+            self.bottomBound = value
+            bottomBoundItem?.value = value
+        }
+        bottomBoundItem.value = bottomBoundValue
+        bottomBoundItem.uiProperties.cellType = .floatingNumberTextField
+        return bottomBoundItem
+    }
+    
+    func makeNotesFormItem(notes: String?) -> FormItem {
+        let descriptionItem = TextFormItem(title: "SCREEN_CREATE_ALERT_NOTE".localized, placeholder: "SCREEN_CREATE_ALERT_NOTE_PLACEHOLDER".localized)
+        descriptionItem.valueCompletion = { [unowned self, weak descriptionItem] value in
+            self.notes = value
+            descriptionItem?.value = value
+        }
+        descriptionItem.value = notes
+        descriptionItem.uiProperties.cellType = .textField
+        return descriptionItem
+    }
+    
+    func makeCTAFormItem(onTouch completion: @escaping (() -> Void)) -> FormItem {
+        let currencyPair: String? = nil
+        let buttonItem = ButtonFormItem(title: currencyPair == nil ? "SCREEN_CREATE_ALERT_CTA_CREATE".localized : "SCREEN_CREATE_ALERT_CTA_UPDATE".localized)
+        buttonItem.onTouch = completion
+        buttonItem.uiProperties.cellType = .button
+        return buttonItem
     }
     
 }
@@ -167,7 +213,8 @@ extension CHCreateAlertPresenter: UITableViewDataSource {
 extension CHCreateAlertPresenter: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        self.configure(cell: cell, at: indexPath)
+        let formCell = cell as! FormUpdatable
+        self.configure(cell: formCell, at: indexPath)
     }
     
 }

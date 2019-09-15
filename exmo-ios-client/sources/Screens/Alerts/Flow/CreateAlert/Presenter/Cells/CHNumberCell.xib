@@ -39,6 +39,7 @@
                         <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                         <connections>
+                            <action selector="onTextDidChange:" destination="KGk-i7-Jjw" eventType="editingChanged" id="gQk-Nh-aGg"/>
                             <outlet property="delegate" destination="KGk-i7-Jjw" id="XnB-sv-QJk"/>
                         </connections>
                     </textField>

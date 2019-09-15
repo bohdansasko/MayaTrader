@@ -26,9 +26,6 @@ final class CHTextInputCell: ExmoTableViewCell, TextFormConformity {
     override func setupViews() {
         super.setupViews()
         separatorLineView.isHidden = false
-//        let selectedBgView = UIView()
-//        selectedBgView.backgroundColor = .clear
-//        selectedBackgroundView = selectedBgView
     }
     
     
