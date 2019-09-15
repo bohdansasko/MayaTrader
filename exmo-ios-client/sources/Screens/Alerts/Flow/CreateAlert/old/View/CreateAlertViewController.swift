@@ -49,7 +49,7 @@ final class CreateAlertViewController: CHBaseViewController {
             form.currencyPair = Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode)
             form.topBound = alert.topBoundary == nil ? nil : Utils.getFormatedPrice(value: alert.topBoundary!, maxFractDigits: 10)
             form.bottomBound = alert.bottomBoundary == nil ? nil : Utils.getFormatedPrice(value: alert.bottomBoundary!, maxFractDigits: 10)
-            form.description = alert.description
+            form.notes = alert.notes
             form.isPersistent = alert.isPersistentNotification
         }
         form.refreshTitle()
@@ -79,7 +79,7 @@ final class CreateAlertViewController: CHBaseViewController {
                 id: editAlert?.id ?? 0,
                 currencyPairName: rawCurrencyPairName,
                 priceAtCreateMoment: priceAtCreateMoment,
-                description: form.description,
+                notes: form.notes,
                 topBoundary: topBound,
                 bottomBoundary: bottomBound,
                 isPersistentNotification: form.isPersistent)

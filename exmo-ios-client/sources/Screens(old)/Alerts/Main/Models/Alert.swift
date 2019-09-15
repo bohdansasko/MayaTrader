@@ -31,16 +31,16 @@ final class Alert: SegueBlock, Mappable {
     var bottomBoundary: Double?
     var status = AlertStatus.active
     var dateCreated: Date = Date()
-    var description: String?
+    var notes: String?
     var isPersistentNotification: Bool = false
     var stockExchange: CHStockExchange = .exmo
     
-    init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, description: String?,
+    init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, notes: String?,
          topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .active, isPersistentNotification: Bool) {
         self.id = id
         self.currencyCode = currencyPairName
         self.priceAtCreateMoment = priceAtCreateMoment
-        self.description = description
+        self.notes = notes
         self.topBoundary = topBoundary
         self.bottomBoundary = bottomBoundary
         self.status = status
@@ -65,7 +65,7 @@ final class Alert: SegueBlock, Mappable {
         bottomBoundary           <- (map["bottom_bound"], transform)
         status                   <- map["alert_status"]
         dateCreated              <- (map["timestamp"], DateTransform())
-        description              <- map["description"]
+        notes                    <- map["description"]
         isPersistentNotification <- map["is_persistent"]
         stockExchange            <- (map["stock_exchange"], EnumTransform<CHStockExchange>())
         
@@ -80,13 +80,13 @@ final class Alert: SegueBlock, Mappable {
                 + "status: \(status)\n"
                 + "dateCreated: \(dateCreated.debugDescription)\n"
                 + "isPersistentNotification: \(isPersistentNotification)\n"
-                + "description: \(description ?? "empty")\n"
+                + "notes: \(notes ?? "empty")\n"
     }
 
     func updateData(newData: Alert) {
         currencyCode = newData.currencyCode
         priceAtCreateMoment = newData.priceAtCreateMoment
-        description = newData.description
+        notes = newData.notes
         topBoundary = newData.topBoundary
         bottomBoundary = newData.bottomBoundary
         status = newData.status

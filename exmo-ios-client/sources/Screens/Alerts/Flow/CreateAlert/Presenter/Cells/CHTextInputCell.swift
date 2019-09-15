@@ -36,7 +36,7 @@ final class CHTextInputCell: ExmoTableViewCell, TextFormConformity {
 private extension CHTextInputCell {
     
     @IBAction func onTextDidChange(_ textField: UITextField) {
-        formItem?.valueCompletion?(textField.text)
+        formItem?.onTextChanged?(textField.text)
     }
     
 }

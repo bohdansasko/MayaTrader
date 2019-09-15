@@ -122,9 +122,9 @@ private extension AlertViewCell {
         labelTopBound.text = item.topBoundary != nil ? Utils.getFormatedPrice(value: item.topBoundary!, maxFractDigits: 10) : "-"
         labelBottomBound.text = item.bottomBoundary != nil ? Utils.getFormatedPrice(value: item.bottomBoundary!, maxFractDigits: 10) : "-"
 
-        let description = item.description == nil || (item.description?.isEmpty ?? true)
+        let description = item.notes == nil || item.notes!.isEmpty
                 ? "Write your note..."
-                : item.description
+                : item.notes
         descriptionLabel.text = description
     }
 

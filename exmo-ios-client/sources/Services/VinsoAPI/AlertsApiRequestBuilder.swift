@@ -59,7 +59,7 @@ class AlertsApiRequestBuilder {
             "stock_exchange"         : alert.stockExchange.rawValue,
             "upper_bound"            : upperBound,
             "bottom_bound"           : bottomBound,
-            "description"            : alert.description ?? JSON.null
+            "description"            : alert.notes ?? JSON.null
         ]
     }
 }

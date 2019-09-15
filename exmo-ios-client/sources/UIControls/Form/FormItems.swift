@@ -110,7 +110,7 @@ final class TextFormItem: FormItem {
     var value: String?
     var placeholder: String?
     var uiProperties = CellUIProperties()
-    var valueCompletion: ((String?) -> Void)?
+    var onTextChanged: ((String?) -> Void)?
     
     var isMandatory: Bool
     
