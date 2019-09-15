@@ -66,7 +66,7 @@ private extension CHCreateAlertViewController {
         vc.selectionMode = .currency
         vc.onClose = { [unowned self] selectedCurrency in
             log.info("selected currency", selectedCurrency)
-//            self.set(currency: selectedCurrency)
+            self.presenter.set(currency: selectedCurrency)
         }
     }
     

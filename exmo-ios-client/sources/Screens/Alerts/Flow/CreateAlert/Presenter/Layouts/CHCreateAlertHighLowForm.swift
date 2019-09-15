@@ -31,6 +31,8 @@ final class CHCreateAlertHighLowForm: CHBaseForm {
         IndexPath(row: 3, section: 0): .notes,
         IndexPath(row: 4, section: 0): .cta
     ]
+
+    fileprivate var selectedCurrency: CHLiteCurrencyModel?
     
     fileprivate(set) var currencyPair: String?
     fileprivate(set) var topBound: String?
@@ -75,6 +77,39 @@ private extension CHCreateAlertHighLowForm {
         self.cellsLayout.forEach{
             let cellType = self.tableViewCellType(for: $0.key)
             self.tableView.register(nib: cellType)
+        }
+    }
+    
+}
+
+// MARK: - Setters
+
+extension CHCreateAlertHighLowForm {
+    
+    func set(currency: CHLiteCurrencyModel) {
+        if selectedCurrency != nil && currency.name == selectedCurrency!.name {
+            return
+        }
+        
+        guard
+            let detailsIndexPath = cellsLayout.first(where: { $0.value == .currency })?.key,
+            let detailsCell = cells[detailsIndexPath] as? FormUpdatable,
+            let detailsFormItem = formItems[detailsIndexPath] as? CurrencyDetailsItem else {
+                assertionFailure("fix me")
+                return
+        }
+        selectedCurrency = currency
+        
+        detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
+        detailsFormItem.rightValue = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
+        detailsCell.update(item: detailsFormItem)
+
+        for (_, cell) in cells {
+            guard let floatingCell = cell as? CHNumberCell else {
+                continue
+            }
+            floatingCell.formItem?.value = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
+            floatingCell.update(item: floatingCell.formItem)
         }
     }
     

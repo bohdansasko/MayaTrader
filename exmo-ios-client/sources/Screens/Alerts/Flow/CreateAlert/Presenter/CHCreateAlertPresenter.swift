@@ -29,6 +29,16 @@ final class CHCreateAlertPresenter: NSObject {
     
 }
 
+// MARK: - Setters
+
+extension CHCreateAlertPresenter {
+    
+    func set(currency: CHLiteCurrencyModel) {
+        form.set(currency: currency)
+    }
+    
+}
+
 // MARK: - Network
 
 private extension CHCreateAlertPresenter {
