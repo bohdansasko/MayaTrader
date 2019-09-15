@@ -37,7 +37,7 @@
                         <rect key="frame" x="264" y="21" width="26" height="26"/>
                     </imageView>
                     <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rgh-YB-2pn">
-                        <rect key="frame" x="30" y="37" width="210.5" height="22.5"/>
+                        <rect key="frame" x="30" y="37" width="194.5" height="22.5"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
@@ -46,7 +46,7 @@
                         </connections>
                     </textField>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&lt;Label&gt;" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bD8-GT-9R8">
-                        <rect key="frame" x="240.5" y="25.5" width="49.5" height="17"/>
+                        <rect key="frame" x="224.5" y="25.5" width="49.5" height="17"/>
                         <fontDescription key="fontDescription" name="Exo2-Regular" family="Exo 2" pointSize="14"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -66,9 +66,9 @@
                     <constraint firstItem="bD8-GT-9R8" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="En0-f1-ETa"/>
                     <constraint firstItem="Z0r-QC-4AX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="F9d-ha-xyo"/>
                     <constraint firstItem="Rgh-YB-2pn" firstAttribute="top" secondItem="az1-jg-UWf" secondAttribute="bottom" constant="12" id="MNw-d7-ylW"/>
-                    <constraint firstAttribute="trailing" secondItem="bD8-GT-9R8" secondAttribute="trailing" constant="30" id="NHt-5b-tq4"/>
                     <constraint firstItem="Z0r-QC-4AX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="NMd-nx-xmb"/>
                     <constraint firstItem="az1-jg-UWf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Sya-pg-5V1"/>
+                    <constraint firstItem="aPE-sZ-x1i" firstAttribute="leading" secondItem="bD8-GT-9R8" secondAttribute="trailing" constant="-10" id="XCe-dm-Yq6"/>
                     <constraint firstAttribute="bottom" secondItem="Z0r-QC-4AX" secondAttribute="bottom" id="gNz-aB-FAc"/>
                     <constraint firstAttribute="trailing" secondItem="az1-jg-UWf" secondAttribute="trailing" constant="20" id="mJF-Pw-kr9"/>
                     <constraint firstItem="az1-jg-UWf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="qOg-kU-flm"/>

@@ -25,7 +25,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TWn-eg-W8e">
-                        <rect key="frame" x="30" y="32" width="270" height="45.5"/>
+                        <rect key="frame" x="30" y="32" width="260" height="45.5"/>
                         <fontDescription key="fontDescription" name="Exo2-Bold" family="Exo 2" pointSize="14"/>
                         <state key="normal" title="&lt;OK&gt;" backgroundImage="icWidthButtonBlue"/>
                         <connections>
@@ -36,7 +36,7 @@
                 <constraints>
                     <constraint firstItem="TWn-eg-W8e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="D6b-Ln-3Y1"/>
                     <constraint firstAttribute="bottom" secondItem="TWn-eg-W8e" secondAttribute="bottom" constant="6" id="MzI-0V-1Hw"/>
-                    <constraint firstAttribute="trailing" secondItem="TWn-eg-W8e" secondAttribute="trailing" constant="20" id="cAk-cg-aQo"/>
+                    <constraint firstAttribute="trailing" secondItem="TWn-eg-W8e" secondAttribute="trailing" constant="30" id="cAk-cg-aQo"/>
                     <constraint firstItem="TWn-eg-W8e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="wX6-m2-PBo"/>
                 </constraints>
             </tableViewCellContentView>

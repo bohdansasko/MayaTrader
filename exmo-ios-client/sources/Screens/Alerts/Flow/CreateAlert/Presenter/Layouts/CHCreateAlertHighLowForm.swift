@@ -87,23 +87,27 @@ private extension CHCreateAlertHighLowForm {
 extension CHCreateAlertHighLowForm {
     
     func set(currency: CHLiteCurrencyModel) {
-        if selectedCurrency != nil && currency.name == selectedCurrency!.name {
+        if selectedCurrency != nil {
             return
         }
         
         guard
-            let detailsIndexPath = cellsLayout.first(where: { $0.value == .currency })?.key,
-            let detailsCell = cells[detailsIndexPath] as? FormUpdatable,
-            let detailsFormItem = formItems[detailsIndexPath] as? CurrencyDetailsItem else {
+            let currencyIndexPath = cellsLayout.first(where: { $0.value == .currency })?.key,
+            let currencyCell = cells[currencyIndexPath] as? FormUpdatable,
+            let currencyFormItem = formItems[currencyIndexPath] as? CurrencyDetailsItem else {
                 assertionFailure("fix me")
                 return
         }
         selectedCurrency = currency
         
-        detailsFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
-        detailsFormItem.rightValue = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
-        detailsCell.update(item: detailsFormItem)
+        // update currency cell
+        
+        currencyFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
+        currencyFormItem.rightValue = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
+        currencyCell.update(item: currencyFormItem)
 
+        // update highest, lowest price value in the number fields
+        
         for (_, cell) in cells {
             guard let floatingCell = cell as? CHNumberCell else {
                 continue
