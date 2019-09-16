@@ -99,7 +99,7 @@ private extension CHAlertsViewController {
     func prepareAlertUpdateViewController(for segue: UIStoryboardSegue, sender: Any?) {
         let alert = sender as! Alert
         let navControl = segue.destination as! UINavigationController
-        let vc =  navControl.topViewController as! CreateAlertViewController
+        let vc =  navControl.topViewController as! CHCreateAlertViewController
         vc.editAlert = alert
     }
     

@@ -11,15 +11,23 @@ import UIKit
 final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHCreateAlertView
     
+    // MARK: - Private
+    
     fileprivate enum Segues: String {
         case selectCurrency
     }
     
     fileprivate var presenter: CHCreateAlertPresenter!
     
+    // MARK: - Public
+    
     /// use for editing existing alert
     var editAlert: Alert? {
         didSet { assert(!self.isViewLoaded) }
+    }
+    
+    var isEditingMode: Bool {
+        return editAlert != nil
     }
     
     // MARK: - View Lifecycle
@@ -46,7 +54,9 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
 private extension CHCreateAlertViewController {
     
     func setupNavigation() {
-        navigationItem.title = "SCREEN_CREATE_ALERT_TITLE".localized
+        navigationItem.title = isEditingMode
+            ? "SCREEN_CREATE_ALERT_TITLE".localized
+            : "SCREEN_UPDATE_ALERT_TITLE".localized
         setupRightBarButtonItem(title: "CANCEL".localized,
                                 normalColor: .orangePink,
                                 highlightedColor: .orangePink,
@@ -57,6 +67,7 @@ private extension CHCreateAlertViewController {
         let form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
         presenter = CHCreateAlertPresenter(vinsoAPI: vinsoAPI, form: form)
         presenter.delegate = self
+        presenter.set(currency: <#T##CHLiteCurrencyModel#>)
     }
     
 }
@@ -91,18 +102,28 @@ extension CHCreateAlertViewController: CHCreateAlertPresenterDelegate {
     
     func createAlertPresenterDidSelectCurrency(_ presenter: CHCreateAlertPresenter) {
         performSegue(withIdentifier: Segues.selectCurrency.rawValue)
-    
     }
     
     func createAlertPresenter(_ presenter: CHCreateAlertPresenter, didActCreateAlert alert: Alert) {
-        let request = presenter.createAlert(alert)
-        rx.showLoadingView(request: request)
-            .subscribe(onSuccess: { [unowned self] alert in
-                self.close()
-            }, onError: { [unowned self] err in
-                self.handleError(err)
-            })
-            .disposed(by: disposeBag)
+        if isEditingMode {
+            let request = vinsoAPI.rx.updateAlert(alert)
+            rx.showLoadingView(request: request)
+                .subscribe(onSuccess: { [unowned self] alert in
+                    self.close()
+                }, onError: { [unowned self] err in
+                    self.handleError(err)
+                })
+                .disposed(by: disposeBag)
+        } else {
+            let request = presenter.createAlert(alert)
+            rx.showLoadingView(request: request)
+                .subscribe(onSuccess: { [unowned self] alert in
+                    self.close()
+                }, onError: { [unowned self] err in
+                    self.handleError(err)
+                })
+                .disposed(by: disposeBag)
+        }
     }
     
     func createAlertPresenter(_ presenter: CHCreateAlertPresenter, onError error: Error) {
