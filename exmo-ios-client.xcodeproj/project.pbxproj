@@ -324,7 +324,6 @@
 		97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */; };
 		97E9C0152304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */; };
 		97E9C017230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */; };
-		97EDA04D23294E4600A5BE54 /* CHCreateAlertPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EDA04C23294E4600A5BE54 /* CHCreateAlertPresenter.swift */; };
 		97EDA05023294F7900A5BE54 /* CHCreateAlertHighLowForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97EDA04F23294F7900A5BE54 /* CHCreateAlertHighLowForm.swift */; };
 		97FD9B2A2323DAEB00D90178 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97FD9B292323DAEB00D90178 /* Date+Extension.swift */; };
 		9B07F182CDA5B6B16A2C7971 /* CurrenciesGroupsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49F43CA7FE0D9869186DF0E /* CurrenciesGroupsPresenter.swift */; };
@@ -698,7 +697,6 @@
 		97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSecurityApiRequestsBuilder.swift; sourceTree = "<group>"; };
 		97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoPublicApiRequestsBuilder.swift; sourceTree = "<group>"; };
 		97E9C016230446BC00CF01A2 /* ExmoAuthenticationApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoAuthenticationApiRequestsBuilder.swift; sourceTree = "<group>"; };
-		97EDA04C23294E4600A5BE54 /* CHCreateAlertPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertPresenter.swift; sourceTree = "<group>"; };
 		97EDA04F23294F7900A5BE54 /* CHCreateAlertHighLowForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCreateAlertHighLowForm.swift; sourceTree = "<group>"; };
 		97FD9B292323DAEB00D90178 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		9D737B3BA6328BC185816E2B /* QRScannerModuleInput.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = QRScannerModuleInput.swift; sourceTree = "<group>"; };
@@ -1744,7 +1742,7 @@
 			isa = PBXGroup;
 			children = (
 				973725BF232D6BA30077733B /* old */,
-				97EDA04E23294F4900A5BE54 /* Presenter */,
+				97EDA04E23294F4900A5BE54 /* Form */,
 				202F80AE2300B2800035D123 /* CHCreateAlertView.swift */,
 				202F80AA2300B2590035D123 /* CHCreateAlertViewController.swift */,
 				202F80AB2300B2590035D123 /* CHCreateAlertViewController.xib */,
@@ -2238,14 +2236,13 @@
 			path = RequestsBuilders;
 			sourceTree = "<group>";
 		};
-		97EDA04E23294F4900A5BE54 /* Presenter */ = {
+		97EDA04E23294F4900A5BE54 /* Form */ = {
 			isa = PBXGroup;
 			children = (
 				205200B8232B45A1002637FA /* Layouts */,
 				973725A7232D2ECA0077733B /* Cells */,
-				97EDA04C23294E4600A5BE54 /* CHCreateAlertPresenter.swift */,
 			);
-			path = Presenter;
+			path = Form;
 			sourceTree = "<group>";
 		};
 		97FD9B2B2323EBAD00D90178 /* UIKit */ = {
@@ -2929,7 +2926,6 @@
 				9E213ECC5452854BBEB1A693 /* SearchCurrencyPairViewController.swift in Sources */,
 				A61320EE80B398D4D4CCE228 /* SearchCurrencyPairModuleInput.swift in Sources */,
 				81D6C5A005CDED67BB51198D /* SearchCurrencyPairPresenter.swift in Sources */,
-				97EDA04D23294E4600A5BE54 /* CHCreateAlertPresenter.swift in Sources */,
 				201DF1FE21B27D0F00158A15 /* FormItems.swift in Sources */,
 				2FFE2B3AA119EA553FD16233 /* SearchCurrencyPairInteractorProtocols.swift in Sources */,
 				20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */,

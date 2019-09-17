@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHCreateAlertView
@@ -17,7 +18,7 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
         case selectCurrency
     }
     
-    fileprivate var presenter: CHCreateAlertPresenter!
+    fileprivate var form: CHCreateAlertHighLowForm!
     
     // MARK: - Public
     
@@ -36,7 +37,7 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
         super.viewDidLoad()
         
         setupNavigation()
-        setupPresenter()
+        setupForm()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -55,19 +56,20 @@ private extension CHCreateAlertViewController {
     
     func setupNavigation() {
         navigationItem.title = isEditingMode
-            ? "SCREEN_CREATE_ALERT_TITLE".localized
-            : "SCREEN_UPDATE_ALERT_TITLE".localized
+            ? "SCREEN_UPDATE_ALERT_TITLE".localized
+            : "SCREEN_CREATE_ALERT_TITLE".localized
+        
         setupRightBarButtonItem(title: "CANCEL".localized,
                                 normalColor: .orangePink,
                                 highlightedColor: .orangePink,
                                 action: #selector(actClose(_:)))
     }
     
-    func setupPresenter() {
-        let form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
-        presenter = CHCreateAlertPresenter(vinsoAPI: vinsoAPI, form: form)
-        presenter.delegate = self
-        presenter.set(currency: <#T##CHLiteCurrencyModel#>)
+    func setupForm() {
+        form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
+        if let alert = editAlert {
+            form.set(alert: alert)
+        }
     }
     
 }
@@ -82,7 +84,7 @@ private extension CHCreateAlertViewController {
         vc.selectionMode = .currency
         vc.onClose = { [unowned self] selectedCurrency in
             log.info("selected currency", selectedCurrency)
-            self.presenter.set(currency: selectedCurrency)
+            self.form.set(currency: selectedCurrency)
         }
     }
     
@@ -98,36 +100,80 @@ private extension CHCreateAlertViewController {
     
 }
 
-extension CHCreateAlertViewController: CHCreateAlertPresenterDelegate {
+// MARK: - Network
+
+private extension CHCreateAlertViewController {
     
-    func createAlertPresenterDidSelectCurrency(_ presenter: CHCreateAlertPresenter) {
-        performSegue(withIdentifier: Segues.selectCurrency.rawValue)
+    func doCreateAlert() {
+        let alert = parseAlert(from: self.form)
+        let request = vinsoAPI.rx.createAlert(alert: alert)
+        rx.showLoadingView(request: request)
+            .subscribe(onSuccess: { [unowned self] alert in
+                self.close()
+                }, onError: { [unowned self] err in
+                    self.handleError(err)
+            })
+            .disposed(by: disposeBag)
     }
     
-    func createAlertPresenter(_ presenter: CHCreateAlertPresenter, didActCreateAlert alert: Alert) {
-        if isEditingMode {
-            let request = vinsoAPI.rx.updateAlert(alert)
-            rx.showLoadingView(request: request)
-                .subscribe(onSuccess: { [unowned self] alert in
-                    self.close()
+    func doUpdateAlert() {
+        let alert = parseAlert(from: self.form)
+        let request = vinsoAPI.rx.updateAlert(alert)
+        rx.showLoadingView(request: request)
+            .subscribe(onSuccess: { [unowned self] alert in
+                self.close()
                 }, onError: { [unowned self] err in
                     self.handleError(err)
-                })
-                .disposed(by: disposeBag)
-        } else {
-            let request = presenter.createAlert(alert)
-            rx.showLoadingView(request: request)
-                .subscribe(onSuccess: { [unowned self] alert in
-                    self.close()
-                }, onError: { [unowned self] err in
-                    self.handleError(err)
-                })
-                .disposed(by: disposeBag)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+}
+
+// MARK: - Help
+
+private extension CHCreateAlertViewController {
+    
+    func parseAlert(from form: CHCreateAlertHighLowForm) -> Alert {
+        let topBound: Double? = form.topBound != nil ? Utils.getJSONFormattedNumb(from: form.topBound!) : nil
+        let bottomBound: Double? = form.bottomBound != nil ? Utils.getJSONFormattedNumb(from: form.bottomBound!) : nil
+        
+        // TODO bohdans: fetch priceAtCreateMoment
+        // let priceAtCreateMoment = selectedPair?.lastTrade ?? editAlert?.priceAtCreateMoment ?? 0
+        
+        let newAlert = Alert(id: 0,
+                             currencyPairName: form.selectedCurrency!.name,
+                             priceAtCreateMoment: form.selectedCurrency!.sellPrice,
+                             notes: form.notes,
+                             topBoundary: topBound,
+                             bottomBoundary: bottomBound,
+                             isPersistentNotification: false)
+        return newAlert
+    }
+    
+}
+
+// MARK: - CHCreateAlertHighLowFormDelegate
+
+extension CHCreateAlertViewController: CHCreateAlertHighLowFormDelegate {
+    
+    func createAlertHighLowForm(_ form: CHCreateAlertHighLowForm, didTouch cell: CHCreateAlertHighLowForm.CellId) {
+        switch cell {
+        case .currency:
+            performSegue(withIdentifier: Segues.selectCurrency.rawValue)
+        case .notes, .currencyTopValue, .currencyBottomValue:
+            break
+        case .cta:
+            if !form.isValid() {
+                return
+            }
+            
+            if isEditingMode {
+                doUpdateAlert()
+            } else {
+                doCreateAlert()
+            }
         }
-    }
-    
-    func createAlertPresenter(_ presenter: CHCreateAlertPresenter, onError error: Error) {
-        handleError(error)
     }
     
 }

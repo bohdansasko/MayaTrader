@@ -113,6 +113,13 @@ extension CHCreateAlertHighLowForm {
         }
     }
     
+    func set(alert: Alert) {
+        currencyPair = Utils.getDisplayCurrencyPair(rawCurrencyPairName: alert.currencyCode)
+        topBound = alert.topBoundary == nil ? nil : Utils.getFormatedPrice(value: alert.topBoundary!, maxFractDigits: 10)
+        bottomBound = alert.bottomBoundary == nil ? nil : Utils.getFormatedPrice(value: alert.bottomBoundary!, maxFractDigits: 10)
+        notes = alert.notes
+    }
+    
 }
 
 // MARK: - Help
@@ -152,13 +159,13 @@ private extension CHCreateAlertHighLowForm {
         let formItem: FormItem
         switch cellId {
         case .currency:
-            formItem = makeCurrencyFormItem(currencyPair: nil)
+            formItem = makeCurrencyFormItem(currencyPair: currencyPair)
         case .currencyTopValue:
-            formItem = makeHigherValueFormItem(upperBoundValue: nil)
+            formItem = makeHigherValueFormItem(upperBoundValue: topBound)
         case .currencyBottomValue:
-            formItem = makeLowerValueFormItem(bottomBoundValue: nil)
+            formItem = makeLowerValueFormItem(bottomBoundValue: bottomBound)
         case .notes:
-            formItem = makeNotesFormItem(notes: nil)
+            formItem = makeNotesFormItem(notes: notes)
         case .cta:
             formItem = makeCTAFormItem(onTouch: { [unowned self] in
                 self.delegate?.createAlertHighLowForm(self, didTouch: .cta)
