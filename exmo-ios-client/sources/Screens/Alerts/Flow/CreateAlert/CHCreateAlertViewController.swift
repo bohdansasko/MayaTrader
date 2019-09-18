@@ -135,13 +135,14 @@ private extension CHCreateAlertViewController {
 private extension CHCreateAlertViewController {
     
     func parseAlert(from form: CHCreateAlertHighLowForm) -> Alert {
+        let id = editAlert?.id ?? 0
         let topBound: Double? = form.topBound != nil ? Utils.getJSONFormattedNumb(from: form.topBound!) : nil
         let bottomBound: Double? = form.bottomBound != nil ? Utils.getJSONFormattedNumb(from: form.bottomBound!) : nil
         
         // TODO bohdans: fetch priceAtCreateMoment
         // let priceAtCreateMoment = selectedPair?.lastTrade ?? editAlert?.priceAtCreateMoment ?? 0
         
-        let newAlert = Alert(id: 0,
+        let newAlert = Alert(id: id,
                              currencyPairName: form.selectedCurrency!.name,
                              priceAtCreateMoment: form.selectedCurrency!.sellPrice,
                              notes: form.notes,
