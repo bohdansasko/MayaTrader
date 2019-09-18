@@ -10,8 +10,10 @@ import RxSwift
 import ObjectMapper
 
 extension Reactive where Base: VinsoAPI {
-    
-    func getCurrencies(selectedCurrencies: [String: [String]], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
+    typealias StockName      = String
+    typealias CurrenciesList = [String]
+
+    func getCurrencies(selectedCurrencies: [StockName: CurrenciesList], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
         assert(!selectedCurrencies.isEmpty, "at least must be one element")
         
         let params: [String: Any] = [

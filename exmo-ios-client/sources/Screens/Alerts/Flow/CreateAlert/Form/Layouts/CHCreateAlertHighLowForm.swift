@@ -33,6 +33,7 @@ final class CHCreateAlertHighLowForm: CHBaseForm {
     ]
 
     fileprivate(set) var selectedCurrency: CHLiteCurrencyModel?
+    fileprivate      let isEditingMode: Bool
     
     fileprivate(set) var currencyPair: String?
     fileprivate(set) var topBound: String?
@@ -45,7 +46,9 @@ final class CHCreateAlertHighLowForm: CHBaseForm {
     
     // MARK: - Lifecycle
     
-    override init(tableView: UITableView) {
+    init(tableView: UITableView, isEditingMode: Bool) {
+        self.isEditingMode = isEditingMode
+        
         super.init(tableView: tableView)
         
         setupTableView()
@@ -167,7 +170,7 @@ private extension CHCreateAlertHighLowForm {
         case .notes:
             formItem = makeNotesFormItem(notes: notes)
         case .cta:
-            formItem = makeCTAFormItem(onTouch: { [unowned self] in
+            formItem = makeCTAFormItem(isEditingMode: isEditingMode, onTouch: { [unowned self] in
                 self.delegate?.createAlertHighLowForm(self, didTouch: .cta)
             })
         }
@@ -224,9 +227,8 @@ private extension CHCreateAlertHighLowForm {
         return descriptionItem
     }
     
-    func makeCTAFormItem(onTouch completion: @escaping (() -> Void)) -> FormItem {
-        let currencyPair: String? = nil
-        let buttonItem = ButtonFormItem(title: currencyPair == nil ? "SCREEN_CREATE_ALERT_CTA_CREATE".localized : "SCREEN_CREATE_ALERT_CTA_UPDATE".localized)
+    func makeCTAFormItem(isEditingMode: Bool, onTouch completion: @escaping (() -> Void)) -> FormItem {
+        let buttonItem = ButtonFormItem(title: isEditingMode ? "SCREEN_CREATE_ALERT_CTA_UPDATE".localized  : "SCREEN_CREATE_ALERT_CTA_CREATE".localized)
         buttonItem.onTouch = completion
         buttonItem.uiProperties.cellType = .button
         return buttonItem

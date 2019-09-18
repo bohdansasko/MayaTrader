@@ -38,6 +38,11 @@ final class CHCreateAlertViewController: CHBaseViewController, CHBaseViewControl
         
         setupNavigation()
         setupForm()
+        
+        if isEditingMode {
+            fetchCurrency()
+        }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -66,7 +71,9 @@ private extension CHCreateAlertViewController {
     }
     
     func setupForm() {
-        form = CHCreateAlertHighLowForm(tableView: contentView.tableView)
+        form = CHCreateAlertHighLowForm(tableView: contentView.tableView, isEditingMode: isEditingMode)
+        form.delegate = self
+        
         if let alert = editAlert {
             form.set(alert: alert)
         }
@@ -128,6 +135,18 @@ private extension CHCreateAlertViewController {
             .disposed(by: disposeBag)
     }
     
+    func fetchCurrency() {
+        let req = vinsoAPI.rx.getCurrencies(selectedCurrencies: [ editAlert!.stockExchange.rawValue: [editAlert!.currencyCode] ])
+        rx.showLoadingView(request: req)
+            .subscribe(onSuccess: { [weak self] currencies in
+                guard let `self` = self, let currency = currencies.first else { return }
+                self.form.set(currency: currency)
+                }, onError: { [weak self] err in
+                    guard let `self` = self else { return }
+                    self.handleError(err)
+            }).disposed(by: disposeBag)
+    }
+    
 }
 
 // MARK: - Help
@@ -148,7 +167,8 @@ private extension CHCreateAlertViewController {
                              notes: form.notes,
                              topBoundary: topBound,
                              bottomBoundary: bottomBound,
-                             isPersistentNotification: false)
+                             isPersistentNotification: false,
+                             stock: form.selectedCurrency!.stock)
         return newAlert
     }
     

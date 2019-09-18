@@ -82,7 +82,8 @@ final class CreateAlertViewController: CHBaseViewController {
                 notes: form.notes,
                 topBoundary: topBound,
                 bottomBoundary: bottomBound,
-                isPersistentNotification: form.isPersistent)
+                isPersistentNotification: form.isPersistent,
+                stock: .exmo)
         showLoader()
         output.handleTouchButtonCreate(alertModel: alert, operationType: editAlert == nil ? .add : .update)
     }

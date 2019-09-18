@@ -36,7 +36,7 @@ final class Alert: SegueBlock, Mappable {
     var stockExchange: CHStockExchange = .exmo
     
     init(id: Int, currencyPairName: String, priceAtCreateMoment: Double, notes: String?,
-         topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .active, isPersistentNotification: Bool) {
+         topBoundary: Double?, bottomBoundary: Double?, status: AlertStatus = .active, isPersistentNotification: Bool, stock: CHStockExchange) {
         self.id = id
         self.currencyCode = currencyPairName
         self.priceAtCreateMoment = priceAtCreateMoment
@@ -46,6 +46,7 @@ final class Alert: SegueBlock, Mappable {
         self.status = status
         self.dateCreated = Date()
         self.isPersistentNotification = isPersistentNotification
+        self.stockExchange = stock
     }
     
     required init?(map: Map) {
