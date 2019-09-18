@@ -8,7 +8,11 @@
 
 import UIKit
 
-class LoginViewController: ExmoUIViewController, LoginViewInput {
+final class LoginViewController: ExmoUIViewController, LoginViewInput {
+    fileprivate enum Segues: String {
+        case scanQR = "ScanQR"
+    }
+    
     var output: LoginViewOutput!
     var activeTextField: UITextField?
     
@@ -130,6 +134,17 @@ class LoginViewController: ExmoUIViewController, LoginViewInput {
         hideLoader()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let viewController = segue.destination as? QRScannerViewController else {
+            assertionFailure("fix me")
+            return
+        }
+        
+        if let qrPresenter = viewController.outputProtocol as? QRScannerModuleInput {
+            qrPresenter.setLoginPresenter(presenter: self.output as! LoginPresenter)
+        }
+    }
+    
     func subscribeOnKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardDidShow(_:)), name: UIControl.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(onKeyboardWillHide(_:)), name: UIControl.keyboardWillHideNotification, object: nil)
@@ -225,7 +240,7 @@ extension LoginViewController {
     }
 
     @objc func onTouchScanQRButton(_ sender: Any) {
-        output.handleTouchOnScanQRButton()
+         performSegue(withIdentifier: Segues.scanQR.rawValue)
     }
 
     @objc func onTouchSkipButton(_ sender: Any) {

@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerInteractorOutput {
+final class QRScannerPresenter: QRScannerModuleInput, QRScannerViewOutput, QRScannerInteractorOutput {
     weak var view: QRScannerViewInput!
     var interactor: QRScannerInteractorInput!
     var router: QRScannerRouterInput!
