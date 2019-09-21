@@ -29,7 +29,7 @@ extension AlertViewCell {
                                 left: self.leftAnchor,
                                 bottom: nil,
                                 right: nil,
-                                topConstant: 5,
+                                topConstant: 3,
                                 leftConstant: 30,
                                 bottomConstant: 0,
                                 rightConstant: 0,
