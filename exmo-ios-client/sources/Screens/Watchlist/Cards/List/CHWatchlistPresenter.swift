@@ -119,12 +119,20 @@ extension CHWatchlistPresenter {
         let groupedSelectedCurrencies = Dictionary(grouping: currencies, by: { $0.stockName })
         let selectedCurrencies = groupedSelectedCurrencies.mapValues{ $0.map{ $0.name } }
         let request = vinsoAPI.rx.getCurrencies(selectedCurrencies: selectedCurrencies)
-        request
-            .subscribe(
-                onSuccess: {[weak self] items in
+        request.subscribe(
+                onSuccess: {[weak self] freshCurrencies in
                     guard let `self` = self else { return }
-                    self.dataSource.set(items)
-                    self.dbManager.add(data: items, update: true)
+                    
+                    var freshSortedCurrencies = [CHLiteCurrencyModel]()
+                    for currency in currencies {
+                        guard let freshCurrency = freshCurrencies.first(where: { $0.id == currency.id }) else {
+                            continue
+                        }
+                        freshSortedCurrencies.append(freshCurrency)
+                    }
+                    
+                    self.dataSource.set(freshSortedCurrencies)
+                    self.dbManager.add(data: freshSortedCurrencies, update: true)
                 },
                 onError: { [weak self] err in
                     guard let `self` = self else { return }
