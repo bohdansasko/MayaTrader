@@ -16,6 +16,17 @@ final class AlertViewCell: ExmoTableViewCell {
         label.numberOfLines = 0
         return label
     }()
+    
+    var stockNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 11)
+        label.textAlignment = .center
+        label.textColor = .white
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 5
+        return label
+    }()
+    
     var labelAlertStatus: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .bold, fontSize: 13)
@@ -113,6 +124,7 @@ private extension AlertViewCell {
             labelTimeCreate.widthAnchor.constraint(equalToConstant: 70).isActive = true
         }
 
+        stockNameLabel.text   = item.stockExchange.description
         labelAlertStatus.text = item.status.name
         updateAlertStatusBackground()
 
@@ -123,8 +135,8 @@ private extension AlertViewCell {
         labelBottomBound.text = item.bottomBoundary != nil ? Utils.getFormatedPrice(value: item.bottomBoundary!, maxFractDigits: 10) : "-"
 
         let description = item.notes == nil || item.notes!.isEmpty
-                ? "Write your note..."
-                : item.notes
+            ? "SCREEN_CREATE_ALERT_NOTE_PLACEHOLDER".localized
+            : item.notes
         descriptionLabel.text = description
     }
 
@@ -133,6 +145,7 @@ private extension AlertViewCell {
             return
         }
         labelAlertStatus.backgroundColor = item.status == AlertStatus.active ? .greenBlue : .steel
+        stockNameLabel.backgroundColor   = .dark2
     }
     
 }

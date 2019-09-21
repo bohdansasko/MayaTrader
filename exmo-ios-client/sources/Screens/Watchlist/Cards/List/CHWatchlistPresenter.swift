@@ -153,7 +153,7 @@ extension CHWatchlistPresenter: UICollectionViewDelegateFlowLayout {
         let countItems = round(collectionView.frame.width/170)
         let spaceBetweenCols: CGFloat = (countItems-1) * 10
         let width = (collectionView.frame.width - spaceBetweenCols - 2 * Constants.spaceFromLeftOrRight)/countItems
-        return CGSize(width: width, height: 115)
+        return CGSize(width: width, height: 130)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

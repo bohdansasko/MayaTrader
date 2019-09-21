@@ -13,6 +13,15 @@ protocol WatchlistCardCellDelegate: class {
 }
 
 final class WatchlistCardCell: CHBaseCollectionCell {
+    fileprivate var stockNameLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 11)
+        label.textAlignment = .center
+        label.textColor = .dark2
+        return label
+    }()
+
+    
     fileprivate var pairNameLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.getExo2Font(fontType: .semibold, fontSize: 15)
@@ -73,6 +82,7 @@ final class WatchlistCardCell: CHBaseCollectionCell {
         layer.masksToBounds = true
         backgroundColor = .dark
         
+        addSubview(stockNameLabel)
         addSubview(pairNameLabel)
         addSubview(pairBuyPriceLabel)
         addSubview(pairSellPriceLabel)
@@ -99,9 +109,15 @@ extension WatchlistCardCell {
 private extension WatchlistCardCell {
     
     func setupConstraints() {
-        pairNameLabel.anchor(self.topAnchor, left: self.leftAnchor,
+        stockNameLabel.anchor(self.topAnchor, left: self.leftAnchor,
                              bottom: nil, right: self.rightAnchor,
                              topConstant: 10, leftConstant: 10,
+                             bottomConstant: 0, rightConstant: 10,
+                             widthConstant: 0, heightConstant: 15)
+        
+        pairNameLabel.anchor(stockNameLabel.bottomAnchor, left: self.leftAnchor,
+                             bottom: nil, right: self.rightAnchor,
+                             topConstant: 2, leftConstant: 10,
                              bottomConstant: 0, rightConstant: 10,
                              widthConstant: 0, heightConstant: 15)
         
@@ -151,6 +167,7 @@ private extension WatchlistCardCell {
 private extension WatchlistCardCell {
     
     func refreshLabels() {
+        stockNameLabel.text            = currencyFormatter.stockName
         pairNameLabel.text             = currencyFormatter.currencyName
         pairBuyPriceLabel.text         = currencyFormatter.buyPrice
         pairSellPriceLabel.text        = currencyFormatter.sellPrice

@@ -36,6 +36,18 @@ extension AlertViewCell {
                                 widthConstant: 55,
                                 heightConstant: 25)
         
+        addSubview(stockNameLabel)
+        stockNameLabel.anchor(labelAlertStatus.bottomAnchor,
+                              left: self.leftAnchor,
+                              bottom: nil,
+                              right: nil,
+                              topConstant: 5,
+                              leftConstant: 30,
+                              bottomConstant: 0,
+                              rightConstant: 0,
+                              widthConstant: 55,
+                              heightConstant: 25)
+        
         addSubview(imageSeparator)
         imageSeparator.anchor(self.topAnchor,
                               left: labelTimeCreate.rightAnchor,
