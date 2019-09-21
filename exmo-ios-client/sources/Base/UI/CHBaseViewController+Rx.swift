@@ -12,25 +12,35 @@ import RxSwift
 
 extension Reactive where Base: CHBaseViewController {
     
-    @discardableResult
     func showLoadingView<T>(request: Single<T>) -> Single<T> {
+        return showLoadingView(fullscreen: false, request: request)
+    }
+    
+    @discardableResult
+    func showLoadingView<T>(fullscreen: Bool, request: Single<T>) -> Single<T> {
         let loader = base.makeLoadingView()
-
-        base.view.addSubview(loader)
-        loader.snp.makeConstraints{ $0.centerX.centerY.equalToSuperview() }
+        
+        let topVC = UIApplication.shared.keyWindow!
+        topVC.addSubview(loader)
+        
+        if fullscreen {
+            loader.snp.makeConstraints{ $0.edges.equalToSuperview() }
+        } else {
+            loader.snp.makeConstraints{ $0.centerX.centerY.equalToSuperview() }
+        }
 
         let subscription = request.do(
             onSuccess: { _ in
-                loader.stopAnimating()
+                loader.hide()
             },
             onError: { _ in
-                loader.stopAnimating()
+                loader.hide()
             },
             onSubscribed: {
-                loader.startAnimating()
+                loader.show()
             },
             onDispose: {
-                loader.stopAnimating()
+                loader.hide()
             }
         )
         

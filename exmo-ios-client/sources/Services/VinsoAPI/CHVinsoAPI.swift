@@ -156,6 +156,8 @@ private extension VinsoAPI {
                     default:
                         break
                     }
+                }, onError: { err in
+                    subscriber.onError(err)
                 })
             return Disposables.create{ socketResponse.dispose() }
         }

@@ -107,26 +107,29 @@ private extension CHCreateAlertViewController {
     
 }
 
-// MARK: - Network
+// MARK: - API
 
 private extension CHCreateAlertViewController {
     
     func doCreateAlert() {
         let alert = parseAlert(from: self.form)
         let request = vinsoAPI.rx.createAlert(alert: alert)
-        rx.showLoadingView(request: request)
-            .subscribe(onSuccess: { [unowned self] alert in
-                self.close()
-                }, onError: { [unowned self] err in
+        rx.showLoadingView(fullscreen: true, request: request)
+            .subscribe(
+                onSuccess: { [unowned self] alert in
+                    self.close()
+                },
+                onError: { [unowned self] err in
                     self.handleError(err)
-            })
+                }
+            )
             .disposed(by: disposeBag)
     }
     
     func doUpdateAlert() {
         let alert = parseAlert(from: self.form)
         let request = vinsoAPI.rx.updateAlert(alert)
-        rx.showLoadingView(request: request)
+        rx.showLoadingView(fullscreen: true, request: request)
             .subscribe(onSuccess: { [unowned self] alert in
                 self.close()
                 }, onError: { [unowned self] err in
@@ -137,14 +140,17 @@ private extension CHCreateAlertViewController {
     
     func fetchCurrency() {
         let req = vinsoAPI.rx.getCurrencies(selectedCurrencies: [ editAlert!.stockExchange.rawValue: [editAlert!.currencyCode] ])
-        rx.showLoadingView(request: req)
-            .subscribe(onSuccess: { [weak self] currencies in
-                guard let `self` = self, let currency = currencies.first else { return }
-                self.form.set(currency: currency)
-                }, onError: { [weak self] err in
+        rx.showLoadingView(fullscreen: true, request: req)
+            .subscribe(
+                onSuccess: { [weak self] currencies in
+                    guard let `self` = self, let currency = currencies.first else { return }
+                    self.form.set(currency: currency)
+                },
+                onError: { [weak self] err in
                     guard let `self` = self else { return }
                     self.handleError(err)
-            }).disposed(by: disposeBag)
+                })
+            .disposed(by: disposeBag)
     }
     
 }

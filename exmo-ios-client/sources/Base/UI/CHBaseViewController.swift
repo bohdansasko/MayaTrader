@@ -44,9 +44,8 @@ class CHBaseViewController: ExmoUIViewController {
 
 extension CHBaseViewController {
     
-    func makeLoadingView() -> UIActivityIndicatorView {
-        let loader = UIActivityIndicatorView(style: .whiteLarge)
-        loader.hidesWhenStopped = true
+    func makeLoadingView() -> CHLoadingView {
+        let loader = CHLoadingView.loadViewFromNib()
         return loader
     }
     

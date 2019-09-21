@@ -309,6 +309,8 @@
 		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
 		9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */; };
 		97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB18AB22F4AD48007BE023 /* Observable+extension.swift */; };
+		97E5141523364DE7002915B7 /* CHLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5141423364DE7002915B7 /* CHLoadingView.swift */; };
+		97E5141723364DEE002915B7 /* CHLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97E5141623364DEE002915B7 /* CHLoadingView.xib */; };
 		97E9C011230443D400CF01A2 /* CHExmoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C010230443D400CF01A2 /* CHExmoAPI.swift */; };
 		97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */; };
 		97E9C0152304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */; };
@@ -671,6 +673,8 @@
 		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
 		9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHAlertsPresenter.swift; sourceTree = "<group>"; };
 		97DB18AB22F4AD48007BE023 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
+		97E5141423364DE7002915B7 /* CHLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLoadingView.swift; sourceTree = "<group>"; };
+		97E5141623364DEE002915B7 /* CHLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHLoadingView.xib; sourceTree = "<group>"; };
 		97E9C010230443D400CF01A2 /* CHExmoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExmoAPI.swift; sourceTree = "<group>"; };
 		97E9C0122304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoSecurityApiRequestsBuilder.swift; sourceTree = "<group>"; };
 		97E9C0142304462700CF01A2 /* ExmoPublicApiRequestsBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExmoPublicApiRequestsBuilder.swift; sourceTree = "<group>"; };
@@ -1380,6 +1384,7 @@
 				204CC7CB21B93337002057CA /* DarkeningPickerVC */,
 				367128CCC4887C3FE116C215 /* ExmoUIViewController.swift */,
 				2045B5CA21035D38000F9D4C /* PlaceholderNoDataView.swift */,
+				97E5141823364E05002915B7 /* LoadingView */,
 			);
 			path = UIControls;
 			sourceTree = "<group>";
@@ -2136,6 +2141,15 @@
 			path = Formatters;
 			sourceTree = "<group>";
 		};
+		97E5141823364E05002915B7 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				97E5141423364DE7002915B7 /* CHLoadingView.swift */,
+				97E5141623364DEE002915B7 /* CHLoadingView.xib */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
 		97E9C0182304487500CF01A2 /* RequestsBuilders */ = {
 			isa = PBXGroup;
 			children = (
@@ -2473,6 +2487,7 @@
 				2013E5852071464700EFACB7 /* Exo2-ExtraBoldItalic.ttf in Resources */,
 				973725B3232D553C0077733B /* CHButtonCell.xib in Resources */,
 				20FFDF4F22FB717D00A65D01 /* CHMenuSectionHeader.xib in Resources */,
+				97E5141723364DEE002915B7 /* CHLoadingView.xib in Resources */,
 				20518DAB22D9F9F600334133 /* CHAlerts.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2759,6 +2774,7 @@
 				C7FD7600220B411F00A987DB /* NoInternetView.swift in Sources */,
 				200D52CA22DA1E550009C07C /* UIStoryboard+Extension.swift in Sources */,
 				9166AC3B5AC9A5EEFCD31C76 /* OrdersViewController.swift in Sources */,
+				97E5141523364DE7002915B7 /* CHLoadingView.swift in Sources */,
 				200D52D422DA7F550009C07C /* UITableView+Extension.swift in Sources */,
 				820D8F305E45D621689112C1 /* OrdersPresenter.swift in Sources */,
 				3C8FD995246C02311C6868DA /* OrdersInteractorInput.swift in Sources */,
