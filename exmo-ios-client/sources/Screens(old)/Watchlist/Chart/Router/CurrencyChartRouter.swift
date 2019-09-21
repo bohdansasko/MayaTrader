@@ -7,11 +7,11 @@ import UIKit
 
 final class WatchlistCurrencyChartRouter: WatchlistCurrencyChartRouterInput {
     func showViewAddAlert(_ viewController: UIViewController, pair: String) {
-        let createAlertNavController = UIStoryboard(.alerts).instantiateViewController(withIdentifier: "chCreateAlertViewController") as! UINavigationController
-        let vc = createAlertNavController.topViewController as! CreateAlertViewController
-        guard let mInput = vc.output as? SearchModuleOutput else { return }
-        mInput.onDidSelectCurrencyPair(rawName: pair)
-        viewController.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
+//        let createAlertNavController = UIStoryboard(.alerts).instantiateViewController(withIdentifier: "chCreateAlertViewController") as! UINavigationController
+//        let vc = createAlertNavController.topViewController as! CHCreateAlertViewController
+//        guard let mInput = vc.output as? SearchModuleOutput else { return }
+//        mInput.onDidSelectCurrencyPair(rawName: pair)
+//        viewController.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
 
     func showViewAddOrder(_ viewController: UIViewController, pair: String) {
