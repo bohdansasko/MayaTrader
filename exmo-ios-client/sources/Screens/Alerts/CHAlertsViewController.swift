@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 enum AlertsDeleteAction: Int {
     case active
@@ -24,6 +25,11 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
     
     fileprivate var presenter: CHAlertsPresenter!
     fileprivate var CHSubscriptionPackage: CHSubscriptionPackageProtocol?
+    fileprivate var fetchAlertsRequest: Disposable? {
+        didSet {
+            oldValue?.dispose()
+        }
+    }
     
     fileprivate lazy var deleteAlertsPickerView: DarkeningPickerViewManager = {
         let pickerViewLayout = DarkeningPickerViewModel(
@@ -58,9 +64,18 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
         setupUI()
     }
     
+    deinit {
+        fetchAlertsRequest = nil
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.rx.showLoadingView(request: presenter.fetchAlerts())
+        fetchAlertsRequest = self.rx.showLoadingView(request: presenter.fetchAlerts())
+            .subscribe(onSuccess: { _ in
+                // do nothing
+            }, onError: { [unowned self] err in
+                self.handleError(err)
+            })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

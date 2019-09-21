@@ -71,6 +71,10 @@ extension CHAlertsPresenter {
         }, onError: { [weak self] err in
             guard let `self` = self else { return }
             log.error(err.localizedDescription)
+            
+            self.alerts.items = []
+            self.tableView.reloadData()
+            
             self.delegate?.alertsPresenter(self, onAlertsListUpdated: [])
             self.delegate?.alertsPresenter(self, onError: err)
         }).disposed(by: disposeBag)

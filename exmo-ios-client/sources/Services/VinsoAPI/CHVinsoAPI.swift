@@ -141,7 +141,7 @@ private extension VinsoAPI {
                                 subscriber.onNext(json)
                                 subscriber.onCompleted()
                             case .succeed:
-                                log.network("🤐 \(messageType.description) API Response for message: \(json)\n")
+                                break
                             default:
                                 let error = self.getError(by: responseCodeType)
                                 log.network("🙂👎 \(messageType.description) API Response for message: \(json)\n")
@@ -157,6 +157,7 @@ private extension VinsoAPI {
                         break
                     }
                 }, onError: { err in
+                    log.error("\(messageType.description) Rx error: \(err.localizedDescription)\n")
                     subscriber.onError(err)
                 })
             return Disposables.create{ socketResponse.dispose() }
