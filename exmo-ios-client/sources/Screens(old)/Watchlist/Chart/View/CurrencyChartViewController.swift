@@ -117,9 +117,9 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
         candleShortInfoView.isHidden = true
         navigationController?.navigationBar.tintColor = .white
         
-        let addAlertButton = CurrencyChartViewController.getButton(icon: #imageLiteral(imageResource: "icNavbarAddAlert"))
-        addAlertButton.addTarget(self, action: #selector(onTouchAddAlertButton(_:)), for: .touchUpInside)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addAlertButton)
+//        let addAlertButton = CurrencyChartViewController.getButton(icon: #imageLiteral(imageResource: "icNavbarAddAlert"))
+//        addAlertButton.addTarget(self, action: #selector(onTouchAddAlertButton(_:)), for: .touchUpInside)
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addAlertButton)
 
         prepareCharts()
     }
