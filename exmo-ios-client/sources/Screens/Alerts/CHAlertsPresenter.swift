@@ -25,6 +25,11 @@ final class CHAlertsPresenter: NSObject {
     fileprivate weak var tableView: UITableView!
     fileprivate let api: VinsoAPI
     fileprivate let disposeBag = DisposeBag()
+    fileprivate var fetchAlertsRequest: Disposable? {
+        didSet {
+            oldValue?.dispose()
+        }
+    }
     
     fileprivate var alerts = AlertsModel()
     fileprivate var cellActions: [Int: [ActionType: UIContextualAction] ] = [:]
@@ -61,23 +66,24 @@ extension CHAlertsPresenter {
     @discardableResult
     func fetchAlerts() -> Single<[Alert]> {
         let request = api.rx.getAlerts()
-        request.subscribe(onSuccess: { [weak self] alerts in
-            guard let `self` = self else { return }
-            self.alerts.items = alerts.sorted(by: {
-                $0.dateCreated > $1.dateCreated
+        fetchAlertsRequest = request
+            .subscribe(onSuccess: { [weak self] alerts in
+                guard let `self` = self else { return }
+                self.alerts.items = alerts.sorted(by: {
+                    $0.dateCreated > $1.dateCreated
+                })
+                self.tableView.reloadData()
+                self.delegate?.alertsPresenter(self, onAlertsListUpdated: alerts)
+            }, onError: { [weak self] err in
+                guard let `self` = self else { return }
+                log.error(err.localizedDescription)
+                
+                self.alerts.items = []
+                self.tableView.reloadData()
+                
+                self.delegate?.alertsPresenter(self, onAlertsListUpdated: [])
+                self.delegate?.alertsPresenter(self, onError: err)
             })
-            self.tableView.reloadData()
-            self.delegate?.alertsPresenter(self, onAlertsListUpdated: alerts)
-        }, onError: { [weak self] err in
-            guard let `self` = self else { return }
-            log.error(err.localizedDescription)
-            
-            self.alerts.items = []
-            self.tableView.reloadData()
-            
-            self.delegate?.alertsPresenter(self, onAlertsListUpdated: [])
-            self.delegate?.alertsPresenter(self, onError: err)
-        }).disposed(by: disposeBag)
 
         return request
     }
