@@ -88,7 +88,7 @@ extension CHStockExchange {
         case .exmo:
             return "EXMO"
         case .btcTrade:
-            return "BTC TRADE"
+            return "BTC-TRADE"
         }
     }
     

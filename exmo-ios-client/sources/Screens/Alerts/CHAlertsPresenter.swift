@@ -54,7 +54,7 @@ private extension CHAlertsPresenter {
     
 }
 
-// MARK - Manage alerts
+// MARK - API
 
 extension CHAlertsPresenter {
 

@@ -33,25 +33,7 @@
 "SCREEN_PASSCODE_ENABLED_ALERT_MESSAGE" = "Now your passcode lock will be asked every time when you open application";
 "SCREEN_PASSCODE_DISABLED"              = "Your passcode has been disabled.";
 
-"DELETE" = "Delete";
-
-"CURRENCY_BTC" = "BTC";
-"CURRENCY_USD" = "USD";
-
-"EXCHANGE" = "Exchange";
-"PAIR"     = "Pair";
-"PRICE"    = "Price";
-"VOLUME_24H" = "Volume 24h";
-"SELL"     = "Sell:";
-"BUY"      = "Buy:";
-"VOLUME"   = "Volume:";
-"CHANGES"  = "Changes:";
-
-"ORDERS_OPEN"      = "Open";
-"ORDERS_CANCELLED" = "Cancelled";
-"ORDERS_DEALS"     = "Deals";
-
-/* Create alet screen */
+/* Create alert screen */
 "SCREEN_CREATE_ALERT_TITLE"           = "Create alert";
 "SCREEN_CREATE_ALERT_CURRENCY_PAIR"   = "CURRENCY PAIR";
 "SCREEN_CREATE_ALERT_SELECT_CURRENCY" = "Select currency pair…";
@@ -77,3 +59,21 @@
 "ERROR_RESOURCE_NOT_FOUND"      = "Resource hasn't been found.";
 "ERROR_UNDEFINED"               = "Something went wrong.";
 "ERROR_MISSING_REQUIRED_PARAMS" = "Couldn't recognize required params. Please contact with developers.";
+
+"DELETE" = "Delete";
+
+"CURRENCY_BTC" = "BTC";
+"CURRENCY_USD" = "USD";
+
+"EXCHANGE" = "Exchange";
+"PAIR"     = "Pair";
+"PRICE"    = "Price";
+"VOLUME_24H" = "Volume 24h";
+"SELL"     = "Sell:";
+"BUY"      = "Buy:";
+"VOLUME"   = "Volume:";
+"CHANGES"  = "Changes:";
+
+"ORDERS_OPEN"      = "Open";
+"ORDERS_CANCELLED" = "Cancelled";
+"ORDERS_DEALS"     = "Deals";

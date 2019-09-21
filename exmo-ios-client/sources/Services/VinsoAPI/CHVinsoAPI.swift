@@ -137,14 +137,14 @@ private extension VinsoAPI {
                             let (responseCodeType, messageId) = try self.parseMessageCodeAndId(from: json)
                             switch responseCodeType {
                             case .succeed where messageId == messageType:
-                                log.network("🙂👍 \(messageType.description) API Response for message: \(json)\n")
+                                log.network("🙂👍 API Response for message `\(messageType.description)`: \(json)\n")
                                 subscriber.onNext(json)
                                 subscriber.onCompleted()
                             case .succeed:
                                 break
                             default:
                                 let error = self.getError(by: responseCodeType)
-                                log.network("🙂👎 \(messageType.description) API Response for message: \(json)\n")
+                                log.network("🙂👎 \(messageType.description) API response for message: \(json)\n")
                                 subscriber.onError(error)
                             }
                         } catch (let err) {
