@@ -84,7 +84,11 @@ extension VinsoAPI {
         
         self.authorizedState.accept(.authorization)
         
-        let params = ["udid": udid]
+        let udidHashStr = calculateAuthHash(from: udid)
+        let params: [String : Any] = [
+            "udid": udid,
+            "hash": udidHashStr
+        ]
         self.sendRequest(messageType: .authorization, params: params)
             .asSingle()
             .subscribe(onSuccess: { [unowned self] json in
@@ -98,6 +102,24 @@ extension VinsoAPI {
     func resetUser() {
         let msg = AccountApiRequestBuilder.buildResetUser()
         socketManager.send(message: msg)
+    }
+    
+    fileprivate func calculateAuthHash(from deviceToken: String) -> UInt64 {
+        var hash: UInt64 = 0
+        deviceToken.enumerated().forEach{ (it) in
+            let (i, currentCh) = it
+            if currentCh.isLetter || currentCh.isNumber {
+                let index = deviceToken.index(deviceToken.startIndex, offsetBy: deviceToken.count - i - 1)
+                let offsetCh = deviceToken[index]
+                
+                let res = UInt64(currentCh.asciiValue! ^ (offsetCh.asciiValue! | 0xA9))
+                let offset = UInt64((i % MemoryLayout.size(ofValue: hash)) * 8)
+                
+                hash ^= res << offset
+            }
+        }
+        
+        return hash
     }
     
 }
