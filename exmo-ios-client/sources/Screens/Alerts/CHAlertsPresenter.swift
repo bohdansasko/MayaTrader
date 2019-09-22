@@ -110,7 +110,7 @@ extension CHAlertsPresenter {
     }
     
     func updateAlertState(at indexPath: IndexPath, on newStatus: AlertStatus) {
-        guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.section) else {
             log.error("item doesn't exists")
             return
         }
@@ -128,7 +128,7 @@ extension CHAlertsPresenter {
     }
     
     func editAlert(by indexPath: IndexPath) {
-        guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.section) else {
             log.error("item doesn't exists")
             return
         }
@@ -136,7 +136,7 @@ extension CHAlertsPresenter {
     }
     
     func removeAlert(by indexPath: IndexPath, _ completion: @escaping (Bool) -> Void) {
-        guard let alert = alerts.getCellItem(byRow: indexPath.row) else {
+        guard let alert = alerts.getCellItem(byRow: indexPath.section) else {
             log.error("item doesn't exists")
             return
         }
