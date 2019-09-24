@@ -68,8 +68,8 @@ extension CHWatchlistViewController {
     
     func prepareCurrencyChartViewController(for segue: UIStoryboardSegue, sender: Any?) {
         let currency = sender as! CHLiteCurrencyModel
-        let vc = segue.destination as! CurrencyChartViewController
-        vc.setCurrencyPair(currency.name)
+        let vc = segue.destination as! CHCurrencyChartViewController
+        vc.currency = currency
     }
     
 }
