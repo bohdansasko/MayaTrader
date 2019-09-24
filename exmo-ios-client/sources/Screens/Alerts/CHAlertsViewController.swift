@@ -103,7 +103,7 @@ private extension CHAlertsViewController {
 
     func setupNavigation() {
         navigationItem.title = "TAB_ALERTS".localized
-        setupRightBarButtonItem(image: #imageLiteral(resourseName: "icNavbarPlus"), action: #selector(actCreateAlert(_:)))
+        setupRightBarButtonItem(image: #imageLiteral(resourceName: "icNavbarPlus"), action: #selector(actCreateAlert(_:)))
     }
 }
 
@@ -146,7 +146,8 @@ extension CHAlertsViewController: CHAlertsPresenterDelegate {
         if alerts.isEmpty {
             navigationItem.leftBarButtonItem = nil
         } else if navigationItem.leftBarButtonItem == nil {
-            setupLeftBarButtonItem (image: #imageLiteral(resourseName: "icNavbarTrash"), action: #selector(actRemoveAlerts(_:)))
+            let icon = #imageLiteral(resourceName: "icNavbarTrash")
+            setupLeftBarButtonItem(image: icon, action: #selector(actRemoveAlerts(_:)))
         }
         
         contentView.isTutorialStubVisible = alerts.isEmpty

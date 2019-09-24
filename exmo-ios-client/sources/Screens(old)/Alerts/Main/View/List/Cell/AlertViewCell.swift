@@ -24,6 +24,8 @@ final class AlertViewCell: ExmoTableViewCell {
         label.textColor = .white
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 5
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.7
         return label
     }()
     

@@ -120,22 +120,22 @@ private extension CHMenuCell {
         guard let cellType = cellType else { return }
         switch cellType {
         case .appVersion:
-            infoLabel.isHidden = false
+            infoLabel.isHidden       = false
             disclosureImage.isHidden = true
-            lockButton.isHidden = true
+            lockButton.isHidden      = true
         case .logout:
-            infoLabel.isHidden = true
+            infoLabel.isHidden       = true
             disclosureImage.isHidden = true
-            lockButton.isHidden = true
+            lockButton.isHidden      = true
         case .security:
             disclosureImage.isHidden = true
-            let highlightedImage = lockButton.isSelected ? #imageLiteral(resource: "icPasscodeLock") : #imageLiteral(resource: "icPasscodeUnlock")
+            let highlightedImage = lockButton.isSelected ? #imageLiteral(resourceName: "icPasscodeLock") : #imageLiteral(resourceName: "icPasscodeUnlock")
             lockButton.setImage(highlightedImage, for: .normal)
-            lockButton.isHidden = false
+            lockButton.isHidden     = false
         default:
-            infoLabel.isHidden = true
+            infoLabel.isHidden       = true
             disclosureImage.isHidden = false
-            lockButton.isHidden = true
+            lockButton.isHidden      = true
         }
     }
     

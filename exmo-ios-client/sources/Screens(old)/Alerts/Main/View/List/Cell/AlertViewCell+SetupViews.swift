@@ -126,11 +126,11 @@ extension AlertViewCell {
     func setupDescriptionLabel() {
         addSubview(descriptionLabel)
         descriptionLabel.anchor(
-                imageSeparator.bottomAnchor,
+                stockNameLabel.bottomAnchor,
                 left: labelTimeCreate.leftAnchor,
                 bottom: self.bottomAnchor,
                 right: self.rightAnchor,
-                topConstant: 0,
+                topConstant: 6,
                 leftConstant: 0,
                 bottomConstant: 0,
                 rightConstant: 30,

@@ -121,7 +121,7 @@ extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
         if isWalletExist {
             contentView.set(balance: walletBalance!)
             if navigationItem.rightBarButtonItem == nil {
-                setupRightBarButtonItem(image: #imageLiteral(resourcen: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
+                setupRightBarButtonItem(image: #imageLiteral(resourceName: "icWalletOptions"), action: #selector(actManageWalletCurrencies(_:)))
             }
         } else {
             navigationItem.rightBarButtonItem = nil
