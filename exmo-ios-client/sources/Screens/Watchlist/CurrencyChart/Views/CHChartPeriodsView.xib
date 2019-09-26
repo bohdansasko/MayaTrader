@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Exo2-Medium.ttf">
+            <string>Exo2-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CHChartPeriodsView" customModule="exmo_ios_client" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7f6-G3-7qe" userLabel="chartTimePeriodContainer" customClass="ChartTimePeriodContainer" customModule="exmo_ios_client" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5Y-Fk-T6h" userLabel="steelLine">
+                            <rect key="frame" x="0.0" y="39" width="414" height="2"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4p-6g-bOh" userLabel="selectedIndicatorView">
+                                    <rect key="frame" x="0.0" y="0.0" width="20" height="2"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.20392156859999999" green="0.66274509800000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="exmoSteel"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="2" id="bvo-1q-J5N"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="A7s-41-zfZ" userLabel="buttonsSV">
+                            <rect key="frame" x="30" y="0.0" width="354" height="39"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JI1-Ux-gcM">
+                                    <rect key="frame" x="0.0" y="0.0" width="20" height="39"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="xFC-xB-sSg"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="14"/>
+                                    <state key="normal" title="1Y">
+                                        <color key="titleColor" red="0.20392156859999999" green="0.66274509800000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOl-LZ-QCZ">
+                                    <rect key="frame" x="111.5" y="0.0" width="20" height="39"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="VUu-cd-cea"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="14"/>
+                                    <state key="normal" title="1M">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="haS-7c-dPw">
+                                    <rect key="frame" x="222.5" y="0.0" width="20" height="39"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="IYN-8V-Yvk"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="14"/>
+                                    <state key="normal" title="1W">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3pl-JL-Dxb">
+                                    <rect key="frame" x="334" y="0.0" width="20" height="39"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="vm5-k2-JHI"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="Exo2-Medium" family="Exo 2" pointSize="14"/>
+                                    <state key="normal" title="1D">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="S5Y-Fk-T6h" firstAttribute="leading" secondItem="7f6-G3-7qe" secondAttribute="leading" id="2kM-ra-Feg"/>
+                        <constraint firstItem="S5Y-Fk-T6h" firstAttribute="top" secondItem="A7s-41-zfZ" secondAttribute="bottom" id="7WH-as-y2Z"/>
+                        <constraint firstAttribute="bottom" secondItem="S5Y-Fk-T6h" secondAttribute="bottom" id="8bu-GA-I2G"/>
+                        <constraint firstItem="A7s-41-zfZ" firstAttribute="top" secondItem="7f6-G3-7qe" secondAttribute="top" id="BXQ-HN-Akg"/>
+                        <constraint firstItem="S5Y-Fk-T6h" firstAttribute="top" secondItem="A7s-41-zfZ" secondAttribute="bottom" id="GGE-pt-rf0"/>
+                        <constraint firstItem="A7s-41-zfZ" firstAttribute="leading" secondItem="7f6-G3-7qe" secondAttribute="leading" constant="30" id="TRg-9n-Q6Y"/>
+                        <constraint firstItem="A7s-41-zfZ" firstAttribute="top" secondItem="7f6-G3-7qe" secondAttribute="top" id="Wv2-uE-ufi"/>
+                        <constraint firstAttribute="trailing" secondItem="A7s-41-zfZ" secondAttribute="trailing" constant="30" id="bgj-tT-d2B"/>
+                        <constraint firstAttribute="trailing" secondItem="S5Y-Fk-T6h" secondAttribute="trailing" id="d21-IK-xcu"/>
+                        <constraint firstItem="A7s-41-zfZ" firstAttribute="leading" secondItem="7f6-G3-7qe" secondAttribute="leading" constant="30" id="qFR-Yy-vHa"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="btnOneDay" destination="3pl-JL-Dxb" id="77P-vv-pEp"/>
+                        <outlet property="btnOneMonth" destination="cOl-LZ-QCZ" id="uxA-jy-Z9u"/>
+                        <outlet property="btnOneWeek" destination="haS-7c-dPw" id="IOd-Jm-faz"/>
+                        <outlet property="btnOneYear" destination="JI1-Ux-gcM" id="a37-Hz-VvY"/>
+                        <outlet property="currentPeriodViewIndicator" destination="X4p-6g-bOh" id="f1u-kn-M7j"/>
+                    </connections>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="7f6-G3-7qe" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4Xf-9e-EK6"/>
+                <constraint firstAttribute="bottom" secondItem="7f6-G3-7qe" secondAttribute="bottom" id="8hV-jt-UNR"/>
+                <constraint firstAttribute="trailing" secondItem="7f6-G3-7qe" secondAttribute="trailing" id="h0f-1b-fGE"/>
+                <constraint firstItem="7f6-G3-7qe" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="zop-0U-r7v"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="buttonsSV" destination="A7s-41-zfZ" id="CGh-28-lpw"/>
+                <outlet property="indicatorView" destination="X4p-6g-bOh" id="V7K-KX-iG4"/>
+            </connections>
+            <point key="canvasLocation" x="132" y="129"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="exmoSteel">
+            <color red="0.49000000953674316" green="0.50199997425079346" blue="0.5690000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

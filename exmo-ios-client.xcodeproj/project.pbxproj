@@ -133,6 +133,10 @@
 		207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */; };
 		20848E4821FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */; };
 		2087F47721B1E0E7009284D0 /* FormsCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2087F47621B1E0E7009284D0 /* FormsCells.swift */; };
+		208A2512233D5CF400C1D911 /* CHChartPeriodsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208A2511233D5CF400C1D911 /* CHChartPeriodsView.swift */; };
+		208A2514233D5D0500C1D911 /* CHChartPeriodsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208A2513233D5D0500C1D911 /* CHChartPeriodsView.xib */; };
+		208A2516233D5F0C00C1D911 /* CHPeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208A2515233D5F0C00C1D911 /* CHPeriod.swift */; };
+		208A2518233D606500C1D911 /* UIStackView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208A2517233D606500C1D911 /* UIStackView+Ext.swift */; };
 		208D0C5922FF5AE7003B5D90 /* CHTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208D0C5822FF5AE7003B5D90 /* CHTabBarController.swift */; };
 		208FE09622DB3F3A0014BCE5 /* CHExchangesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */; };
 		208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */; };
@@ -494,6 +498,10 @@
 		207EBE5D21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AlertsListView+TableDatasource+TableDelegate.swift"; sourceTree = "<group>"; };
 		20848E4721FE42E4003E7B8E /* SubscriptionsModuleInitializer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsModuleInitializer.swift; sourceTree = "<group>"; };
 		2087F47621B1E0E7009284D0 /* FormsCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormsCells.swift; sourceTree = "<group>"; };
+		208A2511233D5CF400C1D911 /* CHChartPeriodsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHChartPeriodsView.swift; sourceTree = "<group>"; };
+		208A2513233D5D0500C1D911 /* CHChartPeriodsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHChartPeriodsView.xib; sourceTree = "<group>"; };
+		208A2515233D5F0C00C1D911 /* CHPeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHPeriod.swift; sourceTree = "<group>"; };
+		208A2517233D606500C1D911 /* UIStackView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Ext.swift"; sourceTree = "<group>"; };
 		208D0C5822FF5AE7003B5D90 /* CHTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTabBarController.swift; sourceTree = "<group>"; };
 		208FE09422DB3F3A0014BCE5 /* CHExchangesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHExchangesViewController.swift; sourceTree = "<group>"; };
 		208FE09522DB3F3A0014BCE5 /* CHExchangesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHExchangesViewController.xib; sourceTree = "<group>"; };
@@ -1169,6 +1177,7 @@
 		205F97CD233ABBDE00701275 /* CurrencyChart */ = {
 			isa = PBXGroup;
 			children = (
+				208A2510233D5C7D00C1D911 /* Views */,
 				205F97D2233ABC4E00701275 /* CHCurrencyChartView.swift */,
 				205F97CE233ABC3D00701275 /* CHCurrencyChartViewController.swift */,
 				205F97CF233ABC3D00701275 /* CHCurrencyChartViewController.xib */,
@@ -1280,6 +1289,16 @@
 				366FF5B1852B5FEB02FF57EB /* ComparisonSubscriptions */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		208A2510233D5C7D00C1D911 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				208A2515233D5F0C00C1D911 /* CHPeriod.swift */,
+				208A2511233D5CF400C1D911 /* CHChartPeriodsView.swift */,
+				208A2513233D5D0500C1D911 /* CHChartPeriodsView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		208AC7B421A6029200C74890 /* Presenting */ = {
@@ -2200,6 +2219,7 @@
 				20CE7EB621A1A05300EC14FA /* UITableViewCell+Extensions.swift */,
 				200D52D322DA7F550009C07C /* UITableView+Extension.swift */,
 				208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */,
+				208A2517233D606500C1D911 /* UIStackView+Ext.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -2487,6 +2507,7 @@
 				20518D9E22D9F53D00334133 /* Home.storyboard in Resources */,
 				200D52AE22DA07CF0009C07C /* CHWalletViewController.xib in Resources */,
 				2013E5832071464700EFACB7 /* Exo2-BoldItalic.ttf in Resources */,
+				208A2514233D5D0500C1D911 /* CHChartPeriodsView.xib in Resources */,
 				20518DA922D9F9F100334133 /* CHWallet.storyboard in Resources */,
 				973725AB232D2EDA0077733B /* CHSelectCurrencyCell.xib in Resources */,
 				2013E5892071464700EFACB7 /* Exo2-Light.ttf in Resources */,
@@ -2668,6 +2689,7 @@
 				EEBC1EA66242D71226026D0B /* QRScannerViewProtocols.swift in Sources */,
 				20D8B67421A982AE00461A0F /* OrdersListView+UITableView_Delegate+DataSource.swift in Sources */,
 				201DF20221B27E7E00158A15 /* CHNumberCell.swift in Sources */,
+				208A2516233D5F0C00C1D911 /* CHPeriod.swift in Sources */,
 				F4D69AF88618D8DB10050648 /* QRScannerViewController.swift in Sources */,
 				200D52C822DA1DFC0009C07C /* CHMenuView.swift in Sources */,
 				207A85E321B326D30049B26D /* CHTextInputCell.swift in Sources */,
@@ -2896,6 +2918,8 @@
 				366FFC69CC56E57670268399 /* SubscriptionsViewProtocols.swift in Sources */,
 				366FFE73DCAE378F78403E93 /* SubscriptionsRouter.swift in Sources */,
 				970B3E9E231EB298002CA2E8 /* WatchlistViewOutput.swift in Sources */,
+				208A2512233D5CF400C1D911 /* CHChartPeriodsView.swift in Sources */,
+				208A2518233D606500C1D911 /* UIStackView+Ext.swift in Sources */,
 				9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */,
 				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
 				970B3EA4231EB298002CA2E8 /* WatchlistRouter.swift in Sources */,
