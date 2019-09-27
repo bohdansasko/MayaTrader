@@ -27,6 +27,17 @@ final class CHChartPeriodsView: UIView {
     // MARK: - Public variables
     
     weak var delegate: CHChartPeriodViewDelegate?
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if items.isEmpty { return }
+        
+        let selectedItemIdx   = items.index(of: selectedItem)!
+        let newSelectedButton = buttonsSV.arrangedSubviews[selectedItemIdx] as! UIButton
+        updateIndicatorPosition(selectedButton: newSelectedButton)
+    }
+    
 }
 
 // MARK: - Setters
@@ -98,11 +109,15 @@ private extension CHChartPeriodsView {
         prevSelectedButton.isSelected = false
         newSelectedButton.isSelected  = true
         
+        updateIndicatorPosition(selectedButton: newSelectedButton)
+    }
+   
+    func updateIndicatorPosition(selectedButton: UIButton) {
         UIView.animate(withDuration: 0.2,
                        delay: 0.0,
                        options: .curveEaseInOut,
                        animations: {
-                            self.indicatorView.frame.origin.x = newSelectedButton.frame.origin.x + 30
+                            self.indicatorView.frame.origin.x = selectedButton.frame.origin.x + 30
                        },
                        completion: nil)
     }

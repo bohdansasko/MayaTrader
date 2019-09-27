@@ -34,6 +34,9 @@ extension CHCurrencyChartView {
         let items: [CHPeriod] = [ .year, .month, .week, .day ]
         periodsView.set(items)
         periodsView.set(selected: .week)
+        
+        periodsView.setNeedsLayout()
+        periodsView.layoutIfNeeded()
     }
     
 }
