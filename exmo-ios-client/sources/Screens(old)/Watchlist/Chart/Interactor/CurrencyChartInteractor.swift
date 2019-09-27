@@ -34,7 +34,7 @@ extension WatchlistCurrencyChartInteractor: WatchlistCurrencyChartInteractorInpu
         networkAPIHandler.onHandleResponseSuccesfull = {
             [weak self] json in
             guard let jsonObj = json as? JSON else { return }
-            let chartData = ExmoChartData(json: jsonObj, parseType: .Default)
+            let chartData = CHChartModel(json: jsonObj, parseType: .Default)
             self?.output.updateChart(chartData: chartData)
         }
         networkAPIHandler.loadCurrencyPairChartHistory(currencyPair: currencyPair, period: period)

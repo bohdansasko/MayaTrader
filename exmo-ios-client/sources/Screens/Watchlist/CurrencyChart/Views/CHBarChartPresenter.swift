@@ -1,5 +1,5 @@
 //
-//  BarChartViewController.swift
+//  CHBarChartPresenter.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 9/26/18.
@@ -9,48 +9,33 @@
 import UIKit
 import Charts
 
-//
-// MARK: BarChartViewController
-//
-
-class ExmoChartViewController {
-    typealias CallbackOnchartValueSelected = (Highlight) -> Void
-    typealias CallbackOnChartTranslated = (Highlight) -> Void
+final class CHBarChartPresenter: CHBaseChartPresenter {
+    fileprivate(set) weak var chartView: BarChartView!
     
-    var callbackOnchartValueSelected: CallbackOnchartValueSelected?
-    var callbackOnChartTranslated: CallbackOnChartTranslated?
-    
-    func setupChart() {
-        fatalError("moveChartByXTo doesn't have implementation")
-    }
-    
-    func setCallbackOnChartValueSelected(callback: CallbackOnchartValueSelected?) {
-        callbackOnchartValueSelected = callback
-    }
-    
-    func setCallbackOnChartTranslated(callback: CallbackOnChartTranslated?) {
-        callbackOnChartTranslated = callback
-    }
-    
-    func emitCallbackOnchartValueSelected(highlight: Highlight) {
-        callbackOnchartValueSelected?(highlight)
-    }
-    
-    func moveChartByXTo(index: Double) {
-        fatalError("moveChartByXTo doesn't have implementation")
-    }
-}
-
-class BarChartViewController: ExmoChartViewController {
-    @IBOutlet weak var chartView: BarChartView!
-    
-    var chartData: ExmoChartData = ExmoChartData() {
+    var chartData: CHChartModel = CHChartModel() {
         didSet {
-            setupChart()
+            setupChartUI()
         }
     }
     
-    override func setupChart() {
+    init(chartView: BarChartView!) {
+        assert(chartView != nil, "required not nil")
+        
+        self.chartView = chartView
+        super.init()
+    }
+    
+    override func moveChartByXTo(index: Double) {
+        chartView.moveViewToX(index)
+    }
+    
+}
+
+// MARK: - Setup
+
+private extension CHBarChartPresenter {
+    
+    func setupChartUI() {
         if chartData.isEmpty() {
             return
         }
@@ -81,7 +66,13 @@ class BarChartViewController: ExmoChartViewController {
         chartView.moveViewToX(Double(chartData.candles.count))
     }
     
-    private func getBarChartData() -> BarChartData {
+}
+
+// MARK: - Getters
+
+private extension CHBarChartPresenter {
+    
+    func getBarChartData() -> BarChartData {
         
         var entries: [BarChartDataEntry] = Array()
         
@@ -100,12 +91,12 @@ class BarChartViewController: ExmoChartViewController {
         return barChartData
     }
     
-    override func moveChartByXTo(index: Double) {
-        chartView.moveViewToX(index)
-    }
 }
 
-extension BarChartViewController : ChartViewDelegate {
+// MARK: - ChartViewDelegate
+
+extension CHBarChartPresenter: ChartViewDelegate {
+    
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         callbackOnchartValueSelected?(highlight)
     }
@@ -114,4 +105,5 @@ extension BarChartViewController : ChartViewDelegate {
         guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
         callbackOnChartTranslated?(highlight)
     }
+    
 }

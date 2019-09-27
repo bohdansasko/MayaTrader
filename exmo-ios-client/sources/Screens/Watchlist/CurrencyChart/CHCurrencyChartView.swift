@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import Charts
 
 final class CHCurrencyChartView: UIView {
 
     @IBOutlet fileprivate weak var periodsContainer: UIView!
               fileprivate      var periodsView     : CHChartPeriodsView!
+    
+    @IBOutlet fileprivate(set) weak var candleChartView: CandleStickChartView!
+    @IBOutlet fileprivate(set) weak var barChartView   : BarChartView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

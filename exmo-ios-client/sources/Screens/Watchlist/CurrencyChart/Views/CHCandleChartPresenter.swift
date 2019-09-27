@@ -1,5 +1,5 @@
 //
-//  CandleStickChartViewController.swift
+//  CHCandleChartPresenter.swift
 //  exmo-ios-client
 //
 //  Created by Bogdan Sasko on 9/26/18.
@@ -9,23 +9,33 @@
 import UIKit
 import Charts
 
-//
-// MARK: CandleStickChartViewController
-//
-class CandleStickChartViewController: ExmoChartViewController {
-    @IBOutlet weak var chartView: CandleStickChartView!
+final class CHCandleChartPresenter: CHBaseChartPresenter {
+    fileprivate(set) weak var chartView: CandleStickChartView!
     
-    var chartData: ExmoChartData = ExmoChartData() {
+    var chartData: CHChartModel = CHChartModel() {
         didSet {
-            setupChart()
+            setupChartUI()
         }
     }
     
-    override init() {
-        // do nothing
+    init(chartView: CandleStickChartView!) {
+        assert(chartView != nil, "required not nil")
+        
+        self.chartView = chartView
+        super.init()
     }
     
-    override func setupChart() {
+    override func moveChartByXTo(index: Double) {
+        chartView.moveViewToX(index)
+    }
+    
+}
+
+// MARK: - Setup methods
+
+private extension CHCandleChartPresenter {
+    
+    func setupChartUI() {
         if chartData.isEmpty() {
             return
         }
@@ -61,7 +71,13 @@ class CandleStickChartViewController: ExmoChartViewController {
         chartView.moveViewToX(Double(chartData.candles.count))
     }
     
-    private func getCandleChartData() -> CandleChartData {
+}
+
+// MARK: -
+
+private extension CHCandleChartPresenter {
+    
+    func getCandleChartData() -> CandleChartData {
         let yVals1 = (0..<self.chartData.candles.count).map { (idx) -> CandleChartDataEntry in
             let candleModel = self.chartData.candles[idx]
             let open = candleModel.open
@@ -89,12 +105,12 @@ class CandleStickChartViewController: ExmoChartViewController {
         return CandleChartData(dataSet: set1)
     }
     
-    override func moveChartByXTo(index: Double) {
-        chartView.moveViewToX(index)
-    }
 }
 
-extension CandleStickChartViewController : IAxisValueFormatter {
+// MARK: - IAxisValueFormatter
+
+extension CHCandleChartPresenter : IAxisValueFormatter {
+    
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         guard let candleItem = self.chartData.getCandleByIndex(Int(value)) else { return "" }
         let timeIntervalSince1970 = candleItem.timeSince1970InSec
@@ -104,11 +120,13 @@ extension CandleStickChartViewController : IAxisValueFormatter {
         
         return formatedDate
     }
+    
 }
-//
-// MARK: Delegate
-//
-extension CandleStickChartViewController : ChartViewDelegate {
+
+// MARK: - ChartViewDelegate
+
+extension CHCandleChartPresenter : ChartViewDelegate {
+    
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         callbackOnchartValueSelected?(highlight)
     }
@@ -118,4 +136,5 @@ extension CandleStickChartViewController : ChartViewDelegate {
         guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
         callbackOnChartTranslated?(highlight)
     }
+    
 }

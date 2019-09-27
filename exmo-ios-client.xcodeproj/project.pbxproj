@@ -92,6 +92,7 @@
 		204EC7CE230655800097D229 /* CHWalletCurrenciesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 204EC7CC230655800097D229 /* CHWalletCurrenciesListViewController.xib */; };
 		204F234D21AC849A0023890E /* AlertsNetworkProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F234C21AC849A0023890E /* AlertsNetworkProtocols.swift */; };
 		204F234F21AC84AD0023890E /* AlertsNetworkWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 204F234E21AC84AD0023890E /* AlertsNetworkWorker.swift */; };
+		2050C2FC233EA6590082042D /* CHBaseChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2050C2FB233EA6590082042D /* CHBaseChartPresenter.swift */; };
 		20518D9E22D9F53D00334133 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518D9D22D9F53D00334133 /* Home.storyboard */; };
 		20518DA522D9F93100334133 /* CHWatchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DA422D9F93100334133 /* CHWatchlist.storyboard */; };
 		20518DA722D9F9EA00334133 /* CHOrders.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20518DA622D9F9EA00334133 /* CHOrders.storyboard */; };
@@ -289,7 +290,7 @@
 		970B3E97231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E69231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift */; };
 		970B3E98231EB298002CA2E8 /* CurrenciesListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6A231EB298002CA2E8 /* CurrenciesListInteractor.swift */; };
 		970B3E99231EB298002CA2E8 /* CandleBarChartShortInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6B231EB298002CA2E8 /* CandleBarChartShortInfoView.swift */; };
-		970B3E9A231EB298002CA2E8 /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6C231EB298002CA2E8 /* BarChartViewController.swift */; };
+		970B3E9A231EB298002CA2E8 /* CHBarChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6C231EB298002CA2E8 /* CHBarChartPresenter.swift */; };
 		970B3E9B231EB298002CA2E8 /* WatchlistListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E6D231EB298002CA2E8 /* WatchlistListView.swift */; };
 		970B3E9C231EB298002CA2E8 /* WatchlistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E70231EB298002CA2E8 /* WatchlistPresenter.swift */; };
 		970B3E9D231EB298002CA2E8 /* WatchlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E72231EB298002CA2E8 /* WatchlistViewController.swift */; };
@@ -301,7 +302,7 @@
 		970B3EA3231EB298002CA2E8 /* WatchlistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7A231EB298002CA2E8 /* WatchlistInteractor.swift */; };
 		970B3EA4231EB298002CA2E8 /* WatchlistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7C231EB298002CA2E8 /* WatchlistRouter.swift */; };
 		970B3EA5231EB298002CA2E8 /* WatchlistRouterInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7D231EB298002CA2E8 /* WatchlistRouterInput.swift */; };
-		970B3EA6231EB298002CA2E8 /* CandleStickChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */; };
+		970B3EA6231EB298002CA2E8 /* CHCandleChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 970B3E7E231EB298002CA2E8 /* CHCandleChartPresenter.swift */; };
 		97291CF9232421630096078E /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97291CF8232421630096078E /* ObservableType+Extension.swift */; };
 		972C6D3322FDE0FB0059EBAC /* CHMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */; };
 		973725AB232D2EDA0077733B /* CHSelectCurrencyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */; };
@@ -457,6 +458,7 @@
 		204EC7CC230655800097D229 /* CHWalletCurrenciesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHWalletCurrenciesListViewController.xib; sourceTree = "<group>"; };
 		204F234C21AC849A0023890E /* AlertsNetworkProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsNetworkProtocols.swift; sourceTree = "<group>"; };
 		204F234E21AC84AD0023890E /* AlertsNetworkWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsNetworkWorker.swift; sourceTree = "<group>"; };
+		2050C2FB233EA6590082042D /* CHBaseChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseChartPresenter.swift; sourceTree = "<group>"; };
 		20518D9D22D9F53D00334133 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
 		20518DA422D9F93100334133 /* CHWatchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHWatchlist.storyboard; sourceTree = "<group>"; };
 		20518DA622D9F9EA00334133 /* CHOrders.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CHOrders.storyboard; sourceTree = "<group>"; };
@@ -660,7 +662,7 @@
 		970B3E69231EB298002CA2E8 /* CurrenciesListInteractorProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractorProtocols.swift; sourceTree = "<group>"; };
 		970B3E6A231EB298002CA2E8 /* CurrenciesListInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrenciesListInteractor.swift; sourceTree = "<group>"; };
 		970B3E6B231EB298002CA2E8 /* CandleBarChartShortInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleBarChartShortInfoView.swift; sourceTree = "<group>"; };
-		970B3E6C231EB298002CA2E8 /* BarChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		970B3E6C231EB298002CA2E8 /* CHBarChartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHBarChartPresenter.swift; sourceTree = "<group>"; };
 		970B3E6D231EB298002CA2E8 /* WatchlistListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistListView.swift; sourceTree = "<group>"; };
 		970B3E70231EB298002CA2E8 /* WatchlistPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistPresenter.swift; sourceTree = "<group>"; };
 		970B3E72231EB298002CA2E8 /* WatchlistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistViewController.swift; sourceTree = "<group>"; };
@@ -672,7 +674,7 @@
 		970B3E7A231EB298002CA2E8 /* WatchlistInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistInteractor.swift; sourceTree = "<group>"; };
 		970B3E7C231EB298002CA2E8 /* WatchlistRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouter.swift; sourceTree = "<group>"; };
 		970B3E7D231EB298002CA2E8 /* WatchlistRouterInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchlistRouterInput.swift; sourceTree = "<group>"; };
-		970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CandleStickChartViewController.swift; sourceTree = "<group>"; };
+		970B3E7E231EB298002CA2E8 /* CHCandleChartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCandleChartPresenter.swift; sourceTree = "<group>"; };
 		97291CF8232421630096078E /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		972C6D3222FDE0FB0059EBAC /* CHMenu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = CHMenu.storyboard; sourceTree = "<group>"; };
 		973725A9232D2EDA0077733B /* CHSelectCurrencyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSelectCurrencyCell.xib; sourceTree = "<group>"; };
@@ -1304,6 +1306,9 @@
 		208A2510233D5C7D00C1D911 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2050C2FB233EA6590082042D /* CHBaseChartPresenter.swift */,
+				970B3E7E231EB298002CA2E8 /* CHCandleChartPresenter.swift */,
+				970B3E6C231EB298002CA2E8 /* CHBarChartPresenter.swift */,
 				2050C2FA233EA0480082042D /* Period */,
 			);
 			path = Views;
@@ -1971,10 +1976,8 @@
 				970B3E5A231EB298002CA2E8 /* Common */,
 				970B3E5D231EB298002CA2E8 /* CurrenciesPairsList */,
 				970B3E6B231EB298002CA2E8 /* CandleBarChartShortInfoView.swift */,
-				970B3E6C231EB298002CA2E8 /* BarChartViewController.swift */,
 				970B3E6D231EB298002CA2E8 /* WatchlistListView.swift */,
 				970B3E6E231EB298002CA2E8 /* Main */,
-				970B3E7E231EB298002CA2E8 /* CandleStickChartViewController.swift */,
 			);
 			path = Watchlist;
 			sourceTree = "<group>";
@@ -2748,6 +2751,7 @@
 				200813EF2311A9BC00D090E7 /* CHBaseViewController+Rx.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */,
+				2050C2FC233EA6590082042D /* CHBaseChartPresenter.swift in Sources */,
 				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
 				20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */,
@@ -2799,7 +2803,7 @@
 				205AA983209DE3BD00148649 /* DarkeningPickerViewController.swift in Sources */,
 				01734E1F7D82963B9E334BA8 /* CHWalletCurrenciesListView.swift in Sources */,
 				20CE7EAC21A16F5E00EC14FA /* SearchDatasourceListCell.swift in Sources */,
-				970B3E9A231EB298002CA2E8 /* BarChartViewController.swift in Sources */,
+				970B3E9A231EB298002CA2E8 /* CHBarChartPresenter.swift in Sources */,
 				499549063C49EEA247935BBF /* CreateOrderViewProtocols.swift in Sources */,
 				20F9518322DD22C5005A7E42 /* CHExchangeDataSource.swift in Sources */,
 				CA61CF58945D4E20982631E0 /* CreateOrderViewController.swift in Sources */,
@@ -2841,7 +2845,7 @@
 				200D52D222DA7AB60009C07C /* UICollectionView+Extension.swift in Sources */,
 				20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */,
 				20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */,
-				970B3EA6231EB298002CA2E8 /* CandleStickChartViewController.swift in Sources */,
+				970B3EA6231EB298002CA2E8 /* CHCandleChartPresenter.swift in Sources */,
 				C7FD7602220B4DA500A987DB /* CHInternetReachabilityManager.swift in Sources */,
 				970B3E98231EB298002CA2E8 /* CurrenciesListInteractor.swift in Sources */,
 				9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */,

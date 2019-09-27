@@ -87,9 +87,9 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
     @IBOutlet weak var periodViewController: ChartTimePeriodContainer!
 
     var output: CurrencyChartViewOutput!
-    private var chartData: ExmoChartData!
-    private var candleChartViewController = CandleStickChartViewController()
-    private var barChartViewController = BarChartViewController()
+    private var chartData: CHChartModel!
+    private var candleChartViewController = CHCandleChartPresenter(chartView: nil)
+    private var barChartViewController = CHBarChartPresenter(chartView: nil)
     private var currencyPair: String = ""
 
     // MARK: Life cycle
@@ -126,7 +126,7 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
 
     private func prepareCharts() {
         // prepare bar chart
-        barChartViewController.chartView = barChart
+//        barChartViewController.chartView = barChart
         barChartViewController.setCallbackOnChartTranslated(callback: {
             highlight in
             self.candleChartViewController.moveChartByXTo(index: highlight.x)
@@ -138,7 +138,7 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
         })
         
         // prepare candle chart
-        candleChartViewController.chartView = candleChart
+//        candleChartViewController.chartView = candleChart
         candleChartViewController.setCallbackOnChartTranslated(callback: {
             highlight in
             self.barChartViewController.moveChartByXTo(index: highlight.x)
@@ -174,7 +174,7 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
         output.onTouchAddAlert(pair: currencyPair)
     }
     
-    func updateChart(chartData: ExmoChartData?) {
+    func updateChart(chartData: CHChartModel?) {
         guard let chartData = chartData else { return }
         
         candleChartViewController.chartData = chartData

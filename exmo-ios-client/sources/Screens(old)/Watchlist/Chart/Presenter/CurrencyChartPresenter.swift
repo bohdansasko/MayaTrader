@@ -46,7 +46,7 @@ extension WatchlistCurrencyChartPresenter: CurrencyChartViewOutput {
 
 // MARK: WatchlistCurrencyChartInteractorOutput
 extension WatchlistCurrencyChartPresenter: WatchlistCurrencyChartInteractorOutput {
-    func updateChart(chartData: ExmoChartData?) {
+    func updateChart(chartData: CHChartModel?) {
         view.updateChart(chartData: chartData)
     }
 

@@ -31,20 +31,52 @@
                         <constraint firstAttribute="height" constant="35" id="bF8-5l-58r"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xl4-HB-LFc" userLabel="chartContent">
+                    <rect key="frame" x="0.0" y="79" width="414" height="817"/>
+                    <subviews>
+                        <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFJ-MZ-0bm" userLabel="candleContent" customClass="CandleStickChartView" customModule="Charts">
+                            <rect key="frame" x="0.0" y="0.0" width="394" height="689"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAj-cZ-LDU" userLabel="barContent" customClass="BarChartView" customModule="Charts">
+                            <rect key="frame" x="0.0" y="689" width="394" height="128"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="128" id="CGd-OX-UY0"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="hAj-cZ-LDU" secondAttribute="bottom" id="28B-DN-y7z"/>
+                        <constraint firstItem="SFJ-MZ-0bm" firstAttribute="leading" secondItem="xl4-HB-LFc" secondAttribute="leading" id="8Rp-10-xzE"/>
+                        <constraint firstAttribute="trailing" secondItem="hAj-cZ-LDU" secondAttribute="trailing" constant="20" id="bBc-rW-ouu"/>
+                        <constraint firstItem="SFJ-MZ-0bm" firstAttribute="top" secondItem="xl4-HB-LFc" secondAttribute="top" id="lMC-aM-c8o"/>
+                        <constraint firstItem="hAj-cZ-LDU" firstAttribute="top" secondItem="SFJ-MZ-0bm" secondAttribute="bottom" id="lPy-H3-Dpg"/>
+                        <constraint firstItem="SFJ-MZ-0bm" firstAttribute="trailing" secondItem="hAj-cZ-LDU" secondAttribute="trailing" id="lT7-Vi-a3c"/>
+                        <constraint firstItem="hAj-cZ-LDU" firstAttribute="leading" secondItem="xl4-HB-LFc" secondAttribute="leading" id="xFj-92-BgJ"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" name="exmoMidnight"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="xl4-HB-LFc" secondAttribute="bottom" id="68g-hQ-VPV"/>
+                <constraint firstItem="xl4-HB-LFc" firstAttribute="top" secondItem="XxH-8v-Sk9" secondAttribute="bottom" id="BmE-Qb-JFX"/>
                 <constraint firstItem="XxH-8v-Sk9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DQw-BN-muh"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XxH-8v-Sk9" secondAttribute="trailing" id="Na5-JB-MbJ"/>
+                <constraint firstAttribute="trailing" secondItem="xl4-HB-LFc" secondAttribute="trailing" id="Tn7-Oz-RCU"/>
                 <constraint firstItem="XxH-8v-Sk9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="WqT-sz-nl8"/>
+                <constraint firstItem="xl4-HB-LFc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zEX-ep-kc1"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <connections>
+                <outlet property="barChartView" destination="hAj-cZ-LDU" id="cht-yQ-5lS"/>
+                <outlet property="candleChartView" destination="SFJ-MZ-0bm" id="tCk-Cy-ptp"/>
                 <outlet property="periodsContainer" destination="XxH-8v-Sk9" id="bRk-TM-ZWW"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="128.57142857142856"/>
         </view>
-        <viewController storyboardIdentifier="chCurrencyChartViewController" id="NUJ-qZ-6UE" customClass="CurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target">
+        <viewController storyboardIdentifier="chCurrencyChartViewController" id="NUJ-qZ-6UE">
             <view key="view" contentMode="scaleToFill" id="Ul1-Px-Bbr">
                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -309,12 +341,6 @@
                 </constraints>
                 <viewLayoutGuide key="safeArea" id="mIV-sG-JGa"/>
             </view>
-            <connections>
-                <outlet property="barChart" destination="bJd-r7-7yi" id="sE0-bM-Qeu"/>
-                <outlet property="candleChart" destination="hgD-BU-WtD" id="uSa-pp-PbZ"/>
-                <outlet property="candleShortInfoView" destination="GLi-Eb-FLJ" id="d6B-BC-8Ud"/>
-                <outlet property="periodViewController" destination="3eb-pW-2Q9" id="kJH-Po-qgq"/>
-            </connections>
             <point key="canvasLocation" x="-597" y="129"/>
         </viewController>
     </objects>

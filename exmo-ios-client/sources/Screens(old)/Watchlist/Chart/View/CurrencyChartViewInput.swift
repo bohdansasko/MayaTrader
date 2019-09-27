@@ -8,7 +8,7 @@
 
 protocol CurrencyChartViewInput: class {
     func setupInitialState()
-    func updateChart(chartData: ExmoChartData?)
+    func updateChart(chartData: CHChartModel?)
     func setCurrencyPair(_ currencyPair: String)
     func setSubscription(_ package: CHSubscriptionPackageProtocol)
 }

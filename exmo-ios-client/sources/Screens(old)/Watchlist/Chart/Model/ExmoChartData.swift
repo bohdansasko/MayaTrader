@@ -47,7 +47,7 @@ struct ProfessionalChartCandleModel: ChartCandleModel, Mappable {
     }
 }
 
-struct ExmoChartData {
+struct CHChartModel {
     enum ParseType {
         case Default
         case Professional
@@ -87,7 +87,7 @@ struct ExmoChartData {
     }
 }
 
-extension ExmoChartData {
+extension CHChartModel {
     mutating func saveFirst30Elements() {
         if candles.count > 30 {
             candles.removeLast(candles.count - 30)

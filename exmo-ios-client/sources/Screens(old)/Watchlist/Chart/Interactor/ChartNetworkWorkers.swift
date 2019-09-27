@@ -39,7 +39,7 @@ class ProfessionalCandleChartNetworkWorker: NetworkWorker {
             do {
                 let jsonStr = try JSON(data: response.data!)
                 log.debug("professional JSON: \(jsonStr)")
-                var chartData = ExmoChartData(json: jsonStr, parseType: .Professional)
+                var chartData = CHChartModel(json: jsonStr, parseType: .Professional)
                 chartData.saveFirst30Elements()
                 
             } catch {

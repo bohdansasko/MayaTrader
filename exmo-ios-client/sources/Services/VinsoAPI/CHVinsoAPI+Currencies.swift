@@ -11,8 +11,13 @@ import ObjectMapper
 
 extension Reactive where Base: VinsoAPI {
     typealias StockName      = String
-    typealias CurrenciesList = [String]
+    typealias CurrencyName   = String
+    typealias CurrenciesList = [CurrencyName]
 
+    func getCurrency(stock: StockName, name: CurrencyName, isExtended: Bool = true) -> Single<CHLiteCurrencyModel> {
+        return getCurrencies(selectedCurrencies: [stock: [name]], isExtended: isExtended).map{ $0.first! }
+    }
+    
     func getCurrencies(selectedCurrencies: [StockName: CurrenciesList], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
         assert(!selectedCurrencies.isEmpty, "at least must be one element")
         
