@@ -1043,6 +1043,16 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		2050C2FA233EA0480082042D /* Period */ = {
+			isa = PBXGroup;
+			children = (
+				208A2515233D5F0C00C1D911 /* CHPeriod.swift */,
+				208A2511233D5CF400C1D911 /* CHChartPeriodsView.swift */,
+				208A2513233D5D0500C1D911 /* CHChartPeriodsView.xib */,
+			);
+			path = Period;
+			sourceTree = "<group>";
+		};
 		20518D9C22D9F47D00334133 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
@@ -1294,9 +1304,7 @@
 		208A2510233D5C7D00C1D911 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				208A2515233D5F0C00C1D911 /* CHPeriod.swift */,
-				208A2511233D5CF400C1D911 /* CHChartPeriodsView.swift */,
-				208A2513233D5D0500C1D911 /* CHChartPeriodsView.xib */,
+				2050C2FA233EA0480082042D /* Period */,
 			);
 			path = Views;
 			sourceTree = "<group>";
