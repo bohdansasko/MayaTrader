@@ -60,6 +60,7 @@ private extension CHCurrencyChartViewController {
 
     func set(candles: [CHCandleModel]) {
         candlePresenter.candles = candles
+        barPresenter.candles    = candles
     }
 
 }

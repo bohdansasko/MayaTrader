@@ -12,7 +12,7 @@ import Charts
 final class CHBarChartPresenter: CHBaseChartPresenter {
     fileprivate(set) weak var chartView: BarChartView!
     
-    var chartData: CHChartModel = CHChartModel() {
+    var candles: [CHCandleModel] = [] {
         didSet {
             setupChartUI()
         }
@@ -36,7 +36,7 @@ final class CHBarChartPresenter: CHBaseChartPresenter {
 private extension CHBarChartPresenter {
     
     func setupChartUI() {
-        if chartData.isEmpty() {
+        if candles.isEmpty {
             return
         }
         
@@ -44,7 +44,10 @@ private extension CHBarChartPresenter {
         chartView.data = lineData
         chartView.delegate = self
         chartView.fitBars = true
-        chartView.leftAxis.axisMinimum = chartData.getMinVolume()
+        
+        let minVolumeCandle = candles.min(by: { $0.volume < $1.volume })?.volume ?? 0.0
+        chartView.leftAxis.axisMinimum = minVolumeCandle
+        
         chartView.rightAxis.axisMinimum = chartView.leftAxis.axisMinimum
         chartView.rightAxis.resetCustomAxisMin()
         
@@ -63,7 +66,7 @@ private extension CHBarChartPresenter {
         chartView.rightAxis.labelTextColor = UIColor.white
         chartView.chartDescription?.enabled = false
         
-        chartView.moveViewToX(Double(chartData.candles.count))
+        chartView.moveViewToX(Double(candles.count))
     }
     
 }
@@ -76,7 +79,7 @@ private extension CHBarChartPresenter {
         
         var entries: [BarChartDataEntry] = Array()
         
-        for (index, value) in chartData.candles.enumerated() {
+        for (index, value) in candles.enumerated() {
             entries.append(BarChartDataEntry(x: Double(index), y: value.volume))
         }
         

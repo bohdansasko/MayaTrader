@@ -178,7 +178,7 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
         guard let chartData = chartData else { return }
         
 //        candleChartViewController.chartData = chartData
-        barChartViewController.chartData = chartData
+//        barChartViewController.chartData = chartData
     }
     
     func setCurrencyPair(_ currencyPair: String) {
