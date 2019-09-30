@@ -14,6 +14,35 @@ extension Reactive where Base: VinsoAPI {
     typealias CurrencyName   = String
     typealias CurrenciesList = [CurrencyName]
 
+    func getCurrencyCandles(name: CurrencyName, stock: CHStockExchange, period: CHPeriod, limit: Int, offset: Int) -> Single<[CHCandleModel]> {
+        let params: [String: Any] = [
+            "currency"     : name,
+            "stock"        : stock.description,
+            "period"       : period.asArg,
+            "limit"        : limit,
+            "offset"       : offset
+        ]
+        
+        return self.base.sendRequest(messageType: .getCurrencyCandles, params: params)
+            .mapInBackground { json -> [CHCandleModel] in
+                guard let jsonCurrenciesList = json["candles"].array else {
+                    throw CHVinsoAPIError.missingRequiredParams
+                }
+                
+                var candles = [CHCandleModel]()
+                for jsonCurrencyDetails in jsonCurrenciesList {
+                    guard
+                        let jsonRawString = jsonCurrencyDetails.rawString(),
+                        let currency = Mapper<CHCandleModel>().map(JSONString: jsonRawString) else {
+                        continue
+                    }
+                    candles.append(currency)
+                }
+                return candles
+            }
+            .asSingle()
+    }
+    
     func getCurrency(stock: StockName, name: CurrencyName, isExtended: Bool = true) -> Single<CHLiteCurrencyModel> {
         return getCurrencies(selectedCurrencies: [stock: [name]], isExtended: isExtended).map{ $0.first! }
     }

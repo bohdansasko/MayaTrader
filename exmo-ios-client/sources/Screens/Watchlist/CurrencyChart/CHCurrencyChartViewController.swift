@@ -34,15 +34,15 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         candlePresenter = CHCandleChartPresenter(chartView: contentView.candleChartView)
         barPresenter    = CHBarChartPresenter(chartView: contentView.barChartView)
         
-        fetchCurrencyInfo()
+        fetchCurrencyInfo(for: contentView.periodsView.selectedItem)
     }
     
-    func fetchCurrencyInfo() {
-        let request = vinsoAPI.rx.getCurrency(stock: currency.stockName, name: currency.name)
+    func fetchCurrencyInfo(for period: CHPeriod) {
+        let request = vinsoAPI.rx.getCurrencyCandles(name: currency.name, stock: currency.stock, period: period, limit: 20, offset: 0)
         rx.showLoadingView(request: request).subscribe(
             onSuccess: { [weak self] c in
                 guard let `self` = self else { return }
-                log.debug(c)
+                log.debug(c.count)
             }, onError: { [weak self] err in
                 guard let `self` = self else { return }
                 self.handleError(err)

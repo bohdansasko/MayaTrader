@@ -22,4 +22,14 @@ enum CHPeriod {
         case .day  : return "1D"
         }
     }
+    
+    var asArg: String {
+        switch self {
+        case .year : return "Y"
+        case .month: return "M"
+        case .week : return "W"
+        case .day  : return "D"
+        }
+    }
+    
 }

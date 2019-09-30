@@ -48,6 +48,7 @@ enum ServerMessage: Int {
     case getSelectedCurrencies   = 16
     case getCurrenciesLikeString = 17
     case getUserBalance          = 18
+    case getCurrencyCandles      = 19
     
     var description: String {
         switch self {
@@ -70,6 +71,7 @@ enum ServerMessage: Int {
         case .getSelectedCurrencies  : return "getSelectedCurrencies"
         case .getCurrenciesLikeString: return "getCurrenciesLikeString"
         case .getUserBalance         : return "getUserBalance"
+        case .getCurrencyCandles     : return "getCurrencyCandles"
         }
     }
 }

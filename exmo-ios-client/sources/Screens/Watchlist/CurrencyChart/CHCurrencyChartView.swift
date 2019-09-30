@@ -12,7 +12,7 @@ import Charts
 final class CHCurrencyChartView: UIView {
 
     @IBOutlet fileprivate weak var periodsContainer: UIView!
-              fileprivate      var periodsView     : CHChartPeriodsView!
+              fileprivate(set) var periodsView     : CHChartPeriodsView!
     
     @IBOutlet fileprivate(set) weak var candleChartView: CandleStickChartView!
     @IBOutlet fileprivate(set) weak var barChartView   : BarChartView!

@@ -316,6 +316,7 @@
 		9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */; };
 		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
 		9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */; };
+		97D3ED80234257F5007FA86B /* CHCandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3ED7F234257F5007FA86B /* CHCandleModel.swift */; };
 		97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB18AB22F4AD48007BE023 /* Observable+extension.swift */; };
 		97E5141523364DE7002915B7 /* CHLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5141423364DE7002915B7 /* CHLoadingView.swift */; };
 		97E5141723364DEE002915B7 /* CHLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97E5141623364DEE002915B7 /* CHLoadingView.xib */; };
@@ -688,6 +689,7 @@
 		9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTransforms.swift; sourceTree = "<group>"; };
 		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
 		9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHAlertsPresenter.swift; sourceTree = "<group>"; };
+		97D3ED7F234257F5007FA86B /* CHCandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCandleModel.swift; sourceTree = "<group>"; };
 		97DB18AB22F4AD48007BE023 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
 		97E5141423364DE7002915B7 /* CHLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLoadingView.swift; sourceTree = "<group>"; };
 		97E5141623364DEE002915B7 /* CHLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHLoadingView.xib; sourceTree = "<group>"; };
@@ -1504,6 +1506,7 @@
 				C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */,
 				36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */,
 				20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */,
+				97D3ED7F234257F5007FA86B /* CHCandleModel.swift */,
 				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
 				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
 				202F80A823008D650035D123 /* CHSecurityService.swift */,
@@ -2751,6 +2754,7 @@
 				200813EF2311A9BC00D090E7 /* CHBaseViewController+Rx.swift in Sources */,
 				207E25062061C41000030023 /* OrdersModel.swift in Sources */,
 				20786BDD2306430A007C3944 /* CHWalletCurrenciesListHeader.swift in Sources */,
+				97D3ED80234257F5007FA86B /* CHCandleModel.swift in Sources */,
 				2050C2FC233EA6590082042D /* CHBaseChartPresenter.swift in Sources */,
 				206AAA7021DBC82A00E956E7 /* PasscodeViewController.swift in Sources */,
 				20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */,
