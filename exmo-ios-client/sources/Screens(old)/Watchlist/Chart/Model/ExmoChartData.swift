@@ -7,6 +7,7 @@ import Foundation
 import ObjectMapper
 import SwiftyJSON
 
+@available(*, deprecated, message: "remove this file and all included models")
 protocol ChartCandleModel {
     var high: Double { get }
     var low: Double { get }

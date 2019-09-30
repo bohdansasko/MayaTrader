@@ -12,7 +12,7 @@ import Charts
 final class CHCandleChartPresenter: CHBaseChartPresenter {
     fileprivate(set) weak var chartView: CandleStickChartView!
     
-    var chartData: CHChartModel? {
+    var candles: [CHCandleModel] = [] {
         didSet {
             setupChartUI()
         }
@@ -36,7 +36,9 @@ final class CHCandleChartPresenter: CHBaseChartPresenter {
 private extension CHCandleChartPresenter {
     
     func setupChartUI() {
-        guard let chartData = chartData else { return }
+        if candles.isEmpty {
+            return
+        }
         
         chartView.delegate = self
         
@@ -57,7 +59,8 @@ private extension CHCandleChartPresenter {
         chartView.xAxis.granularity = 1
         chartView.xAxis.labelTextColor = .white
 
-        chartView.leftAxis.axisMinimum = chartData.getMinLow()
+        let minLowCandle = candles.min(by: { $0.low < $1.low })?.low ?? 0.0
+        chartView.leftAxis.axisMinimum = minLowCandle
         chartView.leftAxis.enabled = false
         
         chartView.rightAxis.gridColor = UIColor.dark1
@@ -67,7 +70,7 @@ private extension CHCandleChartPresenter {
         chartView.rightAxis.resetCustomAxisMin()
         chartView.rightAxis.xOffset = 1.25
         
-        chartView.moveViewToX(Double(chartData.candles.count))
+        chartView.moveViewToX(Double(candles.count))
     }
     
 }
@@ -77,12 +80,12 @@ private extension CHCandleChartPresenter {
 private extension CHCandleChartPresenter {
     
     func getCandleChartData() -> CandleChartData {
-        guard let chartData = chartData else {
+        if candles.isEmpty {
             return CandleChartData(dataSet: nil)
         }
         
-        let yVals1 = (0..<chartData.candles.count).map { (idx) -> CandleChartDataEntry in
-            let candleModel = chartData.candles[idx]
+        let yVals1 = (0..<candles.count).map { (idx) -> CandleChartDataEntry in
+            let candleModel = candles[idx]
             let open = candleModel.open
             let high = candleModel.high
             let low = candleModel.low
@@ -115,16 +118,11 @@ private extension CHCandleChartPresenter {
 extension CHCandleChartPresenter : IAxisValueFormatter {
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        guard
-            let chartData = chartData,
-            let candleItem = chartData.getCandleByIndex(Int(value)) else {
-            return ""
-        }
+        let candleItem = self.candles[Int(value)]
         
-        let timeIntervalSince1970 = candleItem.timeSince1970InSec
         let dt = DateFormatter()
         dt.dateFormat = "MM/dd"
-        let formatedDate = dt.string(from: Date(timeIntervalSince1970: timeIntervalSince1970))
+        let formatedDate = dt.string(from: Date(timeIntervalSince1970: candleItem.timestamp))
         
         return formatedDate
     }
