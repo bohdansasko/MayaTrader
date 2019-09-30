@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Charts
 
 final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHCurrencyChartView
@@ -32,11 +33,21 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         titleNavBar     = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
         
         candlePresenter = CHCandleChartPresenter(chartView: contentView.candleChartView)
-        barPresenter    = CHBarChartPresenter(chartView: contentView.barChartView)
+        candlePresenter.delegate = self
         
-        fetchCurrencyInfo(for: contentView.periodsView.selectedItem)
+        barPresenter    = CHBarChartPresenter(chartView: contentView.barChartView)
+        barPresenter.delegate = self
+        
+        contentView.set(selectedPeriod: .month)
+        contentView.set(periodsDelegate: self)
+        
+        fetchCurrencyInfo(for: .month)
     }
-
+    
+    deinit {
+        log.debug("☠️ deinit")
+    }
+    
 }
 
 private extension CHCurrencyChartViewController {
@@ -63,4 +74,39 @@ private extension CHCurrencyChartViewController {
         barPresenter.candles    = candles
     }
 
+}
+
+// MARK: - CHChartPeriodViewDelegate
+
+extension CHCurrencyChartViewController: CHChartPeriodViewDelegate {
+    
+    func chartPeriodView(_ periodView: CHChartPeriodsView, didSelect period: CHPeriod) {
+        periodView.set(selected: period)
+    }
+    
+}
+
+// MARK: - CHBaseChartPresenterDelegate
+
+extension CHCurrencyChartViewController: CHBaseChartPresenterDelegate {
+
+    func chartPresenter(_ presenter: CHBaseChartPresenter, didSelectChartValue value: Highlight) {
+        self.candlePresenter.chartView?.highlightValue(value)
+        let idx = Int(value.x)
+        let candle = self.candlePresenter.candles[idx]
+        self.contentView.set(candleDetails: candle)
+        
+        if presenter is CHCandleChartPresenter {
+            self.barPresenter.chartView?.highlightValue(value)
+        }
+    }
+    
+    func chartPresenter(_ presenter: CHBaseChartPresenter, didTranslateChartValue value: Highlight) {
+        if presenter is CHCandleChartPresenter {
+            self.barPresenter.moveChartByXTo(index: value.x)
+        } else if presenter is CHBarChartPresenter {
+            self.candlePresenter.moveChartByXTo(index: value.x)
+        }
+    }
+    
 }

@@ -10,7 +10,7 @@ import UIKit
 import Charts
 
 final class CHCandleChartPresenter: CHBaseChartPresenter {
-    fileprivate(set) weak var chartView: CandleStickChartView!
+    fileprivate(set) var chartView: CandleStickChartView!
     
     var candles: [CHCandleModel] = [] {
         didSet {
@@ -22,7 +22,10 @@ final class CHCandleChartPresenter: CHBaseChartPresenter {
         assert(chartView != nil, "required not nil")
         
         self.chartView = chartView
+        
         super.init()
+        
+        self.chartView.delegate = self
     }
     
     override func moveChartByXTo(index: Double) {
@@ -39,9 +42,7 @@ private extension CHCandleChartPresenter {
         if candles.isEmpty {
             return
         }
-        
-        chartView.delegate = self
-        
+                
         let candleData = getCandleChartData()
         chartView.data = candleData
 
@@ -131,16 +132,15 @@ extension CHCandleChartPresenter : IAxisValueFormatter {
 
 // MARK: - ChartViewDelegate
 
-extension CHCandleChartPresenter : ChartViewDelegate {
+extension CHCandleChartPresenter: ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        callbackOnchartValueSelected?(highlight)
+        delegate?.chartPresenter(self, didSelectChartValue: highlight)
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-        log.debug("candle dx\(dX)")
         guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
-        callbackOnChartTranslated?(highlight)
+        delegate?.chartPresenter(self, didTranslateChartValue: highlight)
     }
     
 }

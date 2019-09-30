@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum CHPeriod {
+enum CHPeriod: CaseIterable {
     case year
     case month
     case week

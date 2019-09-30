@@ -27,28 +27,40 @@ final class CHCurrencyChartView: UIView {
 
 // MARK: - Setup
 
-extension CHCurrencyChartView {
+private extension CHCurrencyChartView {
     
     func setupPeriodsView() {
         periodsView = CHChartPeriodsView.loadViewFromNib()
-        periodsView.delegate = self
         periodsContainer.addSubview(periodsView)
         periodsView.snp.makeConstraints{ $0.edges.equalToSuperview() }
         
         let items: [CHPeriod] = [ .year, .month, .week, .day ]
         periodsView.set(items)
-        periodsView.set(selected: .week)
-        
+
         periodsView.setNeedsLayout()
         periodsView.layoutIfNeeded()
     }
     
 }
 
-extension CHCurrencyChartView: CHChartPeriodViewDelegate {
+// MARK: - Set
+
+extension CHCurrencyChartView {
     
-    func chartPeriodView(_ periodView: CHChartPeriodsView, didSelect period: CHPeriod) {
-        periodView.set(selected: period)
+    func set(selectedPeriod period: CHPeriod) {
+        periodsView.set(selected: period)
+    }
+    
+    func set(periodsDelegate delegate: CHChartPeriodViewDelegate) {
+        periodsView.delegate = delegate
+    }
+    
+    func set(candleDetails candle: CHCandleModel) {
+        log.debug(candle)
+//        if self.candleShortInfoView.isHidden {
+//            self.candleShortInfoView.isHidden = false
+//        }
+//        self.candleShortInfoView.model = self.candlePresenter.chartData!.candles[candleIndex]
     }
     
 }

@@ -127,33 +127,32 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
     private func prepareCharts() {
         // prepare bar chart
 //        barChartViewController.chartView = barChart
-        barChartViewController.setCallbackOnChartTranslated(callback: {
-            highlight in
-            self.candleChartViewController.moveChartByXTo(index: highlight.x)
-        })
-        barChartViewController.setCallbackOnChartValueSelected(callback: {
-            highlight in
-            self.candleChartViewController.chartView?.highlightValue(highlight)
-            self.showCandleInfo(candleIndex: Int(highlight.x))
-        })
+//        barChartViewController.setCallbackOnChartTranslated(callback: { highlight in
+//            self.candleChartViewController.moveChartByXTo(index: highlight.x)
+//        })
+//        barChartViewController.setCallbackOnChartValueSelected(callback: {
+//            highlight in
+//            self.candleChartViewController.chartView?.highlightValue(highlight)
+//            self.showCandleInfo(candleIndex: Int(highlight.x))
+//        })
         
         // prepare candle chart
 //        candleChartViewController.chartView = candleChart
-        candleChartViewController.setCallbackOnChartTranslated(callback: {
-            highlight in
-            self.barChartViewController.moveChartByXTo(index: highlight.x)
-        })
-        candleChartViewController.setCallbackOnChartValueSelected(callback: {
-            highlight in
-            self.barChartViewController.chartView?.highlightValue(highlight)
-            self.showCandleInfo(candleIndex: Int(highlight.x))
-        })
+//        candleChartViewController.setCallbackOnChartTranslated(callback: {
+//            highlight in
+//            self.barChartViewController.moveChartByXTo(index: highlight.x)
+//        })
+//        candleChartViewController.setCallbackOnChartValueSelected(callback: {
+//            highlight in
+//            self.barChartViewController.chartView?.highlightValue(highlight)
+//            self.showCandleInfo(candleIndex: Int(highlight.x))
+//        })
 
-        periodViewController.callbackOnChangePeriod = {
-            [weak self] periodAsString in
-            guard let strongSelf = self else { return }
-            strongSelf.output.loadChartData(currencyPair: strongSelf.currencyPair, period: periodAsString)
-        }
+//        periodViewController.callbackOnChangePeriod = {
+//            [weak self] periodAsString in
+//            guard let strongSelf = self else { return }
+//            strongSelf.output.loadChartData(currencyPair: strongSelf.currencyPair, period: periodAsString)
+//        }
     }
     
     func showCandleInfo(candleIndex: Int) {

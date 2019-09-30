@@ -22,7 +22,10 @@ final class CHBarChartPresenter: CHBaseChartPresenter {
         assert(chartView != nil, "required not nil")
         
         self.chartView = chartView
+        
         super.init()
+        
+        self.chartView.delegate = self
     }
     
     override func moveChartByXTo(index: Double) {
@@ -101,12 +104,12 @@ private extension CHBarChartPresenter {
 extension CHBarChartPresenter: ChartViewDelegate {
     
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-        callbackOnchartValueSelected?(highlight)
+        delegate?.chartPresenter(self, didSelectChartValue: highlight)
     }
     
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
         guard let highlight = self.chartView.getHighlightByTouchPoint(CGPoint(x: dX, y: dY)) else { return }
-        callbackOnChartTranslated?(highlight)
+        delegate?.chartPresenter(self, didTranslateChartValue: highlight)
     }
     
 }

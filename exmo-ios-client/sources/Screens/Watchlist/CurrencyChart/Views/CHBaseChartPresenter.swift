@@ -8,29 +8,14 @@
 
 import Charts
 
+protocol CHBaseChartPresenterDelegate: class {
+    func chartPresenter(_ presenter: CHBaseChartPresenter, didSelectChartValue value: Highlight)
+    func chartPresenter(_ presenter: CHBaseChartPresenter, didTranslateChartValue value: Highlight)
+}
+
 class CHBaseChartPresenter {
     
-    typealias CallbackOnchartValueSelected = (Highlight) -> Void
-    typealias CallbackOnChartTranslated = (Highlight) -> Void
-    
-    var callbackOnchartValueSelected: CallbackOnchartValueSelected?
-    var callbackOnChartTranslated: CallbackOnChartTranslated?
-    
-    func setupChart() {
-        fatalError("moveChartByXTo doesn't have implementation")
-    }
-    
-    func setCallbackOnChartValueSelected(callback: CallbackOnchartValueSelected?) {
-        callbackOnchartValueSelected = callback
-    }
-    
-    func setCallbackOnChartTranslated(callback: CallbackOnChartTranslated?) {
-        callbackOnChartTranslated = callback
-    }
-    
-    func emitCallbackOnchartValueSelected(highlight: Highlight) {
-        callbackOnchartValueSelected?(highlight)
-    }
+    weak var delegate: CHBaseChartPresenterDelegate?
     
     func moveChartByXTo(index: Double) {
         fatalError("moveChartByXTo doesn't have implementation")
