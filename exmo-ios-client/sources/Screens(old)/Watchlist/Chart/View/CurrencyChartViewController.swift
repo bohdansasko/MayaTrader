@@ -160,7 +160,7 @@ final class CurrencyChartViewController: ExmoUIViewController, CurrencyChartView
         if self.candleShortInfoView.isHidden {
             self.candleShortInfoView.isHidden = false
         }
-        self.candleShortInfoView.model = self.candleChartViewController.chartData.candles[candleIndex]
+        self.candleShortInfoView.model = self.candleChartViewController.chartData!.candles[candleIndex]
     }
     
     @objc

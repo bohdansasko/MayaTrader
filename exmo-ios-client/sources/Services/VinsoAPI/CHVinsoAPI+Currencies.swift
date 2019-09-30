@@ -46,8 +46,16 @@ extension Reactive where Base: VinsoAPI {
     func getCurrency(stock: StockName, name: CurrencyName, isExtended: Bool = true) -> Single<CHLiteCurrencyModel> {
         return getCurrencies(selectedCurrencies: [stock: [name]], isExtended: isExtended).map{ $0.first! }
     }
-    
-    func getCurrencies(selectedCurrencies: [StockName: CurrenciesList], isExtended: Bool = true) -> Single<[CHLiteCurrencyModel]> {
+
+    func getExtendedCurrencies(selectedCurrencies: [StockName: CurrenciesList]) -> Single<[CHCurrencyModel]> {
+        return getCurrencies(selectedCurrencies: selectedCurrencies, isExtended: true)
+    }
+
+    func getCurrencies(selectedCurrencies: [StockName: CurrenciesList]) -> Single<[CHLiteCurrencyModel]> {
+        return getCurrencies(selectedCurrencies: selectedCurrencies, isExtended: false)
+    }
+
+    func getCurrencies<CurrencyModel: CHLiteCurrencyModel>(selectedCurrencies: [StockName: CurrenciesList], isExtended: Bool) -> Single<[CurrencyModel]> {
         assert(!selectedCurrencies.isEmpty, "at least must be one element")
         
         let params: [String: Any] = [
@@ -56,12 +64,12 @@ extension Reactive where Base: VinsoAPI {
         ]
 
         return self.base.sendRequest(messageType: .getSelectedCurrencies, params: params)
-            .mapInBackground { json -> [CHLiteCurrencyModel] in
+            .mapInBackground { json -> [CurrencyModel] in
                 guard let stocksJson = json["currencies"].dictionary else {
                     throw CHVinsoAPIError.missingRequiredParams
                 }
                 
-                var currencies = [CHLiteCurrencyModel]()
+                var currencies = [CurrencyModel]()
                 
                 for (stockName, stockJsonCurrencies)  in stocksJson {
                     guard let currenciesListJson = stockJsonCurrencies.array else {
@@ -73,7 +81,7 @@ extension Reactive where Base: VinsoAPI {
                         }
                         jsonDict["stock_exchange"] = stockName
                         
-                        if let currency = Mapper<CHLiteCurrencyModel>().map(JSON: jsonDict) {
+                        if let currency = Mapper<CurrencyModel>().map(JSON: jsonDict) {
                             currencies.append(currency)
                         }
                     }
@@ -84,7 +92,7 @@ extension Reactive where Base: VinsoAPI {
             .asSingle()
     }
     
-    /// extended - how many fields will be retured
+    /// extended - how many fields will be returned
     func getCurrencyGroup(by stockExchange: CHStockExchange, isExtended: Bool = true) -> Single<[String]> {
         let params: [String: Any] = [
             "currency_group"     : "",

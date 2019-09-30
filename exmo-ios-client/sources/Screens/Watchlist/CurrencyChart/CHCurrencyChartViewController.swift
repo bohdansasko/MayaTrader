@@ -36,18 +36,30 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         
         fetchCurrencyInfo(for: contentView.periodsView.selectedItem)
     }
-    
+
+}
+
+private extension CHCurrencyChartViewController {
+
     func fetchCurrencyInfo(for period: CHPeriod) {
         let request = vinsoAPI.rx.getCurrencyCandles(name: currency.name, stock: currency.stock, period: period, limit: 20, offset: 0)
         rx.showLoadingView(request: request).subscribe(
             onSuccess: { [weak self] c in
                 guard let `self` = self else { return }
-                log.debug(c.count)
+                self.set(candles: c)
             }, onError: { [weak self] err in
                 guard let `self` = self else { return }
                 self.handleError(err)
             }
         ).disposed(by: disposeBag)
+    }
+
+}
+
+private extension CHCurrencyChartViewController {
+
+    func set(candles: [CHCandleModel]) {
+
     }
 
 }

@@ -10,7 +10,7 @@ import Realm
 import RealmSwift
 import ObjectMapper
 
-final class CHLiteCurrencyModel: Object, Mappable {
+class CHLiteCurrencyModel: Object, Mappable {
     /// stockName + "_" + name
     @objc dynamic var id       : String = ""
     
@@ -20,15 +20,20 @@ final class CHLiteCurrencyModel: Object, Mappable {
     /// BTC_USD, BTC_ETH, ..., etc
     @objc dynamic var name     : String = ""
     
+    /// current max buying price
     @objc dynamic var buyPrice : Double = 0.0
+
+    /// current min selling price
     @objc dynamic var sellPrice: Double = 0.0
+    
+    /// volume of all deals per 24 hours
     @objc dynamic var volume   : Double = 0.0
     
     var stock: CHStockExchange {
         return CHStockExchange(rawValue: stockName)!
     }
     
-    // MARK: Realm
+    // MARK: - Realm
     
     required init() {
         super.init()

@@ -41,6 +41,8 @@
 		200D52D022DA24940009C07C /* CHWatchlistDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52CF22DA24940009C07C /* CHWatchlistDataSource.swift */; };
 		200D52D222DA7AB60009C07C /* UICollectionView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52D122DA7AB60009C07C /* UICollectionView+Extension.swift */; };
 		200D52D422DA7F550009C07C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52D322DA7F550009C07C /* UITableView+Extension.swift */; };
+		2013DDD0234270C7001FBBCF /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013DDCE234270C7001FBBCF /* CHLiteCurrencyModel.swift */; };
+		2013DDD1234270C7001FBBCF /* CHCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013DDCF234270C7001FBBCF /* CHCurrencyModel.swift */; };
 		2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56E2071464600EFACB7 /* Exo2-Black.ttf */; };
 		2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */; };
 		2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E5702071464600EFACB7 /* Exo2-Bold.ttf */; };
@@ -311,7 +313,6 @@
 		973725BE232D57CB0077733B /* CHTextInputCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 973725BD232D57CA0077733B /* CHTextInputCell.xib */; };
 		9763F42F22F718E900D6E22A /* CHVinsoAPI+Currencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */; };
 		9763F43122F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */; };
-		9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */; };
 		9763F43522F73DD800D6E22A /* ObjectMapper+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */; };
 		9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */; };
 		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
@@ -409,6 +410,8 @@
 		200D52CF22DA24940009C07C /* CHWatchlistDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHWatchlistDataSource.swift; sourceTree = "<group>"; };
 		200D52D122DA7AB60009C07C /* UICollectionView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+Extension.swift"; sourceTree = "<group>"; };
 		200D52D322DA7F550009C07C /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
+		2013DDCE234270C7001FBBCF /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
+		2013DDCF234270C7001FBBCF /* CHCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCurrencyModel.swift; sourceTree = "<group>"; };
 		2013E56E2071464600EFACB7 /* Exo2-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Black.ttf"; sourceTree = "<group>"; };
 		2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-BlackItalic.ttf"; sourceTree = "<group>"; };
 		2013E5702071464600EFACB7 /* Exo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Bold.ttf"; sourceTree = "<group>"; };
@@ -684,7 +687,6 @@
 		973725BD232D57CA0077733B /* CHTextInputCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHTextInputCell.xib; sourceTree = "<group>"; };
 		9763F42E22F718E900D6E22A /* CHVinsoAPI+Currencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Currencies.swift"; sourceTree = "<group>"; };
 		9763F43022F71A4900D6E22A /* CHVinsoAPI+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHVinsoAPI+Subscriptions.swift"; sourceTree = "<group>"; };
-		9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
 		9763F43422F73DD800D6E22A /* ObjectMapper+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectMapper+extension.swift"; sourceTree = "<group>"; };
 		9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTransforms.swift; sourceTree = "<group>"; };
 		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
@@ -906,6 +908,16 @@
 				200D52CF22DA24940009C07C /* CHWatchlistDataSource.swift */,
 			);
 			path = List;
+			sourceTree = "<group>";
+		};
+		2013DDCD234270C7001FBBCF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				97D3ED7F234257F5007FA86B /* CHCandleModel.swift */,
+				2013DDCE234270C7001FBBCF /* CHLiteCurrencyModel.swift */,
+				2013DDCF234270C7001FBBCF /* CHCurrencyModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		2013E56C2071464600EFACB7 /* fonts */ = {
@@ -1503,11 +1515,10 @@
 				20CAFED32042AE6400C7DEA5 /* ExmoAPI */,
 				201EA2B221A4952000A1E693 /* Database */,
 				20BCE4E321E03DDE003669EA /* IAP */,
+				2013DDCD234270C7001FBBCF /* Models */,
 				C7FD7601220B4DA500A987DB /* CHInternetReachabilityManager.swift */,
 				36712E9E96A996A1CDB90EE3 /* CHAppStoreReviewManager.swift */,
 				20AFE3E822FFB0ED00E905A1 /* CHPushNotificationsService.swift */,
-				97D3ED7F234257F5007FA86B /* CHCandleModel.swift */,
-				9763F43222F73D8800D6E22A /* CHLiteCurrencyModel.swift */,
 				202F80A62300722D0035D123 /* CHExmoAuthorizationService.swift */,
 				202F80A823008D650035D123 /* CHSecurityService.swift */,
 			);
@@ -2767,6 +2778,7 @@
 				36712029F198CF69683FFA1B /* CHMenuSectionType.swift in Sources */,
 				20CE7EB521A19CF700EC14FA /* TickerNetworkProtocols.swift in Sources */,
 				20E5D5942309716500E603D8 /* CHExmoAPI+Orders.swift in Sources */,
+				2013DDD0234270C7001FBBCF /* CHLiteCurrencyModel.swift in Sources */,
 				970B3E87231EB298002CA2E8 /* CurrencyChartInitializer.swift in Sources */,
 				207EBE5E21AD131500CD4D6F /* AlertsListView+TableDatasource+TableDelegate.swift in Sources */,
 				202F80A72300722D0035D123 /* CHExmoAuthorizationService.swift in Sources */,
@@ -2789,6 +2801,7 @@
 				97E9C0132304458400CF01A2 /* ExmoSecurityApiRequestsBuilder.swift in Sources */,
 				970B3E8E231EB298002CA2E8 /* WatchlistCurrencyPairModel.swift in Sources */,
 				2075612720B2C0DB0063E548 /* AlertsApiRequestBuilder.swift in Sources */,
+				2013DDD1234270C7001FBBCF /* CHCurrencyModel.swift in Sources */,
 				20BEDC53205579FA00973F2F /* AlertViewCell.swift in Sources */,
 				C4EB1B12B5E7B5837BFC5C16 /* AlertsInteractorProtocols.swift in Sources */,
 				205F97D0233ABC3D00701275 /* CHCurrencyChartViewController.swift in Sources */,
@@ -2936,7 +2949,6 @@
 				970B3E9E231EB298002CA2E8 /* WatchlistViewOutput.swift in Sources */,
 				208A2512233D5CF400C1D911 /* CHChartPeriodsView.swift in Sources */,
 				208A2518233D606500C1D911 /* UIStackView+Ext.swift in Sources */,
-				9763F43322F73D8800D6E22A /* CHLiteCurrencyModel.swift in Sources */,
 				366FFA610F7F08796693B05C /* SubscriptionsRouterInput.swift in Sources */,
 				970B3EA4231EB298002CA2E8 /* WatchlistRouter.swift in Sources */,
 				200D52D022DA24940009C07C /* CHWatchlistDataSource.swift in Sources */,
