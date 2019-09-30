@@ -17,10 +17,14 @@ final class CHCurrencyChartView: UIView {
     @IBOutlet fileprivate(set) weak var candleChartView: CandleStickChartView!
     @IBOutlet fileprivate(set) weak var barChartView   : BarChartView!
     
+    @IBOutlet fileprivate weak var candleDetailsContainer: UIView!
+              fileprivate(set) var candleDetailsView     : CHCandleDetailsView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setupPeriodsView()
+        setupCandleDetailsView()
     }
     
 }
@@ -41,6 +45,17 @@ private extension CHCurrencyChartView {
         periodsView.layoutIfNeeded()
     }
     
+    func setupCandleDetailsView() {
+        candleDetailsView = CHCandleDetailsView.loadViewFromNib()
+        candleDetailsContainer.addSubview(candleDetailsView)
+        candleDetailsView.snp.makeConstraints{ $0.edges.equalToSuperview() }
+
+        candleDetailsView.isHidden = true
+        
+        candleDetailsView.setNeedsLayout()
+        candleDetailsView.layoutIfNeeded()
+    }
+    
 }
 
 // MARK: - Set
@@ -55,12 +70,16 @@ extension CHCurrencyChartView {
         periodsView.delegate = delegate
     }
     
-    func set(candleDetails candle: CHCandleModel) {
+    func set(candleDetails candle: CHCandleModel?) {
+        guard let candle = candle else {
+            candleDetailsView.isHidden = true
+            return
+        }
         log.debug(candle)
-//        if self.candleShortInfoView.isHidden {
-//            self.candleShortInfoView.isHidden = false
-//        }
-//        self.candleShortInfoView.model = self.candlePresenter.chartData!.candles[candleIndex]
+        candleDetailsView.isHidden = false
+        
+        let formatter = CHCandleDetailsFormatter(item: candle)
+        candleDetailsView.set(formatter: formatter)
     }
     
 }

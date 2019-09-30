@@ -12,6 +12,7 @@ import Charts
 //
 // MARK: CandleBarChartShortInfoView
 //
+@available(*, deprecated, message: "component is outdated. Will be removed soon!")
 class CandleBarChartShortInfoView : UIView {
     @IBOutlet weak var labelOpen : UILabel!
     @IBOutlet weak var labelClosed : UILabel!

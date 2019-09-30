@@ -43,6 +43,9 @@
 		200D52D422DA7F550009C07C /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52D322DA7F550009C07C /* UITableView+Extension.swift */; };
 		2013DDD0234270C7001FBBCF /* CHLiteCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013DDCE234270C7001FBBCF /* CHLiteCurrencyModel.swift */; };
 		2013DDD1234270C7001FBBCF /* CHCurrencyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013DDCF234270C7001FBBCF /* CHCurrencyModel.swift */; };
+		2013DDD52342A05F001FBBCF /* CHCandleDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013DDD32342A05F001FBBCF /* CHCandleDetailsView.swift */; };
+		2013DDD62342A05F001FBBCF /* CHCandleDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2013DDD42342A05F001FBBCF /* CHCandleDetailsView.xib */; };
+		2013DDD82342A2F6001FBBCF /* CHCandleDetailsFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2013DDD72342A2F6001FBBCF /* CHCandleDetailsFormatter.swift */; };
 		2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56E2071464600EFACB7 /* Exo2-Black.ttf */; };
 		2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */; };
 		2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2013E5702071464600EFACB7 /* Exo2-Bold.ttf */; };
@@ -412,6 +415,9 @@
 		200D52D322DA7F550009C07C /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		2013DDCE234270C7001FBBCF /* CHLiteCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyModel.swift; sourceTree = "<group>"; };
 		2013DDCF234270C7001FBBCF /* CHCurrencyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCurrencyModel.swift; sourceTree = "<group>"; };
+		2013DDD32342A05F001FBBCF /* CHCandleDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CHCandleDetailsView.swift; sourceTree = "<group>"; };
+		2013DDD42342A05F001FBBCF /* CHCandleDetailsView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CHCandleDetailsView.xib; sourceTree = "<group>"; };
+		2013DDD72342A2F6001FBBCF /* CHCandleDetailsFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCandleDetailsFormatter.swift; sourceTree = "<group>"; };
 		2013E56E2071464600EFACB7 /* Exo2-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Black.ttf"; sourceTree = "<group>"; };
 		2013E56F2071464600EFACB7 /* Exo2-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-BlackItalic.ttf"; sourceTree = "<group>"; };
 		2013E5702071464600EFACB7 /* Exo2-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Exo2-Bold.ttf"; sourceTree = "<group>"; };
@@ -920,6 +926,16 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		2013DDD22342A028001FBBCF /* CandleDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2013DDD72342A2F6001FBBCF /* CHCandleDetailsFormatter.swift */,
+				2013DDD32342A05F001FBBCF /* CHCandleDetailsView.swift */,
+				2013DDD42342A05F001FBBCF /* CHCandleDetailsView.xib */,
+			);
+			path = CandleDetails;
+			sourceTree = "<group>";
+		};
 		2013E56C2071464600EFACB7 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -1323,6 +1339,7 @@
 				2050C2FB233EA6590082042D /* CHBaseChartPresenter.swift */,
 				970B3E7E231EB298002CA2E8 /* CHCandleChartPresenter.swift */,
 				970B3E6C231EB298002CA2E8 /* CHBarChartPresenter.swift */,
+				2013DDD22342A028001FBBCF /* CandleDetails */,
 				2050C2FA233EA0480082042D /* Period */,
 			);
 			path = Views;
@@ -2526,6 +2543,7 @@
 				2013E5812071464700EFACB7 /* Exo2-BlackItalic.ttf in Resources */,
 				20DFB1C92303486A008C19B5 /* CHWalletBalanceView.xib in Resources */,
 				2013E5912071464700EFACB7 /* Exo2-ThinItalic.ttf in Resources */,
+				2013DDD62342A05F001FBBCF /* CHCandleDetailsView.xib in Resources */,
 				2013E5822071464700EFACB7 /* Exo2-Bold.ttf in Resources */,
 				208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */,
 				2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */,
@@ -2680,6 +2698,7 @@
 				20D7F02520460E6A0056F547 /* CHMenuCell.swift in Sources */,
 				20A9044F21BA4B7A00718A53 /* FormCreateOrderLimit.swift in Sources */,
 				20FFDF4D22FB716700A65D01 /* CHMenuSectionHeader.swift in Sources */,
+				2013DDD52342A05F001FBBCF /* CHCandleDetailsView.swift in Sources */,
 				73B6DB13C940F5C5A8ADC3FE /* LoginViewProtocols.swift in Sources */,
 				207EBE5C21AD0F2800CD4D6F /* AlertViewCell+SetupViews.swift in Sources */,
 				20BEDC5B20557ECD00973F2F /* Alert.swift in Sources */,
@@ -2771,6 +2790,7 @@
 				20E5D5922309676D00E603D8 /* CHOrdersDataSource.swift in Sources */,
 				3671270AD41B65A3E7C2B26D /* CHWalletCurrenciesPresenter.swift in Sources */,
 				970B3E41231E80B2002CA2E8 /* CHLogger.swift in Sources */,
+				2013DDD82342A2F6001FBBCF /* CHCandleDetailsFormatter.swift in Sources */,
 				200D52C622DA1DCF0009C07C /* CHAlertsView.swift in Sources */,
 				204CC7D821B93478002057CA /* Constants.swift in Sources */,
 				36712E4C4C5245EF136945B7 /* CHMenuViewPresenter.swift in Sources */,
