@@ -18,6 +18,7 @@ final class CHChartPeriodsView: UIView {
     
     @IBOutlet fileprivate weak var buttonsSV    : UIStackView!
     @IBOutlet fileprivate weak var indicatorView: UIView!
+    @IBOutlet fileprivate weak var indicatorViewLeadingConstr: NSLayoutConstraint!
     
     // MARK: - Private variables
     
@@ -50,17 +51,21 @@ extension CHChartPeriodsView {
         
         self.items.forEach { (p: CHPeriod) in
             let b = makeButton(with: p)
-            b.isSelected = p == selectedItem
-            b.snp.makeConstraints{ $0.width.equalTo(20) }
-            b.addTarget(self, action: #selector(actTapOnButton(_:)), for: .touchUpInside)
             buttonsSV.addArrangedSubview(b)
+            b.snp.makeConstraints{ $0.width.equalTo(20) }
+            b.isSelected = p == selectedItem
+            b.addTarget(self, action: #selector(actTapOnButton(_:)), for: .touchUpInside)
         }
         
     }
 
-    func set(selected item: CHPeriod) {
+    func set(selected item: CHPeriod, triggerDelegate: Bool) {
         updateHighlightedPeriod(prev: selectedItem, current: item)
         selectedItem = item
+        
+        if triggerDelegate {
+            delegate?.chartPeriodView(self, didSelect: selectedItem)
+        }
     }
     
 }
@@ -113,11 +118,12 @@ private extension CHChartPeriodsView {
     }
    
     func updateIndicatorPosition(selectedButton: UIButton) {
+        self.indicatorViewLeadingConstr.constant = selectedButton.frame.origin.x + 30
         UIView.animate(withDuration: 0.2,
                        delay: 0.0,
                        options: .curveEaseInOut,
                        animations: {
-                            self.indicatorView.frame.origin.x = selectedButton.frame.origin.x + 30
+                            self.layoutIfNeeded()
                        },
                        completion: nil)
     }

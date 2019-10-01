@@ -39,10 +39,8 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         barPresenter    = CHBarChartPresenter(chartView: contentView.barChartView)
         barPresenter.delegate = self
         
-        contentView.set(selectedPeriod: .month)
         contentView.set(periodsDelegate: self)
-        
-        fetchCandles(for: .month)
+        contentView.set(selectedPeriod: .month, triggerDelegate: true)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,7 +85,7 @@ private extension CHCurrencyChartViewController {
 extension CHCurrencyChartViewController: CHChartPeriodViewDelegate {
     
     func chartPeriodView(_ periodView: CHChartPeriodsView, didSelect period: CHPeriod) {
-        periodView.set(selected: period)
+        contentView.set(selectedPeriod: period)
         contentView.set(candleDetails: nil)
         fetchCandles(for: period)
     }

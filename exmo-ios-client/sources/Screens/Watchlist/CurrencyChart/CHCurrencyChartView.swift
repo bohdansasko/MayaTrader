@@ -62,8 +62,8 @@ private extension CHCurrencyChartView {
 
 extension CHCurrencyChartView {
     
-    func set(selectedPeriod period: CHPeriod) {
-        periodsView.set(selected: period)
+    func set(selectedPeriod period: CHPeriod, triggerDelegate: Bool = false) {
+        periodsView.set(selected: period, triggerDelegate: triggerDelegate)
     }
     
     func set(periodsDelegate delegate: CHChartPeriodViewDelegate) {

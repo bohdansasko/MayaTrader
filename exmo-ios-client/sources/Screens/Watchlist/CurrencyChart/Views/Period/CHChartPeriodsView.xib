@@ -25,14 +25,19 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5Y-Fk-T6h" userLabel="steelLine">
                             <rect key="frame" x="0.0" y="39" width="414" height="2"/>
                             <subviews>
-                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4p-6g-bOh" userLabel="selectedIndicatorView">
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4p-6g-bOh" userLabel="selectedIndicatorView">
                                     <rect key="frame" x="0.0" y="0.0" width="20" height="2"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <color key="backgroundColor" red="0.20392156859999999" green="0.66274509800000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="Rdh-4v-TP2"/>
+                                    </constraints>
                                 </view>
                             </subviews>
                             <color key="backgroundColor" name="exmoSteel"/>
                             <constraints>
+                                <constraint firstItem="X4p-6g-bOh" firstAttribute="leading" secondItem="S5Y-Fk-T6h" secondAttribute="leading" id="0H5-lY-AJ9"/>
+                                <constraint firstItem="X4p-6g-bOh" firstAttribute="top" secondItem="S5Y-Fk-T6h" secondAttribute="top" id="JiS-mo-Nrd"/>
+                                <constraint firstAttribute="bottom" secondItem="X4p-6g-bOh" secondAttribute="bottom" id="aQ2-or-sbs"/>
                                 <constraint firstAttribute="height" constant="2" id="bvo-1q-J5N"/>
                             </constraints>
                         </view>
@@ -115,6 +120,7 @@
             <connections>
                 <outlet property="buttonsSV" destination="A7s-41-zfZ" id="CGh-28-lpw"/>
                 <outlet property="indicatorView" destination="X4p-6g-bOh" id="V7K-KX-iG4"/>
+                <outlet property="indicatorViewLeadingConstr" destination="0H5-lY-AJ9" id="hER-oR-laI"/>
             </connections>
             <point key="canvasLocation" x="132" y="129"/>
         </view>
