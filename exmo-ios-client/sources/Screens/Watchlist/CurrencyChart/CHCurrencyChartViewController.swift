@@ -42,7 +42,7 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         contentView.set(selectedPeriod: .month)
         contentView.set(periodsDelegate: self)
         
-        fetchCurrencyInfo(for: .month)
+        fetchCandles(for: .month)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,9 +58,9 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
 
 private extension CHCurrencyChartViewController {
 
-    func fetchCurrencyInfo(for period: CHPeriod) {
+    func fetchCandles(for period: CHPeriod) {
         let request = vinsoAPI.rx.getCurrencyCandles(name: currency.name, stock: currency.stock, period: period, limit: 20, offset: 0)
-        rx.showLoadingView(request: request).subscribe(
+        rx.showLoadingView(fullscreen: true, request: request).subscribe(
             onSuccess: { [weak self] c in
                 guard let `self` = self else { return }
                 self.set(candles: c)
@@ -88,6 +88,8 @@ extension CHCurrencyChartViewController: CHChartPeriodViewDelegate {
     
     func chartPeriodView(_ periodView: CHChartPeriodsView, didSelect period: CHPeriod) {
         periodView.set(selected: period)
+        contentView.set(candleDetails: nil)
+        fetchCandles(for: period)
     }
     
 }
