@@ -11,6 +11,9 @@ import LBTAComponents
 //
 // MARK: CurrenciesGroupListHeaderCell
 //
+
+@available(*, deprecated, message: "DatasourceCell will be removed from project soon")
+
 class CurrenciesGroupListHeaderCell: DatasourceCell {
     var titleLabel: UILabel = {
         let label = UILabel()
