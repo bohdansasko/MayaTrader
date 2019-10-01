@@ -28,8 +28,8 @@ extension Reactive where Base: CHBaseViewController {
         } else {
             loader.snp.makeConstraints{ $0.centerX.centerY.equalToSuperview() }
         }
-
-        let subscription = request.do(
+                
+        return request.do(
             onSuccess: { _ in
                 loader.hide()
             },
@@ -43,10 +43,6 @@ extension Reactive where Base: CHBaseViewController {
                 loader.hide()
             }
         )
-        
-        subscription.subscribe().disposed(by: self.base.disposeBag)
-        
-        return subscription
     }
     
 }

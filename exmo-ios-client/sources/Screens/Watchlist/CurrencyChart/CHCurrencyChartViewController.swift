@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import RxSwift
 
 final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHCurrencyChartView
@@ -43,7 +44,12 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         
         fetchCurrencyInfo(for: .month)
     }
-    
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        disposeBag = DisposeBag()
+    }
+
     deinit {
         log.debug("☠️ deinit")
     }
