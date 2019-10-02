@@ -21,6 +21,8 @@
 		2005E2A822E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */; };
 		2005E2A922E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */; };
 		200813EF2311A9BC00D090E7 /* CHBaseViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200813EE2311A9BC00D090E7 /* CHBaseViewController+Rx.swift */; };
+		200AC8C423453F1B004B1C76 /* CHCurrencyTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200AC8C323453F1B004B1C76 /* CHCurrencyTitleView.swift */; };
+		200AC8C623453F22004B1C76 /* CHCurrencyTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200AC8C523453F22004B1C76 /* CHCurrencyTitleView.xib */; };
 		200CA48A211C9CF300BB0E9B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200CA489211C9CF300BB0E9B /* Utils.swift */; };
 		200D52A922DA07B20009C07C /* CHOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 200D52A722DA07B20009C07C /* CHOrdersViewController.swift */; };
 		200D52AA22DA07B20009C07C /* CHOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 200D52A822DA07B20009C07C /* CHOrdersViewController.xib */; };
@@ -393,6 +395,8 @@
 		2005E2A622E4FA5C00B1F677 /* CHSearchCurrencyResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHSearchCurrencyResultCell.swift; sourceTree = "<group>"; };
 		2005E2A722E4FA5C00B1F677 /* CHSearchCurrencyResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHSearchCurrencyResultCell.xib; sourceTree = "<group>"; };
 		200813EE2311A9BC00D090E7 /* CHBaseViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CHBaseViewController+Rx.swift"; sourceTree = "<group>"; };
+		200AC8C323453F1B004B1C76 /* CHCurrencyTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCurrencyTitleView.swift; sourceTree = "<group>"; };
+		200AC8C523453F22004B1C76 /* CHCurrencyTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHCurrencyTitleView.xib; sourceTree = "<group>"; };
 		200CA489211C9CF300BB0E9B /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		200D52A722DA07B20009C07C /* CHOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHOrdersViewController.swift; sourceTree = "<group>"; };
 		200D52A822DA07B20009C07C /* CHOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHOrdersViewController.xib; sourceTree = "<group>"; };
@@ -879,6 +883,15 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
+		200AC8C723454278004B1C76 /* TitleView */ = {
+			isa = PBXGroup;
+			children = (
+				200AC8C323453F1B004B1C76 /* CHCurrencyTitleView.swift */,
+				200AC8C523453F22004B1C76 /* CHCurrencyTitleView.xib */,
+			);
+			path = TitleView;
+			sourceTree = "<group>";
+		};
 		200D52B722DA07F20009C07C /* Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -1341,6 +1354,7 @@
 				970B3E6C231EB298002CA2E8 /* CHBarChartPresenter.swift */,
 				2013DDD22342A028001FBBCF /* CandleDetails */,
 				2050C2FA233EA0480082042D /* Period */,
+				200AC8C723454278004B1C76 /* TitleView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2531,6 +2545,7 @@
 				202F80AD2300B2590035D123 /* CHCreateAlertViewController.xib in Resources */,
 				20001D73203B8D1200B6966F /* Assets.xcassets in Resources */,
 				2013E58D2071464700EFACB7 /* Exo2-Regular.ttf in Resources */,
+				200AC8C623453F22004B1C76 /* CHCurrencyTitleView.xib in Resources */,
 				20786BDF2306434F007C3944 /* CHWalletCurrenciesListCell.xib in Resources */,
 				2013E5872071464700EFACB7 /* Exo2-ExtraLightItalic.ttf in Resources */,
 				2013E58C2071464700EFACB7 /* Exo2-MediumItalic.ttf in Resources */,
@@ -2882,6 +2897,7 @@
 				200D52D222DA7AB60009C07C /* UICollectionView+Extension.swift in Sources */,
 				20E30AD520A966B0003D9BAF /* UIView+Extension.swift in Sources */,
 				20E80094207A283B00E1AC6C /* CHWalletBalanceView.swift in Sources */,
+				200AC8C423453F1B004B1C76 /* CHCurrencyTitleView.swift in Sources */,
 				970B3EA6231EB298002CA2E8 /* CHCandleChartPresenter.swift in Sources */,
 				C7FD7602220B4DA500A987DB /* CHInternetReachabilityManager.swift in Sources */,
 				970B3E98231EB298002CA2E8 /* CurrenciesListInteractor.swift in Sources */,

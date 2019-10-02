@@ -31,7 +31,7 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
         
         assert(currency != nil, "required")
         
-        titleNavBar     = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
+        setupTitleView()
         
         candlePresenter = CHCandleChartPresenter(chartView: contentView.candleChartView)
         candlePresenter.delegate = self
@@ -54,6 +54,34 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
     
 }
 
+// MARK: - Setup
+
+private extension CHCurrencyChartViewController {
+
+    func setupTitleView() {
+        let stockName    = currency.stock.description
+        let currencyName = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
+        
+        let titleView = CHCurrencyTitleView.loadViewFromNib()
+        titleView.set(stock: stockName, currency: currencyName)
+        navigationItem.titleView = titleView
+    }
+
+}
+
+// MARK: - Setters
+
+private extension CHCurrencyChartViewController {
+
+    func set(candles: [CHCandleModel]) {
+        candlePresenter.candles = candles
+        barPresenter.candles    = candles
+    }
+
+}
+
+// MARK: - API
+
 private extension CHCurrencyChartViewController {
 
     func fetchCandles(for period: CHPeriod) {
@@ -74,15 +102,6 @@ private extension CHCurrencyChartViewController {
                 self.handleError(err)
             }
         ).disposed(by: disposeBag)
-    }
-
-}
-
-private extension CHCurrencyChartViewController {
-
-    func set(candles: [CHCandleModel]) {
-        candlePresenter.candles = candles
-        barPresenter.candles    = candles
     }
 
 }
