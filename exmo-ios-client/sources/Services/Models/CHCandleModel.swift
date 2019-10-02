@@ -40,8 +40,9 @@ extension CHCandleModel: Mappable {
     mutating func mapping(map: Map) {
         timestamp   <- map["timestamp"]
         open        <- map["open"]
-        close       <- map["close"]
+        high        <- map["high"]
         low         <- map["low"]
+        close       <- map["close"]
         volume      <- map["volume"]
     }
     

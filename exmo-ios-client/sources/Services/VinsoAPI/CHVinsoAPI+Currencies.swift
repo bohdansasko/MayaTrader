@@ -16,11 +16,11 @@ extension Reactive where Base: VinsoAPI {
 
     func getCurrencyCandles(name: CurrencyName, stock: CHStockExchange, period: CHPeriod, limit: Int, offset: Int) -> Single<[CHCandleModel]> {
         let params: [String: Any] = [
-            "currency"     : name,
-            "stock"        : stock.description,
-            "period"       : period.asArg,
-            "limit"        : limit,
-            "offset"       : offset
+            "currency"      : name,
+            "stock_exchange": stock.rawValue,
+            "period"        : period.asArg,
+            "limit"         : limit,
+            "offset"        : offset
         ]
         
         return self.base.sendRequest(messageType: .getCurrencyCandles, params: params)

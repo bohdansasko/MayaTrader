@@ -57,7 +57,14 @@ final class CHCurrencyChartViewController: CHBaseViewController, CHBaseViewContr
 private extension CHCurrencyChartViewController {
 
     func fetchCandles(for period: CHPeriod) {
-        let request = vinsoAPI.rx.getCurrencyCandles(name: currency.name, stock: currency.stock, period: period, limit: 20, offset: 0)
+        let request = vinsoAPI.rx.getCurrencyCandles(
+            name  : currency.name,
+            stock : currency.stock,
+            period: period,
+            limit : 30,
+            offset: 0
+        )
+
         rx.showLoadingView(fullscreen: true, request: request).subscribe(
             onSuccess: { [weak self] c in
                 guard let `self` = self else { return }

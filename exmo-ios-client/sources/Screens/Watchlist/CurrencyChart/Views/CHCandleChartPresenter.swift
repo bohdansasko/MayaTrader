@@ -60,7 +60,7 @@ private extension CHCandleChartPresenter {
         chartView.xAxis.granularity = 1
         chartView.xAxis.labelTextColor = .white
 
-        let minLowCandle = candles.min(by: { $0.low < $1.low })?.low ?? 0.0
+        let minLowCandle = candles.min(by: { $0.low < $1.low })!.low
         chartView.leftAxis.axisMinimum = minLowCandle
         chartView.leftAxis.enabled = false
         
@@ -84,7 +84,7 @@ private extension CHCandleChartPresenter {
         if candles.isEmpty {
             return CandleChartData(dataSet: nil)
         }
-        
+
         let yVals1 = (0..<candles.count).map { (idx) -> CandleChartDataEntry in
             let candleModel = candles[idx]
             let open = candleModel.open
@@ -119,13 +119,19 @@ private extension CHCandleChartPresenter {
 extension CHCandleChartPresenter : IAxisValueFormatter {
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        let candleItem = self.candles[Int(value)]
+        let approxX = Int(value)
+        if approxX > self.candles.count {
+            //assertionFailure("fix me")
+            return ""
+        }
+
+        let candleItem = self.candles[approxX]
         
         let dt = DateFormatter()
         dt.dateFormat = "MM/dd"
-        let formatedDate = dt.string(from: Date(timeIntervalSince1970: candleItem.timestamp))
+        let formattedDate = dt.string(from: Date(timeIntervalSince1970: candleItem.timestamp))
         
-        return formatedDate
+        return formattedDate
     }
     
 }
