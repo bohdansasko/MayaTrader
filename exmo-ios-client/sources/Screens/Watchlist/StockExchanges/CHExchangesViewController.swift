@@ -15,8 +15,10 @@ struct CHExchangeModel {
 }
 
 enum CHSelectionCurrenciesMode {
-    case currencies // can select many currencies
-    case currency   // can select a currency
+    /// can select many currencies
+    case currencies
+    /// can select a currency
+    case currency
 }
 
 final class CHExchangesViewController: CHBaseViewController, CHBaseViewControllerProtocol {

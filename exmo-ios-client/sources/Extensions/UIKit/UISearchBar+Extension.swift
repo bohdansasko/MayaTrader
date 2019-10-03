@@ -10,6 +10,7 @@ import Foundation
 import UIKit.UISearchBar
 
 extension UISearchBar {
+    
     func removeGlassIcon() {
         guard let textFieldInsideSearchBar = self.value(forKey: "searchField") as? UITextField else { return }
         guard let  glassIconView = textFieldInsideSearchBar.leftView as? UIImageView else { return }
@@ -21,4 +22,5 @@ extension UISearchBar {
         textFieldInsideSearchBar.font = font
         textFieldInsideSearchBar.textColor = textColor
     }
+    
 }
