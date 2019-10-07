@@ -69,7 +69,6 @@ private extension CHExchangesView {
     func setupUI() {
         setupSearchController()
         setupCollectionView()
-        setupSearchController()
     }
     
     func setupCollectionView() {
@@ -89,7 +88,6 @@ private extension CHExchangesView {
         
         searchController.searchBar.placeholder = "BTC/USD"
         searchController.searchBar.tintColor = .white
-        searchController.searchBar.sizeToFit()
         
         let titles = CHExchangeSortBy.allCases.compactMap{ $0.localized }
         searchController.searchBar.scopeButtonTitles = titles
@@ -103,17 +101,23 @@ private extension CHExchangesView {
             NSAttributedString.Key.foregroundColor : UIColor.black
         ]
         searchController.searchBar.setScopeBarButtonTitleTextAttributes(selectedScopeAttributes, for: .selected)
-
-        searchController.searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .medium, fontSize: 14), textColor: .white)
         
-        guard
-            let searchTF = searchController.searchBar.value(forKey: "searchField") as? UITextField,
-            let backgroundViewTF = searchTF.subviews.first else {
+        searchController.searchBar.set(font: UIFont.getExo2Font(fontType: .medium, fontSize: 14))
+        searchController.searchBar.set(textColor: .white)
+        
+        searchController.searchBar.searchBarStyle = .minimal
+        searchController.searchBar.barStyle       = .black
+
+        if #available(iOS 13.0, *) {
+            searchController.searchBar.searchTextField.textColor = .white
+        } else {
+            guard let searchTF = searchController.searchBar.value(forKey: "searchField") as? UITextField,
+                  let backgroundViewTF = searchTF.subviews.first else {
                 return
+            }
+            backgroundViewTF.backgroundColor = .white
+            backgroundViewTF.layer.cornerRadius = 6
         }
-        searchTF.textColor = .white
-        backgroundViewTF.backgroundColor = .white
-        backgroundViewTF.layer.cornerRadius = 6
     }
     
 }
