@@ -16,7 +16,7 @@ class CurrenciesListTabBar: UIView {
         searchBar.barStyle = .black
         searchBar.tintColor = .white
         searchBar.placeholder = "Search currency..."
-        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .regular, fontSize: 14))
+//        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .regular, fontSize: 14))
         searchBar.barTintColor = .white
         return searchBar
     }()
@@ -115,7 +115,7 @@ class SearchTabBar: UIView {
         searchBar.tintColor = .white
         searchBar.barTintColor = .white
         searchBar.placeholder = "Search currency..."
-        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .regular, fontSize: 14))
+//        searchBar.setInputTextFont(UIFont.getExo2Font(fontType: .regular, fontSize: 14))
         return searchBar
     }()
 
