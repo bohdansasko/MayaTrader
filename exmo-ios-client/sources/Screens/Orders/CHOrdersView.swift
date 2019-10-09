@@ -37,7 +37,19 @@ private extension CHOrdersView {
         ordersCategoriesControl.removeAllSegments()
         
         ordersCategoriesControl.setTitleTextAttributes(
-            [NSAttributedString.Key.font: UIFont.getExo2Font(fontType: .regular, fontSize: 13)], for: .normal
+            [
+              .font           : UIFont.getExo2Font(fontType: .regular, fontSize: 13),
+              .foregroundColor: UIColor.white
+            ],
+            for: .normal
+        )
+        
+        ordersCategoriesControl.setTitleTextAttributes(
+            [
+                .font           : UIFont.getExo2Font(fontType: .regular, fontSize: 13),
+                .foregroundColor: UIColor.black
+            ],
+            for: .selected
         )
         
         let segmentsTitles = [
