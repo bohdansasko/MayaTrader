@@ -12,7 +12,7 @@ final class CHMenuCell: ExmoTableViewCell {
     
     var cellType: CHMenuCellType! {
         didSet {
-            iconImage.image = cellType.icon?.withRenderingMode(.alwaysOriginal)
+            iconImage.image = cellType.icon.withRenderingMode(.alwaysOriginal)
             titleLabel.text = cellType.title
             selectionStyle = cellType == .appVersion ? .none : .gray
             updateRightView()

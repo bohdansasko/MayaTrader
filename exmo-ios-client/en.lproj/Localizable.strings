@@ -77,3 +77,19 @@
 "ORDERS_OPEN"      = "Open";
 "ORDERS_CANCELLED" = "Cancelled";
 "ORDERS_DEALS"     = "Deals";
+
+"SCREEN_MENU_ITEM_LOGIN"      = "Login to Exmo";
+"SCREEN_MENU_ITEM_LOGOUT"     = "Logout";
+"SCREEN_MENU_ITEM_FEATURES"   = "Pro features";
+"SCREEN_MENU_ITEM_REMOVE_ADS" = "Remove Ads";
+"SCREEN_MENU_ITEM_SECURITY"   = "Security";
+"SCREEN_MENU_ITEM_TELEGRAM"   = "Telegram";
+"SCREEN_MENU_ITEM_FACEBOOK"   = "Facebook";
+"SCREEN_MENU_ITEM_RATE_US"    = "Rate us";
+"SCREEN_MENU_ITEM_SHARE_APP"  = "Share App";
+"SCREEN_MENU_ITEM_APP_VERSION"= "App version";
+
+"SCREEN_MENU_SECTION_ACCOUNT"   = "Account";
+"SCREEN_MENU_SECTION_PURCHASES" = "Purchases";
+"SCREEN_MENU_SECTION_CONTACT"   = "Contact with us";
+"SCREEN_MENU_SECTION_ABOUT"     = "About";

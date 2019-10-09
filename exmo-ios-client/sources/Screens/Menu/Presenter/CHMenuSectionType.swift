@@ -22,13 +22,17 @@ enum CHMenuSectionType: Int {
 // MARK: - CHMenuSectionType getters
 
 extension CHMenuSectionType {
-
-    var header: String? {
+    
+    var header: String {
         switch self {
-        case .account: return "Account"
-        case .purchase: return "Purchases"
-        case .contactWithUs: return "Contact with us"
-        case .about: return "About"
+        case .account:
+            return "SCREEN_MENU_SECTION_ACCOUNT".localized
+        case .purchase:
+            return "SCREEN_MENU_SECTION_PURCHASES".localized
+        case .contactWithUs:
+            return "SCREEN_MENU_SECTION_CONTACT".localized
+        case .about:
+            return "SCREEN_MENU_SECTION_ABOUT".localized
         }
     }
     
@@ -54,42 +58,52 @@ enum CHMenuCellType {
 // MARK: - CHMenuCellType getters
 
 extension CHMenuCellType {
-    
+
     var title: String? {
         switch self {
-        case .login : return "Login"
-        case .logout: return "Logout"
+        case .login :
+            return "SCREEN_MENU_ITEM_LOGIN".localized
+        case .logout:
+            return "SCREEN_MENU_ITEM_LOGOUT".localized
 
-        case .proFeatures  : return "Pro features"
-        case .advertisement: return "Remove Ads"
+        case .proFeatures  :
+            return "SCREEN_MENU_ITEM_FEATURES".localized
+        case .advertisement:
+            return "SCREEN_MENU_ITEM_REMOVE_ADS".localized
 
-        case .security: return "Security"
+        case .security:
+            return "SCREEN_MENU_ITEM_SECURITY".localized
 
-        case .telegram: return "Telegram"
-        case .facebook: return "Facebook"
+        case .telegram:
+            return "SCREEN_MENU_ITEM_TELEGRAM".localized
+        case .facebook:
+            return "SCREEN_MENU_ITEM_FACEBOOK".localized
 
-        case .rateUs    : return "Rate us"
-        case .shareApp  : return "Share App"
-        case .appVersion: return "App version"
+        case .rateUs:
+            return "SCREEN_MENU_ITEM_RATE_US".localized
+        case .shareApp:
+            return "SCREEN_MENU_ITEM_SHARE_APP".localized
+        case .appVersion:
+            return "SCREEN_MENU_ITEM_APP_VERSION".localized
         }
     }
     
-    var icon: UIImage? {
+    var icon: UIImage {
         switch self {
-        case .login: return UIImage(named: "icMenuLogin")
-        case .logout: return UIImage(named: "icMenuLogout")
+        case .login : return #imageLiteral(resourceName: "icMenuLogin")
+        case .logout: return #imageLiteral(resourceName: "icMenuLogout")
 
-        case .proFeatures: return UIImage(named: "icProFeatures")
-        case .advertisement: return UIImage(named: "icAds")
+        case .proFeatures  : return #imageLiteral(resourceName: "icProFeatures")
+        case .advertisement: return #imageLiteral(resourceName: "icAds")
+            
+        case .security: return #imageLiteral(resourceName: "icTouchId")
+            
+        case .telegram: return #imageLiteral(resourceName: "icTelegram")
+        case .facebook: return #imageLiteral(resourceName: "icFacebook")
 
-        case .security: return UIImage(named: "icTouchId")
-
-        case .telegram: return UIImage(named: "icTelegram")
-        case .facebook: return UIImage(named: "icFacebook")
-
-        case .rateUs: return UIImage(named: "icStar")
-        case .shareApp: return UIImage(named: "icShare")
-        case .appVersion: return UIImage(named: "icMenuAppversion")
+        case .rateUs    : return #imageLiteral(resourceName: "icStar")
+        case .shareApp  : return #imageLiteral(resourceName: "icShare")
+        case .appVersion: return #imageLiteral(resourceName: "icMenuAppversion")
         }
     }
     
