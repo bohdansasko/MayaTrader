@@ -12,6 +12,10 @@ final class CHWatchlistView: CHBaseTabView {
     
     @IBOutlet fileprivate(set) weak var currenciesCollectionView: UICollectionView!
 
+    override var tutorialImageName: String {
+        return "imgTutorialWatchlist"
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -25,8 +29,8 @@ final class CHWatchlistView: CHBaseTabView {
 private extension CHWatchlistView {
     
     func setupUI() {
-        self.currenciesCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        self.currenciesCollectionView.register(class: WatchlistCardCell.self)
+        currenciesCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        currenciesCollectionView.register(class: WatchlistCardCell.self)
     }
     
 }

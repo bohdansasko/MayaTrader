@@ -94,7 +94,8 @@ extension CHWatchlistPresenter {
         }
         
         let currencies = Array(currenciesList)
-        self.dataSource.set(currencies)
+        dataSource.set(currencies)
+        delegate?.presenter(self, didUpdatedCurrenciesList: dataSource.items)
         
         return Single.just(currencies)
     }
@@ -182,6 +183,7 @@ extension CHWatchlistPresenter: WatchlistCardCellDelegate {
     func watchlistCardCell(_ cell: WatchlistCardCell, didTouchFavouriteAt indexPath: IndexPath) {
         let item = dataSource.remove(at: indexPath.row)
         dbManager.delete(data: item)
+        delegate?.presenter(self, didUpdatedCurrenciesList: dataSource.items)
     }
 
 }

@@ -12,6 +12,7 @@ import RxSwift
 
 extension Reactive where Base: CHBaseViewController {
     
+    @discardableResult
     func showLoadingView<T>(request: Single<T>) -> Single<T> {
         return showLoadingView(fullscreen: false, request: request)
     }

@@ -25,21 +25,16 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         
         navigationItem.title = "TAB_WATCHLIST".localized
         
-        presenter = CHWatchlistPresenter(collectionView: contentView.currenciesCollectionView,
-                                             dataSource: CHWatchlistDataSource(),
-                                               vinsoAPI: vinsoAPI,
-                                              dbManager: dbManager)
-        presenter.delegate = self
+        setupPresenter()
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.rx.showLoadingView(request: self.presenter.fetchItems())
-        }
+        let request = presenter.fetchItems()
+        rx.showLoadingView(request: request)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.presenter.runIntervalCurrenciesRefreshing()
+        presenter.runIntervalCurrenciesRefreshing()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -48,7 +43,7 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         presenter.stopIntervalCurrenciesRefreshing()
     }
     
-    // MARK: - Navigation
+    // MARK: - 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let segueType = Segues(rawValue: segue.identifier!)!
@@ -60,6 +55,20 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         }
     }
 
+}
+
+// MARK: - Setup
+
+private extension CHWatchlistViewController {
+    
+    func setupPresenter() {
+        presenter = CHWatchlistPresenter(collectionView: contentView.currenciesCollectionView,
+                                             dataSource: CHWatchlistDataSource(),
+                                               vinsoAPI: vinsoAPI,
+                                              dbManager: dbManager)
+        presenter.delegate = self
+    }
+    
 }
 
 // MARK: - Prepare view controller for segue
