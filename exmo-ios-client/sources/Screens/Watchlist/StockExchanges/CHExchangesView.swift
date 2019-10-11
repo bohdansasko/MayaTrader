@@ -101,21 +101,20 @@ private extension CHExchangesView {
             NSAttributedString.Key.foregroundColor : UIColor.black
         ]
         searchController.searchBar.setScopeBarButtonTitleTextAttributes(selectedScopeAttributes, for: .selected)
-        
-        searchController.searchBar.set(font: UIFont.getExo2Font(fontType: .medium, fontSize: 14))
-        searchController.searchBar.set(textColor: .white)
-        
-        searchController.searchBar.searchBarStyle = .minimal
+                
         searchController.searchBar.barStyle       = .black
 
+        searchController.searchBar.set(font: UIFont.getExo2Font(fontType: .medium, fontSize: 14))
+        searchController.searchBar.set(textColor: .black)
+        
         if #available(iOS 13.0, *) {
             searchController.searchBar.searchTextField.textColor = .white
         } else {
-            guard let searchTF = searchController.searchBar.value(forKey: "searchField") as? UITextField,
+            guard let searchTF = searchController.searchBar.searchField,
                   let backgroundViewTF = searchTF.subviews.first else {
                 return
             }
-            backgroundViewTF.backgroundColor = .white
+            backgroundViewTF.backgroundColor    = .white
             backgroundViewTF.layer.cornerRadius = 6
         }
     }
