@@ -11,10 +11,6 @@ import UIKit
 final class CHWatchlistView: CHBaseTabView {
     
     @IBOutlet fileprivate(set) weak var currenciesCollectionView: UICollectionView!
-
-    override var tutorialImageName: String {
-        return "imgTutorialWatchlist"
-    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +18,14 @@ final class CHWatchlistView: CHBaseTabView {
         setupUI()
     }
 
+    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
+        if isUserAuthorized {
+            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialWatchlist"), nil)
+        } else {
+            stubState = .notAuthorized(nil, nil)
+        }
+    }
+    
 }
 
 // MARK: - Setup methods

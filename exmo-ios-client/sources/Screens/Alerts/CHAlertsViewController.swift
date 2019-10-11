@@ -149,8 +149,7 @@ extension CHAlertsViewController: CHAlertsPresenterDelegate {
             let icon = #imageLiteral(resourceName: "icNavbarTrash")
             setupLeftBarButtonItem(image: icon, action: #selector(actRemoveAlerts(_:)))
         }
-        
-        contentView.isTutorialStubVisible = alerts.isEmpty
+        contentView.setTutorialVisible(isUserAuthorized: vinsoAPI.isAuthorized, hasContent: !alerts.isEmpty)
     }
     
     func alertsPresenter(_ presenter: CHAlertsPresenter, onError error: Error) {

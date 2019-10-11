@@ -31,7 +31,7 @@ final class WatchlistViewController: ExmoUIViewController {
     var listView = WatchlistListView()
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
-        img.imageName = "imgTutorialWatchlist"
+//        img.imageName = "imgTutorialWatchlist"
         img.contentMode = .scaleAspectFit
         return img
     }()

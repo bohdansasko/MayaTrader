@@ -12,12 +12,18 @@ final class CHAlertsView: CHBaseTabView {
     @IBOutlet fileprivate      weak var summaryAlertsLabel: UILabel!
     @IBOutlet fileprivate(set) weak var tableView         : UITableView!
     
-    override var tutorialImageName: String { return "imgTutorialAlert" }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setupUI()
+    }
+    
+    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
+        if isUserAuthorized {
+            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialAlert"), nil)
+        } else {
+            stubState = .notAuthorized(nil, nil)
+        }
     }
     
 }

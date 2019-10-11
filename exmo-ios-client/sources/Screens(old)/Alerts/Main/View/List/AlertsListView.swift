@@ -23,7 +23,7 @@ class AlertsListView: UIView {
 
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
-        img.imageName = "imgTutorialAlert"
+//        img.imageName = "imgTutorialAlert"
         img.contentMode = .scaleAspectFit
         return img
     }()

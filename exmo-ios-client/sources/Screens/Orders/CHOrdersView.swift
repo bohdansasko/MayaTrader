@@ -11,9 +11,7 @@ import UIKit
 final class CHOrdersView: CHBaseTabView {
     @IBOutlet private      weak var ordersCategoriesControl: UISegmentedControl!
     @IBOutlet private(set) weak var ordersListView         : UITableView!
-    
-    override var tutorialImageName: String { return "imgTutorialOrder" }
-    
+        
     var selectedOrdersTab: OrdersType {
         return OrdersType(rawValue: ordersCategoriesControl.selectedSegmentIndex)!
     }
@@ -21,6 +19,14 @@ final class CHOrdersView: CHBaseTabView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
+    }
+    
+    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
+        if isUserAuthorized {
+            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialOrder"), nil)
+        } else {
+            stubState = .notAuthorized(nil, nil)
+        }
     }
     
 }

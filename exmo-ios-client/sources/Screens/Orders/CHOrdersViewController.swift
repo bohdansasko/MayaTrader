@@ -82,7 +82,7 @@ private extension CHOrdersViewController {
 extension CHOrdersViewController: CHOrdersPresenterDelegate {
     
     func ordersPresenter(_ presenter: CHOrdersPresenter, didLoadOrders orders: [OrderModel]) {
-        contentView.isTutorialStubVisible = orders.isEmpty
+        contentView.setTutorialVisible(isUserAuthorized: vinsoAPI.isAuthorized, hasContent: !orders.isEmpty)
     }
     
     func ordersPresenter(_ presenter: CHOrdersPresenter, onError error: Error) {

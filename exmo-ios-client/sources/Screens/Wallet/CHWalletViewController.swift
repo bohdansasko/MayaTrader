@@ -116,7 +116,9 @@ extension CHWalletViewController: CHWalletCurrenciesPresenterDelegate {
     
     func walletCurrenciesListPresenter(_ presenter: CHWalletCurrenciesPresenter, onWalletRefreshed wallet: ExmoWallet?, balance walletBalance: CHWalletBalance?) {
         let isWalletExist = wallet != nil
+        
         contentView.isWalletVisible = isWalletExist
+        contentView.setTutorialVisible(isUserAuthorized: vinsoAPI.isAuthorized, hasContent: isWalletExist)
         
         if isWalletExist {
             contentView.set(balance: walletBalance!)

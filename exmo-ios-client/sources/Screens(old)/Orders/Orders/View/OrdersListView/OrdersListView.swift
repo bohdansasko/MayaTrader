@@ -35,7 +35,7 @@ class OrdersListView: UIView {
 
     var tutorialImg: TutorialImage = {
         let img = TutorialImage()
-        img.imageName = "imgTutorialOrder"
+//        img.imageName = "imgTutorialOrder"
         img.contentMode = .scaleAspectFit
         return img
     }()

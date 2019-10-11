@@ -8,55 +8,60 @@
 
 import UIKit
 
+enum CHTutorialStubState {
+    case none
+    case notAuthorized(UIImage?, String?)
+    case noContent(UIImage?, String?)
+}
+
 class CHBaseView: UIView {
-    
+    // do nothing
 }
 
 class CHBaseTabView: CHBaseView {
     
-    // MARK: - Tutorial properties
-
-    fileprivate var tutorialImg: TutorialImage?
+    // MARK: - Private properties
     
-    var tutorialImageName: String {
-        fatalError("required")
-    }
+    fileprivate var tutorialImg: CHStubView?
     
-    /// update tutorial visibility
-    var isTutorialStubVisible: Bool = false {
+    // MARK: - Public properties
+    
+    var stubState: CHTutorialStubState = .none {
         didSet {
-            setTutorialView(isVisible: isTutorialStubVisible)
+            switch stubState {
+            case .none:
+                removeTutorial()
+            case .notAuthorized(let image, let text):
+                setupTutorial(image: image, text: text)
+            case .noContent(let image, let text):
+                setupTutorial(image: image, text: text)
+            }
         }
     }
 
+    func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
+        // do nothing
+    }
+    
 }
 
 // MARK: - Tutorial methods
 
 private extension CHBaseTabView {
     
-    func getTutorialImage() -> TutorialImage {
-        let img = TutorialImage()
-        img.imageName = self.tutorialImageName
-        img.contentMode = .scaleAspectFit
-        return img
+    func setupTutorial(image: UIImage?, text: String?) {
+        if tutorialImg == nil {
+            tutorialImg = CHStubView.loadViewFromNib()
+            addSubview(tutorialImg!)
+            tutorialImg!.snp.makeConstraints { $0.centerX.centerY.equalToSuperview() }
+        }
+        tutorialImg!.set(image: image, text: text)
+
     }
     
-    func setTutorialView(isVisible: Bool) {
-        if isVisible && (tutorialImg == nil || tutorialImg!.superview == nil) {
-            tutorialImg = getTutorialImage()
-            addSubview(tutorialImg!)
-            tutorialImg!.snp.makeConstraints{
-                $0.centerX.centerY.equalToSuperview()
-            }
-        }
-        
-        if isVisible {
-            tutorialImg!.show()
-        } else if tutorialImg != nil {
-            tutorialImg?.removeFromSuperview()
-            tutorialImg = nil
-        }
+    func removeTutorial() {
+        tutorialImg?.removeFromSuperview()
+        tutorialImg = nil
     }
     
 }

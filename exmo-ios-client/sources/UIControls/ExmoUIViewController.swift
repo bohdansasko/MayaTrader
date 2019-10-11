@@ -9,9 +9,10 @@
 import UIKit
 import GoogleMobileAds
 
+@available(*, deprecated, message: "Use `CHStubView`")
 final class TutorialImage: UIView {
     
-    var imageName: String?
+    var image: UIImage?
     var offsetByY: CGFloat = 0
     
     let tutorialImgView: UIImageView = {
@@ -21,9 +22,9 @@ final class TutorialImage: UIView {
     }()
     
     func show() {
-        if tutorialImgView.superview == nil && imageName != nil {
+        if tutorialImgView.superview == nil && image != nil {
             addSubview(tutorialImgView)
-            tutorialImgView.image = UIImage(named: imageName!)
+            tutorialImgView.image = image
             tutorialImgView.fillSuperview()
         }
         tutorialImgView.isHidden = false

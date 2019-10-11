@@ -24,13 +24,10 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         super.viewDidLoad()
         
         navigationItem.title = "TAB_WATCHLIST".localized
-        
         setupPresenter()
-        
-        let request = presenter.fetchItems()
-        rx.showLoadingView(request: request)
+        fetchCurrencies()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -68,9 +65,9 @@ private extension CHWatchlistViewController {
                                               dbManager: dbManager)
         presenter.delegate = self
     }
-    
+        
 }
-
+    
 // MARK: - Prepare view controller for segue
 
 extension CHWatchlistViewController {
@@ -93,12 +90,23 @@ private extension CHWatchlistViewController {
     
 }
 
+// MARK: - API
+
+private extension CHWatchlistViewController {
+ 
+    func fetchCurrencies() {
+        let request = presenter.fetchItems()
+        rx.showLoadingView(request: request)
+    }
+    
+}
+
 // MARK: - CHWatchlistPresenterDelegate
 
 extension CHWatchlistViewController: CHWatchlistPresenterDelegate {
     
     func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [CHLiteCurrencyModel]) {
-        contentView.isTutorialStubVisible = currencies.isEmpty
+        contentView.setTutorialVisible(isUserAuthorized: vinsoAPI.isAuthorized, hasContent: !currencies.isEmpty)
     }
     
     func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: CHLiteCurrencyModel) {

@@ -12,20 +12,25 @@ final class CHWalletView: CHBaseTabView {
     @IBOutlet fileprivate      weak var balanceContainer: UIView!
     @IBOutlet fileprivate(set) weak var currenciesTableView: UITableView!
               fileprivate      lazy var balanceView = CHWalletBalanceView.loadViewFromNib()
-    
-    override var tutorialImageName: String { return "imgTutorialWallet" }
 
     var isWalletVisible: Bool = false {
         didSet {
             balanceContainer.isHidden = !isWalletVisible
             currenciesTableView.isHidden = balanceContainer.isHidden
-            isTutorialStubVisible = balanceContainer.isHidden
         }
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         setupUI()
+    }
+    
+    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
+        if isUserAuthorized {
+            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialWallet"), nil)
+        } else {
+            stubState = .notAuthorized(nil, nil)
+        }
     }
     
 }

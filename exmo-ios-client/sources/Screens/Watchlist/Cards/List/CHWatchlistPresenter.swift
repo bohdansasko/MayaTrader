@@ -70,7 +70,10 @@ extension CHWatchlistPresenter {
     @discardableResult
     func fetchItems() -> Single<[CHLiteCurrencyModel]> {
         guard let currenciesList = dbManager.objects(type: CHLiteCurrencyModel.self, predicate: nil) else {
-            return Single.just([])
+            let currencies: [CHLiteCurrencyModel] = []
+            delegate?.presenter(self, didUpdatedCurrenciesList: currencies)
+            dataSource.set(currencies)
+            return Single.just(currencies)
         }
         
         currenciesNotificationToken = currenciesList.observe{ [weak self] changes in

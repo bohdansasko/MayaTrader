@@ -14,6 +14,7 @@ import RxCocoa
 final class VinsoAPI {
     
     // MARK: - Public
+    
     enum AuthorizationState {
         case notConnected
         
@@ -44,7 +45,9 @@ final class VinsoAPI {
 
     let kAPIVersion = 1
     
-    var isAuthorized: Bool { return authorizedState.value == .authorizated }
+    var isAuthorized: Bool {
+        return authorizedState.value == .authorizated
+    }
 
     // MARK: - Life cycle
     

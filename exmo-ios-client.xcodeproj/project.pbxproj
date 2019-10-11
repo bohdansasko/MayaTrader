@@ -322,6 +322,8 @@
 		9763F43722F73E1A00D6E22A /* ObjectMapperTransforms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */; };
 		9763F43A22F7495400D6E22A /* CHLiteCurrencyFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */; };
 		9784C58722FEFA3600A83ACB /* CHAlertsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */; };
+		97CD72982350BA3D00B37386 /* CHStubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97CD72972350BA3D00B37386 /* CHStubView.swift */; };
+		97CD729A2350BA5E00B37386 /* CHStubView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97CD72992350BA5E00B37386 /* CHStubView.xib */; };
 		97D3ED80234257F5007FA86B /* CHCandleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97D3ED7F234257F5007FA86B /* CHCandleModel.swift */; };
 		97DB18AC22F4AD48007BE023 /* Observable+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DB18AB22F4AD48007BE023 /* Observable+extension.swift */; };
 		97E5141523364DE7002915B7 /* CHLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97E5141423364DE7002915B7 /* CHLoadingView.swift */; };
@@ -701,6 +703,8 @@
 		9763F43622F73E1A00D6E22A /* ObjectMapperTransforms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTransforms.swift; sourceTree = "<group>"; };
 		9763F43922F7495400D6E22A /* CHLiteCurrencyFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLiteCurrencyFormatter.swift; sourceTree = "<group>"; };
 		9784C58622FEFA3600A83ACB /* CHAlertsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHAlertsPresenter.swift; sourceTree = "<group>"; };
+		97CD72972350BA3D00B37386 /* CHStubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHStubView.swift; sourceTree = "<group>"; };
+		97CD72992350BA5E00B37386 /* CHStubView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CHStubView.xib; sourceTree = "<group>"; };
 		97D3ED7F234257F5007FA86B /* CHCandleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHCandleModel.swift; sourceTree = "<group>"; };
 		97DB18AB22F4AD48007BE023 /* Observable+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+extension.swift"; sourceTree = "<group>"; };
 		97E5141423364DE7002915B7 /* CHLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHLoadingView.swift; sourceTree = "<group>"; };
@@ -1101,6 +1105,8 @@
 		20518D9C22D9F47D00334133 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				97CD72972350BA3D00B37386 /* CHStubView.swift */,
+				97CD72992350BA5E00B37386 /* CHStubView.xib */,
 				208D0C5822FF5AE7003B5D90 /* CHTabBarController.swift */,
 				20518D9D22D9F53D00334133 /* Home.storyboard */,
 				20518D9F22D9F8BF00334133 /* Watchlist */,
@@ -2563,6 +2569,7 @@
 				208FE09722DB3F3A0014BCE5 /* CHExchangesViewController.xib in Resources */,
 				2013E5802071464700EFACB7 /* Exo2-Black.ttf in Resources */,
 				20518D9E22D9F53D00334133 /* Home.storyboard in Resources */,
+				97CD729A2350BA5E00B37386 /* CHStubView.xib in Resources */,
 				200D52AE22DA07CF0009C07C /* CHWalletViewController.xib in Resources */,
 				2013E5832071464700EFACB7 /* Exo2-BoldItalic.ttf in Resources */,
 				208A2514233D5D0500C1D911 /* CHChartPeriodsView.xib in Resources */,
@@ -2867,6 +2874,7 @@
 				20DE4A8621A0A1CF0099A6DF /* SearchDatasourceListView.swift in Sources */,
 				3E6304CF146BD0C1098DBB72 /* CreateOrderInteractor.swift in Sources */,
 				811FAE6A4CE9DF13D515E5E1 /* CreateOrderRouterInput.swift in Sources */,
+				97CD72982350BA3D00B37386 /* CHStubView.swift in Sources */,
 				20369A4621972159001D6628 /* RootTabsPresenter.swift in Sources */,
 				200D52AD22DA07CF0009C07C /* CHWalletViewController.swift in Sources */,
 				970B3E88231EB298002CA2E8 /* CurrencyChartInteractorOutput.swift in Sources */,
