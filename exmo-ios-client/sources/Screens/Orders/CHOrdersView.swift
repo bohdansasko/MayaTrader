@@ -23,9 +23,21 @@ final class CHOrdersView: CHBaseTabView {
     
     override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
         if isUserAuthorized {
-            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialOrder"), nil)
+            let text = getStubText(by: selectedOrdersTab)
+            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialOrder"), text)
         } else {
             stubState = .notAuthorized(nil, nil)
+        }
+    }
+    
+    private func getStubText(by orderType: OrdersType) -> String {
+        switch orderType {
+        case .open:
+            return "SCREEN_ORDERS_OPENED".localized
+        case .cancelled:
+            return "SCREEN_ORDERS_CANCELED".localized
+        case .deals:
+            return "SCREEN_ORDERS_DEALS".localized
         }
     }
     

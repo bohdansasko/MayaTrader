@@ -93,3 +93,7 @@
 "SCREEN_MENU_SECTION_PURCHASES" = "Purchases";
 "SCREEN_MENU_SECTION_CONTACT"   = "Contact with us";
 "SCREEN_MENU_SECTION_ABOUT"     = "About";
+
+"SCREEN_ORDERS_OPENED"   = "You haven't opened orders right now";
+"SCREEN_ORDERS_CANCELED" = "You haven't canceled orders right now";
+"SCREEN_ORDERS_DEALS"    = "You haven't deals right now";

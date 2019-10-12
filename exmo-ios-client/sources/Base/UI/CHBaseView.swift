@@ -53,7 +53,10 @@ private extension CHBaseTabView {
         if tutorialImg == nil {
             tutorialImg = CHStubView.loadViewFromNib()
             addSubview(tutorialImg!)
-            tutorialImg!.snp.makeConstraints { $0.centerX.centerY.equalToSuperview() }
+            tutorialImg!.snp.makeConstraints {
+                $0.centerX.centerY.equalToSuperview()
+                $0.width.equalToSuperview().multipliedBy(0.9)
+            }
         }
         tutorialImg!.set(image: image, text: text)
 
