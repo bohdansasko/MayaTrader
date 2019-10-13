@@ -26,7 +26,7 @@ final class CHOrdersView: CHBaseTabView {
             let text = getStubText(by: selectedOrdersTab)
             stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialOrder"), text)
         } else {
-            stubState = .notAuthorized(nil, nil)
+            stubState = .notAuthorized(#imageLiteral(resourceName: "availableForExmoUsers"), "You can login in the menu tab.")
         }
     }
     

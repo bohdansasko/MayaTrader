@@ -29,7 +29,7 @@ final class CHWalletView: CHBaseTabView {
         if isUserAuthorizedToExmo {
             stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialWallet"), nil)
         } else {
-            stubState = .notAuthorized(nil, nil)
+            stubState = .notAuthorized(#imageLiteral(resourceName: "availableForExmoUsers"), "You can login in the menu tab.")
         }
     }
     
