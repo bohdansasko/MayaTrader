@@ -25,8 +25,8 @@ final class CHWalletView: CHBaseTabView {
         setupUI()
     }
     
-    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
-        if isUserAuthorized {
+    override func setTutorialVisible(isUserAuthorizedToExmo: Bool, hasContent: Bool) {
+        if isUserAuthorizedToExmo {
             stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialWallet"), nil)
         } else {
             stubState = .notAuthorized(nil, nil)

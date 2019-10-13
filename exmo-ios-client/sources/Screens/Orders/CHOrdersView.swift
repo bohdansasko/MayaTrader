@@ -21,8 +21,8 @@ final class CHOrdersView: CHBaseTabView {
         setupUI()
     }
     
-    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
-        if isUserAuthorized {
+    override func setTutorialVisible(isUserAuthorizedToExmo: Bool, hasContent: Bool) {
+        if isUserAuthorizedToExmo {
             let text = getStubText(by: selectedOrdersTab)
             stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialOrder"), text)
         } else {

@@ -14,6 +14,8 @@ final class CHExmoAuthorizationService: NSObject {
     fileprivate var networkWorker: ILoginNetworkWorker        = ExmoLoginNetworkWorker()
     fileprivate var dbManager    : OperationsDatabaseProtocol = RealmDatabaseManager.shared
     
+    fileprivate(set) var isAuthorized: Bool = false
+    
     private override init() {
         super.init()
         self.networkWorker.delegate = self
@@ -70,10 +72,13 @@ extension CHExmoAuthorizationService: ILoginNetworkWorkerDelegate {
         
         ExmoApiRequestsBuilder.shared.setAuthorizationData(apiKey: user.qr!.key, secretKey: user.qr!.secret)
         Defaults.setUserLoggedIn(true)
+        isAuthorized = true
         NotificationCenter.default.post(name: AuthorizationNotification.userSignIn)
     }
     
     func onDidLoadUserFail(errorMessage: String?) {
+        Defaults.setUserLoggedIn(false)
+        isAuthorized = false
         NotificationCenter.default.post(name: AuthorizationNotification.userFailSignIn,
                                         userInfo: [CHUserInfoKeys.reason.rawValue: errorMessage ?? "Undefined error"])
     }

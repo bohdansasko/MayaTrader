@@ -18,12 +18,8 @@ final class CHWatchlistView: CHBaseTabView {
         setupUI()
     }
 
-    override func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
-        if isUserAuthorized {
-            stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialWatchlist"), nil)
-        } else {
-            stubState = .notAuthorized(nil, nil)
-        }
+    override func setTutorialVisible(isUserAuthorizedToExmo: Bool, hasContent: Bool) {
+        stubState = hasContent ? .none : .noContent(#imageLiteral(resourceName: "imgTutorialWatchlist"), nil)
     }
     
 }

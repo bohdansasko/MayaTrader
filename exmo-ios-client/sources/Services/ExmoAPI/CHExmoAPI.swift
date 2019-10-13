@@ -15,7 +15,11 @@ final class CHExmoAPI {
     
     private init() {}
     
-    internal func send(request: URLRequest) -> Observable<JSON> {
+    var isAuthorized: Bool {
+        return CHExmoAuthorizationService.shared.isAuthorized
+    }
+    
+    func send(request: URLRequest) -> Observable<JSON> {
         let observable = Observable<JSON>.create{ subscriber in
             let request = Alamofire.request(request).responseJSON { response in
                 switch response.result {
@@ -31,6 +35,7 @@ final class CHExmoAPI {
         }
         return observable
     }
+    
 }
 
 // MARK: - Help

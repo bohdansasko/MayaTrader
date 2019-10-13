@@ -44,7 +44,7 @@ class OrdersListView: UIView {
     var dataProvider: Orders!
     var tableViewCells: [Int64 : IndexPath] = [:]
     var displayOrderType: OrdersType = .open {
-        didSet {
+        didSet {  
             showDataBySegment(displayOrderType: displayOrderType)
         }
     }

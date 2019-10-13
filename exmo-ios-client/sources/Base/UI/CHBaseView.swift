@@ -39,7 +39,7 @@ class CHBaseTabView: CHBaseView {
         }
     }
 
-    func setTutorialVisible(isUserAuthorized: Bool, hasContent: Bool) {
+    func setTutorialVisible(isUserAuthorizedToExmo: Bool, hasContent: Bool) {
         // do nothing
     }
     

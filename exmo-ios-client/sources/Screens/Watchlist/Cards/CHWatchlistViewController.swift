@@ -106,7 +106,7 @@ private extension CHWatchlistViewController {
 extension CHWatchlistViewController: CHWatchlistPresenterDelegate {
     
     func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [CHLiteCurrencyModel]) {
-        contentView.setTutorialVisible(isUserAuthorized: vinsoAPI.isAuthorized, hasContent: !currencies.isEmpty)
+        contentView.setTutorialVisible(isUserAuthorizedToExmo: exmoAPI.isAuthorized, hasContent: !currencies.isEmpty)
     }
     
     func presenter(_ presenter: CHWatchlistPresenter, didTouchCurrency currency: CHLiteCurrencyModel) {
