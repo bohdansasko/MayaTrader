@@ -26,7 +26,11 @@ final class CHSearchCurrenciesResultsViewController: CHBaseViewController, CHBas
     }
     
     var onClose: ((CHLiteCurrencyModel) -> Void)?
-    
+
+    override func shouldUseGlow() -> Bool {
+        return false
+    }
+
     // MARK: - View lifecycle
     
     override func viewDidLoad() {
