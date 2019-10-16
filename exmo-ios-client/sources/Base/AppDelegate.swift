@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 import Firebase
 import RxSwift
+import Fabric
+import Crashlytics
 
 enum IPhoneModel: Int {
     case none = 0
@@ -38,10 +40,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     fileprivate let disposeBag = DisposeBag()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
+        Fabric.with([Crashlytics.self])
+        
         setupAdMob()
         
-        services.forEach{
+        services.forEach {
             _ = $0.application?(application, didFinishLaunchingWithOptions: launchOptions)
         }
 

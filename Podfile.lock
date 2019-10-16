@@ -81,8 +81,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.7)
   - Charts
-  - Crashlytics (~> 3.12.0)
-  - Fabric (~> 1.9.0)
+  - Crashlytics
+  - Fabric
   - Firebase/AdMob
   - Firebase/Core
   - KeychainSwift (~> 13.0)
@@ -98,7 +98,7 @@ DEPENDENCIES:
   - SwiftyStoreKit
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Charts
     - Crashlytics
@@ -150,6 +150,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
 
-PODFILE CHECKSUM: fddd18e099357f3d3eed9eba7cb78e322d502f6d
+PODFILE CHECKSUM: 00cebb50d8dc39df039406879dad98be625f40bd
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.8.0
