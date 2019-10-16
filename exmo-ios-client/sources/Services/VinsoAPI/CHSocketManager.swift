@@ -28,8 +28,8 @@ final class CHSocketManager {
     
     // MARK: - Public variables
     
-    var connected = PublishSubject<Bool>()
-    var response = PublishSubject<CHWebSocketEvent>()
+    fileprivate(set) var connected = PublishSubject<Bool>()
+    fileprivate(set) var response = PublishSubject<CHWebSocketEvent>()
     
     init(serverURL: String) {
         socket = WebSocket(serverURL)

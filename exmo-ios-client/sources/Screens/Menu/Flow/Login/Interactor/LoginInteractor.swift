@@ -24,15 +24,18 @@ class LoginInteractor  {
 extension LoginInteractor: LoginInteractorInput {
     
     func viewIsReady() {
-        NotificationCenter.default.addObserver(forName: AuthorizationNotification.userSignIn.name,
-                                               object: nil,
-                                               queue: .main) { [unowned self] _ in
-            self.output.closeViewController()
+        NotificationCenter.default.addObserver(
+            forName: AuthorizationNotification.userSignIn.name,
+            object: nil,
+            queue: .main) { [weak self] _ in
+                guard let `self` = self else { return }
+                self.output.closeViewController()
         }
 
         NotificationCenter.default.addObserver(forName: AuthorizationNotification.userFailSignIn.name,
                                                object: nil,
-                                               queue: .main) { [unowned self] n in
+                                               queue: .main) { [weak self] n in
+                                                guard let `self` = self else { return }
             let reasonDescription = n.userInfo![CHUserInfoKeys.reason.rawValue] as! String
             self.output.showAlert(title: "Login", message: reasonDescription)
         }
