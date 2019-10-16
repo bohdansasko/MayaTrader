@@ -25,15 +25,16 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
 
     fileprivate let disposeBag       = DisposeBag()
     
-    fileprivate(set) var likeString     : String?
-    fileprivate let kCurrenciesFetchLimit = 30
-    fileprivate var isDownloadedAllItems: Bool = false
-    fileprivate var sortBy              : CHExchangeSortBy = .pair
+    fileprivate(set) var likeString            : String?
+    fileprivate      let kCurrenciesFetchLimit = 30
+    fileprivate      var isDownloadedAllItems  : Bool = false
+    fileprivate      var sortBy                : CHExchangeSortBy = .pair
+
     // MARK: Public
     
     var delegate: CHSearchCurrenciesResultsPresenterDelegate?
     
-    // MARK: - View life cycle
+    // MARK: - Life cycle
     
     init(currenciesListView: UITableView, dataSource: CHSearchCurrenciesResultsDataSource, vinsoAPI: VinsoAPI, selectionMode: CHSelectionCurrenciesMode) {
         self.currenciesListView = currenciesListView
@@ -78,13 +79,13 @@ extension CHSearchCurrenciesResultsPresenter {
     }
     
     func fetchNextCurrenciesPage() {
-        if isDownloadedAllItems { return }
-        
         guard let likeString = self.likeString else { return }
         
         self.vinsoAPI.rx.getCurrencies(like: likeString, sortBy: sortBy, order: .descending, limit: kCurrenciesFetchLimit, offset: dataSource.items.count)
             .subscribe(
-                onSuccess: { [unowned self] currencies in
+                onSuccess: { [weak self] currencies in
+                    guard let `self` = self else { return }
+
                     self.isDownloadedAllItems = currencies.isEmpty
                     if self.isDownloadedAllItems { return }
                     
@@ -109,7 +110,7 @@ extension CHSearchCurrenciesResultsPresenter {
     
     func fetchItemsIfNeeded(indexPath: IndexPath) {
         let limitIndex = indexPath.row + 3
-        if limitIndex > dataSource.items.count {
+        if limitIndex > dataSource.items.count && !isDownloadedAllItems {
             fetchNextCurrenciesPage()
         }
     }
