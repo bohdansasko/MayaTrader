@@ -100,11 +100,14 @@ extension CHSocketManager {
     }
     
     func send(message: String) {
-        if message.isEmpty || socket.readyState != .open {
+        if message.isEmpty {
             assertionFailure("fix me")
             return
         }
-        socket.send(text: message)
+        
+        if isOpen() {
+            socket.send(text: message)
+        }
     }
 
 }
