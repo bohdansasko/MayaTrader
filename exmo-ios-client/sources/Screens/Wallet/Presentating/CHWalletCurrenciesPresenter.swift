@@ -65,6 +65,7 @@ extension CHWalletCurrenciesPresenter  {
     
     func fetchWallet() {
         guard let dbWallet = self.dbManager.object(type: ExmoWalletObject.self, key: "") else {
+            self.walletBalance = nil
             self.wallet = nil
             return
         }

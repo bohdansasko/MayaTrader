@@ -25,6 +25,15 @@ final class CHOrdersViewController: CHBaseViewController, CHBaseViewControllerPr
         presenter.resetOrders(for: presenter.selectedOrdersTab)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        presenter.resetOrders(for: presenter.selectedOrdersTab)
+        if exmoAPI.isAuthorized {
+            contentView.setTutorialVisible(isUserAuthorizedToExmo: exmoAPI.isAuthorized, hasContent: false)
+        }
+    }
+    
 }
 
 // MARK: - Setup methods

@@ -47,6 +47,7 @@ extension CHExmoAuthorizationService {
     func logout() {
         ExmoApiRequestsBuilder.shared.clearAuthorizationData()
         Defaults.setUserLoggedIn(false)
+        isAuthorized = false
         dbManager.clearAllData()
         NotificationCenter.default.post(name: AuthorizationNotification.userSignOut)
     }
