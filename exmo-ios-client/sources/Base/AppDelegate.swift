@@ -51,6 +51,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         VinsoAPI.shared.establishConnection()
         
