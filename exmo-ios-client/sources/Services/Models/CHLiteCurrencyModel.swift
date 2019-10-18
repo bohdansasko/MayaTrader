@@ -23,6 +23,8 @@ class CHLiteCurrencyModel: Object, Mappable {
     /// current max buying price
     @objc dynamic var buyPrice : Double = 0.0
 
+    @objc dynamic var closeBuyPrice : Double = 0.0
+
     /// current min selling price
     @objc dynamic var sellPrice: Double = 0.0
     
@@ -31,6 +33,13 @@ class CHLiteCurrencyModel: Object, Mappable {
     
     var stock: CHStockExchange {
         return CHStockExchange(rawValue: stockName)!
+    }
+    
+    var changes: Double {
+        if closeBuyPrice == 0.0 {
+            return 0.0
+        }
+        return (buyPrice - closeBuyPrice)/closeBuyPrice * 100
     }
     
     // MARK: - Realm
@@ -84,6 +93,7 @@ class CHLiteCurrencyModel: Object, Mappable {
         buyPrice  <- (map["buy_price"]     , strToDoubleTransform)
         sellPrice <- (map["sell_price"]    , strToDoubleTransform)
         volume    <- (map["vol"]           , strToDoubleTransform)
+        closeBuyPrice <- (map["close_buy_price"], strToDoubleTransform)
         
         id = stockName + "_" + name
     }

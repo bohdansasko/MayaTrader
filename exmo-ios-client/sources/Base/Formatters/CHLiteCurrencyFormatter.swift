@@ -49,13 +49,12 @@ extension CHLiteCurrencyFormatter {
     }
     
     var changes: String {
-        // cm.tickerPair.getChanges()
-        let formattedChanges = Utils.getFormatedCurrencyPairChanges(changesValue: 0.18)
+        let formattedChanges = Utils.getFormatedCurrencyPairChanges(changesValue: currency.changes)
         return addLabels ? "CHANGES".localized + " " + formattedChanges : formattedChanges
     }
     
     var changesColor: UIColor {
-        let changes = 0.18
+        let changes = currency.changes
         return changes > 0.0
             ? .greenBlue
             : changes < 0.0 ? .orangePink : .white
