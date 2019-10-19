@@ -88,11 +88,11 @@ class CHLiteCurrencyModel: Object, Mappable {
     func mapping(map: Map) {
         let strToDoubleTransform = StringToDoubleTransform.shared
         
-        name      <-  map["currency_name"]
-        stockName <-  map["stock_exchange"]
-        buyPrice  <- (map["buy_price"]     , strToDoubleTransform)
-        sellPrice <- (map["sell_price"]    , strToDoubleTransform)
-        volume    <- (map["vol"]           , strToDoubleTransform)
+        name          <-  map["currency_name"]
+        stockName     <-  map["stock_exchange"]
+        buyPrice      <- (map["buy_price"]      , strToDoubleTransform)
+        sellPrice     <- (map["sell_price"]     , strToDoubleTransform)
+        volume        <- (map["vol"]            , strToDoubleTransform)
         closeBuyPrice <- (map["close_buy_price"], strToDoubleTransform)
         
         id = stockName + "_" + name
