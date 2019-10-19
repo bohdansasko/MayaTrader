@@ -9,21 +9,13 @@
 import UIKit
 import AVFoundation
 
-class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
+final class QRScannerViewController: CHBaseViewController, QRScannerViewInput {
     var outputProtocol: QRScannerViewOutput!
     var videoLayer : AVCaptureVideoPreviewLayer?
     
-    var buttonClose: UIButton = {
-        let image = UIImage(named: "icBack")?.withRenderingMode(.alwaysOriginal)
-        let button = UIButton(type: .system)
-        button.setBackgroundImage(image, for: .normal)
-        button.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        return button
-    }()
-    
     let frameImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "icQRExmoFrame")
+        imageView.image = #imageLiteral(resourceName: "icQRExmoFrame")
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
@@ -31,7 +23,7 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleNavBar = "QR"
+        titleNavBar = "Scanning Exmo QR"
         
         setupCloseButton()
         prepareCameraToReadQRCode()
@@ -67,8 +59,10 @@ class QRScannerViewController: ExmoUIViewController, QRScannerViewInput {
     }
 }
 
-// MARK: QRScannerViewInput
+// MARK: - QRScannerViewInput
+
 extension QRScannerViewController {
+    
     func showAlert(title: String, message: String, shouldCloseViewController: Bool) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: {
@@ -79,13 +73,16 @@ extension QRScannerViewController {
         }))
         present(alert, animated: true, completion: nil)
     }
+    
 }
 
-// MARK: setup views
+// MARK: Setup views
+
 extension QRScannerViewController {
+    
     func setupCloseButton() {
-        buttonClose.addTarget(self, action: #selector(onTouchButtonClose(_:)), for: .touchUpInside)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: buttonClose)
+        let icon = #imageLiteral(resourceName: "icWalletClose")
+        setupRightBarButtonItem(image: icon, action: #selector(onTouchButtonClose(_:)))
     }
     
     func prepareCameraToReadQRCode() {
@@ -123,7 +120,7 @@ extension QRScannerViewController {
         avCaptureOutput.metadataObjectTypes = [.qr]
         
         videoLayer = AVCaptureVideoPreviewLayer(session: session)
-        videoLayer?.videoGravity = .resizeAspectFill
+        videoLayer?.videoGravity = .resizeAspect
         videoLayer?.frame = view.bounds
         if let vl = videoLayer {
             view?.layer.addSublayer(vl)
@@ -134,8 +131,11 @@ extension QRScannerViewController {
 }
 
 // MARK: AVCaptureMetadataOutputObjectsDelegate
+
 extension QRScannerViewController: AVCaptureMetadataOutputObjectsDelegate {
+    
     func metadataOutput(_ avCaptureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         outputProtocol.tryFetchKeyAndSecret(metadataObjects: metadataObjects)
     }
+    
 }

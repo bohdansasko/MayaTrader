@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3My-eA-U9Q">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3My-eA-U9Q">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +13,7 @@
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="2aN-Td-RV3" customClass="LoginViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <connections>
-                        <segue destination="B5H-Vq-Qxi" kind="presentation" identifier="ScanQR" id="n1I-fo-FnR"/>
+                        <segue destination="Th8-Cm-llb" kind="presentation" identifier="ScanQR" id="n1I-fo-FnR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Wy-oJ-DVE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -92,7 +92,9 @@
         <!--View Controller-->
         <scene sceneID="FeV-dB-Fvc">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="B5H-Vq-Qxi" customClass="QRScannerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController"/>
+                <viewController modalPresentationStyle="fullScreen" id="B5H-Vq-Qxi" customClass="QRScannerViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="bTS-m5-V4U"/>
+                </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SXH-OI-1YQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <customObject id="m5U-lx-N0i" customClass="QRScannerModuleInitializer" customModule="exmo_ios_client" customModuleProvider="target">
                     <connections>
@@ -100,7 +102,7 @@
                     </connections>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="1954" y="335"/>
+            <point key="canvasLocation" x="2863.768115942029" y="334.82142857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VVG-Yq-QFd">
@@ -137,6 +139,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Go7-g0-fbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1050.7246376811595" y="1043.9732142857142"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GQn-ji-H19">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Th8-Cm-llb" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="cQs-tE-c1t"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8bz-4R-05W">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="B5H-Vq-Qxi" kind="relationship" relationship="rootViewController" id="Xcj-wJ-hQV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m5a-qK-Tul" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1953.6231884057972" y="334.82142857142856"/>
         </scene>
     </scenes>
     <resources>

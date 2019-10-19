@@ -135,12 +135,13 @@ final class LoginViewController: ExmoUIViewController, LoginViewInput {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let viewController = segue.destination as? QRScannerViewController else {
+        guard let nav = segue.destination as? UINavigationController,
+              let vc = nav.topViewController as? QRScannerViewController else {
             assertionFailure("fix me")
             return
         }
         
-        if let qrPresenter = viewController.outputProtocol as? QRScannerModuleInput {
+        if let qrPresenter = vc.outputProtocol as? QRScannerModuleInput {
             qrPresenter.setLoginPresenter(presenter: self.output as! LoginPresenter)
         }
     }
