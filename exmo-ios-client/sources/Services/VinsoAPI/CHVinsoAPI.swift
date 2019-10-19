@@ -49,6 +49,12 @@ final class VinsoAPI {
         return authorizedState.value == .authorizated
     }
 
+    fileprivate var autoconnectSubscription: Disposable? {
+        didSet {
+            oldValue?.dispose()
+        }
+    }
+    
     // MARK: - Life cycle
     
     private init() {
@@ -155,7 +161,9 @@ private extension VinsoAPI {
                             subscriber.onError(err)
                         }
                     case .disconnected(let err):
-                        log.error(err?.localizedDescription ?? "")
+                        guard let err = err else { return }
+                        log.error(err.localizedDescription)
+                        subscriber.onError(err)
                     default:
                         break
                     }
@@ -250,11 +258,13 @@ private extension VinsoAPI {
     }
 
     func autoconnectToSocket() {
-        self.socketManager.autoconnect(timeout: self.kAuthorizationTimeoutSeconds).subscribe(onSuccess: {
-            log.info("connected via autoconnect")
-        }, onError: { err in
-            log.debug(err.localizedDescription)
-        }).disposed(by: self.disposeBag)
+        autoconnectSubscription = self.socketManager
+            .autoconnect(timeout: self.kAuthorizationTimeoutSeconds)
+            .subscribe(onSuccess: {
+                log.info("connected via autoconnect")
+            }, onError: { err in
+                log.debug(err.localizedDescription)
+            })
     }
 
 }

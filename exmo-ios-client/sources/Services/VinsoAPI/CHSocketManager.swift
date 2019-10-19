@@ -58,8 +58,7 @@ extension CHSocketManager {
 extension CHSocketManager {
     
     func autoconnect(timeout: TimeInterval) -> Single<Void> {
-        let autoconnectSubscriber = Observable<Void>
-            .create{ [unowned self] s in
+        return Observable<Void>.create{ [unowned self] s in
                 log.info("trying to open socket")
                 self.connect()
                 let subscription = self.connected
@@ -73,14 +72,12 @@ extension CHSocketManager {
                             s.onError(CHVinsoAPIError.noConnection)
                         }
                     })
-                return Disposables.create{
+                return Disposables.create {
                     subscription.dispose()
                 }
             }
             .retry(withTimeout: timeout)
             .asSingle()
-        
-        return autoconnectSubscriber
     }
     
     func connect() {
@@ -88,7 +85,9 @@ extension CHSocketManager {
     }
     
     func disconnect() {
-        socket.close()
+        self.socket.close()
+        self.response.onNext(.disconnected(CHVinsoAPIError.noConnection))
+        self.connected.onNext(false)
     }
 
 }
@@ -123,9 +122,8 @@ private extension CHSocketManager {
         
         socket.event.close = { [unowned self] code, reason, clean in
             log.debug("socket has been closed. details: code = \(code), reason = \(reason), wasClean\(clean)")
-            self.response.onNext(.disconnected(nil))
+            self.response.onNext(.disconnected(CHVinsoAPIError.noConnection))
             self.connected.onNext(false)
-            self.disconnect()
         }
         
         socket.event.message = { [unowned self] data in
@@ -136,8 +134,7 @@ private extension CHSocketManager {
         }
         
         socket.event.error = { [unowned self] error in
-            log.debug("socket error: \(error)")
-            self.disconnect()
+            log.debug("socket error: \(error)")            
         }
     }
     
