@@ -11,6 +11,14 @@ import RealmSwift
 final class RealmDatabaseManager: OperationsDatabaseProtocol {
     static let shared = RealmDatabaseManager()
 
+    private init() {
+        let config = Realm.Configuration(
+          schemaVersion: 1,
+          deleteRealmIfMigrationNeeded: true
+        )
+        Realm.Configuration.defaultConfiguration = config
+    }
+    
     func object<T>(type: T.Type) -> T? where T : Object {
         return objects(type: type)?.first
     }
