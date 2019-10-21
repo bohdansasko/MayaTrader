@@ -51,7 +51,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         UITextField.appearance().keyboardAppearance = .dark
         UIApplication.shared.setStatusBarHidden(false, with: .fade)
-        UIApplication.shared.applicationIconBadgeNumber = 0
         
         VinsoAPI.shared.establishConnection()
         
@@ -76,6 +75,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        UIApplication.shared.applicationIconBadgeNumber = 0
         services.forEach{
             _ = $0.applicationDidBecomeActive?(application)
         }
