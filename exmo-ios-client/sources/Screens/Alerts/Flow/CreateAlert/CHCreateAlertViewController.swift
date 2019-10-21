@@ -91,7 +91,7 @@ private extension CHCreateAlertViewController {
         vc.selectionMode = .currency
         vc.onClose = { [unowned self] selectedCurrency in
             log.info("selected currency", selectedCurrency)
-            self.form.set(currency: selectedCurrency)
+            self.form.set(currency: selectedCurrency, shouldUpdateBounds: true)
         }
     }
     
@@ -144,7 +144,7 @@ private extension CHCreateAlertViewController {
             .subscribe(
                 onSuccess: { [weak self] currencies in
                     guard let `self` = self, let currency = currencies.first else { return }
-                    self.form.set(currency: currency)
+                    self.form.set(currency: currency, shouldUpdateBounds: false)
                 },
                 onError: { [weak self] err in
                     guard let `self` = self else { return }

@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IjW-2r-Ngt">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IjW-2r-Ngt">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,8 +14,8 @@
                 <viewController id="W0q-v8-Bca" customClass="CHAlertsViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="e7m-Ql-6td"/>
                     <connections>
-                        <segue destination="nUS-Ln-WdP" kind="presentation" identifier="CreateAlert" id="YAx-OJ-HbO"/>
-                        <segue destination="nUS-Ln-WdP" kind="presentation" identifier="EditAlert" id="ml7-g4-NaW"/>
+                        <segue destination="nUS-Ln-WdP" kind="presentation" identifier="CreateAlert" modalPresentationStyle="fullScreen" id="YAx-OJ-HbO"/>
+                        <segue destination="nUS-Ln-WdP" kind="presentation" identifier="EditAlert" modalPresentationStyle="fullScreen" id="ml7-g4-NaW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccu-Dh-F3r" userLabel="First Responder" sceneMemberID="firstResponder"/>

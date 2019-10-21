@@ -70,6 +70,7 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         fetchAlertsRequest = self.rx.showLoadingView(request: presenter.fetchAlerts())
             .subscribe(onSuccess: { _ in
                 // do nothing

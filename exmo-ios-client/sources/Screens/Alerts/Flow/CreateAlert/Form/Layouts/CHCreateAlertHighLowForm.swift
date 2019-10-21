@@ -89,7 +89,7 @@ private extension CHCreateAlertHighLowForm {
 
 extension CHCreateAlertHighLowForm {
     
-    func set(currency: CHLiteCurrencyModel) {
+    func set(currency: CHLiteCurrencyModel, shouldUpdateBounds: Bool) {
         guard
             let currencyIndexPath = cellsLayout.first(where: { $0.value == .currency })?.key,
             let currencyCell = cells[currencyIndexPath] as? FormUpdatable,
@@ -106,6 +106,9 @@ extension CHCreateAlertHighLowForm {
         currencyCell.update(item: currencyFormItem)
 
         // update highest, lowest price value in the number fields
+        if !shouldUpdateBounds {
+            return
+        }
         
         for (_, cell) in cells {
             guard let floatingCell = cell as? CHNumberCell else {
