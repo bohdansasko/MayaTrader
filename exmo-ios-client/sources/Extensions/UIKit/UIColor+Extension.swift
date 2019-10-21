@@ -8,39 +8,40 @@ import UIKit.UIColor
 
 extension UIColor {
     class var steel: UIColor {
-        return UIColor(red: 131.0 / 255.0, green: 132.0 / 255.0, blue: 150.0 / 255.0, alpha: 1.0)
+        return #colorLiteral(red: 0.5137254902, green: 0.5176470588, blue: 0.5882352941, alpha: 1)
     }
 
     class var dodgerBlue: UIColor {
-        return UIColor(red: 74.0 / 255.0, green: 132.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
+        return #colorLiteral(red: 0.2901960784, green: 0.5176470588, blue: 0.9568627451, alpha: 1)
     }
 
     class var dark: UIColor {
-        return UIColor(red: 30.0 / 255.0, green: 28.0 / 255.0, blue: 42.0 / 255.0, alpha: 1.0)
+        return #colorLiteral(red: 0.1176470588, green: 0.1098039216, blue: 0.1647058824, alpha: 1)
+        
     }
 
     class var dark1: UIColor {
-        return UIColor(red: 53.0 / 255.0, green: 51.0 / 255.0, blue: 67.0 / 255.0, alpha: 1.0)
+        return #colorLiteral(red: 0.2078431373, green: 0.2, blue: 0.262745098, alpha: 1)
     }
     
     class var dark2: UIColor {
-        return UIColor(r: 93, g: 92, b: 113)
+        return #colorLiteral(red: 0.3647058824, green: 0.3607843137, blue: 0.4431372549, alpha: 1)
     }
     
     class var orangePink: UIColor {
-        return UIColor(red: 1.0, green: 105.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
+        return #colorLiteral(red: 1, green: 0.4117647059, blue: 0.3764705882, alpha: 1)
     }
 
     class var greenBlue: UIColor {
-        return UIColor(red: 0.0, green: 189.0 / 255.0, blue: 154.0 / 255.0, alpha: 1.0)
+        return #colorLiteral(red: 0, green: 0.7411764706, blue: 0.6039215686, alpha: 1)
     }
     
     class var backgroundColorSelectedCell: UIColor {
-        return UIColor.white.withAlphaComponent(0.03)
+        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.03)
     }
     
     class var white30: UIColor {
-        return UIColor.white.withAlphaComponent(0.3)
+        return #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.3)
     }
 
 }
