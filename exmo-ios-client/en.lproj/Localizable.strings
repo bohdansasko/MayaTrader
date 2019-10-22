@@ -59,7 +59,9 @@
 "ERROR_RESOURCE_NOT_FOUND"      = "Resource hasn't been found.";
 "ERROR_UNDEFINED"               = "Something went wrong.";
 "ERROR_MISSING_REQUIRED_PARAMS" = "Couldn't recognize required params. Please contact with developers.";
-"ERROR_REACHED_CURRENCIES_LIMIT" = "Can't append currency. Your currencies limit has been reached.";
+"ERROR_REACHED_CURRENCIES_LIMIT" = "Couldn't append the currency. Your currencies limit has been exceeded.";
+"ERROR_REACHED_ALERTS_LIMIT"     = "Couldn't create the alert. Your alerts limit has been exceeded.";
+"ERROR_API_NOT_SUPPORTED"        = "Unfortunately, API in the app doesn't support. Please, update app.";
 
 "DELETE" = "Delete";
 

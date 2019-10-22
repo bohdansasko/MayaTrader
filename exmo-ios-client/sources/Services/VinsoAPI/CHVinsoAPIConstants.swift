@@ -10,19 +10,17 @@ import Foundation
 enum VinsoResponseCode: Int {
     // request processed successful
     case succeed      = 200
-    // unknown error
-    case error        = 0
-    // unknown client error
-    case clientError  = 429
     // client has missed pass some argument or pass something wrong
     case badRequest   = 400
     // client hasn't authorized
     case unauthorized = 401
     // server cannot find something (e.g. alert with passed wrong id)
     case notFound     = 404
+    // count of the alerts is exceed maximum
+    case exceedAlertsLimit   = 429
     // something went wrong in backend (it's server issue)
     case internalServerError = 500
-    // client's app api is deprecated, app must be updated for using.
+    // client's app api is deprecated, app must be updated for using
     case apiVersionNotSupported = 505
 }
 
@@ -106,6 +104,8 @@ enum CHVinsoAPIError: String, Error {
     case serverError            = "ERROR_UNDEFINED"
     case missingRequiredParams  = "ERROR_MISSING_REQUIRED_PARAMS"
     case reachedCurrenciesLimit = "ERROR_REACHED_CURRENCIES_LIMIT"
+    case reachedAlertsLimit     = "ERROR_REACHED_ALERTS_LIMIT"
+    case apiVersionNotSupported = "ERROR_API_NOT_SUPPORTED"
     
     var localizedDescription: String {
         return self.rawValue.localized

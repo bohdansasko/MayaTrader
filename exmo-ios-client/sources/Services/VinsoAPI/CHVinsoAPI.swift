@@ -153,7 +153,7 @@ private extension VinsoAPI {
                             case .succeed:
                                 break
                             default:
-                                let error = self.getError(by: responseCodeType)
+                                let error = self.getError(by: responseCodeType)!
                                 log.network("🙂👎 \(messageType.description) API response for message: \(json)\n")
                                 subscriber.onError(error)
                             }
@@ -179,7 +179,8 @@ private extension VinsoAPI {
     }
     
     func parseMessageCodeAndId(from json: JSON) throws -> (VinsoResponseCode, ServerMessage) {
-        guard let responseCode = json["status"].int,
+        guard
+            let responseCode = json["status"].int,
             let responseCodeType = VinsoResponseCode(rawValue: responseCode),
             let requestId = json["request_type"].int,
             let messageId = ServerMessage(rawValue: requestId) else {
@@ -188,7 +189,7 @@ private extension VinsoAPI {
         return (responseCodeType, messageId)
     }
     
-    func getError(by responseCode: VinsoResponseCode) -> Error {
+    func getError(by responseCode: VinsoResponseCode) -> Error? {
         switch responseCode {
         case .badRequest:
             return CHVinsoAPIError.badRequest
@@ -196,10 +197,14 @@ private extension VinsoAPI {
             return CHVinsoAPIError.unauthorized
         case .notFound:
             return CHVinsoAPIError.notFound
+        case .exceedAlertsLimit:
+            return CHVinsoAPIError.reachedAlertsLimit
         case .internalServerError:
             return CHVinsoAPIError.serverError
-        default:
-            return CHVinsoAPIError.unknown
+        case .apiVersionNotSupported:
+            return CHVinsoAPIError.apiVersionNotSupported
+        case .succeed:
+            return nil
         }
     }
     
