@@ -59,7 +59,7 @@ private extension CHAlertsPresenter {
     
 }
 
-// MARK - API
+// MARK: - API
 
 extension CHAlertsPresenter {
 
@@ -231,7 +231,7 @@ extension CHAlertsPresenter: UITableViewDelegate {
             self.editAlert(by: indexPath)
             completionHandler(true)
         })
-        editAction.backgroundColor = UIColor(red: 115.0/255, green: 116.0/255, blue: 133.0/255, alpha: 1.0)
+        editAction.backgroundColor = #colorLiteral(red: 0.4509803922, green: 0.4549019608, blue: 0.5215686275, alpha: 1)
         editAction.image = #imageLiteral(resourceName: "icEdit")
         
         let removeAction = UIContextualAction(style: .destructive, title: "", handler: {

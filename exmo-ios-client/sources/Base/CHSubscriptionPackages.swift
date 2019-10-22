@@ -13,11 +13,11 @@ enum CHSubscriptionPackageType: Int {
 }
 
 protocol CHSubscriptionPackageProtocol {
-    var type: CHSubscriptionPackageType {get}
-    var name: String {get}
-    var isAdsPresent: Bool {get}
-    var maxAlerts: Int {get}
-    var maxPairsInWatchlist: Int {get}
+    var type: CHSubscriptionPackageType { get }
+    var name: String                    { get }
+    var isAdsPresent: Bool              { get }
+    var maxAlerts: Int                  { get }
+    var maxPairsInWatchlist: Int        { get }
 }
 
 struct CHSubscriptionPackage: CHSubscriptionPackageProtocol, Codable {

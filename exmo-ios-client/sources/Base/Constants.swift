@@ -152,4 +152,8 @@ enum AlertOperationType {
 struct LimitObjects {
     let amount: Int
     let max: Int
+    
+    var asString: String {
+        return "\(amount)/\(max)"
+    }
 }

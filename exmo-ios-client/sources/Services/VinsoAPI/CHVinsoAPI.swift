@@ -48,6 +48,8 @@ final class VinsoAPI {
     var isAuthorized: Bool {
         return authorizedState.value == .authorizated
     }
+    
+    var subscriptionPackage: CHSubscriptionPackageProtocol?
 
     fileprivate var autoconnectSubscription: Disposable? {
         didSet {
@@ -59,7 +61,6 @@ final class VinsoAPI {
     
     private init() {
         initSocket()
-        subscribeOnIAPNotifications()
         registerAuthorizationListener()
     }
 
@@ -252,7 +253,7 @@ private extension VinsoAPI {
             log.info("Authorization to Vinso server")
         case .authorizated:
             log.info("Authorizated to Vinso server")
-            AppDelegate.vinsoAPI.setSubscription(IAPService.shared.subscriptionPackage.type)
+            setSubscription(.pro)
             NotificationCenter.default.post(name: ConnectionNotification.authorizationSuccess)
         }
     }

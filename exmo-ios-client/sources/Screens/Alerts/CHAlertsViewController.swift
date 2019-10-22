@@ -51,10 +51,9 @@ final class CHAlertsViewController: CHBaseViewController, CHBaseViewControllerPr
         return picker
     }()
     
-    fileprivate var maxPairs: LimitObjects? {
+    fileprivate var maxAlerts: LimitObjects? {
         didSet {
-            guard let mp = maxPairs else { return }
-            contentView.set(summary: Utils.getFormatMaxObjects(mp))
+            contentView.set(maxAlerts: maxAlerts?.asString)
         }
     }
     
@@ -150,6 +149,11 @@ extension CHAlertsViewController: CHAlertsPresenterDelegate {
             let icon = #imageLiteral(resourceName: "icNavbarTrash")
             setupLeftBarButtonItem(image: icon, action: #selector(actRemoveAlerts(_:)))
         }
+        
+        if let subscriptionPackage = vinsoAPI.subscriptionPackage {
+            maxAlerts = LimitObjects(amount: alerts.count, max: subscriptionPackage.maxAlerts)
+        }
+        
         contentView.setTutorialVisible(isUserAuthorizedToExmo: exmoAPI.isAuthorized, hasContent: !alerts.isEmpty)
     }
     

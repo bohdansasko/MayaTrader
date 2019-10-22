@@ -97,14 +97,15 @@ extension CHStockExchange {
 }
 
 enum CHVinsoAPIError: String, Error {
-    case unknown               = "ERROR_UNKNOWN"
-    case noConnection          = "ERROR_NO_CONNECTION"
-    case socketClosed          = "ERROR_SOCKET_CLOSED"
-    case badRequest            = "ERROR_BAD_REQUEST"
-    case unauthorized          = "ERROR_UNAUTHORIZED"
-    case notFound              = "ERROR_RESOURCE_NOT_FOUND"
-    case serverError           = "ERROR_UNDEFINED"
-    case missingRequiredParams = "ERROR_MISSING_REQUIRED_PARAMS"
+    case unknown                = "ERROR_UNKNOWN"
+    case noConnection           = "ERROR_NO_CONNECTION"
+    case socketClosed           = "ERROR_SOCKET_CLOSED"
+    case badRequest             = "ERROR_BAD_REQUEST"
+    case unauthorized           = "ERROR_UNAUTHORIZED"
+    case notFound               = "ERROR_RESOURCE_NOT_FOUND"
+    case serverError            = "ERROR_UNDEFINED"
+    case missingRequiredParams  = "ERROR_MISSING_REQUIRED_PARAMS"
+    case reachedCurrenciesLimit = "ERROR_REACHED_CURRENCIES_LIMIT"
     
     var localizedDescription: String {
         return self.rawValue.localized

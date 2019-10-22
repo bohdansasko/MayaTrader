@@ -9,8 +9,8 @@
 import UIKit
 
 final class CHAlertsView: CHBaseTabView {
-    @IBOutlet fileprivate      weak var summaryAlertsLabel: UILabel!
-    @IBOutlet fileprivate(set) weak var tableView         : UITableView!
+    @IBOutlet fileprivate      weak var maxAlertsLabel: UILabel!
+    @IBOutlet fileprivate(set) weak var tableView     : UITableView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,7 +29,7 @@ final class CHAlertsView: CHBaseTabView {
 private extension CHAlertsView {
     
     func setupUI() {
-        summaryAlertsLabel.text = nil
+        maxAlertsLabel.text = nil
         tableView.tableFooterView = UIView()
     }
     
@@ -39,8 +39,8 @@ private extension CHAlertsView {
 
 extension CHAlertsView {
     
-    func set(summary text: String) {
-        summaryAlertsLabel.text = text
+    func set(maxAlerts text: String?) {
+        maxAlertsLabel.text = text
     }
     
 }

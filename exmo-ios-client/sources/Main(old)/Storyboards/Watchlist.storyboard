@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,8 +18,8 @@
         <scene sceneID="mgR-zb-bpD">
             <objects>
                 <viewController title="Watchlist" id="v35-g1-zIZ" customClass="WatchlistViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="sAi-3P-B2U">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="sAi-3P-B2U">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="ycd-gs-0uU"/>
@@ -25,7 +27,7 @@
                     <navigationItem key="navigationItem" title="Watchlist" id="oQh-F6-8OK">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="QsV-kH-iZr">
                             <switch key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="jWW-vD-Kdo">
-                                <rect key="frame" x="16" y="6.6666666666666679" width="51" height="31.000000000000004"/>
+                                <rect key="frame" x="20" y="6.5" width="51" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <action selector="menuSwitched:" destination="v35-g1-zIZ" eventType="valueChanged" id="4jA-hg-bKR"/>
@@ -55,14 +57,14 @@
             <objects>
                 <viewController storyboardIdentifier="CurrencyChartViewController" title="BTC/USD" id="y4J-WM-6Ra" customClass="CurrencyChartViewController" customModule="exmo_ios_client" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="VqE-Sc-252">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydz-uX-ayb" userLabel="chartTimePeriodContainer" customClass="ChartTimePeriodContainer" customModule="exmo_ios_client" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="25" width="600" height="35"/>
+                                <rect key="frame" x="0.0" y="49" width="414" height="35"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2hH-z0-jAQ" userLabel="steelLine">
-                                        <rect key="frame" x="0.0" y="34" width="600" height="1"/>
+                                        <rect key="frame" x="0.0" y="34" width="414" height="1"/>
                                         <color key="backgroundColor" name="exmoSteel"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="EcJ-ej-bfd"/>
@@ -77,7 +79,7 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="YmL-nx-XTy">
-                                        <rect key="frame" x="30" y="0.0" width="540" height="34"/>
+                                        <rect key="frame" x="30" y="0.0" width="354" height="34"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qm-bW-CDy">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="34"/>
@@ -90,7 +92,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDN-G6-sig">
-                                                <rect key="frame" x="173.5" y="0.0" width="20" height="34"/>
+                                                <rect key="frame" x="111.5" y="0.0" width="20" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="07Z-NN-gSM"/>
                                                 </constraints>
@@ -100,7 +102,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yy3-Pb-TS2">
-                                                <rect key="frame" x="346.5" y="0.0" width="20" height="34"/>
+                                                <rect key="frame" x="222.5" y="0.0" width="20" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="6wf-F1-4pv"/>
                                                 </constraints>
@@ -110,7 +112,7 @@
                                                 </state>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="psa-xw-wXE">
-                                                <rect key="frame" x="520" y="0.0" width="20" height="34"/>
+                                                <rect key="frame" x="334" y="0.0" width="20" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="mnO-2u-mUR"/>
                                                 </constraints>
@@ -148,18 +150,18 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zhq-OT-W5R" userLabel="chartAdditionalInfo">
-                                <rect key="frame" x="0.0" y="60" width="600" height="479"/>
+                                <rect key="frame" x="0.0" y="84" width="414" height="717"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hL2-tH-eP7" userLabel="Candle Chart View" customClass="CandleStickChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="580" height="377"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="567"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhl-yG-wUS" customClass="BarChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="382" width="580" height="97"/>
+                                        <rect key="frame" x="0.0" y="572" width="394" height="145"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3a-xW-O1A" customClass="CandleBarChartShortInfoView" customModule="exmo_ios_client" customModuleProvider="target">
-                                        <rect key="frame" x="30" y="5" width="560" height="55"/>
+                                        <rect key="frame" x="30" y="5" width="374" height="55"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="IY7-SJ-W5J" userLabel="Date Container">
                                                 <rect key="frame" x="0.0" y="0.0" width="67.5" height="14"/>
@@ -339,11 +341,11 @@
             <objects>
                 <viewController storyboardIdentifier="WatchlistCardsTableMenuViewController" id="bg7-8O-yPX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OkP-4P-zDl">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-kJ-bOA">
-                                <rect key="frame" x="0.0" y="30" width="600" height="570"/>
+                                <rect key="frame" x="0.0" y="54" width="414" height="808"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="0.0" id="dei-w5-Vav">
                                     <size key="itemSize" width="150" height="65"/>
@@ -383,7 +385,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icTabbarWatchlist" selectedImage="icTabbarWatchlistSelected" id="Fcj-gF-Yqs"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="3Wv-jf-ULm">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" name="exmoMidnight"/>
                         <textAttributes key="titleTextAttributes">

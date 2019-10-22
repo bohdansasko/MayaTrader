@@ -18,6 +18,12 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
     
     fileprivate var presenter: CHWatchlistPresenter!
     
+    fileprivate var maxPairs: LimitObjects? {
+        didSet {
+            contentView.set(maxPairs: maxPairs?.asString)
+        }
+    }
+    
     // MARK: - View life cycle
     
     override func viewDidLoad() {
@@ -25,18 +31,16 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
         
         navigationItem.title = "TAB_WATCHLIST".localized
         setupPresenter()
-        fetchCurrencies()
+        addNotificationsObserver()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         presenter.runIntervalCurrenciesRefreshing()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
         presenter.stopIntervalCurrenciesRefreshing()
     }
     
@@ -95,8 +99,25 @@ private extension CHWatchlistViewController {
 private extension CHWatchlistViewController {
  
     func fetchCurrencies() {
-        let request = presenter.fetchItems()
-        rx.showLoadingView(request: request)
+        rx.showLoadingView(request: presenter.fetchItems())
+    }
+    
+}
+
+// MARK: - Notifications
+
+private extension CHWatchlistViewController {
+    
+    func addNotificationsObserver() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleUpdateSubscriptionNotification(_:)),
+            name: IAPNotification.updateSubscription
+        )
+    }
+    
+    @objc private func handleUpdateSubscriptionNotification(_ notification: Notification) {
+        fetchCurrencies()
     }
     
 }
@@ -106,6 +127,9 @@ private extension CHWatchlistViewController {
 extension CHWatchlistViewController: CHWatchlistPresenterDelegate {
     
     func presenter(_ presenter: CHWatchlistPresenter, didUpdatedCurrenciesList currencies: [CHLiteCurrencyModel]) {
+        if let subscriptionPackage = vinsoAPI.subscriptionPackage {
+            maxPairs = LimitObjects(amount: currencies.count, max: subscriptionPackage.maxPairsInWatchlist)
+        }
         contentView.setTutorialVisible(isUserAuthorizedToExmo: exmoAPI.isAuthorized, hasContent: !currencies.isEmpty)
     }
     

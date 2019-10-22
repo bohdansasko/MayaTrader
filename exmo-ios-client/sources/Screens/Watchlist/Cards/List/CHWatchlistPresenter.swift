@@ -27,7 +27,7 @@ final class CHWatchlistPresenter: NSObject {
     }
     
     fileprivate var collectionView: UICollectionView
-    fileprivate var dataSource    : CHWatchlistDataSource
+                let dataSource    : CHWatchlistDataSource
     fileprivate var vinsoAPI      : VinsoAPI
     fileprivate var dbManager     : OperationsDatabaseProtocol
     
@@ -104,14 +104,17 @@ extension CHWatchlistPresenter {
     }
     
     func runIntervalCurrenciesRefreshing() {
-        if currencyRefreshTimer == nil {
-            currencyRefreshTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshingIntervalInSeconds, repeats: true) { [weak self] t in
-                guard let `self` = self, !self.dataSource.items.isEmpty else { return }
-                self.refreshCurrencies(self.dataSource.items)
-            }
-            RunLoop.current.add(currencyRefreshTimer!, forMode: .common)
-            currencyRefreshTimer!.tolerance = 5
+        let isRefreshingStarted = currencyRefreshTimer != nil
+        if !isRefreshingStarted {
+            return
         }
+        
+        currencyRefreshTimer = Timer.scheduledTimer(withTimeInterval: Constants.refreshingIntervalInSeconds, repeats: true) { [weak self] t in
+            guard let `self` = self, !self.dataSource.items.isEmpty else { return }
+            self.refreshCurrencies(self.dataSource.items)
+        }
+        RunLoop.current.add(currencyRefreshTimer!, forMode: .common)
+        currencyRefreshTimer!.tolerance = 5
     }
     
     func stopIntervalCurrenciesRefreshing() {

@@ -17,8 +17,19 @@ extension VinsoAPI {
         
         self.sendRequest(messageType: .setSubscriptionType, params: params)
             .asSingle()
-            .subscribe(onSuccess: { json in
-                log.debug(json)
+            .subscribe(onSuccess: { [weak self] json in
+                guard let `self` = self else { return }
+                switch packageType {
+                case .freeWithAds:
+                    self.subscriptionPackage = CHBasicAdsSubscriptionPackage()
+                case .freeNoAds:
+                    self.subscriptionPackage = CHBasicNoAdsSubscriptionPackage()
+                case .lite:
+                    self.subscriptionPackage = CHLiteSubscriptionPackage()
+                case .pro:
+                    self.subscriptionPackage = CHProSubscriptionPackage()
+                }
+                NotificationCenter.default.post(name: IAPNotification.updateSubscription)
             }, onError: { err in
                 log.error(err)
             })
@@ -42,46 +53,8 @@ extension VinsoAPI {
 
 extension VinsoAPI {
     
-    func subscribeOnIAPNotifications() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onProductSubscriptionActive(_ :)),
-            name: IAPNotification.updateSubscription)
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(onPurchaseError(_ :)),
-            name: IAPNotification.purchaseError)
-    }
-    
     func unsubscribeFromNotifications() {
         NotificationCenter.default.removeObserver(self)
-    }
-    
-}
-
-// MARK: - Manage subscribes notifications
-
-private extension VinsoAPI {
-
-    @objc func onProductSubscriptionActive(_ notification: Notification) {
-        log.info("notification name =", notification.name)
-        guard let CHSubscriptionPackage = notification.userInfo?[IAPService.kSubscriptionPackageKey] as? CHSubscriptionPackageProtocol else {
-            log.info("can't convert notification container to IAPProduct")
-            if AppDelegate.vinsoAPI.isAuthorized {
-                AppDelegate.vinsoAPI.setSubscription(.freeWithAds)
-            }
-            return
-        }
-        
-        if AppDelegate.vinsoAPI.isAuthorized {
-            AppDelegate.vinsoAPI.setSubscription(CHSubscriptionPackage.type)
-        }
-    }
-    
-    @objc func onPurchaseError(_ notification: Notification) {
-        if AppDelegate.vinsoAPI.isAuthorized {
-            AppDelegate.vinsoAPI.setSubscription(.freeWithAds)
-        }
     }
     
 }

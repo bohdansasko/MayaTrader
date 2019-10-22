@@ -91,6 +91,7 @@ class Utils {
         return iconName
     }
 
+    @available(*, deprecated, message: "use instead asString in the object `LimitObjects`")
     static func getFormatMaxObjects(_ maxObject: LimitObjects) -> String {
         return "\(String(maxObject.amount))/\(maxObject.max)"
     }

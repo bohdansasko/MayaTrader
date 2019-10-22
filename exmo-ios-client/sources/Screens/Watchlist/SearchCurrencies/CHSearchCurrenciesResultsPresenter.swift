@@ -25,6 +25,9 @@ final class CHSearchCurrenciesResultsPresenter: NSObject {
 
     fileprivate let disposeBag       = DisposeBag()
     
+    fileprivate var kCardsLimit: Int {
+        return vinsoAPI.subscriptionPackage!.maxPairsInWatchlist
+    }
     fileprivate(set) var likeString            : String?
     fileprivate      let kCurrenciesFetchLimit = 30
     fileprivate      var isDownloadedAllItems  : Bool = false
@@ -87,7 +90,9 @@ extension CHSearchCurrenciesResultsPresenter {
                     guard let `self` = self else { return }
 
                     self.isDownloadedAllItems = currencies.isEmpty
-                    if self.isDownloadedAllItems { return }
+                    if self.isDownloadedAllItems {
+                        return
+                    }
                     
                     let offset = self.dataSource.items.count
                     let lastIndex = offset + currencies.count
@@ -136,10 +141,13 @@ extension CHSearchCurrenciesResultsPresenter {
         switch selectionMode {
         case .currencies:
             let isItemWasSelected = dataSource.isItem(selected: item)
-            
             if isItemWasSelected {
                 dataSource.remove(selected: item)
             } else {
+                if (dataSource.selectedItems.count + 1) > kCardsLimit {
+                    self.delegate?.searchCurrenciesResultsPresenter(self, onError: CHVinsoAPIError.reachedCurrenciesLimit)
+                    return
+                }
                 dataSource.add(selected: item)
             }
             currencyCell.set(isSelected: !isItemWasSelected)

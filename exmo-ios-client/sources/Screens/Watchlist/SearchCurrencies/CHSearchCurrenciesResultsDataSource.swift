@@ -11,8 +11,8 @@ import UIKit
 final class CHSearchCurrenciesResultsDataSource: CHBaseDataSource<CHLiteCurrencyModel> {
     fileprivate let dbManager    : OperationsDatabaseProtocol
     
-    fileprivate var selectedItemsFromDB: Set<CHLiteCurrencyModel> = []
-    fileprivate var selectedItems      : Set<CHLiteCurrencyModel> = []
+    fileprivate      var selectedItemsFromDB: Set<CHLiteCurrencyModel> = []
+    fileprivate(set) var selectedItems      : Set<CHLiteCurrencyModel> = []
     
     init(dbManager: OperationsDatabaseProtocol) {
         self.dbManager = dbManager

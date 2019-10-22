@@ -9,7 +9,7 @@
 import UIKit
 
 final class CHWatchlistView: CHBaseTabView {
-    
+    @IBOutlet fileprivate      weak var maxPairsLabel           : UILabel!
     @IBOutlet fileprivate(set) weak var currenciesCollectionView: UICollectionView!
     
     override func awakeFromNib() {
@@ -31,6 +31,16 @@ private extension CHWatchlistView {
     func setupUI() {
         currenciesCollectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         currenciesCollectionView.register(class: WatchlistCardCell.self)
+    }
+    
+}
+
+// MARK: - Set methods
+
+extension CHWatchlistView {
+    
+    func set(maxPairs text: String?) {
+        maxPairsLabel.text = text
     }
     
 }
