@@ -83,7 +83,7 @@ enum CHStockExchange: String {
 
 extension CHStockExchange {
     
-    var description: String {
+    var asString: String {
         switch self {
         case .exmo:
             return "EXMO"
@@ -91,6 +91,12 @@ extension CHStockExchange {
             return "BTC-TRADE"
         }
     }
+    
+    @available(*, deprecated, message: "use `asString` instead")
+    var description: String {
+        return self.asString
+    }
+    
     
 }
 

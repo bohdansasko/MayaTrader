@@ -100,8 +100,7 @@ extension CHCreateAlertHighLowForm {
         selectedCurrency = currency
         
         // update currency cell
-        
-        currencyFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name)
+        currencyFormItem.leftValue = Utils.getDisplayCurrencyPair(rawCurrencyPairName: currency.name) + " (\(currency.stock.asString))"
         currencyFormItem.rightValue = Utils.getFormatedPrice(value: currency.sellPrice, maxFractDigits: 10)
         currencyCell.update(item: currencyFormItem)
 
