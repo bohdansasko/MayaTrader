@@ -193,10 +193,10 @@ extension CurrenciesListInteractor: ITickerNetworkWorkerDelegate {
             }
         }
 
-        var items: [WatchlistCurrency] = tickerContainer.compactMap({(arg0) in
-            let (currencyPairCode, model) = arg0
+        var items: [WatchlistCurrency] = tickerContainer.compactMap { arg in
+            let (_, model) = arg
             return WatchlistCurrency(index: 1, tickerCurrencyModel: model)
-        })
+        }
         for index in (0..<items.count) { items[index].index = index }
         items.sort(by: { $0.tickerPair.getChanges() > $1.tickerPair.getChanges() })
         output.onDidLoadCurrenciesPairs(items: items)

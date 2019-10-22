@@ -30,7 +30,7 @@ extension CHLiteCurrencyFormatter {
     }
     
     var stockName: String {
-        return currency.stock.description
+        return currency.stock.asString
     }
     
     var sellPrice: String {

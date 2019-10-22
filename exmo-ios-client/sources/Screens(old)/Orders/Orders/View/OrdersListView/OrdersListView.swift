@@ -235,7 +235,6 @@ extension OrdersListView {
             placeholderNoData.text = "You haven't cancelled orders right now"
         case .deals:
             placeholderNoData.text = "You haven't deals orders right now"
-        default: break
         }
     }
     

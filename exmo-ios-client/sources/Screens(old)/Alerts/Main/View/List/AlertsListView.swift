@@ -49,7 +49,7 @@ class AlertsListView: UIView {
     var maxPairs: LimitObjects? {
         didSet {
             guard let mp = maxPairs else { return }
-            quantityPairsAllowsLabel.text = Utils.getFormatMaxObjects(mp)
+            quantityPairsAllowsLabel.text = mp.asString
         }
     }
     

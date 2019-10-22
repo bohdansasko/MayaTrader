@@ -133,7 +133,7 @@ private extension CHSocketManager {
             self.response.onNext(.message(message))
         }
         
-        socket.event.error = { [unowned self] error in
+        socket.event.error = { error in
             log.debug("socket error: \(error)")            
         }
     }

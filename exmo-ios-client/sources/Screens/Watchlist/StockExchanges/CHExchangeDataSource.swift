@@ -10,8 +10,8 @@ import UIKit
 
 final class CHExchangeDataSource: NSObject {
     fileprivate var exchangeItems: [CHExchangeModel] = [
-        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_stock_exmo"), name: CHStockExchange.exmo.description),
-        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_stock_btc_trade"), name: CHStockExchange.btcTrade.description)
+        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_stock_exmo"), name: CHStockExchange.exmo.asString),
+        CHExchangeModel(icon:#imageLiteral(resourceName: "ic_stock_btc_trade"), name: CHStockExchange.btcTrade.asString)
     ]
     
 }
