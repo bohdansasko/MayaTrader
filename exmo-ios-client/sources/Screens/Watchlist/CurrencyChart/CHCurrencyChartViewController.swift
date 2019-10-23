@@ -69,13 +69,18 @@ private extension CHCurrencyChartViewController {
 
 }
 
-// MARK: - Setters
+// MARK: -
 
-private extension CHCurrencyChartViewController {
+extension CHCurrencyChartViewController {
 
     func set(candles: [CHCandleModel]) {
-        candlePresenter.candles = candles
-        barPresenter.candles    = candles
+        candlePresenter.set(candles: candles)
+        barPresenter.set(candles: candles)
+    }
+    
+    func append(candles: [CHCandleModel]) {
+        candlePresenter.append(candles: candles)
+        barPresenter.append(candles: candles)
     }
 
 }
@@ -125,7 +130,7 @@ extension CHCurrencyChartViewController: CHBaseChartPresenterDelegate {
     func chartPresenter(_ presenter: CHBaseChartPresenter, didSelectChartValue value: Highlight) {
         self.candlePresenter.chartView?.highlightValue(value)
         let idx = Int(value.x)
-        let candle = self.candlePresenter.candles[idx]
+        let candle = self.candlePresenter.candle(at: idx)
         self.contentView.set(candleDetails: candle)
         
         if presenter is CHCandleChartPresenter {

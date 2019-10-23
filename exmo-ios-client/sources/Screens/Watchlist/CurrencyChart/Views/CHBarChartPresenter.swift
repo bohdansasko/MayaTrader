@@ -12,7 +12,7 @@ import Charts
 final class CHBarChartPresenter: CHBaseChartPresenter {
     fileprivate(set) weak var chartView: BarChartView!
     
-    var candles: [CHCandleModel] = [] {
+    fileprivate var candles: [CHCandleModel] = [] {
         didSet {
             setupChartUI()
         }
@@ -70,6 +70,24 @@ private extension CHBarChartPresenter {
         chartView.chartDescription?.enabled = false
         
         chartView.moveViewToX(Double(candles.count))
+    }
+    
+}
+
+// MARK: -
+
+extension CHBarChartPresenter {
+    
+    func set(candles items: [CHCandleModel]) {
+        self.candles = items
+    }
+    
+    func append(candles items: [CHCandleModel]) {
+        self.candles.insert(contentsOf: items, at: 0)
+    }
+    
+    func candle(at index: Int) -> CHCandleModel {
+        return self.candles[index]
     }
     
 }

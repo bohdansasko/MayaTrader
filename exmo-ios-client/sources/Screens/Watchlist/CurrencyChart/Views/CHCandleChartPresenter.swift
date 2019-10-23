@@ -12,9 +12,9 @@ import Charts
 final class CHCandleChartPresenter: CHBaseChartPresenter {
     fileprivate(set) var chartView: CandleStickChartView!
     
-    var candles: [CHCandleModel] = [] {
+    private var candles: [CHCandleModel] = [] {
         didSet {
-            setupChartUI()
+            updateChartView()
         }
     }
     
@@ -26,6 +26,7 @@ final class CHCandleChartPresenter: CHBaseChartPresenter {
         super.init()
         
         self.chartView.delegate = self
+        self.setupChartView()
     }
     
     override func moveChartByXTo(index: Double) {
@@ -38,12 +39,9 @@ final class CHCandleChartPresenter: CHBaseChartPresenter {
 
 private extension CHCandleChartPresenter {
     
-    func setupChartUI() {
-        if candles.isEmpty {
-            return
-        }
-                
-        let candleData = getCandleChartData()
+    func setupChartView() {
+        let entries = makeCandleChartDataEntries(from: candles)
+        let candleData = makeCandleChartData(from: entries)
         chartView.data = candleData
 
         chartView.setVisibleXRangeMaximum(20)
@@ -59,19 +57,39 @@ private extension CHCandleChartPresenter {
         chartView.xAxis.valueFormatter = self
         chartView.xAxis.granularity = 1
         chartView.xAxis.labelTextColor = .white
-
-        let minLowCandle = candles.min(by: { $0.low < $1.low })!.low
-        chartView.leftAxis.axisMinimum = minLowCandle
-        chartView.leftAxis.enabled = false
         
         chartView.rightAxis.gridColor = UIColor.dark1
         chartView.rightAxis.labelFont = UIFont.getExo2Font(fontType: .medium, fontSize: 10)
         chartView.rightAxis.labelTextColor = UIColor.white
-        chartView.rightAxis.axisMinimum = chartView.leftAxis.axisMinimum
-        chartView.rightAxis.resetCustomAxisMin()
-        chartView.rightAxis.xOffset = 1.25
-        
-        chartView.moveViewToX(Double(candles.count))
+    }
+    
+    func updateChartView() {
+//        let minLowCandle = candles.min(by: { $0.low < $1.low })!.low
+//
+//        chartView.leftAxis.axisMinimum = minLowCandle
+//        chartView.rightAxis.axisMinimum = chartView.leftAxis.axisMinimum
+//        
+//        chartView.rightAxis.resetCustomAxisMin()
+//        chartView.rightAxis.xOffset = 1.25
+//        chartView.moveViewToX(Double(candles.count))
+    }
+    
+}
+
+// MARK: - 
+
+extension CHCandleChartPresenter {
+    
+    func set(candles items: [CHCandleModel]) {
+        self.candles = items
+    }
+    
+    func append(candles items: [CHCandleModel]) {
+        self.candles.insert(contentsOf: items, at: 0)
+    }
+    
+    func candle(at index: Int) -> CHCandleModel {
+        return self.candles[index]
     }
     
 }
@@ -80,36 +98,33 @@ private extension CHCandleChartPresenter {
 
 private extension CHCandleChartPresenter {
     
-    func getCandleChartData() -> CandleChartData {
-        if candles.isEmpty {
-            return CandleChartData(dataSet: nil)
-        }
-
-        let yVals1 = (0..<candles.count).map { (idx) -> CandleChartDataEntry in
-            let candleModel = candles[idx]
+    func makeCandleChartDataEntries(from candles: [CHCandleModel]) -> [CandleChartDataEntry] {
+        return candles.enumerated().map { (idx, candleModel) -> CandleChartDataEntry in
             let open = candleModel.open
             let high = candleModel.high
             let low = candleModel.low
             let close = candleModel.close
             return CandleChartDataEntry(x: Double(idx), shadowH: high, shadowL: low, open: open, close: close)
         }
+    }
+    
+    func makeCandleChartData(from entries: [CandleChartDataEntry]?) -> CandleChartData {
+        let dataSet = CandleChartDataSet(entries: entries, label: "Data Set")
+        dataSet.axisDependency   = .left
+        dataSet.setColor(#colorLiteral(red: 0.3135, green: 0.3135, blue: 0.3135, alpha: 1))
+        dataSet.drawIconsEnabled = false
+        dataSet.shadowColor      = .darkGray
+        dataSet.shadowWidth      = 0.7
+        dataSet.decreasingColor  = #colorLiteral(red: 1, green: 0.4117647059, blue: 0.3764705882, alpha: 1)
+        dataSet.decreasingFilled = true
+        dataSet.increasingColor  = #colorLiteral(red: 0, green: 0.7411764706, blue: 0.6039215686, alpha: 1)
+        dataSet.increasingFilled = true
+        dataSet.neutralColor     = .blue
+        dataSet.barSpace         = 0.1
+        dataSet.shadowColorSameAsCandle = true
+        dataSet.valueTextColor   = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
-        let set1 = CandleChartDataSet(entries: yVals1, label: "Data Set")
-        set1.axisDependency = .left
-        set1.setColor(UIColor(white: 80/255, alpha: 1))
-        set1.drawIconsEnabled = false
-        set1.shadowColor = .darkGray
-        set1.shadowWidth = 0.7
-        set1.decreasingColor = UIColor(red: 255/255, green: 105/255, blue: 96/255, alpha: 1)
-        set1.decreasingFilled = true
-        set1.increasingColor = UIColor(red: 0/255, green: 189/255, blue: 154/255, alpha: 1)
-        set1.increasingFilled = true
-        set1.neutralColor = .blue
-        set1.barSpace = 0.1
-        set1.shadowColorSameAsCandle = true
-        set1.valueTextColor = UIColor.white
-        
-        return CandleChartData(dataSet: set1)
+        return CandleChartData(dataSet: dataSet)
     }
     
 }
