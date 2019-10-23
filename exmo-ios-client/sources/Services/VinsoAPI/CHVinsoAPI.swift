@@ -40,7 +40,7 @@ final class VinsoAPI {
     var socketManager: CHSocketManager!
     let disposeBag = DisposeBag()
 
-    let kResponseTimeoutSeconds      = 10.0
+    let kResponseTimeoutSeconds      = 40.0
     let kAuthorizationTimeoutSeconds = 5.0
 
     let kAPIVersion = 1
@@ -170,7 +170,7 @@ private extension VinsoAPI {
                     }
                 }, onError: { err in
                     log.error("\(messageType.description) Rx error: \(err.localizedDescription)\n")
-                    subscriber.onError(err)
+                    subscriber.onError(CHVinsoAPIError.timeout)
                 })
             return Disposables.create{ socketResponse.dispose() }
         }

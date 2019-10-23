@@ -112,6 +112,7 @@ enum CHVinsoAPIError: String, Error {
     case reachedCurrenciesLimit = "ERROR_REACHED_CURRENCIES_LIMIT"
     case reachedAlertsLimit     = "ERROR_REACHED_ALERTS_LIMIT"
     case apiVersionNotSupported = "ERROR_API_NOT_SUPPORTED"
+    case timeout                = "ERROR_TIMEOUT"
     
     var localizedDescription: String {
         return self.rawValue.localized

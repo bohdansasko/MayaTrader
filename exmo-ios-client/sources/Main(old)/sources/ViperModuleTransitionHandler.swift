@@ -13,6 +13,7 @@ protocol SegueBlock {
 }
 
 extension UIViewController {
+    
     func openModule(segueIdentifier: String, block: SegueBlock?) {
         self.performSegue(withIdentifier: segueIdentifier, sender: block)
     }
@@ -24,4 +25,5 @@ extension UIViewController {
     func popViewController() {
         self.navigationController?.popViewController(animated: true)
     }
+    
 }

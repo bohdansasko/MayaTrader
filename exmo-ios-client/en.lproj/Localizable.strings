@@ -62,6 +62,7 @@
 "ERROR_REACHED_CURRENCIES_LIMIT" = "Couldn't append the currency. Your currencies limit has been exceeded.";
 "ERROR_REACHED_ALERTS_LIMIT"     = "Couldn't create the alert. Your alerts limit has been exceeded.";
 "ERROR_API_NOT_SUPPORTED"        = "Unfortunately, API in the app doesn't support. Please, update app.";
+"ERROR_TIMEOUT"                  = "Timeout error. Please, check your internet connection.";
 
 "DELETE" = "Delete";
 

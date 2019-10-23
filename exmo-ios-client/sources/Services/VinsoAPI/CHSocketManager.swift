@@ -86,7 +86,7 @@ extension CHSocketManager {
     
     func disconnect() {
         self.socket.close()
-        self.response.onNext(.disconnected(CHVinsoAPIError.noConnection))
+        self.response.onNext(.disconnected(CHVinsoAPIError.socketClosed))
         self.connected.onNext(false)
     }
 

@@ -164,9 +164,6 @@ private extension CHCreateAlertViewController {
         let topBound: Double? = form.topBound != nil ? Utils.getJSONFormattedNumb(from: form.topBound!) : nil
         let bottomBound: Double? = form.bottomBound != nil ? Utils.getJSONFormattedNumb(from: form.bottomBound!) : nil
         
-        // TODO bohdans: fetch priceAtCreateMoment
-        // let priceAtCreateMoment = selectedPair?.lastTrade ?? editAlert?.priceAtCreateMoment ?? 0
-        
         let newAlert = Alert(id: id,
                              currencyPairName: form.selectedCurrency!.name,
                              priceAtCreateMoment: form.selectedCurrency!.sellPrice,

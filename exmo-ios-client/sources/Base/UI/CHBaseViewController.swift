@@ -67,13 +67,13 @@ extension CHBaseViewController {
     }
     
     func showAlert(title: String?, message: String?, comment: String? = nil) {
-        showAlert(title: title, message: message, comment: comment, okTitle: "OK".localized)
+        showAlert(title: title, message: message, comment: comment, okTitle: "OK".localized, okActionHandler: nil)
     }
     
-    func showAlert(title: String?, message: String?, comment: String?, okTitle: String?) {
+    func showAlert(title: String?, message: String?, comment: String?, okTitle: String?, okActionHandler: ((UIAlertAction) -> Void)?) {
         let alertViewController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let okAction = UIAlertAction(title: okTitle, style: .default, handler: nil)
+        let okAction = UIAlertAction(title: okTitle, style: .default, handler: okActionHandler)
         alertViewController.addAction(okAction)
         
         self.present(alertViewController, animated: true, completion: nil)
