@@ -14,15 +14,13 @@ extension Reactive where Base: CHBaseViewController {
     
     @discardableResult
     func showLoadingView<T>(request: Single<T>) -> Single<T> {
-        return showLoadingView(fullscreen: false, request: request)
+        return showLoadingView(fullscreen: true, request: request)
     }
     
     @discardableResult
     func showLoadingView<T>(fullscreen: Bool, request: Single<T>) -> Single<T> {
         let loader = base.makeLoadingView()
-        
-        let topVC = UIApplication.shared.keyWindow!
-        topVC.addSubview(loader)
+        self.base.view.addSubview(loader)
         
         if fullscreen {
             loader.snp.makeConstraints{ $0.edges.equalToSuperview() }

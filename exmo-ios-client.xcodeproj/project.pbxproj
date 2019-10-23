@@ -157,6 +157,7 @@
 		208FE0A822DB78220014BCE5 /* CHBaseCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */; };
 		208FE0AC22DB7B8C0014BCE5 /* CHBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */; };
 		208FE0AE22DB819A0014BCE5 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */; };
+		2090DEBD2360C72C005BBE8B /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2090DEBC2360C72C005BBE8B /* UIApplication+Extension.swift */; };
 		20A5B88B20AE23CB00EC2A4D /* Watchlist.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */; };
 		20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */; };
 		20A9044D21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */; };
@@ -532,6 +533,7 @@
 		208FE0A622DB78220014BCE5 /* CHBaseCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseCollectionCell.swift; sourceTree = "<group>"; };
 		208FE0AB22DB7B8C0014BCE5 /* CHBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHBaseView.swift; sourceTree = "<group>"; };
 		208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		2090DEBC2360C72C005BBE8B /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		20A5B88A20AE23CB00EC2A4D /* Watchlist.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Watchlist.storyboard; sourceTree = "<group>"; };
 		20A9044A21BA48F900718A53 /* FormCreateOrderOnSum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnSum.swift; sourceTree = "<group>"; };
 		20A9044C21BA4B5A00718A53 /* FormCreateOrderOnAmount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormCreateOrderOnAmount.swift; sourceTree = "<group>"; };
@@ -2282,6 +2284,7 @@
 				200D52D322DA7F550009C07C /* UITableView+Extension.swift */,
 				208FE0AD22DB819A0014BCE5 /* UIViewController+Extension.swift */,
 				208A2517233D606500C1D911 /* UIStackView+Ext.swift */,
+				2090DEBC2360C72C005BBE8B /* UIApplication+Extension.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -2883,6 +2886,7 @@
 				208FE0A522DB724F0014BCE5 /* CHSearchCurrenciesResultsView.swift in Sources */,
 				7639124D250F06BF943994DA /* CreateOrderInitializer.swift in Sources */,
 				208FE0AE22DB819A0014BCE5 /* UIViewController+Extension.swift in Sources */,
+				2090DEBD2360C72C005BBE8B /* UIApplication+Extension.swift in Sources */,
 				B1450B72C9D1F128578C1154 /* OrdersViewProtocols.swift in Sources */,
 				20A9044B21BA48F900718A53 /* FormCreateOrderOnSum.swift in Sources */,
 				C7FD7600220B411F00A987DB /* NoInternetView.swift in Sources */,

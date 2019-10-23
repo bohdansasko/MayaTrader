@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControllerProtocol {
     typealias ContentView = CHWatchlistView
@@ -17,7 +18,7 @@ final class CHWatchlistViewController: CHBaseViewController, CHBaseViewControlle
     }
     
     fileprivate var presenter: CHWatchlistPresenter!
-    
+    fileprivate var isFetchingCurrencies = false
     fileprivate var maxPairs: LimitObjects? {
         didSet {
             contentView.set(maxPairs: maxPairs?.asString)
@@ -99,7 +100,20 @@ private extension CHWatchlistViewController {
 private extension CHWatchlistViewController {
  
     func fetchCurrencies() {
+        if isFetchingCurrencies {
+            return
+        }
+
+        isFetchingCurrencies = true
         rx.showLoadingView(request: presenter.fetchItems())
+            .subscribe(onSuccess: { [weak self] _ in
+                guard let `self` = self else { return }
+                self.isFetchingCurrencies = false
+            }, onError: { [weak self] err in
+                guard let `self` = self else { return }
+                self.isFetchingCurrencies = false
+                self.handleError(err)
+            })
     }
     
 }
