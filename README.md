@@ -1,6 +1,10 @@
 # MayaTrader
 iOS client for trading on exmo.com with using old api(2016)
 
+- App icon
+
+![iPhone 11 — 13 1 2020-01-02 14-18-24](https://user-images.githubusercontent.com/12583893/71666704-c732cd00-2d6a-11ea-9de7-a66dccbf97f8.png)
+
 - Search currenties via stocks
 
 ![iPhone 11 — 13 1 2020-01-02 12-23-34](https://user-images.githubusercontent.com/12583893/71662649-e6c1f980-2d5a-11ea-8452-5085f56b331b.png)
